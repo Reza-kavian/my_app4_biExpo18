@@ -4,7 +4,8 @@ buildscript {
         minSdkVersion = 24
         compileSdkVersion = 36
         targetSdkVersion = 36
-        ndkVersion = "27.1.12297006"
+        // ndkVersion = "27.1.12297006"   //zare_nk_040922_commented(chon 27.1.12297006 nasb nashod)
+        ndkVersion = "27.0.12077973"   //zare_nk_040922_added(chon 27.1.12297006 nasb nashod)
         kotlinVersion = "2.1.20"
     }
     repositories {

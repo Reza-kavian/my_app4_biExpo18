@@ -1,45 +1,26 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+import React, { useState } from 'react';   //okk
+import { View, Button } from 'react-native';
+import HomeScreen from './HomeScreen';
+import ScannerScreen from './ScannerScreen';
 
-import { NewAppScreen } from '@react-native/new-app-screen';
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-
-function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  return (
-    <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
-    </SafeAreaProvider>
+function App(): React.JSX.Element {
+  const [currentScreen, setCurrentScreen] = useState<'home' | 'scanner'>(
+    'home',
   );
-}
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
 
   return (
-    <View style={styles.container}>
-      <NewAppScreen
-        templateFileName="App.tsx"
-        safeAreaInsets={safeAreaInsets}
-      />
+    <View style={{ flex: 1 }}>
+      {currentScreen === 'home' ? <HomeScreen /> : <ScannerScreen />}
+      <View style={{ position: 'absolute', bottom: 50, alignSelf: 'center' }}>
+        <Button
+          title={currentScreen === 'home' ? 'رفتن به اسکنر' : 'برگشت به خانه'}
+          onPress={() =>
+            setCurrentScreen(currentScreen === 'home' ? 'scanner' : 'home')
+          }
+        />
+      </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;

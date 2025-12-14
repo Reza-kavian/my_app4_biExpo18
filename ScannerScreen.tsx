@@ -3,11 +3,10 @@ import { View, Text, Button, Modal, StyleSheet, Alert } from "react-native";
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
 
 const ScannerScreen = () => {
-  const [modalVisible, setModalVisible] = useState(false);
-  const [isScanning, setIsScanning] = useState(true); // جلوگیری از اسکن رگباری
-  const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar dadeh mishe)
-
-  // گرفتن دیوایس دوربین عقب
+  const [modalVisible, setModalVisible] = useState(false);    //zare_nk_040923(halat namayesh modal)
+  const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
+  const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
+ 
   const device = useCameraDevice("back");   //zare_nk_040923(doorbin ra doorbine aghab moshakhas mikonim)
   
   useEffect(() => {
@@ -45,8 +44,8 @@ const ScannerScreen = () => {
   if (!hasPermission) return <Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>; //zare_nk_040923(agar dastresi be doorbin nadashte bashim in matn neshan dade mishavad)
 
   return (
-    <View style={styles.container}>
-      <Button
+    <View style={styles.container}>   {/*zare_nk_040923(konteyner asli safhe)*/}
+      <Button   {/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/}
         title="باز کردن بارکدخوان"
         onPress={() => {
           setIsScanning(true);    //zare_nk_040923(bazgasht be halat scan )
@@ -54,18 +53,18 @@ const ScannerScreen = () => {
         }}
       />
 
-      <Modal
-        visible={modalVisible}
-        animationType="slide"   //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
+      <Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
+        visible={modalVisible}    //zare_nk_040923(halat namayesh modal)
+        animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
         onRequestClose={() => setModalVisible(false)}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
       >
         <View style={styles.modalContainer}>     {/*zare_nk_040923(konteyner modal)*/}
           <Camera   //zare_nk_040923(komponent doorbin)
             style={StyleSheet.absoluteFill}
-            device={device}
+            device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
             isActive={modalVisible}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
-            codeScanner={codeScanner} //zare_nk_040923(ersal codeScanner be doorbin baraye scan kardan code ha)
-            enableZoomGesture={true} //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
+            codeScanner={codeScanner}  //zare_nk_040923(ersal codeScanner be doorbin baraye scan kardan code ha)
+            enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
           />
  
           <View style={styles.overlay}>   {/*zare_nk_040923(baraye namayesh kadr rahnama)*/}

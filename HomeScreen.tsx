@@ -1,4 +1,4 @@
-import React from 'react';   //okk
+import React from 'react';   
 import { StyleSheet, Text, View } from 'react-native';
 
 function HomeScreen(): React.JSX.Element {
@@ -12,7 +12,7 @@ function HomeScreen(): React.JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#0ad14cff',
+    backgroundColor: 'silver',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'red',
+    borderWidth:1,borderColor:'yellow',borderStyle:'dashed'
   },
 });
 

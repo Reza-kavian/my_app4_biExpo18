@@ -12,7 +12,6 @@ const ScannerScreen = () => {
   useEffect(() => {
     requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
   }, []);
-
   
   const codeScanner = useCodeScanner({  //zare_nk_040923(metodi baraye scan kardan code ha)
     codeTypes: ["qr", "ean-13", "upc-a"],    //zare_nk_040923(anvae code haei ke mikhahim shenasaei konim ra moshakhas mikonim ) 
@@ -45,25 +44,25 @@ const ScannerScreen = () => {
 
   return (
     <View style={styles.container}>   {/*zare_nk_040923(konteyner asli safhe)*/}
-      <Button   {/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/}
+      <Button   
         title="باز کردن بارکدخوان"
         onPress={() => {
           setIsScanning(true);    //zare_nk_040923(bazgasht be halat scan )
           setModalVisible(true);    //zare_nk_040923(namayesh modal )
         }}
-      />
-
+      />{/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/}
+      
       <Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
         visible={modalVisible}    //zare_nk_040923(halat namayesh modal)
         animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
         onRequestClose={() => setModalVisible(false)}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
       >
-        <View style={styles.modalContainer}>     {/*zare_nk_040923(konteyner modal)*/}
+        <View style={styles.modalContainer}>     {/*zare_nk_040923(konteyner dakhele modal)*/}
           <Camera   //zare_nk_040923(komponent doorbin)
             style={StyleSheet.absoluteFill}
             device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
             isActive={modalVisible}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
-            codeScanner={codeScanner}  //zare_nk_040923(ersal codeScanner be doorbin baraye scan kardan code ha)
+            codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
             enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
           />
  
@@ -79,7 +78,7 @@ const ScannerScreen = () => {
 };
 
 export default ScannerScreen;
-
+// zare_nk_040923(dar stylesheet dispalay pishfarz flex ast va flexDirection: 'column' ast,age bekhaim row beshe bayad flexDirection ra be 'row' taghir dahim)
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -94,9 +93,12 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     backgroundColor: "black",
+    borderColor:"yellow",
+    borderWidth:2,
+    borderStyle:"dashed",
   },
   overlay: {
-    ...StyleSheet.absoluteFillObject,
+    ...StyleSheet.absoluteFill,  //zare_nk_040923(moadele css: position: absolute; top: 0; left: 0; right: 0; bottom: 0;)
     justifyContent: "center",
     alignItems: "center",
   },

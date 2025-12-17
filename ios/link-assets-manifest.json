@@ -1,0 +1,185 @@
+{
+  "migIndex": 1,
+  "data": [
+    {
+      "path": "src/assets/fonts/webfont/eot/IRANSansWeb.eot",
+      "sha1": "100d459ce806ace5f68172f29f1300c778022454"
+    },
+    {
+      "path": "src/assets/fonts/webfont/eot/IRANSansWeb_Black.eot",
+      "sha1": "a93c9723358d6cb539b0388677c9d0a982130e56"
+    },
+    {
+      "path": "src/assets/fonts/webfont/eot/IRANSansWeb_Bold.eot",
+      "sha1": "3c9ea79a46925ef93bbb129d257eb993a6a703fa"
+    },
+    {
+      "path": "src/assets/fonts/webfont/eot/IRANSansWeb_Light.eot",
+      "sha1": "0446d3437cf716a5b944a36fe55ec0dde439213a"
+    },
+    {
+      "path": "src/assets/fonts/webfont/eot/IRANSansWeb_Medium.eot",
+      "sha1": "8cbecf2cd06391ca3dbf33f67e70fd42f1a7a16b"
+    },
+    {
+      "path": "src/assets/fonts/webfont/eot/IRANSansWeb_UltraLight.eot",
+      "sha1": "1333e152f7ac0ce2e7b525b2679eba65ba37f109"
+    },
+    {
+      "path": "src/assets/fonts/webfont/ttf/IRANSansWeb.ttf",
+      "sha1": "1bfa0acde9ae3dedfc9eb1f91762075acca8d42f"
+    },
+    {
+      "path": "src/assets/fonts/webfont/ttf/IRANSansWeb_Black.ttf",
+      "sha1": "9bd46257e5b7ecc303bfd5f74d8bfadc37cbb69c"
+    },
+    {
+      "path": "src/assets/fonts/webfont/ttf/IRANSansWeb_Bold.ttf",
+      "sha1": "d5944acf41804a13b1b5fbe929c8533e46e274f6"
+    },
+    {
+      "path": "src/assets/fonts/webfont/ttf/IRANSansWeb_Light.ttf",
+      "sha1": "5852b53fa56e2c3f988d62b74b111805ca3515df"
+    },
+    {
+      "path": "src/assets/fonts/webfont/ttf/IRANSansWeb_Medium.ttf",
+      "sha1": "a52985e5e9316fb8c7fe2a6c54055b417151059b"
+    },
+    {
+      "path": "src/assets/fonts/webfont/ttf/IRANSansWeb_UltraLight.ttf",
+      "sha1": "8433e5c367dac095733d0fc6c5c33620a03bbcfb"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff/IRANSansWeb.woff",
+      "sha1": "2f8860cdeb685d84750011e40e1bd2cd3823a64f"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff/IRANSansWeb_Black.woff",
+      "sha1": "614d91dd2c6c39a0ba33f3fcd62ecd677a370e39"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff/IRANSansWeb_Bold.woff",
+      "sha1": "171678d24becaef3af0a25b7930bf9e897f2d02b"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff/IRANSansWeb_Light.woff",
+      "sha1": "0577801a44f1a580dd2f0fb82bf4852f6b40d470"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff/IRANSansWeb_Medium.woff",
+      "sha1": "7f527af00b0465b379593f5dba1d6f96fd0834e8"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff/IRANSansWeb_UltraLight.woff",
+      "sha1": "809162041bcfb6728073e5e569b23dd61c6cfb17"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff2/IRANSansWeb.woff2",
+      "sha1": "93f8caeb96e52cd35dd24ffe8dbbc911af5b236e"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff2/IRANSansWeb_Black.woff2",
+      "sha1": "26c65a5ca1b06c914adb45dc593426abb41c06ab"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff2/IRANSansWeb_Bold.woff2",
+      "sha1": "9e63d01d8561d79074bd8e46fbf265285ab958b7"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff2/IRANSansWeb_Light.woff2",
+      "sha1": "8d1b86662fb7124e8b2a78829f8b4793cc0e9b55"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff2/IRANSansWeb_Medium.woff2",
+      "sha1": "930dfe28990dff55c8b4761fefb2e7c25fa2f093"
+    },
+    {
+      "path": "src/assets/fonts/webfont/woff2/IRANSansWeb_UltraLight.woff2",
+      "sha1": "5871b9c6e80b69c9e48bedb6db61603ff2ea68bb"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/eot/IRANSans(FaNum)_Medium.eot",
+      "sha1": "7ba6178405be555501fb7b25e37a29f8ad711d6e"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/eot/IRANSansWeb(FaNum).eot",
+      "sha1": "5d70eed4d1d52c39adf3a67e688d3e1cd0379bb2"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/eot/IRANSansWeb(FaNum)_Bold.eot",
+      "sha1": "146bcdc68b13cc9b37f2c7b9c73be0b9c082454f"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/eot/IRANSansWeb(FaNum)_Light.eot",
+      "sha1": "d1f22e1074ffdd1323047b7dcf3e3d5bfb385ff3"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/eot/IRANSansWeb(FaNum)_UltraLight.eot",
+      "sha1": "efee08ceb4a79e8156a3ae83e5383ce1a01528bc"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/style.css",
+      "sha1": "b90c8a6969d476f4a9ce95d462132fb4be7653ca"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/ttf/IRANSansWeb(FaNum).ttf",
+      "sha1": "efed0c5e0ba6f7bfdfb74f4e731863dd612694c1"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/ttf/IRANSansWeb(FaNum)_Bold.ttf",
+      "sha1": "8fec367869df731b8920424e35fd73879fa17a44"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/ttf/IRANSansWeb(FaNum)_Light.ttf",
+      "sha1": "164f74da21e9886e688f440a36540213ec59eec2"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/ttf/IRANSansWeb(FaNum)_Medium.ttf",
+      "sha1": "8fc46fd855305729fdc47f3777cb47e4450770ae"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/ttf/IRANSansWeb(FaNum)_UltraLight.ttf",
+      "sha1": "51ad0d8af3e1e6b0f6e5d25f3703bf899a455451"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff/IRANSansWeb(FaNum).woff",
+      "sha1": "cb95ee067a555fca5672f3038a015cac639a84e6"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff/IRANSansWeb(FaNum)_Bold.woff",
+      "sha1": "63aa6494cafc5f7053ee9d7c1f18749dc331ab0d"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff/IRANSansWeb(FaNum)_Light.woff",
+      "sha1": "7e1abad6d522341ec0832e86203a84d2c054de38"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff/IRANSansWeb(FaNum)_Medium.woff",
+      "sha1": "0d11da1b2c9871bb6d322b8d97653226359c9243"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff/IRANSansWeb(FaNum)_UltraLight.woff",
+      "sha1": "33f885de8675f1cfde97537189af7642c737ceda"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff2/IRANSansWeb(FaNum).woff2",
+      "sha1": "5814de103fbce57b58837d6f8764e1b8ac340613"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff2/IRANSansWeb(FaNum)_Bold.woff2",
+      "sha1": "c26ef26a677d464bb7b3b6803fcb060df325ad39"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff2/IRANSansWeb(FaNum)_Light.woff2",
+      "sha1": "72a05b14d4d2b4dfa19fbda84e51ea015bbc3c81"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff2/IRANSansWeb(FaNum)_Medium.woff2",
+      "sha1": "7c7c37a88e2d32d0bbe86e2080eee3f3e6ad716a"
+    },
+    {
+      "path": "src/assets/fonts/webfont(farsi_adad_hast)/woff2/IRANSansWeb(FaNum)_UltraLight.woff2",
+      "sha1": "22a291a830ec2d66129f20b84485071623dad4fa"
+    }
+  ]
+}

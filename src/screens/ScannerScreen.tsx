@@ -7,6 +7,7 @@ const ScannerScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);    //zare_nk_040923(halat namayesh modal)
   const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
   const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
+  const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
  
   const device = useCameraDevice("back");   //zare_nk_040923(doorbin ra doorbine aghab moshakhas mikonim)
   
@@ -42,7 +43,7 @@ const ScannerScreen = () => {
 
   if (!device) return <Text style={styles.centerText}>دوربین یافت نشد</Text>;   //zare_nk_040923(agar doorbin peyda nashod in matn neshan dade mishavad)
   if (!hasPermission) return <Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>; //zare_nk_040923(agar dastresi be doorbin nadashte bashim in matn neshan dade mishavad)
-
+   const hasTorch = device?.hasTorch ?? false;  //zare_nk_040927_added_st(baraye danestane flash dashtane dastgah)
   return (
     <View style={styles.container}>   {/*zare_nk_040923(konteyner asli safhe)*/}
       <Button   
@@ -65,12 +66,19 @@ const ScannerScreen = () => {
             isActive={modalVisible}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
             codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
             enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
+             torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
           />
  
           <View style={styles.overlay}>   {/*zare_nk_040923(baraye namayesh kadr rahnama)*/}
             <View style={styles.scanFrame} /> {/*zare_nk_040923(kadre rahnama baraye gharar dadane barcode dar an)*/}
             <Text style={styles.text}>بارکد را در کادر قرار دهید</Text> {/*zare_nk_040923(matni baraye rahnamayi karbar)*/}
             <Button title="بستن" color="red" onPress={() => setModalVisible(false)} />  {/*zare_nk_040923(dokmeye baraye baste shodan modal)*/}
+           {hasTorch && (
+  <Button
+    title={torch === 'on' ? 'فلش خاموش' : 'فلش روشن'}
+    onPress={() => setTorch(p => (p === 'on' ? 'off' : 'on'))}
+  />
+)}  {/*zare_nk_040926(baraye off va on kardane flash,albate age dastgah flash nadash dokmeh neshoon nadeh)*/}
           </View>
         </View>
       </Modal>

@@ -68,7 +68,9 @@ const MyCustomHeader = ({
                     }
                   );
                   const data = res.data;   
-                  console.log("040530-data: " + JSON.stringify(data));
+                  console.log("040928-b-1res: " + res);
+                  console.log("040928-b-2-JSON res: " + JSON.stringify(res));
+                  console.log("040928-b-3-data: " + JSON.stringify(data)); 
                   //{"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
                   if (
                     res.status === 200 //&&

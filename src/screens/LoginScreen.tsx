@@ -153,8 +153,9 @@ Props) {
             });
             console.log("040530-1");
             const data = await response.json();
-            console.log("040530-2");
-            console.log("040530-3-data: " + JSON.stringify(data));
+            console.log("040928-a-1-response: "+response);
+            console.log("040928-a-2-JSON response: "+JSON.stringify(response));
+            console.log("040928-a-3-data: " + JSON.stringify(data)); 
             if (response.ok) {
               //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
               const expires = new Date(

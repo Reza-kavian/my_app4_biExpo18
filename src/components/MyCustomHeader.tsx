@@ -43,6 +43,7 @@ const MyCustomHeader = ({
   const [usersCodeOrName, setUsersCodeOrName] = useState({
     codeMoshtari: null,
     nameMoshtari: null,
+    name: null,  //zare_nk_040929_added
   });
   ////zare_nk_040431_added_end
   useFocusEffect(
@@ -67,13 +68,13 @@ const MyCustomHeader = ({
                       token,
                     }
                   );
-                  const data = res.data;   
+                  const data = res.data;
                   console.log("040928-b-1res: " + res);
                   console.log("040928-b-2-JSON res: " + JSON.stringify(res));
-                  console.log("040928-b-3-data: " + JSON.stringify(data)); 
+                  console.log("040928-b-3-data: " + JSON.stringify(data));
                   //{"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
                   if (
-                    res.status === 200 
+                    res.status === 200
                   ) {
                     setIsLoggedIn(true);
                     ////zare_nk_040431_added_alan_st
@@ -86,11 +87,14 @@ const MyCustomHeader = ({
                     var codeMoshtari = data.decoded.CodeMoshtari;
                     var nameMoshtari = data.decoded.NameMoshtari;
 
+                    var name = data.decoded.name;  //zare_nk_040929_added
+
                     setUsersCodeOrName((prev) => {
                       return {
                         ...prev,
                         codeMoshtari: codeMoshtari,
                         nameMoshtari: nameMoshtari,
+                        name: name,  //zare_nk_040929_added
                       };
                     });
                     // if (idUSerRef.current) {
@@ -138,7 +142,7 @@ const MyCustomHeader = ({
       edges={["top"]}
     >
       {/* لوگو سمت چپ */}
-      <View 
+      <View
         style={[
           styles.buttonsContainer,
           { borderWidth: 2, borderColor: "black" },
@@ -162,11 +166,19 @@ const MyCustomHeader = ({
             </TouchableOpacity>
             {/* zare_nk_040935_added_st */}
             {/* {usersCodeOrName?.codeMoshtari || usersCodeOrName?.nameMoshtari} */}
-             {/* zare_nk_040935_added_end */}
+            {/* zare_nk_040935_added_end */}
             <Text style={styles.buttonText}>
+              {/* {usersCodeOrName?.nameMoshtari
+                ? usersCodeOrName.nameMoshtari
+                : usersCodeOrName.codeMoshtari} */}
               {usersCodeOrName?.nameMoshtari
                 ? usersCodeOrName.nameMoshtari
-                : usersCodeOrName.codeMoshtari}
+                :
+                (usersCodeOrName?.codeMoshtari
+                  ? usersCodeOrName.codeMoshtari
+                  : usersCodeOrName.name
+                )
+              }
             </Text>
           </View>
         ) : (
@@ -194,7 +206,7 @@ const MyCustomHeader = ({
         )}
       </View>
 
-      {/* عنوان وسط */}                
+      {/* عنوان وسط */}
       <View
         style={{
           borderWidth: 2,

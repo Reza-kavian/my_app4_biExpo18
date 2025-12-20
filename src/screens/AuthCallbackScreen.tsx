@@ -19,6 +19,7 @@ export default function AuthCallbackScreen({ route }: any) {
     const handleAuth = async () => {
       if (token) {
         Alert.alert('token: '+token);
+        console.log('zare_nk_040929-token: '+token);
         // ذخیره توکن
         await AsyncStorage.setItem("token", token);
         navigation.reset({
@@ -27,6 +28,7 @@ export default function AuthCallbackScreen({ route }: any) {
         });
       } else {
         Alert.alert('token nadarim');
+        console.log('zare_nk_040929-token nadarim');
         navigation.reset({
           index: 0,
           routes: [{ name: "Login" }],

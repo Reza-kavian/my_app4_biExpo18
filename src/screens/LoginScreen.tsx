@@ -35,9 +35,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 export default function LoginScreen({
   navigation,
 }: // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-// route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-// options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-Props) {
+  // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+  // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+  Props) {
   //zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-parameterhaye voroodi ra barname automat az React Navigation migire)
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [step, setStep] = useState<"firstPage" | "secondPage">("firstPage"); //zare_nk_040531_nokteh(state ke nobate kodoom safhe ast ra negah midareh)
@@ -130,7 +130,7 @@ Props) {
       console.log("040530-03-ApiLoginUser2Result: " + ApiLoginUser2Result);
       console.log(
         "040530-03-JSON.stringify(ApiLoginUser2Result): " +
-          JSON.stringify(ApiLoginUser2Result)
+        JSON.stringify(ApiLoginUser2Result)
       );
       //zare_nk_0409225_alan
       //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-9,"message":"","data":null,"errors":["کد پیامکی وارد شده اشتباه است"]}
@@ -141,69 +141,69 @@ Props) {
       // if (res.status === 200) {
       if (res.status === 200 && ApiLoginUser2Result.status == 0) {
         // if (ApiLoginUser2Result.status == 0) {
-          let token = ApiLoginUser2Result.data.token;
-          console.log("040530-03-token: " + token);
-          //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
-          // try {
-            const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
-              ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
-              method: "POST",
-              headers: { "Content-Type": "application/json" },
-              body: JSON.stringify({ token }),
-            });
-            console.log("040530-1");
-            const data = await response.json();
-            console.log("040928-a-1-response: "+response);
-            console.log("040928-a-2-JSON response: "+JSON.stringify(response));
-            console.log("040928-a-3-data: " + JSON.stringify(data)); 
-            if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar oasokhe movafagh data dara pas hamvareh dar 2xx man 200 darma)
-              //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
-              const expires = new Date(
-                Date.now() + 1 * 60 * 1000
-              ).toISOString();
-              // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
-              let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
-              console.log("0-zare_nk_040925-tokenni is: "+  tokenni  );//zare_nk_040925_added_pakkardani
-              await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
-              await AsyncStorage.setItem("token_expires", expires);
-              tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
-              console.log("1-zare_nk_040925-tokenni is: "+  tokenni  );//zare_nk_040925_added_pakkardani
-              //// 2. گرفتن مسیر ریدایرکت (اگر از قبل ذخیره کرده باشی)
-              //   const redirect =
-              //     (await AsyncStorage.getItem("redirect")) || "Home";
+        let token = ApiLoginUser2Result.data.token;
+        console.log("040530-03-token: " + token);
+        //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
+        // try {
+        const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
+          ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
+        console.log("040530-1");
+        const data = await response.json();
+        console.log("040928-a-1-response: " + response);
+        console.log("040928-a-2-JSON response: " + JSON.stringify(response));
+        console.log("040928-a-3-data: " + JSON.stringify(data));
+        if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar oasokhe movafagh data dara pas hamvareh dar 2xx man 200 darma)
+          //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
+          const expires = new Date(
+            Date.now() + 1 * 60 * 1000
+          ).toISOString();
+          // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
+          let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
+          console.log("0-zare_nk_040925-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
+          await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
+          await AsyncStorage.setItem("token_expires", expires);
+          tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
+          console.log("1-zare_nk_040925-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
+          //// 2. گرفتن مسیر ریدایرکت (اگر از قبل ذخیره کرده باشی)
+          //   const redirect =
+          //     (await AsyncStorage.getItem("redirect")) || "Home";
 
-              const validRoutes = [
-                "Login",
-                "Profile",
-                "Splash",
-                "Welcome",
-              ] as const;
+          const validRoutes = [
+            "Login",
+            "Profile",
+            "Splash",
+            "Welcome",
+          ] as const;
 
-              type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+          type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
 
-              const redirectRaw = await AsyncStorage.getItem("redirect");
+          const redirectRaw = await AsyncStorage.getItem("redirect");
 
-              const redirect = validRoutes.includes(redirectRaw as RouteName)
-                ? (redirectRaw as RouteName)
-                : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
+          const redirect = validRoutes.includes(redirectRaw as RouteName)
+            ? (redirectRaw as RouteName)
+            : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
 
-              // 3. حذف مسیر redirect از AsyncStorage
-              await AsyncStorage.removeItem("redirect");
+          // 3. حذف مسیر redirect از AsyncStorage
+          await AsyncStorage.removeItem("redirect");
 
-              // 4. هدایت به مسیر redirect
-              navigation.replace(redirect); // نیازمند useNavigation از React Navigation
-            } else {
-              console.log("❌ verifyToken failed");
-              setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
-              await AsyncStorage.removeItem("token");
-              Alert.alert("❌ verifyToken failed");
-            }
-          // } catch (error) {
-          //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
-          //   console.error("❌ خطا در JWT:", error);  //[TypeError: "tokenni" is read-only]
-          //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added
-          //   setError("متاسفانه خطایی رخ داده است999:" + error);
-          // }
+          // 4. هدایت به مسیر redirect
+          navigation.replace(redirect); // نیازمند useNavigation از React Navigation
+        } else {
+          console.log("❌ verifyToken failed");
+          setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
+          await AsyncStorage.removeItem("token");
+          Alert.alert("❌ verifyToken failed");
+        }
+        // } catch (error) {
+        //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
+        //   console.error("❌ خطا در JWT:", error);  //[TypeError: "tokenni" is read-only]
+        //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added
+        //   setError("متاسفانه خطایی رخ داده است999:" + error);
+        // }
         // } else {  //ok2
         //   alert(
         //     "data.status != 0 in checkSmsForLogin-AsyncStorage.removeItem('token')"
@@ -223,7 +223,7 @@ Props) {
       ////zare_nk_040428_added_end
     } catch (err: any) {
       Alert.alert(
-        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: "+err
+        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );
       await AsyncStorage.removeItem("token");
       setSmsError(err.response?.data?.message || "خطا در ورود با کد تایید");
@@ -241,21 +241,62 @@ Props) {
   };
 
   const getQueryParam = (url: string, key: string) => {
-  const match = url.match(new RegExp(`[?&]${key}=([^&]+)`));
-  return match ? decodeURIComponent(match[1]) : null;
-};
+    const match = url.match(new RegExp(`[?&]${key}=([^&]+)`));
+    return match ? decodeURIComponent(match[1]) : null;
+  };
 
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
+    Alert.alert('useEffect called!!');
     const subscription = Linking.addListener("url", async ({ url }) => {
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
-
+      Alert.alert('useEffect called!!-token: '+token);
       if (token) {
+        Alert.alert('useEffect called!!-040603_JWT: '+token);
+        ////zare_nk_040929_added_st
+       const expires = new Date(
+            Date.now() + 1 * 60 * 1000
+          ).toISOString();
+         ////zare_nk_040929_added_end
         console.log("040603_JWT:", token);
         // ذخیره توکن در AsyncStorage یا state
-        await AsyncStorage.setItem("token", token); 
+        await AsyncStorage.setItem("token", token);
+               ///////////////////////////////////zare_nk_040929_added_st
+await AsyncStorage.setItem("token_expires", expires);
+  
+          const validRoutes = [
+            "Login",
+            "Profile",
+            "Splash",
+            "Welcome",
+          ] as const;
+
+          type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+
+          const redirectRaw = await AsyncStorage.getItem("redirect");
+ Alert.alert('useEffect called!!-redirectRaw: '+redirectRaw);
+          const redirect = validRoutes.includes(redirectRaw as RouteName)
+            ? (redirectRaw as RouteName)
+            : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
+          Alert.alert('useEffect called!!-redirect: '+redirect);
+          // 3. حذف مسیر redirect از AsyncStorage
+          await AsyncStorage.removeItem("redirect");
+
+          // 4. هدایت به مسیر redirect
+          navigation.replace(redirect); // نیازمند useNavigation از React Navigation
+        ///////////////////////////////////zare_nk_040929_added_end
       }
+      ////////////////////////////////////zare_nk_040929_added_st
+else {
+   Alert.alert('useEffect called!!-token nadarim ke: '+token);
+   const error = getQueryParam(url, "error");
+    if (error){
+      setError('google ha!: '+ error);
+    }
+  
+}
+      ////////////////////////////////////zare_nk_040929_added_end
     });
 
     return () => {
@@ -288,18 +329,26 @@ Props) {
 
   const handleGoogleLogin = async () => {  //okk
     const url = "https://testotm.sarinmehr.com/api/auth/google?source=mobile";
-    //  const url = "https://localhost:3000/api/auth/google?source=mobile";
+    // const url = "https://localhost:3000/api/auth/google?source=mobile";
     // const url = "https://192.168.3.226:3000/api/auth/google?source=mobile";
-
-    const supported = await Linking.canOpenURL(url);
-    if (supported) {
-      Alert.alert("001");
+    ////zare_nk_040929_commented_st(canOpenURL baraye mailto: va tel: va geo: va myapp:// aali amal mikone vali baraye https:// bad amal mikone va be eshtebah false barmigardooneh!)
+    // const supported = await Linking.canOpenURL(url);
+    // if (supported) {
+    //   // Alert.alert("001");
+    //   await Linking.openURL(url);
+    // } else {
+    //   console.log("Can't open URL:", url);
+    // }
+    ////zare_nk_040929_commented_end(canOpenURL baraye mailto: va tel: va geo: va myapp:// aali amal mikone vali baraye https:// bad amal mikone va be eshtebah false barmigardooneh!)
+    ////zare_nk_040929_added_end(monasebe https://)
+    try {
+      console.log("1212-verryyy Can open URL"+ url );
       await Linking.openURL(url);
-    } else {
-      console.log("Can't open URL:", url);
+    } catch (e) {
+      console.log("1212-Can't open URL"+ url +'-cause error: '+e);
     }
+    ////zare_nk_040929_added_end(monasebe https://)
   };
-  ////zare_nk_040603_added_end
 
   return (
     <View style={styles.container}>
@@ -319,7 +368,7 @@ Props) {
           <View style={{ height: 18 }} />
 
           <ReusableButton
-            title="تایید3"
+            title="تایید"
             onPress={mobileButtonClick}
             idDisabled={isDisabledMobileCheckBtn}
             // backgroundColor="blue"

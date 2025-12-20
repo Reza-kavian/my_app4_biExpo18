@@ -73,19 +73,15 @@ const MyCustomHeader = ({
                   console.log("040928-b-3-data: " + JSON.stringify(data)); 
                   //{"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
                   if (
-                    res.status === 200 //&&
-                    //   res.data &&
-                    //   res.data.success === true &&
-                    //   res.data.valid === true
-                    //   //ya res.data?.success === true && res.data?.valid === true
+                    res.status === 200 
                   ) {
                     setIsLoggedIn(true);
                     ////zare_nk_040431_added_alan_st
-                    //                     alert("data: "+data);
+                    // alert("data: "+data);
                     // alert("data.decoded: "+data.decoded);
                     // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
                     // alert("data.decoded.Mobile: "+data.decoded.Mobile);
-                    //                      alert("data-stringify: "+JSON.stringify(data));
+                    // alert("data-stringify: "+JSON.stringify(data));
 
                     var codeMoshtari = data.decoded.CodeMoshtari;
                     var nameMoshtari = data.decoded.NameMoshtari;
@@ -97,7 +93,6 @@ const MyCustomHeader = ({
                         nameMoshtari: nameMoshtari,
                       };
                     });
-
                     // if (idUSerRef.current) {
                     //   document.getElementById("idUSer")!.innerText =
                     //     NameMoshtari != null ? NameMoshtari : CodeMoshtari;

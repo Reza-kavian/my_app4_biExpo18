@@ -156,7 +156,7 @@ Props) {
             console.log("040928-a-1-response: "+response);
             console.log("040928-a-2-JSON response: "+JSON.stringify(response));
             console.log("040928-a-3-data: " + JSON.stringify(data)); 
-            if (response.ok) {
+            if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar oasokhe movafagh data dara pas hamvareh dar 2xx man 200 darma)
               //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
               const expires = new Date(
                 Date.now() + 1 * 60 * 1000

@@ -85,6 +85,8 @@ export default function LoginScreen({
       // intervalRef.current ra hazf konim,bekhatere mahiate intervalRef ke meghdare jadid ke begire meghdare ghadimesh az pardazeshe cpu hazf nemishe va amal mikoneh va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol hkahand dasht )
     };
   }, [removTimer, timer]);
+ 
+ 
 
   const mobileButtonClick = async () => {
     if (!/^09\d{9}$/.test(mobileVal)) {
@@ -327,8 +329,9 @@ else {
   //   // window.location.href = `https://testotm.sarinmehr.com/api/auth/google`; //zare_nk_040603_added
   // };
 
-  const handleGoogleLogin = async () => {  //okk
-    const url = "https://testotm.sarinmehr.com/api/auth/google?source=mobile";
+  const handleGoogleLogin = async () => {   
+    // const url = "https://testotm.sarinmehr.com/api/auth/google?source=mobile";    //zare_nk_041002_commented 
+      const url = "https://testotm.sarinmehr.com/api/auth/google/mobile";     //zare_nk_041002_added 
     // const url = "https://localhost:3000/api/auth/google?source=mobile";
     // const url = "https://192.168.3.226:3000/api/auth/google?source=mobile";
     ////zare_nk_040929_commented_st(canOpenURL baraye mailto: va tel: va geo: va myapp:// aali amal mikone vali baraye https:// bad amal mikone va be eshtebah false barmigardooneh!)
@@ -363,7 +366,7 @@ else {
             keyboardType="phone-pad"
           />
 
-          <Button title="ورود با گوگل" onPress={handleGoogleLogin} />
+          <Button title="ورود با گوگل03" onPress={handleGoogleLogin} />
 
           <View style={{ height: 18 }} />
 

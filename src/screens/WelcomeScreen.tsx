@@ -47,7 +47,7 @@ const WelcomeScreen = (
         assets: ['./src/assets/fonts'] ra dadim ra be projeh link konad ta in file ha be masire /android/app/src/main/assets/fonts/ copy shavad) */}
         {/* zare_nk_040928_nokteh2( ba estefadeh az npx react-native-asset niazi be import kardane packagi baraye font nist va masire fonthara link mikoneh be projeh
         va fontha dar masire /android/app/src/main/assets/fonts/ copy shavad )*/}
-        اپ ری اکت نیتیو
+        اپ ری ات اکت نیتیو
       </Text>
       <Text
         style={[

@@ -1,6 +1,5 @@
 //my-app/App.tsx   //zare_nk_040926_okk
-import { useState } from "react";
-import { Alert } from "react-native"; //zare_nk_040926_added
+import { useState } from "react"; 
 import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";
 import { ThemeContext } from "./src/context/ThemeContext";

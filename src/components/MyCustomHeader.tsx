@@ -14,7 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { NextJsApiAuthUrl } from "../constants/Urls";
 import { useFocusEffect, useRoute, RouteProp } from "@react-navigation/native";
-import { HeaderBackButton } from "@react-navigation/elements"; //zare_nk_040530_added
+import { HeaderBackButton } from "@react-navigation/elements"; 
 
 
 //zare_nk_040530_commented_st(rahe1)

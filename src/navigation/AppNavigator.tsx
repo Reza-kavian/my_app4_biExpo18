@@ -5,9 +5,9 @@ import SplashScreen from "../screens/SplashScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import LoginScreen from "../screens/LoginScreen";
-import HomeScreen from "../screens/HomeScreen";  //zare_nk_040611_added
-import AuthCallbackScreen from "../screens/AuthCallbackScreen"; //zare_nk_040608_added
-import ScannerScreen from "../screens/ScannerScreen"; //zare_nk_040608_added
+import HomeScreen from "../screens/HomeScreen";  
+import AuthCallbackScreen from "../screens/AuthCallbackScreen"; 
+import ScannerScreen from "../screens/ScannerScreen"; 
 
 import type { RootStackParamList } from "../types/navigation";
 import MyCustomHeader from "../components/MyCustomHeader";

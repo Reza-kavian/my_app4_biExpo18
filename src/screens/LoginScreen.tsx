@@ -85,8 +85,8 @@ export default function LoginScreen({
       // intervalRef.current ra hazf konim,bekhatere mahiate intervalRef ke meghdare jadid ke begire meghdare ghadimesh az pardazeshe cpu hazf nemishe va amal mikoneh va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol hkahand dasht )
     };
   }, [removTimer, timer]);
- 
- 
+
+
 
   const mobileButtonClick = async () => {
     if (!/^09\d{9}$/.test(mobileVal)) {
@@ -253,51 +253,51 @@ export default function LoginScreen({
     const subscription = Linking.addListener("url", async ({ url }) => {
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
-      Alert.alert('useEffect called!!-token: '+token);
+      Alert.alert('useEffect called!!-token: ' + token);
       if (token) {
-        Alert.alert('useEffect called!!-040603_JWT: '+token);
+        Alert.alert('useEffect called!!-040603_JWT: ' + token);
         ////zare_nk_040929_added_st
-       const expires = new Date(
-            Date.now() + 1 * 60 * 1000
-          ).toISOString();
-         ////zare_nk_040929_added_end
+        const expires = new Date(
+          Date.now() + 1 * 60 * 1000
+        ).toISOString();
+        ////zare_nk_040929_added_end
         console.log("040603_JWT:", token);
         // ذخیره توکن در AsyncStorage یا state
         await AsyncStorage.setItem("token", token);
-               ///////////////////////////////////zare_nk_040929_added_st
-await AsyncStorage.setItem("token_expires", expires);
-  
-          const validRoutes = [
-            "Login",
-            "Profile",
-            "Splash",
-            "Welcome",
-          ] as const;
+        ///////////////////////////////////zare_nk_040929_added_st
+        await AsyncStorage.setItem("token_expires", expires);
 
-          type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+        const validRoutes = [
+          "Login",
+          "Profile",
+          "Splash",
+          "Welcome",
+        ] as const;
 
-          const redirectRaw = await AsyncStorage.getItem("redirect");
- Alert.alert('useEffect called!!-redirectRaw: '+redirectRaw);
-          const redirect = validRoutes.includes(redirectRaw as RouteName)
-            ? (redirectRaw as RouteName)
-            : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
-          Alert.alert('useEffect called!!-redirect: '+redirect);
-          // 3. حذف مسیر redirect از AsyncStorage
-          await AsyncStorage.removeItem("redirect");
+        type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
 
-          // 4. هدایت به مسیر redirect
-          navigation.replace(redirect); // نیازمند useNavigation از React Navigation
+        const redirectRaw = await AsyncStorage.getItem("redirect");
+        Alert.alert('useEffect called!!-redirectRaw: ' + redirectRaw);
+        const redirect = validRoutes.includes(redirectRaw as RouteName)
+          ? (redirectRaw as RouteName)
+          : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
+        Alert.alert('useEffect called!!-redirect: ' + redirect);
+        // 3. حذف مسیر redirect از AsyncStorage
+        await AsyncStorage.removeItem("redirect");
+
+        // 4. هدایت به مسیر redirect
+        navigation.replace(redirect); // نیازمند useNavigation از React Navigation
         ///////////////////////////////////zare_nk_040929_added_end
       }
       ////////////////////////////////////zare_nk_040929_added_st
-else {
-   Alert.alert('useEffect called!!-token nadarim ke: '+token);
-   const error = getQueryParam(url, "error");
-    if (error){
-      setError('google ha!: '+ error);
-    }
-  
-}
+      else {
+        Alert.alert('useEffect called!!-token nadarim ke: ' + token);
+        const error = getQueryParam(url, "error");
+        if (error) {
+          setError('khata dar ehraze hoviat ba google!: ' + error);
+        }
+
+      }
       ////////////////////////////////////zare_nk_040929_added_end
     });
 
@@ -329,9 +329,9 @@ else {
   //   // window.location.href = `https://testotm.sarinmehr.com/api/auth/google`; //zare_nk_040603_added
   // };
 
-  const handleGoogleLogin = async () => {   
+  const handleGoogleLogin = async () => {
     // const url = "https://testotm.sarinmehr.com/api/auth/google?source=mobile";    //zare_nk_041002_commented 
-      const url = "https://testotm.sarinmehr.com/api/auth/google/mobile";     //zare_nk_041002_added 
+    const url = "https://testotm.sarinmehr.com/api/auth/google/mobile";     //zare_nk_041002_added 
     // const url = "https://localhost:3000/api/auth/google?source=mobile";
     // const url = "https://192.168.3.226:3000/api/auth/google?source=mobile";
     ////zare_nk_040929_commented_st(canOpenURL baraye mailto: va tel: va geo: va myapp:// aali amal mikone vali baraye https:// bad amal mikone va be eshtebah false barmigardooneh!)
@@ -345,10 +345,10 @@ else {
     ////zare_nk_040929_commented_end(canOpenURL baraye mailto: va tel: va geo: va myapp:// aali amal mikone vali baraye https:// bad amal mikone va be eshtebah false barmigardooneh!)
     ////zare_nk_040929_added_end(monasebe https://)
     try {
-      console.log("1212-verryyy Can open URL"+ url );
+      console.log("1212-verryyy Can open URL" + url);
       await Linking.openURL(url);
     } catch (e) {
-      console.log("1212-Can't open URL"+ url +'-cause error: '+e);
+      console.log("1212-Can't open URL" + url + '-cause error: ' + e);
     }
     ////zare_nk_040929_added_end(monasebe https://)
   };

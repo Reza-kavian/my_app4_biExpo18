@@ -1,14 +1,14 @@
-////zare_nk_041003_okk
+////zare_nk_041004_okk
 export const lightTheme = {
-  text: "#4b4949",  
+  text: "#4b4949",
   backgroundColor: "#fcfcfc !important",
-  textColor: "#4b4949",  
+  textColor: "#4b4949",
   buttonColor: "#4b4949",
   buttonBackground: 'blue',
 };
 
 export const darkTheme = {
- text: "#ffffffff",
+  text: "#ffffffff",
   backgroundColor: "#000000",
   textColor: "#ffffffff",
   buttonColor: "#ffffffff",

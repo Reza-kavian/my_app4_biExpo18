@@ -1,4 +1,4 @@
-//my-app/App.tsx   //zare_nk_041003_okk
+//my-app/App.tsx   //zare_nk_041004_okk
 import { useState } from "react"; 
 import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";

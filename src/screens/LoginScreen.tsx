@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041003_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041004_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -294,7 +294,6 @@ export default function LoginScreen({
         if (error) {
           setError('khata dar ehraze hoviat ba google!: ' + error);
         }
-
       }
       ////////////////////////////////////zare_nk_040929_added_end
     });

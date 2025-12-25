@@ -1,9 +1,8 @@
-//my-app/App.tsx   //zare_nk_040926_okk
+//my-app/App.tsx   //zare_nk_041003_okk
 import { useState } from "react"; 
 import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";
 import { ThemeContext } from "./src/context/ThemeContext";
-import { Text } from "react-native";
 
 // import * as Linking from "expo-linking"; //zare_nk_040604_nokteh(age az ghabeliate ezafiye expo bekhaim estefadeh konim)
 // import { Linking } from "react-native";  //zare_nk_040604_nokteh(age az ghabeliate mamoolitare react-native bekhaim estefadeh konim)

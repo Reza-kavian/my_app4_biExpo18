@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_040926_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_041003_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -15,7 +15,6 @@ import axios from "axios";
 import { NextJsApiAuthUrl } from "../constants/Urls";
 import { useFocusEffect, useRoute, RouteProp } from "@react-navigation/native";
 import { HeaderBackButton } from "@react-navigation/elements"; 
-
 
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
@@ -39,15 +38,16 @@ const MyCustomHeader = ({
   //zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
   // parameterhaye voroodi ra barname automat az React Navigation migire)
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  ////zare_nk_040431_added_st
   const [usersCodeOrName, setUsersCodeOrName] = useState({
     codeMoshtari: null,
     nameMoshtari: null,
     name: null,  //zare_nk_040929_added
   });
-  ////zare_nk_040431_added_end
+
   useFocusEffect(
-    //zare_nk_040431(har bar ke karbar ba zadane back be componente MyCustomHeader biad focus soorat migire va useFocusEffect seda zadeh mishe, vali age useEffect(...,[]) bezanim va az safheye 1 back bezanim biaim safhe 2 chon MyCustomHeader unmount nashode(chon dar layout hast  va layout shamele hardosafhe ast) eseEffect(...,[]) seda zadeh nemishe )
+    //zare_nk_040431(har bar ke karbar ba zadane back be componente MyCustomHeader biad focus soorat migire va useFocusEffect seda zadeh mishe, 
+    // vali age useEffect(...,[]) bezanim va az safheye 1 back bezanim biaim safhe 2 chon MyCustomHeader unmount nashode(chon dar layout hast 
+    // va layout shamele har do safhe ast) eseEffect(...,[]) seda zadeh nemishe )
     useCallback(() => {
       //zare_nk_040431_nokteh(useCallback be hamrahe useFocusEffect tosiyeh mishe)
       const checkLoginStatus = async () => {
@@ -77,7 +77,7 @@ const MyCustomHeader = ({
                     res.status === 200
                   ) {
                     setIsLoggedIn(true);
-                    ////zare_nk_040431_added_alan_st
+                   
                     // alert("data: "+data);
                     // alert("data.decoded: "+data.decoded);
                     // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
@@ -86,7 +86,6 @@ const MyCustomHeader = ({
 
                     var codeMoshtari = data.decoded.CodeMoshtari;
                     var nameMoshtari = data.decoded.NameMoshtari;
-
                     var name = data.decoded.name;  //zare_nk_040929_added
 
                     setUsersCodeOrName((prev) => {
@@ -100,8 +99,7 @@ const MyCustomHeader = ({
                     // if (idUSerRef.current) {
                     //   document.getElementById("idUSer")!.innerText =
                     //     NameMoshtari != null ? NameMoshtari : CodeMoshtari;
-                    // }
-                    ////zare_nk_040431_added_alan_end
+                    // }                   
                   } else {
                     await handleLogout();
                   }
@@ -132,6 +130,7 @@ const MyCustomHeader = ({
     await AsyncStorage.removeItem("token_expires");
     setIsLoggedIn(false);
   };
+
   const handleLogin = () => {
     navigation.navigate("Login");
   };

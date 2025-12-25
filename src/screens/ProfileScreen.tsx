@@ -1,11 +1,10 @@
-//src\screens\ProfileScreen.tsx   //zare_nk_040926_okk
+//src\screens\ProfileScreen.tsx   //zare_nk_041003_okk
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ReusableButton from "../components/ReusableButton";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-// import { RootStackParamList } from "../navigation/AppNavigator";  //zare_nk_040428_commented
-import type { RootStackParamList } from "../types/navigation"; //zare_nk_040428_added
+import type { RootStackParamList } from "../types/navigation"; 
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Profile">;
 

@@ -1,4 +1,4 @@
-//zare_nk_040926_okk
+////zare_nk_041003_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,13 +15,13 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Splash">;
 type SplashRoute = RouteProp<RootStackParamList, "Splash">;
 
 export default function SplashScreen() {
-  const navigation = useNavigation<NavigationProp>(); 
+  const navigation = useNavigation<NavigationProp>();
   const route = useRoute<SplashRoute>();
 
   useEffect(() => {
     const checkToken = async () => {
       const token = await AsyncStorage.getItem("token");
-Alert.alert('01');
+      Alert.alert('01');
       // نام صفحه‌ای که کاربر قصد ورود دارد
       const targetScreen = route.params?.target || "Welcome";   //zare_nk_040608_added(in parametre target bayad RootStackParamList dahkele navigation.ts ezafeh beshe)
 
@@ -29,7 +29,7 @@ Alert.alert('01');
         Alert.alert('02');
         if (token) {
           Alert.alert('04');
-          try { 
+          try {
             const tokenExpires = await AsyncStorage.getItem("token_expires");
             if (tokenExpires) {
               Alert.alert('06');
@@ -46,7 +46,7 @@ Alert.alert('01');
                   token,
                 });
 
-                if ( res.status === 200 ) {
+                if (res.status === 200) {
                   Alert.alert('10');
                   navigation.replace(targetScreen); // moadele const response = NextResponse.next();
                 } else {
@@ -58,11 +58,11 @@ Alert.alert('01');
               Alert.alert('07');
               // توکن یا تاریخ انقضا وجود نداره، احتمالا لاگین نیست 
               await goToLogin(targetScreen);
-            }  
+            }
           } catch (e) {
             await goToLogin(targetScreen);
           }
-        } else { 
+        } else {
           Alert.alert('05');
           await goToLogin(targetScreen);
         }

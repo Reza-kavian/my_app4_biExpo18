@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_040926_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041003_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -14,12 +14,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
-
-import { Alert } from "react-native"; //zare_nk_040926_added
-
-import { Linking } from "react-native"; //zare_nk_040603_added
-
+import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls"; 
+import { Alert } from "react-native";  
+import { Linking } from "react-native";  
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -53,8 +50,8 @@ export default function LoginScreen({
   // const [timer, setTimer] = useState(40000);  //zare_nk_040431_commented
   const [timer, setTimer] = useState(0); //zare_nk_040431_added    //zare_nk_040531_nokteh(state ke meghdare timer ra negah midareh)
   const [removTimer, setRemovTimer] = useState(false); //zare_nk_040531_nokteh(state ke hazf(hamoon) kardane timer ya reset nakardanesh dar rendere jari ra negah midareh)
-  const intervalRef = useRef<NodeJS.Timeout | null>(null); //zare_nk_040531_nokteh(useRef ke baraye modiriate timer estefadeh mishe)
-
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null); //zare_nk_040531_nokteh(useRef ke baraye modiriate timer estefadeh mishe)
+  
   useEffect(() => {
     //zare_nk_040531_nokteh(dar har render age nobate safhe taghei kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
     if (step === "secondPage") {
@@ -81,8 +78,9 @@ export default function LoginScreen({
     }, 1000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
-      //zare_nk_040530_commented(molahezaeh mishe ke dar har render bayad dar entehaye useEffect
-      // intervalRef.current ra hazf konim,bekhatere mahiate intervalRef ke meghdare jadid ke begire meghdare ghadimesh az pardazeshe cpu hazf nemishe va amal mikoneh va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol hkahand dasht )
+      //zare_nk_040530_commented(molahezaeh mishe ke dar har render bayad dar entehaye useEffect intervalRef.current ra hazf konim,
+      // bekhatere mahiate intervalRef ke meghdare jadid ke begire meghdare ghadimesh az pardazeshe cpu hazf nemishe va amal mikoneh
+      // va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol khahand dasht )
     };
   }, [removTimer, timer]);
 

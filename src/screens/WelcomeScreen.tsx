@@ -1,10 +1,9 @@
-//src\screens\WelcomeScreen.tsx    //zare_nk_040926_okk
+//src\screens\WelcomeScreen.tsx    //zare_nk_041003_okk
 import { View, Text, StyleSheet } from "react-native";
-import { globalStyles } from "../styles/globalsCss";  //zare_nk_040611_added
+import { globalStyles } from "../styles/globalsCss";  
 import ReusableButton from "../components/ReusableButton";
 
-// import { RootStackParamList } from "../navigation/AppNavigator";  //zare_nk_040428_commented
-import type { RootStackParamList } from "../types/navigation"; //zare_nk_040428_added
+import type { RootStackParamList } from "../types/navigation"; 
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react"; 
 
@@ -47,7 +46,7 @@ const WelcomeScreen = (
         assets: ['./src/assets/fonts'] ra dadim ra be projeh link konad ta in file ha be masire /android/app/src/main/assets/fonts/ copy shavad) */}
         {/* zare_nk_040928_nokteh2( ba estefadeh az npx react-native-asset niazi be import kardane packagi baraye font nist va masire fonthara link mikoneh be projeh
         va fontha dar masire /android/app/src/main/assets/fonts/ copy shavad )*/}
-       0 اپ ری ات اکت نیتیو
+        اپ ری ات اکت نیتیو
       </Text>
       <Text
         style={[

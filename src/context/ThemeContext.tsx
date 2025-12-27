@@ -1,4 +1,4 @@
-//my-app/src/context/ThemeContext    //zare_nk_041004_okk
+//my-app/src/context/ThemeContext    //zare_nk_041006_okk
 import { createContext } from 'react';
 import { lightTheme } from '../constants/theme';
 

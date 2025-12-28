@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_041006_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_041007_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -15,15 +15,15 @@ import MyCustomHeader from "../components/MyCustomHeader";
 // import "@/styles/globals.css";  //zare_nk_040609_added
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-
+import { NativeStackHeaderProps } from "@react-navigation/native-stack";  //zare_nk_041007_added
 const AppNavigator = () => {
   return (
     // <NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
     <Stack.Navigator
       initialRouteName="Welcome"
-      screenOptions={({ navigation }) => ({
-        // header: () => <MyCustomHeader />,  //zare_nk_040530_commented
-        header: (props) => <MyCustomHeader {...props} />, //zare_nk_040530_added
+      screenOptions={({ navigation }) => ({ 
+        // header: (props) => <MyCustomHeader {...props} />, //zare_nk_041007_commented(dorosteh va noesh pishfarz any manzoor misheh, vali chon nazashtim doostdare typeScript nist)
+        header: (props:NativeStackHeaderProps) => <MyCustomHeader {...props} />, //zare_nk_041007_added(doostdare typeScript hast)
       })}
     >
       <Stack.Screen name="Home" component={HomeScreen} />  

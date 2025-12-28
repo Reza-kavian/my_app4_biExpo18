@@ -1,4 +1,4 @@
-////zare_nk_041006_okk
+////zare_nk_041007_okk
 export const lightTheme = {
   text: "#4b4949",
   backgroundColor: "#fcfcfc !important",

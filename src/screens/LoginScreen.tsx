@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041006_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041007_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -156,7 +156,7 @@ export default function LoginScreen({
         console.log("040928-a-1-response: " + response);
         console.log("040928-a-2-JSON response: " + JSON.stringify(response));
         console.log("040928-a-3-data: " + JSON.stringify(data));
-        if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar oasokhe movafagh data dara pas hamvareh dar 2xx man 200 darma)
+        if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
           //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
           const expires = new Date(
             Date.now() + 1 * 60 * 1000
@@ -248,7 +248,7 @@ export default function LoginScreen({
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
     Alert.alert('useEffect called!!');
-    const subscription = Linking.addListener("url", async ({ url }) => {
+    const subscription = Linking.addListener("url", async ({ url }) => { //zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
       Alert.alert('useEffect called!!-token: ' + token);

@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041007_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041008_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -363,7 +363,7 @@ export default function LoginScreen({
             keyboardType="phone-pad"
           />
 
-          <Button title="ورود با گوگل03" onPress={handleGoogleLogin} />
+          <Button title="ورود با گوگل" onPress={handleGoogleLogin} />
 
           <View style={{ height: 18 }} />
 

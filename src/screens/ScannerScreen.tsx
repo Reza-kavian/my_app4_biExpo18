@@ -1,4 +1,4 @@
-//zare_nk_041007_okk
+//zare_nk_041008_okk
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, Button, Modal, StyleSheet, Alert, Animated } from "react-native";
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
@@ -15,7 +15,7 @@ const ScannerScreen = () => {
   const [scannedValue, setScannedValue] = useState<string | null>(null);   //zare_nk_041007_added
   const [resultModalVisible, setResultModalVisible] = useState(false);     //zare_nk_041007_added
 
-  const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added(baraye khatte pareshkone vasate kardr)
+  const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added(baraye khatte pareshkone vasate kardr. new Animated.Value(0) yek object bar migardooneh,be hamin khater baraye console gereftane meghdaresh bayad mannande dastoore x01 az addListener estefadeh kard)
 
   // const blinkAnim = useRef(new Animated.Value(1)).current; //zare_nk_041004_added(baraye khatte cheshmakzane vasate kardr)
 
@@ -29,7 +29,7 @@ const ScannerScreen = () => {
       return;
     }
     ////zare_nk_041007_added_st(age bekhaim meghdare scanLineAnim ra bebinim)
-    scanLineAnim.addListener(({ value }) => {
+    scanLineAnim.addListener(({ value }) => { //dastoore x01
       console.log(value);
     });
     ////zare_nk_041007_added_end(age bekhaim meghdare scanLineAnim ra bebinim)

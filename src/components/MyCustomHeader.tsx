@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_041007_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_041008_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -72,7 +72,8 @@ const MyCustomHeader = ({
                   console.log("040928-b-1res: " + res);
                   console.log("040928-b-2-JSON res: " + JSON.stringify(res));
                   console.log("040928-b-3-data: " + JSON.stringify(data));
-                  //{"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
+                  ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
+                  ////zare_nk_041008_nokteh(age az google login movafagh biad dar callback token rooberoo ra ijad mikonim){IdUser: null,email: decoded?.email ?? null,user_name: null,name: decoded?.name ?? null,},  
                   if (
                     res.status === 200
                   ) {
@@ -91,9 +92,9 @@ const MyCustomHeader = ({
                     setUsersCodeOrName((prev) => {
                       return {
                         ...prev,
-                        codeMoshtari: codeMoshtari,
-                        nameMoshtari: nameMoshtari,
-                        name: name,  //zare_nk_040929_added
+                        codeMoshtari: codeMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                        nameMoshtari: nameMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                        name: name,  //zare_nk_041008_nokteh(age az google login shim)
                       };
                     });
                     // if (idUSerRef.current) {
@@ -199,7 +200,7 @@ const MyCustomHeader = ({
 
             <Text style={{ fontSize: 18, fontWeight: "bold" }}>
               {options.title ?? route.name}
-              {/* ptions.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
+              {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
             </Text>
           </View>
         )}

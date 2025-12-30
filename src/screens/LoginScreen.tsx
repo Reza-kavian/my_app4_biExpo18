@@ -167,7 +167,7 @@ export default function LoginScreen({
           await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
           await AsyncStorage.setItem("token_expires", expires);
           tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
-          console.log("1-zare_nk_040925-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
+          console.log("1-zare_nk_041009-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
           //// 2. گرفتن مسیر ریدایرکت (اگر از قبل ذخیره کرده باشی)
           //   const redirect =
           //     (await AsyncStorage.getItem("redirect")) || "Home";

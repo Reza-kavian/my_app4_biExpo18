@@ -1,2 +1,2 @@
-//zare_nk_041008_okk
+//zare_nk_041009_okk
 export const protectedScreens = ["Profile"];

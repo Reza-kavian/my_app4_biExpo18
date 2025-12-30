@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041008_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041009_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -83,8 +83,6 @@ export default function LoginScreen({
       // va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol khahand dasht )
     };
   }, [removTimer, timer]);
-
-
 
   const mobileButtonClick = async () => {
     if (!/^09\d{9}$/.test(mobileVal)) {

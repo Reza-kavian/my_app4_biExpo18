@@ -1,4 +1,4 @@
-//my-app/App.tsx   //zare_nk_041008_okk
+//my-app/App.tsx   //zare_nk_041009_okk
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native"; //zare_nk_041006_added
 import AsyncStorage from "@react-native-async-storage/async-storage"; //zare_nk_041006_added

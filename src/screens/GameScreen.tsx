@@ -1,6 +1,9 @@
 // src/screens/GameScreen.tsx
-import React, { useState } from "react";
-import { TouchableOpacity, Text, StyleSheet, View, Alert } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { TouchableOpacity, Text, StyleSheet, View, Alert, ScrollView } from "react-native"; 
+   
 
 /* ------------------ Square ------------------ */
 type SquareProps = {
@@ -38,29 +41,57 @@ function Square({ value, onSquareClick, andis, colorState }: SquareProps) {//zar
 }
 
 /* ------------------ Board ------------------ */
-function Board() {
-    const [squares, setSquares] = useState<Squares>(Array(9).fill(null));
+type BoardProps = {
+    squares: Squares;
+    onPlay: (nextSquares: Squares) => void;
+    xIsNextState: boolean;
+    setXIsNextState: React.Dispatch<React.SetStateAction<boolean>>;
+    BtnsColor: ("default" | "clicked" | "wined" | "lineWined")[];
+    setBtnsColor: React.Dispatch<
+        React.SetStateAction<("default" | "clicked" | "wined" | "lineWined")[]>
+    >;
 
-    //zare_nk_041017_nokteh(jaigozine  const BtnsColor: (string | null)[] = [...Array(9)].map(() => null); dar nextJs hast)
-    const [BtnsColor, setBtnsColor] = useState<("default" | "clicked" | "wined" | "lineWined")[]>(Array(9).fill("default"));
+    // 🔹 اضافه‌شده برای تایمر
+    setTimer: React.Dispatch<React.SetStateAction<number>>;
+};
+
+function Board({
+    squares,
+    onPlay,
+    xIsNextState,
+    setXIsNextState,
+    BtnsColor,
+    setBtnsColor,
+    setTimer,
+}: BoardProps) {
 
     const handleClick = (index: number) => {
-        if (squares[index]) return; // اگر قبلاً انتخاب شده بود، کاری نکن
+        // اگر خانه پر است یا بازی برنده دارد → کاری نکن
+        if (squares[index] || calculateWinner(squares)) return;
+
+        // 🔹 ریست تایمر با هر حرکت معتبر
+        setTimer(5);
 
         const nextSquares = [...squares];
-        nextSquares[index] = "X"; // فعلاً همه X می‌زنیم
-        setSquares(nextSquares);
+        nextSquares[index] = xIsNextState ? "X" : "O";
+        onPlay(nextSquares);
+        setXIsNextState(!xIsNextState);
 
         const nextBtnsColor = [...BtnsColor];
         nextBtnsColor[index] = "clicked";
         setBtnsColor(nextBtnsColor);
 
         const winner = calculateWinner(nextSquares);
-        if (winner) {  //zare_nk_041017_nokteh(age barandeh moshakhas shod satre moadel dar BtnsColor bayad range lineWined begirand)
+        if (winner) {
             const [winnerValue, a, b, c] = winner;
+
             const updatedColors = [...nextBtnsColor];
-            [a, b, c].forEach(i => updatedColors[i] = "lineWined");
+            [a, b, c].forEach(i => (updatedColors[i] = "lineWined"));
             setBtnsColor(updatedColors);
+
+            // 🔹 قطع تایمر وقتی برنده مشخص شد
+            setTimer(0);
+
             Alert.alert("Winner!", `Player ${winnerValue} won!`);
         }
     };
@@ -73,21 +104,172 @@ function Board() {
                     value={value}
                     onSquareClick={() => handleClick(index)}
                     andis={index}
-                    colorState={BtnsColor[index]} // الان مشکلی نیست
+                    colorState={BtnsColor[index]}
                 />
             ))}
         </View>
     );
 }
 
+
 /* ------------------ GameScreen ------------------ */
 export default function GameScreen() {
+
+    const TURN_TIME = 5; // ثانیه
+
+    const initialSquares = Array(9).fill(null);
+
+    const [history, setHistory] = useState<Squares[]>([initialSquares]);
+    const [currentMove, setCurrentMove] = useState(0);
+    const [xIsNextState, setXIsNextState] = useState(true);
+
+    const [BtnsColor, setBtnsColor] = useState<
+        ("default" | "clicked" | "wined" | "lineWined")[]
+    >(Array(9).fill("default"));
+
+    // 🔹 تایمر
+    const [timer, setTimer] = useState<number>(TURN_TIME);
+
+    // const intervalRef = useRef<NodeJS.Timeout | null>(null); //zare_nk_041017_commented(makhsoose web) 
+    const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null); //zare_nk_041017_added(jaigozin dar reactNative ke albateh dar nextjs ham javab mideh , pishnahad mishe in tarif baraye setInterval. yani khodet boro noe vagheiye khoroojiye setInterval ra dar mohtavaha kashf kon(albate in noe dar reactNative number khahad bood))
+
+    const currentSquares = history[currentMove];
+
+    /* -------------------- LOAD TIMER -------------------- */
+    useEffect(() => {
+        (async () => {
+            const storedTimer = await AsyncStorage.getItem("timer");
+            if (storedTimer !== null) {
+                setTimer(Number(storedTimer));
+            }
+        })();
+    }, []);
+
+    /* -------------------- TIMER EFFECT -------------------- */
+    useEffect(() => {
+        if (intervalRef.current) {
+            clearInterval(intervalRef.current);
+        }
+
+        // اگر بازی تمام شده تایمر اجرا نشود
+        if (calculateWinner(currentSquares)) {
+            return;
+        }
+
+        intervalRef.current = setInterval(() => {
+            setTimer(prev => {
+                if (prev <= 1) {
+                    // ⏱️ پایان زمان → تعویض نوبت
+                    setXIsNextState(cur => !cur);
+                    return TURN_TIME;
+                }
+                return prev - 1;
+            });
+        }, 1000) as unknown as number;
+
+        return () => {
+            if (intervalRef.current) {
+                clearInterval(intervalRef.current);
+            }
+        };
+    }, [currentMove, xIsNextState]);
+
+    /* -------------------- SAVE TIMER -------------------- */
+    useEffect(() => {
+        AsyncStorage.setItem("timer", timer.toString());
+    }, [timer]);
+
+    /* -------------------- HANDLE PLAY -------------------- */
+    const handlePlay = useCallback(
+        (nextSquares: Squares) => {
+            const nextHistory = [
+                ...history.slice(0, currentMove + 1),
+                nextSquares,
+            ];
+            setHistory(nextHistory);
+            setCurrentMove(nextHistory.length - 1);
+
+            // 🔹 ریست تایمر با هر حرکت
+            setTimer(TURN_TIME);
+        },
+        [history, currentMove]
+    );
+
+    /* -------------------- JUMP TO -------------------- */
+    const jumpTo = (move: number) => {
+        setCurrentMove(move);
+        setTimer(TURN_TIME);
+
+        const nextSquares = history[move];
+        const newBtnsColor = nextSquares.map(val =>
+            val ? "clicked" : "default"
+        );
+        setBtnsColor(newBtnsColor);
+
+        setXIsNextState(move % 2 === 0);
+    };
+
+    /* -------------------- MOVES LIST -------------------- */
+    const moves = history.map((squaresInMove, move) => {
+        const description =
+            move === currentMove
+                ? `شما در آرشیو ${move + 1} هستید`
+                : `برو به آرشیو ${move + 1}`;
+
+        const mokhtasatInDescription = squaresInMove
+            .map((val, idx) => (val ? idx : null))
+            .filter(i => i !== null)
+            .join(" - ");
+
+        return (
+            <Text
+                key={move}
+                onPress={() => jumpTo(move)}
+                style={{
+                    color: move === currentMove ? "red" : "blue",
+                    marginBottom: 6,
+                }}
+            >
+                {description}
+                {mokhtasatInDescription
+                    ? ` : ${mokhtasatInDescription}`
+                    : ""}
+            </Text>
+        );
+    });
+
+    /* -------------------- UI -------------------- */
     return (
-        <View style={{ flex: 1 }}>
-            <Board />
-        </View>
+        <ScrollView style={{ flex: 1, padding: 10 }}>
+
+            {/* تایمر */}
+            <View style={{ alignItems: "center", marginBottom: 15 }}>
+                <Text style={{ fontSize: 18, color: "red" }}>
+                    ⏱️ زمان باقی‌مانده: {timer}
+                </Text>
+                <Text style={{ marginTop: 4 }}>
+                    نوبت: {xIsNextState ? "X" : "O"}
+                </Text>
+            </View>
+
+            <Board
+                squares={currentSquares}
+                onPlay={handlePlay}
+                xIsNextState={xIsNextState}
+                setXIsNextState={setXIsNextState}
+                BtnsColor={BtnsColor}
+                setBtnsColor={setBtnsColor}
+                setTimer={setTimer} // 🔹 مهم
+            />
+
+            <View style={{ marginTop: 20 }}>
+                {moves}
+            </View>
+
+        </ScrollView>
     );
 }
+
 
 /* ------------------ Calculate Winner ------------------ */
 type SquareValue = string | null;
@@ -119,13 +301,10 @@ function calculateWinner(squares: Squares): WinnerResult | null {
 /* ------------------ Styles ------------------ */
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
         flexDirection: "row",
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        padding: 10,
-        backgroundColor: "#fff",
     },
     tripleInRow: {
         width: "30%",

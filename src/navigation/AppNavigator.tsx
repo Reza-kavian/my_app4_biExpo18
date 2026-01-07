@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_041009_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_041011_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -8,6 +8,7 @@ import LoginScreen from "../screens/LoginScreen";
 import HomeScreen from "../screens/HomeScreen";
 import AuthCallbackScreen from "../screens/AuthCallbackScreen";
 import ScannerScreen from "../screens/ScannerScreen";
+import GameScreen from "../screens/GameScreen";
 
 import type { RootStackParamList } from "../types/navigation";
 import MyCustomHeader from "../components/MyCustomHeader";
@@ -51,6 +52,18 @@ const AppNavigator = () => {
       <Stack.Screen name="AuthCallback" component={AuthCallbackScreen} />
 
       <Stack.Screen name="Scanner" component={ScannerScreen} />
+
+      {/* zare_nk_041017_added_st */}
+      <Stack.Screen
+        name="Game"
+        component={GameScreen}
+        options={({ navigation }) => ({
+          title: "گیم",
+          headerShown: true,
+        })}
+      />
+      {/* zare_nk_041017_added_end */}
+
     </Stack.Navigator>
     // </NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
   );

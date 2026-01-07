@@ -1,11 +1,11 @@
-//src\screens\WelcomeScreen.tsx    //zare_nk_041009_okk
+//src\screens\WelcomeScreen.tsx    //zare_nk_041010_okk
 import { View, Text, StyleSheet } from "react-native";
-import { globalStyles } from "../styles/globalsCss";  
+import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
 
-import type { RootStackParamList } from "../types/navigation"; 
+import type { RootStackParamList } from "../types/navigation";
 import { ThemeContext } from "../context/ThemeContext";
-import { useContext } from "react"; 
+import { useContext } from "react";
 
 ////zare_nk_0040608_commented_st
 // import { useNavigation } from "@react-navigation/native";
@@ -22,13 +22,13 @@ const WelcomeScreen = (
   {
     navigation,
   }: // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-  // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-  // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-  Props //zare_nk_040608_added(jaigozine NativeStackHeaderProps ta parameterhaye voroodi ra barname automat begireh,NativeStackHeaderProps faghat baraye file MyCustomHeader ke az headere sefareshi estefadeh mikardim ok ast)
-) =>  {
+    // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+    // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+    Props //zare_nk_040608_added(jaigozine NativeStackHeaderProps ta parameterhaye voroodi ra barname automat begireh,NativeStackHeaderProps faghat baraye file MyCustomHeader ke az headere sefareshi estefadeh mikardim ok ast)
+) => {
   ////zare_nk_0040608_added_end
   const { theme, toggleTheme } = useContext(ThemeContext);
-  
+
   return (
     // <View style={styles.container}>
     <View
@@ -38,15 +38,15 @@ const WelcomeScreen = (
         emkanate expo estefadeh konim be hamin khater file react-native.config.js ra tarif mikonim va assets: ['./src/assets/fonts'] ra dakhelesh minevisim,
         sepas dastoore npx react-native-asset ra mizanim ta file haye fonti ke dar masire ./src/assets/fonts rikhtim va dar file config dastoore
         assets: ['./src/assets/fonts'] ra dadim ra be projeh link konad ta in file ha be masire /android/app/src/main/assets/fonts/ copy shavad) */}
-        {/* zare_nk_040928_nokteh2( ba estefadeh az npx react-native-asset niazi be import kardane packagi baraye font nist va masire fonthara link mikoneh be projeh
+      {/* zare_nk_040928_nokteh2( ba estefadeh az npx react-native-asset niazi be import kardane packagi baraye font nist va masire fonthara link mikoneh be projeh
         va fontha dar masire /android/app/src/main/assets/fonts/ copy shavad )*/}
       <Text
         style={[
           styles.title,
           { color: theme.text, fontFamily: "IRANSansWeb_UltraLight" },
         ]}
-      > 
-        اپ ری ات اکت نیتیو
+      >
+       4 اپ ری ات اکت نیتیو
       </Text>
       <Text
         style={[
@@ -54,7 +54,7 @@ const WelcomeScreen = (
           { color: theme.text, fontFamily: "IRANSansWeb_Bold" },
         ]}
       >
-       اپ ری اکت نیتیو
+        اپ ری اکت نیتیو
       </Text>
       <Text
         style={[
@@ -65,11 +65,11 @@ const WelcomeScreen = (
         اپ ری اکت نیتیو
       </Text>
 
-       <ReusableButton
-        title="بزن بریم Home!" 
+      <ReusableButton
+        title="بزن بریم Home!"
         onPress={() => navigation.navigate("Home")}
         backgroundColor="green"
-        textColor="white" 
+        textColor="white"
         width="80%"
       />
       <View style={{ height: 18 }} />
@@ -95,13 +95,25 @@ const WelcomeScreen = (
       <View style={{ height: 18 }} />
 
       <ReusableButton
-        title="بزن بریم بارکدخوان!"
+        title="بزن بریم2 بارکدخوان!"
         onPress={() => navigation.navigate("Scanner")}
         backgroundColor={theme.buttonBackground}
         textColor="black"
         width="80%"
       />
       <View style={{ height: 18 }} />
+
+
+      {/* zare_nk_041017_added_st */}
+      <ReusableButton
+        title="بزن بریم گیم(دووز) !"
+        onPress={() => navigation.navigate("Game")}
+        backgroundColor={theme.buttonBackground}
+        textColor="brown"
+        width="80%"
+      />
+      <View style={{ height: 18 }} />
+      {/* zare_nk_041017_added_st */}
 
       <ReusableButton
         title="تغییر تم"

@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_041009_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_041011_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -121,7 +121,6 @@ const MyCustomHeader = ({
           await handleLogout();
         }
       };
-
       checkLoginStatus();
     }, [])
   );

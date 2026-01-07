@@ -1,3 +1,3 @@
-////zare_nk_041009_okk
+////zare_nk_041011_okk
 export const NextJsApiUrl = "https://testotmapi.sarinmehr.com/api/v1/Hyper/"; 
 export const NextJsApiAuthUrl = "https://testotm.sarinmehr.com/api/auth/";  

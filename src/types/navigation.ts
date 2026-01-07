@@ -1,4 +1,4 @@
-//src/types/navigation.ts     //zare_nk_041009_okk
+//src/types/navigation.ts     //zare_nk_041017_okk
 export type RootStackParamList = {
   Splash: { target?: keyof RootStackParamList } | undefined;  //zare_nk_041003_nokteh(yani target shamele yeki az anasore hamin RootStackParamList basheh(mesle Welcome ya Profile va ...))
   Welcome: undefined;
@@ -8,4 +8,6 @@ export type RootStackParamList = {
   AuthCallback: { token: string } | undefined;  
   Home: undefined;  
   Scanner: undefined;
+
+  Game:undefined; //zare_nk_041017_added
 };

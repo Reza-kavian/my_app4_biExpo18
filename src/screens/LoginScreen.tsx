@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041009_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041011_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,

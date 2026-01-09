@@ -4,7 +4,6 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { TouchableOpacity, Text, StyleSheet, View, Alert, ScrollView } from "react-native"; 
    
-
 /* ------------------ Square ------------------ */
 type SquareProps = {
     value: string | null;
@@ -110,7 +109,6 @@ function Board({
         </View>
     );
 }
-
 
 /* ------------------ GameScreen ------------------ */
 export default function GameScreen() {

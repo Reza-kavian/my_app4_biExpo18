@@ -1,18 +1,17 @@
-// src/screens/SplashScreen.tsx    //zare_nk_040926_okk
+// src/screens/SplashScreen.tsx    //zare_nk_041107_okk
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
 import { useNavigation } from "@react-navigation/native";
-import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-// import { RootStackParamList } from "../navigation/AppNavigator";  //zare_nk_040428_commented
-import type { RootStackParamList } from '../types/navigation';  //zare_nk_040428_added
+import type { NativeStackNavigationProp } from "@react-navigation/native-stack"; 
+import type { RootStackParamList } from '../types/navigation';   
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Splash">;
 
 const SplashScreen = () => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp>();
-  const [bgColor, setBgColor] = useState("white"); //zare_nk_040428_added
+  const [bgColor, setBgColor] = useState("white");  
 
   useEffect(() => {
     // alert('bgColor: '+bgColor);

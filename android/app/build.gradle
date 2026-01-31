@@ -43,14 +43,14 @@ android {
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
     }
-    ////zare_nk_041007_added_st(name apk nasbi pishdarz app-release.apk hast ma dar applicationVariants.all be name delkhah tagheiresh midim)
+    ////zare_nk_041007_added_st(name apk nasbi pishfarz app-release.apk hast ma dar applicationVariants.all be name delkhah tagheiresh midim)
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
             def newName = "ShoppingCartManagement-${variant.versionName}.apk"    
             output.outputFileName = newName
         }
     }
-    ////zare_nk_041007_added_end(name apk nasbi pishdarz app-release.apk hast ma dar applicationVariants.all be name delkhah tagheiresh midim)
+    ////zare_nk_041007_added_end(name apk nasbi pishfarz app-release.apk hast ma dar applicationVariants.all be name delkhah tagheiresh midim)
 }
 
 dependencies {

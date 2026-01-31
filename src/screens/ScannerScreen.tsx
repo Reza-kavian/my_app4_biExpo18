@@ -1,23 +1,22 @@
-//zare_nk_041011_okk
+////zare_nk_041107_okk
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, Button, Modal, StyleSheet, Alert, Animated } from "react-native";
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
-import ReusableButton from "../components/ReusableButton";   //zare_nk_041007_added
+import ReusableButton from "../components/ReusableButton";
 
 const ScannerScreen = () => {
   const [modalVisible, setModalVisible] = useState(false);    //zare_nk_040923(halat namayesh modal)
   const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
   const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
   const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
-
   const device = useCameraDevice("back");   //zare_nk_040923(doorbin ra doorbine aghab moshakhas mikonim)
-
   const [scannedValue, setScannedValue] = useState<string | null>(null);   //zare_nk_041007_added
   const [resultModalVisible, setResultModalVisible] = useState(false);     //zare_nk_041007_added
 
-  const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added(baraye khatte pareshkone vasate kardr. new Animated.Value(0) yek object bar migardooneh,be hamin khater baraye console gereftane meghdaresh bayad mannande dastoore x01 az addListener estefadeh kard)
+  const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0) yek object bar migardooneh
+  // ,be hamin khater baraye console gereftane meghdaresh bayad mannande dastoore x01 az addListener estefadeh kard)
 
-  // const blinkAnim = useRef(new Animated.Value(1)).current; //zare_nk_041004_added(baraye khatte cheshmakzane vasate kardr)
+  // const blinkAnim = useRef(new Animated.Value(1)).current; //zare_nk_041004_added (baraye khatte cheshmakzane vasate kardr)
 
   useEffect(() => {
     requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
@@ -110,8 +109,7 @@ const ScannerScreen = () => {
   const hasTorch = device?.hasTorch ?? false;  //zare_nk_040927_added_st(baraye danestane flash dashtane dastgah)
   return (
     <View style={styles.container}>
-      {/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/}
-
+      {/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/} 
       <ReusableButton
         title="بازکردن بارکدخوان"
         onPress={() => {

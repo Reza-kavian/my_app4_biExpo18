@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041011_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041107_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -14,9 +14,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls"; 
-import { Alert } from "react-native";  
-import { Linking } from "react-native";  
+import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
+import { Alert } from "react-native";
+import { Linking } from "react-native";
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -49,28 +49,48 @@ export default function LoginScreen({
   const [isDisabledRemovTimerBtn, setIsDisabledRemovTimerBtn] = useState(true); //zare_nk_040531_nokteh(state ke disable ya enable boodane dokmeye RemovTimerBtn ra negah midareh)
   // const [timer, setTimer] = useState(40000);  //zare_nk_040431_commented
   const [timer, setTimer] = useState(0); //zare_nk_040431_added    //zare_nk_040531_nokteh(state ke meghdare timer ra negah midareh)
-  const [removTimer, setRemovTimer] = useState(false); //zare_nk_040531_nokteh(state ke hazf(hamoon) kardane timer ya reset nakardanesh dar rendere jari ra negah midareh)
+  // const [removTimer, setRemovTimer] = useState(false); //zare_nk_040531_nokteh(state ke hazf kardane timer ya reset nakardanesh dar rendere jari ra negah midareh)  //zare_nk_041020_commented(bejash setTimmer(0) lahaz shod)
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null); //zare_nk_040531_nokteh(useRef ke baraye modiriate timer estefadeh mishe)
-  
-  useEffect(() => {
-    //zare_nk_040531_nokteh(dar har render age nobate safhe taghei kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
-    if (step === "secondPage") {
-      // setTimer(40000);  //zare_nk_040431_commented(bordim be dastoore 0010 ta az rendere ezafi jologiri beshe,ye bar setStep("secondPage") baese render shod,setTimer(40000) ke inja bashe mojebe rendere mojadade component mishe,pas behtere setTimer(40000) dar kenare setStep("secondPage") gharar begire,yani hamoon dstoore 0010)
-      setIsDisabledResendCode(true);
-      setIsDisabledRemovTimerBtn(false);
-    }
-  }, [step]);
+  console.log('zare_nk_041020_LoginScreen called!!');
+  ////zare_nk_041020_commented_st
+  // useEffect(() => {   //0021
+  //   //zare_nk_040531_nokteh(dar har render age nobate safhe taghei kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
+  //   if (step === "secondPage") {
+  //     // setTimer(40000);  //zare_nk_040431_commented(bordim be dastoore 0010 ta az rendere ezafi jologiri beshe,ye bar setStep("secondPage") baese render shod
+  //     // ,setTimer(40000) ke inja bashe mojebe rendere mojadade component mishe,pas behtere setTimer(40000) dar kenare setStep("secondPage") gharar begire,yani hamoon dstoore 0010)
+  //     setIsDisabledResendCode(true);
+  //     setIsDisabledRemovTimerBtn(false);
+  //   }
+  // }, [step]);
+  ////zare_nk_041020_commented_end
 
   useEffect(() => {
-    //zare_nk_040531_nokteh(dar har render age timer ya removTimer tagheir kard in useEffect amal mokoneh,
-    //va age step barabare secondPage bood meghdare state timer ra age removTimer true bood sefr mikoneh, vagarnah yeki kam mikoneh)
-    if (step !== "secondPage") return;
+    ////zare_nk_041020_added_st
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
+    ////zare_nk_041020_added_end
+    // if (step !== "secondPage") return;    //zare_nk_041020_commented
+    //zare_nk_041020_added_st
+    if (step !== "secondPage") {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+      return;
+    }
+    setIsDisabledResendCode(true);   //zare_nk_041020_added(az useEffecte 0021 hazf shodan)
+    setIsDisabledRemovTimerBtn(false);   //zare_nk_041020_added(az useEffecte 0021 hazf shodan)
+
+    //zare_nk_041020_added_end
     intervalRef.current = setInterval(() => {
       setTimer((prev) => {
-        if (removTimer || prev <= 0) {
+        // if (removTimer || prev <= 0) {  //zare_nk_041020_commented
+        if (prev <= 0) {   //zare_nk_041020_added
+          // if (intervalRef.current) clearInterval(intervalRef.current);  //zare_nk_041020_added(and commented(chon age Interval dar cpu bemooneh kheili kond nemikoneh va 
+          // midoonim aslan rabti be reRender shodane component nadare, khodesham dar entehaye useEfffect clearInterval gozashtim va age az safhe berim hazf mishe))
+          // Alert.alert('removTimer || prev <= 0000');  //zare_nk_041020_commented
+          // Alert.alert('prev <= 0');  //zare_nk_041020_added
           setIsDisabledResendCode(false);
           setIsDisabledRemovTimerBtn(true);
-          setRemovTimer(false);
+          // setRemovTimer(false); //zare_nk_041020_commented
           return 0;
         }
         return prev - 1000;
@@ -78,11 +98,12 @@ export default function LoginScreen({
     }, 1000);
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
-      //zare_nk_040530_commented(molahezaeh mishe ke dar har render bayad dar entehaye useEffect intervalRef.current ra hazf konim,
+      //zare_nk_040530_commented(molahezeh mishe ke dar har render bayad dar entehaye useEffect intervalRef.current ra hazf konim,
       // bekhatere mahiate intervalRef ke meghdare jadid ke begire meghdare ghadimesh az pardazeshe cpu hazf nemishe va amal mikoneh
       // va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol khahand dasht )
     };
-  }, [removTimer, timer]);
+    // }, [removTimer, timer]);//zare_nk_041020_commented(mani nadare timer taghir kard in useEffect seda zadeh beshe ke toosh dobare setTimer darim, va removTimer ke kollan hazf shod)
+  }, [step]);//zare_nk_041020_added(dakhele useEffect ham goftim: step secondPage shod interval ijad va firstPage shod interval hazf mikonim) 
 
   const mobileButtonClick = async () => {
     if (!/^09\d{9}$/.test(mobileVal)) {
@@ -97,7 +118,7 @@ export default function LoginScreen({
       //     headers: { "Content-Type": "application/json" },
       //     body: JSON.stringify({ mobile }),
       //   });
-      await axios.post(NextJsApiUrl + "Api_SendCode", { mobile: mobileVal });
+      await axios.post(NextJsApiUrl + "Api_SendCode", { mobile: mobileVal });   //zare_nk_041020_commented_(movaghat chon net ghate error migirim)
 
       setStep("secondPage");
       setTimer(40000); //zare_nk_040431_added(dastoore 0010)
@@ -245,8 +266,9 @@ export default function LoginScreen({
 
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
-    Alert.alert('useEffect called!!');
-    const subscription = Linking.addListener("url", async ({ url }) => { //zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
+    // Alert.alert('useEffect called 005!!');
+    const subscription = Linking.addListener("url", async ({ url }) => { //zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
+    // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
       Alert.alert('useEffect called!!-token: ' + token);
@@ -406,12 +428,20 @@ export default function LoginScreen({
             onPress={ResendCodefunc}
             disabled={isDisabledResendCode}
           />
-
-          <Button
+          {/* zare_nk_041020_commented_st */}
+          {/* <Button
             title="ریست تایمر"
             onPress={() => setRemovTimer(true)}
             disabled={isDisabledRemovTimerBtn}
+          /> */}
+          {/* zare_nk_041020_commented_end */}
+          {/* zare_nk_041020_commented_st */}
+          <Button
+            title="ریست2 تایمر"
+            onPress={() => setTimer(0)}
+            disabled={isDisabledRemovTimerBtn}
           />
+          {/* zare_nk_041020_commented_end */}
         </>
       )}
     </View>

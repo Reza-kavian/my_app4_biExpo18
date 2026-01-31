@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    //zare_nk_041010_okk
+//src\screens\WelcomeScreen.tsx    //zare_nk_041107_okk
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
@@ -46,7 +46,7 @@ const WelcomeScreen = (
           { color: theme.text, fontFamily: "IRANSansWeb_UltraLight" },
         ]}
       >
-       4 اپ ری ات اکت نیتیو
+        4 اپ ری ات اکت نیتیو
       </Text>
       <Text
         style={[
@@ -103,8 +103,6 @@ const WelcomeScreen = (
       />
       <View style={{ height: 18 }} />
 
-
-      {/* zare_nk_041017_added_st */}
       <ReusableButton
         title="بزن بریم گیم(دووز) !"
         onPress={() => navigation.navigate("Game")}
@@ -113,7 +111,17 @@ const WelcomeScreen = (
         width="80%"
       />
       <View style={{ height: 18 }} />
-      {/* zare_nk_041017_added_st */}
+
+      {/* zare_nk_041022_added_st */}
+      <ReusableButton
+        title="تخفیفات و پیشنهادات"  
+        onPress={() => navigation.navigate("discountsAndOffers")}
+        backgroundColor={theme.buttonBackground}
+        textColor="yellow"
+        width="80%"
+      />
+      <View style={{ height: 18 }} />
+      {/* zare_nk_041022_added_st */}
 
       <ReusableButton
         title="تغییر تم"

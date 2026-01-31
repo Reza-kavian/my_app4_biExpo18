@@ -1,4 +1,5 @@
-import React from "react";
+////zare_nk_041108_okk
+import React from "react";    
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 
 type SquareProps = {

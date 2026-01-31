@@ -1,7 +1,7 @@
-// AuthCallbackScreen.tsx     //zare_nk_041011_okk
+// AuthCallbackScreen.tsx     //zare_nk_041107_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
-import { Alert } from "react-native"; 
+import { Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 

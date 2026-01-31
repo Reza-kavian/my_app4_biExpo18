@@ -1,4 +1,4 @@
-//src\screens\ProfileScreen.tsx   //zare_nk_041011_okk
+//src\screens\ProfileScreen.tsx   //zare_nk_041107_okk
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import ReusableButton from "../components/ReusableButton";

@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_041011_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_041108_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -9,6 +9,12 @@ import HomeScreen from "../screens/HomeScreen";
 import AuthCallbackScreen from "../screens/AuthCallbackScreen";
 import ScannerScreen from "../screens/ScannerScreen";
 import GameScreen from "../screens/GameScreen";
+import SupperGameScreen from "../screens/SupperGameScreen";  //zare_nk_041029_added
+
+import discountsAndOffersScreen from "../screens/GameScreen";  //zare_nk_041022_added
+
+import folder02Screen from "../screens/folder02Screen";   //zare_nk_041027_added
+import folder03Screen from "../screens/folder03Screen";   //zare_nk_041027_added
 
 import type { RootStackParamList } from "../types/navigation";
 import MyCustomHeader from "../components/MyCustomHeader";
@@ -53,7 +59,6 @@ const AppNavigator = () => {
 
       <Stack.Screen name="Scanner" component={ScannerScreen} />
 
-      {/* zare_nk_041017_added_st */}
       <Stack.Screen
         name="Game"
         component={GameScreen}
@@ -62,7 +67,49 @@ const AppNavigator = () => {
           headerShown: true,
         })}
       />
-      {/* zare_nk_041017_added_end */}
+
+      {/* zare_nk_041022_added_st */}
+      <Stack.Screen
+        name="discountsAndOffers"
+        component={discountsAndOffersScreen}
+        options={({ navigation }) => ({
+          title: "تخفیفات و پیشنهادات",
+          headerShown: true,
+        })}
+      />
+      {/* zare_nk_041022_added_end */}
+
+
+      {/* zare_nk_041027_added_st */}
+      <Stack.Screen
+        name="folder02"
+        component={folder02Screen}
+        options={({ navigation }) => ({
+          title: " فولدر 02",
+          headerShown: true,
+        })}
+      />
+
+      <Stack.Screen
+        name="folder03"
+        component={folder03Screen}
+        options={({ navigation }) => ({
+          title: " فولدر 03",
+          headerShown: true,
+        })}
+      />
+      {/* zare_nk_041027_added_end */}
+
+      {/* zare_nk_041029_added_st */}
+      <Stack.Screen
+        name="SupperGame"
+        component={SupperGameScreen}
+        options={({ navigation }) => ({
+          title: "سوپرگیم",
+          headerShown: true,
+        })}
+      />
+      {/* zare_nk_041029_added_ثدی */}
 
     </Stack.Navigator>
     // </NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)

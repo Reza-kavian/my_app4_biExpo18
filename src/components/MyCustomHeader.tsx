@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_041011_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_041108_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -36,12 +36,12 @@ const MyCustomHeader = ({
   options,
 }: NativeStackHeaderProps) => {
   //zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
-  // parameterhaye voroodi ra barname automat az React Navigation migire)
+  // parameterhaye voroodi ra barname automat az React Navigation migire)  //zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [usersCodeOrName, setUsersCodeOrName] = useState({
     codeMoshtari: null,
     nameMoshtari: null,
-    name: null,  //zare_nk_040929_added
+    name: null,   
   });
 
   useFocusEffect(
@@ -50,7 +50,7 @@ const MyCustomHeader = ({
     // va layout shamele har do safhe ast) eseEffect(...,[]) seda zadeh nemishe )
     useCallback(() => {
       //zare_nk_040431_nokteh(useCallback be hamrahe useFocusEffect tosiyeh mishe)
-      const checkLoginStatus = async () => {
+      const checkLoginStatus = async () => {//zare_nk_051020_nokteh(dar useCallback ham manande useEffect nemitavan az lafze async estefadeh kard va be methode komaki niaz darim mesle checkLoginStatus)
         const token = await AsyncStorage.getItem("token");
         if (token) {
           try {
@@ -72,7 +72,8 @@ const MyCustomHeader = ({
                   console.log("040928-b-1res: " + res);
                   console.log("040928-b-2-JSON res: " + JSON.stringify(res));
                   console.log("040928-b-3-data: " + JSON.stringify(data));
-                  ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
+                  ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate 
+                  // rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
                   ////zare_nk_041008_nokteh(age az google login movafagh biad dar callback token rooberoo ra ijad mikonim){IdUser: null,email: decoded?.email ?? null,user_name: null,name: decoded?.name ?? null,},  
                   if (
                     res.status === 200

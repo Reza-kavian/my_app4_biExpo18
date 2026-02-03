@@ -1,4 +1,4 @@
-////zare_nk_041107_okk
+////zare_nk_041113_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -19,7 +19,7 @@ export default function SplashScreen() {
   const route = useRoute<SplashRoute>();
 
   useEffect(() => {
-    const checkToken = async () => {
+    const checkTo23ken = async () => {
       const token = await AsyncStorage.getItem("token");
       Alert.alert('01');
       // نام صفحه‌ای که کاربر قصد ورود دارد

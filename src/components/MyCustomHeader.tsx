@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_041108_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_041113_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -164,13 +164,7 @@ const MyCustomHeader = ({
             >
               <Text style={styles.buttonText}>خروج</Text>
             </TouchableOpacity>
-            {/* zare_nk_040935_added_st */}
-            {/* {usersCodeOrName?.codeMoshtari || usersCodeOrName?.nameMoshtari} */}
-            {/* zare_nk_040935_added_end */}
-            <Text style={styles.buttonText}>
-              {/* {usersCodeOrName?.nameMoshtari
-                ? usersCodeOrName.nameMoshtari
-                : usersCodeOrName.codeMoshtari} */}
+            <Text style={styles.buttonText}>              
               {usersCodeOrName?.nameMoshtari
                 ? usersCodeOrName.nameMoshtari
                 :

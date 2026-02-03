@@ -1,4 +1,4 @@
-// src/screens/GameScreen.tsx   //zare_nk_041107_okk
+// src/screens/GameScreen.tsx   //zare_nk_041113_okk
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";

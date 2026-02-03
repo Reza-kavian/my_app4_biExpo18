@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041107_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041113_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -54,7 +54,7 @@ export default function LoginScreen({
   console.log('zare_nk_041020_LoginScreen called!!');
   ////zare_nk_041020_commented_st
   // useEffect(() => {   //0021
-  //   //zare_nk_040531_nokteh(dar har render age nobate safhe taghei kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
+  //   //zare_nk_040531_nokteh(dar har render age nobate safhe tagheir kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
   //   if (step === "secondPage") {
   //     // setTimer(40000);  //zare_nk_040431_commented(bordim be dastoore 0010 ta az rendere ezafi jologiri beshe,ye bar setStep("secondPage") baese render shod
   //     // ,setTimer(40000) ke inja bashe mojebe rendere mojadade component mishe,pas behtere setTimer(40000) dar kenare setStep("secondPage") gharar begire,yani hamoon dstoore 0010)

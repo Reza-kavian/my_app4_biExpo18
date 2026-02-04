@@ -14,7 +14,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { NextJsApiAuthUrl } from "../constants/Urls";
 import { useFocusEffect, useRoute, RouteProp } from "@react-navigation/native";
-import { HeaderBackButton } from "@react-navigation/elements"; 
+import { HeaderBackButton } from "@react-navigation/elements";
 
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
@@ -39,9 +39,9 @@ const MyCustomHeader = ({
   // parameterhaye voroodi ra barname automat az React Navigation migire)  //zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [usersCodeOrName, setUsersCodeOrName] = useState({
-    codeMoshtari: null,
-    nameMoshtari: null,
-    name: null,   
+    FullName: null,
+    Mobile: null,
+    name: null,
   });
 
   useFocusEffect(
@@ -79,22 +79,26 @@ const MyCustomHeader = ({
                     res.status === 200
                   ) {
                     setIsLoggedIn(true);
-                   
+
                     // alert("data: "+data);
                     // alert("data.decoded: "+data.decoded);
                     // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
                     // alert("data.decoded.Mobile: "+data.decoded.Mobile);
                     // alert("data-stringify: "+JSON.stringify(data));
 
-                    var codeMoshtari = data.decoded.CodeMoshtari;
-                    var nameMoshtari = data.decoded.NameMoshtari;
-                    var name = data.decoded.name;  //zare_nk_040929_added
+                    // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+                    // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+
+
+                    var FullName = data.decoded.FullName;  //zare_nk_041115_added(from api tochikala)
+                    var Mobile = data.decoded.Mobile;  //zare_nk_041115_added(from api tochikala)
+                    var name = data.decoded.name;
 
                     setUsersCodeOrName((prev) => {
                       return {
                         ...prev,
-                        codeMoshtari: codeMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                        nameMoshtari: nameMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                        FullName: FullName,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                        Mobile: Mobile,  //zare_nk_041008_nokteh(age az code payamaki login shim)
                         name: name,  //zare_nk_041008_nokteh(age az google login shim)
                       };
                     });
@@ -164,12 +168,12 @@ const MyCustomHeader = ({
             >
               <Text style={styles.buttonText}>خروج</Text>
             </TouchableOpacity>
-            <Text style={styles.buttonText}>              
-              {usersCodeOrName?.nameMoshtari
-                ? usersCodeOrName.nameMoshtari
+            <Text style={styles.buttonText}>
+              {usersCodeOrName?.FullName
+                ? usersCodeOrName.FullName
                 :
-                (usersCodeOrName?.codeMoshtari
-                  ? usersCodeOrName.codeMoshtari
+                (usersCodeOrName?.Mobile
+                  ? usersCodeOrName.Mobile
                   : usersCodeOrName.name
                 )
               }

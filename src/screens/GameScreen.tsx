@@ -1,4 +1,4 @@
-// src/screens/GameScreen.tsx   //zare_nk_041113_okk
+// src/screens/GameScreen.tsx   //zare_nk_041124_okk
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -50,8 +50,8 @@ type BoardProps = {
     setBtnsColor: React.Dispatch<
         React.SetStateAction<("default" | "clicked" | "wined" | "lineWined")[]>
     >;
-    setTimer: React.Dispatch<React.SetStateAction<number>>;  //zare_nk_041018_tahlilshe(baraye commnent)
-    // setTimer: React.Dispatch<React.SetStateAction<ReturnType<typeof setInterval>>>;   //zare_nk_041018_tahlilshe(baraye add)
+    // setTimer: React.Dispatch<React.SetStateAction<number>>;  //zare_nk_041124_commented
+    setTimer: React.Dispatch<React.SetStateAction<ReturnType<typeof setInterval>>>;   //zare_nk_041124_added
 };
 
 function Board({
@@ -86,7 +86,7 @@ function Board({
             Alert.alert("Winner!", `Player ${winnerValue} won!`);
         }
     };
-
+//zare_nk_041124(wined gonjoondeh nashod!!)
     return (
         <View style={styles.container}>
             {squares.map((value, index) => (
@@ -190,7 +190,7 @@ export default function GameScreen() {
     };
 
     /* -------------------- MOVES LIST -------------------- */
-    const moves = history.map((squaresInMove, move) => {
+    const moves = history.map((squaresInMove:Squares, move:number) => {
         const description =
             move === currentMove
                 ? `شما در آرشیو ${move + 1} هستید`

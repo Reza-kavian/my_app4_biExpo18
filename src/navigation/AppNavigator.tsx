@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_041113_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_041124_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -9,7 +9,7 @@ import HomeScreen from "../screens/HomeScreen";
 import AuthCallbackScreen from "../screens/AuthCallbackScreen";
 import ScannerScreen from "../screens/ScannerScreen";
 import GameScreen from "../screens/GameScreen";
-import SupperGameScreen from "../screens/SupperGameScreen";  //zare_nk_041029_added
+import SupperGameScreen from "../screens/SupperGameScreen"; 
 
 import discountsAndOffersScreen from "../screens/GameScreen";  //zare_nk_041022_added
 

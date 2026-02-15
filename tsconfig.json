@@ -6,7 +6,7 @@
     ],
   },
   // "include": ["**/*.ts", "**/*.tsx"],  //zare_nk_041107_commented
-  "include": [  //zare_nk_041107_added(added images.d.ts for )
+  "include": [  //zare_nk_041107_added(added images.d.ts)
     "**/*.ts",
     "**/*.tsx",
     "images.d.ts"

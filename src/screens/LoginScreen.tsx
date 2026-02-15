@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041113_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_041124_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -110,22 +110,6 @@ export default function LoginScreen({
       setError("شماره موبایل معتبر نیست");
       return;
     }
-    ////zare_nk_041114_commented_st
-    // try {
-    //   setIsDisabledMobileCheckBtn(true);
-
-    //   await axios.post(NextJsApiUrl + "Api_SendCode", { mobile: mobileVal }); 
-    //   setStep("secondPage");
-    //   setTimer(40000); //zare_nk_040431_added(dastoore 0010)
-    //   setError(null);
-    // } catch (err: any) {
-    //   await AsyncStorage.removeItem("token");
-    //   setError(err.response?.data?.message || "خطا در ارسال شماره موبایل");
-    // } finally {
-    //   setIsDisabledMobileCheckBtn(false);
-    // }
-    ////zare_nk_041114_commented_end
-    ////zare_nk_041114_added_st
     try {
       setIsDisabledMobileCheckBtn(true);
       const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });   //zare_nk_041114_added
@@ -135,7 +119,6 @@ export default function LoginScreen({
         //zare_nk_040218-data: {"status":0,"message":"","data":1,"errors":[]}-response.status: 200
         //zare_nk_040218-data: {"status":-1,"message":"","data":null,"errors":[]}-response.status: 200
         //zare_nk_040218-data: {"status":-2,"message":"","data":null,"errors":["کاربر یافت نشد"]}-response.status: 200
-
         if (data.status == 0) {
           setStep("secondPage");
           setTimer(40000); //zare_nk_040431_added(dastoore 0010)
@@ -145,7 +128,6 @@ export default function LoginScreen({
           setError(data.errors || "خطا در ارسال شماره موبایل");
           //zare_nk_040218-data: {"status":-2,"message":"","data":1,"errors":["6 ثانیه ی دیگر مجددا تلاش کنید"]}
         }
-
       } else {
         await AsyncStorage.removeItem("token");
         setError("متاسفانه خطایی رخ داده است");
@@ -160,11 +142,9 @@ export default function LoginScreen({
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));
         setError("متاسفانه خطایی رخ داده است333:" + String(error));
       }
-      ////zare_nk_041107_added_end
     } finally {
       setIsDisabledMobileCheckBtn(false);
     }
-    ////zare_nk_041114_added_end  
   };
 
   const checkSmsForLogin = async () => {
@@ -175,11 +155,10 @@ export default function LoginScreen({
     }
     try {
       setIsDisabledCheckSmsBtn(true);
-      // const res = await axios.post(NextJsApiUrl + "Api_LoginUser2", {  //zare_nk_041114_commented
-      const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {  //zare_nk_041114_added
+      const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {  
         mobile: mobileVal,
         smsCode: smsVal,
-        Password: ""  //zare_nk_041114_added
+        Password: ""  
       });
       console.log("040530-01");
       const ApiLoginUser2Result = res.data; // await res.json();
@@ -203,7 +182,8 @@ export default function LoginScreen({
         //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
         // try {
         const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
-          ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
+          ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin 
+          // pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token }),
@@ -290,16 +270,10 @@ export default function LoginScreen({
   };
 
   const ResendCodefunc =async () => {
-    ////zare_nk_041114_commented_st
-    // setTimer(40000);
-    // setIsDisabledResendCode(true);
-    // setIsDisabledRemovTimerBtn(false);
-    // axios.post(NextJsApiUrl + "Api_SendCode", { mobile: mobileVal }); 
-    ////zare_nk_041114_commented_end
      try {
       setIsDisabledResendCode(true);
       setIsDisabledRemovTimerBtn(false);
-      const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });   //zare_nk_041114_added
+      const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });  
       const data = await response.data;
       if (response.status == 200) {
         console.log("zare_nk_040218-data: " + JSON.stringify(data) + '-response.status: ' + response.status);
@@ -325,7 +299,6 @@ export default function LoginScreen({
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));
         setError("متاسفانه خطایی رخ داده است333:" + String(error));
       }
-      ////zare_nk_041107_added_end
     } finally {
       setIsDisabledResendCode(false);
     } 
@@ -338,7 +311,6 @@ export default function LoginScreen({
 
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
-    // Alert.alert('useEffect called 005!!');
     const subscription = Linking.addListener("url", async ({ url }) => { //zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
       // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented

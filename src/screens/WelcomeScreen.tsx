@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    //zare_nk_041107_okk
+//src\screens\WelcomeScreen.tsx    //zare_nk_041126_okk
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
@@ -125,12 +125,9 @@ const WelcomeScreen = (
 
       <ReusableButton
         title="تغییر تم"
-        // onPress={() => alert('مرحله بعدی رو شروع کنیم؟؟؟')}
-        // onPress={() => navigation.navigate("Profile")}
         onPress={toggleTheme}
         backgroundColor={theme.buttonBackground}
-        textColor={theme.buttonColor}
-        // width={500}
+        textColor={theme.buttonColor} 
         width="80%"
       />
     </View>

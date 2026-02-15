@@ -1,3 +1,4 @@
+////zare_nk_041126_okk
 ////zare_nk_041029_added_st
 // "use client";   
 // import "bootstrap/dist/css/bootstrap.min.css";
@@ -6,8 +7,18 @@
 // import Link from "next/link";  
 ////zare_nk_041029_added_end
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from "react-native";  //zare_nk_041029_added
-import ReusableButton from "../components/ReusableButton";     //zare_nk_041029_added
+import {
+  View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
+  useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
+  StyleProp,
+} from "react-native";
+import ReusableButton from "../components/ReusableButton";
+import superMarketIcon from "../assets/images/logoes/superMarket.png";
+import gameIcon from "../assets/images/logoes/game.png";
+import checklistIcon from "../assets/images/logoes/checklist.png";
+import orderIcon from "../assets/images/logoes/order-icon.svg";
+import DiscountsAndOffersIcon from "../assets/images/DiscountsAndOffers.png";
+
 
 // export default function ShallowRoutingExample() {  //zare_nk_041029_commented
 ////zare_nk_041029_added_st
@@ -21,160 +32,534 @@ export default function SupperGameScreen({
   // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
-  ////zare_nk_041029_added_end
+  ////zare_nk_041126_added_st(moadele @media baraye responsive kardane site) 
+  const { width } = useWindowDimensions();
+  //////responsive_for_SubprogramsCont_added_st
+  let SubprogramsContResponse: StyleProp<ViewStyle>;
+  if (width >= 576) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+  }
+  else if (width >= 992) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH992;
+  }
+  else if (width >= 1400) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH1400;
+  }
+  //////responsive_for_SubprogramsCont_added_st
 
+  //////responsive_for_Subprograms_added_st
+  let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
+  if (width >= 992) {
+    SubprogramsResponse = styles.Subprograms_BTH992;
+  }
+  //////responsive_for_Subprograms_added_end
+
+  //////responsive_for_imgAndTextInSubprograms_added_st
+  let imgAndTextInSubprogramsResponse: StyleProp<ViewStyle> = styles.imgAndTextInSubprograms_baseResponsive;
+  if (width >= 576) {
+    imgAndTextInSubprogramsResponse = styles.imgAndTextInSubprograms_BTH576;
+  }
+  else if (width >= 768) {
+    imgAndTextInSubprogramsResponse = styles.imgAndTextInSubprograms_BTH768;
+  }
+  //////responsive_for_imgAndTextInSubprograms_added_end
+
+  //////responsive_for_roundedPillsCont_added_st
+  let roundedPillsContResponse: StyleProp<ViewStyle> = styles.roundedPillsCont_baseResponsive;
+  if (width >= 576) {
+    roundedPillsContResponse = styles.roundedPillsCont_BTH576;
+  }
+  else if (width >= 768) {
+    roundedPillsContResponse = styles.roundedPillsCont_BTH768;
+  }
+  //////responsive_for_roundedPillsCont_added_end
+  //////responsive_for_subSysTextCont_added_st
+  let subSysTextContResponse: StyleProp<ViewStyle> = styles.subSysTextCont_baseResponsive;
+  if (width >= 576) {
+    subSysTextContResponse = styles.subSysTextCont_BTH576;
+  }
+  else if (width >= 768) {
+    subSysTextContResponse = styles.subSysTextCont_BTH768;
+  }
+  //////responsive_for_subSysTextCont_added_end
+  //////responsive_for_subSysTextCont_added_st
+  let titleStyleResponse: StyleProp<TextStyle> = styles.titleStyleResponse_baseResponsive;
+  if (width >= 576) {
+    titleStyleResponse = styles.titleStyleResponse_BTH576;
+  }
+  else if (width >= 768) {
+    titleStyleResponse = styles.titleStyleResponse_BTH768;
+  }
+  //////responsive_for_subSysTextCont_added_end
+  //////responsive_for_subSysTextCont_added_st
+  let valueStyleResponse: StyleProp<TextStyle> = styles.valueStyleResponse_baseResponsive;
+  if (width >= 576) {
+    valueStyleResponse = styles.valueStyleResponse_BTH576;
+  }
+  else if (width >= 768) {
+    valueStyleResponse = styles.valueStyleResponse_BTH768;
+  }
+  //////responsive_for_subSysTextCont_added_end
+  ////zare_nk_041126_added_end(moadele @media baraye responsive kardane site)
+
+  const goSuperMarket = () => {
+    navigation.replace('folder02');
+  };
   const goGame = () => {
     navigation.replace('folder02');
   };
-  ////zare_nk_041029_added_end
+  const gochecklist = () => {
+    navigation.replace('folder02');
+  };
+  const goSuperOrders = () => {
+    navigation.replace('folder02');
+  };
+  const goDiscountsAndOffersIcon = () => {
+    navigation.replace('folder02');
+  };
+
   return (
     <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
-      <View
-        id="SubprogramsCont"
-        style={{
-          display: "flex",
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "space-between",
-        }}
-      >
+      <View 
+        style={[styles.SubprogramsCont, SubprogramsContResponse]}
+      > 
         <View
-          id="Subprograms-1"
-          // className="Subprograms"          
-          style={[
-            styles.Subprograms, {
-              flexDirection: 'row'
-            }
-          ]}
+          style={[styles.Subprograms, SubprogramsResponse]}
         >
-          <ReusableButton
-            onPress={() => { return (goGame) }}
-            backgroundColor="yellow"
-            textColor="white"
-            width="80%"
-          // className="vorsab"
-          // href="/Game"
-          // style={{
-          //   width: "100%",
-          //   display: "flex",
-          //   flexDirection: "row",
-          //   justifyContent: "space-between",
-          // padding: "15px",
-          // outline: "none",
-          // alignItems: "center",
-          // border: "1px solid #E7E7E7",
-          // boxShadow: "#D7D6D6 0px 0px 2px 0px",
-          // borderRadius: "25px",
-          // backgroundColor: "white",
-          // overflow: "hidden",
-          // }}
+          <TouchableOpacity
+            style={[styles.buttonInSubprograms]}
+            onPress={() => { return (goSuperMarket) }}
+            activeOpacity={0.1}
           >
             <View
-              className="imgAndTextInSubprograms"
-              style={{ display: "flex" }}
+              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
             >
               <View
-                className="roundedPillsCont"
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  width: "fit-content",
-                }}
+                style={[styles.roundedPillsCont, roundedPillsContResponse]}
               >
                 <View
-                  className="rounded-pill"
                   style={{
                     display: "flex",
-                    flexDirection: "row",
-                    border: "1px solid #E7E7E7",
-                    padding: "10px",
+                    flexDirection: "column",
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: "#E7E7E7",
+                    borderStyle: 'solid',
                     borderRadius: "50%",
+                    padding: 10,
+                    overflow: 'hidden',
+                    minHeight: 85.6,
                   }}
                 >
-                  <img
-                    style={{ width: "64px" }}
-                    src="/images/Subprograms/TIC-TAC-TOE.jfif"
-                    alt="هایپر&zwnj;کرفو"
-                  />
+                  <Image source={superMarketIcon} style={[styles.logo]} />
                 </View>
               </View>
               <View
-                style={{
+                style={[{
                   display: "flex",
                   flexDirection: "column",
-                  justifyContent: "space-around",
-                  width: "fit-content",
-                }}
+                }, subSysTextContResponse]}
               >
                 <View
                   style={{
-                    flex: "0 0 auto",
-                    display: "flex",
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
                     flexDirection: "row",
+                    marginBottom: 7,
                   }}
                 >
-                  <span className="titleStyle">بازی و سرگرمی</span>
+                  <Text
+                    style={[{
+                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                      color: '#4b4949',
+                    }, titleStyleResponse]}>
+                    سبد خرید
+                  </Text>
                 </View>
                 <View
-                  style={{ flexDirection: "row", fontSize: "75%" }}
-                  className="decsInSubprograms"
+                  style={{ flexDirection: "row", }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      style={[{
+                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        color: "#6a6a6a",
+                        fontSize: 12,
+                      }, valueStyleResponse,]}>
+                      امکان مشاهده و ویرایش سبد خرید
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{ flexDirection: "row" }}>
+              <Image
+                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                style={{ width: 20 }}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={[styles.Subprograms, SubprogramsResponse]}
+        >
+          <TouchableOpacity
+            style={[styles.buttonInSubprograms]}
+            onPress={() => { return (gochecklist) }}
+            activeOpacity={0.1}
+          >
+            <View
+              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
+            >
+              <View
+                style={[styles.roundedPillsCont, roundedPillsContResponse]}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: "#E7E7E7",
+                    borderStyle: 'solid',
+                    borderRadius: "50%",
+                    padding: 10,
+                    overflow: 'hidden',
+                    minHeight: 85.6,
+                  }}
                 >
-                  <View style={{ display: "flex", flexDirection: "row" }}>
-                    <span className="valueStyle">
+                  <Image source={checklistIcon} style={[styles.logo]} />
+                </View>
+              </View>
+              <View
+                style={[{
+                  display: "flex",
+                  flexDirection: "column",
+                }, subSysTextContResponse]}
+              >
+                <View
+                  style={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                    flexDirection: "row",
+                    marginBottom: 7,
+                  }}
+                >
+                  <Text
+                    style={[{
+                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                      color: '#4b4949',
+                    }, titleStyleResponse]}>
+                    مشاهده قیمت ها
+                  </Text>
+                </View>
+                <View
+                  style={{ flexDirection: "row", }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      style={[{
+                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        color: "#6a6a6a",
+                        fontSize: 12,
+                      }, valueStyleResponse,]}>
+                      مشاهده اطلاعات کالا با اسکن بارکد
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{ flexDirection: "row" }}>
+              <Image
+                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                style={{ width: 20 }}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          style={[styles.Subprograms, SubprogramsResponse]}
+        >
+          <TouchableOpacity
+            style={[styles.buttonInSubprograms]}
+            onPress={() => { return (goSuperOrders) }}
+            activeOpacity={0.1}
+          >
+            <View
+              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
+            >
+              <View
+                style={[styles.roundedPillsCont, roundedPillsContResponse]}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: "#E7E7E7",
+                    borderStyle: 'solid',
+                    borderRadius: "50%",
+                    padding: 10,
+                    overflow: 'hidden',
+                    minHeight: 85.6,
+                  }}
+                >
+                  <Image source={orderIcon} style={[styles.logo]} />
+                </View>
+              </View>
+              <View
+                style={[{
+                  display: "flex",
+                  flexDirection: "column",
+                }, subSysTextContResponse]}
+              >
+                <View
+                  style={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                    flexDirection: "row",
+                    marginBottom: 7,
+                  }}
+                >
+                  <Text
+                    style={[{
+                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                      color: '#4b4949',
+                    }, titleStyleResponse]}>
+                    تاریخچه سفارشات
+                  </Text>
+                </View>
+                <View
+                  style={{ flexDirection: "row", }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      style={[{
+                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        color: "#6a6a6a",
+                        fontSize: 12,
+                      }, valueStyleResponse,]}>
+                      گزارش جزئیات سفارشات قبلی
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{ flexDirection: "row" }}>
+              <Image
+                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                style={{ width: 20 }}
+              />
+            </View>
+          </TouchableOpacity>
+        </View> 
+
+        <View
+          style={[styles.Subprograms, SubprogramsResponse]}
+        >
+          <TouchableOpacity
+            style={[styles.buttonInSubprograms]}
+            onPress={() => { return (goDiscountsAndOffersIcon) }}
+            activeOpacity={0.1}
+          >
+            <View
+              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
+            >
+              <View
+                style={[styles.roundedPillsCont, roundedPillsContResponse]}
+              >
+                <View
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: "#E7E7E7",
+                    borderStyle: 'solid',
+                    borderRadius: "50%",
+                    padding: 10,
+                    overflow: 'hidden',
+                    minHeight: 85.6,
+                  }}
+                >
+                  <Image source={DiscountsAndOffersIcon} style={[styles.logo]} />
+                </View>
+              </View>
+              <View
+                style={[{
+                  display: "flex",
+                  flexDirection: "column",
+                }, subSysTextContResponse]}
+              >
+                <View
+                  style={{
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                    flexDirection: "row",
+                    marginBottom: 7,
+                  }}
+                >
+                  <Text
+                    style={[{
+                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                      color: '#4b4949',
+                    }, titleStyleResponse]}>
+                    تخفیفات و پیشنهادات
+                  </Text>
+                </View>
+                <View
+                  style={{ flexDirection: "row", }}>
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      style={[{
+                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        color: "#6a6a6a",
+                        fontSize: 12,
+                      }, valueStyleResponse,]}>
+                      مشاهده کالاهای پیشنهادی و پرتخفیف
+                    </Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+            <View
+              style={{ flexDirection: "row" }}>
+              <Image
+                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                style={{ width: 20 }}
+              />
+            </View>
+          </TouchableOpacity>
+        </View>
+
+        <View
+          //  id="Subprograms-1"
+          //             className="Subprograms"
+          //             style={{
+          //               display: "flex",
+          //               flexFlow: "row",
+          //             }} 
+          style={[styles.Subprograms, SubprogramsResponse]}
+        >
+
+          <TouchableOpacity
+            style={[styles.buttonInSubprograms]}
+            onPress={() => { return (goGame) }}
+            activeOpacity={0.1}
+          >
+            <View
+              // className="imgAndTextInSubprograms"
+              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
+            >
+              <View
+                // className="roundedPillsCont"
+                style={[styles.roundedPillsCont, roundedPillsContResponse]}
+              >
+                <View
+                  // className="rounded-pill"
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: 'center',
+                    borderWidth: 1,
+                    borderColor: "#E7E7E7",
+                    borderStyle: 'solid',
+                    borderRadius: "50%",
+                    padding: 10,
+                    overflow: 'hidden',
+                    // width: 'fit-content',
+                    minHeight: 85.6,
+                  }}
+                >
+                  <Image source={gameIcon} style={[styles.logo]} />
+                </View>
+              </View>
+              <View
+                style={[{
+                  display: "flex",
+                  flexDirection: "column",
+                }, subSysTextContResponse]}
+              >
+                <View
+                  style={{
+                    //  flex: "0 0 auto", 
+                    flexGrow: 0,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                    flexDirection: "row",
+                    marginBottom: 7,
+                  }}
+                >
+                  <Text
+                    // className="titleStyle"
+                    style={[{
+                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                      color: '#4b4949',
+                    }, titleStyleResponse]}>
+                    بازی و سرگرمی
+                  </Text>
+                </View>
+                <View
+                  style={{ flexDirection: "row", }}
+                // className="decsInSubprograms"
+                >
+                  <View style={{ flexDirection: "row" }}>
+                    <Text
+                      // className="valueStyle"
+                      style={[{
+                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        color: "#6a6a6a",
+                        fontSize: 12,
+                      }, valueStyleResponse,]}>
                       لحظات خوش کودکان در محیط هایپر!
-                    </span>
+                    </Text>
                   </View>
                 </View>
               </View>
             </View>
             <View
               // className="leftArrowInSubprograms" 
-              style={[styles.leftArrowInSubprograms, { flexDirection: "row" }]}>
+              style={{ flexDirection: "row" }}>
               {/* <img
                 style={{ width: "20px" }}
                 src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                 alt="بزن بریم"
               /> */}
               <Image
-                // source={require("../assets/icon.png")} 
                 source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                 style={{ width: 20 }}
               />
 
             </View>
-          </ReusableButton>
+          </TouchableOpacity>
         </View>
+
         <View
-          id="Subprograms-temp-1"
+          // id="Subprograms-temp-1"
           // className="Subprograms"
-          style={[
-            styles.Subprograms,
-            { display: "flex", flexDirection: "row" }
-          ]} 
+          style={[styles.Subprograms, SubprogramsResponse, { display: "none", }]}
         ></View>
         <View
-          id="Subprograms-temp-2"
+          // id="Subprograms-temp-2"
           // className="Subprograms"
-          style={[
-            styles.Subprograms,
-          ]}
-          style={{ display: "flex", flexDirection: "row" }}
+          style={[styles.Subprograms, SubprogramsResponse, { display: "none", }]}
         ></View>
         <View
-          id="Subprograms-temp-3"
+          // id="Subprograms-temp-3"
           // className="Subprograms"
-          style={[
-            styles.Subprograms,
-          ]}
-          style={{ display: "flex", flexDirection: "row" }}
+          style={[styles.Subprograms, SubprogramsResponse, { display: "none", }]}
         ></View>
         <View
-          id="Subprograms-temp-4"
+          // id="Subprograms-temp-4"
           // className="Subprograms"
-          style={[
-            styles.Subprograms,
-          ]}
-          style={{ display: "flex", flexDirection: "row" }}
+          style={[styles.Subprograms, SubprogramsResponse, { display: "none", }]}
         ></View>
       </View>
     </View>
@@ -182,483 +567,159 @@ export default function SupperGameScreen({
 }
 
 const styles = StyleSheet.create({
-  idUSerTextStyle: {
-    // flex: 1,
-    // minHeight: "23%",
-    // margin: 2,
-    // justifyContent: "center",
-    // alignItems: "center",
-    borderWidth: 2,
-    borderColor: "#ccc",
-    borderStyle: 'dotted',
-  },
-  logo: {
-    width: 40,
-    height: 40,
-    resizeMode: "contain",
-  },
-  ////zare_nk_041029_added_st
-  imgAndTextInSubprograms: {
-    flexDirection: 'column',
-    //flex: 1,
-    alignItems: 'center'
-  },
-
-  leftArrowInSubprograms: {
-    display: 'none'
-  },
-
-  roundedPillsCont: {
-    marginLeft: 0,
-    marginBottom: 10
-  },
-
-  navarbala: {
-    justifyContent: 'space-between',
-    flexDirection: 'row'
-  },
-
-  sabadLoginContFrmCont: {
-    flex: 0
-  },
-
-  AddAddressCont: {
-    flex: 1
-  },
-
-  sabadLoginCont: {
-    flex: 0
-  },
-
-  marginLess768: {
-    marginLeft: 20
-  },
-
-  SubprogramsTitle: {
-    marginTop: 10,
-    marginRight: 10,
-    marginBottom: 15,
-    marginLeft: 10
-  },
-
   SubprogramsCont: {
-    paddingTop: 15,
-    paddingBottom: 15,
-    marginTop: 20,
-    marginRight: 10,
-    marginBottom: 15,
-    marginLeft: 10
+    // paddingTop: 15,
+    // paddingBottom: 15,
+    // marginTop: 20,
+    // marginRight: 10,
+    // marginBottom: 15,
+    // marginLeft: 10
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-between",
+    gap: 30, //zare_nk_041126_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
   },
 
   Subprograms: {
-    flex: 1,
+    flexDirection: 'row',
+  },
+
+  buttonInSubprograms: {
+    width: '100%', flexDirection: 'row', justifyContent: 'space-between', padding: 15,
+    alignItems: 'center', borderWidth: 1, borderColor: "#E7E7E7", borderStyle: 'solid',
+    boxShadow: "#D7D6D6 0px 0px 2px 0px", borderRadius: 25, backgroundColor: 'white', overflow: 'hidden'
+  },
+
+  imgAndTextInSubprograms: {
+    // flex: 1 0 auto; 
+    flexGrow: 1,
+    flexShrink: 0,
+    flexBasis: 'auto',
+    alignItems: 'center',
+  },
+
+  roundedPillsCont: {
+    display: "flex",
+    flexDirection: "column",
+    // width: "fit-content",
+  },
+
+  logo: {
+    width: 64,
+    // height: 40,
+    // resizeMode: "contain",
+  },
+  /////////////////////////////////////////////zare_nk_041126_added_st(for responsives @media) 
+  SubprogramsCont_BTH576: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 10, // راست و چپ
+    marginBottom: 15,
+  },
+
+  SubprogramsCont_BTH992: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 50, // راست و چپ
+    marginBottom: 15,
+  },
+
+  SubprogramsCont_BTH1400: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 200, // راست و چپ
+    marginBottom: 15,
+  },
+
+  Subprograms_BaseResponse: {
+    // flex: 1 1 45%; 
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '45%',
     marginBottom: 30,
   },
 
-  decsInSubprograms: {
-    display: 'none'
+  Subprograms_BTH992: {
+    // flex: 1 1 31%; 
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '31%',
+    marginBottom: 30,
   },
 
-  //   .Subprograms:nth-child(odd) .vorsab {
-  //     margin-left: 30px;
-  //   }
+  imgAndTextInSubprograms_baseResponsive: {
+    flexDirection: 'row',
+    width: 'auto',
+  },
 
-  ////zare_nk_041029_added_end
+  imgAndTextInSubprograms_BTH576: {
+    flexDirection: 'column',
+    width: '100%',
+  },
+  imgAndTextInSubprograms_BTH768: {
+    flexDirection: 'row',
+    width: 'auto',
+  },
+
+  roundedPillsCont_baseResponsive: {
+    marginLeft: 10,
+    marginBottom: 0,
+  },
+  roundedPillsCont_BTH576: {
+    marginLeft: 0,
+    marginBottom: 10,
+  },
+  roundedPillsCont_BTH768: {
+    marginLeft: 10,
+    marginBottom: 0,
+  },
+
+  subSysTextCont_baseResponsive: {
+    width: 0,
+    // flex: 1 1 auto;
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    alignItems: 'flex-start',
+  },
+
+  subSysTextCont_BTH576: {
+    width: '100%',
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    alignItems: 'center',
+  },
+
+  subSysTextCont_BTH768: {
+    width: 0,
+    // flex: 1 1 auto;
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    alignItems: 'flex-start',
+  },
+
+  titleStyleResponse_baseResponsive: { textAlign: 'right', },
+  titleStyleResponse_BTH576: { textAlign: 'center', },
+  titleStyleResponse_BTH768: { textAlign: 'right', },
+
+  valueStyleResponse_baseResponsive: { textAlign: 'right', },
+  valueStyleResponse_BTH576: { textAlign: 'center', },
+  valueStyleResponse_BTH768: { textAlign: 'right', },
+  /////////////////////////////////////////////zare_nk_041126_added_end(for responsives @media)  
 });
 
-
-
-
-// @media screen and (min-width: 990px) {
-//   #sabadLoginContFrmCont {
-//     flex: 0 0 33%;
-//   }
-
-//   #AddAddressCont {
-//     flex: 0 0 33%;
-//   }
-
-//   .nearStores {
-//     flex: 1 1 45%;
-//   }
-
-//   .nearStores:nth-child(odd) {
-//     margin-left: 10px;
-//   }
-
-//   #SubprogramsTitle {
-//     margin: 10px 50px 15px 50px;
-//   }
-
-//   #SubprogramsCont {
-//     padding: 15px 0px;
-//     margin: 20px 50px 15px 50px;
-//     /* zare_nk_040228_added */
-//     /* background-color: red; */
-//   }
-
-//   .Subprograms {
-//     flex: 1 1 31%;
-//     margin-bottom: 30px;
-//   }
-
-//   /* zare_nk_040228_commented_st */
-//   /* .Subprograms:not(:nth-child(3n)) {
-//     margin-left: 30px;
-//   } */
-//   /* zare_nk_040228_commented_end */
-//   /* zare_nk_040228_added_st */
-//   .Subprograms:not(:nth-child(3n)) .vorsab {
-//     margin-left: 30px;
-//   }
-
-//   /* zare_nk_040228_added_end */
-
-//   .decsInSubprograms {
-//     display: flex;
-//   }
-
-//   .imgAndTextInSubprograms {
-//     flex-flow: row;
-//   }
-
-//   .leftArrowInSubprograms {
-//     display: flex;
-//   }
-
-//   .roundedPillsCont {
-//     margin-left: 10px;
-//   }
-
-//   #sabadLoginCont {
-//     flex: 0 0 auto;
-//   }
-
-//   #LogoAboveCont {
-//     display: none;
-//   }
-
-//   #ourStorsAndLogoCont {
-//     display: flex;
-//     justify-content: space-between;
-//   }
-
-//   #AdressModal .modal-content,
-//   #AdressLocationModal .modal-content,
-//   #AdressLocationModal2 .modal-content {
-//     height: 90vh;
-//   }
-
-//   #navarbala {
-//     flex-flow: row-reverse;
-//   }
-
-//   .LogoAbove {
-//     display: none;
-//   }
-
-//   .LogoBelow {
-//     display: flex;
-//   }
-
-//   #AddAddress span {
-//     max-width: 350px;
-//   }
-
-//   #ourSroresCont {
-//     padding-left: 20px;
-//   }
-
-//   #LayOutFooter {
-//     flex-flow: row;
-//     height: 175px;
-//     padding: 0px 15px;
-//   }
-
-//   #LayOutFooter #secondFotersCol .spanCont {
-//     justify-content: end;
-//   }
-
-//   .FotersCol {
-//     flex: 1 0 31%;
-//   }
-
-//   #RightsReserved {
-//     flex-flow: row-reverse;
-//   }
-
-//   #RightsReserved img {
-//     margin-left: 20px;
-//   }
-
-//   #SocialNetworksCont {
-//     width: auto;
-//     justify-content: start;
-//   }
-
-//   #SocialNetworksCont > div {
-//     margin-left: 25px;
-//   }
-
-//   #contactSupCont {
-//     display: flex;
-//   }
-
-//   #contactUsAndSuoInMobileCont {
-//     display: none;
-//   }
-
-//   #TrostLogoContCont {
-//     justify-content: start;
-//   }
-
-//   #TrostLogoContCont > div {
-//     width: 60px;
-//     height: 60px;
-//   }
-
-//   #TrostLogoContCont img {
-//     width: 35px;
-//   }
-// }
-
-// @media screen and (min-width: 1400px) {
-//   #SubprogramsTitle {
-//     margin: 10px 200px 15px 200px;
-//   }
-
-//   #SubprogramsCont {
-//     padding: 15px 0px;
-//     margin: 20px 200px 15px 200px;
-//   }
-
-//   .imgAndTextInSubprograms {
-//     flex-flow: row;
-//   }
-
-//   .leftArrowInSubprograms {
-//     display: flex;
-//   }
-
-//   .roundedPillsCont {
-//     margin-left: 10px;
-//   }
-// }
-
-// @media screen and (max-width: 990px) {
-//   #sabadLoginContFrmCont {
-//     flex: 0 0 100%;
-//   }
-
-//   #InsabadAndLogin #sabadicon {
-//     margin-top: 7px;
-//   }
-
-//   #AddAddressCont {
-//     flex: 0 0 100%;
-//   }
-
-//   #ourStorsAndLogoCont {
-//     display: none;
-//   }
-
-//   .nearStores {
-//     flex: 1 1 95%;
-//   }
-
-//   #SubprogramsTitle {
-//     margin: 10px 10px 15px 10px;
-//   }
-
-//   #SubprogramsCont {
-//     padding: 15px 0px;
-//     margin: 20px 10px 15px 10px;
-//     /* zare_nk_040228_added */
-//     /* background-color: green; */
-//   }
-
-//   .Subprograms {
-//     flex: 1 1 45%;
-//     margin-bottom: 30px;
-//   }
-
-//   /* zare_nk_040228_commented_st */
-//   /* .Subprograms:nth-child(odd) {
-//     margin-left: 30px;
-//   }   */
-//   /* zare_nk_040228_commented_end */
-//   /* zare_nk_040228_added_st */
-//   .Subprograms:nth-child(odd) .vorsab {
-//     margin-left: 30px;
-//   }
-
-//   /* zare_nk_040228_added_end */
-
-//   .decsInSubprograms {
-//     display: none;
-//   }
-
-//   .imgAndTextInSubprograms {
-//     flex-flow: row;
-//   }
-
-//   .leftArrowInSubprograms {
-//     display: flex;
-//   }
-
-//   .roundedPillsCont {
-//     margin-left: 10px;
-//   }
-
-//   #sabadLoginCont {
-//     flex: 1 0 auto;
-//   }
-
-//   #LogoAboveCont {
-//     display: flex;
-//   }
-
-//   #ourStorsAndLogoCont {
-//     justify-content: center;
-//     justify-items: center;
-//   }
-
-//   #AdressModal .modal-content,
-//   #AdressLocationModal .modal-content,
-//   #AdressLocationModal2 .modal-content {
-//     height: 100vh;
-//     margin-top: 0px;
-//     margin-bottom: 0px;
-//     padding-top: 0px;
-//     padding-bottom: 0px;
-//   }
-
-//   #navarbala {
-//     flex-flow: column;
-//   }
-
-//   #AddAddressCont {
-//     margin-bottom: 0px;
-//   }
-
-//   .LogoAbove {
-//     display: flex;
-//   }
-
-//   .LogoBelow {
-//     display: none;
-//   }
-
-//   #AddAddress span {
-//     max-width: 100%;
-//   }
-
-//   #LayOutFooter {
-//     flex-flow: column;
-//     height: auto;
-//   }
-
-//   #LayOutFooter #secondFotersCol {
-//     margin-top: 20px;
-//   }
-
-//   #LayOutFooter #secondFotersCol .spanCont {
-//     justify-content: start;
-//   }
-
-//   #LayOutFooter #thirdFotersCol {
-//     padding-top: 10px;
-//   }
-
-//   #secondFotersCol {
-//     height: 130px;
-//     border-bottom: 2px solid #f0f0f0;
-//     align-content: space-between;
-//   }
-
-//   #contInThirdFotersCol {
-//     width: 100%;
-//   }
-
-//   #RightsReserved {
-//     flex-flow: column-reverse;
-//   }
-
-//   #SocialNetworksCont {
-//     width: 100%;
-//     justify-content: space-between;
-//   }
-
-//   #contactSupCont {
-//     display: none;
-//   }
-
-//   #contactUsAndSuoInMobileCont {
-//     display: flex;
-//   }
-
-//   #TrostLogoTitleCont {
-//     display: none;
-//   }
-
-//   #TrostLogoContCont {
-//     justify-content: space-between;
-//   }
-
-//   #TrostLogoContCont > div {
-//     width: 70px;
-//     height: 70px;
-//   }
-
-//   #TrostLogoContCont img {
-//     width: 45px;
-//   }
-// }
-
-// @media screen and (max-width: 768px) {
-// #MyOrdersCont {
-//   margin-top: 10px;
-//   padding: 0px 10px;
-// }
-
-// .imgAndTextInSubprograms {
-//   flex-flow: column;
-//   flex: 1 0 auto;
-//   align-items: center;
-// }
-
-// .leftArrowInSubprograms {
-//   display: none;
-//   /*zare_nk_0507(age doost dashtam namayesh dadesh flex mikonam)*/
-// }
-
-// .roundedPillsCont {
-//   margin-left: 0px;
-//   margin-bottom: 10px;
-// }
-
-// #navarbala {
-//   justify - content: space - between;
-//   flex - flow: row;
-// }
-
-// #sabadLoginContFrmCont {
-//   flex: 0 0 content;
-// }
-
-// #AddAddressCont {
-//   flex: 1 1 auto;
-// }
-
-// #sabadLoginCont {
-//   flex: 0 0 auto;
-// }
-
-// #tempForMax768 {
-//   display: flex;
-// }
-
-//   .marginLess768 {
-//   margin - left: 20px;
-// }
-// }

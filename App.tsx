@@ -1,8 +1,8 @@
-//my-app/App.tsx   //zare_nk_041113_okk
+//my-app/App.tsx   //zare_nk_041124_okk
 import React, { useEffect, useState } from "react";
-import { Alert } from "react-native"; //zare_nk_041006_added
-import AsyncStorage from "@react-native-async-storage/async-storage"; //zare_nk_041006_added
-import DeviceInfo from "react-native-device-info"; //zare_nk_041006_added
+import { Alert } from "react-native"; 
+import AsyncStorage from "@react-native-async-storage/async-storage";  
+import DeviceInfo from "react-native-device-info"; 
 import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";
 import { ThemeContext } from "./src/context/ThemeContext";

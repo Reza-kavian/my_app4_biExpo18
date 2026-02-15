@@ -1,4 +1,4 @@
-//src/screens/folder03Screen.tsx  //zare_nk_041113_okk
+//src/screens/folder03Screen.tsx  //zare_nk_041124_okk
 // "use client";  //zare_nk_041027_commented
 // import { usePathname, useRouter, useSearchParams } from "next/navigation";  //zare_nk_041027_commented
 import React, { useEffect, useState, useCallback, useRef } from "react";
@@ -20,7 +20,7 @@ export default function folder03Screen({
 }: // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-  Props) {
+  Props):React.JSX.Element {
   ////zare_nk_041027_added_end
 
   ////zare_nk_041027_commented_st

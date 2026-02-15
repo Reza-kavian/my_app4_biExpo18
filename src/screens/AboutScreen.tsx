@@ -1,4 +1,5 @@
-////zare_nk_041113_added_st
+// AboutScreen.tsx     //zare_nk_041124_okk
+////zare_nk_041124_added_st
 // import { notFound } from "next/navigation";
 // import Image from "next/image";
 // import styles from "@/styles/components/home.module.css";

@@ -1,4 +1,4 @@
-//src/screens/folder03Screen.tsx  //zare_nk_041113_okk
+//src/screens/folder03Screen.tsx  //zare_nk_041124_okk
 // "use client";  //zare_nk_041024_commented
 // import { useRouter, useParams, useSearchParams } from "next/navigation";  //zare_nk_041025_commented
 import React, { useEffect, useState, useCallback, useRef } from "react";
@@ -66,8 +66,6 @@ export default function ProductPage({
     // { error && <p style={{ color: "red", fontSize: "14px" }}>{error}</p> }
     //const [error, setError] = useState("");
     ////zare_nk_041024_added_olgu_end
-
-    ////zare_nk_041025_victory
 
     // const idUSerRef = useRef<HTMLHeadingElement | null>(null);  //zare_nk_041024_commented
     // const [idUSerText, setIdUSerText] = useState<(string | null)[]>(Array(1).fill(""));   //zare_nk_041024_added(and zare_nk_041027_commented(chon niaz be araye aslan nist va manteghi ham nist!))

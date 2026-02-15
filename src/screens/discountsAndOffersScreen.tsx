@@ -1,4 +1,4 @@
-//src\screens\discountsAndOffersScreen.tsx    //zare_nk_0410222_okk
+//src\screens\discountsAndOffersScreen.tsx    //zare_nk_041124_okk
 "use client";
 import { useState, useEffect, useRef } from "react";
 

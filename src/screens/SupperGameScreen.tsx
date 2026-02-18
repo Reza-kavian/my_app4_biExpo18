@@ -1,24 +1,10 @@
-////zare_nk_041126_okk
-////zare_nk_041029_added_st
-// "use client";   
-// import "bootstrap/dist/css/bootstrap.min.css";
-// // import bootstrap from "bootstrap/dist/js/bootstrap.bundle.min.js";
-// import * as bootstrap from "bootstrap";
-// import Link from "next/link";  
-////zare_nk_041029_added_end
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
   useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
   StyleProp,
-} from "react-native";
-import ReusableButton from "../components/ReusableButton";
-import superMarketIcon from "../assets/images/logoes/superMarket.png";
-import gameIcon from "../assets/images/logoes/game.png";
-import checklistIcon from "../assets/images/logoes/checklist.png";
-import orderIcon from "../assets/images/logoes/order-icon.svg";
-import DiscountsAndOffersIcon from "../assets/images/DiscountsAndOffers.png";
-
+} from "react-native"; 
+import ticTacToeIcon from "../assets/images/logoes/TIC-TAC-TOE.jfif";
 
 // export default function ShallowRoutingExample() {  //zare_nk_041029_commented
 ////zare_nk_041029_added_st
@@ -105,30 +91,20 @@ export default function SupperGameScreen({
   const goSuperMarket = () => {
     navigation.replace('folder02');
   };
-  const goGame = () => {
-    navigation.replace('folder02');
-  };
-  const gochecklist = () => {
-    navigation.replace('folder02');
-  };
-  const goSuperOrders = () => {
-    navigation.replace('folder02');
-  };
-  const goDiscountsAndOffersIcon = () => {
-    navigation.replace('folder02');
-  };
-
+  const goTicTacToeScreen = () => {
+    navigation.navigate("TicTacToe"); 
+  }; 
   return (
     <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
       <View 
         style={[styles.SubprogramsCont, SubprogramsContResponse]}
-      > 
+      >       
         <View
           style={[styles.Subprograms, SubprogramsResponse]}
         >
           <TouchableOpacity
             style={[styles.buttonInSubprograms]}
-            onPress={() => { return (goSuperMarket) }}
+            onPress={() => { return (goTicTacToeScreen) }}
             activeOpacity={0.1}
           >
             <View
@@ -151,7 +127,7 @@ export default function SupperGameScreen({
                     minHeight: 85.6,
                   }}
                 >
-                  <Image source={superMarketIcon} style={[styles.logo]} />
+                  <Image source={ticTacToeIcon} style={[styles.logo]} />
                 </View>
               </View>
               <View
@@ -174,7 +150,7 @@ export default function SupperGameScreen({
                       fontFamily: "IRANSansWeb_Bold(adad_fa)",
                       color: '#4b4949',
                     }, titleStyleResponse]}>
-                    سبد خرید
+                    TIC-TAC-TOE 
                   </Text>
                 </View>
                 <View
@@ -186,165 +162,7 @@ export default function SupperGameScreen({
                         color: "#6a6a6a",
                         fontSize: 12,
                       }, valueStyleResponse,]}>
-                      امکان مشاهده و ویرایش سبد خرید
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View
-              style={{ flexDirection: "row" }}>
-              <Image
-                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                style={{ width: 20 }}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={[styles.Subprograms, SubprogramsResponse]}
-        >
-          <TouchableOpacity
-            style={[styles.buttonInSubprograms]}
-            onPress={() => { return (gochecklist) }}
-            activeOpacity={0.1}
-          >
-            <View
-              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
-            >
-              <View
-                style={[styles.roundedPillsCont, roundedPillsContResponse]}
-              >
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: "#E7E7E7",
-                    borderStyle: 'solid',
-                    borderRadius: "50%",
-                    padding: 10,
-                    overflow: 'hidden',
-                    minHeight: 85.6,
-                  }}
-                >
-                  <Image source={checklistIcon} style={[styles.logo]} />
-                </View>
-              </View>
-              <View
-                style={[{
-                  display: "flex",
-                  flexDirection: "column",
-                }, subSysTextContResponse]}
-              >
-                <View
-                  style={{
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: 'auto',
-                    flexDirection: "row",
-                    marginBottom: 7,
-                  }}
-                >
-                  <Text
-                    style={[{
-                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
-                      color: '#4b4949',
-                    }, titleStyleResponse]}>
-                    مشاهده قیمت ها
-                  </Text>
-                </View>
-                <View
-                  style={{ flexDirection: "row", }}>
-                  <View style={{ flexDirection: "row" }}>
-                    <Text
-                      style={[{
-                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
-                        color: "#6a6a6a",
-                        fontSize: 12,
-                      }, valueStyleResponse,]}>
-                      مشاهده اطلاعات کالا با اسکن بارکد
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View
-              style={{ flexDirection: "row" }}>
-              <Image
-                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                style={{ width: 20 }}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View
-          style={[styles.Subprograms, SubprogramsResponse]}
-        >
-          <TouchableOpacity
-            style={[styles.buttonInSubprograms]}
-            onPress={() => { return (goSuperOrders) }}
-            activeOpacity={0.1}
-          >
-            <View
-              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
-            >
-              <View
-                style={[styles.roundedPillsCont, roundedPillsContResponse]}
-              >
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: "#E7E7E7",
-                    borderStyle: 'solid',
-                    borderRadius: "50%",
-                    padding: 10,
-                    overflow: 'hidden',
-                    minHeight: 85.6,
-                  }}
-                >
-                  <Image source={orderIcon} style={[styles.logo]} />
-                </View>
-              </View>
-              <View
-                style={[{
-                  display: "flex",
-                  flexDirection: "column",
-                }, subSysTextContResponse]}
-              >
-                <View
-                  style={{
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: 'auto',
-                    flexDirection: "row",
-                    marginBottom: 7,
-                  }}
-                >
-                  <Text
-                    style={[{
-                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
-                      color: '#4b4949',
-                    }, titleStyleResponse]}>
-                    تاریخچه سفارشات
-                  </Text>
-                </View>
-                <View
-                  style={{ flexDirection: "row", }}>
-                  <View style={{ flexDirection: "row" }}>
-                    <Text
-                      style={[{
-                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
-                        color: "#6a6a6a",
-                        fontSize: 12,
-                      }, valueStyleResponse,]}>
-                      گزارش جزئیات سفارشات قبلی
+                     بازی دوز 3*3
                     </Text>
                   </View>
                 </View>
@@ -359,187 +177,6 @@ export default function SupperGameScreen({
             </View>
           </TouchableOpacity>
         </View> 
-
-        <View
-          style={[styles.Subprograms, SubprogramsResponse]}
-        >
-          <TouchableOpacity
-            style={[styles.buttonInSubprograms]}
-            onPress={() => { return (goDiscountsAndOffersIcon) }}
-            activeOpacity={0.1}
-          >
-            <View
-              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
-            >
-              <View
-                style={[styles.roundedPillsCont, roundedPillsContResponse]}
-              >
-                <View
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: "#E7E7E7",
-                    borderStyle: 'solid',
-                    borderRadius: "50%",
-                    padding: 10,
-                    overflow: 'hidden',
-                    minHeight: 85.6,
-                  }}
-                >
-                  <Image source={DiscountsAndOffersIcon} style={[styles.logo]} />
-                </View>
-              </View>
-              <View
-                style={[{
-                  display: "flex",
-                  flexDirection: "column",
-                }, subSysTextContResponse]}
-              >
-                <View
-                  style={{
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: 'auto',
-                    flexDirection: "row",
-                    marginBottom: 7,
-                  }}
-                >
-                  <Text
-                    style={[{
-                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
-                      color: '#4b4949',
-                    }, titleStyleResponse]}>
-                    تخفیفات و پیشنهادات
-                  </Text>
-                </View>
-                <View
-                  style={{ flexDirection: "row", }}>
-                  <View style={{ flexDirection: "row" }}>
-                    <Text
-                      style={[{
-                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
-                        color: "#6a6a6a",
-                        fontSize: 12,
-                      }, valueStyleResponse,]}>
-                      مشاهده کالاهای پیشنهادی و پرتخفیف
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View
-              style={{ flexDirection: "row" }}>
-              <Image
-                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                style={{ width: 20 }}
-              />
-            </View>
-          </TouchableOpacity>
-        </View>
-
-        <View
-          //  id="Subprograms-1"
-          //             className="Subprograms"
-          //             style={{
-          //               display: "flex",
-          //               flexFlow: "row",
-          //             }} 
-          style={[styles.Subprograms, SubprogramsResponse]}
-        >
-
-          <TouchableOpacity
-            style={[styles.buttonInSubprograms]}
-            onPress={() => { return (goGame) }}
-            activeOpacity={0.1}
-          >
-            <View
-              // className="imgAndTextInSubprograms"
-              style={[styles.imgAndTextInSubprograms, imgAndTextInSubprogramsResponse]}
-            >
-              <View
-                // className="roundedPillsCont"
-                style={[styles.roundedPillsCont, roundedPillsContResponse]}
-              >
-                <View
-                  // className="rounded-pill"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: 'center',
-                    borderWidth: 1,
-                    borderColor: "#E7E7E7",
-                    borderStyle: 'solid',
-                    borderRadius: "50%",
-                    padding: 10,
-                    overflow: 'hidden',
-                    // width: 'fit-content',
-                    minHeight: 85.6,
-                  }}
-                >
-                  <Image source={gameIcon} style={[styles.logo]} />
-                </View>
-              </View>
-              <View
-                style={[{
-                  display: "flex",
-                  flexDirection: "column",
-                }, subSysTextContResponse]}
-              >
-                <View
-                  style={{
-                    //  flex: "0 0 auto", 
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: 'auto',
-                    flexDirection: "row",
-                    marginBottom: 7,
-                  }}
-                >
-                  <Text
-                    // className="titleStyle"
-                    style={[{
-                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
-                      color: '#4b4949',
-                    }, titleStyleResponse]}>
-                    بازی و سرگرمی
-                  </Text>
-                </View>
-                <View
-                  style={{ flexDirection: "row", }}
-                // className="decsInSubprograms"
-                >
-                  <View style={{ flexDirection: "row" }}>
-                    <Text
-                      // className="valueStyle"
-                      style={[{
-                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
-                        color: "#6a6a6a",
-                        fontSize: 12,
-                      }, valueStyleResponse,]}>
-                      لحظات خوش کودکان در محیط هایپر!
-                    </Text>
-                  </View>
-                </View>
-              </View>
-            </View>
-            <View
-              // className="leftArrowInSubprograms" 
-              style={{ flexDirection: "row" }}>
-              {/* <img
-                style={{ width: "20px" }}
-                src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                alt="بزن بریم"
-              /> */}
-              <Image
-                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                style={{ width: 20 }}
-              />
-
-            </View>
-          </TouchableOpacity>
-        </View>
 
         <View
           // id="Subprograms-temp-1"

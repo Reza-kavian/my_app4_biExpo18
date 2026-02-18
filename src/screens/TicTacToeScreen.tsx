@@ -1,4 +1,4 @@
-// src/screens/GameScreen.tsx   //zare_nk_041124_okk
+// src/screens/TicTacToeScreen.tsx   //zare_nk_041124_okk
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -102,8 +102,8 @@ function Board({
     );
 }
 
-/* ------------------ GameScreen ------------------ */
-export default function GameScreen() {
+/* ------------------ TicTacToeScreen ------------------ */
+export default function TicTacToeScreen() {
     const TURN_TIME = 5; // ثانیه
     const initialSquares = Array(9).fill(null);
     const [history, setHistory] = useState<Squares[]>([initialSquares]);

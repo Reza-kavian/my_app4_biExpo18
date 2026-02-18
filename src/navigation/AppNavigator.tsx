@@ -8,13 +8,16 @@ import LoginScreen from "../screens/LoginScreen";
 import HomeScreen from "../screens/HomeScreen";
 import AuthCallbackScreen from "../screens/AuthCallbackScreen";
 import ScannerScreen from "../screens/ScannerScreen";
-import GameScreen from "../screens/GameScreen";
-import SupperGameScreen from "../screens/SupperGameScreen"; 
+import TicTacToeScreen from "../screens/TicTacToeScreen";
+import SupperGameScreen from "../screens/SupperGameScreen";
 
-import discountsAndOffersScreen from "../screens/GameScreen";  //zare_nk_041022_added
+import discountsAndOffersScreen from "../screens/discountsAndOffersScreen";  //zare_nk_041022_added
 
 import folder02Screen from "../screens/folder02Screen";   //zare_nk_041027_added
 import folder03Screen from "../screens/folder03Screen";   //zare_nk_041027_added
+
+import SupperAppScreen from "../screens/SupperAppScreen";   //zare_nk_041027_added
+import shoppingbasketScreen from "../screens/shoppingbasketScreen";   //zare_nk_041127_added
 
 import type { RootStackParamList } from "../types/navigation";
 import MyCustomHeader from "../components/MyCustomHeader";
@@ -27,7 +30,7 @@ const AppNavigator = () => {
   return (
     // <NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
     <Stack.Navigator
-      initialRouteName="Welcome"
+      initialRouteName="SupperApp"
       screenOptions={({ navigation }) => ({
         // header: (props) => <MyCustomHeader {...props} />, //zare_nk_041007_commented(dorosteh va noesh pishfarz any manzoor misheh, vali chon nazashtim doostdare typeScript nist)
         header: (props: NativeStackHeaderProps) => <MyCustomHeader {...props} />, //zare_nk_041007_added(doostdare typeScript hast)
@@ -60,8 +63,8 @@ const AppNavigator = () => {
       <Stack.Screen name="Scanner" component={ScannerScreen} />
 
       <Stack.Screen
-        name="Game"
-        component={GameScreen}
+        name="TicTacToe"
+        component={TicTacToeScreen}
         options={({ navigation }) => ({
           title: "گیم",
           headerShown: true,
@@ -110,6 +113,30 @@ const AppNavigator = () => {
         })}
       />
       {/* zare_nk_041029_added_ثدی */}
+
+      {/* zare_nk_041126_added_st */}
+      <Stack.Screen
+        name="SupperApp"
+        component={SupperAppScreen}
+        options={({ navigation }) => ({
+          title: "سوپر اپ",
+          headerShown: true,
+        })}
+      />
+      {/* zare_nk_041126_added_end */}
+      
+      {/* zare_nk_041127_added_st */}
+      <Stack.Screen
+        name="shoppingbasket"
+        component={shoppingbasketScreen}
+        options={({ navigation }) => ({
+          title: "سبد خرید",
+          headerShown: true,
+        })}
+      />
+      {/* zare_nk_041127_added_end */}
+
+      
 
     </Stack.Navigator>
     // </NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)

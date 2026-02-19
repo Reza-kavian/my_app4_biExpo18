@@ -1596,6 +1596,7 @@ export default function ShallowRoutingExample({
       // if (span instanceof HTMLElement) {
       //     span.innerText = "لطفا ابتدا آنلاین شوید";
       // }
+      return;  //zare_nk_041130_added
     }
 
     let ApiUrl = "https://api.tochikala.com/api/";

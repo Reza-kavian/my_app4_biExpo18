@@ -3981,634 +3981,764 @@ export default function ShallowRoutingExample({
         </Modal>
       ) : (
 
-        <div style={{ display: "flex", flexFlow: "column", direction: "rtl" }}>
-          <div
-            id="SubprogramsCont"
+        <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
+          <View
+            // id="SubprogramsCont"
             style={{
               display: "flex",
-              flexFlow: "row",
+              flexDirection: "row",
               flexWrap: "wrap",
               justifyContent: "space-between",
             }}
           >
-            <div
-              id="Subprograms-1"
-              className="Subprograms"
+            <View
+              // id="Subprograms-1"
+              // className="Subprograms"
               style={{
                 display: "flex",
-                flexFlow: "row",
+                flexDirection: "row",
               }}
             >
-              <Link
-                className="vorsab"
-                href="/shoppingbasket"
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/shoppingbasket"
+                onPress={() => { return navigation.replace('shoppingbasket'); }}
                 style={{
                   width: "100%",
                   display: "flex",
-                  flexFlow: "row",
+                  flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: "15px",
-                  outline: "none",
+                  padding: 15,
+                  // outline: "none",
                   alignItems: "center",
-                  // border: "1px solid #E7E7E7",
-                  // boxShadow: "#D7D6D6 0px 0px 2px 0px",
-                  border: "1px solid #a9a9a9",
+                  // border: "1px solid #a9a9a9",
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: "25px",
+                  borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
                 }}
+                activeOpacity={0.1}
               >
-                <div
-                  className="imgAndTextInSubprograms"
+                <View
+                  // className="imgAndTextInSubprograms"
                   style={{ display: "flex" }}
                 >
-                  <div
-                    className="roundedPillsCont"
+                  <View
+                    // className="roundedPillsCont"
                     style={{
                       display: "flex",
-                      flexFlow: "column",
-                      width: "fit-content",
+                      flexDirection: "column",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
-                      className="rounded-pill"
+                    <View
+                      // className="rounded-pill"
                       style={{
                         display: "flex",
-                        flexFlow: "row",
-                        border: "1px solid #E7E7E7",
-                        padding: "10px",
+                        flexDirection: "row",
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
                         borderRadius: "50%",
                       }}
                     >
-                      <img
+                      {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/superMarket.png"
                         alt="هایپر&zwnj;کرفو"
+                      /> */}
+                      <Image
+                        source={{ uri: "/images/Subprograms/superMarket.png" }}
+                        style={{ width: 64, }}
                       />
-                    </div>
-                  </div>
-                  <div
+
+                    </View>
+                  </View>
+                  <View
                     style={{
                       display: "flex",
-                      flexFlow: "column",
+                      flexDirection: "column",
                       justifyContent: "space-around",
-                      width: "fit-content",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
+                    <View
                       style={{
-                        flex: "0 0 auto",
+                        // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
                         display: "flex",
-                        flexFlow: "row",
+                        flexDirection: "row",
                       }}
                     >
-                      <span className="titleStyle">سبد خرید</span>
-                    </div>
-                    <div
-                      style={{ flexFlow: "row", fontSize: "75%" }}
-                      className="decsInSubprograms"
+                      <Text
+                      //  className="titleStyle"
+                      >سبد خرید</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row",}}
+                    // className="decsInSubprograms"
                     >
-                      <div style={{ display: "flex", flexFlow: "row" }}>
-                        <span className="valueStyle">
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Text
+                        // className="valueStyle"
+                         style={{ fontSize: 12 }}
+                        >
                           امکان مشاهده و ویرایش سبد خرید
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="leftArrowInSubprograms"
-                  style={{ flexFlow: "row" }}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ flexDirection: "row" }}
                 >
-                  <img
+                  {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
-                  />
-                </div>
-              </Link>
-            </div>
+                  /> */}
+                  <Image
+                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                        style={{ width: 20, }}
+                      />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-            <div
-              id="Subprograms-2"
-              className="Subprograms"
+            <View
+              // id="Subprograms-2"
+              // className="Subprograms"
               style={{
                 display: "flex",
-                flexFlow: "row",
+                flexDirection: "row",
               }}
             >
-              <Link
-                onClick={seePrices}
-                className="vorsab"
-                href="#"
+              <TouchableOpacity
+                // onClick={seePrices}
+                onPress={seePrices}
+                // className="vorsab"
+                // href="#"
                 style={{
-                  width: "100%",
+                                   width: "100%",
                   display: "flex",
-                  flexFlow: "row",
+                  flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: "15px",
-                  outline: "none",
+                  padding: 15,
+                  // outline: "none",
                   alignItems: "center",
-                  // border: "1px solid #E7E7E7",
-                  // boxShadow: "#D7D6D6 0px 0px 2px 0px",
-                  border: "1px solid #a9a9a9",
+                  // border: "1px solid #a9a9a9",
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: "25px",
+                  borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
                 }}
               >
-                <div
-                  className="imgAndTextInSubprograms"
+                <View
+                  // className="imgAndTextInSubprograms"
                   style={{ display: "flex" }}
                 >
-                  <div
-                    className="roundedPillsCont"
+                  <View
+                    // className="roundedPillsCont"
                     style={{
                       display: "flex",
-                      flexFlow: "column",
-                      width: "fit-content",
+                      flexDirection: "column",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
-                      className="rounded-pill"
+                    <View
+                      // className="rounded-pill"
                       style={{
-                        display: "flex",
-                        flexFlow: "row",
-                        border: "1px solid #E7E7E7",
-                        padding: "10px",
+                         display: "flex",
+                        flexDirection: "row",
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
                         borderRadius: "50%",
                       }}
                     >
-                      <img
+                      {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/checklist.png"
                         alt="هایپر&zwnj;کرفو"
+                      /> */}
+                       <Image
+                        source={{ uri: "/images/Subprograms/checklist.png" }}
+                        style={{ width: 64, }}
                       />
-                    </div>
-                  </div>
-                  <div
+                    </View>
+                  </View>
+                  <View
                     style={{
                       display: "flex",
-                      flexFlow: "column",
+                      flexDirection: "column",
                       justifyContent: "space-around",
-                      width: "fit-content",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
+                    <View
                       style={{
-                        flex: "0 0 auto",
+                          // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
                         display: "flex",
-                        flexFlow: "row",
+                        flexDirection: "row",
                       }}
                     >
-                      <span className="titleStyle">مشاهده قیمت ها</span>
-                    </div>
-                    <div
-                      style={{ flexFlow: "row", fontSize: "75%" }}
-                      className="decsInSubprograms"
+                      <Text
+                      // className="titleStyle"
+                      >مشاهده قیمت ها</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row"  }}
+                    // className="decsInSubprograms"
                     >
-                      <div style={{ display: "flex", flexFlow: "row" }}>
-                        <span className="valueStyle">
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Text
+                        // className="valueStyle"
+                        style={{ fontSize: 12 }}
+                        >
                           مشاهده اطلاعات کالا با اسکن بارکد
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="leftArrowInSubprograms"
-                  style={{ flexFlow: "row" }}
+                         </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ flexDirection: "row" }}
                 >
-                  <img
+                  {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
-                  />
-                </div>
-              </Link>
-            </div>
+                  /> */}
+                  <Image
+                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                        style={{ width: 20, }}
+                      />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-            <div
-              id="Subprograms-3"
-              className="Subprograms"
+            <View
+              // id="Subprograms-3"
+              // className="Subprograms"
               style={{
                 display: "flex",
-                flexFlow: "row",
+                flexDirection: "row",
               }}
             >
-              <Link
-                className="vorsab"
-                href="/ordersHistory"
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/ordersHistory"
+                onPress={() => { return navigation.replace('ordersHistory'); }}
                 style={{
-                  width: "100%",
+                 width: "100%",
                   display: "flex",
-                  flexFlow: "row",
+                  flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: "15px",
-                  outline: "none",
+                  padding: 15,
+                  // outline: "none",
                   alignItems: "center",
-                  // border: "1px solid #E7E7E7",
-                  // boxShadow: "#D7D6D6 0px 0px 2px 0px",
-                  border: "1px solid #a9a9a9",
+                  // border: "1px solid #a9a9a9",
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: "25px",
+                  borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
                 }}
+                activeOpacity={0.1}
               >
-                <div
-                  className="imgAndTextInSubprograms"
+                <View
+                  // className="imgAndTextInSubprograms"
                   style={{ display: "flex" }}
                 >
-                  <div
-                    className="roundedPillsCont"
+                  <View
+                    // className="roundedPillsCont"
                     style={{
                       display: "flex",
-                      flexFlow: "column",
-                      width: "fit-content",
+                      flexDirection: "column",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
-                      className="rounded-pill"
+                    <View
+                      // className="rounded-pill"
                       style={{
-                        display: "flex",
-                        flexFlow: "row",
-                        border: "1px solid #E7E7E7",
-                        padding: "10px",
+                         display: "flex",
+                        flexDirection: "row",
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
                         borderRadius: "50%",
                       }}
                     >
-                      <img
+                      {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/order-icon.svg"
                         alt="هایپر&zwnj;کرفو"
+                      /> */}
+                      <Image
+                        source={{ uri: "/images/Subprograms/order-icon" }}
+                        style={{ width: 64, }}
                       />
-                    </div>
-                  </div>
+                    </View>
+                  </View>
 
-                  <div
+                  <View
                     style={{
                       display: "flex",
-                      flexFlow: "column",
+                      flexDirection: "column",
                       justifyContent: "space-around",
-                      width: "fit-content",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
+                    <View
                       style={{
-                        flex: "0 0 auto",
+                          // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
                         display: "flex",
-                        flexFlow: "row",
+                        flexDirection: "row",
                       }}
                     >
-                      <span className="titleStyle">تاریخچه سفارشات</span>
-                    </div>
-                    <div
-                      style={{ flexFlow: "row", fontSize: "75%" }}
-                      className="decsInSubprograms"
+                      <Text
+                      //  className="titleStyle"
+                      >تاریخچه سفارشات</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row" }}
+                    // className="decsInSubprograms"
                     >
-                      <div style={{ display: "flex", flexFlow: "row" }}>
-                        <span className="valueStyle">
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Text
+                        // className="valueStyle"
+                         style={{ fontSize: 12 }}
+                        >
                           گزارش جزئیات سفارشات قبلی
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="leftArrowInSubprograms"
-                  style={{ flexFlow: "row" }}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ flexDirection: "row" }}
                 >
-                  <img
+                  {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
-                  />
-                </div>
-              </Link>
-            </div>
+                  /> */}
+                   <Image
+                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                        style={{ width: 20, }}
+                      />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-            <div
-              id="Subprograms-4"
-              className="Subprograms"
+            <View
+              // id="Subprograms-4"
+              // className="Subprograms"
               style={{
                 display: "flex",
-                flexFlow: "row",
+                flexDirection: "row",
               }}
             >
-              <Link
-                className="vorsab"
-                href="/discountsAndOffers"
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/discountsAndOffers"
+                onPress={() => { return navigation.replace('discountsAndOffers'); }}
                 style={{
                   width: "100%",
                   display: "flex",
-                  flexFlow: "row",
+                  flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: "15px",
-                  outline: "none",
+                  padding: 15,
+                  // outline: "none",
                   alignItems: "center",
-                  // border: "1px solid #E7E7E7",
-                  // boxShadow: "#D7D6D6 0px 0px 2px 0px",
-                  border: "1px solid #a9a9a9",
+                  // border: "1px solid #a9a9a9",
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: "25px",
+                  borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
                 }}
               >
-                <div
-                  className="imgAndTextInSubprograms"
+                <View
+                  // className="imgAndTextInSubprograms"
                   style={{ display: "flex" }}
                 >
-                  <div
-                    className="roundedPillsCont"
+                  <View
+                    // className="roundedPillsCont"
                     style={{
                       display: "flex",
-                      flexFlow: "column",
-                      width: "fit-content",
+                      flexDirection: "column",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
-                      className="rounded-pill"
+                    <View
+                      // className="rounded-pill"
                       style={{
-                        display: "flex",
-                        flexFlow: "row",
-                        border: "1px solid #E7E7E7",
-                        padding: "10px",
+                         display: "flex",
+                        flexDirection: "row",
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
                         borderRadius: "50%",
                       }}
                     >
-                      <img
+                      {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/DiscountsAndOffers.png"
                         alt="هایپر&zwnj;کرفو"
+                      /> */}
+                      <Image
+                        source={{ uri: "/images/Subprograms/DiscountsAndOffers.png" }}
+                        style={{ width: 64, }}
                       />
-                    </div>
-                  </div>
-                  <div
+                    </View>
+                  </View>
+                  <View
                     style={{
                       display: "flex",
-                      flexFlow: "column",
+                      flexDirection: "column",
                       justifyContent: "space-around",
-                      width: "fit-content",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
+                    <View
                       style={{
-                        flex: "0 0 auto",
+                        // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
                         display: "flex",
-                        flexFlow: "row",
+                        flexDirection: "row",
                       }}
                     >
-                      <span className="titleStyle">تخفیفات و پیشنهادات</span>
-                    </div>
-                    <div
-                      style={{ flexFlow: "row", fontSize: "75%" }}
-                      className="decsInSubprograms"
+                      <Text
+                      // className="titleStyle"
+                      >تخفیفات و پیشنهادات</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", }}
+                    // className="decsInSubprograms"
                     >
-                      <div style={{ display: "flex", flexFlow: "row" }}>
-                        <span className="valueStyle">
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                         <Text
+                        // className="valueStyle"
+                         style={{ fontSize: 12 }}
+                        >
                           مشاهده کالاهای پیشنهادی و پرتخفیف
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="leftArrowInSubprograms"
-                  style={{ flexFlow: "row" }}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ flexDirection: "row" }}
                 >
-                  <img
+                   {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
-                  />
-                </div>
-              </Link>
-            </div>
+                  /> */}
+                  <Image
+                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                        style={{ width: 20, }}
+                      />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-            <div
-              id="Subprograms-5"
-              className="Subprograms"
+            <View
+              // id="Subprograms-5"
+              // className="Subprograms"
               style={{
                 display: "flex",
-                flexFlow: "row",
+                flexDirection: "row",
               }}
             >
-              <Link
-                className="vorsab"
-                href="/games"
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/games"
+                onPress={() => { return navigation.replace('games'); }}
                 style={{
-                  width: "100%",
+                   width: "100%",
                   display: "flex",
-                  flexFlow: "row",
+                  flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: "15px",
-                  outline: "none",
+                  padding: 15,
+                  // outline: "none",
                   alignItems: "center",
-                  // border: "1px solid #E7E7E7",
-                  // boxShadow: "#D7D6D6 0px 0px 2px 0px", 
-                  border: "1px solid #a9a9a9",
+                  // border: "1px solid #a9a9a9",
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                  borderRadius: 25,
                   backgroundColor: "white",
-                  borderRadius: "25px",
                   overflow: "hidden",
                 }}
               >
-                <div
-                  className="imgAndTextInSubprograms"
+                <View
+                  // className="imgAndTextInSubprograms"
                   style={{ display: "flex" }}
                 >
-                  <div
-                    className="roundedPillsCont"
+                  <View
+                    // className="roundedPillsCont"
                     style={{
                       display: "flex",
-                      flexFlow: "column",
-                      width: "fit-content",
+                      flexDirection: "column",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
-                      className="rounded-pill"
+                    <View
+                      // className="rounded-pill"
                       style={{
                         display: "flex",
-                        flexFlow: "row",
-                        border: "1px solid #E7E7E7",
-                        padding: "10px",
+                        flexDirection: "row",
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
                         borderRadius: "50%",
                       }}
                     >
-                      <img
+                      {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/game.png"
                         alt="هایپر&zwnj;کرفو"
+                      /> */}
+                      <Image
+                        source={{ uri: "/images/Subprograms/game.png" }}
+                        style={{ width: 64, }}
                       />
-                    </div>
-                  </div>
-                  <div
+                    </View>
+                  </View>
+                  <View
                     style={{
                       display: "flex",
-                      flexFlow: "column",
+                      flexDirection: "column",
                       justifyContent: "space-around",
-                      width: "fit-content",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
+                    <View
                       style={{
-                        flex: "0 0 auto",
+                        // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
                         display: "flex",
-                        flexFlow: "row",
+                        flexDirection: "row",
                       }}
                     >
-                      <span className="titleStyle">بازی و سرگرمی</span>
-                    </div>
-                    <div
-                      style={{ flexFlow: "row", fontSize: "75%" }}
-                      className="decsInSubprograms"
+                      <Text
+                      // className="titleStyle"
+                      >بازی و سرگرمی</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row",  }}
+                    // className="decsInSubprograms"
                     >
-                      <div style={{ display: "flex", flexFlow: "row" }}>
-                        <span className="valueStyle">
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                         <Text
+                        // className="valueStyle"
+                         style={{ fontSize: 12 }}
+                        >
                           لحظات خوش کودکان در محیط هایپر!
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="leftArrowInSubprograms"
-                  style={{ flexFlow: "row" }}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ flexDirection: "row" }}
                 >
-                  <img
+                  {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
-                  />
-                </div>
-              </Link>
-            </div>
+                  /> */}
+                  <Image
+                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                        style={{ width: 20, }}
+                      />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-            <div
-              id="Subprograms-6"
-              className="Subprograms"
+            <View
+              // id="Subprograms-6"
+              // className="Subprograms"
               style={{
                 display: "none",
-                flexFlow: "row",
+                flexDirection: "row",
               }}
             >
-              <Link
-                className="vorsab"
-                href="/ComparePage"
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/ComparePage"
+                 onPress={() => { return navigation.replace('ComparePage'); }}
                 style={{
-                  width: "100%",
+                   width: "100%",
                   display: "flex",
-                  flexFlow: "row",
+                  flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: "15px",
-                  outline: "none",
+                  padding: 15,
+                  // outline: "none",
                   alignItems: "center",
-                  // border: "1px solid #E7E7E7",
-                  // boxShadow: "#D7D6D6 0px 0px 2px 0px",
-                  border: "1px solid #a9a9a9",
+                  // border: "1px solid #a9a9a9",
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: "25px",
+                  borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
                 }}
+                 activeOpacity={0.1}
               >
-                <div
-                  className="imgAndTextInSubprograms"
+                <View
+                  // className="imgAndTextInSubprograms"
                   style={{ display: "flex" }}
                 >
-                  <div
-                    className="roundedPillsCont"
+                  <View
+                    // className="roundedPillsCont"
                     style={{
                       display: "flex",
-                      flexFlow: "column",
-                      width: "fit-content",
+                      flexDirection: "column",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
-                      className="rounded-pill"
+                    <View
+                      // className="rounded-pill"
                       style={{
-                        display: "flex",
-                        flexFlow: "row",
-                        border: "1px solid #E7E7E7",
-                        padding: "10px",
+                         display: "flex",
+                        flexDirection: "row",
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
                         borderRadius: "50%",
                       }}
                     >
-                      <img
+                      {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/superMarket.png"
                         alt="هایپر&zwnj;کرفو"
+                      /> */}
+                      <Image
+                        source={{ uri: "/images/Subprograms/superMarket.png" }}
+                        style={{ width: 64, }}
                       />
-                    </div>
-                  </div>
-                  <div
+                    </View>
+                  </View>
+                  <View
                     style={{
                       display: "flex",
-                      flexFlow: "column",
+                      flexDirection: "column",
                       justifyContent: "space-around",
-                      width: "fit-content",
+                      // width: "fit-content",
                     }}
                   >
-                    <div
+                    <View
                       style={{
-                        flex: "0 0 auto",
+                        // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
                         display: "flex",
-                        flexFlow: "row",
+                        flexDirection: "row",
                       }}
                     >
-                      <span className="titleStyle">سرچ با تصویر</span>
-                    </div>
-                    <div
-                      style={{ flexFlow: "row", fontSize: "75%" }}
-                      className="decsInSubprograms"
+                      <Text
+                      // className="titleStyle"
+                      >سرچ با تصویر</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row",   }}
+                    // className="decsInSubprograms"
                     >
-                      <div style={{ display: "flex", flexFlow: "row" }}>
-                        <span className="valueStyle">
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                         <Text
+                        // className="valueStyle"
+                         style={{ fontSize: 12 }}
+                        >
                           امکان سرچ کالا با تصویر
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="leftArrowInSubprograms"
-                  style={{ flexFlow: "row" }}
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ flexDirection: "row" }}
                 >
-                  <img
+                  {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
-                  />
-                </div>
-              </Link>
-            </div>
+                  /> */}
+                  <Image
+                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                        style={{ width: 20, }}
+                      />
+                </View>
+              </TouchableOpacity>
+            </View>
 
-            <div
-              id="Subprograms-temp-1"
-              className="Subprograms"
-              style={{ display: "flex", flexFlow: "row", border: "none" }}
-            ></div>
-            <div
-              id="Subprograms-temp-2"
-              className="Subprograms"
-              style={{ display: "flex", flexFlow: "row", border: "none" }}
-            ></div>
-            <div
-              id="Subprograms-temp-3"
-              className="Subprograms"
-              style={{ display: "flex", flexFlow: "row", border: "none" }}
-            ></div>
-            <div
-              id="Subprograms-temp-4"
-              className="Subprograms"
-              style={{ display: "flex", flexFlow: "row", border: "none" }}
-            ></div>
-          </div>
-        </div>
+            <View
+              // id="Subprograms-temp-1"
+              // className="Subprograms"
+              style={{ display: "flex", flexDirection: "row", }}
+            ></View>
+            <View
+              // id="Subprograms-temp-2"
+              // className="Subprograms"
+              style={{ display: "flex", flexDirection: "row", }}
+            ></View>
+            <View
+              // id="Subprograms-temp-3"
+              // className="Subprograms"
+              style={{ display: "flex", flexDirection: "row", }}
+            ></View>
+            <View
+              // id="Subprograms-temp-4"
+              // className="Subprograms"
+              style={{ display: "flex", flexDirection: "row", }}
+            ></View>
+          </View>
+        </View>
       )}
     </>
   );

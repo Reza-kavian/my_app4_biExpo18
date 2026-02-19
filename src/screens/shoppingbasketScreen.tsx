@@ -1622,10 +1622,8 @@ export default function ShallowRoutingExample({
 
     const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0)
 
-    const [manualBarcode, setManualBarcode] = useState(String);
-
-    ////zare_nk_041128_added_end
-
+    const [manualBarcode, setManualBarcode] = useState(String); 
+    ////zare_nk_041128_added_end 
 
     async function openprodDetModal(barcodeKala: string) {
         console.log('ShallowRoutingExample called-openprodDetModal called!!');
@@ -5029,7 +5027,8 @@ export default function ShallowRoutingExample({
                     </View>
                 </View>
             )}
-        </>)
+        </>
+        )
 }
 
 const styles = StyleSheet.create({

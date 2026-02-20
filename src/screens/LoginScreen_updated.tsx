@@ -1,12 +1,9 @@
 //my-app/src/screens/LoginScreen.tsx   //zare_nk_041124_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
-  View,
-  Text,
-  TextInput,
-  Button,
-  StyleSheet,
-  TouchableOpacity,
+  View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
+  useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
+  StyleProp, Modal, Linking,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -15,8 +12,6 @@ import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
-import { Alert } from "react-native";
-import { Linking } from "react-native";
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -155,10 +150,10 @@ export default function LoginScreen({
     }
     try {
       setIsDisabledCheckSmsBtn(true);
-      const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {  
+      const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
         mobile: mobileVal,
         smsCode: smsVal,
-        Password: ""  
+        Password: ""
       });
       console.log("040530-01");
       const ApiLoginUser2Result = res.data; // await res.json();
@@ -254,7 +249,7 @@ export default function LoginScreen({
         );
         console.log("zare_nk_040218-!!response.ok");
         await AsyncStorage.removeItem("token");
-        setError(  ApiLoginUser2Result.errors?ApiLoginUser2Result.errors[0]:"متاسفانه خطایی رخ داده است34:eeee");
+        setError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
       }
 
       ////zare_nk_040428_added_end
@@ -272,28 +267,28 @@ export default function LoginScreen({
     }
   };
 
-  const ResendCodefunc =async () => {
-     try {
+  const ResendCodefunc = async () => {
+    try {
       setIsDisabledResendCode(true);
       setIsDisabledRemovTimerBtn(false);
-      const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });  
+      const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });
       const data = await response.data;
       if (response.status == 200) {
         console.log("zare_nk_040218-data: " + JSON.stringify(data) + '-response.status: ' + response.status);
         //zare_nk_040218-data: {"status":0,"message":"","data":1,"errors":[]}-response.status: 200
         //zare_nk_040218-data: {"status":-1,"message":"","data":null,"errors":[]}-response.status: 200
         //zare_nk_040218-data: {"status":-2,"message":"","data":null,"errors":["کاربر یافت نشد"]}-response.status: 200
-        if (data.status == 0) { 
-          setTimer(40000);  
+        if (data.status == 0) {
+          setTimer(40000);
           setError(null);
-        } else { 
+        } else {
           setError(data.errors || "خطا در ارسال شماره موبایل");
           //zare_nk_040218-data: {"status":-2,"message":"","data":1,"errors":["6 ثانیه ی دیگر مجددا تلاش کنید"]}
         }
-      } else { 
+      } else {
         setError("متاسفانه خطایی رخ داده است");
       }
-    } catch (error) { 
+    } catch (error) {
       console.error("zare_nk_040218-resendcode-in catch:", error);
       if (error instanceof Error) {
         console.error("zare_nk_040218-resendcode-in catch-2:", error.message);
@@ -304,7 +299,7 @@ export default function LoginScreen({
       }
     } finally {
       setIsDisabledResendCode(false);
-    } 
+    }
   };
 
   const getQueryParam = (url: string, key: string) => {
@@ -418,84 +413,291 @@ export default function LoginScreen({
   };
 
   return (
-    <View style={styles.container}>
-      {error && <Text style={styles.error}>{error}</Text>}
-      {step === "firstPage" ? (
-        <>
-          <TextInput
-            style={styles.input}
-            placeholder="شماره موبایل"
-            value={mobileVal}
-            onChangeText={setMobileVal}
-            keyboardType="phone-pad"
+    <View
+      style={{
+        width: "100%",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "center",
+        // minHeight: "100vh",
+        minHeight: "100%",
+        alignItems: "center",
+        backgroundColor: 'white',
+      }}
+    >
+      <View
+        // id="loginForm"
+        // onSubmit={(event) => {
+        //   event.preventDefault();
+        // }}
+        // className={`${Styles.loginForm} ${Styles.valueStyle}`}
+        style={[styles.loginForm, styles.valueStyle]}
+      >
+        <View
+          // className={Styles.formsRow}
+          style={[styles.formsRow, { display: "flex", justifyContent: "center" }]}
+        >
+          {/* <img
+            src="https://img.tochikala.com/Logo/photo14359415832-Copy.jpg"
+            style={{ width: "55px" }}
+            alt="کرفو"
+          ></img> */}
+          <Image
+            source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
+            style={{ width: 55 }}
           />
+        </View>
+        {/* {error && <Text style={styles.error}>{error}</Text>} */}
+        {step === "firstPage" ? (
+          <>
+            <View
+              // className={`${Styles.formsRow} ${Styles.titleStyle}`}
+              style={[styles.formsRow]}
+            >
+              <Text style={[styles.titleStyle]}>ورود | ثبت نام</Text>
+            </View>
+            <View
+              // className={`${Styles.lablAndInputCont}  `}
+              style={[styles.lablAndInputCont, { marginBottom: 15 }]}
+            >
+              <Text style={{ marginLeft: 15, marginBottom: 10 }}>
+                شماره تماس
+              </Text>
+              {/* <input
+          style={{ textAlign: "center" }}
+          className={Styles.txtBox}
+          id="mobileTxt"
+          value={mobileVal}
+          onChange={mobileChanged}
+          ref={(e) => {
+            refForMobileInput.current[0] = e;
+          }}
+        /> */}
+              <TextInput
+                style={[styles.txtBox, { textAlign: "center" }]}
+                placeholder="شماره موبایل"
+                value={mobileVal}
+                onChangeText={setMobileVal}
+                keyboardType="phone-pad"
+              />
+            </View>
 
-          <Button title="ورود با گوگل" onPress={handleGoogleLogin} />
+            {/* {mobileError && (
+        <div className={`${Styles.formsRow} ${Styles.warningCont}`}>
+          <span className="forErrorMobile error">{mobileError}</span>
+        </div>
+      )} */}
+            {error && <Text style={styles.error}>{error}</Text>}
+            {error && (
+              <View
+                // className={`${Styles.formsRow} ${Styles.warningCont}`}
+                style={[styles.formsRow ]}
+              >
+                <Text
+                // className="forErrorMobile error"
+                style={[ styles.warningCont]}
+                >{error}</Text>
+              </View>
+            )}
 
-          <View style={{ height: 18 }} />
+            <View 
+            // className={Styles.formsRow}
+             style={[ styles.formsRow]}
+            >
+              {/* <button
+          ref={refForMobileCheckBtn}
+          id="mobileCheckBtn"
+          className={Styles.disabledBtn}
+          onClick={mobileButtonClick}
+          disabled={isDisabledMobileCheckBtn}
+        >
+          {children}
+        </button> */}
 
-          <ReusableButton
-            title="تایید"
-            onPress={mobileButtonClick}
-            idDisabled={isDisabledMobileCheckBtn}
-            // backgroundColor="blue"
-            textColor="white"
-            width="80%"
-            backgroundColor={theme.buttonBackground}
-          />
-        </>
-      ) : (
-        <>
-          <TouchableOpacity onPress={() => setStep("firstPage")}>
-            <Text style={styles.link}>بازگشت</Text>
-          </TouchableOpacity>
+              <TouchableOpacity 
+                onPress={mobileButtonClick}
+                disabled={isDisabledMobileCheckBtn}
+                style={[styles.disabledBtn]} 
+              >
+                تایید
+              </TouchableOpacity>
 
-          <TextInput
-            style={styles.input}
-            placeholder="کد تایید"
-            value={smsVal}
-            onChangeText={setSmsVal}
-            keyboardType="numeric"
-          />
 
-          {smsError && <Text style={styles.error}>{smsError}</Text>}
+            </View>
+            <View 
+            // className={Styles.formsRow}
+             style={[styles.formsRow]} 
+            >
+              <TouchableOpacity
+                // type="button"
+                // id="handleGoogleBtn"
+                // className={Styles.btn}
+                style={[styles.btn]}
+                onPress={handleGoogleLogin}
+                activeOpacity={0.1}
+              >
+                <Text> ورود با حساب گوگل</Text>               
+              </TouchableOpacity>
+            </View>
+          </>
+        ) : (
+          <>
+            <View
+              // ref={refForTimerCont}
+              // id="timermoveOpportunityCont"
+              style={{
+                // display: timerDisplay,
+                flexDirection: "row",
+              }}
+            >
+              <View
+                // ref={refForTimer}
+                // id="timermoveOpportunity"
+                style={{ display: "flex", flexDirection: "row" }}
+              >
+                <Text style={{ marginTop: 15, color: "red" }}>
+                  تایمر: {Math.floor(timer / 1000)} ثانیه
+                </Text>
+              </View>
+            </View>
 
-          <Button
-            title="ورود"
-            onPress={checkSmsForLogin}
-            disabled={isDisabledCheckSmsBtn}
-          />
+            <View
+            //  className={Styles.formsRow}
+              style={[styles.formsRow,{ direction: "rtl" }]}
+             >
+              <TouchableOpacity
+                // id="backToFirsPage"
+                // className={`${Styles.BackBtn}  ${Styles.buttonHover}`}
+                style={[styles.BackBtn, styles.buttonHover]}
+                onPress={() => setStep("firstPage")}
+                activeOpacity={0.1}
+              >
+                <View className={`${Styles.BackImgCont} `}>
+                  <img
+                    src="https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg"
+                    style={{ width: "18px" }}
+                    alt="بازگشت به صفحه شماره تماس"
+                  />
+                </View>
+                <View className={`${Styles.BackBtnTitleCont} `}>
+                  <span>بازگشت</span>
+                </View>
+              </TouchableOpacity>
+            </View>
 
-          <Text style={{ marginTop: 15 }}>
-            تایمر: {Math.floor(timer / 1000)} ثانیه
-          </Text>
+            <View className={`${Styles.formsRow}  ${Styles.darkFont}`}>
+              <span>کد تایید را وارد کنید</span>
+            </View>
 
-          <Button
-            title="ارسال مجدد"
-            onPress={ResendCodefunc}
-            disabled={isDisabledResendCode}
-          />
-          {/* zare_nk_041020_commented_st */}
-          {/* <Button
-            title="ریست تایمر"
-            onPress={() => setRemovTimer(true)}
-            disabled={isDisabledRemovTimerBtn}
-          /> */}
-          {/* zare_nk_041020_commented_end */}
-          {/* zare_nk_041020_commented_st */}
-          <Button
-            title="ریست2 تایمر"
-            onPress={() => setTimer(0)}
-            disabled={isDisabledRemovTimerBtn}
-          />
-          {/* zare_nk_041020_commented_end */}
-        </>
-      )}
-    </View>
+            <View
+              className={`${Styles.lablAndInputCont}  `}
+              style={{ marginBottom: "15px" }}
+            >
+              <span style={{ marginLeft: "15px", marginBottom: "10px" }}>
+                کد تایید
+              </span>
+              {/* <input
+          className={Styles.txtBox}
+          id="smsValTxt"
+          value={smsVal}
+          onChange={smsTxtChanged}
+          onKeyDown={smsTxtKeyDown}
+          ref={(e) => {
+            refForSmsInput.current[0] = e;
+          }}
+        /> */}
+              <TextInput
+                style={Styles.txtBox}
+                placeholder="کد تایید"
+                value={smsVal}
+                onChangeText={setSmsVal}
+                keyboardType="numeric"
+              />
+
+            </View>
+
+            {smsError && (
+              <View className={`${Styles.formsRow} ${Styles.warningCont}`}>
+                <Text className="forErrorMobile error">{smsError}</Text>
+              </View>
+            )}
+
+            <View className={Styles.formsRow}>
+              {/* <button
+          ref={refForCheckSmsBtn}
+          className={Styles.disabledBtn}
+          onClick={checkSmsForLogin}
+          disabled={isDisabledCheckSmsBtn}
+        >
+          ورود
+        </button> */}
+
+              <TouchableOpacity
+                // id="backToFirsPage"
+                // className={`${Styles.BackBtn}  ${Styles.buttonHover}`}
+                style={[Styles.disabledBtn]}
+                onPress={checkSmsForLogin}
+                disabled={isDisabledCheckSmsBtn}
+                activeOpacity={0.1}
+              >
+                <Text>ورود</Text>
+              </TouchableOpacity>
+
+            </View>
+
+            <View className={Styles.formsRow}>
+              {/* <button
+          id="ResendCode"
+          ref={refForResendCode}
+          className={Styles.btn}
+          onClick={ResendCodefunc}
+          disabled={isDisabledResendCode}
+        >
+          ارسال مجدد
+        </button> */}
+              <TouchableOpacity
+
+                style={[Styles.btn]}
+                onPress={ResendCodefunc}
+                disabled={isDisabledResendCode}
+                activeOpacity={0.1}
+              >
+                <Text> ارسال مجدد</Text>
+              </TouchableOpacity>
+
+            </View>
+
+            <View className={Styles.formsRow}>
+              {/* <button
+          ref={refForRemovTimer}
+          className={Styles.btn}
+          onClick={() => {
+            return setRemovTimer(true);
+          }}
+          disabled={isDisabledRemovTimerBtn}
+        >
+          ریست تایمر
+        </button> */}
+              <TouchableOpacity
+                style={[Styles.btn]}
+                onPress={() => setTimer(0)}
+                disabled={isDisabledRemovTimerBtn}
+                activeOpacity={0.1}
+              >
+                <Text>  ریست تایمر</Text>
+              </TouchableOpacity>
+
+
+            </View>
+          </>
+        )}
+      </View>
+    </div>
   );
 }
 
 const styles = StyleSheet.create({
+  ////////////////////////////////////////////////////////////sakhte ebtedaei
   container: {
     flex: 1,
     justifyContent: "center",
@@ -520,4 +722,96 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     textDecorationLine: "underline",
   },
+  ////////////////////////////////////////////////////////////az nextJs
+  loginForm: {
+    borderWidth: 1,
+    borderColor: "#a9a9a9",
+    borderStyle: 'solid',
+    borderRadius: 20,
+    boxShadow: "#5e5e5e 0px 0px 3px 0px",
+    backgroundColor: "#f6f6f6",
+    width: "100%",
+    height: 350,
+    //  minHeight: "min-content", 
+    paddingVertical: 20,
+    paddingHorizontal: 10,
+    marginHorizontal: 5,
+  },
+  valueStyle: {
+    fontFamily: "IRANSansWeb_Medium(adad_fa)",
+  },
+  formsRow: {
+    marginBottom: 20,
+  },
+
+  titleStyle: {
+    fontFamily: "IRANSansWeb_Bold(adad_fa)",
+  },
+  lablAndInputCont: {
+    direction: "rtl",
+    display: "flex",
+    flexDirection: "column",
+  },
+
+  txtBox: {
+    height: 50,
+    borderRadius: 7,
+    // border: 1px solid silver;
+    borderWidth: 1,
+    borderColor: "silver",
+    borderStyle: 'solid',
+  },
+  // .txtBox:focus {
+  //   outline: none;
+  //   border: 1px solid red;
+  //   box-shadow: 0px 0px 3px 0px red;
+  // }
+warningCont: {
+  fontSize: 12,
+  color: "red",
+},
+
+disabledBtn: {
+  padding: 7,
+  borderRadius: 7, 
+  backgroundColor: "#6f6b6e",
+  opacity: 0.5,
+  color: "white",
+  width: "100%",
+  height: 50,
+},
+
+btn: {
+  padding: 7,
+  borderRadius: 7, 
+  backgroundColor: "#6f6b6e",
+  color: "white",
+  width: "100%",
+  height: 50,
+}, 
+// .btn:hover {
+//   background-color: #969596;
+//   box-shadow: 0px 0px 5px 3px #6f6b6e inset;
+// }
+
+BackBtn: {
+  padding: 10,
+  borderRadius: 7,
+  display: flex;
+  flex-flow: row;
+  border: none;
+  /* color: #545454; */
+  background-color: inherit;
+  font-family: "IRANSansWeb_Medium(adad_fa)";
+  direction: rtl;
+},
+// .BackBtn:hover {
+//   background-color: #f7f7f7;
+// }
+
+
+
+},
+
+
 });

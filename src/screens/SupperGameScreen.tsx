@@ -4,7 +4,7 @@ import {
   useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
   StyleProp,
 } from "react-native"; 
-import ticTacToeIcon from "../assets/images/logoes/TIC-TAC-TOE.jfif";
+import ticTacToeIcon from "../assets/images/logoes/TIC-TAC-TOE.jpg";
 
 // export default function ShallowRoutingExample() {  //zare_nk_041029_commented
 ////zare_nk_041029_added_st

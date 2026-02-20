@@ -12,8 +12,8 @@ import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "re
 
 import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041128_added
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_041128_added
-import "bootstrap/dist/css/bootstrap.min.css";
-//zare_nk_041130_commented_st
+////zare_nk_041130_commented_st
+// import "bootstrap/dist/css/bootstrap.min.css";
 // let cachedBootstrap: typeof import("bootstrap") | null = null;
 
 // import "@/styles/shoppingbasketCss.css";
@@ -2115,9 +2115,6 @@ export default function ShallowRoutingExample({
         </View>
       </Modal>
       {isOpenedProdDetModal == true ? (
-
-
-
 
 
         // <div

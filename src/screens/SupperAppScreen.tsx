@@ -17,7 +17,7 @@ import superMarketIcon from "../assets/images/logoes/superMarket.png";
 import gameIcon from "../assets/images/logoes/game.png";
 import checklistIcon from "../assets/images/logoes/checklist.png";
 import orderIcon from "../assets/images/logoes/order-icon.svg";
-import DiscountsAndOffersIcon from "../assets/images/DiscountsAndOffers.png";
+import DiscountsAndOffersIcon from "../assets/images/logoes/DiscountsAndOffers.png";
 
 // export default function SupperAppScreen() {  //zare_nk_041029_commented
 ////zare_nk_041029_added_st

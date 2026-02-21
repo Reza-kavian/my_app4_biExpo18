@@ -10,10 +10,11 @@ export type RootStackParamList = {
   TicTacToe: undefined;
   folder02: { id: string, name: string } | undefined; //zare_nk_041027_added
   folder03: { tab: string, category2: string, z: string } | undefined; //zare_nk_041027_added
-  SupperGame:undefined; //zare_nk_041029_added
+  SupperGame: undefined; //zare_nk_041029_added
   SupperApp: undefined; //zare_nk_041126_added
 
- discountsAndOffers: undefined; //zare_nk_041022_added
+  discountsAndOffers: undefined; //zare_nk_041022_added
 
- shoppingbasket:undefined;  //zare_nk_041127_added
+  shoppingbasket: undefined;  //zare_nk_041127_added
+  ordersHistory: undefined;  //zare_nk_041201_added
 };

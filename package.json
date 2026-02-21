@@ -21,6 +21,8 @@
     "react-native-device-info": "^15.0.1",
     "react-native-safe-area-context": "^5.5.2",
     "react-native-screens": "^4.19.0",
+    "react-native-svg": "^15.15.3",
+    "react-native-svg-transformer": "^1.5.3",
     "react-native-vision-camera": "^4.7.3"
   },
   "devDependencies": {

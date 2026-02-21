@@ -1131,9 +1131,10 @@ type SabadRowType = {
 ////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-type Props = NativeStackScreenProps<RootStackParamList, "shoppingbasket">;
+type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
-export default function ShallowRoutingExample({
+// export default function ShallowRoutingExample({
+export default function HomeScreen({
   navigation,
   route,
 }:  // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
@@ -2000,8 +2001,8 @@ export default function ShallowRoutingExample({
     );
   };
 
-  if (!device) return <Text style={styles.centerText}>دوربین یافت نشد</Text>; {/*zare_nk_040923(agar doorbin peyda nashod in matn neshan dade mishavad)*/ }
-  if (!hasPermission) return <Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>; {/*zare_nk_040923(agar dastresi be doorbin nadashte bashim in matn neshan dade mishavad)*/ }
+  // if (!device) return <Text style={styles.centerText}>دوربین یافت نشد</Text>; //zare_nk_041201_commented
+  // if (!hasPermission) return <Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>;   //zare_nk_041201_commented
   const hasTorch = device?.hasTorch ?? false;  //zare_nk_040927_added_st(baraye danestane flash dashtane dastgah)
 
 
@@ -3617,224 +3618,50 @@ export default function ShallowRoutingExample({
           </View>
         </Modal>
       ) : isOpenedSeePricesModal == true ? (
-
-        //  <div
-        //         className="modal px-0"
-        //         id="seePricesModal"
-        //         style={{ overflow: "hidden" }}
-        //       >
-        //         <div
-        //           className="modal-dialog"
-        //           style={{ display: "flex", justifyContent: "center", height: "100%" }}
-        //         >
-        //           <div
-        //             className="modal-content"
-        //             style={{
-        //               borderRadius: "10px",
-        //               width: "900px",
-        //               flex: "0 0 900px",
-        //               maxWidth: "100%",
-        //               display: "flex",
-        //               flexFlow: "column",
-        //               height: "fit-content",
-        //               maxHeight: "98vh",
-        //               backgroundColor: "#fcfcfc !important",
-        //             }}
-        //           >
-        //             <div
-        //               className="modal-header"
-        //               style={{ border: "none", padding: "6px 16px 5px 16px" }}
-        //             >
-        //               <div
-        //                 style={{
-        //                   width: "100%",
-        //                   display: "flex",
-        //                   flexFlow: "row-reverse",
-        //                   justifyContent: "space-between",
-        //                 }}
-        //               >
-        //                 <div
-        //                   className="spanCont"
-        //                   style={{
-        //                     fontFamily: "IRANSansWeb_Medium(adad_fa)",
-        //                     fontSize: "18px",
-        //                   }}
-        //                 >
-        //                   <span className="valueStyle">اسکن بارکد</span>
-        //                 </div>
-        //                 <div className="h4Cont"></div>
-        //                 <div
-        //                   className="buttonCont buttonHover"
-        //                   style={{
-        //                     display: "flex",
-        //                     flexFlow: "row",
-        //                     alignContent: "center",
-        //                     alignItems: "center",
-        //                   }}
-        //                 >
-        //                   <span
-        //                     style={{
-        //                       cursor: "pointer",
-        //                       padding: "4px",
-        //                       borderRadius: "8px",
-        //                       border: "1px solid #A5A5A5",
-        //                       width: "24px",
-        //                       height: "24px",
-        //                       display: "flex",
-        //                       flexFlow: "row",
-        //                       justifyContent: "center",
-        //                       alignContent: "center",
-        //                     }}
-        //                     data-bs-dismiss="modal"
-        //                   >
-        //                     <img src="https://img.tochikala.com/tochikala/close-modal.svg" />
-        //                   </span>
-        //                 </div>
-        //               </div>
-        //             </div>
-        //             <div
-        //               className="modal-body text-center thinScroll"
-        //               style={{
-        //                 flex: "1 1 auto",
-        //                 display: "flex",
-        //                 flexFlow: "column",
-        //                 paddingTop: "0px",
-        //               }}
-        //             >
-        //               <div
-        //                 className="inModalBody"
-        //                 style={{ display: "flex", flexFlow: "column", height: "100%" }}
-        //               >
-        //                 <div
-        //                   className="scrollContInModal"
-        //                   id="seePricesCont"
-        //                   style={{
-        //                     flex: "1 1 auto",
-        //                     display: "flex",
-        //                     flexFlow: "column",
-        //                     overflow: "hidden",
-        //                   }}
-        //                 >
-        //                   <div
-        //                     style={{
-        //                       height: "100%",
-        //                       display: "flex",
-        //                       justifyContent: "center",
-        //                       marginBottom: "30px",
-        //                     }}
-        //                   >
-        //                     <video
-        //                       id="videoForzxing"
-        //                       style={{
-        //                         width: "640px",
-        //                         maxWidth: "100%",
-        //                         borderRadius: "10px",
-        //                       }}
-        //                     ></video>
-        //                   </div>
-        //                   <div
-        //                     className="contAndHoshdarCont"
-        //                     style={{
-        //                       flex: "1 1 auto",
-        //                       display: "flex",
-        //                       flexFlow: "column",
-        //                     }}
-        //                   >
-        //                     <div
-        //                       className="cont"
-        //                       style={{
-        //                         position: "relative",
-        //                         width: "100%",
-        //                         display: "flex",
-        //                         flexFlow: "row",
-        //                         justifyContent: "center",
-        //                         justifyItems: "center",
-        //                         alignContent: "center",
-        //                         alignItems: "center",
-        //                       }}
-        //                     >
-        //                       <div
-        //                         className="labelcreator absol"
-        //                         style={{ flex: "0 0 auto" }}
-        //                       >
-        //                         <span className="valueStyle" style={{ width: "100%" }}>
-        //                           بارکد دستی
-        //                         </span>
-        //                       </div>
-        //                       <div style={{ flex: "1 1 auto" }}>
-        //                         <input
-        //                           className="textcreator form-control MatnInput valid" //zare_nk_040304(valid ra pack konam)
-        //                           style={{ width: "100%" }}
-        //                           id="manualInputBarcode"
-        //                           name="manualInputBarcode"
-        //                           type="text"
-        //                           onKeyDown={(event) => {
-        //                             return ManualInputBarcode(event);
-        //                           }}
-        //                         />
-        //                       </div>
-        //                     </div>
-        //                     <div>
-        //                       <span
-        //                         className="forError forErrorFormanualBarcode"
-        //                         style={{
-        //                           width: "100%",
-        //                           display: "flex",
-        //                           flexFlow: "row",
-        //                           fontSize: "14px",
-        //                           color: "red",
-        //                         }}
-        //                       ></span>
-        //                     </div>
-        //                   </div>
-        //                 </div>
-        //               </div>
-        //             </div>
-        //           </div>
-        //         </div>
-        //       </div>
-        <Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
-          visible={isOpenedSeePricesModal}    //zare_nk_040923(halat namayesh modal)
-          animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
-          onRequestClose={() => setIsOpenedSeePricesModal(false)}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
-        >
-          {/*zare_nk_040923(konteyner dakhele modal)*/}
-          <View style={[styles.modalContainer, { overflow: "hidden" }]}>
-            <Camera //zare_nk_040923(komponent doorbin)
-              style={StyleSheet.absoluteFill}
-              device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
-              isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
-              codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
-              enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
-              torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
-            />
-            {/*zare_nk_040923(baraye namayesh kadr rahnama)*/}
-            <View style={styles.overlay}>
-              {/*zare_nk_040923(kadre rahnama baraye gharar dadane barcode dar an(tookhali))*/}
-              {/*<View style={styles.scanFrame} />*/}
-              {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
-              <View style={styles.scanFrame}>
-                {/*zare_nk_040923(Animated.View haman khat hast ke ba translateY jabeja mishe,nokteye jaleb ine Animated.View niaz be rendere mojadade component ba setState
-               nadare va dar haman rendere feli taghir mikoneh! va in maziyate khoobe ThreadNative hast ke bedoone rendere mojadade react taghirat ra roye UI anjam mideh)*/}
-                <Animated.View
-                  style={[
-                    styles.scanLine,
-                    {
-                      transform: [
-                        {
-                          translateY: scanLineAnim.interpolate({//zare_nk_04107_nokteh(scanLineAnim hokme chalangar ra beine bazeye sefroyeki va pixeli darad )
-                            inputRange: [0, 1],   //zare_nk_04107_nokteh(range Animated.Value ke bazeye beine 0 va 1 hast)
-                            outputRange: [0, 230], // ارتفاع فریم - ضخامت خط  //zare_nk_04107_nokteh(range UI ke bar asase pixel hast)
-                          }),
-                        },
-                      ],
-                    },
-                  ]}
+        !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
+          (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
+            (<Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
+              visible={isOpenedSeePricesModal}    //zare_nk_040923(halat namayesh modal)
+              animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
+              onRequestClose={() => setIsOpenedSeePricesModal(false)}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
+            >
+              {/*zare_nk_040923(konteyner dakhele modal)*/}
+              <View style={[styles.modalContainer, { overflow: "hidden" }]}>
+                <Camera //zare_nk_040923(komponent doorbin)
+                  style={StyleSheet.absoluteFill}
+                  device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
+                  isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
+                  codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
+                  enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
+                  torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
                 />
-              </View>
-              {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
-              {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte cheshmakzan))*/}
-              {/* <View style={styles.scanFrame}>
+                {/*zare_nk_040923(baraye namayesh kadr rahnama)*/}
+                <View style={styles.overlay}>
+                  {/*zare_nk_040923(kadre rahnama baraye gharar dadane barcode dar an(tookhali))*/}
+                  {/*<View style={styles.scanFrame} />*/}
+                  {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
+                  <View style={styles.scanFrame}>
+                    {/*zare_nk_040923(Animated.View haman khat hast ke ba translateY jabeja mishe,nokteye jaleb ine Animated.View niaz be rendere mojadade component ba setState
+               nadare va dar haman rendere feli taghir mikoneh! va in maziyate khoobe ThreadNative hast ke bedoone rendere mojadade react taghirat ra roye UI anjam mideh)*/}
+                    <Animated.View
+                      style={[
+                        styles.scanLine,
+                        {
+                          transform: [
+                            {
+                              translateY: scanLineAnim.interpolate({//zare_nk_04107_nokteh(scanLineAnim hokme chalangar ra beine bazeye sefroyeki va pixeli darad )
+                                inputRange: [0, 1],   //zare_nk_04107_nokteh(range Animated.Value ke bazeye beine 0 va 1 hast)
+                                outputRange: [0, 230], // ارتفاع فریم - ضخامت خط  //zare_nk_04107_nokteh(range UI ke bar asase pixel hast)
+                              }),
+                            },
+                          ],
+                        },
+                      ]}
+                    />
+                  </View>
+                  {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
+                  {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte cheshmakzan))*/}
+                  {/* <View style={styles.scanFrame}>
               <Animated.View
                 style={[
                   styles.scanLine,
@@ -3842,94 +3669,94 @@ export default function ShallowRoutingExample({
                 ]}
               />
             </View> */}
-              {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte cheshmakzan))*/}
-              {/*zare_nk_040923(matni baraye rahnamayi karbar)*/}
-              <Text style={styles.text}>بارکد را در کادر قرار دهید</Text>
-              {/*zare_nk_040923(dokmeye baraye baste shodan modal)*/}
-              {/* zare_nk_041007_commented(baraye jaygoziniye button ba ReusableButton) */}
-              {/* <Button title="بستن" color="red" onPress={() => setIsOpenedSeePricesModal(false)} /> */}
-              {/* zare_nk_041007_added(baraye jaygoziniye button ba ReusableButton) */}
-              <ReusableButton
-                title="بستن"
-                onPress={() => setIsOpenedSeePricesModal(false)}
-                backgroundColor="red"
-                textColor="white"
-                width={250}
-              />
+                  {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte cheshmakzan))*/}
+                  {/*zare_nk_040923(matni baraye rahnamayi karbar)*/}
+                  <Text style={styles.text}>بارکد را در کادر قرار دهید</Text>
+                  {/*zare_nk_040923(dokmeye baraye baste shodan modal)*/}
+                  {/* zare_nk_041007_commented(baraye jaygoziniye button ba ReusableButton) */}
+                  {/* <Button title="بستن" color="red" onPress={() => setIsOpenedSeePricesModal(false)} /> */}
+                  {/* zare_nk_041007_added(baraye jaygoziniye button ba ReusableButton) */}
+                  <ReusableButton
+                    title="بستن"
+                    onPress={() => setIsOpenedSeePricesModal(false)}
+                    backgroundColor="red"
+                    textColor="white"
+                    width={250}
+                  />
 
-              {/*zare_nk_040926(baraye off va on kardane flash,albate age dastgah flash nadash dokmeh neshoon nadeh)*/}
-              {hasTorch && (
-                <ReusableButton
-                  title={torch === 'on' ? 'فلش خاموش' : 'فلش روشن'}
-                  onPress={() => setTorch(p => (p === 'on' ? 'off' : 'on'))}
-                  backgroundColor="green"
-                  textColor="white"
-                  width={250}
-                />
-              )}
-            </View>
+                  {/*zare_nk_040926(baraye off va on kardane flash,albate age dastgah flash nadash dokmeh neshoon nadeh)*/}
+                  {hasTorch && (
+                    <ReusableButton
+                      title={torch === 'on' ? 'فلش خاموش' : 'فلش روشن'}
+                      onPress={() => setTorch(p => (p === 'on' ? 'off' : 'on'))}
+                      backgroundColor="green"
+                      textColor="white"
+                      width={250}
+                    />
+                  )}
+                </View>
 
-            {/* zare_nk_041128_added_st */}
-            <View
-              // className="contAndHoshdarCont"
-              style={{
-                // flex: "1 1 auto",
-                flexGrow: 1,
-                flexShrink: 1,
-                flexBasis: 'auto',
-                // display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <View
-                // id="productNotExist"
-                style={{
-                  height: "100%",
-                  display: "none",
-                  justifyContent: "center",
-                  marginBottom: 30,
-                }}
-              >
-                <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
-              </View>
-
-              <View
-                // className="cont"
-                style={{
-                  position: "relative",
-                  width: "100%",
-                  // display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  // justifyItems: "center",
-                  // alignContent: "center",
-                  alignItems: "center",
-                }}
-              >
+                {/* zare_nk_041128_added_st */}
                 <View
-                  // className="labelcreator absol"
+                  // className="contAndHoshdarCont"
                   style={{
-                    // flex: "0 0 auto"
-                    flexGrow: 0,
-                    flexShrink: 0,
+                    // flex: "1 1 auto",
+                    flexGrow: 1,
+                    flexShrink: 1,
                     flexBasis: 'auto',
+                    // display: "flex",
+                    flexDirection: "column",
                   }}
                 >
-                  <Text
-                    //  className="valueStyle"
+                  <View
+                    // id="productNotExist"
                     style={{
-                      width: "100%"
+                      height: "100%",
+                      display: "none",
+                      justifyContent: "center",
+                      marginBottom: 30,
+                    }}
+                  >
+                    <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
+                  </View>
+
+                  <View
+                    // className="cont"
+                    style={{
+                      position: "relative",
+                      width: "100%",
+                      // display: "flex",
+                      flexDirection: "row",
+                      justifyContent: "center",
+                      // justifyItems: "center",
+                      // alignContent: "center",
+                      alignItems: "center",
+                    }}
+                  >
+                    <View
+                      // className="labelcreator absol"
+                      style={{
+                        // flex: "0 0 auto"
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
+                      }}
+                    >
+                      <Text
+                        //  className="valueStyle"
+                        style={{
+                          width: "100%"
+                        }}>
+                        بارکد دستی
+                      </Text>
+                    </View>
+                    <View style={{
+                      // flex: "1 1 auto"
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
                     }}>
-                    بارکد دستی
-                  </Text>
-                </View>
-                <View style={{
-                  // flex: "1 1 auto"
-                  flexGrow: 1,
-                  flexShrink: 1,
-                  flexBasis: 'auto',
-                }}>
-                  {/* <input
+                      {/* <input
                                 className="textcreator form-control MatnInput valid" //zare_nk_040304(valid ra pack konam)
                                 style={{ width: "100%" }}
                                 id="manualInputBarcode"
@@ -3940,44 +3767,46 @@ export default function ShallowRoutingExample({
                                 }}
                             /> */}
 
-                  <TextInput
-                    placeholder="باردکد دستی"
-                    value={manualBarcode}
-                    onChangeText={setManualBarcode}
-                    onSubmitEditing={() => {
-                      ManualInputBarcode(manualBarcode);
-                    }}
+                      <TextInput
+                        placeholder="باردکد دستی"
+                        value={manualBarcode}
+                        onChangeText={setManualBarcode}
+                        onSubmitEditing={() => {
+                          ManualInputBarcode(manualBarcode);
+                        }}
 
-                    // onChangeText={(text) => {
-                    //   setManualBarcode(text);
-                    //   ManualInputBarcode(text);
-                    // }}
+                        // onChangeText={(text) => {
+                        //   setManualBarcode(text);
+                        //   ManualInputBarcode(text);
+                        // }}
 
-                    style={styles.input}
-                    returnKeyType="done"
-                  />
+                        style={styles.input}
+                        returnKeyType="done"
+                      />
 
+                    </View>
+                  </View>
+
+                  <View>
+                    <Text
+                      // className="forError forErrorFormanualBarcode"
+                      style={{
+                        width: "100%",
+                        // display: "flex",
+                        flexDirection: "row",
+                        fontSize: 14,
+                        color: "red",
+                      }}
+                    ></Text>
+                  </View>
                 </View>
+                {/* zare_nk_041128_added_end */}
               </View>
+            </Modal>
 
-              <View>
-                <Text
-                  // className="forError forErrorFormanualBarcode"
-                  style={{
-                    width: "100%",
-                    // display: "flex",
-                    flexDirection: "row",
-                    fontSize: 14,
-                    color: "red",
-                  }}
-                ></Text>
-              </View>
-            </View>
-            {/* zare_nk_041128_added_end */}
-          </View>
-        </Modal>
+            )
+          )
       ) : (
-
         <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
           <View
             // id="SubprogramsCont"
@@ -4079,13 +3908,13 @@ export default function ShallowRoutingExample({
                       >سبد خرید</Text>
                     </View>
                     <View
-                      style={{ flexDirection: "row",}}
+                      style={{ flexDirection: "row", }}
                     // className="decsInSubprograms"
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
-                        // className="valueStyle"
-                         style={{ fontSize: 12 }}
+                          // className="valueStyle"
+                          style={{ fontSize: 12 }}
                         >
                           امکان مشاهده و ویرایش سبد خرید
                         </Text>
@@ -4103,9 +3932,9 @@ export default function ShallowRoutingExample({
                     alt="بزن بریم"
                   /> */}
                   <Image
-                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                        style={{ width: 20, }}
-                      />
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
@@ -4124,7 +3953,7 @@ export default function ShallowRoutingExample({
                 // className="vorsab"
                 // href="#"
                 style={{
-                                   width: "100%",
+                  width: "100%",
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
@@ -4156,7 +3985,7 @@ export default function ShallowRoutingExample({
                     <View
                       // className="rounded-pill"
                       style={{
-                         display: "flex",
+                        display: "flex",
                         flexDirection: "row",
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
@@ -4171,7 +4000,7 @@ export default function ShallowRoutingExample({
                         src="/images/Subprograms/checklist.png"
                         alt="هایپر&zwnj;کرفو"
                       /> */}
-                       <Image
+                      <Image
                         source={{ uri: "/images/Subprograms/checklist.png" }}
                         style={{ width: 64, }}
                       />
@@ -4187,7 +4016,7 @@ export default function ShallowRoutingExample({
                   >
                     <View
                       style={{
-                          // flex: "0 0 auto",
+                        // flex: "0 0 auto",
                         flexGrow: 0,
                         flexShrink: 0,
                         flexBasis: 'auto',
@@ -4200,16 +4029,16 @@ export default function ShallowRoutingExample({
                       >مشاهده قیمت ها</Text>
                     </View>
                     <View
-                      style={{ flexDirection: "row"  }}
+                      style={{ flexDirection: "row" }}
                     // className="decsInSubprograms"
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
-                        // className="valueStyle"
-                        style={{ fontSize: 12 }}
+                          // className="valueStyle"
+                          style={{ fontSize: 12 }}
                         >
                           مشاهده اطلاعات کالا با اسکن بارکد
-                         </Text>
+                        </Text>
                       </View>
                     </View>
                   </View>
@@ -4224,9 +4053,9 @@ export default function ShallowRoutingExample({
                     alt="بزن بریم"
                   /> */}
                   <Image
-                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                        style={{ width: 20, }}
-                      />
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
@@ -4244,7 +4073,7 @@ export default function ShallowRoutingExample({
                 // href="/ordersHistory"
                 onPress={() => { return navigation.replace('ordersHistory'); }}
                 style={{
-                 width: "100%",
+                  width: "100%",
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
@@ -4277,7 +4106,7 @@ export default function ShallowRoutingExample({
                     <View
                       // className="rounded-pill"
                       style={{
-                         display: "flex",
+                        display: "flex",
                         flexDirection: "row",
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
@@ -4309,7 +4138,7 @@ export default function ShallowRoutingExample({
                   >
                     <View
                       style={{
-                          // flex: "0 0 auto",
+                        // flex: "0 0 auto",
                         flexGrow: 0,
                         flexShrink: 0,
                         flexBasis: 'auto',
@@ -4327,8 +4156,8 @@ export default function ShallowRoutingExample({
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
-                        // className="valueStyle"
-                         style={{ fontSize: 12 }}
+                          // className="valueStyle"
+                          style={{ fontSize: 12 }}
                         >
                           گزارش جزئیات سفارشات قبلی
                         </Text>
@@ -4345,10 +4174,10 @@ export default function ShallowRoutingExample({
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
                   /> */}
-                   <Image
-                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                        style={{ width: 20, }}
-                      />
+                  <Image
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
@@ -4398,7 +4227,7 @@ export default function ShallowRoutingExample({
                     <View
                       // className="rounded-pill"
                       style={{
-                         display: "flex",
+                        display: "flex",
                         flexDirection: "row",
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
@@ -4446,9 +4275,9 @@ export default function ShallowRoutingExample({
                     // className="decsInSubprograms"
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
-                         <Text
-                        // className="valueStyle"
-                         style={{ fontSize: 12 }}
+                        <Text
+                          // className="valueStyle"
+                          style={{ fontSize: 12 }}
                         >
                           مشاهده کالاهای پیشنهادی و پرتخفیف
                         </Text>
@@ -4460,15 +4289,15 @@ export default function ShallowRoutingExample({
                   // className="leftArrowInSubprograms"
                   style={{ flexDirection: "row" }}
                 >
-                   {/* <img
+                  {/* <img
                     style={{ width: "20px" }}
                     src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     alt="بزن بریم"
                   /> */}
                   <Image
-                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                        style={{ width: 20, }}
-                      />
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
@@ -4486,7 +4315,7 @@ export default function ShallowRoutingExample({
                 // href="/games"
                 onPress={() => { return navigation.replace('games'); }}
                 style={{
-                   width: "100%",
+                  width: "100%",
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
@@ -4562,13 +4391,13 @@ export default function ShallowRoutingExample({
                       >بازی و سرگرمی</Text>
                     </View>
                     <View
-                      style={{ flexDirection: "row",  }}
+                      style={{ flexDirection: "row", }}
                     // className="decsInSubprograms"
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
-                         <Text
-                        // className="valueStyle"
-                         style={{ fontSize: 12 }}
+                        <Text
+                          // className="valueStyle"
+                          style={{ fontSize: 12 }}
                         >
                           لحظات خوش کودکان در محیط هایپر!
                         </Text>
@@ -4586,9 +4415,9 @@ export default function ShallowRoutingExample({
                     alt="بزن بریم"
                   /> */}
                   <Image
-                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                        style={{ width: 20, }}
-                      />
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>
@@ -4604,9 +4433,9 @@ export default function ShallowRoutingExample({
               <TouchableOpacity
                 // className="vorsab"
                 // href="/ComparePage"
-                 onPress={() => { return navigation.replace('ComparePage'); }}
+                onPress={() => { return navigation.replace('ComparePage'); }}
                 style={{
-                   width: "100%",
+                  width: "100%",
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
@@ -4622,7 +4451,7 @@ export default function ShallowRoutingExample({
                   backgroundColor: "white",
                   overflow: "hidden",
                 }}
-                 activeOpacity={0.1}
+                activeOpacity={0.1}
               >
                 <View
                   // className="imgAndTextInSubprograms"
@@ -4639,7 +4468,7 @@ export default function ShallowRoutingExample({
                     <View
                       // className="rounded-pill"
                       style={{
-                         display: "flex",
+                        display: "flex",
                         flexDirection: "row",
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
@@ -4683,13 +4512,13 @@ export default function ShallowRoutingExample({
                       >سرچ با تصویر</Text>
                     </View>
                     <View
-                      style={{ flexDirection: "row",   }}
+                      style={{ flexDirection: "row", }}
                     // className="decsInSubprograms"
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
-                         <Text
-                        // className="valueStyle"
-                         style={{ fontSize: 12 }}
+                        <Text
+                          // className="valueStyle"
+                          style={{ fontSize: 12 }}
                         >
                           امکان سرچ کالا با تصویر
                         </Text>
@@ -4707,9 +4536,9 @@ export default function ShallowRoutingExample({
                     alt="بزن بریم"
                   /> */}
                   <Image
-                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                        style={{ width: 20, }}
-                      />
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  />
                 </View>
               </TouchableOpacity>
             </View>

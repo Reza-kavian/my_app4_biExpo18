@@ -30,7 +30,7 @@ const AppNavigator = () => {
   return (
     // <NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
     <Stack.Navigator
-      initialRouteName="SupperApp"
+      initialRouteName="Home"
       screenOptions={({ navigation }) => ({
         // header: (props) => <MyCustomHeader {...props} />, //zare_nk_041007_commented(dorosteh va noesh pishfarz any manzoor misheh, vali chon nazashtim doostdare typeScript nist)
         header: (props: NativeStackHeaderProps) => <MyCustomHeader {...props} />, //zare_nk_041007_added(doostdare typeScript hast)

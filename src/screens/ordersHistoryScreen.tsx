@@ -66,7 +66,7 @@ async function getCookie(name: any) {
 ////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-type Props = NativeStackScreenProps<RootStackParamList, "shoppingbasket">;
+type Props = NativeStackScreenProps<RootStackParamList, "ordersHistory">;
 
 export default function ShallowRoutingExample({
     navigation,

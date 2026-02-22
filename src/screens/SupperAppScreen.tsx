@@ -198,7 +198,7 @@ export default function SupperAppScreen({
                   >
                     <Text
                       style={[{
-                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                         color: '#4b4949',
                       }, titleStyleResponse]}>
                       سبد خرید
@@ -209,7 +209,7 @@ export default function SupperAppScreen({
                     <View style={{ flexDirection: "row" }}>
                       <Text
                         style={[{
-                          fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
                           color: "#6a6a6a",
                           fontSize: 12,
                         }, valueStyleResponse,]}>
@@ -277,7 +277,7 @@ export default function SupperAppScreen({
                   >
                     <Text
                       style={[{
-                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                         color: '#4b4949',
                       }, titleStyleResponse]}>
                       مشاهده قیمت ها
@@ -288,7 +288,7 @@ export default function SupperAppScreen({
                     <View style={{ flexDirection: "row" }}>
                       <Text
                         style={[{
-                          fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
                           color: "#6a6a6a",
                           fontSize: 12,
                         }, valueStyleResponse,]}>
@@ -356,7 +356,7 @@ export default function SupperAppScreen({
                   >
                     <Text
                       style={[{
-                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                         color: '#4b4949',
                       }, titleStyleResponse]}>
                       تاریخچه سفارشات
@@ -367,7 +367,7 @@ export default function SupperAppScreen({
                     <View style={{ flexDirection: "row" }}>
                       <Text
                         style={[{
-                          fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
                           color: "#6a6a6a",
                           fontSize: 12,
                         }, valueStyleResponse,]}>
@@ -435,7 +435,7 @@ export default function SupperAppScreen({
                   >
                     <Text
                       style={[{
-                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                         color: '#4b4949',
                       }, titleStyleResponse]}>
                       تخفیفات و پیشنهادات
@@ -446,7 +446,7 @@ export default function SupperAppScreen({
                     <View style={{ flexDirection: "row" }}>
                       <Text
                         style={[{
-                          fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
                           color: "#6a6a6a",
                           fontSize: 12,
                         }, valueStyleResponse,]}>
@@ -527,7 +527,7 @@ export default function SupperAppScreen({
                     <Text
                       // className="titleStyle"
                       style={[{
-                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                         color: '#4b4949',
                       }, titleStyleResponse]}>
                       بازی و سرگرمی
@@ -541,7 +541,7 @@ export default function SupperAppScreen({
                       <Text
                         // className="valueStyle"
                         style={[{
-                          fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
                           color: "#6a6a6a",
                           fontSize: 12,
                         }, valueStyleResponse,]}>

@@ -147,7 +147,7 @@ export default function SupperGameScreen({
                 >
                   <Text
                     style={[{
-                      fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                      fontFamily: "IRANSansWeb(FaNum)_Bold",
                       color: '#4b4949',
                     }, titleStyleResponse]}>
                     TIC-TAC-TOE 
@@ -158,7 +158,7 @@ export default function SupperGameScreen({
                   <View style={{ flexDirection: "row" }}>
                     <Text
                       style={[{
-                        fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        fontFamily: "IRANSansWeb(FaNum)_Medium",
                         color: "#6a6a6a",
                         fontSize: 12,
                       }, valueStyleResponse,]}>

@@ -23,6 +23,8 @@ import ReusableButton from "../components/ReusableButton";
 
 import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 
+import { ScrollView } from "react-native";  //zare_nk_041203_added
+
 ////zare_nk_041127_commented_st
 // async function getBootstrap() {
 //   if (!cachedBootstrap) {
@@ -33,6 +35,7 @@ import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 ////zare_nk_041127_commented_end
 
 ////zare_nk_041127_added_st
+
 const showNoStock = () => {
     if (Platform.OS === "android") {
         ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
@@ -222,38 +225,31 @@ function MiddleCountTedadSefr({
                                 data-baz="0"
                                 style={[
                                     {
-                                        //flex: "1 1 auto",
                                         flexGrow: 1,
                                         flexShrink: 1,
                                         flexBasis: 'auto',
-
                                         height: "100%",
-
-                                        //padding: "0px 2px", 
                                         paddingVertical: 0,
                                         paddingHorizontal: 2,
-
                                         justifyContent: "center",
-
                                         alignItems: "center",
 
-                                        //textDecoration: "none",
-
-                                        borderRadius: "50%",
+                                        // borderRadius: "50%", //zare_nk_041202_commented
+                                        borderRadius: 17, //zare_nk_041202_added
                                     }
                                 ]}
                                 onPress={() => { return navigation.replace('Login'); }}
                                 activeOpacity={0.1}
                             >
-
                                 <Text
                                     style={{
                                         height: "80%",
                                         backgroundColor: "white",
-                                        // border: "none",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                     }}
                                 // className="plussMinus"
                                 >
@@ -271,23 +267,29 @@ function MiddleCountTedadSefr({
                         // className={`middleCount-${IdKala}`}
                         style={{
                             height: "100%",
-                            // flex: "1 1 auto",
                             flexGrow: 1,
                             flexShrink: 1,
                             flexBasis: '45%',
-                            // display: "flex",
                             flexDirection: "column",
+                            ////zare_nk_041202_added_st
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            alignContent: "center",
+                            overflow: "hidden",
+                            ////zare_nk_041202_added_end
                         }}
                     >
                         <Text
                             style={{
                                 height: "100%",
-                                // border: "none",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                alignContent: "center",
-                                overflow: "hidden",
+                                ////zare_nk_041202_commented_st
+                                // display: "flex",
+                                // justifyContent: "center",
+                                // alignItems: "center",
+                                // alignContent: "center",
+                                // overflow: "hidden",
+                                ////zare_nk_041202_commented_end
                             }}
                         >
                             {/* <a
@@ -349,20 +351,26 @@ function MiddleCountTedadSefr({
                                 onPress={() => { handlerForAddClick() }}
                                 activeOpacity={0.1}
                             >
-
                                 <Text
                                     style={{
                                         color: "red",
                                         fontSize: 14,
                                         height: "80%",
                                         backgroundColor: "white",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                     }}
                                 // className="plussMinus"
                                 >
-                                    +
+                                    {/* + */}
+                                    <SvgUri
+                                        uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                                        width={20}
+                                        height={20}
+                                    />
                                 </Text>
                             </TouchableOpacity>
 
@@ -432,22 +440,17 @@ function MiddleCountTedadSefr({
                                 data-baz="0"
                                 style={[
                                     {
-                                        //flex: "1 1 auto",
                                         flexGrow: 1,
                                         flexShrink: 1,
                                         flexBasis: 'auto',
                                         height: "100%",
-                                        //padding: "0px 2px", 
                                         paddingVertical: 0,
                                         paddingHorizontal: 2,
-
                                         justifyContent: "center",
-
                                         alignItems: "center",
 
-                                        //textDecoration: "none",
-
-                                        borderRadius: "50%",
+                                        // borderRadius: "50%",  //zare_nk_041202_commented
+                                        borderRadius: 17,  //zare_nk_041202_added
                                     }
                                 ]}
                                 onPress={() => { return navigation.replace('Login'); }}
@@ -458,17 +461,24 @@ function MiddleCountTedadSefr({
                                     style={{
                                         color: "red",
                                         fontSize: 14,
-                                        height: "80%",
+                                        // height: "80%",  //zare_nk_041202_commented
                                         backgroundColor: "white",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                     }}
                                 // className="plussMinus"
                                 >
-                                    <Image
+                                    {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                                    /> */}
+                                    <SvgUri
+                                        uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                                        width={20}
+                                        height={20}
                                     />
                                 </Text>
                             </TouchableOpacity>
@@ -485,10 +495,6 @@ function MiddleCountTedadSefr({
                 // style={{ width: "100%", display: "flex" }}
                 style={{
                     width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center',
-
-                    borderWidth: 2,
-                    borderColor: "#11c358",
-                    borderStyle: 'dashed',
                 }}
             >
                 <View
@@ -509,11 +515,10 @@ function MiddleCountTedadSefr({
                         width: "auto",  //zare_nk_041127_added
                         // borderRadius: '50%',  //zare_nk_041127_added
                         direction: 'rtl',  //zare_nk_041127_added
-
                         flexDirection: 'row',  //zare_nk_041202_added
-                        borderRadius: 17,  //zare_nk_041202_added
+                        borderRadius: 17,  //zare_nk_041202_added 
                     }}
-                // dir="ltr"
+
                 >
                     <View
                         // className="addremmCont"
@@ -584,20 +589,15 @@ function MiddleCountTedadSefr({
                                         flexGrow: 1,
                                         flexShrink: 1,
                                         flexBasis: 'auto',
-
                                         height: "100%",
-
                                         //padding: "0px 2px", 
                                         paddingVertical: 0,
                                         paddingHorizontal: 2,
-
                                         justifyContent: "center",
-
                                         alignItems: "center",
 
-                                        //textDecoration: "none",
-
-                                        borderRadius: "50%",
+                                        // borderRadius: "50%",
+                                        borderRadius: 17,
                                     }
                                 ]}
                                 onPress={() => { handlerForRemClick(); }}   //be login befresteh dar adtoocart be jaye bazi ba e.preventdefault...
@@ -606,18 +606,24 @@ function MiddleCountTedadSefr({
 
                                 <Text
                                     style={{
-                                        height: "80%",
+                                        // height: "80%",  //zare_nk_041202_commented
                                         backgroundColor: "white",
-                                        // border: "none",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                     }}
                                 // className="plussMinus"
                                 >
-                                    <Image
+                                    {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                                    /> */}
+                                    <SvgUri
+                                        uri="https://img.tochikala.com/tochikala/remove-icon.svg"
+                                        width={20}
+                                        height={20}
                                     />
                                 </Text>
                             </TouchableOpacity>
@@ -630,8 +636,14 @@ function MiddleCountTedadSefr({
                         // className={`middleCount-${IdKala}`}
                         style={{
                             height: "100%",
-                            //  display: "flex",
-                            flexDirection: "column"
+                            flexDirection: "row",
+                            ////zare_nk_041202_added_st
+                            width: 40,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: 'center',
+                            alignContent: "center",
+                            ////zare_nk_041202_added_end 
                         }}
                     >
                         <Text
@@ -639,16 +651,16 @@ function MiddleCountTedadSefr({
                             // className="text-center titleStyle"
                             style={{
                                 backgroundColor: "white",
-                                // border: "none",
-                                // flex: "1 0 40%",
-                                flexGrow: 1,
-                                flexShrink: 0,
-                                flexBasis: '40%',
-                                width: 40,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                alignContent: "center",
+                                ////zare_nk_041202_commented_st 
+                                // flexGrow: 1,
+                                // flexShrink: 0,
+                                // flexBasis: '40%',
+                                // width: 40, 
+                                // display: "flex",
+                                // justifyContent: "center",
+                                // alignItems: "center",
+                                // alignContent: "center",
+                                ////zare_nk_041202_commented_end 
                             }}
                         >
                             {tedadInSabadOrDet}
@@ -723,24 +735,17 @@ function MiddleCountTedadSefr({
                                 data-baz="1"
                                 style={[
                                     {
-                                        //flex: "1 1 auto",
                                         flexGrow: 1,
                                         flexShrink: 1,
                                         flexBasis: 'auto',
-
                                         height: "100%",
-
-                                        //padding: "0px 2px", 
                                         paddingVertical: 0,
                                         paddingHorizontal: 2,
-
                                         justifyContent: "center",
-
                                         alignItems: "center",
 
-                                        //textDecoration: "none",
-
-                                        borderRadius: "50%",
+                                        // borderRadius: "50%",
+                                        borderRadius: 17,
                                     }
                                 ]}
 
@@ -762,20 +767,26 @@ function MiddleCountTedadSefr({
                                 <Text
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
-                                        height: "80%",
+                                        // height: "80%",  //zare_nk_041202_commented
                                         backgroundColor: "white",
-                                        // border: "none",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                         ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
                                     }}
                                 // className="plussMinus"
                                 // disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                                 >
-                                    <Image
+                                    {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                                    /> */}
+                                    <SvgUri
+                                        uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                                        width={20}
+                                        height={20}
                                     />
                                 </Text>
                             </TouchableOpacity>
@@ -826,10 +837,6 @@ function MiddleCountTedadSefr({
                             flexGrow: 1,
                             flexShrink: 1,
                             flexBasis: 'auto',
-
-                            borderWidth: 2,
-                            borderColor: "#4f11c3",
-                            borderStyle: 'dashed',
                         }}
                     >
                         <View
@@ -892,12 +899,8 @@ function MiddleCountTedadSefr({
                                         paddingHorizontal: 2,
                                         justifyContent: "center",
                                         alignItems: "center",
-                                        // borderRadius: "50%",
-                                        borderRadius: 17,
-
-                                        borderWidth: 2,
-                                        borderColor: "#11c3b4",
-                                        borderStyle: 'solid',
+                                        // borderRadius: "50%",  //zare_nk_041202_comemnted
+                                        borderRadius: 17,    //zare_nk_041202_added
                                     }
                                 ]}
 
@@ -909,32 +912,22 @@ function MiddleCountTedadSefr({
                                 <Text
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
-                                        height: "80%",
+                                        // height: "80%",  //zare_nk_041202_commented
                                         backgroundColor: "white",
-                                        // border: "none",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
-
-                                        borderWidth: 2,
-                                        borderColor: "#11c397",
-                                        borderStyle: 'solid',
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                     }}
                                 // className="plussMinus" 
                                 >
                                     {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/remove-from-cart.svg" }}
-                                        style={{ 
-                                            //objectFit: "contain",
-                                            resizeMode: "contain",
-                                            
-                                            width: 20, flexDirection: "row",height: 20, 
+                                        style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                                    /> */}
 
-                                             borderWidth: 2,
-                            borderColor: "#367502", 
-                            // backgroundColor:'blue',
-                                        }} 
-                                    />    */}  
+
                                     <SvgUri
                                         uri="https://img.tochikala.com/tochikala/remove-from-cart.svg"
                                         width={20}
@@ -942,7 +935,6 @@ function MiddleCountTedadSefr({
                                     />
                                 </Text>
                             </TouchableOpacity>
-
 
                         </View>
                     </View>
@@ -952,7 +944,14 @@ function MiddleCountTedadSefr({
                         style={{
                             height: "100%",
                             // display: "flex",
+                            ////zare_nk_041202_added_st
                             flexDirection: "column",
+                            width: 40,
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: 'center',
+                            alignContent: "center",
+                            ////zare_nk_041202_added_end
                         }}
                     >
                         <Text
@@ -960,21 +959,16 @@ function MiddleCountTedadSefr({
                             // className="text-center titleStyle"
                             style={{
                                 backgroundColor: "white",
-                                // border: "none",
-                                // flex: "1 0 40%",
-                                flexGrow: 1,
-                                flexShrink: 0,
-                                flexBasis: '40%',
-                                width: 40,
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: 'center',
-                                alignContent: "center",
-                                // textAlign: 'center',  //zare_nk_041202_added(and commented felan)
-
-                                borderWidth: 2,
-                                borderColor: "#0a0a0a46",
-                                borderStyle: 'dashed',
+                                ////zare_nk_041202_commented_st
+                                // flexGrow: 1,
+                                // flexShrink: 0,
+                                // flexBasis: '40%',
+                                // width: 40,
+                                // display: "flex",
+                                // justifyContent: "center",
+                                // alignItems: 'center',
+                                // alignContent: "center",
+                                ////zare_nk_041202_commented_end
                             }}
                         >
                             {tedadInSabadOrDet}
@@ -991,10 +985,6 @@ function MiddleCountTedadSefr({
                             flexGrow: 1,
                             flexShrink: 1,
                             flexBasis: 'auto',
-
-                            borderWidth: 2,
-                            borderColor: "#11c358",
-                            borderStyle: 'dashed',
                         }}
                     >
                         <View
@@ -1062,12 +1052,12 @@ function MiddleCountTedadSefr({
                                         paddingHorizontal: 2,
                                         justifyContent: "center",
                                         alignItems: "center",
-                                        borderRadius: "50%",
+                                        // borderRadius: "50%",  //zare_nk_041202_commented
+                                        borderRadius: 17,  //zare_nk_041202_added 
                                     }
                                 ]}
 
                                 activeOpacity={0.1}
-
 
                                 disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                                 // title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}   //zare_nk_041127_commented
@@ -1084,20 +1074,26 @@ function MiddleCountTedadSefr({
                                 <Text
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
-                                        height: "80%",
+                                        // height: "80%",  //zare_nk_041202_commented
                                         backgroundColor: "white",
-                                        // border: "none",
-                                        padding: 0,
-                                        alignItems: "center",
-                                        justifyContent: "center",
+                                        ////zare_nk_041202_commented_st
+                                        // padding: 0,
+                                        // alignItems: "center",
+                                        // justifyContent: "center",
+                                        ////zare_nk_041202_commented_end
                                         ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
                                     }}
                                 // className="plussMinus"
                                 // disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                                 >
-                                    <Image
+                                    {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                                    /> */}
+                                    <SvgUri
+                                        uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                                        width={20}
+                                        height={20}
                                     />
                                 </Text>
                             </TouchableOpacity>
@@ -1250,42 +1246,10 @@ function SabadSatrComponent({
                         display: "flex",
                         flexDirection: "column",
                         position: "relative",
+                        marginLeft: 5,
                     }}
                 >
-                    {/* <button
-                        type="button"
-                        onClick={(event) => openprodDetModal(SabadRow.BarcodeKala)}
-                        style={{
-                            display: "flex",
-                            flexFlow: "column",
-                            flex: "0 0 auto",
-                            padding: "0px",
-                            border: "none",
-                        }}
-                        className="GotToDet"
-                    >
-                        <View
-                            className="imgcont"
-                            id={`imgcontainerInSabadKesho-${SabadRow.IdKala}`}
-                            style={{
-                                width: "92px",
-                                display: "flex",
-                                flexFlow: "column",
-                                height: "min-content",
-                            }}
-                        >
-                            <img
-                                loading="lazy"
-                                src={`https://img.tochikala.com/Product/${SabadRow.IdKala}.webp`}
-                                className="sath1Img2_new"
-                                alt={SabadRow.NameKala ? SabadRow.NameKala : ''}
-                                style={{ backgroundColor: "#EFEFEF", width: "100%" }}
-                            />
-                        </View>
-                    </button> */}
                     <TouchableOpacity
-                        // type="button"
-                        // onClick={(event) => openprodDetModal(SabadRow.BarcodeKala)}
                         onPress={(event) => openprodDetModal(SabadRow.BarcodeKala)}
                         style={{
                             display: "flex",
@@ -1295,9 +1259,12 @@ function SabadSatrComponent({
                             flexShrink: 0,
                             flexBasis: 'auto',
                             padding: 0,
-                            // border: "none",
-
-
+                            ////zare_nk_041203_added_st
+                            borderRadius: 10,
+                            overflow: 'hidden',
+                            // boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                            boxShadow: "#5e5e5e 0px 0px 3px 0px ",
+                            ////zare_nk_041203_added_end
                         }}
                     // className="GotToDet"
                     >
@@ -1308,7 +1275,7 @@ function SabadSatrComponent({
                                 width: 92,
                                 // display: "flex",
                                 flexDirection: "column",
-                                // height: "min-content", 
+                                // height: "min-content",  
                             }}
                         >
                             {/* <img
@@ -1320,26 +1287,10 @@ function SabadSatrComponent({
                             /> */}
                             <Image
                                 source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}
-                                style={{ backgroundColor: "#EFEFEF", width: "100%", height: 92, }}
+                                style={{ backgroundColor: "#efefef", width: "100%", height: 92, }}
                             />
                         </View>
                     </TouchableOpacity>
-
-                    {/* <button
-                        // data-id={j}
-                        id={`updateTedad-${SabadRow.IdKala}`}
-                        className="updateTedad btn btn-danger"
-                        style={{
-                            display: "none",
-                            borderRadius: "10px",
-                            fontSize: "12px",
-                            marginTop: "10px",
-                            paddingLeft: "8px",
-                            paddingRight: "8px",
-                        }}
-                    >
-                        بروزرسانی تعداد
-                    </button> */}
                     <TouchableOpacity
                         // data-id={j}
                         // id={`updateTedad-${SabadRow.IdKala}`}
@@ -1364,9 +1315,10 @@ function SabadSatrComponent({
                         flexGrow: 1,
                         flexShrink: 1,
                         flexBasis: 'auto',
-                        // display: "flex",
+                        display: "flex",
                         flexDirection: "column",
-                        justifyContent: "center",
+                        // justifyContent: "center",  //zare_nk_041202_comemnted
+                        justifyContent: 'space-around',  //zare_nk_041202_added
                         overflow: "hidden",
                         borderRadius: 5,
                         padding: 5,
@@ -1374,7 +1326,7 @@ function SabadSatrComponent({
                 >
                     <View
                         style={{
-                            // display: "flex",
+                            display: "flex",
                             flexDirection: "row",
                             justifyContent: "space-between",
                         }}
@@ -1388,8 +1340,8 @@ function SabadSatrComponent({
                                 overflow: "hidden",
                                 marginLeft: 10,
                             }}
-                        >
-                            <Text>{SabadRow.NameKala}</Text>
+                        > 
+                            <Text style={{ fontFamily: "IRANSansWeb(FaNum)_Medium" }}>{SabadRow.NameKala}</Text>
                         </View>
 
                         <View
@@ -1575,13 +1527,9 @@ function SabadSatrComponent({
             </View>
 
             <View
-                // id={`changeFeeWarning-${SabadRow.IdKala}`}
-                // className="changeFeeWarning"
                 style={{
                     display: "none",
                     flexDirection: "row",
-                    // fontSize: 12,
-                    // color: "red",
                     paddingBottom: 5,
                 }}
             >
@@ -1639,6 +1587,58 @@ export default function ShallowRoutingExample({
     Props) {
     ////zare_nk_041127_added_end
     console.log('ShallowRoutingExample called!!');
+    ////zare_nk_041202_added_st(moadele @media baraye responsive kardane site) 
+    const { width } = useWindowDimensions();
+    //////responsive_for_sabadItemsAndTotalInf_added_st
+    let sabadItemsAndTotalInf: StyleProp<ViewStyle>;
+    if (width <= 576) {
+        sabadItemsAndTotalInf = styles.sabadItemsAndTotalInf_STH576;
+    }
+    else if (width >= 576) {
+        sabadItemsAndTotalInf = styles.sabadItemsAndTotalInf_BTH576;
+    }
+    else if (width >= 768) {
+        sabadItemsAndTotalInf = styles.sabadItemsAndTotalInf_BTH768;
+    }
+    else if (width >= 992) {
+        sabadItemsAndTotalInf = styles.sabadItemsAndTotalInf_BTH992;
+    }
+    //////responsive_for_sabadItemsAndTotalInf_added_st
+
+    //////responsive_for_sabadItemsCont_added_st
+    let sabadItemsCont: StyleProp<ViewStyle>;
+    if (width <= 576) {
+        sabadItemsCont = styles.sabadItemsCont_STH576;
+    }
+    else if (width >= 576) {
+        sabadItemsCont = styles.sabadItemsCont_BTH576;
+    }
+    else if (width >= 768) {
+        sabadItemsCont = styles.sabadItemsCont_BTH768;
+    }
+    else if (width >= 992) {
+        sabadItemsCont = styles.sabadItemsCont_BTH992;
+    }
+    //////responsive_for_sabadItemsCont_added_end
+    //////responsive_for_sabadItemsCont_added_st
+    let sabadSafhe: StyleProp<ViewStyle>;
+    if (width <= 576) {
+        sabadSafhe = styles.sabadSafhe_STH576;
+    }
+    else if (width >= 576) {
+        sabadSafhe = styles.sabadSafhe_BTH576;
+    }
+    else if (width >= 768) {
+        sabadSafhe = styles.sabadSafhe_BTH768;
+    }
+    else if (width >= 992) {
+        sabadSafhe = styles.sabadSafhe_BTH992;
+    }
+    //////responsive_for_sabadItemsCont_added_end
+
+
+
+    ////zare_nk_041202_added_end(moadele @media baraye responsive kardane site) 
 
     // const router = useRouter();  //zare_nk_041128_commented 
     ////zare_nk_041128_added_st_olgu
@@ -2923,7 +2923,7 @@ export default function ShallowRoutingExample({
                 //                     <div
                 //                         className="spanCont"
                 //                         style={{
-                //                             fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                //                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                 //                             fontSize: "18px",
                 //                         }}
                 //                     >
@@ -3108,7 +3108,7 @@ export default function ShallowRoutingExample({
                 //                                                     style={{
                 //                                                         fontSize: "16px",
                 //                                                         marginBottom: "30px",
-                //                                                         fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                //                                                         fontFamily: "IRANSansWeb(FaNum)_Medium",
                 //                                                         lineHeight: "2.0",
                 //                                                         textOverflow: "ellipsis",
                 //                                                         overflow: "hidden",
@@ -3140,7 +3140,7 @@ export default function ShallowRoutingExample({
                 //                                                         style={{
                 //                                                             display: "flex",
                 //                                                             flexDirection: "row",
-                //                                                             fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                //                                                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                 //                                                             color: "#888888",
                 //                                                         }}
                 //                                                     >
@@ -3603,10 +3603,10 @@ export default function ShallowRoutingExample({
                 //                                 justifyContent: "center",
                 //                                 marginBottom: 30,
                 //                                 // color: "red",
-                //                                 // fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                //                                 // fontFamily: "IRANSansWeb(FaNum)_Medium",
                 //                             }}
                 //                         >
-                //                             <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
+                //                             <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
                 //                         </View>
                 //                     </div>
                 //                 </div>
@@ -3804,7 +3804,7 @@ export default function ShallowRoutingExample({
                                                                 // WebkitBoxOrient: "vertical", 
                                                                 fontSize: 16,
                                                                 marginBottom: 30,
-                                                                fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                                                                fontFamily: "IRANSansWeb(FaNum)_Medium",
                                                                 textAlign: "right",
                                                             }}
                                                         >
@@ -3834,7 +3834,7 @@ export default function ShallowRoutingExample({
                                                                     flexDirection: "row",
                                                                 }}
                                                             >
-                                                                <Text style={{ fontFamily: "IRANSansWeb_Medium(adad_fa)", color: "#888888", }}>برند</Text>
+                                                                <Text style={{ fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#888888", }}>برند</Text>
                                                             </View>
                                                             <View
                                                                 style={{
@@ -4345,7 +4345,7 @@ export default function ShallowRoutingExample({
                                         // color: "red", 
                                     }}
                                 >
-                                    <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
+                                    <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
                                 </View>
                             </View>
                         </View>
@@ -4454,7 +4454,7 @@ export default function ShallowRoutingExample({
                                             marginBottom: 30,
                                         }}
                                     >
-                                        <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
+                                        <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
                                     </View>
 
                                     <View
@@ -4543,27 +4543,42 @@ export default function ShallowRoutingExample({
                         )
                     )
             ) : (
-                <View
+                <ScrollView horizontal={false}
                     // id="sabadSafhe"
-                    style={{ width: "100%", overflow: "hidden", }}
+                    style={[{
+                        width: "100%",
+                        //overfloww: "hidden",   //zare_nk_041203_commented
+                        ////zare_nk_041203_added_st 
+                        // overflow: 'scroll',  //zare_nk_041203_commented(chon dar react native overflow: 'scroll' karbord nadare va overflow faghat maghadire visible va hidden migireh
+                        // va baraye scroll dadan be jaye tage View az tage ScrollView estefadeh mishe ke scrolle amoodi mideh,baraye scrolle ofoghi attribute horizontal={true} ra ezafeh mikonim)
+                        // borderWidth: 2,
+                        // borderColor: "#d00cc3",
+                        // borderStyle: 'dashed',
+                        backgroundColor: 'white',
+                        ////zare_nk_041203_added_end
+                    }]}
+                    contentContainerStyle={[{
+                        // paddingBottom: 45
+                    }, sabadSafhe]}
                 >
                     <View
                         // className="list-groupp"
                         // id="listGroupAccordionInSafhe"
-                        style={{
+                        style={[{
                             // marginTop: "5px",
                             // paddingTop: "5px",
                             direction: "rtl",
                             position: "relative",
-                            // display: "flex",
+                            display: "flex",
                             width: "100%",
-                            backgroundColor: 'white',
-                        }}
+                        }
+                            , sabadItemsAndTotalInf
+                        ]}
                     >
                         <View
                             // id="sabadHeaderAndItemsCont"
                             // className="sabadHeaderAndItems"
-                            style={{
+                            style={[{
                                 // flex: "1 1 auto",
                                 flexGrow: 1,
                                 flexShrink: 1,
@@ -4575,7 +4590,7 @@ export default function ShallowRoutingExample({
                                 padding: 7,
                                 backgroundColor: "#f6f6f6",
                                 boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                            }}
+                            }, sabadItemsCont]}
                         >
                             <View
                                 // className="sabadHeader"
@@ -4586,8 +4601,6 @@ export default function ShallowRoutingExample({
                                     justifyContent: "space-between",
                                     alignItems: "center",
                                     marginBottom: 10,
-
-
                                 }}
                             >
                                 <View
@@ -4607,11 +4620,19 @@ export default function ShallowRoutingExample({
                                         // className="BarCodeScan btn btn-danger"
                                         style={{
                                             borderRadius: 10,
+                                            ////zare_nk_041202_added_st
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center',
+                                            flexDirection: 'row',
+                                            padding: 7,
+                                            backgroundColor: '#d9534f'
+                                            ////zare_nk_041202_added_end
                                         }}
                                         onPress={() => { return seePrices(); }}
                                         activeOpacity={0.1}
                                     >
-                                        <Text style={{ fontSize: 14, color: "#322E2E", }}> اضافه به سبد</Text>
+                                        <Text style={{ fontSize: 14, color: "white", }}> اضافه به سبد</Text>
                                     </TouchableOpacity>
                                     {/* </Text> */}
                                 </View>
@@ -4623,7 +4644,7 @@ export default function ShallowRoutingExample({
                                     // padding: "0px 5px",
                                     paddingVertical: 0,
                                     paddingHorizontal: 5,
-                                    flexDirection: "column"
+                                    flexDirection: "column",
                                 }}
                             >
                                 {" "}
@@ -4735,8 +4756,8 @@ export default function ShallowRoutingExample({
                             style={{
                                 // flex: "0 1 30%",
                                 flexGrow: 0,
-                                flexShrink: 1,
-                                flexBasis: '30%',
+                                flexShrink: 0,
+                                flexBasis: 'auto',
                                 // display: "flex",
                                 flexDirection: "column",
                                 // border: "1px solid #a9a9a9",
@@ -4777,20 +4798,20 @@ export default function ShallowRoutingExample({
                                         <View
                                             // className="harSefareshCalcCont"
                                             style={{
-                                                display: "none",
+                                                display: "flex",
                                                 flexDirection: "row",
                                                 justifyContent: "space-between",
                                                 marginBottom: 5,
-                                                // fontSize: 14,
+                                                // fontSize: 14, 
                                             }}
                                         >
                                             <Text
                                                 // id="jamKolSpan"
-                                                style={{ fontSize: 14, }}
+                                                style={{ fontSize: 14, color: "#4b4949", }}
                                             >جمع کل:</Text>{" "}
                                             <Text
                                                 // id="kolGheymatInSabad"
-                                                style={{ fontSize: 14, }}
+                                                style={{ fontSize: 14, color: "#6a6a6a", }}
                                             >{jamKol}</Text>
                                         </View>
                                         <View
@@ -4804,7 +4825,7 @@ export default function ShallowRoutingExample({
                                             }}
                                         >
                                             <Text style={{ fontSize: 14, }}>هزینه ارسال:</Text>
-                                            <Text style={{ fontSize: 14, }}
+                                            <Text style={{ fontSize: 14, color: "#6a6a6a", }}
                                             // id="hazinePostInSabad"
                                             >۰</Text>
                                         </View>
@@ -4822,11 +4843,11 @@ export default function ShallowRoutingExample({
                                         >
                                             <Text
                                                 // className="titleStyle"
-                                                style={{ fontSize: 15, color: "#B80000", }}
+                                                style={{ fontSize: 15, color: "#4b4949", }}
                                             >سود شما از خرید: </Text>
                                             <Text
                                                 //  className="valueStyle" id="soodKolInSabad"
-                                                style={{ fontSize: 15, color: "#B80000", }}
+                                                style={{ fontSize: 15, color: "#6a6a6a", }}
                                             >
                                                 {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
                                             </Text>
@@ -4845,11 +4866,11 @@ export default function ShallowRoutingExample({
                                         >
                                             <Text
                                                 // className="titleStyle"
-                                                style={{ fontSize: 15, color: "#B80000" }}
+                                                style={{ fontSize: 15, color: "#4b4949", }}
                                             >مبلغ قابل پرداخت:</Text>
                                             <Text
                                                 // className="valueStyle" id="ghabelePardakhtInSabad"
-                                                style={{ fontSize: 15, color: "#B80000" }}
+                                                style={{ fontSize: 15, color: "#6a6a6a" }}
                                             >
                                                 {jamKol ? jamKol.toLocaleString() : 0}
                                             </Text>
@@ -4891,9 +4912,33 @@ export default function ShallowRoutingExample({
                                     </View>
                                 </View>
                             </View>
+
+                            <View
+                                style={{ backgroundColor: 'red', display: 'none', }}
+                            >
+                                <Text>111111111111111111111111111111111111111111111111111111111111111111</Text>
+                                <Text>22222222</Text>
+                                <Text>33333333</Text>
+                                <Text>44444444</Text>
+                                <Text>55555555</Text>
+                                <Text>666666666666</Text>
+                                <Text>777777777777</Text>
+                                <Text>88888888888</Text>
+                                <Text>99999999</Text>
+                                <Text>llllllll</Text>
+                                <Text>22222222</Text>
+                                <Text>33333333</Text>
+                                <Text>44444444</Text>
+                                <Text>55555555</Text>
+                                <Text>666666666666</Text>
+                                <Text>777777777777</Text>
+                                <Text>88888888888</Text>
+                                <Text>99999999</Text>
+                            </View>
+
                         </View>
                     </View>
-                </View>
+                </ScrollView>
             )}
         </>
     )
@@ -4975,4 +5020,54 @@ const styles = StyleSheet.create({
         textAlign: "center",
         color: "#333",
     },
+    /////////////////////////////////////////////zare_nk_041202_added_st(for responsives @media) 
+    sabadItemsAndTotalInf_STH576: {
+        flexDirection: 'column',
+    },
+    sabadItemsAndTotalInf_BTH576: {
+        flexDirection: 'row',
+    },
+    sabadItemsAndTotalInf_BTH768: {
+        flexDirection: 'row',
+    },
+    sabadItemsAndTotalInf_BTH992: {
+        flexDirection: 'row',
+    },
+
+    sabadItemsCont_STH576: {
+        marginBottom: 7,
+    },
+    sabadItemsCont_BTH576: {
+        marginLeft: 7,
+    },
+    sabadItemsCont_BTH768: {
+        marginLeft: 7,
+    },
+    sabadItemsCont_BTH992: {
+        marginLeft: 7,
+    },
+
+    sabadSafhe_STH576: {
+        paddingTop: 7,
+        paddingBottom: 12,  //zare_nk_041203_nokteh(chon scroll mikoneh dar reactNative ta enteha nemireh scroll! va majboorim paddingBotom ra kami bishtar bedim)
+        paddingHorizontal: 7,
+    },
+    sabadSafhe_BTH576: {
+        paddingTop: 10,
+        paddingBottom: 15,
+        paddingHorizontal: 10,
+    },
+    sabadSafhe_BTH768: {
+        paddingTop: 10,
+        paddingBottom: 15,
+        paddingHorizontal: 10,
+    },
+    sabadSafhe_BTH992: {
+        paddingTop: 15,
+        paddingBottom: 20,
+        paddingHorizontal: 15,
+    },
+
+    /////////////////////////////////////////////zare_nk_041202_added_end(for responsives @media) 
+
 });

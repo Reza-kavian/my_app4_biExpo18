@@ -50,13 +50,13 @@
 //     #contentContInProdDes h1 {
 //         font-size: 21px;
 //         margin-bottom: 12px;
-//         font-family: 'IRANSansWeb_Medium(adad_fa)';
+//         font-family: 'IRANSansWeb(FaNum)_Medium';
 //     }
 
 //     #contentContInProdDes h2 {
 //         font-size: 16px;
 //         margin-bottom: 10px;
-//         font-family: 'IRANSansWeb_Medium(adad_fa)';
+//         font-family: 'IRANSansWeb(FaNum)_Medium';
 //     }
 
 // #bishtarInProdDes {

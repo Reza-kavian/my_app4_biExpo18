@@ -59,7 +59,7 @@ const WelcomeScreen = (
       <Text
         style={[
           styles.title,
-          { color: theme.text, fontFamily: "IRANSansWeb_Bold_adad_fa" },
+          { color: theme.text, fontFamily: "IRANSansWeb(FaNum)_Bold" },
         ]}
       >
         اپ ری اکت نیتیو

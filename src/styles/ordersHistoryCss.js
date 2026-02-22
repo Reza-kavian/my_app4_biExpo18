@@ -1,10 +1,10 @@
 // .titleStyle {
-//     font-family: 'IRANSansWeb_Bold(adad_fa)';
+//     font-family: 'IRANSansWeb(FaNum)_Bold';
 //     color: #4b4949;
 // }
 
 // .valueStyle {
-//     font-family: 'IRANSansWeb_Medium(adad_fa)';
+//     font-family: 'IRANSansWeb(FaNum)_Medium';
 //     color: #6A6A6A;
 // }
 

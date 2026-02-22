@@ -617,7 +617,7 @@ export default function ShallowRoutingExample({
                                                     <Text
                                                         style={{
                                                             fontSize: 13,
-                                                            fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                                                            fontFamily: "IRANSansWeb(FaNum)_Medium",
                                                         }}
                                                     >
                                                         {item.NameKala || ""}
@@ -1001,7 +1001,7 @@ export default function ShallowRoutingExample({
                                                     numberOfLines={1}
                                                     style={{
                                                         // whiteSpace: "nowrap",
-                                                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                                                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                                                         fontSize: 14,
                                                         color: "#adadad",
                                                     }}
@@ -1048,7 +1048,7 @@ export default function ShallowRoutingExample({
                                                     numberOfLines={1}
                                                     style={{
                                                         // whiteSpace: "nowrap",
-                                                        fontFamily: "IRANSansWeb_Bold(adad_fa)",
+                                                        fontFamily: "IRANSansWeb(FaNum)_Bold",
                                                         fontSize: 14,
                                                         color: "#adadad",
                                                     }}

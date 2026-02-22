@@ -1706,7 +1706,7 @@
 //                 <div
 //                   className="spanCont"
 //                   style={{
-//                     fontFamily: "IRANSansWeb_Medium(adad_fa)",
+//                     fontFamily: "IRANSansWeb(FaNum)_Medium",
 //                     fontSize: "18px",
 //                   }}
 //                 >
@@ -1887,7 +1887,7 @@
 //                 <div
 //                   className="spanCont"
 //                   style={{
-//                     fontFamily: "IRANSansWeb_Medium(adad_fa)",
+//                     fontFamily: "IRANSansWeb(FaNum)_Medium",
 //                     fontSize: "18px",
 //                   }}
 //                 >
@@ -2069,7 +2069,7 @@
 //                               style={{
 //                                 fontSize: "16px",
 //                                 marginBottom: "30px",
-//                                 fontFamily: "IRANSansWeb_Medium(adad_fa)",
+//                                 fontFamily: "IRANSansWeb(FaNum)_Medium",
 //                                 lineHeight: "2.0",
 //                                 textOverflow: "ellipsis",
 //                                 overflow: "hidden",
@@ -2097,7 +2097,7 @@
 //                                   style={{
 //                                     display: "flex",
 //                                     flexFlow: "row",
-//                                     fontFamily: "IRANSansWeb_Medium(adad_fa)",
+//                                     fontFamily: "IRANSansWeb(FaNum)_Medium",
 //                                     color: "#888888",
 //                                   }}
 //                                 >
@@ -2566,7 +2566,7 @@
 //                       justifyContent: "center",
 //                       marginBottom: "30px",
 //                       color: "red",
-//                       fontFamily: "IRANSansWeb_Medium(adad_fa)",
+//                       fontFamily: "IRANSansWeb(FaNum)_Medium",
 //                     }}
 //                   >
 //                     کالای مورد نظر یافت نشد

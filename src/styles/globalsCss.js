@@ -779,24 +779,24 @@
 ////zare_nk_040611_added_st
 export const globalStyles = StyleSheet.create({
   titleStyle: {
-    fontFamily: "IRANSansWeb_Bold(adad_fa)", // مطمئن شو فونت رو با useFonts بارگذاری کردی
+    fontFamily: "IRANSansWeb(FaNum)_Bold", // مطمئن شو فونت رو با useFonts بارگذاری کردی
     color: "#4b4949",
   },
   valueStyle: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)", // فونت باید با useFonts بارگذاری شده باشد
+    fontFamily: "IRANSansWeb(FaNum)_Medium", // فونت باید با useFonts بارگذاری شده باشد
     color: "#6a6a6a",
   },
   titleInsabad: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)",
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
     color: "#6a6a6a",
     fontSize: 12,
   },
-  bodyStyle: {
-    fontFamily: "IRANSansWeb_ms(adad_fa)", // فونت اصلی؛ بقیه fallback ها در RN پشتیبانی نمی‌شوند
+  bodyStyle: {  
+    fontFamily: "IRANSansWeb(FaNum)", // فونت اصلی؛ بقیه fallback ها در RN پشتیبانی نمی‌شوند
     backgroundColor: "#fcfcfc",
   },
   loginOutBtn: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)",
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
     color: "black", // "inherit" در React Native پشتیبانی نمی‌شود، باید رنگ مشخص بدهی یا از theme استفاده کنی
   },
   layoutHeader: {
@@ -823,11 +823,11 @@ export const globalStyles = StyleSheet.create({
     // cursor: pointer وجود ندارد، در RN فقط TouchableOpacity یا Pressable استفاده می‌کنیم
   },
   button: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)", // فونت اصلی که با useFonts بارگذاری شده
+    fontFamily: "IRANSansWeb(FaNum)_Medium", // فونت اصلی که با useFonts بارگذاری شده
     // در RN نمی‌توان چند فونت fallback داد، پس فقط یکی را انتخاب می‌کنیم
   },
   status: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)", // مطمئن شو فونت با useFonts بارگذاری شده
+    fontFamily: "IRANSansWeb(FaNum)_Medium", // مطمئن شو فونت با useFonts بارگذاری شده
   },
   card: {
     borderWidth: 0, // معادل border: none
@@ -962,7 +962,7 @@ export const globalStyles = StyleSheet.create({
     height: "40%",
   },
   Popfont: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)", // مطمئن شو فونت با useFonts بارگذاری شده
+    fontFamily: "IRANSansWeb(FaNum)_Medium", // مطمئن شو فونت با useFonts بارگذاری شده
   },
   AddAddressCont: {
     flexDirection: "row", // display: flex در RN پیش‌فرض row است

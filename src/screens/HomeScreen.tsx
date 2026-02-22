@@ -12,6 +12,9 @@ import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "re
 
 import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041128_added
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_041128_added
+
+import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
+
 ////zare_nk_041130_commented_st
 // import "bootstrap/dist/css/bootstrap.min.css";
 // let cachedBootstrap: typeof import("bootstrap") | null = null;
@@ -142,8 +145,11 @@ export function MiddleCountTedadSefr({
             borderStyle: 'solid',
             overflow: "hidden",
             width: 35,  //zare_nk_041127_added
-            borderRadius: '50%',  //zare_nk_041127_added
-            direction: 'rtl'  //zare_nk_041127_added
+            // borderRadius: '50%',  //zare_nk_041127_added
+            direction: 'rtl',  //zare_nk_041127_added
+
+            flexDirection: 'row',  //zare_nk_041202_added
+            borderRadius: 17,  //zare_nk_041202_added
           }}
         // dir="ltr" 
         >
@@ -169,83 +175,46 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-              {/* <a
-                                data-baz="0"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    textDecoration: "none",
-                                    borderRadius: "50%",
-                                }}
-                                className={`rem-${IdKala}`}
-                                href="/login"
-                            >
-                                <button
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/remove-icon.svg"
-                                        alt="حذف از سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
               <TouchableOpacity
                 data-baz="0"
                 style={[
                   {
-                    //flex: "1 1 auto",
                     flexGrow: 1,
                     flexShrink: 1,
                     flexBasis: 'auto',
-
                     height: "100%",
-
-                    //padding: "0px 2px", 
                     paddingVertical: 0,
                     paddingHorizontal: 2,
-
                     justifyContent: "center",
-
                     alignItems: "center",
 
-                    //textDecoration: "none",
-
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
                 onPress={() => { return navigation.replace('Login'); }}
                 activeOpacity={0.1}
               >
-
                 <Text
                   style={{
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    // border: "none",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                   }}
                 // className="plussMinus"
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                     style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/remove-icon.svg"
+                    width={20}
+                    height={20}
                   />
                 </Text>
               </TouchableOpacity>
@@ -276,60 +245,21 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-              {/* <a
-                                data-baz="1"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    textDecoration: "none",
-                                    borderRadius: "50%",
-                                }}
-                                className={`add-${IdKala}`}
-                                href="/login"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handlerForAddClick(e);
-                                }}
-                            >
-                                <button
-                                    id={`inp-${IdKala}`}
-                                    style={{
-                                        color: "red",
-                                        fontSize: "14px",
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    className="plussMinus card-linkk text-dangerr fa fa-plus"
-                                ></button>
-                            </a> */}
               <TouchableOpacity
                 data-baz="1"
                 style={[
                   {
-                    //flex: "1 1 auto",
                     flexGrow: 1,
                     flexShrink: 1,
                     flexBasis: 'auto',
                     height: "100%",
-                    //padding: "0px 2px", 
                     paddingVertical: 0,
                     paddingHorizontal: 2,
-
                     justifyContent: "center",
-
                     alignItems: "center",
 
-                    //textDecoration: "none",
-
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
                 onPress={() => { handlerForAddClick() }}
@@ -340,15 +270,22 @@ export function MiddleCountTedadSefr({
                   style={{
                     color: "red",
                     fontSize: 14,
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                   }}
                 // className="plussMinus"
                 >
-                  +
+                  {/* + */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                    width={20}
+                    height={20}
+                  />
                 </Text>
               </TouchableOpacity>
 
@@ -377,63 +314,21 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-              {/* <a
-                                data-baz="0"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    textDecoration: "none",
-                                    borderRadius: "50%",
-                                }}
-                                className={`add-${IdKala}`}
-                                href="/login"
-                            >
-                                <button
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/add-to-cart.svg"
-                                        alt="اضافه به سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
-
-
               <TouchableOpacity
                 data-baz="0"
                 style={[
                   {
-                    //flex: "1 1 auto",
                     flexGrow: 1,
                     flexShrink: 1,
                     flexBasis: 'auto',
                     height: "100%",
-                    //padding: "0px 2px", 
                     paddingVertical: 0,
                     paddingHorizontal: 2,
-
                     justifyContent: "center",
-
                     alignItems: "center",
 
-                    //textDecoration: "none",
-
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
                 onPress={() => { return navigation.replace('Login'); }}
@@ -444,17 +339,24 @@ export function MiddleCountTedadSefr({
                   style={{
                     color: "red",
                     fontSize: 14,
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                   }}
                 // className="plussMinus"
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                     style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                    width={20}
+                    height={20}
                   />
                 </Text>
               </TouchableOpacity>
@@ -487,8 +389,11 @@ export function MiddleCountTedadSefr({
             borderStyle: 'solid',
             overflow: "hidden",
             width: "auto",  //zare_nk_041127_added
-            borderRadius: '50%',  //zare_nk_041127_added
-            direction: 'rtl'  //zare_nk_041127_added
+            // borderRadius: '50%',  //zare_nk_041127_added
+            direction: 'rtl',  //zare_nk_041127_added
+
+            flexDirection: 'row',  //zare_nk_041202_added
+            borderRadius: 17,  //zare_nk_041202_added
           }}
         // dir="ltr"
         >
@@ -513,68 +418,21 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-              {/* <a
-                                data-baz="1"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                }}
-                                className={`rem-${IdKala}`}
-                                href="/login"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handlerForRemClick(e);
-                                }}
-                            >
-                                <button
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/remove-icon.svg"
-                                        alt="حذف از سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
-
-
               <TouchableOpacity
                 data-baz="1"
                 style={[
                   {
-                    //flex: "1 1 auto",
                     flexGrow: 1,
                     flexShrink: 1,
                     flexBasis: 'auto',
-
                     height: "100%",
-
-                    //padding: "0px 2px", 
                     paddingVertical: 0,
                     paddingHorizontal: 2,
-
                     justifyContent: "center",
-
                     alignItems: "center",
 
-                    //textDecoration: "none",
-
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
                 onPress={() => { handlerForRemClick(); }}   //be login befresteh dar adtoocart be jaye bazi ba e.preventdefault...
@@ -583,18 +441,24 @@ export function MiddleCountTedadSefr({
 
                 <Text
                   style={{
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    // border: "none",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                   }}
                 // className="plussMinus"
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                     style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/remove-icon.svg"
+                    width={20}
+                    height={20}
                   />
                 </Text>
               </TouchableOpacity>
@@ -607,8 +471,14 @@ export function MiddleCountTedadSefr({
             // className={`middleCount-${IdKala}`}
             style={{
               height: "100%",
-              //  display: "flex",
-              flexDirection: "column"
+              ////zare_nk_041202_added_st
+              flexDirection: "row",
+              width: 40,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: 'center',
+              alignContent: "center",
+              ////zare_nk_041202_added_end
             }}
           >
             <Text
@@ -616,21 +486,21 @@ export function MiddleCountTedadSefr({
               // className="text-center titleStyle"
               style={{
                 backgroundColor: "white",
-                // border: "none",
-                // flex: "1 0 40%",
-                flexGrow: 1,
-                flexShrink: 0,
-                flexBasis: '40%',
-                width: 40,
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                alignContent: "center",
+                ////zare_nk_041202_commented_st
+                // flexGrow: 1,
+                // flexShrink: 0,
+                // flexBasis: '40%',
+                // width: 40,
+                // display: "flex",
+                // justifyContent: "center",
+                // alignItems: "center",
+                // alignContent: "center",
+                ////zare_nk_041202_commented_end
               }}
             >
               {tedadInSabadOrDet}
             </Text>
-            <Text> </Text>
+            {/* <Text> </Text> */}
           </View>
 
           <View
@@ -654,75 +524,24 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-              {/* <a
-                                data-baz="1"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                }}
-                                className={`add-${IdKala}`}
-                                href="/login"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handlerForAddClick(e);
-                                }}
-                            >
-                                <button
-                                    title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
-                                    }}
-                                    className="plussMinus"
-                                    disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/add-to-cart.svg"
-                                        alt="اضافه به سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
-
               <TouchableOpacity
                 data-baz="1"
                 style={[
                   {
-                    //flex: "1 1 auto",
                     flexGrow: 1,
                     flexShrink: 1,
                     flexBasis: 'auto',
-
                     height: "100%",
-
-                    //padding: "0px 2px", 
                     paddingVertical: 0,
                     paddingHorizontal: 2,
-
                     justifyContent: "center",
-
                     alignItems: "center",
-
-                    //textDecoration: "none",
-
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
 
                 activeOpacity={0.1}
-
 
                 disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                 // title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}   //zare_nk_041127_commented
@@ -739,20 +558,26 @@ export function MiddleCountTedadSefr({
                 <Text
                   //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                   style={{
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    // border: "none",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                     ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
                   }}
                 // className="plussMinus"
                 // disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                     style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                    width={20}
+                    height={20}
                   />
                 </Text>
               </TouchableOpacity>
@@ -786,8 +611,11 @@ export function MiddleCountTedadSefr({
             borderStyle: 'solid',
             overflow: "hidden",
             width: "auto",  //zare_nk_041127_added
-            borderRadius: '50%',  //zare_nk_041127_added
-            direction: 'rtl'  //zare_nk_041127_added
+            // borderRadius: '50%',  //zare_nk_041127_added
+            direction: 'rtl',  //zare_nk_041127_added
+
+            flexDirection: 'row',  //zare_nk_041202_added
+            borderRadius: 17,  //zare_nk_041202_added
           }}
         // dir="ltr"
         >
@@ -812,44 +640,6 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-              {/* <a
-                                data-baz="1"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                }}
-                                className={`rem-${IdKala}`}
-                                href="/login"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handlerForRemClick(e);
-                                }}
-                            >
-                                <button
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/remove-from-cart.svg"
-                                        alt="حذف از سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
               <TouchableOpacity
                 data-baz="1"
                 style={[
@@ -862,7 +652,8 @@ export function MiddleCountTedadSefr({
                     paddingHorizontal: 2,
                     justifyContent: "center",
                     alignItems: "center",
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
 
@@ -870,27 +661,30 @@ export function MiddleCountTedadSefr({
 
                 onPress={() => { handlerForAddClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented                                
               >
-
                 <Text
                   //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                   style={{
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    // border: "none",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                   }}
                 // className="plussMinus" 
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/remove-from-cart.svg" }}
                     style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/remove-from-cart.svg"
+                    width={20}
+                    height={20}
                   />
                 </Text>
               </TouchableOpacity>
-
-
             </View>
           </View>
 
@@ -898,8 +692,14 @@ export function MiddleCountTedadSefr({
             // className={`middleCount-${IdKala}`}
             style={{
               height: "100%",
-              // display: "flex",
-              flexDirection: "column"
+              ////zare_nk_041202_added_st
+              flexDirection: "row",
+              width: 40,
+              display: "flex",
+              justifyContent: "center",
+              alignItems: 'center',
+              alignContent: "center",
+              ////zare_nk_041202_added_end
             }}
           >
             <Text
@@ -907,21 +707,20 @@ export function MiddleCountTedadSefr({
               // className="text-center titleStyle"
               style={{
                 backgroundColor: "white",
-                // border: "none",
-                // flex: "1 0 40%",
-                flexGrow: 1,
-                flexShrink: 0,
-                flexBasis: '40%',
-                width: 40,
-                // display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                alignContent: "center",
+                ////zare_nk_041202_commented_st
+                // flexGrow: 1,
+                // flexShrink: 0,
+                // flexBasis: '40%',
+                // width: 40, 
+                // justifyContent: "center",
+                // alignItems: "center",
+                // alignContent: "center",
+                ////zare_nk_041202_commented_end
               }}
             >
               {tedadInSabadOrDet}
             </Text>
-            <Text> </Text>
+            {/* <Text> </Text> */}
           </View>
 
           <View
@@ -945,49 +744,6 @@ export function MiddleCountTedadSefr({
                 overflow: "hidden",
               }}
             >
-
-              {/* <a
-                                data-baz="1"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                }}
-                                className={`add-${IdKala}`}
-                                href="/login"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handlerForAddClick(e);
-                                }}
-                            >
-                                <button
-                                    title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                        ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
-                                    }}
-                                    className="plussMinus"
-                                    disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/add-to-cart.svg"
-                                        alt="اضافه به سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
-
               <TouchableOpacity
                 data-baz="1"
                 style={[
@@ -1000,12 +756,12 @@ export function MiddleCountTedadSefr({
                     paddingHorizontal: 2,
                     justifyContent: "center",
                     alignItems: "center",
-                    borderRadius: "50%",
+                    // borderRadius: "50%",  //zare_nk_041202_commented
+                    borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
 
                 activeOpacity={0.1}
-
 
                 disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                 // title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}   //zare_nk_041127_commented
@@ -1018,24 +774,29 @@ export function MiddleCountTedadSefr({
                   }
                 }}
               >
-
                 <Text
                   //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                   style={{
-                    height: "80%",
+                    // height: "80%",  //zare_nk_041202_commented
                     backgroundColor: "white",
-                    // border: "none",
-                    padding: 0,
-                    alignItems: "center",
-                    justifyContent: "center",
+                    ////zare_nk_041202_commented_st
+                    // padding: 0,
+                    // alignItems: "center",
+                    // justifyContent: "center",
+                    ////zare_nk_041202_commented_end
                     ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
                   }}
                 // className="plussMinus"
                 // disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                 >
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                     style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
+                    width={20}
+                    height={20}
                   />
                 </Text>
               </TouchableOpacity>
@@ -2161,7 +1922,7 @@ export default function HomeScreen({
         //           <div
         //             className="spanCont"
         //             style={{
-        //               fontFamily: "IRANSansWeb_Medium(adad_fa)",
+        //               fontFamily: "IRANSansWeb(FaNum)_Medium",
         //               fontSize: "18px",
         //             }}
         //           >
@@ -2343,7 +2104,7 @@ export default function HomeScreen({
         //                         style={{
         //                           fontSize: "16px",
         //                           marginBottom: "30px",
-        //                           fontFamily: "IRANSansWeb_Medium(adad_fa)",
+        //                           fontFamily: "IRANSansWeb(FaNum)_Medium",
         //                           lineHeight: "2.0",
         //                           textOverflow: "ellipsis",
         //                           overflow: "hidden",
@@ -2371,7 +2132,7 @@ export default function HomeScreen({
         //                             style={{
         //                               display: "flex",
         //                               flexFlow: "row",
-        //                               fontFamily: "IRANSansWeb_Medium(adad_fa)",
+        //                               fontFamily: "IRANSansWeb(FaNum)_Medium",
         //                               color: "#888888",
         //                             }}
         //                           >
@@ -2866,7 +2627,7 @@ export default function HomeScreen({
         //                 justifyContent: "center",
         //                 marginBottom: "30px",
         //                 color: "red",
-        //                 fontFamily: "IRANSansWeb_Medium(adad_fa)",
+        //                 fontFamily: "IRANSansWeb(FaNum)_Medium",
         //               }}
         //             >
         //               کالای مورد نظر یافت نشد
@@ -3067,7 +2828,7 @@ export default function HomeScreen({
                                 // WebkitBoxOrient: "vertical", 
                                 fontSize: 16,
                                 marginBottom: 30,
-                                fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                                fontFamily: "IRANSansWeb(FaNum)_Medium",
                                 textAlign: "right",
                               }}
                             >
@@ -3097,7 +2858,7 @@ export default function HomeScreen({
                                   flexDirection: "row",
                                 }}
                               >
-                                <Text style={{ fontFamily: "IRANSansWeb_Medium(adad_fa)", color: "#888888", }}>برند</Text>
+                                <Text style={{ fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#888888", }}>برند</Text>
                               </View>
                               <View
                                 style={{
@@ -3608,7 +3369,7 @@ export default function HomeScreen({
                     // color: "red", 
                   }}
                 >
-                  <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
+                  <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
                 </View>
               </View>
             </View>
@@ -3717,7 +3478,7 @@ export default function HomeScreen({
                       marginBottom: 30,
                     }}
                   >
-                    <Text style={{ color: "red", fontFamily: "IRANSansWeb_Medium(adad_fa)", }}> کالای مورد نظر یافت نشد</Text>
+                    <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
                   </View>
 
                   <View

@@ -763,14 +763,14 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   valueStyle: {
-    fontFamily: "IRANSansWeb_Medium(adad_fa)",
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
   },
   formsRow: {
     marginBottom: 20,
   },
 
   titleStyle: {
-    fontFamily: "IRANSansWeb_Bold(adad_fa)",
+    fontFamily: "IRANSansWeb(FaNum)_Bold",
   },
   lablAndInputCont: {
     direction: "rtl",
@@ -825,7 +825,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     // backgroundColor: "inherit",
-    fontFamily: "IRANSansWeb_Medium(adad_fa)",
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
     direction: "rtl",
   },
   // .BackBtn:hover {

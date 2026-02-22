@@ -4807,12 +4807,15 @@ export default function ShallowRoutingExample({
                                         >
                                             <Text
                                                 // id="jamKolSpan"
-                                                style={{ fontSize: 14, color: "#4b4949", }}
-                                            >جمع کل:</Text>{" "}
+                                                style={{ fontSize: 14, color: "#4b4949",fontFamily:"IRANSansWeb(FaNum)_Medium" }}
+                                                // IRANSansWeb(FaNum)_Bold
+                                            >جمع کل :</Text>{" "}
                                             <Text
                                                 // id="kolGheymatInSabad"
-                                                style={{ fontSize: 14, color: "#6a6a6a", }}
-                                            >{jamKol}</Text>
+                                                style={{ fontSize: 14, color: "#6a6a6a",fontFamily:"IRANSansWeb(FaNum)_Medium" }}
+                                            > 
+                                                {jamKol ? jamKol.toLocaleString() : jamKol}
+                                                </Text>
                                         </View>
                                         <View
                                             // className="harSefareshCalcCont"
@@ -4824,8 +4827,8 @@ export default function ShallowRoutingExample({
                                                 // fontSize: 14,
                                             }}
                                         >
-                                            <Text style={{ fontSize: 14, }}>هزینه ارسال:</Text>
-                                            <Text style={{ fontSize: 14, color: "#6a6a6a", }}
+                                            <Text style={{ fontSize: 14,fontFamily:"IRANSansWeb(FaNum)_Medium" }}>هزینه ارسال:</Text>
+                                            <Text style={{ fontSize: 14, color: "#6a6a6a",fontFamily:"IRANSansWeb(FaNum)_Medium" }}
                                             // id="hazinePostInSabad"
                                             >۰</Text>
                                         </View>
@@ -4843,11 +4846,11 @@ export default function ShallowRoutingExample({
                                         >
                                             <Text
                                                 // className="titleStyle"
-                                                style={{ fontSize: 15, color: "#4b4949", }}
-                                            >سود شما از خرید: </Text>
+                                                style={{ fontSize: 15, color: "#4b4949", fontFamily:"IRANSansWeb(FaNum)_Medium"}}
+                                            >سود شما از خرید : </Text>
                                             <Text
                                                 //  className="valueStyle" id="soodKolInSabad"
-                                                style={{ fontSize: 15, color: "#6a6a6a", }}
+                                                style={{ fontSize: 15, color: "#6a6a6a",fontFamily:"IRANSansWeb(FaNum)_Medium" }}
                                             >
                                                 {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
                                             </Text>
@@ -4866,11 +4869,11 @@ export default function ShallowRoutingExample({
                                         >
                                             <Text
                                                 // className="titleStyle"
-                                                style={{ fontSize: 15, color: "#4b4949", }}
-                                            >مبلغ قابل پرداخت:</Text>
+                                                style={{ fontSize: 15, color: "#4b4949",fontFamily:"IRANSansWeb(FaNum)_Medium" }}
+                                            >مبلغ قابل پرداخت :</Text>
                                             <Text
                                                 // className="valueStyle" id="ghabelePardakhtInSabad"
-                                                style={{ fontSize: 15, color: "#6a6a6a" }}
+                                                style={{ fontSize: 15, color: "#6a6a6a",fontFamily:"IRANSansWeb(FaNum)_Medium" }}
                                             >
                                                 {jamKol ? jamKol.toLocaleString() : 0}
                                             </Text>

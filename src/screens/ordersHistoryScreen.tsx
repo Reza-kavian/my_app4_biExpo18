@@ -161,7 +161,7 @@ export default function ShallowRoutingExample({
                 forooshTitrRowsLength: forooshTitrRowsLength,
             };
         });
-        const token = getCookie("token");
+        const token =await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
             setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -270,7 +270,7 @@ export default function ShallowRoutingExample({
             return;
         }
         async function tempFuncForAsync() {
-            const token = getCookie("token");
+            const token =await getCookie("token");
             if (token == null) {
                 setIsOpenedMymodalForWarning(true);
                 setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");

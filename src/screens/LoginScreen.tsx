@@ -191,7 +191,7 @@ export default function LoginScreen({
         if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
           //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
           const expires = new Date(
-            Date.now() + 1 * 60 * 1000
+            Date.now() + 15 * 60 * 1000
           ).toISOString();
           // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
           let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
@@ -318,7 +318,7 @@ export default function LoginScreen({
         Alert.alert('useEffect called!!-040603_JWT: ' + token);
         ////zare_nk_040929_added_st
         const expires = new Date(
-          Date.now() + 1 * 60 * 1000
+          Date.now() + 15 * 60 * 1000
         ).toISOString();
         ////zare_nk_040929_added_end
         console.log("040603_JWT:", token);
@@ -461,7 +461,7 @@ export default function LoginScreen({
               style={[styles.lablAndInputCont, { marginBottom: 15 }]}
             >
               <Text style={{ marginLeft: 15, marginBottom: 10 }}>
-                شماره تماس
+              ب  شماره تماس
               </Text>
               {/* <input
           style={{ textAlign: "center" }}

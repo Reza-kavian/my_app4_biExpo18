@@ -148,7 +148,7 @@ export function MiddleCountTedadSefr({
             // borderRadius: '50%',  //zare_nk_041127_added
             direction: 'rtl',  //zare_nk_041127_added
 
-            flexDirection: 'row',  //zare_nk_041202_added
+            flexDirection: 'row-reverse',  //zare_nk_041202_added
             borderRadius: 17,  //zare_nk_041202_added
           }}
         // dir="ltr" 
@@ -192,7 +192,9 @@ export function MiddleCountTedadSefr({
                     borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
-                onPress={() => { return navigation.replace('Login'); }}
+                // onPress={() => { return navigation.replace('Login'); }}
+                onPress={() => { handlerForRemClick() }}
+
                 activeOpacity={0.1}
               >
                 <Text
@@ -331,7 +333,9 @@ export function MiddleCountTedadSefr({
                     borderRadius: 17,  //zare_nk_041202_added
                   }
                 ]}
-                onPress={() => { return navigation.replace('Login'); }}
+                // onPress={() => { return navigation.replace('Login'); }}
+                onPress={() => { handlerForAddClick() }}
+
                 activeOpacity={0.1}
               >
 
@@ -392,7 +396,7 @@ export function MiddleCountTedadSefr({
             // borderRadius: '50%',  //zare_nk_041127_added
             direction: 'rtl',  //zare_nk_041127_added
 
-            flexDirection: 'row',  //zare_nk_041202_added
+            flexDirection: 'row-reverse',  //zare_nk_041202_added
             borderRadius: 17,  //zare_nk_041202_added
           }}
         // dir="ltr"
@@ -614,7 +618,7 @@ export function MiddleCountTedadSefr({
             // borderRadius: '50%',  //zare_nk_041127_added
             direction: 'rtl',  //zare_nk_041127_added
 
-            flexDirection: 'row',  //zare_nk_041202_added
+            flexDirection: 'row-reverse',  //zare_nk_041202_added
             borderRadius: 17,  //zare_nk_041202_added
           }}
         // dir="ltr"
@@ -659,7 +663,7 @@ export function MiddleCountTedadSefr({
 
                 activeOpacity={0.1}
 
-                onPress={() => { handlerForAddClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented                                
+                onPress={() => { handlerForRemClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented                                
               >
                 <Text
                   //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
@@ -1075,7 +1079,7 @@ export default function HomeScreen({
   }, []);
 
   async function ShowDetails(barcodeKala: any) {
-    const token = getCookie("token");
+    const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
       setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -1395,7 +1399,7 @@ export default function HomeScreen({
     //     addRemParam.event.preventDefault();
     // }
     ////zare_nk_041129_commented_end
-    const token = getCookie("token");
+    const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
       setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -1420,7 +1424,7 @@ export default function HomeScreen({
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
       TedadOut = addRemParam.tedadInSabadOrDet + zarib;
       TedadOuttoAjax = addRemParam.ZaribForoosh;
-      const token = getCookie("token");
+      const token = await getCookie("token");
       console.log('041120-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
 
       let ApiUrl = "https://api.tochikala.com/api/";
@@ -1541,7 +1545,7 @@ export default function HomeScreen({
     //     addRemParam.event.preventDefault();
     // }
     ////zare_nk_041129_commented_st
-    const token = getCookie("token");
+    const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
       setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -1566,7 +1570,7 @@ export default function HomeScreen({
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
       TedadOut = addRemParam.tedadInSabadOrDet - zarib;
       TedadOuttoAjax = -(addRemParam.ZaribForoosh);
-      const token = getCookie("token");
+      const token = await getCookie("token");
 
       let ApiUrl = "https://api.tochikala.com/api/";
       var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
@@ -1836,8 +1840,8 @@ export default function HomeScreen({
   // };
   ////zare_nk_041130_commented_end
   ////zare_nk_041130_added_st
-  const seePrices = () => {
-    const token = getCookie("token");
+  const seePrices = async () => {
+    const token = await getCookie("token");
     if (token == null) {
       // window.location.href = "/login";
       setIsOpenedMymodalForWarning(true);

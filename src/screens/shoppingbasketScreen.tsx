@@ -40,7 +40,7 @@ const showNoStock = () => {
     if (Platform.OS === "android") {
         ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
     } else {
-        Alert.alert("خطا", "موجودی کافی نیست");
+        // Alert.alert("خطا", "موجودی کافی نیست");
     }
 };
 ////zare_nk_041127_added_end
@@ -1063,10 +1063,10 @@ function MiddleCountTedadSefr({
                                 //  onPress={() => { handlerForAddClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented
                                 onPress={() => {
                                     if (Boolean(Number(bishAzMaxTedadYaMojoodi))) {
-                                        Alert.alert('111');
+                                        // Alert.alert('111');
                                         showNoStock();
                                     } else {
-                                        Alert.alert('222');
+                                        // Alert.alert('222');
                                         handlerForAddClick();
                                     }
                                 }}
@@ -2896,7 +2896,7 @@ export default function ShallowRoutingExample({
         addRemParam: addRemParamType,
     ) => void = (addRemParam) => {
         // addRemParam.event && addRemParam.event.stopPropagation(); 
-        Alert.alert('333');
+        // Alert.alert('333');
         addToCartInIndex(
             addRemParam
         );
@@ -2905,7 +2905,7 @@ export default function ShallowRoutingExample({
     const handlerForRemClick: (
         addRemParam: addRemParamType,
     ) => void = (addRemParam) => {
-        Alert.alert('handlerForRemClick');
+        // Alert.alert('handlerForRemClick');
         remveFromCartInIndex(
             addRemParam
         );
@@ -2922,7 +2922,7 @@ export default function ShallowRoutingExample({
                 animationType="fade"
                 ////zare_nk_041203_added_st
                 onRequestClose={() => {
-                    Alert.alert('aaaaa');
+                    // Alert.alert('aaaaa');
                     // setAddOrRemChanged("notNull");
                     // setBisatrInProductDet(false);
 

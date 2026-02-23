@@ -14,7 +14,9 @@ type Props = {
   backgroundColor?: string;
   textColor?: string;
   width?: DimensionValue;
-  idDisabled?:boolean
+  idDisabled?:boolean;
+  marginTop?:number;
+  marginBottom?:number;
 };
 
 const ReusableButton = ({
@@ -24,10 +26,12 @@ const ReusableButton = ({
   textColor = 'brown',
   width = '80%',
   idDisabled=false,
+  marginTop=16,
+  marginBottom=0,
 }: Props) => {
   return (
     <TouchableOpacity
-      style={[styles.button , { backgroundColor, width }]}
+      style={[styles.button , { backgroundColor, width,marginTop,marginBottom }]}
       onPress={onPress}
       activeOpacity={0.1}
       disabled={idDisabled}
@@ -44,7 +48,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 24,
     borderRadius: 8,
-    marginTop: 16,
+    // marginTop: 16,
     alignSelf: 'center',
   } as ViewStyle,
   buttonText: {

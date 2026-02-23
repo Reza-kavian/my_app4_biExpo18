@@ -1895,6 +1895,17 @@ export default function HomeScreen({
         visible={isOpenedMymodalForWarning}
         transparent
         animationType="fade"
+        ////zare_nk_041203_added_st
+        onRequestClose={() => {
+          Alert.alert('aaaaa');
+          // setAddOrRemChanged("notNull");
+          // setBisatrInProductDet(false);
+
+          setIsOpenedMymodalForWarning(false);
+          setScannedValue(null);
+          setIsScanning(true);
+        }}
+      ////zare_nk_041203_added_end
       >
         <View style={styles.resultOverlay}>
           <View style={styles.resultBox}>
@@ -1907,7 +1918,6 @@ export default function HomeScreen({
               title="تأیید"
               onPress={() => {
                 setIsOpenedMymodalForWarning(false);
-                // setModalVisible(false);
                 setScannedValue(null);
                 setIsScanning(true);
               }}
@@ -3427,61 +3437,187 @@ export default function HomeScreen({
             >
               {/*zare_nk_040923(konteyner dakhele modal)*/}
               <View style={[styles.modalContainer, { overflow: "hidden" }]}>
-                <Camera //zare_nk_040923(komponent doorbin)
-                  style={StyleSheet.absoluteFill}
-                  device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
-                  isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
-                  codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
-                  enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
-                  torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
-                />
-                {/*zare_nk_040923(baraye namayesh kadr rahnama)*/}
-                <View style={styles.overlay}>
-                  {/*zare_nk_040923(kadre rahnama baraye gharar dadane barcode dar an(tookhali))*/}
-                  {/*<View style={styles.scanFrame} />*/}
-                  {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
-                  <View style={styles.scanFrame}>
-                    {/*zare_nk_040923(Animated.View haman khat hast ke ba translateY jabeja mishe,nokteye jaleb ine Animated.View niaz be rendere mojadade component ba setState
-               nadare va dar haman rendere feli taghir mikoneh! va in maziyate khoobe ThreadNative hast ke bedoone rendere mojadade react taghirat ra roye UI anjam mideh)*/}
-                    <Animated.View
-                      style={[
-                        styles.scanLine,
-                        {
-                          transform: [
-                            {
-                              translateY: scanLineAnim.interpolate({//zare_nk_04107_nokteh(scanLineAnim hokme chalangar ra beine bazeye sefroyeki va pixeli darad )
-                                inputRange: [0, 1],   //zare_nk_04107_nokteh(range Animated.Value ke bazeye beine 0 va 1 hast)
-                                outputRange: [0, 230], // ارتفاع فریم - ضخامت خط  //zare_nk_04107_nokteh(range UI ke bar asase pixel hast)
-                              }),
-                            },
-                          ],
-                        },
-                      ]}
+                {/*zare_nk_041204_okk_st(baraye namayesh kadr rahnama)*/}
+                <View style={[styles.overlay,
+                {
+                  borderStyle: 'dashed',
+                  borderWidth: 3,
+                  borderColor: 'yellow',
+                  backgroundColor: '#cdf3e6',
+                  //  backgroundColor: '#f3cdcf', 
+                  zIndex: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  // flexWrap:'wrap',
+                  //  justifyContent:'center',
+                  alignItems: 'center',
+
+                }
+                ]}>
+                  <Text style={styles.text}>لطفا بارکد را در کادر قرار دهید</Text>
+                  <View
+                    style={{
+                      display: 'flex',
+                      borderStyle: 'dashed',
+                      borderWidth: 3,
+                      borderColor: 'red',
+                      position: 'relative',
+                      marginBottom: 10,
+                    }}
+                  >{/* bazkardane view pedare doorbin va kadr */}
+                    <View style={[styles.scanFrame,]}> </View>
+                    <Camera //zare_nk_040923(komponent doorbin)
+                      style={[styles.scanFrame,
+                      // StyleSheet.absoluteFill,
+                      { zIndex: 3, position: 'absolute', top: 0, left: 0, }]}
+                      device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
+                      isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
+                      codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
+                      enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
+                      torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
                     />
+
+                    {/*zare_nk_040923(kadre rahnama baraye gharar dadane barcode dar an(tookhali))*/}
+                    {/*<View style={styles.scanFrame} />*/}
+                    {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
+                    <View style={[styles.scanFrame, { zIndex: 4, position: 'absolute', top: 0, left: 0, }]}>
+                      {/*zare_nk_040923(Animated.View haman khat hast ke ba translateY jabeja mishe,nokteye jaleb ine Animated.View niaz be rendere mojadade component ba setState
+               nadare va dar haman rendere feli taghir mikoneh! va in maziyate khoobe ThreadNative hast ke bedoone rendere mojadade react taghirat ra roye UI anjam mideh)*/}
+                      <Animated.View
+                        style={[
+                          styles.scanLine,
+                          {
+                            transform: [
+                              {
+                                translateY: scanLineAnim.interpolate({//zare_nk_04107_nokteh(scanLineAnim hokme chalangar ra beine bazeye sefroyeki va pixeli darad )
+                                  inputRange: [0, 1],   //zare_nk_04107_nokteh(range Animated.Value ke bazeye beine 0 va 1 hast)
+                                  outputRange: [0, 230], // ارتفاع فریم - ضخامت خط  //zare_nk_04107_nokteh(range UI ke bar asase pixel hast)
+                                }),
+                              },
+                            ],
+                          },
+                        ]}
+                      />
+                    </View>
+                    {/*zare_nk_041204_okk_end(baraye namayesh kadr rahnama)*/}
+                    {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
+
                   </View>
-                  {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
-                  {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte cheshmakzan))*/}
-                  {/* <View style={styles.scanFrame}>
-              <Animated.View
-                style={[
-                  styles.scanLine,
-                  { opacity: blinkAnim }  // چشمک زدن
-                ]}
-              />
-            </View> */}
-                  {/*zare_nk_041003_added_end(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte cheshmakzan))*/}
+                  {/* bastane view pedare doorbin va kadr */}
                   {/*zare_nk_040923(matni baraye rahnamayi karbar)*/}
-                  <Text style={styles.text}>بارکد را در کادر قرار دهید</Text>
+
                   {/*zare_nk_040923(dokmeye baraye baste shodan modal)*/}
                   {/* zare_nk_041007_commented(baraye jaygoziniye button ba ReusableButton) */}
                   {/* <Button title="بستن" color="red" onPress={() => setIsOpenedSeePricesModal(false)} /> */}
                   {/* zare_nk_041007_added(baraye jaygoziniye button ba ReusableButton) */}
+
+                  <View
+                    // className="contAndHoshdarCont"
+                    style={{
+                      // flex: "1 1 auto",
+                      flexGrow: 0,  //zare_nk_041204_nokteh(flexGrow va flexShrink ra 0 dadim ta hameye overlay ra nopooshoneh(chon zIndex bozorgtari dare mire rooye overlay))
+                      flexShrink: 0,
+                      flexBasis: 'auto',
+                      display: "flex",
+                      flexDirection: "column",
+                      borderStyle: 'dashed',
+                      borderWidth: 3,
+                      borderColor: '#ff8aca',
+                      backgroundColor: 'white',
+                      zIndex: 1,
+                      marginBottom: 10,
+                    }}
+                  >
+                    <View
+                      // className="cont"
+                      style={{
+                        position: "relative",
+                        width: 250,
+                        // display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "center",
+                        // justifyItems: "center",
+                        // alignContent: "center",
+                        alignItems: "center",
+
+                        borderStyle: 'dashed',
+                        borderWidth: 3,
+                        borderColor: 'orange',
+                      }}
+                    >
+                      <View
+                        // className="labelcreator absol"
+                        style={{
+                          // flex: "0 0 auto"
+                          flexGrow: 0,
+                          flexShrink: 0,
+                          flexBasis: 'auto',
+                          top: -13,
+                          right: 10,
+                          position: 'absolute',
+
+                          backgroundColor: 'white',
+                          borderRadius: 5,
+                          paddingHorizontal: 3,
+                          paddingVertical: 3,
+                          zIndex: 2,
+                        }}
+                      >
+                        <Text
+                          //  className="valueStyle"
+                          style={{
+                            width: "100%",
+                          }}>
+                          بارکد دستی
+                        </Text>
+                      </View>
+                      <View style={{
+                        // flex: "1 1 auto"
+                        flexGrow: 1,
+                        flexShrink: 1,
+                        flexBasis: 'auto',
+                      }}>
+                        <TextInput
+                          placeholder="باردکد دستی"
+                          value={manualBarcode}
+                          onChangeText={setManualBarcode}
+                          onSubmitEditing={() => {
+                            ManualInputBarcode(manualBarcode);
+                          }}
+                          style={styles.input}
+                          returnKeyType="done"
+                        />
+                      </View>
+                    </View>
+                    <View style={{
+                      display: "none",
+                      flexDirection: "row",
+                    }}>
+                      <Text
+                        // className="forError forErrorFormanualBarcode"
+                        style={{
+                          width: "100%",
+                          fontSize: 14,
+                          color: "red",
+                          borderBlockColor: 'red',
+                          borderStyle: 'dashed',
+                          borderWidth: 2,
+                        }}
+                      ></Text>
+                    </View>
+                  </View>
+
                   <ReusableButton
                     title="بستن"
-                    onPress={() => setIsOpenedSeePricesModal(false)}
+                    onPress={() => {
+                      setIsOpenedSeePricesModal(false);
+                      setAddOrRemChanged("notNull");  //zare_nk_041203_added
+                    }}
                     backgroundColor="red"
                     textColor="white"
                     width={250}
+                    marginTop={0}
+                    marginBottom={10}
                   />
 
                   {/*zare_nk_040926(baraye off va on kardane flash,albate age dastgah flash nadash dokmeh neshoon nadeh)*/}
@@ -3492,115 +3628,12 @@ export default function HomeScreen({
                       backgroundColor="green"
                       textColor="white"
                       width={250}
+                      marginTop={0}
+                      marginBottom={0}
                     />
                   )}
+
                 </View>
-
-                {/* zare_nk_041128_added_st */}
-                <View
-                  // className="contAndHoshdarCont"
-                  style={{
-                    // flex: "1 1 auto",
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                    // display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <View
-                    // id="productNotExist"
-                    style={{
-                      height: "100%",
-                      display: "none",
-                      justifyContent: "center",
-                      marginBottom: 30,
-                    }}
-                  >
-                    <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
-                  </View>
-
-                  <View
-                    // className="cont"
-                    style={{
-                      position: "relative",
-                      width: "100%",
-                      // display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "center",
-                      // justifyItems: "center",
-                      // alignContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <View
-                      // className="labelcreator absol"
-                      style={{
-                        // flex: "0 0 auto"
-                        flexGrow: 0,
-                        flexShrink: 0,
-                        flexBasis: 'auto',
-                      }}
-                    >
-                      <Text
-                        //  className="valueStyle"
-                        style={{
-                          width: "100%"
-                        }}>
-                        بارکد دستی
-                      </Text>
-                    </View>
-                    <View style={{
-                      // flex: "1 1 auto"
-                      flexGrow: 1,
-                      flexShrink: 1,
-                      flexBasis: 'auto',
-                    }}>
-                      {/* <input
-                                className="textcreator form-control MatnInput valid" //zare_nk_040304(valid ra pack konam)
-                                style={{ width: "100%" }}
-                                id="manualInputBarcode"
-                                name="manualInputBarcode"
-                                type="text"
-                                onKeyDown={(event) => {
-                                    return ManualInputBarcode(event);
-                                }}
-                            /> */}
-
-                      <TextInput
-                        placeholder="باردکد دستی"
-                        value={manualBarcode}
-                        onChangeText={setManualBarcode}
-                        onSubmitEditing={() => {
-                          ManualInputBarcode(manualBarcode);
-                        }}
-
-                        // onChangeText={(text) => {
-                        //   setManualBarcode(text);
-                        //   ManualInputBarcode(text);
-                        // }}
-
-                        style={styles.input}
-                        returnKeyType="done"
-                      />
-
-                    </View>
-                  </View>
-
-                  <View>
-                    <Text
-                      // className="forError forErrorFormanualBarcode"
-                      style={{
-                        width: "100%",
-                        // display: "flex",
-                        flexDirection: "row",
-                        fontSize: 14,
-                        color: "red",
-                      }}
-                    ></Text>
-                  </View>
-                </View>
-                {/* zare_nk_041128_added_end */}
               </View>
             </Modal>
 
@@ -4408,7 +4441,7 @@ const styles = StyleSheet.create({
   text: {
     color: "white",
     fontSize: 18,
-    marginBottom: 50,
+    marginBottom: 10,
     backgroundColor: "rgba(0,0,0,0.6)",
     padding: 10,
     borderRadius: 5,
@@ -4417,7 +4450,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
-    marginBottom: 10,
     width: "100%",
     borderRadius: 5,
   },

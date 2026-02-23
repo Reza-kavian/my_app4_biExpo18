@@ -1789,7 +1789,7 @@ export default function ShallowRoutingExample({
     }
 
     async function ShowDetails(barcodeKala: any) {
-        Alert.alert('ShowDetails called!!');
+        // Alert.alert('ShowDetails called!!');
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
@@ -2083,7 +2083,7 @@ export default function ShallowRoutingExample({
     async function getSabadItems(IdSabadKharidTitr: number, token: string) {
         ////zare_nk_041129_added_st
         if (IdSabadKharidTitr == -22) {
-            Alert.alert('bisatrrre!!!');
+            // Alert.alert('bisatrrre!!!');
             setBisatr(true);
             return;
         }
@@ -2515,7 +2515,7 @@ export default function ShallowRoutingExample({
     async function addToCartInIndex(
         addRemParam: addRemParamType,
     ) {
-        Alert.alert('444');
+        // Alert.alert('444');
         console.log('041203-addToCartInIndex called!-addRemParam: ' + addRemParam.NameKala);
         // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
         ////zare_nk_041129_commented_st
@@ -2680,7 +2680,7 @@ export default function ShallowRoutingExample({
     async function remveFromCartInIndex(
         addRemParam: addRemParamType,
     ) {
-        Alert.alert('remveFromCartInIndex');
+        // Alert.alert('remveFromCartInIndex');
         ////zare_nk_041129_commented_st
         // if (addRemParam.event != null) {
         //     addRemParam.event.stopPropagation();
@@ -4959,37 +4959,7 @@ export default function ShallowRoutingExample({
                                         </View>
                                     </View>
 
-                                    <View style={{ paddingTop: 10 }}>
-                                        {/* <button
-                                    // className="btn btn-success"
-                                    style={{ width: "100%", borderRadius: "10px" }}
-                                // onClick={(e) => payForSabad(e)}   //zare_nk_040411_commented(felan dar tochi ghasde pardakht dar app nadarim)
-                                >
-                                    پرداخت
-                                </button> */}
-
-                                        <TouchableOpacity
-                                            data-baz="0"
-                                            style={[
-                                                {
-                                                    // flexGrow: 1,
-                                                    // flexShrink: 1,
-                                                    // flexBasis: 'auto',
-                                                    // height: "100%", 
-                                                    // paddingVertical: 0,
-                                                    // paddingHorizontal: 2,
-                                                    // justifyContent: "center",
-                                                    // alignItems: "center",
-                                                    display: 'none',
-                                                    width: "100%",
-                                                    borderRadius: 10,
-                                                }
-                                            ]}
-                                            onPress={() => { return navigation.replace('Login'); }}
-                                            activeOpacity={0.1}
-                                        >
-                                            <Text>پرداخت</Text>
-                                        </TouchableOpacity>
+                                    <View style={{ paddingTop: 10 }}> 
 
                                     </View>
                                 </View>

@@ -1478,7 +1478,7 @@ function SabadSatrComponent({
                                         marginLeft: 10,
                                     }}
                                 >
-                                    <Text style={{color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium"}}>  قیمت کرفو</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>  قیمت کرفو</Text>
                                 </View>
                                 <View
                                     // className="gheimatForooshInsabad titleStyle"
@@ -1488,13 +1488,13 @@ function SabadSatrComponent({
                                         marginLeft: 5,
                                     }}
                                 >
-                                    <Text style={{color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium"}}>  {SabadRow.FeeForoosh != null ? SabadRow.FeeForoosh.toLocaleString() : 0}</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>  {SabadRow.FeeForoosh != null ? SabadRow.FeeForoosh.toLocaleString() : 0}</Text>
                                 </View>
                                 <View
                                     // className="rialInsabad valueStyle"
                                     style={{ display: "flex", flexDirection: "row" }}
                                 >
-                                    <Text style={{color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium"}}>ریال</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>ریال</Text>
                                 </View>
                             </View>
 
@@ -1507,7 +1507,7 @@ function SabadSatrComponent({
                                         marginLeft: 10,
                                     }}
                                 >
-                                    <Text style={{color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium"}}>مجموع سطر</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>مجموع سطر</Text>
                                 </View>
                                 <View
                                     // id={`majmooGheimatForooshSatrInsabad-${SabadRow.IdKala}`}
@@ -1518,13 +1518,13 @@ function SabadSatrComponent({
                                         marginLeft: 5,
                                     }}
                                 >
-                                    <Text style={{color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium"}}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
                                 </View>
                                 <View
                                     // className="rialInsabad valueStyle"
                                     style={{ display: "flex", flexDirection: "row" }}
                                 >
-                                    <Text style={{color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium"}}> ریال</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}> ریال</Text>
                                 </View>
                             </View>
                         </View>
@@ -4888,7 +4888,8 @@ export default function ShallowRoutingExample({
                                                 // id="jamKolSpan"
                                                 style={{ fontSize: 14, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
                                             // IRANSansWeb(FaNum)_Bold
-                                            >جمع کل :</Text>{" "}
+                                            >جمع کل :</Text> 
+                                            <Text>{" "}</Text>
                                             <Text
                                                 // id="kolGheymatInSabad"
                                                 style={{ fontSize: 14, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
@@ -4959,7 +4960,7 @@ export default function ShallowRoutingExample({
                                         </View>
                                     </View>
 
-                                    <View style={{ paddingTop: 10 }}> 
+                                    <View style={{ paddingTop: 10 }}>
 
                                     </View>
                                 </View>

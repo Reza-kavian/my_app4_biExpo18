@@ -934,6 +934,66 @@ export default function HomeScreen({
 
   const [manualBarcode, setManualBarcode] = useState(String);
   ////zare_nk_041128_added_end 
+
+  ////zare_nk_041203_added_st
+  useEffect(() => {
+    requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
+  }, []);
+
+  useEffect(() => {
+    if (!isOpenedSeePricesModal || !isScanning) {
+      scanLineAnim.stopAnimation();
+      return;
+    }
+    ////zare_nk_041007_added_st(age bekhaim meghdare scanLineAnim ra bebinim)
+    scanLineAnim.addListener(({ value }) => { //dastoore x01
+      console.log(value);
+    });
+    ////zare_nk_041007_added_end(age bekhaim meghdare scanLineAnim ra bebinim)
+    Animated.loop(
+      Animated.sequence([
+        Animated.timing(scanLineAnim, { //zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti 
+          // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
+          toValue: 1, //zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 1 meghdare hadafe Animated.Value hast)
+          duration: 1500,
+          useNativeDriver: true,   //zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
+        }),
+        Animated.timing(scanLineAnim, { //zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti
+          // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
+          toValue: 0, //zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 0 meghdare hadafe Animated.Value hast)
+          duration: 1500,
+          useNativeDriver: true,   //zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
+        }),
+      ])
+    ).start();
+  }, [isOpenedSeePricesModal, isScanning]);
+  ////zare_nk_041203_added_end 
+
+  const codeScanner = useCodeScanner({
+    codeTypes: ["qr", "ean-13", "upc-a"],
+    onCodeScanned: (codes) => {
+      if (!isScanning) return;
+      for (const code of codes) {
+        if (code.value) {
+          console.log(`Scanned: ${code.value}`);
+          setIsScanning(false);
+          // setScannedValue(code.value);  //zare_nk_041129_commented
+
+          ////baste shodane modal
+          // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
+          setIsOpenedSeePricesModal(false);  //okk
+
+          ////shenasaei va openprodDetModal 
+          ShowDetails(code.value);  //okk
+          setIsOpenedProdDetModal(true);  //okk
+          setAddOrRemChanged(null);  //okk
+
+          break;
+        }
+      }
+    },
+  });
+
   ////zare_nk_041130_commented_st
   // var modal: bootstrap.Modal;
   // async function openprodDetModal(barcodeKala: string) {
@@ -985,31 +1045,6 @@ export default function HomeScreen({
   //         });
   // }
   ////zare_nk_041128_commented_end
-
-  const codeScanner = useCodeScanner({
-    codeTypes: ["qr", "ean-13", "upc-a"],
-    onCodeScanned: (codes) => {
-      if (!isScanning) return;
-      for (const code of codes) {
-        if (code.value) {
-          console.log(`Scanned: ${code.value}`);
-          setIsScanning(false);
-          // setScannedValue(code.value);  //zare_nk_041129_commented
-
-          ////baste shodane modal
-          // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
-          setIsOpenedSeePricesModal(false);  //okk
-
-          ////shenasaei va openprodDetModal 
-          ShowDetails(code.value);  //okk
-          setIsOpenedProdDetModal(true);  //okk
-          setAddOrRemChanged(null);  //okk
-
-          break;
-        }
-      }
-    },
-  });
 
   useEffect(() => {
     ////zare_nk_041130_commented_st

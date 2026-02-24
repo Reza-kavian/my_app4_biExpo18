@@ -982,6 +982,7 @@ export default function HomeScreen({
           ////baste shodane modal
           // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
           setIsOpenedSeePricesModal(false);  //okk
+          setManualBarcode('');  //zare_nk_041205_added
 
           ////shenasaei va openprodDetModal 
           ShowDetails(code.value);  //okk
@@ -1853,6 +1854,7 @@ export default function HomeScreen({
       //     }
       // }
       setIsOpenedSeePricesModal(false); //reza_nk_041128_added
+      setManualBarcode('');  //zare_nk_041205_added
       // addDetectedToCart(text.toString());  //zare_nk_041130_commented(addDetectedToCart dar in safhe nadarim)
       openprodDetModal(text.toString());  //zare_nk_041130_added(openprodDetModal dar in safhe darim)
     }
@@ -1885,7 +1887,8 @@ export default function HomeScreen({
     }
     setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
     setIsOpenedSeePricesModal(true);
-    setAddOrRemChanged(null);
+    // setAddOrRemChanged(null);
+    setIsScanning(true);  //zare_nk_041203_added
   };
   ////zare_nk_041130_added_end
 
@@ -3428,48 +3431,52 @@ export default function HomeScreen({
           </View>
         </Modal>
       ) : isOpenedSeePricesModal == true ? (
+        ////zare_nk_041205_updated_st(kolle isOpenedSeePricesModal == true)
         !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
           (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
             (<Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
               visible={isOpenedSeePricesModal}    //zare_nk_040923(halat namayesh modal)
               animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
-              onRequestClose={() => setIsOpenedSeePricesModal(false)}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
+              onRequestClose={() => {  //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
+                setIsOpenedSeePricesModal(false);
+                setManualBarcode('');  //zare_nk_041205_added
+                // setAddOrRemChanged("notNull");  //zare_nk_041130_commented(AddOrRemChanged dar in safhe karbord nadare)
+              }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
             >
               {/*zare_nk_040923(konteyner dakhele modal)*/}
               <View style={[styles.modalContainer, { overflow: "hidden" }]}>
                 {/*zare_nk_041204_okk_st(baraye namayesh kadr rahnama)*/}
                 <View style={[styles.overlay,
                 {
-                  borderStyle: 'dashed',
-                  borderWidth: 3,
-                  borderColor: 'yellow',
-                  backgroundColor: '#cdf3e6',
-                  //  backgroundColor: '#f3cdcf', 
+                  // backgroundColor: '#cdf3e6',
+                  backgroundColor: 'rgba(0,0,0,0.6)',
                   zIndex: 0,
                   display: 'flex',
                   flexDirection: 'column',
-                  // flexWrap:'wrap',
-                  //  justifyContent:'center',
                   alignItems: 'center',
-
+                  paddingHorizontal: 10,
+                  paddingVertical: 10,
                 }
                 ]}>
                   <Text style={styles.text}>لطفا بارکد را در کادر قرار دهید</Text>
                   <View
                     style={{
                       display: 'flex',
-                      borderStyle: 'dashed',
-                      borderWidth: 3,
-                      borderColor: 'red',
+                      // borderStyle: 'dashed',
+                      // borderWidth: 3,
+                      // borderColor: 'red',
                       position: 'relative',
-                      marginBottom: 10,
+                      marginBottom: 20,
+                      borderRadius: 11,
+                      overflow: "hidden",
                     }}
                   >{/* bazkardane view pedare doorbin va kadr */}
+                    {/* zare_nk_041205_nokteh(View ba positione statice komaki baraye inke tage pedar ke position: 'relative' dare ertefae sefr nagire,chon farzandani ke absolute bashan ertefae pedar ro barabare contente khodeshoon nemikonan) */}
                     <View style={[styles.scanFrame,]}> </View>
                     <Camera //zare_nk_040923(komponent doorbin)
                       style={[styles.scanFrame,
                       // StyleSheet.absoluteFill,
-                      { zIndex: 3, position: 'absolute', top: 0, left: 0, }]}
+                      { zIndex: 3, position: 'absolute', top: 0, left: 0, overflow: "hidden" }]}
                       device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
                       isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
                       codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
@@ -3491,7 +3498,7 @@ export default function HomeScreen({
                               {
                                 translateY: scanLineAnim.interpolate({//zare_nk_04107_nokteh(scanLineAnim hokme chalangar ra beine bazeye sefroyeki va pixeli darad )
                                   inputRange: [0, 1],   //zare_nk_04107_nokteh(range Animated.Value ke bazeye beine 0 va 1 hast)
-                                  outputRange: [0, 230], // ارتفاع فریم - ضخامت خط  //zare_nk_04107_nokteh(range UI ke bar asase pixel hast)
+                                  outputRange: [0, 295], // ارتفاع فریم - ضخامت خط  //zare_nk_04107_nokteh(range UI ke bar asase pixel hast)
                                 }),
                               },
                             ],
@@ -3520,10 +3527,7 @@ export default function HomeScreen({
                       flexBasis: 'auto',
                       display: "flex",
                       flexDirection: "column",
-                      borderStyle: 'dashed',
-                      borderWidth: 3,
-                      borderColor: '#ff8aca',
-                      backgroundColor: 'white',
+                      // backgroundColor: 'white',
                       zIndex: 1,
                       marginBottom: 10,
                     }}
@@ -3532,7 +3536,7 @@ export default function HomeScreen({
                       // className="cont"
                       style={{
                         position: "relative",
-                        width: 250,
+                        width: 300,
                         // display: "flex",
                         flexDirection: "row",
                         justifyContent: "center",
@@ -3540,9 +3544,9 @@ export default function HomeScreen({
                         // alignContent: "center",
                         alignItems: "center",
 
-                        borderStyle: 'dashed',
-                        borderWidth: 3,
-                        borderColor: 'orange',
+                        // borderStyle: 'dashed',
+                        // borderWidth: 3,
+                        // borderColor: 'orange',
                       }}
                     >
                       <View
@@ -3555,21 +3559,52 @@ export default function HomeScreen({
                           top: -13,
                           right: 10,
                           position: 'absolute',
-
-                          backgroundColor: 'white',
-                          borderRadius: 5,
-                          paddingHorizontal: 3,
-                          paddingVertical: 3,
                           zIndex: 2,
                         }}
                       >
-                        <Text
-                          //  className="valueStyle"
+                        {/* <Text
+                                                    //  className="valueStyle"
+                                                    style={{
+                                                        width: "100%",
+                                                        backgroundColor: 'white',
+                                                        // color:"white",
+                                                        borderColor: '#a0a0a0',
+                                                        // borderWidth:1,
+                                                        // borderStyle:'solid',
+
+                                                        borderRadius: 7,
+                                                        paddingHorizontal: 3,
+                                                        paddingVertical: 3,
+                                                        boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                                                    }}>
+                                                    بارکد دستی
+                                                </Text> */}
+                        <TouchableOpacity
                           style={{
                             width: "100%",
-                          }}>
-                          بارکد دستی
-                        </Text>
+                            backgroundColor: 'white',
+                            borderColor: '#a0a0a0',
+                            borderRadius: 7,
+                            paddingHorizontal: 3,
+                            paddingVertical: 3,
+                            boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            flexDirection: 'row',
+                          }}
+                          onPress={() => { return ManualInputBarcode(manualBarcode); }}
+                          activeOpacity={0.1}
+                        >
+                          <Text
+                            //  className="valueStyle"
+                            style={{
+                              width: "100%",
+                            }}>
+                            بارکد دستی
+                          </Text>
+                        </TouchableOpacity>
+
                       </View>
                       <View style={{
                         // flex: "1 1 auto"
@@ -3599,39 +3634,40 @@ export default function HomeScreen({
                           width: "100%",
                           fontSize: 14,
                           color: "red",
-                          borderBlockColor: 'red',
-                          borderStyle: 'dashed',
-                          borderWidth: 2,
+                          // borderBlockColor: 'red',
+                          // borderStyle: 'dashed',
+                          // borderWidth: 2,
                         }}
                       ></Text>
                     </View>
                   </View>
 
+                  {/*zare_nk_040926(baraye off va on kardane flash,albate age dastgah flash nadash dokmeh neshoon nadeh)*/}
+                  {hasTorch && (
+                    <ReusableButton
+                      title={torch === 'on' ? 'خاموش کردن فلش' : 'روشن کردن فلش'}
+                      onPress={() => setTorch(p => (p === 'on' ? 'off' : 'on'))}
+                      backgroundColor="green"
+                      textColor="white"
+                      width={300}
+                      marginTop={0}
+                      marginBottom={10}
+                    />
+                  )}
+
                   <ReusableButton
-                    title="بستن"
+                    title="بستن بارکدخوان"
                     onPress={() => {
                       setIsOpenedSeePricesModal(false);
+                      setManualBarcode('');  //zare_nk_041205_added
                       setAddOrRemChanged("notNull");  //zare_nk_041203_added
                     }}
                     backgroundColor="red"
                     textColor="white"
-                    width={250}
+                    width={300}
                     marginTop={0}
-                    marginBottom={10}
+                    marginBottom={0}
                   />
-
-                  {/*zare_nk_040926(baraye off va on kardane flash,albate age dastgah flash nadash dokmeh neshoon nadeh)*/}
-                  {hasTorch && (
-                    <ReusableButton
-                      title={torch === 'on' ? 'فلش خاموش' : 'فلش روشن'}
-                      onPress={() => setTorch(p => (p === 'on' ? 'off' : 'on'))}
-                      backgroundColor="green"
-                      textColor="white"
-                      width={250}
-                      marginTop={0}
-                      marginBottom={0}
-                    />
-                  )}
 
                 </View>
               </View>
@@ -3639,6 +3675,7 @@ export default function HomeScreen({
 
             )
           )
+        ////zare_nk_041205_updated_end(kolle isOpenedSeePricesModal == true)
       ) : (
         <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
           <View

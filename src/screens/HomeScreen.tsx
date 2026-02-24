@@ -918,7 +918,9 @@ export default function HomeScreen({
   const [bisatrInProductDet, setBisatrInProductDet] = useState(true); //zare_nk_041128_added
   const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null); //zare_nk_041130_added
   const [isOpenedProdDetModal, setIsOpenedProdDetModal] = useState(false);
-  const [isOpenedSeePricesModal, setIsOpenedSeePricesModal] = useState(false);
+  // const [isOpenedSeePricesModal, setIsOpenedSeePricesModal] = useState(false);   //zare_nk_041205_commented(forUpdateName)
+  const [isOpenedCodeScannerModal, setIsOpenedCodeScannerModal] = useState(false);   //zare_nk_041205_added(forUpdateName)
+
   const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
   const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
 
@@ -941,7 +943,7 @@ export default function HomeScreen({
   }, []);
 
   useEffect(() => {
-    if (!isOpenedSeePricesModal || !isScanning) {
+    if (!isOpenedCodeScannerModal || !isScanning) {
       scanLineAnim.stopAnimation();
       return;
     }
@@ -966,7 +968,7 @@ export default function HomeScreen({
         }),
       ])
     ).start();
-  }, [isOpenedSeePricesModal, isScanning]);
+  }, [isOpenedCodeScannerModal, isScanning]);
   ////zare_nk_041203_added_end 
 
   const codeScanner = useCodeScanner({
@@ -981,7 +983,7 @@ export default function HomeScreen({
 
           ////baste shodane modal
           // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
-          setIsOpenedSeePricesModal(false);  //okk
+          setIsOpenedCodeScannerModal(false);  //okk
           setManualBarcode('');  //zare_nk_041205_added
 
           ////shenasaei va openprodDetModal 
@@ -1853,7 +1855,7 @@ export default function HomeScreen({
       //         modal.hide();
       //     }
       // }
-      setIsOpenedSeePricesModal(false); //reza_nk_041128_added
+      setIsOpenedCodeScannerModal(false); //reza_nk_041128_added
       setManualBarcode('');  //zare_nk_041205_added
       // addDetectedToCart(text.toString());  //zare_nk_041130_commented(addDetectedToCart dar in safhe nadarim)
       openprodDetModal(text.toString());  //zare_nk_041130_added(openprodDetModal dar in safhe darim)
@@ -1877,7 +1879,11 @@ export default function HomeScreen({
   // };
   ////zare_nk_041130_commented_end
   ////zare_nk_041130_added_st
-  const seePrices = async () => {
+
+
+  // const seePrices = async () => {  //zare_nk_041205_commented(forUpdateName)
+  const forOpenCodeScanner = async () => {  //zare_nk_041205_added(forUpdateName) 
+
     const token = await getCookie("token");
     if (token == null) {
       // window.location.href = "/login";
@@ -1886,7 +1892,7 @@ export default function HomeScreen({
       return;
     }
     setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
-    setIsOpenedSeePricesModal(true);
+    setIsOpenedCodeScannerModal(true);
     // setAddOrRemChanged(null);
     setIsScanning(true);  //zare_nk_041203_added
   };
@@ -3430,15 +3436,15 @@ export default function HomeScreen({
             {/* zare_nk_041128_added_end */}
           </View>
         </Modal>
-      ) : isOpenedSeePricesModal == true ? (
+      ) : isOpenedCodeScannerModal == true ? (
         ////zare_nk_041205_updated_st(kolle isOpenedSeePricesModal == true)
         !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
           (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
             (<Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
-              visible={isOpenedSeePricesModal}    //zare_nk_040923(halat namayesh modal)
+              visible={isOpenedCodeScannerModal}    //zare_nk_040923(halat namayesh modal)
               animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
               onRequestClose={() => {  //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
-                setIsOpenedSeePricesModal(false);
+                setIsOpenedCodeScannerModal(false);
                 setManualBarcode('');  //zare_nk_041205_added
                 // setAddOrRemChanged("notNull");  //zare_nk_041130_commented(AddOrRemChanged dar in safhe karbord nadare)
               }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
@@ -3478,7 +3484,7 @@ export default function HomeScreen({
                       // StyleSheet.absoluteFill,
                       { zIndex: 3, position: 'absolute', top: 0, left: 0, overflow: "hidden" }]}
                       device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
-                      isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
+                      isActive={isOpenedCodeScannerModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
                       codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
                       enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
                       torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
@@ -3658,7 +3664,7 @@ export default function HomeScreen({
                   <ReusableButton
                     title="بستن بارکدخوان"
                     onPress={() => {
-                      setIsOpenedSeePricesModal(false);
+                      setIsOpenedCodeScannerModal(false);
                       setManualBarcode('');  //zare_nk_041205_added
                       setAddOrRemChanged("notNull");  //zare_nk_041203_added
                     }}
@@ -3819,7 +3825,7 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // onClick={seePrices}
-                onPress={seePrices}
+                onPress={forOpenCodeScanner}
                 // className="vorsab"
                 // href="#"
                 style={{

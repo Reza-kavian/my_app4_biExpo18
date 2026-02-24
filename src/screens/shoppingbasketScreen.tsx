@@ -1671,7 +1671,8 @@ export default function ShallowRoutingExample({
     const [jamKolNahaei, setJamKolNahaei] = useState<number | null>(null);
 
     const [isOpenedProdDetModal, setIsOpenedProdDetModal] = useState(false);
-    const [isOpenedSeePricesModal, setIsOpenedSeePricesModal] = useState(false);
+    // const [isOpenedSeePricesModal, setIsOpenedSeePricesModal] = useState(false);  //zare_nk_041205_commented(forUpdateName)
+    const [isOpenedCodeScannerModal, setIsOpenedCodeScannerModal] = useState(false);  //zare_nk_041205_added(forUpdateName)
     const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
     const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
 
@@ -1694,7 +1695,7 @@ export default function ShallowRoutingExample({
     }, []);
 
     useEffect(() => {
-        if (!isOpenedSeePricesModal || !isScanning) {
+        if (!isOpenedCodeScannerModal || !isScanning) {  //zare_nk_041205_forUpdateName
             scanLineAnim.stopAnimation();
             return;
         }
@@ -1719,7 +1720,7 @@ export default function ShallowRoutingExample({
                 }),
             ])
         ).start();
-    }, [isOpenedSeePricesModal, isScanning]);
+    }, [isOpenedCodeScannerModal, isScanning]);  //zare_nk_041205_forUpdateName
     ////zare_nk_041203_added_end 
 
     ////zare_nk_041128_commented_st
@@ -1768,8 +1769,8 @@ export default function ShallowRoutingExample({
 
                     ////baste shodane modal
                     // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
-                    setIsOpenedSeePricesModal(false);  //okk 
-				 	setManualBarcode('');  //zare_nk_041205_added
+                    setIsOpenedCodeScannerModal(false);  //okk   //zare_nk_041205_forUpdateName
+                    setManualBarcode('');  //zare_nk_041205_added
 
                     ////shenasaei va openprodDetModal 
                     ShowDetails(code.value);  //okk
@@ -2037,7 +2038,7 @@ export default function ShallowRoutingExample({
         //         );
         //     }
         // };
-    }, [isOpenedProdDetModal]);
+    }, [isOpenedProdDetModal]); //zare_nk_041205_forUpdateName
 
     useEffect(() => {
         // const seePricesModal = document.getElementById("seePricesModal");
@@ -2069,7 +2070,7 @@ export default function ShallowRoutingExample({
         //     }
         // }
         // tempFuncForAsyncGetBootstrap();
-    }, [isOpenedSeePricesModal]);
+    }, [isOpenedCodeScannerModal]);
 
     ////zare_nk_041119_added_st_testi
     useEffect(() => {
@@ -2501,15 +2502,16 @@ export default function ShallowRoutingExample({
             //         modal.hide();
             //     }
             // }
-            setIsOpenedSeePricesModal(false); //reza_nk_041128_added
+            setIsOpenedCodeScannerModal(false); //reza_nk_041128_added  //zare_nk_041205_forUpdateName
             setManualBarcode('');  //zare_nk_041205_added
             addDetectedToCart(text.toString());
         }
     }
     ////zare_nk_041128_added_end
-    const seePrices = () => {
+    // const seePrices = () => {  //zare_nk_041205_commented(forUpdateName)
+    const forOpenCodeScanner = () => {  //zare_nk_041205_added(forUpdateName) 
         setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
-        setIsOpenedSeePricesModal(true);
+        setIsOpenedCodeScannerModal(true);//zare_nk_041205_forUpdateName
         setAddOrRemChanged(null);
         setIsScanning(true);  //zare_nk_041203_added
     };
@@ -4431,14 +4433,14 @@ export default function ShallowRoutingExample({
                         {/* zare_nk_041128_added_end */}
                     </View>
                 </Modal>
-            ) : isOpenedSeePricesModal == true ? (
+            ) : isOpenedCodeScannerModal == true ? (  //zare_nk_041205_forUpdateName
                 !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
                     (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
                         (<Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
-                            visible={isOpenedSeePricesModal}    //zare_nk_040923(halat namayesh modal)
+                            visible={isOpenedCodeScannerModal}    //zare_nk_040923(halat namayesh modal)  //zare_nk_041205_forUpdateName
                             animationType="slide"     //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
                             onRequestClose={() => {
-                                setIsOpenedSeePricesModal(false);
+                                setIsOpenedCodeScannerModal(false);  //zare_nk_041205_forUpdateName
                                 setManualBarcode('');  //zare_nk_041205_added
                                 setAddOrRemChanged("notNull");  //zare_nk_041203_added
                             }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
@@ -4478,7 +4480,7 @@ export default function ShallowRoutingExample({
                                             // StyleSheet.absoluteFill,
                                             { zIndex: 3, position: 'absolute', top: 0, left: 0, overflow: "hidden" }]}
                                             device={device}      //zare_nk_040923(moshakhas kardan doorbin estefade shode)
-                                            isActive={isOpenedSeePricesModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)
+                                            isActive={isOpenedCodeScannerModal}    //zare_nk_040923(faghat vaghti modal baz ast doorbin faal bashad)  //zare_nk_041205_forUpdateName
                                             codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
                                             enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
                                             torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
@@ -4578,7 +4580,7 @@ export default function ShallowRoutingExample({
                                                         boxShadow: "#5e5e5e 0px 0px 3px 0px",
                                                     }}>
                                                     بارکد دستی
-                                                </Text> */}  
+                                                </Text> */}
                                                 <TouchableOpacity
                                                     style={{
                                                         width: "100%",
@@ -4587,11 +4589,11 @@ export default function ShallowRoutingExample({
                                                         borderRadius: 7,
                                                         paddingHorizontal: 3,
                                                         paddingVertical: 3,
-                                                        boxShadow: "#5e5e5e 0px 0px 3px 0px", 
+                                                        boxShadow: "#5e5e5e 0px 0px 3px 0px",
                                                         display: 'flex',
                                                         justifyContent: 'center',
                                                         alignItems: 'center',
-                                                        flexDirection: 'row', 
+                                                        flexDirection: 'row',
                                                     }}
                                                     onPress={() => { return ManualInputBarcode(manualBarcode); }}
                                                     activeOpacity={0.1}
@@ -4603,7 +4605,7 @@ export default function ShallowRoutingExample({
                                                         }}>
                                                         بارکد دستی
                                                     </Text>
-                                                </TouchableOpacity> 
+                                                </TouchableOpacity>
 
                                             </View>
                                             <View style={{
@@ -4658,7 +4660,7 @@ export default function ShallowRoutingExample({
                                     <ReusableButton
                                         title="بستن بارکدخوان"
                                         onPress={() => {
-                                            setIsOpenedSeePricesModal(false);
+                                            setIsOpenedCodeScannerModal(false);   //zare_nk_041205_forUpdateName
                                             setManualBarcode('');  //zare_nk_041205_added
                                             setAddOrRemChanged("notNull");  //zare_nk_041203_added
                                         }}
@@ -4761,7 +4763,7 @@ export default function ShallowRoutingExample({
                                             backgroundColor: '#d9534f'
                                             ////zare_nk_041202_added_end
                                         }}
-                                        onPress={() => { return seePrices(); }}
+                                        onPress={() => { return forOpenCodeScanner(); }}  //zare_nk_041205_forUpdateName
                                         activeOpacity={0.1}
                                     >
                                         <Text style={{ fontSize: 14, color: "white", fontFamily: "IRANSansWeb(FaNum)_Medium" }}> اضافه به سبد</Text>
@@ -5105,7 +5107,7 @@ const styles = StyleSheet.create({
     },
     resultOverlay: {
         flex: 1,
-        backgroundColor: "rgba(0,0,0,0.6)", 
+        backgroundColor: "rgba(0,0,0,0.6)",
         justifyContent: "center",
         alignItems: "center",
     },

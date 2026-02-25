@@ -5177,10 +5177,6 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingHorizontal: 15,
     },
-
     /////////////////////////////////////////////zare_nk_041202_added_end(for responsives @media) 
-
-
-
 
 });

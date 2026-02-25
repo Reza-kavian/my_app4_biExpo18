@@ -44,7 +44,7 @@ export default function SupperAppScreen({
   else if (width >= 1400) {
     SubprogramsContResponse = styles.SubprogramsCont_BTH1400;
   }
-  //////responsive_for_SubprogramsCont_added_st
+  //////responsive_for_SubprogramsCont_added_end
 
   //////responsive_for_Subprograms_added_st
   let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
@@ -81,6 +81,7 @@ export default function SupperAppScreen({
     subSysTextContResponse = styles.subSysTextCont_BTH768;
   }
   //////responsive_for_subSysTextCont_added_end
+  
   //////responsive_for_subSysTextCont_added_st
   let titleStyleResponse: StyleProp<TextStyle> = styles.titleStyleResponse_baseResponsive;
   if (width >= 576) {
@@ -90,6 +91,7 @@ export default function SupperAppScreen({
     titleStyleResponse = styles.titleStyleResponse_BTH768;
   }
   //////responsive_for_subSysTextCont_added_end
+
   //////responsive_for_subSysTextCont_added_st
   let valueStyleResponse: StyleProp<TextStyle> = styles.valueStyleResponse_baseResponsive;
   if (width >= 576) {
@@ -647,6 +649,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   /////////////////////////////////////////////zare_nk_041126_added_st(for responsives @media) 
+  SubprogramsCont_STH576: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 10, // راست و چپ
+    marginBottom: 15,
+  },
   SubprogramsCont_BTH576: {
     // padding: 15px 0px;
     paddingVertical: 15,

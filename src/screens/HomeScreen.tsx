@@ -15,6 +15,7 @@ import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_
 
 import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 
+import superMarketImage from "../assets/images/logoes/superMarket.png";
 ////zare_nk_041130_commented_st
 // import "bootstrap/dist/css/bootstrap.min.css";
 // let cachedBootstrap: typeof import("bootstrap") | null = null;
@@ -907,6 +908,84 @@ export default function HomeScreen({
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
   ////zare_nk_041127_added_end
+
+  ////zare_nk_041206_added_st(moadele @media baraye responsive kardane site) 
+  const { width } = useWindowDimensions();
+  //////responsive_for_sabadItemsAndTotalInf_added_st
+  let SubprogramsContResponse: StyleProp<ViewStyle>;
+  if (width < 576) {
+    SubprogramsContResponse = styles.SubprogramsCont_STH576;
+  }
+  else if (width >= 576) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+  }
+  else if (width >= 768) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+  }
+  else if (width >= 992) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+  }
+  //////responsive_for_sabadItemsAndTotalInf_added_end
+
+  //////responsive_for_Subprograms_added_st
+  let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
+  if (width >= 992) {
+    SubprogramsResponse = styles.Subprograms_BTH992;
+  }
+  //////responsive_for_Subprograms_added_end
+
+  //////responsive_for_imgAndTextInSubprograms_added_st
+  let imgAndTextInSubprogramsResponse: StyleProp<ViewStyle> = styles.imgAndTextInSubprograms_baseResponsive;
+  if (width >= 576) {
+    imgAndTextInSubprogramsResponse = styles.imgAndTextInSubprograms_BTH576;
+  }
+  else if (width >= 768) {
+    imgAndTextInSubprogramsResponse = styles.imgAndTextInSubprograms_BTH768;
+  }
+  //////responsive_for_imgAndTextInSubprograms_added_end
+
+  //////responsive_for_roundedPillsCont_added_st
+  let roundedPillsContResponse: StyleProp<ViewStyle> = styles.roundedPillsCont_baseResponsive;
+  if (width >= 576) {
+    roundedPillsContResponse = styles.roundedPillsCont_BTH576;
+  }
+  else if (width >= 768) {
+    roundedPillsContResponse = styles.roundedPillsCont_BTH768;
+  }
+  //////responsive_for_roundedPillsCont_added_end
+
+  //////responsive_for_subSysTextCont_added_st
+  let subSysTextContResponse: StyleProp<ViewStyle> = styles.subSysTextCont_baseResponsive;
+  if (width >= 576) {
+    subSysTextContResponse = styles.subSysTextCont_BTH576;
+  }
+  else if (width >= 768) {
+    subSysTextContResponse = styles.subSysTextCont_BTH768;
+  }
+  //////responsive_for_subSysTextCont_added_end
+
+  //////responsive_for_titleStyle_added_st
+  let titleStyleResponse: StyleProp<TextStyle> = styles.titleStyleResponse_baseResponsive;
+  if (width >= 576) {
+    titleStyleResponse = styles.titleStyleResponse_BTH576;
+  }
+  else if (width >= 768) {
+    titleStyleResponse = styles.titleStyleResponse_BTH768;
+  }
+  //////responsive_for_titleStyle_added_end
+
+  //////responsive_for_valueStyle_added_st
+  let valueStyleResponse: StyleProp<TextStyle> = styles.valueStyleResponse_baseResponsive;
+  if (width >= 576) {
+    valueStyleResponse = styles.valueStyleResponse_BTH576;
+  }
+  else if (width >= 768) {
+    valueStyleResponse = styles.valueStyleResponse_BTH768;
+  }
+  //////responsive_for_valueStyle_added_end
+
+  ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
+
 
 
   console.log('041123-ShallowRoutingExample called!!');
@@ -3686,20 +3765,21 @@ export default function HomeScreen({
         <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
           <View
             // id="SubprogramsCont"
-            style={{
+            style={[{
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
               justifyContent: "space-between",
-            }}
+              gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
+            }, SubprogramsContResponse]}
           >
             <View
               // id="Subprograms-1"
               // className="Subprograms"
-              style={{
+              style={[{
                 display: "flex",
                 flexDirection: "row",
-              }}
+              }, SubprogramsResponse]}
             >
               <TouchableOpacity
                 // className="vorsab"
@@ -3726,27 +3806,43 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                  style={{ display: "flex" }}
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    borderWidth: 1,
+                    borderColor: "#47e91e",
+                    borderStyle: 'dashed',
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
                 >
                   <View
                     // className="roundedPillsCont"
-                    style={{
+                    style={[{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       // width: "fit-content",
-                    }}
+                      borderWidth: 1,
+                      borderColor: "#e91e83",
+                      borderStyle: 'dashed',
+                    }, roundedPillsContResponse]}
                   >
-                    <View
+                    <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
                       // className="rounded-pill"
                       style={{
                         display: "flex",
                         flexDirection: "row",
+                        justifyContent: 'center',
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
                         padding: 10,
                         borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
                       }}
                     >
                       {/* <img
@@ -3755,19 +3851,24 @@ export default function HomeScreen({
                         alt="هایپر&zwnj;کرفو"
                       /> */}
                       <Image
-                        source={{ uri: "/images/Subprograms/superMarket.png" }}
-                        style={{ width: 64, }}
+                        source={superMarketImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
                       />
 
                     </View>
                   </View>
                   <View
-                    style={{
+                    style={[{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-around",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
-                    }}
+
+                      borderWidth: 1,
+                      borderColor: "#691010",
+                      borderStyle: 'dashed',
+                    }, subSysTextContResponse]}
                   >
                     <View
                       style={{
@@ -3777,10 +3878,15 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk
                       }}
                     >
                       <Text
-                      //  className="titleStyle"
+                        //  className="titleStyle"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
                       >سبد خرید</Text>
                     </View>
                     <View
@@ -3790,7 +3896,11 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
-                          style={{ fontSize: 12 }}
+                          style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
+                          color: "#6a6a6a",
+                          fontSize: 12,
+                        }, valueStyleResponse,]}
                         >
                           امکان مشاهده و ویرایش سبد خرید
                         </Text>
@@ -3800,16 +3910,21 @@ export default function HomeScreen({
                 </View>
                 <View
                   // className="leftArrowInSubprograms"
-                  style={{ flexDirection: "row" }}
+                  style={{
+                    display: 'flex', flexDirection: "column",
+                    borderWidth: 1,
+                    borderColor: "#e91ed8",
+                    borderStyle: 'dashed',
+                  }}
                 >
-                  {/* <img
-                    style={{ width: "20px" }}
-                    src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    alt="بزن بریم"
-                  /> */}
-                  <Image
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                    style={{ width: 20, }}
+                    style={{ width: 20, height:20 }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
                   />
                 </View>
               </TouchableOpacity>
@@ -3818,10 +3933,10 @@ export default function HomeScreen({
             <View
               // id="Subprograms-2"
               // className="Subprograms"
-              style={{
+              style={[{
                 display: "flex",
                 flexDirection: "row",
-              }}
+              }, SubprogramsResponse]}
             >
               <TouchableOpacity
                 // onClick={seePrices}
@@ -3848,27 +3963,43 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                  style={{ display: "flex" }}
+                   style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    borderWidth: 1,
+                    borderColor: "#47e91e",
+                    borderStyle: 'dashed',
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
                 >
                   <View
                     // className="roundedPillsCont"
-                    style={{
+                   style={[{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       // width: "fit-content",
-                    }}
+                      borderWidth: 1,
+                      borderColor: "#e91e83",
+                      borderStyle: 'dashed',
+                    }, roundedPillsContResponse]}
                   >
                     <View
                       // className="rounded-pill"
                       style={{
                         display: "flex",
                         flexDirection: "row",
+                        justifyContent: 'center',
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
                         padding: 10,
                         borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
                       }}
                     >
                       {/* <img
@@ -3883,12 +4014,17 @@ export default function HomeScreen({
                     </View>
                   </View>
                   <View
-                    style={{
+                   style={[{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-around",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
-                    }}
+
+                      borderWidth: 1,
+                      borderColor: "#691010",
+                      borderStyle: 'dashed',
+                    }, subSysTextContResponse]}
                   >
                     <View
                       style={{
@@ -3898,10 +4034,15 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added
                       }}
                     >
                       <Text
-                      // className="titleStyle"
+                        // className="titleStyle"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
                       >مشاهده قیمت ها</Text>
                     </View>
                     <View
@@ -3911,7 +4052,11 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
-                          style={{ fontSize: 12 }}
+                          style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
+                          color: "#6a6a6a",
+                          fontSize: 12,
+                        }, valueStyleResponse,]}
                         >
                           مشاهده اطلاعات کالا با اسکن بارکد
                         </Text>
@@ -3923,14 +4068,15 @@ export default function HomeScreen({
                   // className="leftArrowInSubprograms"
                   style={{ flexDirection: "row" }}
                 >
-                  {/* <img
-                    style={{ width: "20px" }}
-                    src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    alt="بزن بریم"
-                  /> */}
-                  <Image
+
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
                   />
                 </View>
               </TouchableOpacity>
@@ -3939,10 +4085,10 @@ export default function HomeScreen({
             <View
               // id="Subprograms-3"
               // className="Subprograms"
-              style={{
+              style={[{
                 display: "flex",
                 flexDirection: "row",
-              }}
+              }, SubprogramsResponse]}
             >
               <TouchableOpacity
                 // className="vorsab"
@@ -3969,27 +4115,43 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                  style={{ display: "flex" }}
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    borderWidth: 1,
+                    borderColor: "#47e91e",
+                    borderStyle: 'dashed',
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
                 >
                   <View
                     // className="roundedPillsCont"
-                    style={{
+                    style={[{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       // width: "fit-content",
-                    }}
+                      borderWidth: 1,
+                      borderColor: "#e91e83",
+                      borderStyle: 'dashed',
+                    }, roundedPillsContResponse]}
                   >
                     <View
                       // className="rounded-pill"
                       style={{
                         display: "flex",
                         flexDirection: "row",
+                        justifyContent: 'center',
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
                         padding: 10,
                         borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
                       }}
                     >
                       {/* <img
@@ -4005,12 +4167,17 @@ export default function HomeScreen({
                   </View>
 
                   <View
-                    style={{
+                    style={[{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-around",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
-                    }}
+
+                      borderWidth: 1,
+                      borderColor: "#691010",
+                      borderStyle: 'dashed',
+                    }, subSysTextContResponse]}
                   >
                     <View
                       style={{
@@ -4020,10 +4187,15 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added
                       }}
                     >
                       <Text
-                      //  className="titleStyle"
+                        //  className="titleStyle"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
                       >تاریخچه سفارشات</Text>
                     </View>
                     <View
@@ -4033,7 +4205,11 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
-                          style={{ fontSize: 12 }}
+                          style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
+                          color: "#6a6a6a",
+                          fontSize: 12,
+                        }, valueStyleResponse,]}
                         >
                           گزارش جزئیات سفارشات قبلی
                         </Text>
@@ -4045,14 +4221,15 @@ export default function HomeScreen({
                   // className="leftArrowInSubprograms"
                   style={{ flexDirection: "row" }}
                 >
-                  {/* <img
-                    style={{ width: "20px" }}
-                    src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    alt="بزن بریم"
-                  /> */}
-                  <Image
+
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
                   />
                 </View>
               </TouchableOpacity>
@@ -4061,10 +4238,10 @@ export default function HomeScreen({
             <View
               // id="Subprograms-4"
               // className="Subprograms"
-              style={{
+             style={[{
                 display: "flex",
                 flexDirection: "row",
-              }}
+              }, SubprogramsResponse]}
             >
               <TouchableOpacity
                 // className="vorsab"
@@ -4090,27 +4267,43 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                  style={{ display: "flex" }}
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    borderWidth: 1,
+                    borderColor: "#47e91e",
+                    borderStyle: 'dashed',
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
                 >
                   <View
                     // className="roundedPillsCont"
-                    style={{
+                    style={[{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       // width: "fit-content",
-                    }}
+                      borderWidth: 1,
+                      borderColor: "#e91e83",
+                      borderStyle: 'dashed',
+                    }, roundedPillsContResponse]}
                   >
                     <View
                       // className="rounded-pill"
                       style={{
                         display: "flex",
                         flexDirection: "row",
+                        justifyContent: 'center',
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
                         padding: 10,
                         borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
                       }}
                     >
                       {/* <img
@@ -4125,12 +4318,17 @@ export default function HomeScreen({
                     </View>
                   </View>
                   <View
-                    style={{
+                    style={[{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-around",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
-                    }}
+
+                      borderWidth: 1,
+                      borderColor: "#691010",
+                      borderStyle: 'dashed',
+                    }, subSysTextContResponse]}
                   >
                     <View
                       style={{
@@ -4140,10 +4338,15 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added
                       }}
                     >
                       <Text
-                      // className="titleStyle"
+                        // className="titleStyle"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
                       >تخفیفات و پیشنهادات</Text>
                     </View>
                     <View
@@ -4153,7 +4356,11 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
-                          style={{ fontSize: 12 }}
+                          style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
+                          color: "#6a6a6a",
+                          fontSize: 12,
+                        }, valueStyleResponse,]}
                         >
                           مشاهده کالاهای پیشنهادی و پرتخفیف
                         </Text>
@@ -4165,14 +4372,15 @@ export default function HomeScreen({
                   // className="leftArrowInSubprograms"
                   style={{ flexDirection: "row" }}
                 >
-                  {/* <img
-                    style={{ width: "20px" }}
-                    src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    alt="بزن بریم"
-                  /> */}
-                  <Image
+
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
                   />
                 </View>
               </TouchableOpacity>
@@ -4181,10 +4389,10 @@ export default function HomeScreen({
             <View
               // id="Subprograms-5"
               // className="Subprograms"
-              style={{
+              style={[{
                 display: "flex",
                 flexDirection: "row",
-              }}
+              }, SubprogramsResponse]}
             >
               <TouchableOpacity
                 // className="vorsab"
@@ -4210,27 +4418,43 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                  style={{ display: "flex" }}
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    borderWidth: 1,
+                    borderColor: "#47e91e",
+                    borderStyle: 'dashed',
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
                 >
                   <View
                     // className="roundedPillsCont"
-                    style={{
+                    style={[{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       // width: "fit-content",
-                    }}
+                      borderWidth: 1,
+                      borderColor: "#e91e83",
+                      borderStyle: 'dashed',
+                    }, roundedPillsContResponse]}
                   >
                     <View
                       // className="rounded-pill"
                       style={{
                         display: "flex",
                         flexDirection: "row",
+                        justifyContent: 'center',
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
                         padding: 10,
                         borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
                       }}
                     >
                       {/* <img
@@ -4245,12 +4469,17 @@ export default function HomeScreen({
                     </View>
                   </View>
                   <View
-                    style={{
+                    style={[{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-around",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
-                    }}
+
+                      borderWidth: 1,
+                      borderColor: "#691010",
+                      borderStyle: 'dashed',
+                    }, subSysTextContResponse]}
                   >
                     <View
                       style={{
@@ -4260,10 +4489,15 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added
                       }}
                     >
                       <Text
-                      // className="titleStyle"
+                        // className="titleStyle"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
                       >بازی و سرگرمی</Text>
                     </View>
                     <View
@@ -4273,7 +4507,11 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
-                          style={{ fontSize: 12 }}
+                          style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
+                          color: "#6a6a6a",
+                          fontSize: 12,
+                        }, valueStyleResponse,]}
                         >
                           لحظات خوش کودکان در محیط هایپر!
                         </Text>
@@ -4285,14 +4523,15 @@ export default function HomeScreen({
                   // className="leftArrowInSubprograms"
                   style={{ flexDirection: "row" }}
                 >
-                  {/* <img
-                    style={{ width: "20px" }}
-                    src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    alt="بزن بریم"
-                  /> */}
-                  <Image
+
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
                   />
                 </View>
               </TouchableOpacity>
@@ -4301,10 +4540,10 @@ export default function HomeScreen({
             <View
               // id="Subprograms-6"
               // className="Subprograms"
-              style={{
-                display: "none",
+            style={[{
+                display: "flex",
                 flexDirection: "row",
-              }}
+              }, SubprogramsResponse]}
             >
               <TouchableOpacity
                 // className="vorsab"
@@ -4331,27 +4570,43 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                  style={{ display: "flex" }}
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    borderWidth: 1,
+                    borderColor: "#47e91e",
+                    borderStyle: 'dashed',
+                    flexGrow: 1,
+                    flexShrink: 0,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
                 >
                   <View
                     // className="roundedPillsCont"
-                    style={{
+                    style={[{
                       display: "flex",
-                      flexDirection: "column",
+                      flexDirection: "row",
                       // width: "fit-content",
-                    }}
+                      borderWidth: 1,
+                      borderColor: "#e91e83",
+                      borderStyle: 'dashed',
+                    }, roundedPillsContResponse]}
                   >
                     <View
                       // className="rounded-pill"
                       style={{
                         display: "flex",
                         flexDirection: "row",
+                        justifyContent: 'center',
                         // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
                         padding: 10,
                         borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
                       }}
                     >
                       {/* <img
@@ -4366,12 +4621,17 @@ export default function HomeScreen({
                     </View>
                   </View>
                   <View
-                    style={{
+                    style={[{
                       display: "flex",
                       flexDirection: "column",
-                      justifyContent: "space-around",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
-                    }}
+
+                      borderWidth: 1,
+                      borderColor: "#691010",
+                      borderStyle: 'dashed',
+                    }, subSysTextContResponse]}
                   >
                     <View
                       style={{
@@ -4381,10 +4641,15 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added
                       }}
                     >
                       <Text
                       // className="titleStyle"
+                      style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
                       >سرچ با تصویر</Text>
                     </View>
                     <View
@@ -4394,7 +4659,11 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
-                          style={{ fontSize: 12 }}
+                          style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Medium",
+                          color: "#6a6a6a",
+                          fontSize: 12,
+                        }, valueStyleResponse,]}
                         >
                           امکان سرچ کالا با تصویر
                         </Text>
@@ -4406,14 +4675,15 @@ export default function HomeScreen({
                   // className="leftArrowInSubprograms"
                   style={{ flexDirection: "row" }}
                 >
-                  {/* <img
-                    style={{ width: "20px" }}
-                    src="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    alt="بزن بریم"
-                  /> */}
-                  <Image
+
+                  {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
+                  /> */}
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
                   />
                 </View>
               </TouchableOpacity>
@@ -4462,13 +4732,16 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   scanFrame: {
-    width: 250,
-    height: 250,
+    width: 280,
+    height: 280,
+
     borderWidth: 2,
     borderColor: "#00FF00",
+    // borderColor: "#2ED573",
+
     borderStyle: "solid",
     backgroundColor: "transparent",
-    marginBottom: 20,
+    // marginBottom: 20,
     borderRadius: 10,
   },
   scanLine: {
@@ -4485,16 +4758,17 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     marginBottom: 10,
-    backgroundColor: "rgba(0,0,0,0.6)",
-    padding: 10,
-    borderRadius: 5,
+    // backgroundColor: "rgba(0,0,0,0.6)", 
+    // padding: 10,
+    // borderRadius: 8,
   },
   input: {
     borderWidth: 1,
     borderColor: "#ccc",
     padding: 10,
     width: "100%",
-    borderRadius: 5,
+    borderRadius: 8,
+    backgroundColor: 'white',
   },
   resultOverlay: {
     flex: 1,
@@ -4521,4 +4795,129 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333",
   },
+
+  /////////////////////////////////////////////zare_nk_041206_added_st(for responsives @media) 
+  SubprogramsCont_STH576: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 10, // راست و چپ
+    marginBottom: 15,
+  },
+  SubprogramsCont_BTH576: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 10, // راست و چپ
+    marginBottom: 15,
+  },
+
+  SubprogramsCont_BTH992: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 50, // راست و چپ
+    marginBottom: 15,
+  },
+
+  SubprogramsCont_BTH1400: {
+    // padding: 15px 0px;
+    paddingVertical: 15,
+    paddingHorizontal: 0,
+
+    // margin: 20px 10px 15px 10px;
+    marginTop: 20,
+    marginHorizontal: 200, // راست و چپ
+    marginBottom: 15,
+  },
+
+  //////////////////////
+  Subprograms_BaseResponse: {
+    // flex: 1 1 45%; 
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '45%',
+    marginBottom: 30,
+  },
+
+  Subprograms_BTH992: {
+    // flex: 1 1 31%; 
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '31%',
+    marginBottom: 30,
+  },
+  //////////////////////
+  imgAndTextInSubprograms_baseResponsive: {
+    flexDirection: 'row',
+    width: 'auto',
+  },
+
+  imgAndTextInSubprograms_BTH576: {
+    flexDirection: 'column',
+    width: '100%',
+  },
+  imgAndTextInSubprograms_BTH768: {
+    flexDirection: 'row',
+    width: 'auto',
+  },
+  ////////////////////////
+  roundedPillsCont_baseResponsive: {
+    marginLeft: 10,
+    marginBottom: 0,
+  },
+  roundedPillsCont_BTH576: {
+    marginLeft: 0,
+    marginBottom: 10,
+  },
+  roundedPillsCont_BTH768: {
+    marginLeft: 10,
+    marginBottom: 0,
+  },
+  ///////////////////////
+  subSysTextCont_baseResponsive: {
+    width: 0,
+    // flex: 1 1 auto;
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    alignItems: 'flex-start',
+  },
+
+  subSysTextCont_BTH576: {
+    width: '100%',
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    alignItems: 'center',
+  },
+
+  subSysTextCont_BTH768: {
+    width: 0,
+    // flex: 1 1 auto;
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: 'auto',
+    alignItems: 'flex-start',
+  },
+  //////////////////////
+  titleStyleResponse_baseResponsive: { textAlign: 'right', },
+  titleStyleResponse_BTH576: { textAlign: 'center', },
+  titleStyleResponse_BTH768: { textAlign: 'right', },
+  ///////////////////////
+  valueStyleResponse_baseResponsive: { textAlign: 'right', },
+  valueStyleResponse_BTH576: { textAlign: 'center', },
+  valueStyleResponse_BTH768: { textAlign: 'right', },
+  ////////////////////////////
+
+  /////////////////////////////////////////////zare_nk_041206_added_end(for responsives @media) 
 });

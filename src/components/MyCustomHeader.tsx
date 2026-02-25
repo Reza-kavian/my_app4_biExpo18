@@ -226,7 +226,7 @@ const MyCustomHeader = ({
       >
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Welcome");
+            navigation.navigate("Home");
           }}
         >
           <Text style={styles.title}>TIC-TAC-TOE</Text>

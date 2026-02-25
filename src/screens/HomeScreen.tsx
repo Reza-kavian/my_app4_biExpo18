@@ -21,6 +21,8 @@ import OrderIconImage from "../assets/images/logoes/order-icon.svg";
 import DiscountsAndOffersImage from "../assets/images/logoes/DiscountsAndOffers.png";
 import gameImage from "../assets/images/logoes/game.png";
 
+import { ScrollView } from "react-native";  //zare_nk_041206_added
+
 ////zare_nk_041130_commented_st
 // import "bootstrap/dist/css/bootstrap.min.css";
 // let cachedBootstrap: typeof import("bootstrap") | null = null;
@@ -923,12 +925,9 @@ export default function HomeScreen({
   }
   else if (width >= 576) {
     SubprogramsContResponse = styles.SubprogramsCont_BTH576;
-  }
-  else if (width >= 768) {
-    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
-  }
+  } 
   else if (width >= 992) {
-    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+    SubprogramsContResponse = styles.SubprogramsCont_BTH992;
   }
   //////responsive_for_sabadItemsAndTotalInf_added_end
 
@@ -1970,7 +1969,6 @@ export default function HomeScreen({
 
   // const seePrices = async () => {  //zare_nk_041205_commented(forUpdateName)
   const forOpenCodeScanner = async () => {  //zare_nk_041205_added(forUpdateName) 
-
     const token = await getCookie("token");
     if (token == null) {
       // window.location.href = "/login";
@@ -3770,7 +3768,8 @@ export default function HomeScreen({
           )
         ////zare_nk_041205_updated_end(kolle isOpenedSeePricesModal == true)
       ) : (
-        <View style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
+        <ScrollView horizontal={false}
+          style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
           <View
             // id="SubprogramsCont"
             style={[{
@@ -3792,7 +3791,7 @@ export default function HomeScreen({
               <TouchableOpacity
                 // className="vorsab"
                 // href="/shoppingbasket"
-                onPress={() => { return navigation.replace('shoppingbasket'); }}
+                onPress={() => { return navigation.replace("Splash", { target: "shoppingbasket" }); }}
                 style={{
                   width: "100%",
                   display: "flex",
@@ -3829,9 +3828,9 @@ export default function HomeScreen({
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
-                      borderWidth: 1,
-                      borderColor: "#e91e83",
-                      borderStyle: 'dashed',
+                      // borderWidth: 4,
+                      // borderColor: "#e91e83",
+                      // borderStyle: 'dotted',
                     }, roundedPillsContResponse]}
                   >
                     <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
@@ -3871,9 +3870,9 @@ export default function HomeScreen({
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
 
-                      borderWidth: 1,
-                      borderColor: "#691010",
-                      borderStyle: 'dashed',
+                      borderWidth: 4,
+                      borderColor: "#000000",
+                      borderStyle: 'dotted',
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -3885,23 +3884,38 @@ export default function HomeScreen({
                         display: "flex",
                         flexDirection: "row",
                         marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk
+                        borderWidth: 4,
+                        borderColor: "#0bb3fb",
+                        borderStyle: 'dotted',
                       }}
                     >
                       <Text
                         //  className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
+                          borderStyle: 'dashed',
+                          borderColor: 'red',
+                          borderWidth: 2,
                         }, titleStyleResponse]}
                       >سبد خرید</Text>
                     </View>
                     <View
-                      style={{ flexDirection: "row", }}
+                      style={{
+                        flexDirection: "row",
+                        borderWidth: 4,
+                        borderColor: "#0bb3fb",
+                        borderStyle: 'dotted',
+                      }}
                     // className="decsInSubprograms"
                     >
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
                           style={[{
                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                             color: "#6a6a6a",
@@ -4043,9 +4057,14 @@ export default function HomeScreen({
                     >
                       <Text
                         // className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
+                          borderStyle: 'dashed',
+                          borderColor: 'red',
+                          borderWidth: 2,
                         }, titleStyleResponse]}
                       >مشاهده قیمت ها</Text>
                     </View>
@@ -4056,6 +4075,8 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
                           style={[{
                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                             color: "#6a6a6a",
@@ -4096,8 +4117,8 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/ordersHistory"
-                onPress={() => { return navigation.replace('ordersHistory'); }}
+                // href="/ordersHistory" 
+                onPress={() => { return navigation.replace("Splash", { target: "ordersHistory" }); }}
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4205,6 +4226,8 @@ export default function HomeScreen({
                     >
                       <Text
                         //  className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
@@ -4218,6 +4241,8 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
                           style={[{
                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                             color: "#6a6a6a",
@@ -4258,8 +4283,8 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/discountsAndOffers"
-                onPress={() => { return navigation.replace('discountsAndOffers'); }}
+                // href="/discountsAndOffers" 
+                onPress={() => { return navigation.replace("Splash", { target: "discountsAndOffers" }); }}
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4353,6 +4378,8 @@ export default function HomeScreen({
                     >
                       <Text
                         // className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
@@ -4366,6 +4393,8 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
                           style={[{
                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                             color: "#6a6a6a",
@@ -4406,8 +4435,8 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/games"
-                onPress={() => { return navigation.replace('games'); }}
+                // href="/games" 
+                onPress={() => { return navigation.replace("Splash", { target: "SupperGame" }); }}
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4501,6 +4530,8 @@ export default function HomeScreen({
                     >
                       <Text
                         // className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
@@ -4514,6 +4545,8 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
                           style={[{
                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                             color: "#6a6a6a",
@@ -4544,7 +4577,7 @@ export default function HomeScreen({
               </TouchableOpacity>
             </View>
 
-            <View
+             <View
               // id="Subprograms-6"
               // className="Subprograms"
               style={[{
@@ -4555,7 +4588,8 @@ export default function HomeScreen({
               <TouchableOpacity
                 // className="vorsab"
                 // href="/ComparePage"
-                onPress={() => { return navigation.replace('ComparePage'); }}
+                // onPress={() => { return navigation.replace('ComparePage'); }}
+                // onPress={() => { return navigation.replace("Splash", { target: "ComparePage" }); }} 
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4650,9 +4684,14 @@ export default function HomeScreen({
                     >
                       <Text
                         // className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
+                          borderStyle: 'dashed',
+                          borderColor: 'red',
+                          borderWidth: 2,
                         }, titleStyleResponse]}
                       >سرچ با تصویر</Text>
                     </View>
@@ -4663,6 +4702,8 @@ export default function HomeScreen({
                       <View style={{ display: "flex", flexDirection: "row" }}>
                         <Text
                           // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
                           style={[{
                             fontFamily: "IRANSansWeb(FaNum)_Medium",
                             color: "#6a6a6a",
@@ -4697,28 +4738,26 @@ export default function HomeScreen({
 vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava ham dare ye gape bimored mideh ke shahede ye marginLefte
  bimored hastem ke chon viewye hamsaye ash tookhaliye va dideh nemishe in marginLefti ke dar asare gap migire bimorede(pas age az gap 
  estefadeh mishe view haye komaki tookhali ra hazf mikonim) ) */}
-            {/* <View
+            <View
               // id="Subprograms-temp-1"
               // className="Subprograms"
-              style={{ display: "flex", flexDirection: "row", }}
+              // style={{ display: "flex", flexDirection: "row", }}
+              style={[{
+                display: "flex",
+                flexDirection: "row",
+              }, SubprogramsResponse]}
             ></View>
             <View
               // id="Subprograms-temp-2"
               // className="Subprograms"
-              style={{ display: "flex", flexDirection: "row", }}
-            ></View>
-            <View
-              // id="Subprograms-temp-3"
-              // className="Subprograms"
-              style={{ display: "flex", flexDirection: "row", }}
-            ></View>
-            <View
-              // id="Subprograms-temp-4"
-              // className="Subprograms"
-              style={{ display: "flex", flexDirection: "row", }}
-            ></View> */}
+              // style={{ display: "flex", flexDirection: "row", }}
+              style={[{
+                display: "flex",
+                flexDirection: "row",
+              }, SubprogramsResponse]}
+            ></View> 
           </View>
-        </View>
+        </ScrollView>
       )}
     </>
   );
@@ -4818,7 +4857,7 @@ const styles = StyleSheet.create({
   SubprogramsCont_BTH576: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
     gap: 10,
     // margin: 20px 10px 15px 10px;
     // marginTop: 20,
@@ -4830,7 +4869,7 @@ const styles = StyleSheet.create({
     // padding: 15px 0px;
     paddingVertical: 15,
     paddingHorizontal: 50,
-
+    gap: 15,
     // margin: 20px 10px 15px 10px;
     // marginTop: 20,
     // marginHorizontal: 50, // راست و چپ
@@ -4849,21 +4888,23 @@ const styles = StyleSheet.create({
   },
 
   //////////////////////
-  Subprograms_BaseResponse: {
-    // flex: 1 1 45%; 
+  Subprograms_BaseResponse: { 
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '95%',
     // marginBottom: 10,  //zare_nk_041206_commented
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    borderColor: 'orange',
+    // borderWidth: 3,
+    // borderStyle: 'dashed',
+    // borderColor: 'green',
   },
   Subprograms_BTH576: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '45%',
     // marginBottom: 10,  //zare_nk_041206_commented
+    // borderWidth: 3,
+    // borderStyle: 'dashed',
+    // borderColor: 'green',
   },
   Subprograms_BTH992: {
     // flex: 1 1 31%; 
@@ -4893,14 +4934,17 @@ const styles = StyleSheet.create({
   roundedPillsCont_baseResponsive: {
     marginLeft: 10,
     marginBottom: 0,
+    justifyContent: 'flex-start',  //zare_nk_041206_added
   },
   roundedPillsCont_BTH576: {
     marginLeft: 0,
     marginBottom: 10,
+    justifyContent: 'center',  //zare_nk_041206_added
   },
   roundedPillsCont_BTH768: {
     marginLeft: 10,
     marginBottom: 0,
+    justifyContent: 'flex-start',  //zare_nk_041206_added
   },
   ///////////////////////
   subSysTextCont_baseResponsive: {

@@ -16,6 +16,11 @@ import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_
 import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 
 import superMarketImage from "../assets/images/logoes/superMarket.png";
+import checklistImage from "../assets/images/logoes/checklist.png";
+import OrderIconImage from "../assets/images/logoes/order-icon.svg";
+import DiscountsAndOffersImage from "../assets/images/logoes/DiscountsAndOffers.png";
+import gameImage from "../assets/images/logoes/game.png";
+
 ////zare_nk_041130_commented_st
 // import "bootstrap/dist/css/bootstrap.min.css";
 // let cachedBootstrap: typeof import("bootstrap") | null = null;
@@ -929,6 +934,9 @@ export default function HomeScreen({
 
   //////responsive_for_Subprograms_added_st
   let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
+  if (width >= 576) {
+    SubprogramsResponse = styles.Subprograms_BTH576;
+  }
   if (width >= 992) {
     SubprogramsResponse = styles.Subprograms_BTH992;
   }
@@ -3770,7 +3778,7 @@ export default function HomeScreen({
               flexDirection: "row",
               flexWrap: "wrap",
               justifyContent: "space-between",
-              gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
+              // gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
             }, SubprogramsContResponse]}
           >
             <View
@@ -3790,10 +3798,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 15,
-                  // outline: "none",
-                  alignItems: "center",
-                  // border: "1px solid #a9a9a9",
+                  // padding: 15,   //zare_nk_041206_commented
+                  // alignItems: "center",   //zare_nk_041206_commented
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
@@ -3897,10 +3903,10 @@ export default function HomeScreen({
                         <Text
                           // className="valueStyle"
                           style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Medium",
-                          color: "#6a6a6a",
-                          fontSize: 12,
-                        }, valueStyleResponse,]}
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
                         >
                           امکان مشاهده و ویرایش سبد خرید
                         </Text>
@@ -3911,7 +3917,7 @@ export default function HomeScreen({
                 <View
                   // className="leftArrowInSubprograms"
                   style={{
-                    display: 'flex', flexDirection: "column",
+                    display: 'flex', flexDirection: "row", alignItems: 'center',
                     borderWidth: 1,
                     borderColor: "#e91ed8",
                     borderStyle: 'dashed',
@@ -3948,10 +3954,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 15,
-                  // outline: "none",
-                  alignItems: "center",
-                  // border: "1px solid #a9a9a9",
+                  // padding: 15,  //zare_nk_041206_commented 
+                  // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
@@ -3963,7 +3967,7 @@ export default function HomeScreen({
               >
                 <View
                   // className="imgAndTextInSubprograms"
-                   style={[{
+                  style={[{
                     display: "flex",
                     //  flexDirection: "row",
                     borderWidth: 1,
@@ -3976,7 +3980,7 @@ export default function HomeScreen({
                 >
                   <View
                     // className="roundedPillsCont"
-                   style={[{
+                    style={[{
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
@@ -4002,19 +4006,19 @@ export default function HomeScreen({
                         // width:86
                       }}
                     >
-                      {/* <img
-                        style={{ width: "64px" }}
-                        src="/images/Subprograms/checklist.png"
-                        alt="هایپر&zwnj;کرفو"
-                      /> */}
-                      <Image
+
+                      {/* <Image
                         source={{ uri: "/images/Subprograms/checklist.png" }}
                         style={{ width: 64, }}
+                      /> */}
+                      <Image
+                        source={checklistImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
                       />
                     </View>
                   </View>
                   <View
-                   style={[{
+                    style={[{
                       display: "flex",
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
@@ -4053,10 +4057,10 @@ export default function HomeScreen({
                         <Text
                           // className="valueStyle"
                           style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Medium",
-                          color: "#6a6a6a",
-                          fontSize: 12,
-                        }, valueStyleResponse,]}
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
                         >
                           مشاهده اطلاعات کالا با اسکن بارکد
                         </Text>
@@ -4066,7 +4070,7 @@ export default function HomeScreen({
                 </View>
                 <View
                   // className="leftArrowInSubprograms"
-                  style={{ flexDirection: "row" }}
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
                 >
 
                   {/* <Image
@@ -4099,10 +4103,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 15,
-                  // outline: "none",
-                  alignItems: "center",
-                  // border: "1px solid #a9a9a9",
+                  // padding: 15,   //zare_nk_041206_commented 
+                  // alignItems: "center",   //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
@@ -4154,15 +4156,26 @@ export default function HomeScreen({
                         // width:86
                       }}
                     >
-                      {/* <img
-                        style={{ width: "64px" }}
-                        src="/images/Subprograms/order-icon.svg"
-                        alt="هایپر&zwnj;کرفو"
-                      /> */}
-                      <Image
+
+                      {/* <Image
                         source={{ uri: "/images/Subprograms/order-icon" }}
                         style={{ width: 64, }}
+                      /> */}
+                      {/* <SvgUri
+                        uri={orderIconImage}
+                        width={64}
+                        height={64}
+                      /> */}
+                      <OrderIconImage
+                        width={64} height={64}
                       />
+                      {/* zare_nk_041206_nokteh(SvgUri baraye svg haye ba addrese kamel hast(mesle: https://....)
+                      vali baraye svg haei ke tooye sitemon hastand va addresdehiye nesbi midim(mesle ../assets/Images/...) kar nemikoneh
+                      va bayad khode file import shodeh ra mostaghiman inja benevisim(yani haman lafze OrderIconImage)
+                      faghat inke reactNative fekr mikoneh svg mesle png yek asset ast va assetId noe number dare, 
+                      pas talash mikoneh svg ro be number tabdil koneh ke khata mideh,ma bayad dar tanzimat begim svg asset nist balke 
+                      source ast va source be js tabdil beshe na manande asset be adad,va in tanzimat ra be file metro.config.js 
+                      ke pishfarz vojood dare ezafeh mikonim) */}
                     </View>
                   </View>
 
@@ -4206,10 +4219,10 @@ export default function HomeScreen({
                         <Text
                           // className="valueStyle"
                           style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Medium",
-                          color: "#6a6a6a",
-                          fontSize: 12,
-                        }, valueStyleResponse,]}
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
                         >
                           گزارش جزئیات سفارشات قبلی
                         </Text>
@@ -4219,7 +4232,7 @@ export default function HomeScreen({
                 </View>
                 <View
                   // className="leftArrowInSubprograms"
-                  style={{ flexDirection: "row" }}
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
                 >
 
                   {/* <Image
@@ -4238,7 +4251,7 @@ export default function HomeScreen({
             <View
               // id="Subprograms-4"
               // className="Subprograms"
-             style={[{
+              style={[{
                 display: "flex",
                 flexDirection: "row",
               }, SubprogramsResponse]}
@@ -4252,10 +4265,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 15,
-                  // outline: "none",
-                  alignItems: "center",
-                  // border: "1px solid #a9a9a9",
+                  // padding: 15,  //zare_nk_041206_commented 
+                  // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
@@ -4306,14 +4317,13 @@ export default function HomeScreen({
                         // width:86
                       }}
                     >
-                      {/* <img
-                        style={{ width: "64px" }}
-                        src="/images/Subprograms/DiscountsAndOffers.png"
-                        alt="هایپر&zwnj;کرفو"
-                      /> */}
-                      <Image
+                      {/* <Image
                         source={{ uri: "/images/Subprograms/DiscountsAndOffers.png" }}
                         style={{ width: 64, }}
+                      /> */}
+                      <Image
+                        source={DiscountsAndOffersImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
                       />
                     </View>
                   </View>
@@ -4357,10 +4367,10 @@ export default function HomeScreen({
                         <Text
                           // className="valueStyle"
                           style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Medium",
-                          color: "#6a6a6a",
-                          fontSize: 12,
-                        }, valueStyleResponse,]}
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
                         >
                           مشاهده کالاهای پیشنهادی و پرتخفیف
                         </Text>
@@ -4370,7 +4380,7 @@ export default function HomeScreen({
                 </View>
                 <View
                   // className="leftArrowInSubprograms"
-                  style={{ flexDirection: "row" }}
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
                 >
 
                   {/* <Image
@@ -4403,10 +4413,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 15,
-                  // outline: "none",
-                  alignItems: "center",
-                  // border: "1px solid #a9a9a9",
+                  // padding: 15,  //zare_nk_041206_commented 
+                  // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
@@ -4457,14 +4465,13 @@ export default function HomeScreen({
                         // width:86
                       }}
                     >
-                      {/* <img
-                        style={{ width: "64px" }}
-                        src="/images/Subprograms/game.png"
-                        alt="هایپر&zwnj;کرفو"
-                      /> */}
-                      <Image
+                      {/* <Image
                         source={{ uri: "/images/Subprograms/game.png" }}
                         style={{ width: 64, }}
+                      /> */}
+                      <Image
+                        source={gameImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
                       />
                     </View>
                   </View>
@@ -4508,10 +4515,10 @@ export default function HomeScreen({
                         <Text
                           // className="valueStyle"
                           style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Medium",
-                          color: "#6a6a6a",
-                          fontSize: 12,
-                        }, valueStyleResponse,]}
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
                         >
                           لحظات خوش کودکان در محیط هایپر!
                         </Text>
@@ -4521,7 +4528,7 @@ export default function HomeScreen({
                 </View>
                 <View
                   // className="leftArrowInSubprograms"
-                  style={{ flexDirection: "row" }}
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
                 >
 
                   {/* <Image
@@ -4540,7 +4547,7 @@ export default function HomeScreen({
             <View
               // id="Subprograms-6"
               // className="Subprograms"
-            style={[{
+              style={[{
                 display: "flex",
                 flexDirection: "row",
               }, SubprogramsResponse]}
@@ -4554,10 +4561,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  padding: 15,
-                  // outline: "none",
-                  alignItems: "center",
-                  // border: "1px solid #a9a9a9",
+                  // padding: 15,  //zare_nk_041206_commented 
+                  // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
@@ -4609,14 +4614,13 @@ export default function HomeScreen({
                         // width:86
                       }}
                     >
-                      {/* <img
-                        style={{ width: "64px" }}
-                        src="/images/Subprograms/superMarket.png"
-                        alt="هایپر&zwnj;کرفو"
-                      /> */}
-                      <Image
+                      {/* <Image
                         source={{ uri: "/images/Subprograms/superMarket.png" }}
                         style={{ width: 64, }}
+                      /> */}
+                      <Image
+                        source={superMarketImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
                       />
                     </View>
                   </View>
@@ -4645,8 +4649,8 @@ export default function HomeScreen({
                       }}
                     >
                       <Text
-                      // className="titleStyle"
-                      style={[{
+                        // className="titleStyle"
+                        style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
                         }, titleStyleResponse]}
@@ -4660,10 +4664,10 @@ export default function HomeScreen({
                         <Text
                           // className="valueStyle"
                           style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Medium",
-                          color: "#6a6a6a",
-                          fontSize: 12,
-                        }, valueStyleResponse,]}
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
                         >
                           امکان سرچ کالا با تصویر
                         </Text>
@@ -4673,7 +4677,7 @@ export default function HomeScreen({
                 </View>
                 <View
                   // className="leftArrowInSubprograms"
-                  style={{ flexDirection: "row" }}
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
                 >
 
                   {/* <Image
@@ -4689,7 +4693,11 @@ export default function HomeScreen({
               </TouchableOpacity>
             </View>
 
-            <View
+            {/* zare_nk_041206_nokteh(be khatere dadane gap dar css az taktike ijade view haye tookhaliye komakiye akhare container ejtenab mikonim,
+vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava ham dare ye gape bimored mideh ke shahede ye marginLefte
+ bimored hastem ke chon viewye hamsaye ash tookhaliye va dideh nemishe in marginLefti ke dar asare gap migire bimorede(pas age az gap 
+ estefadeh mishe view haye komaki tookhali ra hazf mikonim) ) */}
+            {/* <View
               // id="Subprograms-temp-1"
               // className="Subprograms"
               style={{ display: "flex", flexDirection: "row", }}
@@ -4708,7 +4716,7 @@ export default function HomeScreen({
               // id="Subprograms-temp-4"
               // className="Subprograms"
               style={{ display: "flex", flexDirection: "row", }}
-            ></View>
+            ></View> */}
           </View>
         </View>
       )}
@@ -4800,44 +4808,44 @@ const styles = StyleSheet.create({
   SubprogramsCont_STH576: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 0,
-
+    paddingHorizontal: 10,
+    gap: 10,
     // margin: 20px 10px 15px 10px;
-    marginTop: 20,
-    marginHorizontal: 10, // راست و چپ
-    marginBottom: 15,
+    // marginTop: 20,
+    // marginHorizontal: 10, // راست و چپ
+    // marginBottom: 15,
   },
   SubprogramsCont_BTH576: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 0,
-
+    paddingHorizontal: 10,
+    gap: 10,
     // margin: 20px 10px 15px 10px;
-    marginTop: 20,
-    marginHorizontal: 10, // راست و چپ
-    marginBottom: 15,
+    // marginTop: 20,
+    // marginHorizontal: 10, // راست و چپ
+    // marginBottom: 15,
   },
 
   SubprogramsCont_BTH992: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 0,
+    paddingHorizontal: 50,
 
     // margin: 20px 10px 15px 10px;
-    marginTop: 20,
-    marginHorizontal: 50, // راست و چپ
-    marginBottom: 15,
+    // marginTop: 20,
+    // marginHorizontal: 50, // راست و چپ
+    // marginBottom: 15,
   },
 
   SubprogramsCont_BTH1400: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 0,
+    paddingHorizontal: 200,
 
     // margin: 20px 10px 15px 10px;
-    marginTop: 20,
-    marginHorizontal: 200, // راست و چپ
-    marginBottom: 15,
+    // marginTop: 20,
+    // marginHorizontal: 200, // راست و چپ
+    // marginBottom: 15,
   },
 
   //////////////////////
@@ -4845,21 +4853,32 @@ const styles = StyleSheet.create({
     // flex: 1 1 45%; 
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: '45%',
-    marginBottom: 30,
+    flexBasis: '95%',
+    // marginBottom: 10,  //zare_nk_041206_commented
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: 'orange',
   },
-
+  Subprograms_BTH576: {
+    flexGrow: 1,
+    flexShrink: 1,
+    flexBasis: '45%',
+    // marginBottom: 10,  //zare_nk_041206_commented
+  },
   Subprograms_BTH992: {
     // flex: 1 1 31%; 
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '31%',
-    marginBottom: 30,
+    // marginBottom: 10,  //zare_nk_041206_commented
   },
   //////////////////////
   imgAndTextInSubprograms_baseResponsive: {
     flexDirection: 'row',
     width: 'auto',
+    borderWidth: 2,
+    borderStyle: 'dashed',
+    borderColor: 'red',
   },
 
   imgAndTextInSubprograms_BTH576: {

@@ -254,9 +254,14 @@ function MiddleCountTedadSefr({
                                     }}
                                 // className="plussMinus"
                                 >
-                                    <Image
+                                    {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
+                                    /> */} 
+                                    <SvgUri
+                                        uri="https://img.tochikala.com/tochikala/remove-icon.svg"
+                                        width={20}
+                                        height={20}
                                     />
                                 </Text>
                             </TouchableOpacity>

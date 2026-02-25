@@ -81,7 +81,6 @@ export default function SupperAppScreen({
     subSysTextContResponse = styles.subSysTextCont_BTH768;
   }
   //////responsive_for_subSysTextCont_added_end
-  
   //////responsive_for_subSysTextCont_added_st
   let titleStyleResponse: StyleProp<TextStyle> = styles.titleStyleResponse_baseResponsive;
   if (width >= 576) {
@@ -91,7 +90,6 @@ export default function SupperAppScreen({
     titleStyleResponse = styles.titleStyleResponse_BTH768;
   }
   //////responsive_for_subSysTextCont_added_end
-
   //////responsive_for_subSysTextCont_added_st
   let valueStyleResponse: StyleProp<TextStyle> = styles.valueStyleResponse_baseResponsive;
   if (width >= 576) {

@@ -21,42 +21,42 @@ export default function SplashScreen() {
   useEffect(() => {
     const checkToken = async () => {
       const token = await AsyncStorage.getItem("token");
-      Alert.alert('01-route.params?.target: '+route.params?.target);
+      // Alert.alert('01-route.params?.target: '+route.params?.target);
       // نام صفحه‌ای که کاربر قصد ورود دارد
       const targetScreen = route.params?.target || "Welcome";   //zare_nk_040608_added(noe in parametre target bayad RootStackParamList dahkele navigation.ts ezafeh 
       // beshe va meghdaresh ham dar hengame hedayat behesh ba navigation.navigate taein mishe, mesle navigation.navigate("Splash", { target: "Profile" }))
 
       if (protectedScreens.includes(targetScreen)) {
-        Alert.alert('02');
+        // Alert.alert('02');
         if (token) {
-          Alert.alert('04');
+          // Alert.alert('04');
           try {
             const tokenExpires = await AsyncStorage.getItem("token_expires");
             if (tokenExpires) {
-              Alert.alert('06');
+              // Alert.alert('06');
               const expiresDate = new Date(tokenExpires).getTime();
               if (expiresDate <= Date.now()) {
-                Alert.alert('08');
+                // Alert.alert('08');
                 // توکن منقضی شده، باید حذفش کنی و کاربر رو لاگ اوت کنی 
                 // مثلا هدایت به لاگین یا splash                
                 await goToLogin(targetScreen);
               } else {
-                Alert.alert('09');
+                // Alert.alert('09');
                 // توکن هنوز معتبره، می‌تونی استفاده کنی
                 const res = await axios.post(NextJsApiAuthUrl + "verifyToken", {
                   token,
                 });
 
                 if (res.status === 200) {
-                  Alert.alert('10');
+                  // Alert.alert('10');
                   navigation.replace(targetScreen); // moadele const response = NextResponse.next();
                 } else {
-                  Alert.alert('11');
+                  // Alert.alert('11');
                   await goToLogin(targetScreen);
                 }
               }
             } else {
-              Alert.alert('07');
+              // Alert.alert('07');
               // توکن یا تاریخ انقضا وجود نداره، احتمالا لاگین نیست 
               await goToLogin(targetScreen);
             }
@@ -64,11 +64,11 @@ export default function SplashScreen() {
             await goToLogin(targetScreen);
           }
         } else {
-          Alert.alert('05');
+          // Alert.alert('05');
           await goToLogin(targetScreen);
         }
       } else {
-        Alert.alert('03');
+        // Alert.alert('03');
         navigation.replace(targetScreen); // صفحه آزاد
       }
     };

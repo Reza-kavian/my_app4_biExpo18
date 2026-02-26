@@ -149,18 +149,20 @@ export default function LoginScreen({
       return;
     }
     try {
+      Alert.alert('1');
       setIsDisabledCheckSmsBtn(true);
       const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
         mobile: mobileVal,
         smsCode: smsVal,
         Password: ""
       });
-      console.log("040530-01");
+      Alert.alert('2');
+      console.log("zare_nk_041207-01");
       const ApiLoginUser2Result = res.data; // await res.json();
-      console.log("040530-02");
-      console.log("040530-03-ApiLoginUser2Result: " + ApiLoginUser2Result);
+      console.log("zare_nk_041207-02");
+      console.log("zare_nk_041207-03-ApiLoginUser2Result: " + ApiLoginUser2Result);
       console.log(
-        "040530-03-JSON.stringify(ApiLoginUser2Result): " +
+        "zare_nk_041207-03-JSON.stringify(ApiLoginUser2Result): " +
         JSON.stringify(ApiLoginUser2Result)
       );
       //zare_nk_0409225_alan
@@ -173,7 +175,7 @@ export default function LoginScreen({
       if (res.status === 200 && ApiLoginUser2Result.status == 0) {
         // if (ApiLoginUser2Result.status == 0) {
         let token = ApiLoginUser2Result.data.token;
-        console.log("040530-03-token: " + token);
+        console.log("zare_nk_041207-03-token: " + token);
         //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
         // try {
         const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
@@ -183,11 +185,12 @@ export default function LoginScreen({
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token }),
         });
-        console.log("040530-1");
+        console.log("zare_nk_041207-1");
+        console.log("zare_nk_041207-a-1-response: " + response);
+        console.log("zare_nk_041207-a-2-JSON response: " + JSON.stringify(response));
+        // console.log("zare_nk_041207-a-3-data: " + JSON.stringify(data));
         const data = await response.json();
-        console.log("040928-a-1-response: " + response);
-        console.log("040928-a-2-JSON response: " + JSON.stringify(response));
-        console.log("040928-a-3-data: " + JSON.stringify(data));
+
         if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
           //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
           const expires = new Date(
@@ -195,37 +198,52 @@ export default function LoginScreen({
           ).toISOString();
           // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
           let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
-          console.log("0-zare_nk_040925-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
+          console.log("0-zare_nk_041207-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
           await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
           await AsyncStorage.setItem("token_expires", expires);
           tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
-          console.log("1-zare_nk_041009-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
-          //// 2. گرفتن مسیر ریدایرکت (اگر از قبل ذخیره کرده باشی)
-          //   const redirect =
-          //     (await AsyncStorage.getItem("redirect")) || "Home";
+          console.log("1-zare_nk_041207-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
 
-          const validRoutes = [
-            "Login",
-            "Profile",
-            "Splash",
-            "Welcome",
-          ] as const;
+          ////zare_nk_041207_commented_st
+          // const validRoutes = [
+          //   "AboutScreen",
+          //   "AuthCallback",
+          //   "discountsAndOffers",
+          //   "folder02",
+          //   "folder03",
+          //   "Home",
+          //   "Login",
+          //   "ordersHistory",
+          //   "Profile",
+          //   "Scanner",
+          //   "shoppingbasket",
+          //   "Splash",
+          //   "SupperApp",
+          //   "SupperGame",
+          //   "TicTacToe",
+          //   "Welcome",
+          // ] as const;
 
-          type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+          // type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
 
-          const redirectRaw = await AsyncStorage.getItem("redirect");
+          // const redirectRaw = await AsyncStorage.getItem("redirect");
 
-          const redirect = validRoutes.includes(redirectRaw as RouteName)
-            ? (redirectRaw as RouteName)
-            : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
+          // const redirect = validRoutes.includes(redirectRaw as RouteName)
+          //   ? (redirectRaw as RouteName)
+          //   : "Home"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
 
-          // 3. حذف مسیر redirect از AsyncStorage
+          //// 3. حذف مسیر redirect از AsyncStorage
+          // await AsyncStorage.removeItem("redirect"); 
+          //// 4. هدایت به مسیر redirect
+          // navigation.replace(redirect);   
+          ////zare_nk_041207_commented_end
+          ////zare_nk_041207_added_st
+          const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
           await AsyncStorage.removeItem("redirect");
-
-          // 4. هدایت به مسیر redirect
-          navigation.replace(redirect); // نیازمند useNavigation از React Navigation
+          navigation.replace(redirect as keyof RootStackParamList);
+          ////zare_nk_041207_added_end
         } else {
-          console.log("❌ verifyToken failed");
+          console.log("❌ zare_nk_041207-verifyToken failed");
           setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
           await AsyncStorage.removeItem("token");
           Alert.alert("❌ verifyToken failed");
@@ -247,7 +265,7 @@ export default function LoginScreen({
         Alert.alert(
           "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
         );
-        console.log("zare_nk_040218-!!response.ok");
+        console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");
         setError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
       }
@@ -255,10 +273,10 @@ export default function LoginScreen({
       ////zare_nk_040428_added_end
     } catch (err: any) {
       Alert.alert(
-        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
+        "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );
       console.log(
-        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
+        "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );
       await AsyncStorage.removeItem("token");
       setSmsError(err.response?.data?.message || "خطا در ورود با کد تایید");
@@ -461,7 +479,7 @@ export default function LoginScreen({
               style={[styles.lablAndInputCont, { marginBottom: 15 }]}
             >
               <Text style={{ marginLeft: 15, marginBottom: 10 }}>
-              ب  شماره تماس
+                ب  شماره تماس
               </Text>
               {/* <input
           style={{ textAlign: "center" }}
@@ -667,9 +685,9 @@ export default function LoginScreen({
 
             </View>
 
-            <View 
-            // className={Styles.formsRow}
-            style={[styles.formsRow]}
+            <View
+              // className={Styles.formsRow}
+              style={[styles.formsRow]}
             >
               {/* <button
           id="ResendCode"
@@ -680,7 +698,7 @@ export default function LoginScreen({
         >
           ارسال مجدد
         </button> */}
-              <TouchableOpacity 
+              <TouchableOpacity
                 style={[styles.btn]}
                 onPress={ResendCodefunc}
                 disabled={isDisabledResendCode}
@@ -692,9 +710,9 @@ export default function LoginScreen({
             </View>
 
             <View
-            //  className={Styles.formsRow}
-             style={[styles.formsRow]}
-             >
+              //  className={Styles.formsRow}
+              style={[styles.formsRow]}
+            >
               {/* <button
           ref={refForRemovTimer}
           className={Styles.btn}
@@ -712,7 +730,7 @@ export default function LoginScreen({
                 activeOpacity={0.1}
               >
                 <Text>  ریست تایمر</Text>
-              </TouchableOpacity> 
+              </TouchableOpacity>
             </View>
           </>
         )}

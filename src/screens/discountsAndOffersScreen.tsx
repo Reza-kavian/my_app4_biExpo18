@@ -955,7 +955,7 @@ export function SabadSatrComponent({
     });
   };
   ////zare_nk_041207_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
-
+  
   return (
     <View
       // id="Subprograms-1"
@@ -1097,8 +1097,7 @@ export function SabadSatrComponent({
                 // borderStyle:'dashed',
                 borderColor: 'blue',
               }}
-            />
-
+            />  
           </View>
 
           <View
@@ -3797,53 +3796,9 @@ export default function ShallowRoutingExample({
           }, SubprogramsContResponse]}
         >
           {!bisatr && (
-            <>
-              {/* zare_nk_041121_commented_st(for shopToDiscount) */}
-              {/* {sabadRows?.map((item, index) => {
-            const idTag = "ForCart-" + item.IdKala;
-            let ForCartContentsDesignType = 0;
-            const Tedad = item.Tedad ? item.Tedad : item.TedadDarSabad;
-            if (Tedad == 0) {
-              ForCartContentsDesignType = 0;
-            } else if (Tedad > item.ZaribForoosh) {
-              ForCartContentsDesignType = 2;
-            } else if (Tedad == item.ZaribForoosh) {
-              ForCartContentsDesignType = 1;
-            }
-            let TozihatKala = "";
-            if (item.TozihatKala != undefined) {
-              TozihatKala = item.TozihatKala;
-            }
-
-            return (
-              <SabadSatrComponent
-                key={index || item.IdKala}
-                IdKala={item.IdKala}
-                NameKala={item.NameKala}
-                j={index}
-                DarsadTakhfif={item.DarsadTakhfif}
-                FeeForoosh={item.FeeForoosh}
-                refForMiddleCount={refForMiddleCount}
-                refForInputGroup={refForInputGroup}
-                handlerForAddClick={handlerForAddClick}
-                handlerForRemClick={handlerForRemClick}
-                openprodDetModal={openprodDetModal}
-                ForCartContentsDesignType={ForCartContentsDesignType}
-                tedad={Tedad}
-                idTag={idTag}
-                BarcodeKala={item.BarcodeKala}
-                FeeMasraf={item.FeeMasraf}
-                TozihatKala={TozihatKala}
-              />
-            );
-          })} */}
-              {/* zare_nk_041121_commented_end(for shopToDiscount) */}
+            <> 
               {/* zare_nk_041121_added_st(for shopToDiscount) */}
-              {sabadRows?.map((item, index) => {
-                // Alert.alert("index: "+index);
-                // Alert.alert("item: "+item);
-                // Alert.alert("item.IdKala: "+item.IdKala);
-
+              {sabadRows?.map((item, index) => { 
                 return (
                   <SabadSatrComponent
                     key={index || item.IdKala}
@@ -3854,7 +3809,7 @@ export default function ShallowRoutingExample({
                     navigation={navigation}  //zare_nk_041127_added
                   />
                 );
-              })}
+              })}  
               {/* zare_nk_041121_added_end(for shopToDiscount) */}
 
               {/* zare_nk_041207_added_st(baraye ezafe kardane 2 view ye komaki baraye responsive boodane farzandane satre akhar) */}

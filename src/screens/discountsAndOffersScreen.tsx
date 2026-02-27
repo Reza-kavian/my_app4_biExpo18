@@ -5,7 +5,7 @@ import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
   useWindowDimensions,
   StyleProp, Modal, Button, Animated, TextInput,
-  Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView
+  Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions
 } from "react-native";
 // import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";  //reza_nk_041207_commented
 import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041129_added
@@ -955,7 +955,7 @@ export function SabadSatrComponent({
     });
   };
   ////zare_nk_041207_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
-  
+
   return (
     <View
       // id="Subprograms-1"
@@ -1097,7 +1097,7 @@ export function SabadSatrComponent({
                 // borderStyle:'dashed',
                 borderColor: 'blue',
               }}
-            />  
+            />
           </View>
 
           <View
@@ -1395,8 +1395,6 @@ async function getCookie(name: any) {
 ////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { event } from "react-native/types_generated/Libraries/Animated/AnimatedExports";
-import { setPublicInstanceForReactNativeDocumentElementInstanceHandle } from "react-native/types_generated/src/private/webapis/dom/nodes/internals/ReactNativeDocumentElementInstanceHandle";
 type Props = NativeStackScreenProps<RootStackParamList, "discountsAndOffers">;
 
 export default function ShallowRoutingExample({
@@ -1407,10 +1405,20 @@ export default function ShallowRoutingExample({
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
   console.log('041210-1-ShallowRoutingExample called!!');
+  // const [windowWidth, setWindowWidth] = useState(Dimensions.get("window").width);
 
+  // useEffect(() => {
+  //   const subscription = Dimensions.addEventListener("change", ({ window }) => {
+  //     Alert.alert("window.width: " + window.width);
+  //     setWindowWidth(window.width); // این باعث میشه FlatList رندر مجدد بشه
+  //   });
+  //   return () => subscription?.remove();
+  // }, []);
 
   ////zare_nk_041206_added_st(moadele @media baraye responsive kardane site) 
-  const { width } = useWindowDimensions();
+  const { width } = useWindowDimensions();  //zare_nk_041208_nokteh(useWindowDimensions tosiye mishe bejaye Dimensions,chon useWindowDimensions ba taghire size
+  //  arze safhe(masalan ofoghi va amoodai kardane mobile baese rerendere automate componenti ke tooshe mishe,vali Dimensions ghadimitare va bayad  ye state 
+  // baraye reRendere dastiye component tarif konim va baraye Dimensions addEventListenere change benevisim ke ba tagheire sizesh ba setState yadshodeh component ra rafresh konim ))
   //////responsive_for_sabadItemsAndTotalInf_added_st
   let SubprogramsContResponse: StyleProp<ViewStyle>;
   if (width < 576) {
@@ -1419,20 +1427,20 @@ export default function ShallowRoutingExample({
   else if (width >= 576) {
     SubprogramsContResponse = styles.SubprogramsCont_BTH576;
   }
-  else if (width >= 768) {
-    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
-  }
   else if (width >= 992) {
-    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+    SubprogramsContResponse = styles.SubprogramsCont_BTH992;
   }
   //////responsive_for_sabadItemsAndTotalInf_added_end
   //////responsive_for_Subprograms_added_st
+  let numSubprogramsResponseInPerRow = 2;
   let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
   if (width >= 576) {
     SubprogramsResponse = styles.Subprograms_BTH576;
+    numSubprogramsResponseInPerRow = 4;
   }
   if (width >= 992) {
     SubprogramsResponse = styles.Subprograms_BTH992;
+    numSubprogramsResponseInPerRow = 6;
   }
   //////responsive_for_Subprograms_added_end
 
@@ -3779,26 +3787,27 @@ export default function ShallowRoutingExample({
           </View>
         </Modal>
       ) : (
-        <ScrollView
-          // id="cardcontainer2"
-          // className="mtt-1 gfForAddRemm WantCompress hisGrandFather"
-          style={{
-            width: "100%",
-            overflow: "hidden",
-          }}
-          contentContainerStyle={[{
-            display: "flex",
-            flexDirection: "row",
-            // justifyContent: 'flex-start',  //zare_nk_041207_commented
-            justifyContent: "space-between",  //zare_nk_041207_added
-            flexWrap: "wrap",
-            direction: "rtl",
-          }, SubprogramsContResponse]}
-        >
+        // <ScrollView
+        //   // id="cardcontainer2"
+        //   // className="mtt-1 gfForAddRemm WantCompress hisGrandFather"
+        //   style={{
+        //     width: "100%",
+        //     overflow: "hidden",
+        //   }}
+        //   contentContainerStyle={[{
+        //     display: "flex",
+        //     flexDirection: "row",
+        //     // justifyContent: 'flex-start',  //zare_nk_041207_commented
+        //     justifyContent: "space-between",  //zare_nk_041207_added
+        //     flexWrap: "wrap",
+        //     direction: "rtl",
+        //   }, SubprogramsContResponse]}
+        // >
+        <>
           {!bisatr && (
-            <> 
+            <>
               {/* zare_nk_041121_added_st(for shopToDiscount) */}
-              {sabadRows?.map((item, index) => { 
+              {/* {sabadRows?.map((item, index) => { 
                 return (
                   <SabadSatrComponent
                     key={index || item.IdKala}
@@ -3809,27 +3818,71 @@ export default function ShallowRoutingExample({
                     navigation={navigation}  //zare_nk_041127_added
                   />
                 );
-              })}  
+
+              })}   */}
+              {/* zare_nk_041208_nokteh(baraye load shodane farzandan faghat zamane scroll shodan az FlatList estefadeh kardim ta sorate barname balatar bere,
+              <FlatList ra jaigozine <ScrollView kardim,chon ScrollView faghat haviye scrol bood vali FlatList ham scrol darad ham loade farzandanash faghat 
+              hengame dideh shodan dar scorl ha,albate FlatList baraye mavaredi mesle sabade kharid ke tedad Itemha khaili ziad nist lazem nist,vali masalan
+              baraye safheye pishnahadat ke masalan 500 kala miad baraye jologiri az kond shodane loade yekjaye 500 farzand,mofideh)*/}
+              <FlatList
+               key={width}
+                data={sabadRows}
+                keyExtractor={(item) => item.IdKala.toString()}
+                renderItem={({ item }) => (
+                  // <SabadSatrComponent item={item} />
+                  <SabadSatrComponent
+                    // key={index || item.IdKala}
+                    SabadRow={item}
+                    handlerForAddClick={handlerForAddClick}
+                    handlerForRemClick={handlerForRemClick}
+                    openprodDetModal={openprodDetModal}
+                    navigation={navigation}  //zare_nk_041127_added
+                  />
+                )}
+                style={{
+                  width: "100%",
+                  overflow: "hidden",
+                  borderColor: 'blue',
+                  borderStyle: 'solid',
+                  borderWidth: 3,
+                }}
+                contentContainerStyle={[{
+                  display: "flex",
+                  // flexDirection: "row",
+                  // justifyContent: "space-between",  
+                  // flexWrap: "wrap",
+                  direction: "rtl",
+                }, SubprogramsContResponse]}
+                columnWrapperStyle={{
+                  // justifyContent: "space-between",
+                  // marginBottom: 10,
+                }}
+                numColumns={numSubprogramsResponseInPerRow}
+                showsVerticalScrollIndicator={false} 
+              />
               {/* zare_nk_041121_added_end(for shopToDiscount) */}
 
-              {/* zare_nk_041207_added_st(baraye ezafe kardane 2 view ye komaki baraye responsive boodane farzandane satre akhar) */}
-              {sabadRows?.slice(0, 2).map((item) => (
+              {/* zare_nk_041207_added_st(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 
+              akhar ra nemidahim,pas satrhaye komaki dege niazi nist va commenteshoon kardim) */}
+              {/* {sabadRows?.slice(0, 2).map((item) => (
                 <View
                   style={[{
                     display: "flex",
                     flexDirection: "row",
                     borderStyle: 'dashed',
-                    borderColor: 'red',
+                    borderColor: 'black',
                     borderWidth: 2,
 
                   }, SubprogramsResponse]}
                 ></View>
-              ))}
-              {/* zare_nk_041207_added_end(baraye ezafe kardane 2 view ye komaki baraye responsive boodane farzandane satre akhar) */}
+              ))} */}
+              {/* zare_nk_041207_added_end(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 
+              akhar ra nemidahim,pas satrhaye komaki dege niazi nist va commenteshoon kardim) */}
 
             </>
           )}
-        </ScrollView>
+          {/* </ScrollView> */}
+        </>
       )}
     </>
   );
@@ -3916,71 +3969,58 @@ const styles = StyleSheet.create({
   SubprogramsCont_STH576: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 10,
-    gap: 10,
-    // margin: 20px 10px 15px 10px;
-    // marginTop: 20,
-    // marginHorizontal: 10, // راست و چپ
-    // marginBottom: 15,
+    paddingHorizontal: 0,
+
+    // gap: 10, //zare_nk_041208_nokteh(gap baraye FlatList naghese va faghat amoodi lahaz mishe nadare chon be lahaze ofoghi har
+    //  zatresh ye farzande vahed darnazar gerefte mishe va baraye Card haye toosh emal nemishe!,pas az gap sarfenazarkardim)
   },
   SubprogramsCont_BTH576: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 10,
-    gap: 10,
-    // margin: 20px 10px 15px 10px;
-    // marginTop: 20,
-    // marginHorizontal: 10, // راست و چپ
-    // marginBottom: 15,
+    paddingHorizontal: 5,
+    // gap: 10,  //zare_nk_041208_nokteh(gap baraye FlatList naghese va faghat amoodi lahaz mishe nadare chon be lahaze ofoghi har
+    //  zatresh ye farzande vahed darnazar gerefte mishe va baraye Card haye toosh emal nemishe!,pas az gap sarfenazarkardim)
   },
 
   SubprogramsCont_BTH992: {
     // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 50,
-    gap: 15,
-    // margin: 20px 10px 15px 10px;
-    // marginTop: 20,
-    // marginHorizontal: 50, // راست و چپ
-    // marginBottom: 15,
+    paddingHorizontal: 45,
+    // gap: 15, //zare_nk_041208_nokteh(gap baraye FlatList naghese va faghat amoodi lahaz mishe nadare chon be lahaze ofoghi har
+    //  zatresh ye farzande vahed darnazar gerefte mishe va baraye Card haye toosh emal nemishe!,pas az gap sarfenazarkardim)
   },
 
   SubprogramsCont_BTH1400: {
-    // padding: 15px 0px;
     paddingVertical: 15,
-    paddingHorizontal: 200,
-
-    // margin: 20px 10px 15px 10px;
-    // marginTop: 20,
-    // marginHorizontal: 200, // راست و چپ
-    // marginBottom: 15,
+    paddingHorizontal: 195,
+    // gap: 15, //zare_nk_041208_nokteh(gap baraye FlatList naghese va faghat amoodi lahaz mishe nadare chon be lahaze ofoghi har
+    //  zatresh ye farzande vahed darnazar gerefte mishe va baraye Card haye toosh emal nemishe!,pas az gap sarfenazarkardim)
   },
 
   //////////////////////
   Subprograms_BaseResponse: {
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: '45%',
-    // marginBottom: 10,  //zare_nk_041206_commented
-    // borderWidth: 2,
-    // borderStyle: 'dashed',
-    // borderColor: 'orange',
+    // flexBasis: '45%', //zare_nk_041208_nokteh(chon az <FlatList ../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
+    //  estefade shode va dige flexBasise darsadi be farzandan nadadim)
+    maxWidth: '50%', //zare_nk_041208_nokteh(jaigozine farzandane tookhaliye komaki baraye satre akhar shodeh)
+    padding: 5,
   },
   Subprograms_BTH576: {
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: '31%',
-    // marginBottom: 10,  //zare_nk_041206_commented
-    //  borderWidth: 2,
-    // borderStyle: 'dashed',
-    // borderColor: 'orange',
+    // flexBasis: '21%',//zare_nk_041208_nokteh(chon az <FlatList ../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
+    //  estefade shode va dige flexBasise darsadi be farzandan nadadim)
+    maxWidth: '25%', //zare_nk_041208_nokteh(jaigozine farzandane tookhaliye komaki baraye satre akhar shodeh)
+    padding: 5,
   },
   Subprograms_BTH992: {
-    // flex: 1 1 31%; 
     flexGrow: 1,
     flexShrink: 1,
-    flexBasis: '21%',
-    // marginBottom: 10,  //zare_nk_041206_commented
+    // flexBasis: '15%',//zare_nk_041208_nokteh(chon az <FlatList ../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
+    //  estefade shode va dige flexBasise darsadi be farzandan nadadim)
+    maxWidth: '16.6%', //zare_nk_041208_nokteh(jaigozine farzandane tookhaliye komaki baraye satre akhar shodeh)
+    padding: 5,
   },
   //////////////////////////
 

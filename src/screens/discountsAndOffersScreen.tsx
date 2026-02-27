@@ -897,6 +897,7 @@ export function SabadSatrComponent({
 }: SabadSatrProps) {
   ////zare_nk_041207_added_st
   const [productHeight, setProductHeight] = useState<number>(0);
+  const [productWidth, setProductWidth] = useState<number>(0);  //zare_nk_041208_dded
   const productUri = `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp`; // تبدیل به متغیر
   const [imgUri, setImgUri] = useState(productUri);
   ////zare_nk_041207_added_end
@@ -946,7 +947,7 @@ export function SabadSatrComponent({
   ////zare_nk_041207_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
   const onImageLayout = (event: LayoutChangeEvent) => {
     const { width } = event.nativeEvent.layout; // عرض واقعی خود Image
-
+    setProductWidth(width);  //zare_nk_041208_added
     // محاسبه ارتفاع بر اساس نسبت واقعی تصویر
     Image.getSize(productUri, (imgWidth, imgHeight) => {
       const ratio = imgHeight / imgWidth;
@@ -1066,15 +1067,32 @@ export function SabadSatrComponent({
           /> */}
             <Image
               onLayout={onImageLayout}  //zare_nk_041207_added
-              onError={() => setImgUri('https://img.tochikala.com/Logo/tochi.png')}
+              onError={() => {
+                const productUriOnError = 'https://img.tochikala.com/Logo/tochi.png';
+                setImgUri(productUriOnError);
+
+                if (productWidth > 0) {
+                  Image.getSize(productUriOnError, (imgWidth, imgHeight) => {
+                    const ratio = imgHeight / imgWidth;
+                    setProductHeight(productWidth * ratio);
+                  });
+                }
+              }}
               onLoad={() => console.log('Image loaded')}
               // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
               source={{ uri: imgUri }}   //zare_nk_041207_added
               style={{
                 backgroundColor: "#EFEFEF", width: "100%",
                 // height: 'auto',  //zare_nk_041207_comemnted(height: 'auto' dar reactNative dorost amal nemikoneh)
-                // aspectRatio: 1,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))
-                height: productHeight,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))
+                //// aspectRatio: 1,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))(rahe aspectRatioye ertefa)
+                // height: productHeight,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))(rahe onLayoutiye ertefa)
+
+                ////zare_nk_041208_added_st(rahe tarkibiye ertefa)
+                ...(productHeight === 0
+                  ? { aspectRatio: 1 }
+                  : { height: productHeight }),
+                ////zare_nk_041208_added_end(rahe tarkibiye ertefa)
+
                 borderWidth: 2,
                 // borderStyle:'dashed',
                 borderColor: 'blue',
@@ -1379,6 +1397,7 @@ async function getCookie(name: any) {
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { event } from "react-native/types_generated/Libraries/Animated/AnimatedExports";
+import { setPublicInstanceForReactNativeDocumentElementInstanceHandle } from "react-native/types_generated/src/private/webapis/dom/nodes/internals/ReactNativeDocumentElementInstanceHandle";
 type Props = NativeStackScreenProps<RootStackParamList, "discountsAndOffers">;
 
 export default function ShallowRoutingExample({
@@ -1737,9 +1756,11 @@ export default function ShallowRoutingExample({
 
         const inputData: InputDataType = {
           IdShobeh: 7,
-          IsJashnvareh: 1,
+          // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
+          IsJashnvareh: -1,  //zare_nk_041208_added_testi
           NameKala: "",
-          IdG1: -1,
+          // IdG1: -1,//zare_nk_041208_commented_testi
+          IdG1: 1,//zare_nk_041208_added_testi
           IdG2: -1,
           IdG3: -1,
           IdG4: -1,
@@ -3817,7 +3838,7 @@ export default function ShallowRoutingExample({
             );
           })} */}
               {/* zare_nk_041121_commented_end(for shopToDiscount) */}
-              {/* zare_nk_041121_added_st(for shopToDiscount) */} 
+              {/* zare_nk_041121_added_st(for shopToDiscount) */}
               {sabadRows?.map((item, index) => {
                 // Alert.alert("index: "+index);
                 // Alert.alert("item: "+item);

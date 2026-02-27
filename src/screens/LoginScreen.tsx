@@ -148,15 +148,13 @@ export default function LoginScreen({
       setSmsError("کد وارد شده معتبر نیست");
       return;
     }
-    try {
-      Alert.alert('1');
+    try { 
       setIsDisabledCheckSmsBtn(true);
       const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
         mobile: mobileVal,
         smsCode: smsVal,
         Password: ""
-      });
-      Alert.alert('2');
+      }); 
       console.log("zare_nk_041207-01");
       const ApiLoginUser2Result = res.data; // await res.json();
       console.log("zare_nk_041207-02");
@@ -194,7 +192,7 @@ export default function LoginScreen({
         if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
           //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
           const expires = new Date(
-            Date.now() + 15 * 60 * 1000
+            Date.now() + 120 * 60 * 1000
           ).toISOString();
           // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
           let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani

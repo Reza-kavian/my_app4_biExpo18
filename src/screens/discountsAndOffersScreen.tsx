@@ -1192,15 +1192,15 @@ export function SabadSatrComponent({
           }}
         >
           <Text
+            numberOfLines={2}
+            ellipsizeMode="tail"
             style={{
+              fontFamily: "IRANSansWeb(FaNum)_Medium",
               fontSize: 13,
-              margin: 0,
-              // lineHeight: "1.3",
-              lineHeight: 32,
-              // textOverflow: "ellipsis",
-              overflow: "hidden",
-              //  display: "-webkit-box",
-              textAlign: "right",
+              // lineHeight: 32,  //zare_nk_commented(numberOfLines dar reactNative behtare)
+              // borderWidth: 1,
+              // borderStyle: 'dashed',
+              // borderColor: 'red',
             }}
           >
             {SabadRow.NameKala}
@@ -1216,9 +1216,12 @@ export function SabadSatrComponent({
             // padding: "0px 10px 0px 10px",
             paddingVertical: 0,
             paddingHorizontal: 10,
-            justifyContent: "center",
+            justifyContent: 'space-between',
             alignItems: "center",
             width: "100%",
+            borderWidth: 1,
+            borderStyle: 'dashed',
+            borderColor: 'black',
           }}
         >
 
@@ -1230,7 +1233,7 @@ export function SabadSatrComponent({
               style={{
                 backgroundColor: "#dc3545",
                 width: 35,
-                height: 20,
+                height: 25,
                 // flex: "0 0 auto",
                 flexGrow: 0,
                 flexShrink: 0,
@@ -1239,11 +1242,24 @@ export function SabadSatrComponent({
                 justifyContent: "center",
                 alignItems: "center",
                 marginLeft: 5,
+                // borderWidth: 2,
+                // borderStyle: 'dashed',
+                // borderColor: 'blue',
+                  borderRadius:7, 
               }}
             >
               <Text
                 // className="forDiscount"
-                style={{ fontSize: 12, color: "white", opacity: 1 }}
+                style={{  
+                  fontSize: 12,
+                   color: "white",
+                    opacity: 1, 
+                    fontFamily: "IRANSansWeb(FaNum)_Medium", 
+                  
+                //     borderWidth: 2,
+                // borderStyle: 'dashed',
+                // borderColor: 'black',
+                  }}
               >
                 {`${SabadRow.DarsadTakhfif}٪`}
               </Text>
@@ -1256,16 +1272,23 @@ export function SabadSatrComponent({
               flexShrink: 0,
               flexBasis: 'auto',
               display: "flex",
-              justifyContent: 'flex-end'
+              flexDirection: 'row',
+              justifyContent: 'flex-end',
+              borderWidth: 1,
+              borderStyle: 'dashed',
+              borderColor: 'green',
+              
             }}
           >
             <Text
               //  className="mablagh" 
-              style={{ marginLeft: 5 }}>
+              style={{fontSize: 13, 
+              marginLeft: 5,
+               fontFamily: "IRANSansWeb(FaNum)_Medium", }}>
               {SabadRow.FeeForoosh.toLocaleString()}
             </Text>
             <Text
-              style={{ fontSize: 12 }}
+              style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", }}
             >ریال</Text>
           </View>
         </View>
@@ -3825,7 +3848,7 @@ export default function ShallowRoutingExample({
               hengame dideh shodan dar scorl ha,albate FlatList baraye mavaredi mesle sabade kharid ke tedad Itemha khaili ziad nist lazem nist,vali masalan
               baraye safheye pishnahadat ke masalan 500 kala miad baraye jologiri az kond shodane loade yekjaye 500 farzand,mofideh)*/}
               <FlatList
-               key={width}
+                key={width}
                 data={sabadRows}
                 keyExtractor={(item) => item.IdKala.toString()}
                 renderItem={({ item }) => (
@@ -3858,7 +3881,7 @@ export default function ShallowRoutingExample({
                   // marginBottom: 10,
                 }}
                 numColumns={numSubprogramsResponseInPerRow}
-                showsVerticalScrollIndicator={false} 
+                showsVerticalScrollIndicator={false}
               />
               {/* zare_nk_041121_added_end(for shopToDiscount) */}
 

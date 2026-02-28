@@ -257,7 +257,7 @@ function MiddleCountTedadSefr({
                                     {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
-                                    /> */} 
+                                    /> */}
                                     <SvgUri
                                         uri="https://img.tochikala.com/tochikala/remove-icon.svg"
                                         width={20}
@@ -1232,6 +1232,9 @@ function SabadSatrComponent({
                 // textAlign: "right",
                 direction: "rtl",
                 position: "relative",
+                //  borderStyle:'dashed',
+                //                 borderColor:'black',
+                //                 borderWidth:1,
             }}
         >
             <View
@@ -1243,6 +1246,9 @@ function SabadSatrComponent({
                     // textAlign: "right",
                     direction: "rtl",
                     position: "relative",
+                    //  borderStyle:'dashed',
+                    //             borderColor:'red',
+                    //             borderWidth:1,
                 }}
             >
                 <View
@@ -1252,7 +1258,10 @@ function SabadSatrComponent({
                         display: "flex",
                         flexDirection: "column",
                         position: "relative",
-                        marginLeft: 5,
+                        marginLeft: 5,  //zare_nk_041209_tahlilshe(sotoonre aks va chapesh)
+                        //  borderStyle:'dashed',
+                        //         borderColor:'black',
+                        //         borderWidth:1,
                     }}
                 >
                     <TouchableOpacity
@@ -1271,6 +1280,8 @@ function SabadSatrComponent({
                             // boxShadow: "#5e5e5e 0px 0px 3px 0px",
                             boxShadow: "#5e5e5e 0px 0px 3px 0px ",
                             ////zare_nk_041203_added_end
+
+                             
                         }}
                     // className="GotToDet"
                     >
@@ -1282,6 +1293,10 @@ function SabadSatrComponent({
                                 // display: "flex",
                                 flexDirection: "column",
                                 // height: "min-content",  
+
+                                // borderStyle:'dashed',
+                                // borderColor:'blue',
+                                // borderWidth:1,
                             }}
                         >
                             {/* <img
@@ -1327,7 +1342,10 @@ function SabadSatrComponent({
                         justifyContent: 'space-around',  //zare_nk_041202_added
                         overflow: "hidden",
                         borderRadius: 5,
-                        padding: 5,
+                        // padding: 5, //zare_nk_041209_comemnted
+                        //  borderWidth:2,
+                        //     borderColor:'red',
+                        //     borderStyle:'solid',
                     }}
                 >
                     <View
@@ -1392,6 +1410,9 @@ function SabadSatrComponent({
                             display: "flex",
                             flexDirection: "row",
                             justifyContent: "space-between",
+                            // borderWidth:2,
+                            // borderColor:'red',
+                            // borderStyle:'dashed',
                         }}
                     >
                         <View
@@ -1400,6 +1421,7 @@ function SabadSatrComponent({
                                 display: "flex",
                                 flexDirection: "column",
                                 justifyContent: "center",
+                                // width:10,  //hazfi
                             }}
                         >
                             <MiddleCountTedadSefr
@@ -1463,8 +1485,14 @@ function SabadSatrComponent({
                         <View
                             style={{
                                 display: "flex",
+                                flexGrow:1,
+                                flexShrink:0,
+                                flexBasis:'auto',
                                 flexDirection: "column",
                                 paddingTop: 5,
+                                // borderWidth:2,
+                                //     borderStyle:'dashed',
+                                //     borderColor:'black',
                             }}
                         >
                             <View
@@ -1472,65 +1500,126 @@ function SabadSatrComponent({
                                     display: "flex",
                                     flexDirection: "row",
                                     marginBottom: 10,
-                                    justifyContent: 'flex-end',
+                                    justifyContent: 'space-between',
+
+                                    // borderWidth:2,
+                                    // borderStyle:'dashed',
+                                    // borderColor:'red',
                                 }}
                             >
+
+
                                 <View
                                     // className="titleInsabad"
                                     style={{
                                         display: "flex",
                                         flexDirection: "row",
-                                        marginLeft: 10,
+                                        // marginLeft: 10,
+                                    //       borderWidth:2,
+                                    // borderStyle:'solid',
+                                    // borderColor:'blue',
                                     }}
                                 >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>قیمت کرفو</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>قیمت کرفو</Text>
                                 </View>
+<View
+ style={{
+                                    display: "flex",
+                                    flexDirection: "row", 
+                                    justifyContent:'flex-end',
+
+                                    // borderWidth:3,
+                                    // borderStyle:'dashed',
+                                    // borderColor:'black',
+                                    // width:150,  //hazfi
+                                }}>                                
                                 <View
                                     // className="gheimatForooshInsabad titleStyle"
                                     style={{
                                         // display: "flex",
                                         flexDirection: "row",
-                                        marginLeft: 5,
+                                          marginLeft: 5,   //nahazfi
+                                    //      borderWidth:2,
+                                    // borderStyle:'solid',
+                                    // borderColor:'yellow',
                                     }}
                                 >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>  {SabadRow.FeeForoosh != null ? SabadRow.FeeForoosh.toLocaleString() : 0}</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>  {SabadRow.FeeForoosh != null ? SabadRow.FeeForoosh.toLocaleString() : 0}</Text>
                                 </View>
+
                                 <View
                                     // className="rialInsabad valueStyle"
-                                    style={{ display: "flex", flexDirection: "row" }}
+                                    style={{ display: "flex", flexDirection: "row" ,
+                                    //      borderWidth:2,
+                                    // borderStyle:'solid',
+                                    // borderColor:'brown',
+                                    }}
                                 >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>ریال</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
+                                    //      borderWidth:2,
+                                    // borderStyle:'solid',
+                                    // borderColor:'red',
+                                     }}>ریال</Text>
                                 </View>
+ </View>                               
                             </View>
 
-                            <View style={{ display: "flex", flexDirection: "row" }}>
+                            <View style={{ display: "flex", flexDirection: "row",
+                            justifyContent: 'space-between',
+                                //   borderWidth:2,
+                                //     borderStyle:'dashed',
+                                //     borderColor:'red',
+                             }}>
+
                                 <View
                                     // className="titleInsabad"
                                     style={{
-                                        // display: "flex",
+                                        display: "flex",
                                         flexDirection: "row",
-                                        marginLeft: 10,
+                                        // marginLeft: 10,
                                     }}
                                 >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>مجموع سطر</Text>
+                                    <Text
+                                        numberOfLines={1}
+                                        ellipsizeMode="tail"
+                                        style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12, }}>مجموع سطر</Text>
                                 </View>
+<View
+ style={{
+                                    display: "flex",
+                                    flexDirection: "row", 
+                                    justifyContent:'flex-end',
+
+                                    // borderWidth:3,
+                                    // borderStyle:'dashed',
+                                    // borderColor:'black',
+                                    // width:150,  //hazfi
+                                }}>  
                                 <View
                                     // id={`majmooGheimatForooshSatrInsabad-${SabadRow.IdKala}`}
                                     // className="majmooGheimatForooshSatrInsabad titleStyle"
                                     style={{
                                         // display: "flex",
                                         flexDirection: "row",
-                                        marginLeft: 5,
+                                        marginLeft: 5,  //nahazfi
+                                    //      borderWidth:2,
+                                    // borderStyle:'solid',
+                                    // borderColor:'yellow',
                                     }}
                                 >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
                                 </View>
                                 <View
                                     // className="rialInsabad valueStyle"
                                     style={{ display: "flex", flexDirection: "row" }}
                                 >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}> ریال</Text>
+                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
+                                    //      borderWidth:2,
+                                    // borderStyle:'solid',
+                                    // borderColor:'blue',
+                                     }}>ریال</Text>
                                 </View>
+</View>
                             </View>
                         </View>
                     </View>
@@ -2439,7 +2528,7 @@ export default function ShallowRoutingExample({
                         father: "#sabadItemsContInSafhe",
                         bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
                         fromShowDetails: false,
-                        event: null,  //zare_nk_041120_tahlilshe
+                        event: null,  
                     }
                 );
             }
@@ -2855,7 +2944,7 @@ export default function ShallowRoutingExample({
                         //     ".ForCart-" + addRemParam.IdKala + " .input-group"
                         // );
                         // if (inputGroup) {
-                        //     let parent = inputGroup.closest(".flxpedar2_new");   //tahlilshe
+                        //     let parent = inputGroup.closest(".flxpedar2_new");   
                         //     if (parent) {
                         //         if (JSON.parse(result.data.titr).length == 0) {
                         //             parent.remove();
@@ -4695,6 +4784,10 @@ export default function ShallowRoutingExample({
                         // borderStyle: 'dashed',
                         backgroundColor: 'white',
                         ////zare_nk_041203_added_end
+
+                        //   borderStyle:'dashed',
+                        //         borderColor:'blue',
+                        //         borderWidth:4,
                     }]}
                     contentContainerStyle={[{
                         // paddingBottom: 45
@@ -4726,7 +4819,8 @@ export default function ShallowRoutingExample({
                                 // borderColor: "#a9a9a9",
                                 // borderStyle: 'solid',
                                 borderRadius: 10,
-                                padding: 7,
+                                // padding: 7,  //zare_nk_041209_commented
+                                paddingTop:7,  //zare_nk_041209_added
                                 backgroundColor: "#f6f6f6",
                                 boxShadow: "#5e5e5e 0px 0px 3px 0px",
                             }, sabadItemsCont]}
@@ -5165,7 +5259,7 @@ const styles = StyleSheet.create({
     sabadSafhe_STH576: {
         paddingTop: 7,
         paddingBottom: 12,  //zare_nk_041203_nokteh(chon scroll mikoneh dar reactNative ta enteha nemireh scroll! va majboorim paddingBotom ra kami bishtar bedim)
-        paddingHorizontal: 7,
+        paddingHorizontal: 7,  //zare_nk_041209_tahlilshe
     },
     sabadSafhe_BTH576: {
         paddingTop: 10,

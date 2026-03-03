@@ -6,7 +6,7 @@ import { //zare_nk_041127_added
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
     StyleProp, Modal, Button, Animated, TextInput,
-    Platform, ToastAndroid  //zare_nk_041127_added
+    Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions
 } from "react-native";
 
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
@@ -22,8 +22,6 @@ import { MouseEvent } from "react";
 import ReusableButton from "../components/ReusableButton";
 
 import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
-
-import { ScrollView } from "react-native";  //zare_nk_041203_added
 
 ////zare_nk_041127_commented_st
 // async function getBootstrap() {
@@ -244,7 +242,7 @@ function MiddleCountTedadSefr({
                             >
                                 <Text
                                     style={{
-                                        height: "80%",
+                                        // height: "80%",
                                         backgroundColor: "white",
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
@@ -357,7 +355,7 @@ function MiddleCountTedadSefr({
                                     style={{
                                         color: "red",
                                         fontSize: 14,
-                                        height: "80%",
+                                        // height: "80%",
                                         backgroundColor: "white",
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
@@ -521,7 +519,6 @@ function MiddleCountTedadSefr({
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
                         borderRadius: 17,  //zare_nk_041202_added 
                     }}
-
                 >
                     <View
                         // className="addremmCont"
@@ -544,46 +541,6 @@ function MiddleCountTedadSefr({
                                 overflow: "hidden",
                             }}
                         >
-                            {/* <a
-                                data-baz="1"
-                                style={{
-                                    flex: "1 1 auto",
-                                    height: "100%",
-                                    padding: "0px 2px",
-                                    display: "flex",
-                                    justifyContent: "center",
-                                    alignItems: "center",
-                                    borderRadius: "50%",
-                                }}
-                                className={`rem-${IdKala}`}
-                                href="/login"
-                                onClick={(e) => {
-                                    e.preventDefault();
-                                    handlerForRemClick(e);
-                                }}
-                            >
-                                <button
-                                    style={{
-                                        height: "80%",
-                                        backgroundColor: "white",
-                                        border: "none",
-                                        padding: "0",
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "center",
-                                    }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/remove-icon.svg"
-                                        alt="حذف از سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
-                                </button>
-                            </a> */}
-
-
                             <TouchableOpacity
                                 data-baz="1"
                                 style={[
@@ -598,7 +555,6 @@ function MiddleCountTedadSefr({
                                         paddingHorizontal: 2,
                                         justifyContent: "center",
                                         alignItems: "center",
-
                                         // borderRadius: "50%",
                                         borderRadius: 17,
                                     }
@@ -1281,7 +1237,7 @@ function SabadSatrComponent({
                             boxShadow: "#5e5e5e 0px 0px 3px 0px ",
                             ////zare_nk_041203_added_end
 
-                             
+
                         }}
                     // className="GotToDet"
                     >
@@ -1485,9 +1441,9 @@ function SabadSatrComponent({
                         <View
                             style={{
                                 display: "flex",
-                                flexGrow:1,
-                                flexShrink:0,
-                                flexBasis:'auto',
+                                flexGrow: 1,
+                                flexShrink: 0,
+                                flexBasis: 'auto',
                                 flexDirection: "column",
                                 paddingTop: 5,
                                 // borderWidth:2,
@@ -1515,61 +1471,64 @@ function SabadSatrComponent({
                                         display: "flex",
                                         flexDirection: "row",
                                         // marginLeft: 10,
-                                    //       borderWidth:2,
-                                    // borderStyle:'solid',
-                                    // borderColor:'blue',
+                                        //       borderWidth:2,
+                                        // borderStyle:'solid',
+                                        // borderColor:'blue',
                                     }}
                                 >
                                     <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>قیمت کرفو</Text>
                                 </View>
-<View
- style={{
-                                    display: "flex",
-                                    flexDirection: "row", 
-                                    justifyContent:'flex-end',
-
-                                    // borderWidth:3,
-                                    // borderStyle:'dashed',
-                                    // borderColor:'black',
-                                    // width:150,  //hazfi
-                                }}>                                
                                 <View
-                                    // className="gheimatForooshInsabad titleStyle"
                                     style={{
-                                        // display: "flex",
+                                        display: "flex",
                                         flexDirection: "row",
-                                          marginLeft: 5,   //nahazfi
-                                    //      borderWidth:2,
-                                    // borderStyle:'solid',
-                                    // borderColor:'yellow',
-                                    }}
-                                >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>  {SabadRow.FeeForoosh != null ? SabadRow.FeeForoosh.toLocaleString() : 0}</Text>
-                                </View>
+                                        justifyContent: 'flex-end',
 
-                                <View
-                                    // className="rialInsabad valueStyle"
-                                    style={{ display: "flex", flexDirection: "row" ,
-                                    //      borderWidth:2,
-                                    // borderStyle:'solid',
-                                    // borderColor:'brown',
-                                    }}
-                                >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
-                                    //      borderWidth:2,
-                                    // borderStyle:'solid',
-                                    // borderColor:'red',
-                                     }}>ریال</Text>
+                                        // borderWidth:3,
+                                        // borderStyle:'dashed',
+                                        // borderColor:'black',
+                                        // width:150,  //hazfi
+                                    }}>
+                                    <View
+                                        // className="gheimatForooshInsabad titleStyle"
+                                        style={{
+                                            // display: "flex",
+                                            flexDirection: "row",
+                                            marginLeft: 5,   //nahazfi
+                                            //      borderWidth:2,
+                                            // borderStyle:'solid',
+                                            // borderColor:'yellow',
+                                        }}
+                                    >
+                                        <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>  {SabadRow.FeeForoosh != null ? SabadRow.FeeForoosh.toLocaleString() : 0}</Text>
+                                    </View>
+
+                                    <View
+                                        // className="rialInsabad valueStyle"
+                                        style={{
+                                            display: "flex", flexDirection: "row",
+                                            //      borderWidth:2,
+                                            // borderStyle:'solid',
+                                            // borderColor:'brown',
+                                        }}
+                                    >
+                                        <Text style={{
+                                            color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
+                                            //      borderWidth:2,
+                                            // borderStyle:'solid',
+                                            // borderColor:'red',
+                                        }}>ریال</Text>
+                                    </View>
                                 </View>
- </View>                               
                             </View>
 
-                            <View style={{ display: "flex", flexDirection: "row",
-                            justifyContent: 'space-between',
+                            <View style={{
+                                display: "flex", flexDirection: "row",
+                                justifyContent: 'space-between',
                                 //   borderWidth:2,
                                 //     borderStyle:'dashed',
                                 //     borderColor:'red',
-                             }}>
+                            }}>
 
                                 <View
                                     // className="titleInsabad"
@@ -1584,42 +1543,43 @@ function SabadSatrComponent({
                                         ellipsizeMode="tail"
                                         style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12, }}>مجموع سطر</Text>
                                 </View>
-<View
- style={{
-                                    display: "flex",
-                                    flexDirection: "row", 
-                                    justifyContent:'flex-end',
-
-                                    // borderWidth:3,
-                                    // borderStyle:'dashed',
-                                    // borderColor:'black',
-                                    // width:150,  //hazfi
-                                }}>  
                                 <View
-                                    // id={`majmooGheimatForooshSatrInsabad-${SabadRow.IdKala}`}
-                                    // className="majmooGheimatForooshSatrInsabad titleStyle"
                                     style={{
-                                        // display: "flex",
+                                        display: "flex",
                                         flexDirection: "row",
-                                        marginLeft: 5,  //nahazfi
-                                    //      borderWidth:2,
-                                    // borderStyle:'solid',
-                                    // borderColor:'yellow',
-                                    }}
-                                >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
+                                        justifyContent: 'flex-end',
+
+                                        // borderWidth:3,
+                                        // borderStyle:'dashed',
+                                        // borderColor:'black',
+                                        // width:150,  //hazfi
+                                    }}>
+                                    <View
+                                        // id={`majmooGheimatForooshSatrInsabad-${SabadRow.IdKala}`}
+                                        // className="majmooGheimatForooshSatrInsabad titleStyle"
+                                        style={{
+                                            // display: "flex",
+                                            flexDirection: "row",
+                                            marginLeft: 5,  //nahazfi
+                                            //      borderWidth:2,
+                                            // borderStyle:'solid',
+                                            // borderColor:'yellow',
+                                        }}
+                                    >
+                                        <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
+                                    </View>
+                                    <View
+                                        // className="rialInsabad valueStyle"
+                                        style={{ display: "flex", flexDirection: "row" }}
+                                    >
+                                        <Text style={{
+                                            color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
+                                            //      borderWidth:2,
+                                            // borderStyle:'solid',
+                                            // borderColor:'blue',
+                                        }}>ریال</Text>
+                                    </View>
                                 </View>
-                                <View
-                                    // className="rialInsabad valueStyle"
-                                    style={{ display: "flex", flexDirection: "row" }}
-                                >
-                                    <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
-                                    //      borderWidth:2,
-                                    // borderStyle:'solid',
-                                    // borderColor:'blue',
-                                     }}>ریال</Text>
-                                </View>
-</View>
                             </View>
                         </View>
                     </View>
@@ -1687,6 +1647,14 @@ export default function ShallowRoutingExample({
     Props) {
     ////zare_nk_041127_added_end
     console.log('ShallowRoutingExample called!!');
+
+    ////zare_nk_041209_added_st
+    const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
+    const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
+    const productUriForDet = '';// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
+    const [imgUriForDet, setImgUriForDet] = useState<string>('');
+    ////zare_nk_041209_added_end
+
     ////zare_nk_041202_added_st(moadele @media baraye responsive kardane site) 
     const { width } = useWindowDimensions();
     //////responsive_for_sabadItemsAndTotalInf_added_st
@@ -1736,9 +1704,50 @@ export default function ShallowRoutingExample({
     }
     //////responsive_for_sabadItemsCont_added_end
 
+ //////responsive_for_sabadItemsAndTotalInf_added_st
+  let DetailsImgAndInfoContResponse: StyleProp<ViewStyle>;
+  if (width < 576) {
+    DetailsImgAndInfoContResponse = styles.DetailsImgAndInfoCont_STH576;
+  }
+  else if (width >= 576) {
+    DetailsImgAndInfoContResponse = styles.DetailsImgAndInfoCont_BTH576;
+  }
+  //////responsive_for_sabadItemsAndTotalInf_added_end
+
+  //////responsive_for_sabadItemsAndTotalInf_added_st
+  let CurrentImgContResponse: StyleProp<ViewStyle>;
+  if (width < 576) {
+    CurrentImgContResponse = styles.CurrentImgCont_STH576;
+  }
+  else if (width >= 576) {
+    CurrentImgContResponse = styles.CurrentImgCont_BTH576;
+  }
+  //////responsive_for_sabadItemsAndTotalInf_added_end
+
+  //////responsive_for_sabadItemsAndTotalInf_added_st
+  let DetailsInfoContResponse: StyleProp<ViewStyle>;
+  if (width < 576) {
+    DetailsInfoContResponse = styles.DetailsInfoCont_STH576;
+  }
+  else if (width >= 576) {
+    DetailsInfoContResponse = styles.DetailsInfoCont_BTH576;
+  }
+  //////responsive_for_sabadItemsAndTotalInf_added_end
 
 
     ////zare_nk_041202_added_end(moadele @media baraye responsive kardane site) 
+
+    ////zare_nk_041209_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
+    const onImageLayoutForDet = (event: LayoutChangeEvent) => {
+        let { width } = event.nativeEvent.layout; // عرض واقعی خود Image
+        setProductWidthForDet(width);  //zare_nk_041208_added
+        // محاسبه ارتفاع بر اساس نسبت واقعی تصویر
+        Image.getSize(productUriForDet, (imgWidth, imgHeight) => {
+            let ratio = imgHeight / imgWidth;
+            setProductHeightForDet(width * ratio);
+        });
+    };
+    ////zare_nk_041209_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
 
     // const router = useRouter();  //zare_nk_041128_commented 
     ////zare_nk_041128_added_st_olgu
@@ -1913,7 +1922,7 @@ export default function ShallowRoutingExample({
             },
             body: JSON.stringify({
                 BarcodeKala: barcodeKala,
-                IdShobeh: 7,
+                IdShobeh: 6,
                 // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
                 //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
             }),
@@ -2193,7 +2202,7 @@ export default function ShallowRoutingExample({
                 Authorization: "Bearer " + token,
             },
             body: JSON.stringify({
-                IdShobe: 7,  //zare_nk_041115_nokteh(dar api tochikala hast.vali dar api testotmapi nemiferestim va pishfarz IdShobe kerfu ra parsafar dar samte api lahaz mikard. IdShobe marboot be shobe 7 ra behesh dadam)
+                IdShobe: 6,  //zare_nk_041115_nokteh(dar api tochikala hast.vali dar api testotmapi nemiferestim va pishfarz IdShobe kerfu ra parsafar dar samte api lahaz mikard. IdShobe marboot be shobe 7 ra behesh dadam)
                 IdSabadKharidTitr: IdSabadKharidTitr,//zare_nk_041115_nokteh(dar api tochikala hast chon chand sabad az chand shobe mishe dasht. vali dar api testotmapi IdSabadKharidTitr nadarim chon ye sabad ke bishtar nist)
             }),
         });
@@ -2320,7 +2329,7 @@ export default function ShallowRoutingExample({
                         Authorization: "Bearer " + token,
                     },
                     body: JSON.stringify({
-                        IdShobeh: 7,
+                        IdShobeh: 6,
                     }),
                 });
                 const data = await response.json();
@@ -2432,7 +2441,7 @@ export default function ShallowRoutingExample({
             },
             body: JSON.stringify({
                 BarcodeKala: BarcodeKala,
-                IdShobeh: 7,
+                IdShobeh: 6,
                 // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
                 //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
             }),
@@ -2528,7 +2537,7 @@ export default function ShallowRoutingExample({
                         father: "#sabadItemsContInSafhe",
                         bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
                         fromShowDetails: false,
-                        event: null,  
+                        event: null,
                     }
                 );
             }
@@ -2663,7 +2672,7 @@ export default function ShallowRoutingExample({
                         BarcodeKala: addRemParam.BarcodeKala,
                         Tedad: TedadOut,
                         IdKala: addRemParam.IdKala,
-                        IdShobeh: 7,
+                        IdShobeh: 6,
                         IdAddress: 23990
                     }),
                 });
@@ -2824,7 +2833,7 @@ export default function ShallowRoutingExample({
                     BarcodeKala: addRemParam.BarcodeKala,
                     Tedad: TedadOut,
                     IdKala: addRemParam.IdKala,
-                    IdShobeh: 7,
+                    IdShobeh: 6,
                     IdAddress: 23990
                 }),
             });
@@ -3781,7 +3790,7 @@ export default function ShallowRoutingExample({
                 //             </div>
                 //         </div>
                 //     </div>
-                // </div>
+                // </div> 
                 <Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
                     visible={isOpenedProdDetModal}    //zare_nk_040923(halat namayesh modal)
                     animationType="slide"  //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
@@ -3793,218 +3802,809 @@ export default function ShallowRoutingExample({
                         setIsScanning(true);  //zare_nk_041203_added
                     }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
                 >
-                    {/*zare_nk_040923(konteyner dakhele modal)*/}
-                    {/* zare_nk_041128_okk */}
-                    <View style={[styles.modalContainer, { overflow: "hidden" }]}>
+                    <ScrollView horizontal={false}
+                        style={{
+                            height: "100%",
+                            overflow: "hidden",
+                        }}
+                        contentContainerStyle={[styles.ProdDetModalmodalContainer, {
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center", //zare_nk_041209_added
+                            alignItems: 'center', //zare_nk_041209_added
+                            paddingHorizontal: 10, //zare_nk_041209_added
+                            paddingVertical: 10, //zare_nk_041209_added 
+                        }]}>
                         {/* zare_nk_041128_added_st */}
+                        {/* <View
+                                 // className="inModalBody"
+                                 style={{
+                                   display: "flex",
+                                   flexDirection: "column",
+                                   height: "100%",
+                   
+                                   justifyContent: "center", //zare_nk_041209_added
+                                   alignItems: 'center', //zare_nk_041209_added
+                                   paddingHorizontal: 10, //zare_nk_041209_added
+                                   paddingVertical: 10, //zare_nk_041209_added
+                                   borderWidth: 2,
+                                   borderStyle: 'dashed',
+                                   borderColor: 'red',
+                                 }}
+                               > */}
+                        {/* <View
+                                   // className="scrollContInModal"
+                                   // id="prodDetCont"
+                                   style={{
+                                     // flex: "1 1 auto",  
+                                     flexGrow: 1,
+                                     flexShrink: 1,
+                                     flexBasis: 'auto',
+                                     // display: "flex",
+                                     flexDirection: "column",
+                                     overflow: "hidden",
+                                   }}
+                                 > */}
                         <View
-                            // className="inModalBody"
-                            style={{ display: "flex", flexDirection: "column", height: "100%" }}
+                            style={{
+                                flexGrow: 0,
+                                flexShrink: 0,
+                                flexBasis: "auto",
+                                width: '100%',
+                                display: "flex",
+                                flexDirection: 'row',
+                                justifyContent: 'space-between',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <Text
+                                numberOfLines={1}
+                                ellipsizeMode="tail"
+                                style={{
+                                    fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                    color: "#444343",
+                                }}
+                            >
+                                جزئیات محصول
+                            </Text>
+                            <TouchableOpacity
+                                style={{
+                                    borderRadius: 8,
+                                    display: 'flex',
+                                    justifyContent: 'center',
+                                    alignItems: 'center',
+                                    flexDirection: 'row',
+                                    cursor: 'pointer',
+                                    padding: 4,
+                                    borderWidth: 1,
+                                    borderStyle: 'solid',
+                                    borderColor: 'rgb(165, 165, 165)',
+                                    width: 30,
+                                    height: 30,
+                                }}
+                                onPress={() => {
+                                    Alert.alert('close btn clicked in modalprodDet');
+                                    setIsOpenedProdDetModal(false);
+                                    setAddOrRemChanged("notNull");
+                                    setBisatrInProductDet(false);
+                                    setIsScanning(true);  //zare_nk_041203_added
+                                }}
+                                activeOpacity={0.6}
+                            >
+                                {/* <Image
+                                             source={{ uri: "https://img.tochikala.com/tochikala/close-modal.svg" }}
+                                             style={{ width: 32, }}
+                                           /> */}
+                                <SvgUri
+                                    uri="https://img.tochikala.com/tochikala/close-modal.svg"
+                                    width='100%'
+                                    height='100%'
+                                />
+                            </TouchableOpacity>
+                        </View>
+
+                        <View
+                            // id="productExist"
+                            style={{
+                                flexGrow: 1,
+                                flexShrink: 1,
+                                flexBasis: "auto",
+                                display: bisatrInProductDet === true ? "none" : "flex", //zare_nk_041129_rahe2(tosiye mishe)
+                                justifyContent: "center",
+                                width: '100%',
+                            }}
                         >
                             <View
-                                // className="scrollContInModal"
-                                // id="prodDetCont"
+                                // id="DetailsPageCont"
                                 style={{
-                                    // flex: "1 1 auto",  
-                                    flexGrow: 1,
-                                    flexShrink: 1,
-                                    flexBasis: 'auto',
-                                    // display: "flex",
-                                    flexDirection: "column",
+                                    marginTop: 10,
                                     overflow: "hidden",
+                                    width: "100%",
+                                    display: 'flex',
+                                    flexDirection: 'row',
                                 }}
                             >
                                 <View
-                                    // id="productExist"
+                                    // id="groupsInDetailsPageCont"
                                     style={{
-                                        height: "100%",
-                                        // display: "flex",
-                                        display: bisatrInProductDet === true ? "none" : "flex", //zare_nk_041129_rahe2(tosiye mishe)
-                                        justifyContent: "center",
-                                        marginBottom: 30,
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        alignItems: "center",
+                                        marginTop: 0,
+                                        // marginRight: 10, //zare_nk_041209_commented
+                                        // marginBottom: 10, //zare_nk_041209_commented
+                                        marginLeft: 0,
                                     }}
                                 >
+                                    {/* <Text style={{ fontSize: 14, }}></Text> */}
+                                </View>
+                                {/* zare_nk_041212_nokteh_st(faghat intoo barresi beshe baraye responsivi) */}
+                                <View
+                                    // id="DetailsImgAndInfoCont"
+                                    style={[{
+                                        display: 'flex',
+                                        width: '100%',
+                                    }, DetailsImgAndInfoContResponse]}
+                                >
                                     <View
-                                        // id="DetailsPageCont"
-                                        style={{
-                                            marginTop: 10,
-                                            overflow: "hidden",
-                                            width: "100%",
-                                            paddingTop: 5,
-                                            // height: "fit-content",
-                                        }}
+                                        // id="ImgAndSwiperCont"
+                                        style={[{
+                                            // marginBottom: 7, 
+                                            padding: 3,
+                                            display: 'flex',
+                                            flexDirection: 'row',
+                                            flexBasis: 'auto',
+                                            flexGrow: 0,
+                                            flexShrink: 0,
+                                        }, CurrentImgContResponse]}
                                     >
                                         <View
-                                            // id="groupsInDetailsPageCont"
+                                            // id="ImageColectionInDetails"
+                                            // className="swiper"
                                             style={{
-                                                // display: "flex",
-                                                flexDirection: "row",
-                                                alignItems: "center",
-                                                // margin: "0px 10px 10px 0px", 
-                                                marginTop: 0,
-                                                marginRight: 10,
-                                                marginBottom: 10,
-                                                marginLeft: 0,
+                                                display: 'none',
+                                                marginLeft: 10,
+                                                padding: 7,
+                                                borderRadius: 10,
+                                                // border: "none",
+                                                boxShadow: "0px 0px 3px 0px silver",
+                                                marginRight: 0,
                                             }}
                                         >
-                                            <Text style={{ fontSize: 14, }}></Text>
+                                            <View
+                                            // className="swiper-wrapper"
+                                            ></View>
+                                            <View
+                                            // className="swiper-pagination"
+                                            ></View>
+                                            <View
+                                            // className="swiper-scrollbar"
+                                            ></View>
                                         </View>
 
                                         <View
-                                            // id="DetailsImgAndInfoCont"
+                                            // id="CurrentImgCont"
+                                            style={[{
+                                                // // paddingVertical: 15,
+                                                paddingHorizontal: 0,
+                                                overflow: "hidden",
+                                                borderTopRightRadius: 15,
+                                                borderBottomRightRadius: 0,
+                                                borderBottomLeftRadius: 0,
+                                                borderTopLeftRadius: 15,
+                                                position: "relative",
+                                                boxShadow: "0px 0px 3px 1px silver",
+                                                display: "flex",
+                                                justifyContent: "center",
+                                                backgroundColor: "white",
+                                                borderWidth: 0,
+                                                borderStyle: 'solid',
+                                                borderColor: 'silver',
+                                                width: '100%',
+                                            },]}
+                                        >
+                                            <View
+                                                id="heartContInDetails"
+                                                style={{
+                                                    display: "none",
+                                                    zIndex: 898,
+                                                    cursor: "pointer",
+                                                    position: "absolute",
+                                                    top: 7,
+                                                    right: 7,
+                                                    opacity: 0.7,
+                                                    backgroundColor: "inherit",
+                                                }}
+                                            >
+                                                {/* <img    
+                                                                                       id="heartImgInDetails"
+                                                                                       style={{ width: "32px" }}
+                                                                                       src="https://img.tochikala.com/icon/heart/heart01(0).svg"
+                                                                                       alt="علاقه&zwnj;مندی&zwnj;ها"
+                                                                                   /> */}
+                                                <Image
+                                                    source={{ uri: "https://img.tochikala.com/icon/heart/heart01(0).svg" }}
+                                                    style={{ width: 32, }}
+                                                />
+                                            </View>
+                                            {ForCartContInProdDetVal != undefined && (
+                                                // <img
+                                                //     loading="lazy"
+                                                //     id="CurrentImg"
+                                                //     style={{ height: "fit-content" }}
+                                                //     src={`https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`}
+                                                //     alt={ForCartContInProdDetVal.NameKala ?? ""}
+                                                // /> 
+                                                // <Image
+                                                //   source={{ uri: `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp` }}
+                                                //   style={{
+                                                //     backgroundColor: "#efefef", width: "100%", height: 92,
+
+                                                //     borderWidth: 3,
+                                                //     borderColor: 'black',
+                                                //   }} 
+                                                // /> 
+
+                                                <Image
+                                                    onLayout={onImageLayoutForDet}
+                                                    onError={() => {
+                                                        const productUriOnError = 'https://img.tochikala.com/Logo/tochi.png';
+                                                        setImgUriForDet(productUriOnError);
+
+                                                        if (productWidthForDet > 0) {
+                                                            Image.getSize(productUriOnError, (imgWidth, imgHeight) => {
+                                                                const ratio = imgHeight / imgWidth;
+                                                                setProductHeightForDet(productWidthForDet * ratio);
+                                                            });
+                                                        }
+                                                    }}
+                                                    onLoad={() => console.log('Image loaded')}
+                                                    // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
+                                                    source={{ uri: imgUriForDet }}   //zare_nk_041207_added
+                                                    style={{
+                                                        backgroundColor: "#EFEFEF", width: "100%",   //zare_nk_041211_alan
+                                                        ...(productHeightForDet === 0
+                                                            ? { aspectRatio: 1 }
+                                                            : { height: productHeightForDet }),
+                                                    }}
+                                                />
+                                            )}
+                                        </View>
+                                    </View>
+                                    {/* zar_nk_injam_komak_st */}
+                                    <View
+                                        // id="DetailsInfoCont"
+                                        // className="hisGrandFather WantCompress"
+                                        style={[{
+                                            // justifyContent: "space-between",
+                                            backgroundColor: "white",
+                                            padding: 3,
+                                            // borderRadius: "0px 0px 15px 15px",
+                                            // boxShadow: "0px 0px 3px 0px silver",  
+                                        }, DetailsInfoContResponse]}
+                                    >
+                                        <View
                                             style={{
-                                                paddingLeft: 3,
-                                                paddingRight: 3,
-                                                paddingBottom: 3,
+                                                justifyContent: "space-between",
+                                                backgroundColor: "white",
+                                                padding: 7,
+                                                borderRadius: "0px 0px 15px 15px",
+                                                boxShadow: "0px 0px 3px 1px silver",
+
+                                                borderWidth: 0,
+                                                borderStyle: 'solid',
+                                                borderColor: 'silver',
                                             }}
                                         >
                                             <View
-                                                // id="ImgAndSwiperCont"
-                                                style={{ marginBottom: 7, width: "100%" }}
-                                            >
-                                                <View
-                                                    // id="ImageColectionInDetails"
-                                                    // className="swiper"
-                                                    style={{
-                                                        marginLeft: 10,
-                                                        padding: 7,
-                                                        borderRadius: 10,
-                                                        // border: "none",
-                                                        boxShadow: "0px 0px 3px 0px silver",
-                                                        marginRight: 0,
-                                                    }}
-                                                >
-                                                    <View
-                                                    // className="swiper-wrapper"
-                                                    ></View>
-                                                    <View
-                                                    // className="swiper-pagination"
-                                                    ></View>
-                                                    <View
-                                                    // className="swiper-scrollbar"
-                                                    ></View>
-                                                </View>
-                                                <View
-                                                    // id="CurrentImgCont"
-                                                    style={{
-                                                        // padding: "15px 0px",
-                                                        paddingVertical: 15,
-                                                        paddingHorizontal: 0,
-                                                        overflow: "hidden",
-                                                        borderRadius: "15px 15px 0px 0px",
-                                                        position: "relative",
-                                                        // border: "none",
-                                                        boxShadow: "0px 0px 3px 0px silver",
-                                                        // display: "flex",
-                                                        justifyContent: "center",
-                                                        backgroundColor: "white",
-                                                    }}
-                                                >
-                                                    <View
-                                                        id="heartContInDetails"
-                                                        style={{
-                                                            display: "none",
-                                                            zIndex: 898,
-                                                            cursor: "pointer",
-                                                            position: "absolute",
-                                                            top: 7,
-                                                            right: 7,
-                                                            opacity: 0.7,
-                                                            backgroundColor: "inherit",
-                                                        }}
-                                                    >
-                                                        {/* <img    
-                                                            id="heartImgInDetails"
-                                                            style={{ width: "32px" }}
-                                                            src="https://img.tochikala.com/icon/heart/heart01(0).svg"
-                                                            alt="علاقه&zwnj;مندی&zwnj;ها"
-                                                        /> */}
-                                                        <Image
-                                                            source={{ uri: "https://img.tochikala.com/icon/heart/heart01(0).svg" }}
-                                                            style={{ width: 32 }}
-                                                        />
-                                                    </View>
-                                                    {ForCartContInProdDetVal != undefined && (
-                                                        // <img
-                                                        //     loading="lazy"
-                                                        //     id="CurrentImg"
-                                                        //     style={{ height: "fit-content" }}
-                                                        //     src={`https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`}
-                                                        //     alt={ForCartContInProdDetVal.NameKala ?? ""}
-                                                        // /> 
-                                                        <Image
-                                                            source={{ uri: `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp` }}
-                                                        />
-                                                    )}
-                                                </View>
-                                            </View>
-
-                                            <View
-                                                // id="DetailsInfoCont"
-                                                // className="hisGrandFather WantCompress"
+                                                // id="titleAndGeoupInDetailsInfoCont"
                                                 style={{
-                                                    justifyContent: "space-between",
-                                                    backgroundColor: "white",
-                                                    padding: 10,
-                                                    borderRadius: "0px 0px 15px 15px",
-                                                    boxShadow: "0px 0px 3px 0px silver",
+                                                    // display: "flex",
+                                                    flexDirection: "column",
+                                                    width: "100%",
                                                 }}
                                             >
-                                                <View
-                                                    // id="titleAndGeoupInDetailsInfoCont"
-                                                    style={{
-                                                        // display: "flex",
-                                                        flexDirection: "column",
-                                                        width: "100%",
-                                                    }}
-                                                >
-                                                    {ForCartContInProdDetVal != null && (
-                                                        <Text
-                                                            // id="nameKalaInDetailsInfoCont"
-                                                            style={{
+                                                {ForCartContInProdDetVal != null && (
+                                                    <Text
+                                                        // id="nameKalaInDetailsInfoCont"
+                                                        numberOfLines={2}
+                                                        ellipsizeMode="tail"
+                                                        style={{
 
-                                                                // lineHeight: "2.0",
-                                                                lineHeight: 32, // تقریبی: fontSize * 2
-                                                                // textOverflow: "ellipsis",
-                                                                // overflow: "hidden",
-                                                                // display: "-webkit-box",
-                                                                // WebkitLineClamp: "2",
-                                                                // lineClamp: "2",
-                                                                // WebkitBoxOrient: "vertical", 
-                                                                fontSize: 16,
-                                                                marginBottom: 30,
-                                                                fontFamily: "IRANSansWeb(FaNum)_Medium",
-                                                                textAlign: "right",
-                                                            }}
-                                                        >
-                                                            {ForCartContInProdDetVal.NameKala}
-                                                        </Text>
-                                                    )}
+                                                            // lineHeight: "2.0",
+                                                            // lineHeight: 32, // تقریبی: fontSize * 2
+                                                            // textOverflow: "ellipsis",
+                                                            // overflow: "hidden",
+                                                            // display: "-webkit-box",
+                                                            // WebkitLineClamp: "2",
+                                                            // lineClamp: "2",
+                                                            // WebkitBoxOrient: "vertical", 
+                                                            fontSize: 16,
+                                                            marginBottom: 30,
+                                                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                                            textAlign: "right",
+                                                        }}
+                                                    >
+                                                        {ForCartContInProdDetVal.NameKala}
+                                                    </Text>
+                                                )}
 
-                                                    <View style={{ display: "flex", flexDirection: "row" }}>
+                                                <View style={{
+                                                    display: "flex", flexDirection: "row",
+                                                }}>
 
+                                                    <View
+                                                        style={{
+                                                            // flex: "1 1 30%",  
+                                                            flexGrow: 1,
+                                                            flexShrink: 1,
+                                                            flexBasis: ' 30%',
+                                                            // display: "flex",
+                                                            flexDirection: "column",
+                                                            paddingLeft: 5,
+                                                            // alignItems: "center",
+                                                            alignItems: 'flex-end',
+                                                            justifyContent: "space-around",
+                                                        }}
+                                                    >
                                                         <View
                                                             style={{
-                                                                // flex: "1 1 30%",  
-                                                                flexGrow: 1,
-                                                                flexShrink: 1,
-                                                                flexBasis: ' 30%',
                                                                 // display: "flex",
-                                                                flexDirection: "column",
+                                                                flexDirection: "row",
+                                                                flexGrow: 0,
+                                                                flexShrink: 0,
+                                                                flexBasis: 'auto',
+                                                            }}
+                                                        >
+                                                            <Text
+                                                                numberOfLines={1}
+                                                                ellipsizeMode="tail"
+                                                                style={{
+                                                                    fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#888888",
+                                                                }}>برند</Text>
+                                                        </View>
+                                                        <View
+                                                            style={{
+                                                                // flex: "0 0 auto",
+                                                                flexGrow: 0,
+                                                                flexShrink: 0,
+                                                                flexBasis: 'auto',
+                                                                // display: "flex",
+                                                                flexDirection: "row",
                                                                 paddingLeft: 5,
                                                                 alignItems: "center",
+                                                            }}
+                                                        >
+                                                            {ForCartContInProdDetVal != null && (
+                                                                <Text
+                                                                    // id="nameBerandInDetailsInfoCont"
+                                                                    style={{
+                                                                        fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#322E2E",
+                                                                    }}
+                                                                >
+                                                                    {ForCartContInProdDetVal.NameBerand}
+                                                                </Text>
+                                                            )}
+                                                        </View>
+                                                    </View>
 
-                                                                justifyContent: "space-around",
+                                                    <View
+                                                        style={{
+                                                            // display: "flex",
+                                                            flexDirection: "row",
+                                                            alignContent: "center",
+                                                            alignItems: "center",
+                                                            // padding: "0px 8px 0px 8px",
+                                                            paddingVertical: 0,
+                                                            paddingHorizontal: 8,
+                                                        }}
+                                                    >
+                                                        <View
+                                                            style={{
+                                                                width: 0,
+                                                                height: 30,
+                                                                borderLeftWidth: 1,
+                                                                borderLeftColor: "#ccc",
+                                                                borderStyle: 'solid',
+
+                                                            }}
+                                                        ></View>
+                                                    </View>
+                                                    <View
+                                                        style={{
+                                                            // display: "flex",
+                                                            flexDirection: "column",
+                                                            // flex: "1 1 30%",
+                                                            flexGrow: 1,
+                                                            flexShrink: 1,
+                                                            flexBasis: '30%',
+                                                            // alignItems: "center",
+                                                            alignItems: 'flex-end',
+                                                            justifyContent: 'space-between',
+                                                        }}
+                                                    >
+                                                        {ForCartContInProdDetVal != null &&
+                                                            ForCartContInProdDetVal.DarsadTakhfif != 0 && (
+                                                                <View
+                                                                    style={{
+                                                                        display: "flex",
+                                                                        flexDirection: "row",
+                                                                        marginBottom: 10,
+                                                                        // borderWidth: 1,
+                                                                        // borderStyle: 'solid',
+                                                                        // borderColor: 'blue',
+                                                                    }}
+                                                                >
+                                                                    {/* {ForCartContInProdDetVal != null &&
+                                                 ForCartContInProdDetVal.DarsadTakhfif != 0 && ( */}
+                                                                    <View
+                                                                        // id="gheimatMasrafInDetailsInfoCont"
+                                                                        // className="gheimatMasrafInsabad"
+                                                                        style={{
+                                                                            // display: "none",
+                                                                            display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
+                                                                            flexDirection: "row",
+                                                                            justifyContent: 'flex-end',
+                                                                            alignItems: "center",
+                                                                        }}
+                                                                    >
+                                                                        {/* {ForCartContInProdDetVal != null && ( */}
+                                                                        <Text style={{
+                                                                            fontSize: 14, textDecorationLine: "line-through",
+                                                                            fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
+                                                                        }}>
+                                                                            {ForCartContInProdDetVal.FeeMasraf}
+                                                                        </Text>
+                                                                        {/* )} */}
+                                                                    </View>
+                                                                    {/* )} */}
+                                                                </View>
+                                                            )}
+                                                        <View
+                                                            style={{
+                                                                // display: "flex",
+                                                                flexDirection: "row-reverse",
+                                                                height: 35,
+                                                                alignContent: "center",
+                                                                // borderWidth: 1,
+                                                                // borderStyle: 'solid',
+                                                                // borderColor: 'red',
                                                             }}
                                                         >
                                                             <View
+                                                                // id="gheimatForooshInDetailsInfoCont"
+                                                                // className="gheimatForooshInsabad"
                                                                 style={{
                                                                     // display: "flex",
                                                                     flexDirection: "row",
+                                                                    marginLeft: 5,
+                                                                    alignItems: "center",
+                                                                    // borderWidth: 1,
+                                                                    // borderStyle: 'solid',
+                                                                    // borderColor: 'green',
                                                                 }}
                                                             >
-                                                                <Text style={{ fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#888888", }}>برند</Text>
+                                                                {ForCartContInProdDetVal != null && (
+                                                                    <Text style={{
+                                                                        fontSize: 16,
+                                                                        fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
+                                                                    }}>
+                                                                        {ForCartContInProdDetVal.FeeForoosh}
+                                                                    </Text>
+                                                                )}
                                                             </View>
+                                                            <View
+                                                                // className="rialInsabad  valueStyle"
+                                                                style={{
+                                                                    // display: "flex",
+                                                                    flexDirection: "row",
+                                                                    alignItems: "center",
+                                                                    // borderWidth: 1,
+                                                                    // borderStyle: 'solid',
+                                                                    // borderColor: 'yellow',
+                                                                }}
+                                                            > <Text style={{
+                                                                fontSize: 12,
+                                                                fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
+                                                            }}> ریال</Text>
+
+                                                            </View>
+                                                        </View>
+                                                    </View>
+
+                                                    {ForCartContInProdDetVal != null &&
+                                                        ForCartContInProdDetVal.DarsadTakhfif != 0 && (
+                                                            <View
+                                                                // id="lastDividerInDetails"
+                                                                style={{
+                                                                    // display: "flex",
+                                                                    display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
+                                                                    flexDirection: "row",
+                                                                    alignContent: "center",
+                                                                    alignItems: "center",
+                                                                    // padding: "0px 8px 0px 8px",
+                                                                    paddingVertical: 0,
+                                                                    paddingHorizontal: 8,
+                                                                }}
+                                                            >
+                                                                <View
+                                                                    style={{
+                                                                        width: 0,
+                                                                        height: 30,
+                                                                        // borderLeft: "2px solid silver",
+                                                                        borderLeftWidth: 1,   //rezaaam
+                                                                        borderLeftColor: "#ccc",
+                                                                        borderStyle: 'solid',
+                                                                    }}
+                                                                ></View>
+                                                            </View>
+                                                        )}
+
+                                                    {ForCartContInProdDetVal != null &&
+                                                        ForCartContInProdDetVal.DarsadTakhfif != 0 && (
+                                                            <View
+                                                                id="DiscountContInDetails"
+                                                                style={{
+                                                                    // display: "flex",
+                                                                    display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
+                                                                    flexDirection: "column",
+                                                                    // flex: "1 1 30%",
+                                                                    flexGrow: 1,
+                                                                    flexShrink: 1,
+                                                                    flexBasis: '30%',
+                                                                    alignItems: "center",
+                                                                    // justifyContent: "space-around",
+                                                                    justifyContent: "center",
+                                                                    // borderWidth: 3,
+                                                                    // borderStyle: 'solid',
+                                                                    // borderColor: 'red',
+                                                                }}
+                                                            >
+                                                                <View
+                                                                    style={{
+                                                                        // display: "flex",
+                                                                        flexDirection: "row",
+                                                                        // marginBottom: 10,  //zare_nk_041209_commented
+                                                                        width: "100%",
+                                                                        justifyContent: "center",
+                                                                    }}
+                                                                >
+                                                                    <View
+                                                                        // id="darsadTakhfifInDetails"
+                                                                        // className="darsadTakhfifInDetails"
+                                                                        style={{
+                                                                            flexDirection: "row",
+                                                                            backgroundColor: "red",
+                                                                            // flex: "0 0 auto",
+                                                                            flexGrow: 0,
+                                                                            flexShrink: 0,
+                                                                            flexBasis: 'auto',
+                                                                            display: "flex",
+                                                                            justifyContent: "center",
+                                                                            alignItems: "center",
+                                                                            // marginLeft: 15,  //zare_nk_041209_commented
+
+                                                                            borderRadius: 15,
+                                                                            width: "100%",
+                                                                            maxWidth: 70,
+                                                                            height: 50,
+                                                                        }}
+                                                                    >
+                                                                        <Text
+                                                                            style={{
+                                                                                color: "white",
+                                                                                opacity: 1,
+                                                                                fontSize: 16,
+                                                                                fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                                                            }}
+                                                                        >
+                                                                            %
+                                                                        </Text>
+
+                                                                        {/* {ForCartContInProdDetVal != null && ( */}
+                                                                        <Text
+                                                                            // id="forDiscountInDetails"
+                                                                            // className="forDiscount"
+                                                                            style={{
+                                                                                color: "white",
+                                                                                opacity: 1,
+                                                                                fontSize: 18,
+                                                                                fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                                                            }}
+                                                                        >
+                                                                            {ForCartContInProdDetVal.DarsadTakhfif}
+                                                                        </Text>
+                                                                        {/* )} */}
+                                                                    </View>
+                                                                </View>
+                                                            </View>
+                                                        )}
+                                                </View>
+                                            </View>
+                                            <View
+                                                // id="CartAndPriceInDetailsInfoCont"
+                                                style={{
+                                                    // display: "flex",
+                                                    flexDirection: "column",
+                                                    width: "100%",
+                                                    marginTop: 10,
+                                                }}
+                                            >
+                                                <View
+                                                    // id="InCartAndPriceInDetailsInfoCont"
+                                                    style={{
+                                                        width: "100%",
+                                                        // display: "flex",
+                                                        flexDirection: "row",
+                                                        justifyContent: 'flex-end',
+                                                    }}
+                                                >
+                                                    <View
+                                                        // id="ForCartContInProdDet"  navigation
+                                                        style={{
+                                                            // display: "flex",
+                                                            flexDirection: "column",
+                                                            justifyContent: 'flex-end',
+                                                        }}
+                                                    >
+                                                        {ForCartContInProdDetVal != null && (
+                                                            <MiddleCountTedadSefr
+                                                                // SabadRow={ForCartContInProdDetVal}  //zare_nk_041120_commented
+                                                                ////zare_nk_041120_added_st
+                                                                refForfather={ForCartContInProdDetVal.refForfather}
+                                                                fromShowDetails={ForCartContInProdDetVal.fromShowDetails}
+                                                                IdKala={ForCartContInProdDetVal.IdKala}
+                                                                idTag={ForCartContInProdDetVal.idTag}
+                                                                tedadInSabadOrDet={ForCartContInProdDetVal.tedadInSabadOrDet}
+                                                                ////zare_nk_041120_added_end
+                                                                // handlerForAddClick={(e) => {   //zare_nk_041129_commented  
+                                                                handlerForAddClick={() => {  //zare_nk_041129_added
+                                                                    return handlerForAddClick(
+                                                                        {
+                                                                            tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
+                                                                            ZaribForoosh: ForCartContInProdDetVal.ZaribForoosh,
+                                                                            IdKala: ForCartContInProdDetVal.IdKala,
+                                                                            NameKala: ForCartContInProdDetVal.NameKala,
+                                                                            DarsadTakhfif: ForCartContInProdDetVal.DarsadTakhfif,
+                                                                            NameBerand: ForCartContInProdDetVal.NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
+                                                                            FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
+                                                                            FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
+                                                                            BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
+                                                                            Mojoodi: ForCartContInProdDetVal.Mojoodi,
+                                                                            MaxTedad: ForCartContInProdDetVal.MaxTedad,
+                                                                            father: refForfather.current,
+                                                                            bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
+                                                                            fromShowDetails: true,
+                                                                            // event: e,  //zare_nk_041127_commented
+                                                                            event: null,  //zare_nk_041127_added
+                                                                        }
+                                                                    );
+                                                                }}
+                                                                // handlerForRemClick={(e) => {   //zare_nk_041129_commented  
+                                                                handlerForRemClick={() => {  //zare_nk_041129_added
+                                                                    return handlerForRemClick(
+                                                                        {
+                                                                            tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
+                                                                            ZaribForoosh: ForCartContInProdDetVal.ZaribForoosh,
+                                                                            IdKala: ForCartContInProdDetVal.IdKala,
+                                                                            NameKala: ForCartContInProdDetVal.NameKala,
+                                                                            DarsadTakhfif: ForCartContInProdDetVal.DarsadTakhfif,
+                                                                            NameBerand: ForCartContInProdDetVal.NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
+                                                                            FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
+                                                                            FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
+                                                                            BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
+                                                                            Mojoodi: ForCartContInProdDetVal.Mojoodi,
+                                                                            MaxTedad: ForCartContInProdDetVal.MaxTedad,
+                                                                            father: refForfather.current,
+                                                                            bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
+                                                                            fromShowDetails: true,
+                                                                            // event: e,  //zare_nk_041127_commented
+                                                                            event: null,  //zare_nk_041127_added
+                                                                        }
+                                                                    );
+                                                                }}
+                                                                ForCartContentsDesignType={ForCartContInProdDetVal.ForCartContentsDesignType}
+                                                                bishAzMaxTedadYaMojoodi={ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi}
+                                                                navigation={navigation}  //zare_nk_041128_added
+                                                            />
+                                                        )}
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+
+                                    {/* <View
+                                     //  id="imgzoomed"
+                                     ></View> */}
+                                </View>
+                                {/* zare_nk_041212_nokteh_end(faghat intoo barresi beshe baraye responsivi) */}
+                                <View
+                                    // id="navContInDetCont"
+                                    style={{
+                                        display: "none",
+                                        flexDirection: "column",
+                                        // borderBottom: "1px solid #E7E7E0",
+                                        borderBottomWidth: 1,
+                                        borderStyle: 'solid',
+                                        borderBottomColor: '#E7E7E0',
+                                        padding: 0,
+                                    }}
+                                >
+                                    <View
+                                    // className="navContInDet"
+                                    >
+                                        <View
+                                        // className="tab-content"
+                                        // style={{ color: "#545454" }}
+                                        >
+                                            <View
+                                            // id="home" className="containerr tab-pane active"
+                                            >
+                                                <View
+                                                    style={{
+                                                        // display: "flex",
+                                                        flexDirection: "row",
+                                                        justifyContent: "center",
+                                                        // justifyItems: "center",
+                                                        alignContent: "center",
+                                                        // padding: "10px 0px",
+                                                        paddingVertical: 10,
+                                                        paddingHorizontal: 0,
+                                                    }}
+                                                >
+                                                    <Text style={{ margin: 0, color: "#545454" }}>
+                                                        ویژگی برای این محصول وجود ندارد
+                                                    </Text>
+                                                </View>
+                                            </View>
+                                            <View
+                                            // id="menu1" className="containerr tab-pane fade"
+                                            >
+                                                <View
+                                                    // id="ProductDescription"
+                                                    style={{
+                                                        marginTop: 15,
+                                                        flexDirection: "column",
+                                                        position: "relative",
+                                                        paddingBottom: 48,
+                                                    }}
+                                                >
+                                                    <View
+                                                        // id="contentContInProdDes"
+                                                        style={{
+                                                            marginBottom: 10,
+                                                            // display: "flex",
+                                                            flexDirection: "column",
+                                                            maxHeight: 120,
+                                                            overflow: "hidden",
+                                                        }}
+                                                    >
+                                                        <Text style={{ color: "#545454" }}></Text>
+                                                    </View>
+                                                    <View
+                                                        style={{
+                                                            // display: "flex",
+                                                            flexDirection: "column",
+                                                            position: "absolute",
+                                                            right: 10,
+                                                            bottom: 10,
+                                                        }}
+                                                    >
+                                                        <TouchableOpacity
+                                                            // id="bishtarInProdDes"
+                                                            // className="buttonHover"
+                                                            // href="#ProductDescription"
+                                                            style={{
+                                                                padding: 10,
+                                                                borderRadius: 7,
+                                                                // display: "flex",
+                                                                flexDirection: "row",
+                                                                // textDecoration: "none",
+                                                                // color: "rgb(2, 160, 164)",
+                                                                backgroundColor: "inherit",
+                                                            }}
+                                                        >
                                                             <View
                                                                 style={{
                                                                     // flex: "0 0 auto",
@@ -4017,516 +4617,89 @@ export default function ShallowRoutingExample({
                                                                     alignItems: "center",
                                                                 }}
                                                             >
-                                                                {ForCartContInProdDetVal != null && (
-                                                                    <Text
-                                                                        // id="nameBerandInDetailsInfoCont"
-                                                                        style={{ color: "#322E2E", }}
-                                                                    >
-                                                                        {ForCartContInProdDetVal.NameBerand}
-                                                                    </Text>
-                                                                )}
-                                                            </View>
-                                                        </View>
-                                                        <View
-                                                            style={{
-                                                                // display: "flex",
-                                                                flexDirection: "row",
-                                                                alignContent: "center",
-                                                                alignItems: "center",
-                                                                // padding: "0px 8px 0px 8px",
-                                                                paddingVertical: 0,
-                                                                paddingHorizontal: 8,
-                                                            }}
-                                                        >
-                                                            <View
-                                                                style={{
-                                                                    width: 0,
-                                                                    height: 30,
-                                                                    // borderLeft: "2px solid silver",  
-                                                                    borderWidth: 2,
-                                                                    borderColor: "silver",
-                                                                    borderStyle: 'solid',
-
-                                                                }}
-                                                            >
-                                                                <Text></Text>
-                                                            </View>
-                                                        </View>
-                                                        <View
-                                                            style={{
-                                                                // display: "flex",
-                                                                flexDirection: "column",
-                                                                // flex: "1 1 30%",
-                                                                flexGrow: 1,
-                                                                flexShrink: 1,
-                                                                flexBasis: '30%',
-                                                                alignItems: "center",
-                                                                justifyContent: "space-around",
-                                                            }}
-                                                        >
-                                                            <View
-                                                                style={{
-                                                                    // display: "flex",
-                                                                    flexDirection: "row",
-                                                                    marginBottom: 10,
-                                                                }}
-                                                            >
-                                                                {ForCartContInProdDetVal != null &&
-                                                                    ForCartContInProdDetVal.DarsadTakhfif != 0 && (
-                                                                        <View
-                                                                            // id="gheimatMasrafInDetailsInfoCont"
-                                                                            // className="gheimatMasrafInsabad"
-                                                                            style={{
-                                                                                // display: "none",
-                                                                                display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
-                                                                                flexDirection: "row",
-                                                                                justifyContent: 'flex-end',
-                                                                                alignItems: "center",
-                                                                            }}
-                                                                        >
-                                                                            {/* {ForCartContInProdDetVal != null && ( */}
-                                                                            <Text style={{ fontSize: 14, textDecorationLine: "line-through" }}>
-                                                                                {ForCartContInProdDetVal.FeeMasraf}
-                                                                            </Text>
-                                                                            {/* )} */}
-                                                                        </View>
-                                                                    )}
+                                                                <Text
+                                                                    // id="TextInBishtarInProdDes"
+                                                                    style={{ color: "rgb(2, 160, 164)", }}
+                                                                >
+                                                                    نمایش بیشتر{" "}
+                                                                </Text>
                                                             </View>
                                                             <View
                                                                 style={{
                                                                     // display: "flex",
-                                                                    flexDirection: "row-reverse",
-                                                                    height: 35,
-                                                                    alignContent: "center",
+                                                                    flexDirection: "column",
+                                                                    justifyContent: "center",
                                                                 }}
                                                             >
                                                                 <View
-                                                                    // id="gheimatForooshInDetailsInfoCont"
-                                                                    // className="gheimatForooshInsabad"
+                                                                    // className="rounded-pill"
                                                                     style={{
-                                                                        // display: "flex",
+                                                                        display: "flex",
                                                                         flexDirection: "row",
-                                                                        marginLeft: 5,
-                                                                        alignItems: "center",
+                                                                        backgroundColor: "inherit",
                                                                     }}
                                                                 >
-                                                                    {ForCartContInProdDetVal != null && (
-                                                                        <Text style={{ fontSize: 16, }}>
-                                                                            {ForCartContInProdDetVal.FeeForoosh}
-                                                                        </Text>
-                                                                    )}
-                                                                </View>
-                                                                <View
-                                                                    // className="rialInsabad  valueStyle"
-                                                                    style={{
-                                                                        // display: "flex",
-                                                                        flexDirection: "row",
-                                                                        alignItems: "center",
-                                                                    }}
-                                                                > <Text style={{ fontSize: 14, }}> ریال</Text>
-
+                                                                    {/* <img
+                                                                                                           src="https://img.tochikala.com/tochikala/left-arrow.svg"
+                                                                                                           style={{ width: "15px" }}
+                                                                                                           alt="نمایش بیشتر"
+                                                                                                       /> */}
+                                                                    <Image
+                                                                        source={{ uri: "https://img.tochikala.com/tochikala/left-arrow.svg" }}
+                                                                        style={{ width: 15 }}
+                                                                    />
                                                                 </View>
                                                             </View>
-                                                        </View>
-
-                                                        {ForCartContInProdDetVal != null &&
-                                                            ForCartContInProdDetVal.DarsadTakhfif != 0 && (
-                                                                <View
-                                                                    // id="lastDividerInDetails"
-                                                                    style={{
-                                                                        display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
-                                                                        flexDirection: "row",
-                                                                        alignContent: "center",
-                                                                        alignItems: "center",
-                                                                        // padding: "0px 8px 0px 8px",
-                                                                        paddingVertical: 0,
-                                                                        paddingHorizontal: 8,
-                                                                    }}
-                                                                >
-                                                                    <View
-                                                                        style={{
-                                                                            width: 0,
-                                                                            height: 30,
-                                                                            // borderLeft: "2px solid silver",
-                                                                            borderLeftWidth: 1,
-                                                                            borderLeftColor: "#ccc",
-                                                                            borderStyle: 'solid',
-                                                                        }}
-                                                                    >
-                                                                        <Text></Text>
-                                                                    </View>
-                                                                </View>
-                                                            )}
-                                                        {ForCartContInProdDetVal != null &&
-                                                            ForCartContInProdDetVal.DarsadTakhfif != 0 && (
-                                                                <View
-                                                                    id="DiscountContInDetails"
-                                                                    style={{
-                                                                        // display: "flex",
-                                                                        display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
-                                                                        flexDirection: "column",
-                                                                        // flex: "1 1 30%",
-                                                                        flexGrow: 1,
-                                                                        flexShrink: 1,
-                                                                        flexBasis: '30%',
-                                                                        alignItems: "center",
-                                                                        justifyContent: "space-around",
-                                                                    }}
-                                                                >
-                                                                    <View
-                                                                        style={{
-                                                                            // display: "flex",
-                                                                            flexDirection: "row",
-                                                                            marginBottom: 10,
-                                                                            width: "100%",
-                                                                            justifyContent: "center",
-                                                                        }}
-                                                                    >
-                                                                        <View
-                                                                            // id="darsadTakhfifInDetails"
-                                                                            // className="darsadTakhfifInDetails"
-                                                                            style={{
-                                                                                backgroundColor: "red",
-                                                                                // flex: "0 0 auto",
-                                                                                flexGrow: 0,
-                                                                                flexShrink: 0,
-                                                                                flexBasis: 'auto',
-                                                                                display: "flex",
-                                                                                justifyContent: "center",
-                                                                                alignItems: "center",
-                                                                                marginLeft: 15,
-                                                                                borderRadius: 15,
-                                                                                width: "100%",
-                                                                                maxWidth: 70,
-                                                                                height: 50,
-                                                                            }}
-                                                                        >
-                                                                            <Text
-                                                                                style={{
-                                                                                    color: "white",
-                                                                                    opacity: 1,
-                                                                                    fontSize: 18,
-                                                                                }}
-                                                                            >
-                                                                                %
-                                                                            </Text>
-
-                                                                            {/* {ForCartContInProdDetVal != null && ( */}
-                                                                            <Text
-                                                                                // id="forDiscountInDetails"
-                                                                                // className="forDiscount"
-                                                                                style={{
-                                                                                    color: "white",
-                                                                                    opacity: 1,
-                                                                                    fontSize: 18,
-                                                                                }}
-                                                                            >
-                                                                                {ForCartContInProdDetVal.DarsadTakhfif}
-                                                                            </Text>
-                                                                            {/* )} */}
-                                                                        </View>
-                                                                    </View>
-                                                                </View>
-                                                            )}
-                                                    </View>
-                                                </View>
-                                                <View
-                                                    // id="CartAndPriceInDetailsInfoCont"
-                                                    style={{
-                                                        // display: "flex",
-                                                        flexDirection: "column",
-                                                        width: "100%",
-                                                        marginTop: 10,
-                                                        paddingRight: 20,
-                                                    }}
-                                                >
-                                                    <View
-                                                        // id="InCartAndPriceInDetailsInfoCont"
-                                                        style={{
-                                                            width: "100%",
-                                                            // display: "flex",
-                                                            flexDirection: "row",
-                                                            justifyContent: "space-between",
-                                                        }}
-                                                    >
-                                                        <View
-                                                            // id="ForCartContInProdDet"  navigation
-                                                            style={{
-                                                                // display: "flex",
-                                                                flexDirection: "column",
-                                                                justifyContent: 'flex-end',
-                                                            }}
-                                                        >
-                                                            {ForCartContInProdDetVal != null && (
-                                                                <MiddleCountTedadSefr
-                                                                    // SabadRow={ForCartContInProdDetVal}  //zare_nk_041120_commented
-                                                                    ////zare_nk_041120_added_st
-                                                                    refForfather={ForCartContInProdDetVal.refForfather}
-                                                                    fromShowDetails={ForCartContInProdDetVal.fromShowDetails}
-                                                                    IdKala={ForCartContInProdDetVal.IdKala}
-                                                                    idTag={ForCartContInProdDetVal.idTag}
-                                                                    tedadInSabadOrDet={ForCartContInProdDetVal.tedadInSabadOrDet}
-                                                                    ////zare_nk_041120_added_end
-                                                                    // handlerForAddClick={(e) => {   //zare_nk_041129_commented  
-                                                                    handlerForAddClick={() => {  //zare_nk_041129_added
-                                                                        return handlerForAddClick(
-                                                                            {
-                                                                                tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
-                                                                                ZaribForoosh: ForCartContInProdDetVal.ZaribForoosh,
-                                                                                IdKala: ForCartContInProdDetVal.IdKala,
-                                                                                NameKala: ForCartContInProdDetVal.NameKala,
-                                                                                DarsadTakhfif: ForCartContInProdDetVal.DarsadTakhfif,
-                                                                                NameBerand: ForCartContInProdDetVal.NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
-                                                                                FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
-                                                                                FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
-                                                                                BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                                                                                Mojoodi: ForCartContInProdDetVal.Mojoodi,
-                                                                                MaxTedad: ForCartContInProdDetVal.MaxTedad,
-                                                                                father: refForfather.current,
-                                                                                bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
-                                                                                fromShowDetails: true,
-                                                                                // event: e,  //zare_nk_041127_commented
-                                                                                event: null,  //zare_nk_041127_added
-                                                                            }
-                                                                        );
-                                                                    }}
-                                                                    // handlerForRemClick={(e) => {   //zare_nk_041129_commented  
-                                                                    handlerForRemClick={() => {  //zare_nk_041129_added
-                                                                        return handlerForRemClick(
-                                                                            {
-                                                                                tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
-                                                                                ZaribForoosh: ForCartContInProdDetVal.ZaribForoosh,
-                                                                                IdKala: ForCartContInProdDetVal.IdKala,
-                                                                                NameKala: ForCartContInProdDetVal.NameKala,
-                                                                                DarsadTakhfif: ForCartContInProdDetVal.DarsadTakhfif,
-                                                                                NameBerand: ForCartContInProdDetVal.NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
-                                                                                FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
-                                                                                FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
-                                                                                BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                                                                                Mojoodi: ForCartContInProdDetVal.Mojoodi,
-                                                                                MaxTedad: ForCartContInProdDetVal.MaxTedad,
-                                                                                father: refForfather.current,
-                                                                                bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
-                                                                                fromShowDetails: true,
-                                                                                // event: e,  //zare_nk_041127_commented
-                                                                                event: null,  //zare_nk_041127_added
-                                                                            }
-                                                                        );
-                                                                    }}
-                                                                    ForCartContentsDesignType={ForCartContInProdDetVal.ForCartContentsDesignType}
-                                                                    bishAzMaxTedadYaMojoodi={ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi}
-                                                                    navigation={navigation}  //zare_nk_041128_added
-                                                                />
-                                                            )}
-                                                        </View>
+                                                        </TouchableOpacity>
                                                     </View>
                                                 </View>
                                             </View>
                                             <View
-                                            //  id="imgzoomed"
-                                            ></View>
-                                        </View>
-                                        <View
-                                            // id="navContInDetCont"
-                                            style={{
-                                                display: "none",
-                                                flexDirection: "column",
-                                                // borderBottom: "1px solid #E7E7E0",
-                                                borderBottomWidth: 1,
-                                                borderStyle: 'solid',
-                                                borderBottomColor: '#E7E7E0',
-                                                padding: 0,
-                                            }}
-                                        >
-                                            <View
-                                            // className="navContInDet"
+                                            // id="menu2" className="containerr tab-pane fade"
                                             >
-                                                {/* <ul className="nav nav-tabs" role="tablist">
-                                                    <li
-                                                        className="nav-item"
-                                                        style={{ borderBottom: "2px solid red" }}
-                                                    >
-                                                        <a
-                                                            className="nav-link active"
-                                                            data-bs-toggle="tab"
-                                                            href="#home"
-                                                            style={{ color: "inherit" }}
-                                                        >
-                                                            ویژگی کالا
-                                                        </a>
-                                                    </li>
-                                                    <li className="nav-item">
-                                                        <a
-                                                            className="nav-link"
-                                                            data-bs-toggle="tab"
-                                                            href="#menu1"
-                                                            style={{ color: "inherit" }}
-                                                        >
-                                                            جزئیات کالا
-                                                        </a>
-                                                    </li>
-                                                    <li className="nav-item" style={{ display: "none" }}>
-                                                        <a
-                                                            className="nav-link"
-                                                            data-bs-toggle="tab"
-                                                            href="#menu2"
-                                                            style={{ color: "inherit" }}
-                                                        >
-                                                            Menu 2
-                                                        </a>
-                                                    </li>
-                                                </ul> */}
-                                                <View
-                                                // className="tab-content"
-                                                // style={{ color: "#545454" }}
-                                                >
-                                                    <View
-                                                    // id="home" className="containerr tab-pane active"
-                                                    >
-                                                        <View
-                                                            style={{
-                                                                // display: "flex",
-                                                                flexDirection: "row",
-                                                                justifyContent: "center",
-                                                                // justifyItems: "center",
-                                                                alignContent: "center",
-                                                                // padding: "10px 0px",
-                                                                paddingVertical: 10,
-                                                                paddingHorizontal: 0,
-                                                            }}
-                                                        >
-                                                            <Text style={{ margin: 0, color: "#545454" }}>
-                                                                ویژگی برای این محصول وجود ندارد
-                                                            </Text>
-                                                        </View>
-                                                    </View>
-                                                    <View
-                                                    // id="menu1" className="containerr tab-pane fade"
-                                                    >
-                                                        <View
-                                                            // id="ProductDescription"
-                                                            style={{
-                                                                marginTop: 15,
-                                                                flexDirection: "column",
-                                                                position: "relative",
-                                                                paddingBottom: 48,
-                                                            }}
-                                                        >
-                                                            <View
-                                                                // id="contentContInProdDes"
-                                                                style={{
-                                                                    marginBottom: 10,
-                                                                    // display: "flex",
-                                                                    flexDirection: "column",
-                                                                    maxHeight: 120,
-                                                                    overflow: "hidden",
-                                                                }}
-                                                            >
-                                                                <Text style={{ color: "#545454" }}></Text>
-                                                            </View>
-                                                            <View
-                                                                style={{
-                                                                    // display: "flex",
-                                                                    flexDirection: "column",
-                                                                    position: "absolute",
-                                                                    right: 10,
-                                                                    bottom: 10,
-                                                                }}
-                                                            >
-                                                                <TouchableOpacity
-                                                                    // id="bishtarInProdDes"
-                                                                    // className="buttonHover"
-                                                                    // href="#ProductDescription"
-                                                                    style={{
-                                                                        padding: 10,
-                                                                        borderRadius: 7,
-                                                                        // display: "flex",
-                                                                        flexDirection: "row",
-                                                                        // textDecoration: "none",
-                                                                        // color: "rgb(2, 160, 164)",
-                                                                        backgroundColor: "inherit",
-                                                                    }}
-                                                                >
-                                                                    <View
-                                                                        style={{
-                                                                            // flex: "0 0 auto",
-                                                                            flexGrow: 0,
-                                                                            flexShrink: 0,
-                                                                            flexBasis: 'auto',
-                                                                            // display: "flex",
-                                                                            flexDirection: "row",
-                                                                            paddingLeft: 5,
-                                                                            alignItems: "center",
-                                                                        }}
-                                                                    >
-                                                                        <Text
-                                                                            // id="TextInBishtarInProdDes"
-                                                                            style={{ color: "rgb(2, 160, 164)", }}
-                                                                        >
-                                                                            نمایش بیشتر{" "}
-                                                                        </Text>
-                                                                    </View>
-                                                                    <View
-                                                                        style={{
-                                                                            // display: "flex",
-                                                                            flexDirection: "column",
-                                                                            justifyContent: "center",
-                                                                        }}
-                                                                    >
-                                                                        <View
-                                                                            // className="rounded-pill"
-                                                                            style={{
-                                                                                display: "flex",
-                                                                                flexDirection: "row",
-                                                                                backgroundColor: "inherit",
-                                                                            }}
-                                                                        >
-                                                                            {/* <img
-                                                                                src="https://img.tochikala.com/tochikala/left-arrow.svg"
-                                                                                style={{ width: "15px" }}
-                                                                                alt="نمایش بیشتر"
-                                                                            /> */}
-                                                                            <Image
-                                                                                source={{ uri: "https://img.tochikala.com/tochikala/left-arrow.svg" }}
-                                                                                style={{ width: 15 }}
-                                                                            />
-                                                                        </View>
-                                                                    </View>
-                                                                </TouchableOpacity>
-                                                            </View>
-                                                        </View>
-                                                    </View>
-                                                    <View
-                                                    // id="menu2" className="containerr tab-pane fade"
-                                                    >
-                                                        <Text style={{ color: "#545454" }}>salam menu2</Text>
-                                                    </View>
-                                                </View>
+                                                <Text style={{ color: "#545454" }}>salam menu2</Text>
                                             </View>
                                         </View>
                                     </View>
                                 </View>
-
-                                <View
-                                    // id="productNotExist"
-                                    style={{
-                                        height: "100%",
-                                        //   ...(bisatrInProductDet === true && { display: 'none' }),  //zare_nk_041129_rahe1(tosiye nemishe, shayad error bede)
-                                        display: bisatrInProductDet === true ? "flex" : "none", //zare_nk_041129_rahe2(tosiye mishe)
-                                        justifyContent: "center",
-                                        marginBottom: 30,
-                                        // color: "red", 
-                                    }}
-                                >
-                                    <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>22 کالای مورد نظر یافت نشد</Text>
-                                </View>
                             </View>
                         </View>
 
+                        <View
+                            // id="productNotExist"
+                            style={{
+                                flexGrow: 1,
+                                flexShrink: 1,
+                                flexBasis: "auto",
+                                //   ...(bisatrInProductDet === true && { display: 'none' }),  //zare_nk_041129_rahe1(tosiye nemishe, shayad error bede)
+                                display: bisatrInProductDet === true ? "flex" : "none", //zare_nk_041129_rahe2(tosiye mishe)
+                                justifyContent: "center",
+                                // marginBottom: 30,
+                                // color: "red", 
+                                borderWidth: 2,
+                                borderStyle: 'dashed',
+                                borderColor: 'black',
+                            }}
+                        >
+                            <Text
+                                numberOfLines={1}
+                                ellipsizeMode="tail"
+                                style={{
+                                    color: "red",
+                                    fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                    borderWidth: 2,
+                                    borderStyle: 'dashed',
+                                    borderColor: 'black',
+                                }}>کالای مورد نظر یافت نشد</Text>
+                        </View>
+                        {/* </View> */}
+                        {/* </View> */}
+
                         {/* div span */}
                         {/* zare_nk_041128_added_end */}
-                    </View>
+                    </ScrollView>
                 </Modal>
+                ////zare_nk_041209_modale
             ) : isOpenedCodeScannerModal == true ? (  //zare_nk_041205_forUpdateName
                 !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
                     (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
@@ -4540,7 +4713,7 @@ export default function ShallowRoutingExample({
                             }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
                         >
                             {/*zare_nk_040923(konteyner dakhele modal)*/}
-                            <View style={[styles.modalContainer, { overflow: "hidden" }]}>
+                            <View style={[styles.CodeScannermodalContainer, { overflow: "hidden" }]}>
                                 {/*zare_nk_041204_okk_st(baraye namayesh kadr rahnama)*/}
                                 <View style={[styles.overlay,
                                 {
@@ -4820,7 +4993,7 @@ export default function ShallowRoutingExample({
                                 // borderStyle: 'solid',
                                 borderRadius: 10,
                                 // padding: 7,  //zare_nk_041209_commented
-                                paddingTop:7,  //zare_nk_041209_added
+                                paddingTop: 7,  //zare_nk_041209_added
                                 backgroundColor: "#f6f6f6",
                                 boxShadow: "#5e5e5e 0px 0px 3px 0px",
                             }, sabadItemsCont]}
@@ -5151,10 +5324,20 @@ export default function ShallowRoutingExample({
 }
 
 const styles = StyleSheet.create({
-    modalContainer: {
-        flex: 1,
+    CodeScannermodalContainer: {
+        flexGrow: 1,
+        flexShrink: 1,
+        flexBasis: "auto",
         backgroundColor: "black",
     },
+
+    ProdDetModalmodalContainer: {
+        flexGrow: 1,
+        flexShrink: 1,
+        flexBasis: 'auto',
+        backgroundColor: "white",
+    },
+
     overlay: {
         ...StyleSheet.absoluteFill,  //zare_nk_040923(moadele css: position: absolute; top: 0; left: 0; right: 0; bottom: 0;)
         justifyContent: "center",
@@ -5276,6 +5459,33 @@ const styles = StyleSheet.create({
         paddingBottom: 20,
         paddingHorizontal: 15,
     },
+
+
+   DetailsImgAndInfoCont_STH576: {
+    flexDirection: 'column',
+  },
+  DetailsImgAndInfoCont_BTH576: {
+    flexDirection:'row-reverse',
+  },
+
+  CurrentImgCont_STH576: {
+    width: '100%',
+     marginBottom: 3,
+  },
+  CurrentImgCont_BTH576: {
+    width: 150, 
+    marginLeft: 3,
+  },
+
+  DetailsInfoCont_STH576: {
+    width: '100%',
+
+  },
+  DetailsInfoCont_BTH576: {
+    flexBasis: 'auto',
+    flexGrow: 1,
+    flexShrink: 1,
+  } 
     /////////////////////////////////////////////zare_nk_041202_added_end(for responsives @media) 
 
 });

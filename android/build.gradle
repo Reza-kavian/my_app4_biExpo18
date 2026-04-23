@@ -1,22 +1,26 @@
+////zare_nk_050201_okk
 buildscript {
     ext {
-        buildToolsVersion = "36.0.0"
+        buildToolsVersion = "36.0.0"  //zare_nk_050127_nokteh(noskheye SDKBuildTools ke baraye compile va bastebandiye applicatione android estefadeh mishe)  
         minSdkVersion = 24
         compileSdkVersion = 36
         targetSdkVersion = 36
         // ndkVersion = "27.1.12297006"   //zare_nk_040922_commented(chon 27.1.12297006 nasb nashod)
         ndkVersion = "27.0.12077973"   //zare_nk_040922_added(chon 27.1.12297006 nasb nashod)
+        ////zare_nk_050127_nokteh(dar androidstudio 29.0.14206865 va 27.0.12077973 nasbeh) 
+        ////zare_nk_050127_nokteh(NDK be shoma ejazeh mideh az codehaye c va c++ dar projeye androidiye khod estefadeh konid.)
         kotlinVersion = "2.1.20"
     }
     repositories {
-        google()
-        mavenCentral()
+        google()  //zare_nk_050127_nokteh(makhzane google shamele ketabkhanehaye rasmiye android)
+        mavenCentral() //zare_nk_050127_nokteh(makhzane maven shamele ketabkhanehaye java va android)
     }
     dependencies {
-        classpath("com.android.tools.build:gradle")
-        classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("com.android.tools.build:gradle")  //zare_nk_050127(plugine asliye Android Gradle baraye sakhte projehaye androidi)
+        classpath("com.facebook.react:react-native-gradle-plugin")  //zare_nk_050127(plugine makhsoose ReactNative haveye emkanate lazem baraye projehaye reactNative)
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")   //zare_nk_050127(plugine kotlin ke emkane estefadeh az zabane kotlin ra faraham mikoneh)
     }
 }
 
-apply plugin: "com.facebook.react.rootproject"
+apply plugin: "com.facebook.react.rootproject"  //zare_nk_050127(in file ra dar risheye projeh gharar dad, masalan dar filehaye dige(masalan dar /android/app/build.gradle) age
+// bezanim rootProject.ext.ndkVersion be ndkVersion ke dar bala meghdar dadim dastresi darim)

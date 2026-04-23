@@ -2,8 +2,8 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
-import { TouchableOpacity, Text, StyleSheet, View, Alert, ScrollView } from "react-native"; 
-   
+import { TouchableOpacity, Text, StyleSheet, View, Alert, ScrollView } from "react-native";
+
 /* ------------------ Square ------------------ */
 type SquareProps = {
     value: string | null;
@@ -19,7 +19,7 @@ type SquareProps = {
 function Square({ value, onSquareClick, andis, colorState }: SquareProps) {  //zare_nk_041017_nokteh(colorState jaigozine refForBtne next)
     const getBackgroundColor = () => {
         switch (colorState) {  //zare_nk_041017_nkteh(jaigozine className ke range dokmeh ha ro migereft masalan,chon dar 
-        // reactNative attribute className mani nadare baraye module.css va bejash az StyleSheet estefadeh mishe(className={Styles.mohreh})
+            // reactNative attribute className mani nadare baraye module.css va bejash az StyleSheet estefadeh mishe(className={Styles.mohreh})
             case "clicked":
                 return styles.mohrehCliked;
             case "wined":
@@ -70,11 +70,20 @@ function Board({
         const nextSquares = [...squares];
         nextSquares[index] = xIsNextState ? "X" : "O";
         onPlay(nextSquares);
-        setXIsNextState(!xIsNextState);
+
+        // setXIsNextState(!xIsNextState);  //zare_nk_050130_commented
+        ////zare_nk_050130_added_st
+        setXIsNextState((cur) => {
+            AsyncStorage.setItem("xIsNextState", JSON.stringify(!cur));
+            // squares[squares.length - 1] = !cur ? "X" : "O"; ////zare_nk_050130_nokteh(engar ezafiye va bimoredeh!-hatman tahlilshe)
+            return !cur;
+        });
+        ////zare_nk_050130_added_end
 
         const nextBtnsColor = [...BtnsColor];
         nextBtnsColor[index] = "clicked";
         setBtnsColor(nextBtnsColor);
+        AsyncStorage.setItem("BtnsColor", JSON.stringify(nextBtnsColor)); //zare_nk_050130_added
 
         const winner = calculateWinner(nextSquares);
         if (winner) {
@@ -82,11 +91,12 @@ function Board({
             const updatedColors = [...nextBtnsColor];
             [a, b, c].forEach(i => (updatedColors[i] = "lineWined"));
             setBtnsColor(updatedColors);
+            AsyncStorage.setItem("BtnsColor", JSON.stringify(updatedColors)); //zare_nk_050130_added
             setTimer(0);
             Alert.alert("Winner!", `Player ${winnerValue} won!`);
         }
     };
-//zare_nk_041124(wined gonjoondeh nashod!!)
+    //zare_nk_041124(wined gonjoondeh nashod!!)
     return (
         <View style={styles.container}>
             {squares.map((value, index) => (
@@ -126,8 +136,34 @@ export default function TicTacToeScreen() {
         (async () => {
             const storedTimer = await AsyncStorage.getItem("timer");
             if (storedTimer !== null) {
-                setTimer(Number(storedTimer));
+                setTimer(Number(JSON.parse(storedTimer)));
             }
+            ////zare_nk_050130_nokteh(ehtemalan inja bayad baghiyeye AsyncStorage ro ham dar loade bedim? tahlilshe)
+            ////zare_nk_050130_added_st(baraye ezafe kardan baghieyeye AsysncStorage ha,hatman khorooji begiram va check konam)
+            const storedXIsNextState = await AsyncStorage.getItem("xIsNextState");
+            if (storedXIsNextState !== null) {
+                setXIsNextState(Boolean(JSON.parse(storedXIsNextState)));
+            }
+
+            const storedCurrentMove = await AsyncStorage.getItem("currentMove");
+            if (storedCurrentMove !== null) {
+                setCurrentMove(Number(JSON.parse(storedCurrentMove)));
+            }
+
+            const storedBtnsColor = await AsyncStorage.getItem("btnsColor");
+            if (storedBtnsColor !== null) {
+                type ButtonStateType = "default" | "clicked" | "wined" | "lineWined";
+                const parsedBtnsColor: ButtonStateType[] = JSON.parse(storedBtnsColor);
+                setBtnsColor(parsedBtnsColor);
+            }
+
+            const storedHistory = await AsyncStorage.getItem("history");
+            if (storedHistory !== null) {
+                const parsedHistory: Squares[] = JSON.parse(storedHistory);
+                setHistory(parsedHistory);
+            }
+            ////zare_nk_050130_added_end(baraye ezafe kardan baghieyeye AsysncStorage ha,hatman khorooji begiram va check konam)
+
         })();
     }, []);
 
@@ -171,7 +207,10 @@ export default function TicTacToeScreen() {
                 nextSquares,
             ];
             setHistory(nextHistory);
+            AsyncStorage.setItem("history", JSON.stringify(nextHistory)); //zare_nk_050130_added
             setCurrentMove(nextHistory.length - 1);
+            AsyncStorage.setItem("currentMove", JSON.stringify(nextHistory.length - 1));  //zare_nk_050130_added
+
             setTimer(TURN_TIME);
         },
         [history, currentMove]
@@ -180,17 +219,32 @@ export default function TicTacToeScreen() {
     /* -------------------- JUMP TO -------------------- */
     const jumpTo = (move: number) => {
         setCurrentMove(move);
+        AsyncStorage.setItem("currentMove", JSON.stringify(move));  //zare_nk_050130_added
         setTimer(TURN_TIME);
         const nextSquares = history[move];
         const newBtnsColor = nextSquares.map(val =>
             val ? "clicked" : "default"
         );
         setBtnsColor(newBtnsColor);
-        setXIsNextState(move % 2 === 0);  //zare_nk_041018_tahlilshe(shayad hkaneye zoj ke bayad X bashe vali bekhatere payane mohlate zamani be O taalogh gerefteh bashe! pas formoole taeine zojo fard ehtemalan daghigh nist)
+        AsyncStorage.setItem("BtnsColor", JSON.stringify(BtnsColor));  //zare_nk_050130_added
+
+        ////zare_nk_050130_commented_st
+        // setXIsNextState(move % 2 === 0);  //zare_nk_041018_tahlilshe(shayad khaneye zoj ke bayad X bashe vali bekhatere payane mohlate zamani be O taalogh gerefteh bashe! pas formoole taeine zojo fard ehtemalan daghigh nist)
+        ////zare_nk_050130_commented_end
+        ////zare_nk_050130_added_st
+        if (history[move][history[move].length - 1] == "X") {
+            setXIsNextState(false);
+            AsyncStorage.setItem("xIsNextState", JSON.stringify(false));
+        } else {
+            setXIsNextState(true);
+            AsyncStorage.setItem("xIsNextState", JSON.stringify(true));
+        }
+        ////zare_nk_050130_added_end
+
     };
 
     /* -------------------- MOVES LIST -------------------- */
-    const moves = history.map((squaresInMove:Squares, move:number) => {
+    const moves = history.map((squaresInMove: Squares, move: number) => {
         const description =
             move === currentMove
                 ? `شما در آرشیو ${move + 1} هستید`
@@ -265,7 +319,6 @@ function calculateWinner(squares: Squares): WinnerResult | null {
             return [squares[a], a, b, c];
         }
     }
-
     return null;
 }
 

@@ -1,3 +1,4 @@
+////zare_nk_050130_okk
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -943,7 +944,8 @@ export default function HomeScreen({
   //////responsive_for_sabadItemsAndTotalInf_added_end
 
   //////responsive_for_Subprograms_added_st
-  let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
+  // let SubprogramsResponse: StyleProp<ViewStyle> ;
+  let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_STH576;
   if (width >= 576) {
     SubprogramsResponse = styles.Subprograms_BTH576;
   }
@@ -2852,10 +2854,10 @@ export default function HomeScreen({
             contentContainerStyle={[styles.ProdDetModalmodalContainer, {
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center", //zare_nk_041209_added
-              alignItems: 'center', //zare_nk_041209_added
-              paddingHorizontal: 10, //zare_nk_041209_added
-              paddingVertical: 10, //zare_nk_041209_added 
+              justifyContent: "center",
+              alignItems: 'center',
+              paddingHorizontal: 10,
+              paddingVertical: 10,
             }]}>
             {/* zare_nk_041128_added_st */}
             {/* <View
@@ -2868,10 +2870,7 @@ export default function HomeScreen({
                          justifyContent: "center", //zare_nk_041209_added
                          alignItems: 'center', //zare_nk_041209_added
                          paddingHorizontal: 10, //zare_nk_041209_added
-                         paddingVertical: 10, //zare_nk_041209_added
-                         borderWidth: 2,
-                         borderStyle: 'dashed',
-                         borderColor: 'red',
+                         paddingVertical: 10, //zare_nk_041209_added 
                        }}
                      > */}
             {/* <View
@@ -3717,10 +3716,7 @@ export default function HomeScreen({
                 display: bisatrInProductDet === true ? "flex" : "none", //zare_nk_041129_rahe2(tosiye mishe)
                 justifyContent: "center",
                 // marginBottom: 30,
-                // color: "red", 
-                borderWidth: 2,
-                borderStyle: 'dashed',
-                borderColor: 'black',
+                // color: "red",  
               }}
             >
               <Text
@@ -3729,9 +3725,6 @@ export default function HomeScreen({
                 style={{
                   color: "red",
                   fontFamily: "IRANSansWeb(FaNum)_Medium",
-                  borderWidth: 2,
-                  borderStyle: 'dashed',
-                  borderColor: 'black',
                 }}>کالای مورد نظر یافت نشد</Text>
             </View>
             {/* </View> */}
@@ -3773,9 +3766,6 @@ export default function HomeScreen({
                   <View
                     style={{
                       display: 'flex',
-                      // borderStyle: 'dashed',
-                      // borderWidth: 3,
-                      // borderColor: 'red',
                       position: 'relative',
                       marginBottom: 20,
                       borderRadius: 11,
@@ -3854,10 +3844,6 @@ export default function HomeScreen({
                         // justifyItems: "center",
                         // alignContent: "center",
                         alignItems: "center",
-
-                        // borderStyle: 'dashed',
-                        // borderWidth: 3,
-                        // borderColor: 'orange',
                       }}
                     >
                       <View
@@ -3945,9 +3931,6 @@ export default function HomeScreen({
                           width: "100%",
                           fontSize: 14,
                           color: "red",
-                          // borderBlockColor: 'red',
-                          // borderStyle: 'dashed',
-                          // borderWidth: 2,
                         }}
                       ></Text>
                     </View>
@@ -4017,7 +4000,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  // padding: 15,   //zare_nk_041206_commented
+                  // padding: 15,    
+                  padding: 10,
                   // alignItems: "center",   //zare_nk_041206_commented
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
@@ -4033,12 +4017,9 @@ export default function HomeScreen({
                   // className="imgAndTextInSubprograms"
                   style={[{
                     display: "flex",
-                    //  flexDirection: "row",
-                    borderWidth: 1,
-                    borderColor: "#47e91e",
-                    borderStyle: 'dashed',
+                    //  flexDirection: "row", 
                     flexGrow: 1,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexBasis: 'auto',
                   }, imgAndTextInSubprogramsResponse]}
                 >
@@ -4048,9 +4029,7 @@ export default function HomeScreen({
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
-                      // borderWidth: 4,
-                      // borderColor: "#e91e83",
-                      // borderStyle: 'dotted',
+
                     }, roundedPillsContResponse]}
                   >
                     <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
@@ -4059,7 +4038,6 @@ export default function HomeScreen({
                         display: "flex",
                         flexDirection: "row",
                         justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
                         borderWidth: 1,
                         borderColor: "#E7E7E7",
                         borderStyle: 'solid',
@@ -4067,7 +4045,6 @@ export default function HomeScreen({
                         borderRadius: "50%",
                         overflow: 'hidden',
                         minHeight: 85.6,
-                        // width:86
                       }}
                     >
                       {/* <img
@@ -4088,11 +4065,8 @@ export default function HomeScreen({
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content",
+                      // width: "fit-content", 
 
-                      borderWidth: 4,
-                      borderColor: "#000000",
-                      borderStyle: 'dotted',
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -4103,10 +4077,7 @@ export default function HomeScreen({
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
-                        marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk
-                        borderWidth: 4,
-                        borderColor: "#0bb3fb",
-                        borderStyle: 'dotted',
+                        marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk 
                       }}
                     >
                       <Text
@@ -4116,18 +4087,12 @@ export default function HomeScreen({
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
-                          borderStyle: 'dashed',
-                          borderColor: 'red',
-                          borderWidth: 2,
                         }, titleStyleResponse]}
                       >سبد خرید</Text>
                     </View>
                     <View
                       style={{
                         flexDirection: "row",
-                        borderWidth: 4,
-                        borderColor: "#0bb3fb",
-                        borderStyle: 'dotted',
                       }}
                     // className="decsInSubprograms"
                     >
@@ -4152,9 +4117,6 @@ export default function HomeScreen({
                   // className="leftArrowInSubprograms"
                   style={{
                     display: 'flex', flexDirection: "row", alignItems: 'center',
-                    borderWidth: 1,
-                    borderColor: "#e91ed8",
-                    borderStyle: 'dashed',
                   }}
                 >
                   {/* <Image
@@ -4188,7 +4150,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  // padding: 15,  //zare_nk_041206_commented 
+                  // padding: 15,   
+                  padding: 10,
                   // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
@@ -4203,12 +4166,9 @@ export default function HomeScreen({
                   // className="imgAndTextInSubprograms"
                   style={[{
                     display: "flex",
-                    //  flexDirection: "row",
-                    borderWidth: 1,
-                    borderColor: "#47e91e",
-                    borderStyle: 'dashed',
+                    //  flexDirection: "row", 
                     flexGrow: 1,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexBasis: 'auto',
                   }, imgAndTextInSubprogramsResponse]}
                 >
@@ -4217,10 +4177,7 @@ export default function HomeScreen({
                     style={[{
                       display: "flex",
                       flexDirection: "row",
-                      // width: "fit-content",
-                      borderWidth: 1,
-                      borderColor: "#e91e83",
-                      borderStyle: 'dashed',
+                      // width: "fit-content", 
                     }, roundedPillsContResponse]}
                   >
                     <View
@@ -4259,9 +4216,6 @@ export default function HomeScreen({
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
 
-                      borderWidth: 1,
-                      borderColor: "#691010",
-                      borderStyle: 'dashed',
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -4282,9 +4236,6 @@ export default function HomeScreen({
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
-                          borderStyle: 'dashed',
-                          borderColor: 'red',
-                          borderWidth: 2,
                         }, titleStyleResponse]}
                       >مشاهده قیمت ها</Text>
                     </View>
@@ -4344,7 +4295,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  // padding: 15,   //zare_nk_041206_commented 
+                  // padding: 15,   
+                  padding: 10,
                   // alignItems: "center",   //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
@@ -4361,11 +4313,9 @@ export default function HomeScreen({
                   style={[{
                     display: "flex",
                     //  flexDirection: "row",
-                    borderWidth: 1,
-                    borderColor: "#47e91e",
-                    borderStyle: 'dashed',
+
                     flexGrow: 1,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexBasis: 'auto',
                   }, imgAndTextInSubprogramsResponse]}
                 >
@@ -4375,9 +4325,7 @@ export default function HomeScreen({
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
-                      borderWidth: 1,
-                      borderColor: "#e91e83",
-                      borderStyle: 'dashed',
+
                     }, roundedPillsContResponse]}
                   >
                     <View
@@ -4426,11 +4374,8 @@ export default function HomeScreen({
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content",
+                      // width: "fit-content", 
 
-                      borderWidth: 1,
-                      borderColor: "#691010",
-                      borderStyle: 'dashed',
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -4510,7 +4455,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  // padding: 15,  //zare_nk_041206_commented 
+                  // padding: 15,   
+                  padding: 10,
                   // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
@@ -4526,11 +4472,9 @@ export default function HomeScreen({
                   style={[{
                     display: "flex",
                     //  flexDirection: "row",
-                    borderWidth: 1,
-                    borderColor: "#47e91e",
-                    borderStyle: 'dashed',
+
                     flexGrow: 1,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexBasis: 'auto',
                   }, imgAndTextInSubprogramsResponse]}
                 >
@@ -4540,9 +4484,7 @@ export default function HomeScreen({
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
-                      borderWidth: 1,
-                      borderColor: "#e91e83",
-                      borderStyle: 'dashed',
+
                     }, roundedPillsContResponse]}
                   >
                     <View
@@ -4580,9 +4522,6 @@ export default function HomeScreen({
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
 
-                      borderWidth: 1,
-                      borderColor: "#691010",
-                      borderStyle: 'dashed',
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -4662,7 +4601,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  // padding: 15,  //zare_nk_041206_commented 
+                  // padding: 15,   
+                  padding: 10,
                   // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
@@ -4677,12 +4617,9 @@ export default function HomeScreen({
                   // className="imgAndTextInSubprograms"
                   style={[{
                     display: "flex",
-                    //  flexDirection: "row",
-                    borderWidth: 1,
-                    borderColor: "#47e91e",
-                    borderStyle: 'dashed',
+                    //  flexDirection: "row",                    
                     flexGrow: 1,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexBasis: 'auto',
                   }, imgAndTextInSubprogramsResponse]}
                 >
@@ -4692,9 +4629,7 @@ export default function HomeScreen({
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
-                      borderWidth: 1,
-                      borderColor: "#e91e83",
-                      borderStyle: 'dashed',
+
                     }, roundedPillsContResponse]}
                   >
                     <View
@@ -4730,11 +4665,7 @@ export default function HomeScreen({
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content",
-
-                      borderWidth: 1,
-                      borderColor: "#691010",
-                      borderStyle: 'dashed',
+                      // width: "fit-content", 
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -4815,7 +4746,8 @@ export default function HomeScreen({
                   display: "flex",
                   flexDirection: "row",
                   justifyContent: "space-between",
-                  // padding: 15,  //zare_nk_041206_commented 
+                  // padding: 15,   
+                  padding: 10,
                   // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
@@ -4832,11 +4764,9 @@ export default function HomeScreen({
                   style={[{
                     display: "flex",
                     //  flexDirection: "row",
-                    borderWidth: 1,
-                    borderColor: "#47e91e",
-                    borderStyle: 'dashed',
+
                     flexGrow: 1,
-                    flexShrink: 0,
+                    flexShrink: 1,
                     flexBasis: 'auto',
                   }, imgAndTextInSubprogramsResponse]}
                 >
@@ -4846,9 +4776,7 @@ export default function HomeScreen({
                       display: "flex",
                       flexDirection: "row",
                       // width: "fit-content",
-                      borderWidth: 1,
-                      borderColor: "#e91e83",
-                      borderStyle: 'dashed',
+
                     }, roundedPillsContResponse]}
                   >
                     <View
@@ -4886,9 +4814,6 @@ export default function HomeScreen({
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
 
-                      borderWidth: 1,
-                      borderColor: "#691010",
-                      borderStyle: 'dashed',
                     }, subSysTextContResponse]}
                   >
                     <View
@@ -4909,9 +4834,6 @@ export default function HomeScreen({
                         style={[{
                           fontFamily: "IRANSansWeb(FaNum)_Bold",
                           color: '#4b4949',
-                          borderStyle: 'dashed',
-                          borderColor: 'red',
-                          borderWidth: 2,
                         }, titleStyleResponse]}
                       >سرچ با تصویر</Text>
                     </View>
@@ -5117,23 +5039,17 @@ const styles = StyleSheet.create({
   },
 
   //////////////////////
-  Subprograms_BaseResponse: {
+  Subprograms_STH576: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '95%',
-    // marginBottom: 10,  //zare_nk_041206_commented
-    // borderWidth: 3,
-    // borderStyle: 'dashed',
-    // borderColor: 'green',
+    // marginBottom: 10,  //zare_nk_041206_commented 
   },
   Subprograms_BTH576: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '45%',
-    // marginBottom: 10,  //zare_nk_041206_commented
-    // borderWidth: 3,
-    // borderStyle: 'dashed',
-    // borderColor: 'green',
+    // marginBottom: 10,  //zare_nk_041206_commented 
   },
   Subprograms_BTH992: {
     // flex: 1 1 31%; 
@@ -5146,9 +5062,6 @@ const styles = StyleSheet.create({
   imgAndTextInSubprograms_baseResponsive: {
     flexDirection: 'row',
     width: 'auto',
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    borderColor: 'red',
   },
 
   imgAndTextInSubprograms_BTH576: {

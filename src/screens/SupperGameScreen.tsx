@@ -43,14 +43,14 @@ export default function SupperGameScreen({
   //////responsive_for_sabadItemsAndTotalInf_added_end
 
   //////responsive_for_Subprograms_added_st
-  let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
+  let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_STH576;
   if (width >= 576) {
     SubprogramsResponse = styles.Subprograms_BTH576;
   }
   if (width >= 992) {
     SubprogramsResponse = styles.Subprograms_BTH992;
-  } 
- 
+  }
+
   //////responsive_for_Subprograms_added_end
 
   //////responsive_for_imgAndTextInSubprograms_added_st
@@ -105,7 +105,6 @@ export default function SupperGameScreen({
 
   ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
 
-
   const goTicTacToeScreen = () => {
     navigation.navigate("TicTacToe");
   };
@@ -139,7 +138,8 @@ export default function SupperGameScreen({
               display: "flex",
               flexDirection: "row",
               justifyContent: "space-between",
-              // padding: 15,   //zare_nk_041206_commented
+              // padding: 15,   
+              padding: 10,
               // alignItems: "center",   //zare_nk_041206_commented
               borderWidth: 1,
               borderColor: "#a9a9a9",
@@ -155,12 +155,9 @@ export default function SupperGameScreen({
               // className="imgAndTextInSubprograms"
               style={[{
                 display: "flex",
-                //  flexDirection: "row",
-                borderWidth: 1,
-                borderColor: "#47e91e",
-                borderStyle: 'dashed',
+                //  flexDirection: "row", 
                 flexGrow: 1,
-                flexShrink: 0,
+                flexShrink: 1,
                 flexBasis: 'auto',
               }, imgAndTextInSubprogramsResponse]}
             >
@@ -169,10 +166,7 @@ export default function SupperGameScreen({
                 style={[{
                   display: "flex",
                   flexDirection: "row",
-                  // width: "fit-content",
-                  borderWidth: 1,
-                  borderColor: "#e91e83",
-                  borderStyle: 'dashed',
+                  // width: "fit-content", 
                 }, roundedPillsContResponse]}
               >
                 <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
@@ -189,7 +183,6 @@ export default function SupperGameScreen({
                     borderRadius: "50%",
                     overflow: 'hidden',
                     minHeight: 85.6,
-                    // width:86
                   }}
                 >
                   <Image
@@ -204,11 +197,7 @@ export default function SupperGameScreen({
                   flexDirection: "column",
                   // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                   justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                  // width: "fit-content",
-
-                  borderWidth: 1,
-                  borderColor: "#691010",
-                  borderStyle: 'dashed',
+                  // width: "fit-content", 
                 }, subSysTextContResponse]}
               >
                 <View
@@ -229,9 +218,6 @@ export default function SupperGameScreen({
                     style={[{
                       fontFamily: "IRANSansWeb(FaNum)_Bold",
                       color: '#4b4949',
-                      borderStyle: 'dashed',
-                      borderColor: 'red',
-                      borderWidth: 2,
                     }, titleStyleResponse]}
                   >TIC-TAC-TOE</Text>
                 </View>
@@ -260,9 +246,6 @@ export default function SupperGameScreen({
               // className="leftArrowInSubprograms"
               style={{
                 display: 'flex', flexDirection: "row", alignItems: 'center',
-                borderWidth: 1,
-                borderColor: "#e91ed8",
-                borderStyle: 'dashed',
               }}
             >
               {/* <Image
@@ -277,7 +260,7 @@ export default function SupperGameScreen({
             </View>
           </TouchableOpacity>
         </View>
- 
+
 
         {/* zare_nk_041206_nokteh(be khatere dadane gap dar css az taktike ijade view haye tookhaliye komakiye akhare container ejtenab mikonim,
 vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava ham dare ye gape bimored mideh ke shahede ye marginLefte
@@ -299,10 +282,10 @@ vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava
           style={[{
             display: "flex",
             flexDirection: "row",
-            margin:0,
+            margin: 0,
           }, SubprogramsResponse]}
         ></View>
-         
+
       </View>
     </ScrollView>
   );
@@ -433,24 +416,17 @@ const styles = StyleSheet.create({
   },
 
   //////////////////////
-  Subprograms_BaseResponse: {
-    // flex: 1 1 45%; 
+  Subprograms_STH576: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '95%',
-    // marginBottom: 10,  //zare_nk_041206_commented
-    // borderWidth: 2,
-    // borderStyle: 'dashed',
-    // borderColor: 'orange',
+    // marginBottom: 10,  //zare_nk_041206_commented 
   },
   Subprograms_BTH576: {
     flexGrow: 1,
     flexShrink: 1,
     flexBasis: '45%',
-    // marginBottom: 10,  //zare_nk_041206_commented
-    //  borderWidth: 2,
-    // borderStyle: 'dashed',
-    // borderColor: 'orange',
+    // marginBottom: 10,  //zare_nk_041206_commented 
   },
   Subprograms_BTH992: {
     // flex: 1 1 31%; 
@@ -459,14 +435,11 @@ const styles = StyleSheet.create({
     flexBasis: '31%',
     // marginBottom: 10,  //zare_nk_041206_commented
   },
-   
+
   //////////////////////
   imgAndTextInSubprograms_baseResponsive: {
     flexDirection: 'row',
     width: 'auto',
-    borderWidth: 2,
-    borderStyle: 'dashed',
-    borderColor: 'red',
   },
 
   imgAndTextInSubprograms_BTH576: {
@@ -528,7 +501,31 @@ const styles = StyleSheet.create({
   valueStyleResponse_BTH576: { textAlign: 'center', },
   valueStyleResponse_BTH768: { textAlign: 'right', },
   ////////////////////////////
+  DetailsImgAndInfoCont_STH576: {
+    flexDirection: 'column',
+  },
+  DetailsImgAndInfoCont_BTH576: {
+    flexDirection: 'row-reverse',
+  },
 
+  CurrentImgCont_STH576: {
+    width: '100%',
+    marginBottom: 3,
+  },
+  CurrentImgCont_BTH576: {
+    width: 150,
+    marginLeft: 3,
+  },
+
+  DetailsInfoCont_STH576: {
+    width: '100%',
+
+  },
+  DetailsInfoCont_BTH576: {
+    flexBasis: 'auto',
+    flexGrow: 1,
+    flexShrink: 1,
+  }
   /////////////////////////////////////////////zare_nk_041206_added_end(for responsives @media) 
 });
 

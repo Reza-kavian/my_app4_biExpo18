@@ -1,3 +1,5 @@
+////zare_nk_050201_okk
+////zare_nk_050128(file tsconfig.json haviye tanzimate makhsoose typeScript hast)
 {
   "extends": "@react-native/typescript-config",
   "compilerOptions": {

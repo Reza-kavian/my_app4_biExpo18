@@ -1,6 +1,9 @@
+<!-- zare_nk_050201_okk -->
+<!-- zare_nk_050127_nokteh(be onvane rahnama haviye ettelaati baraye systemAmel va googleplay va cafebazar va ... hast) -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- zare_nk_050201_nokteh_st(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
     <uses-permission android:name="android.permission.CAMERA" />
 
     <uses-feature
@@ -9,7 +12,7 @@
     <uses-feature
         android:name="android.hardware.camera.autofocus"
         android:required="false" />
-
+    <!-- zare_nk_050201_nokteh_end(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
     <application
         android:name=".MainApplication"
         android:label="@string/app_name"

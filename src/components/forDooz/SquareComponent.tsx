@@ -1,4 +1,4 @@
-////zare_nk_041113_okk
+////zare_nk_050129_okk
 import React from "react";    
 import { TouchableOpacity, Text, StyleSheet, View } from "react-native";
 

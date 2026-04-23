@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
     logo: {
         width: 40,
         height: 40,
-        resizeMode: "contain",
+        resizeMode: "contain",   //zare_nk_050130_nokteh(moadele resizeMode: 'contain' dar css hast)
     },
 });

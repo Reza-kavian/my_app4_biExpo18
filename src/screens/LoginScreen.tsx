@@ -3,7 +3,7 @@ import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
   useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
-  StyleProp, Modal, Linking, ScrollView,
+  StyleProp, Modal, Linking, ScrollView, TextInputEndEditingEvent, TextInputChangeEvent,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -12,6 +12,7 @@ import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
+import { SvgUri } from "react-native-svg";
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -36,6 +37,7 @@ export default function LoginScreen({
   const [mobileVal, setMobileVal] = useState(""); //zare_nk_040531_nokteh(state ke shomaremobile varedeh ra negah midareh)
   const [smsVal, setSmsVal] = useState(""); //zare_nk_040531_nokteh(state ke sms varedeh ra negah midareh)
   const [error, setError] = useState<string | null>(null); //zare_nk_040531_nokteh(state ke errore formate varedeye mobile ra negah midareh)
+  const [mobileError, setMobileError] = useState<string | null>(null);   //zare_nk_041214_added
   const [smsError, setSmsError] = useState<string | null>(null); //zare_nk_040531_nokteh(state ke errore formate varedeye sms ra negah midareh)
   const [isDisabledMobileCheckBtn, setIsDisabledMobileCheckBtn] = //zare_nk_040531_nokteh(state ke disable ya enable boodane dokmeye MobileCheckBtn ra negah midareh)
     useState(false);
@@ -106,7 +108,7 @@ export default function LoginScreen({
 
   const mobileButtonClick = async () => {
     if (!/^09\d{9}$/.test(mobileVal)) {
-      setError("شماره موبایل معتبر نیست");
+      setMobileError("شماره موبایل معتبر نیست");
       return;
     }
     try {
@@ -121,25 +123,25 @@ export default function LoginScreen({
         if (data.status == 0) {
           setStep("secondPage");
           setTimer(40000); //zare_nk_040431_added(dastoore 0010)
-          setError(null);
+          setMobileError(null);
         } else {
           await AsyncStorage.removeItem("token");
-          setError(data.errors || "خطا در ارسال شماره موبایل");
+          setMobileError(data.errors || "خطا در ارسال شماره موبایل");
           //zare_nk_040218-data: {"status":-2,"message":"","data":1,"errors":["6 ثانیه ی دیگر مجددا تلاش کنید"]}
         }
       } else {
         await AsyncStorage.removeItem("token");
-        setError("متاسفانه خطایی رخ داده است");
+        setMobileError("متاسفانه خطایی رخ داده است");
       }
     } catch (error) {
       await AsyncStorage.removeItem("token");
       console.error("zare_nk_040218-resendcode-in catch:", error);
       if (error instanceof Error) {
         console.error("zare_nk_040218-resendcode-in catch-2:", error.message);
-        setError("متاسفانه خطایی رخ داده است222:" + error.message);
+        setMobileError("متاسفانه خطایی رخ داده است222:" + error.message);
       } else {
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));
-        setError("متاسفانه خطایی رخ داده است333:" + String(error));
+        setMobileError("متاسفانه خطایی رخ داده است333:" + String(error));
       }
     } finally {
       setIsDisabledMobileCheckBtn(false);
@@ -269,7 +271,7 @@ export default function LoginScreen({
         );
         console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");
-        setError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
+        setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
       }
 
       ////zare_nk_040428_added_end
@@ -433,6 +435,118 @@ export default function LoginScreen({
     ////zare_nk_040929_added_end(monasebe https://)
   };
 
+  ////zare_nk_041214_added_st
+  //  const mobileChanged= async (e:TextInputChangeEvent) => {  
+  const mobileChanged = async (textVaredeh: string) => {
+    setError("");
+    // e.currentTarget.src = 'https://img.tochikala.com/Logo/tochi.png';  //zare_nk_041214_added_olgu
+    // e.currentTarget.style.backgroundColor = 'white';  //zare_nk_041214_added_olgu
+
+    // let input: HTMLInputElement | null = null;
+    // let vall: string = "";
+    // if (eventOrElement && "target" in eventOrElement) {
+    //   input = eventOrElement.target;
+    //   vall = input.value;
+    // } else {
+    //   // alert("22222222222");
+    //   //zare_nk_040224_nokteh(age ba taghire mohtavaye mobileTxt tavasote dokmeye backBtnClick biaim dar methode mobileChanged)
+    //   ////zare_nk_040409_commented_st
+    //   // input = refForMobileInput.current[0];
+    //   // vall = input.value;
+    //   ////zare_nk_040409_commented_end
+    //   ////zare_nk_040409_added_st
+    //   input = eventOrElement;
+    //   vall = input?.value ?? "";
+    //   ////zare_nk_040409_added_st
+    // }
+    let vall: string = textVaredeh;
+
+    var pat = new RegExp("^[0]{1}[0123456789]{10}$");
+    var isMobileNum = pat.test(vall);
+    if (!vall) {
+      // if (input) {
+      //   input.classList.remove("valid");
+      //   input.classList.add("invalid");
+      // } 
+      setMobileError("ورود شماره تماس الزامی است"); //zare_nk_040224_added(rahe3-ba useState-reactpasandtarine) 
+      setIsDisabledMobileCheckBtn(true); //zare_nk_04022_added(javab dad chon meghdare ebtedaeiye disabled ra dar khate tarife MobileCheckBtn ba meghdare isDisabledMobileCheckBtn dadim va setIsDisabledMobileCheckBtn tavanaeiye tagheiresho dare )
+      // if (refForMobileCheckBtn.current) {
+      //   refForMobileCheckBtn.current.classList.add(Styles.disabledBtn);
+      //   refForMobileCheckBtn.current.classList.remove(Styles.btn);
+      // }
+    } else if (!isMobileNum) {
+      // if (input) {
+      //   input.classList.remove("valid");
+      //   input.classList.add("invalid");
+      // }
+
+      setMobileError("فرمت شماره تماس وارده نادرست است"); //zare_nk_040224_added(rahe3-ba useState-reactpasandtarine)
+      setIsDisabledMobileCheckBtn(true);
+      // if (refForMobileCheckBtn.current) {
+      //   refForMobileCheckBtn.current.classList.add(Styles.disabledBtn);
+      //   refForMobileCheckBtn.current.classList.remove(Styles.btn);
+      // }
+    } else {
+      // if (input) {
+      //   input.classList.remove("invalid");
+      //   input.classList.add("valid");
+      // }
+
+      setMobileError(""); //zare_nk_040224_added(rahe3-ba useState-reactpasandtarine) 
+      setIsDisabledMobileCheckBtn(false);
+      // if (refForMobileCheckBtn.current) {
+      //   refForMobileCheckBtn.current.classList.remove(Styles.disabledBtn);
+      //   refForMobileCheckBtn.current.classList.add(Styles.btn);
+      // }
+    }
+    // if (input) {
+    // setMobileVal(input.value);
+    // } 
+    setMobileVal(vall);
+  }
+
+  // function smsTxtChanged(event: React.ChangeEvent<HTMLInputElement>) {
+  const smsTxtChanged = async (textVaredeh: string) => {
+    setError("");
+    // var input = null;
+    // var vall = null;
+    // if (event.target != undefined) {
+    //   //zare_nk_040224_nokteh(age ba taghire mohtavaye smsValTxt tavasote karbar biaim dar methode smsTxtChanged)
+    //   input = event.target;
+    //   vall = input.value;
+    // } else {
+    //   //zare_nk_040224_nokteh(age ba taghire mohtavaye smsValTxt tavasote dokmeye mobileCheckBtn biaim dar methode smsTxtChanged)
+    //   input = refForSmsInput.current[0];
+    //   vall = input?.value;
+    // }
+    let vall: string = textVaredeh;
+    if (!vall) {
+      // if (input !== null) {
+      //   input.classList.remove("valid");
+      //   input.classList.add("invalid");
+      // }
+      setSmsError("ورود کد پیامکی الزامی است");
+      setIsDisabledCheckSmsBtn(true);
+      // refForCheckSmsBtn.current?.classList.add(Styles.disabledBtn);
+      // refForCheckSmsBtn.current?.classList.remove(Styles.btn);
+    } else {
+      // if (input !== null) {
+      //   input.classList.remove("invalid");
+      //   input.classList.add("valid");
+      // }
+      setSmsError("");
+      setIsDisabledCheckSmsBtn(false);
+      // refForCheckSmsBtn.current?.classList.remove(Styles.disabledBtn);
+      // refForCheckSmsBtn.current?.classList.add(Styles.btn);
+    }
+
+    // if (input) {
+    // setSmsVal(input.value);
+    // }
+    setSmsVal(vall);
+  }
+  ////zare_nk_041214_added_end
+
   return (
 
     <ScrollView horizontal={false}
@@ -445,9 +559,9 @@ export default function LoginScreen({
       }}
       contentContainerStyle={{
         display: "flex",
-        flexDirection: "column", 
+        flexDirection: "column",
         justifyContent: 'center',
-        alignItems: "center", 
+        alignItems: "center",
       }}
     >
       <View
@@ -459,11 +573,11 @@ export default function LoginScreen({
           flexDirection: "column",
           justifyContent: 'center',
           alignItems: "center",
-          width: '100%', 
-          minHeight:height, 
+          width: '100%',
+          minHeight: height,
           paddingVertical: 20,
           paddingHorizontal: 7,
-        }}>  
+        }}>
         <View
           // id="loginForm"
           // onSubmit={(event) => {
@@ -471,37 +585,86 @@ export default function LoginScreen({
           // }}
           // className={`${Styles.loginForm} ${Styles.valueStyle}`}
           style={[styles.loginForm,
+          {
+            direction: "rtl",
+          }
           ]}
         >
           <View
             // className={Styles.formsRow}
-            style={[styles.formsRow, { display: "flex", justifyContent: "center" }]}
+            style={[styles.formsRow, {
+              justifyContent: "center",
+            }]}
           >
-            {/* <img
-            src="https://img.tochikala.com/Logo/photo14359415832-Copy.jpg"
-            style={{ width: "55px" }}
-            alt="کرفو"
-          ></img> */}
             <Image
               source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
-              style={{ width: 55 }}
+              style={{ width: 55, height: 55, }}
             />
           </View>
           {/* {error && <Text style={styles.error}>{error}</Text>} */}
+          {error && (
+            <View
+              // className={`${Styles.formsRow} ${Styles.warningCont}`}
+              style={[styles.formsRow,
+              {
+                justifyContent: 'center',
+                marginVertical: 10,
+              }
+              ]}
+            >
+              <Text
+                // className="forErrorMobile error"
+                style={[styles.errorTextStyle,
+                {
+                  fontSize: 14,
+                  // borderColor: 'red',
+                  // borderStyle: 'dashed',
+                  // borderWidth: 2,
+                }]}
+              >{error}</Text>
+            </View>
+          )}
           {step === "firstPage" ? (
             <>
               <View
-                // className={`${Styles.formsRow} ${Styles.titleStyle}`}
-                style={[styles.formsRow]}
+                // className={`${Styles.formsRow} ${Styles.boldTextStyle}`}
+                style={[styles.formsRow,
+                {
+                  justifyContent: 'flex-start',
+                  marginBottom: 20,
+
+                  // borderColor: 'red',
+                  // borderStyle: 'dashed',
+                  // borderWidth: 2,
+                }
+                ]}
               >
-                <Text style={[styles.titleStyle]}>ورود | ثبت نام</Text>
+                <Text style={[styles.boldTextStyle,
+                {
+                  // borderColor: 'blue',
+                  // borderStyle: 'dashed',
+                  // borderWidth: 2,
+                }
+                ]}>ورود | ثبت نام</Text>
               </View>
+
               <View
-                // className={`${Styles.lablAndInputCont}  `}
-                style={[styles.lablAndInputCont, { marginBottom: 15 }]}
+                // className={`${Styles.lablAndInputCont}  `} 
+                style={[styles.lablAndInputCont, {
+                  justifyContent: 'flex-start',
+                  marginBottom: 5,
+                }]}
               >
-                <Text style={{ marginLeft: 15, marginBottom: 10 }}>
-                   شماره تماس
+                <Text style={[
+                  styles.mediumTextStyle,
+                  {
+                    marginBottom: 10,
+
+                    // borderColor: 'blue',
+                    // borderStyle: 'dashed',
+                    // borderWidth: 2,
+                  }]}>
+                  شماره تماس
                 </Text>
                 {/* <input
           style={{ textAlign: "center" }}
@@ -514,10 +677,15 @@ export default function LoginScreen({
           }}
         /> */}
                 <TextInput
-                  style={[styles.txtBox, { textAlign: "center" }]}
+                  style={[styles.txtBox,
+                  {
+                    textAlign: "center"
+                  }]}
                   placeholder="شماره موبایل"
                   value={mobileVal}
-                  onChangeText={setMobileVal}
+                  onChangeText={(textVaredeh) => {
+                    mobileChanged(textVaredeh);
+                  }}
                   keyboardType="phone-pad"
                 />
               </View>
@@ -527,16 +695,36 @@ export default function LoginScreen({
           <span className="forErrorMobile error">{mobileError}</span>
         </div>
       )} */}
-              {error && <Text style={styles.error}>{error}</Text>}
-              {error && (
+
+              {/* {error && (
                 <View
                   // className={`${Styles.formsRow} ${Styles.warningCont}`}
                   style={[styles.formsRow]}
                 >
                   <Text
                     // className="forErrorMobile error"
-                    style={[styles.warningCont]}
+                    style={[styles.errorTextStyle,
+                    {
+                      fontSize: 14,
+                      marginBottom: 10,
+                    }]}
                   >{error}</Text>
+                </View>
+              )} */}
+              {mobileError && (
+                <View
+                  // className={`${Styles.formsRow} ${Styles.warningCont}`}
+                  style={[styles.formsRow]}
+                >
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    // className="forErrorMobile error"
+                    style={[styles.errorTextStyle,
+                    {
+                      fontSize: 12,
+                    }]}
+                  >{mobileError}</Text>
                 </View>
               )}
               {/* <View
@@ -550,7 +738,12 @@ export default function LoginScreen({
             </View> */}
               <View
                 // className={Styles.formsRow}
-                style={[styles.formsRow]}
+                style={[styles.formsRow,
+                {
+                  marginTop: 15,
+                  marginBottom: 10,
+                }
+                ]}
               >
                 {/* <button
           ref={refForMobileCheckBtn}
@@ -565,13 +758,30 @@ export default function LoginScreen({
                 <TouchableOpacity
                   onPress={mobileButtonClick}
                   disabled={isDisabledMobileCheckBtn}
-                  style={[styles.disabledBtn]}
+                  style={[{
+                    ...(isDisabledMobileCheckBtn === true && styles.disabledBtn),
+                    ...(!isDisabledMobileCheckBtn && styles.enableBtn),
+                  },
+                  {
+                    padding: 7,
+                    borderRadius: 7,
+                    width: "100%",
+                    height: 50,
+                  }
+                  ]}
                 >
-                  تایید
+                  <Text
+                    style={[styles.mediumTextStyle,
+                    {
+                      ...(isDisabledMobileCheckBtn === true && { color: 'white' }),
+                      ...(!isDisabledMobileCheckBtn && { color: 'white' }),
+                      fontSize: 16,
+                    }]}>
+                    تایید
+                  </Text>
                 </TouchableOpacity>
-
-
               </View>
+
               <View
                 // className={Styles.formsRow}
                 style={[styles.formsRow]}
@@ -580,11 +790,25 @@ export default function LoginScreen({
                   // type="button"
                   // id="handleGoogleBtn"
                   // className={Styles.btn}
-                  style={[styles.btn]}
+                  style={[styles.enableBtn,
+                  {
+                    padding: 7,
+                    borderRadius: 7,
+                    width: "100%",
+                    height: 50,
+                  }
+                  ]}
                   onPress={handleGoogleLogin}
                   activeOpacity={0.1}
                 >
-                  <Text> ورود با حساب گوگل</Text>
+                  <Text
+                    style={[styles.mediumTextStyle,
+                    {
+                      color: 'white',
+                      fontSize: 16,
+                    }]}>
+                    ورود با حساب گوگل
+                  </Text>
                 </TouchableOpacity>
               </View>
             </>
@@ -593,31 +817,53 @@ export default function LoginScreen({
               <View
                 // ref={refForTimerCont}
                 // id="timermoveOpportunityCont"
-                style={{
-                  // display: timerDisplay,
-                  flexDirection: "row",
-                }}
+                style={[styles.formsRow,
+                {
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  marginBottom: 5,
+                  // borderStyle: 'dashed',
+                  // borderColor: 'red',
+                  // borderWidth: 2,
+                }
+                ]}
               >
                 <View
                   // ref={refForTimer}
                   // id="timermoveOpportunity"
-                  style={{ display: "flex", flexDirection: "row" }}
+                  style={[styles.formsRow,
+                  {
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                    // borderStyle: 'dashed',
+                    // borderColor: 'green',
+                    // borderWidth: 2,
+                  }
+                  ]}
                 >
-                  <Text style={{ marginTop: 15, color: "red" }}>
+                  <Text
+                    style={[styles.timerTextStyle,
+                    {
+                      // borderStyle: 'dashed',
+                      // borderColor: 'black',
+                      // borderWidth: 2,
+                    }]}>
                     تایمر: {Math.floor(timer / 1000)} ثانیه
                   </Text>
                 </View>
-              </View>
 
-              <View
-                //  className={Styles.formsRow}
-                style={[styles.formsRow, { direction: "rtl" }]}
-              >
                 <TouchableOpacity
                   // id="backToFirsPage"
                   // className={`${Styles.BackBtn}  ${Styles.buttonHover}`}
-                  style={[styles.BackBtn]}
                   onPress={() => setStep("firstPage")}
+                  style={[styles.BackBtn,
+                  {
+                    // borderStyle: 'dashed',
+                    // borderWidth: 2,
+                    // borderColor: 'blue',
+                  }
+                  ]}
+
                   activeOpacity={0.1}
                 >
                   <View
@@ -629,33 +875,77 @@ export default function LoginScreen({
                     style={{ width: "18px" }}
                     alt="بازگشت به صفحه شماره تماس"
                   /> */}
-                    <Image
+                    {/* <Image
                       source={{ uri: "https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg" }}
-                      style={{ width: 18 }}
+                      style={{ width: 18,height:18, }}
+                    /> */}
+                    <SvgUri
+                      uri="https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg"
+                      width={18}
+                      height={15}
                     />
                   </View>
                   <View
                     // className={`${Styles.BackBtnTitleCont} `}
-                    style={[styles.BackBtnTitleCont]}
+                    style={[styles.BackBtnTitleCont,
+                    {
+                      //  borderStyle:'dashed',
+                      // borderWidth:2,
+                      // borderColor:'green',
+                    }
+                    ]}
                   >
-                    <Text>بازگشت</Text>
+                    <Text
+                      style={[styles.mediumTextStyle,
+                      {
+                        fontSize: 14,
+                        // borderStyle:'dashed',
+                        // borderWidth:2,
+                        // borderColor:'red',
+                      }
+                      ]}>
+                      بازگشت
+                    </Text>
                   </View>
                 </TouchableOpacity>
+
+
               </View>
 
-              <View
+
+
+              {/* <View
                 // className={`${Styles.formsRow}  ${Styles.darkFont}`}
-                style={[styles.formsRow]}
+                style={[styles.formsRow,
+                {
+                  marginBottom: 10,
+                }
+                ]}
               >
-                <Text>کد تایید را وارد کنید</Text>
-              </View>
+                <Text
+                  style={[styles.boldTextStyle,
+                  {
+                    fontSize: 14,
+                  }
+                  ]}>
+                  کد تایید را وارد کنید
+                </Text>
+              </View> */}
 
               <View
                 // className={`${Styles.lablAndInputCont}  `}
-                style={[styles.lablAndInputCont, { marginBottom: 15 }]}
+                style={[styles.lablAndInputCont,
+                {
+                  marginBottom: 5,
+                }]}
               >
-                <Text style={{ marginLeft: 15, marginBottom: 10 }}>
-                  کد تایید
+                <Text
+                  style={[styles.boldTextStyle,
+                  {
+                    fontSize: 14, marginBottom: 10,
+                  }
+                  ]}>
+                  کد تایید را وارد کنید
                 </Text>
                 {/* <input
           className={Styles.txtBox}
@@ -668,30 +958,63 @@ export default function LoginScreen({
           }}
         /> */}
                 <TextInput
-                  style={styles.txtBox}
+                  style={[styles.txtBox,
+                  {
+                    textAlign: "center"
+                  }]}
                   placeholder="کد تایید"
                   value={smsVal}
-                  onChangeText={setSmsVal}
+                  // onChangeText={setSmsVal}
+                  onChangeText={(textVaredeh) => {
+                    smsTxtChanged(textVaredeh);
+                  }}
                   keyboardType="numeric"
                 />
-
               </View>
 
-              {smsError && (
+              {/* {error && (
                 <View
-                  //  className={`${Styles.formsRow} ${Styles.warningCont}`}
+                  // className={`${Styles.formsRow} ${Styles.warningCont}`}
                   style={[styles.formsRow]}
                 >
                   <Text
                     // className="forErrorMobile error"
-                    style={[styles.warningCont]}
+                    style={[styles.errorTextStyle,
+                    {
+                      fontSize: 14,
+                      marginBottom: 10,
+                    }]}
+                  >{error}</Text>
+                </View>
+              )} */}
+              {smsError && (
+                <View
+                  // className={`${Styles.formsRow} ${Styles.warningCont}`}
+                  style={[styles.formsRow]}
+                >
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    // className="forErrorMobile error"
+                    style={[styles.errorTextStyle,
+                    {
+                      fontSize: 12,
+                      // borderStyle: 'dashed',
+                      // borderWidth: 2,
+                      // borderColor: 'green',
+                    }]}
                   >{smsError}</Text>
                 </View>
               )}
 
               <View
                 // className={Styles.formsRow}
-                style={[styles.formsRow]}
+                style={[styles.formsRow,
+                {
+                  marginTop: 15,
+                  marginBottom: 10,
+                }
+                ]}
               >
                 {/* <button
           ref={refForCheckSmsBtn}
@@ -701,23 +1024,45 @@ export default function LoginScreen({
         >
           ورود
         </button> */}
-
                 <TouchableOpacity
                   // id="backToFirsPage"
                   // className={`${Styles.BackBtn}  ${Styles.buttonHover}`}
-                  style={[styles.disabledBtn]}
                   onPress={checkSmsForLogin}
                   disabled={isDisabledCheckSmsBtn}
+
+
+                  style={[{
+                    ...(isDisabledCheckSmsBtn === true && styles.disabledBtn),
+                    ...(!isDisabledCheckSmsBtn && styles.enableBtn),
+                  },
+                  {
+                    padding: 7,
+                    borderRadius: 7,
+                    width: "100%",
+                    height: 50,
+                  }
+                  ]}
                   activeOpacity={0.1}
                 >
-                  <Text>ورود</Text>
-                </TouchableOpacity>
+                  <Text
+                    style={[styles.mediumTextStyle,
+                    {
+                      ...(isDisabledCheckSmsBtn === true && { color: 'white' }),
+                      ...(!isDisabledCheckSmsBtn && { color: 'white' }),
+                      fontSize: 16,
+                    }]}>
 
+                    ورود</Text>
+                </TouchableOpacity>
               </View>
 
               <View
                 // className={Styles.formsRow}
-                style={[styles.formsRow]}
+                style={[styles.formsRow,
+                {
+                  marginBottom: 10,
+                }
+                ]}
               >
                 {/* <button
           id="ResendCode"
@@ -729,37 +1074,68 @@ export default function LoginScreen({
           ارسال مجدد
         </button> */}
                 <TouchableOpacity
-                  style={[styles.btn]}
                   onPress={ResendCodefunc}
                   disabled={isDisabledResendCode}
+                  style={[{
+                    ...(isDisabledResendCode === true && styles.disabledBtn),
+                    ...(!isDisabledResendCode && styles.enableBtn),
+                  },
+                  {
+                    padding: 7,
+                    borderRadius: 7,
+                    width: "100%",
+                    height: 50,
+                  }
+                  ]}
                   activeOpacity={0.1}
                 >
-                  <Text> ارسال مجدد</Text>
+                  <Text
+                    style={[styles.mediumTextStyle,
+                    {
+                      ...(isDisabledResendCode === true && { color: 'white' }),
+                      ...(!isDisabledResendCode && { color: 'white' }),
+                      fontSize: 16,
+                    }]}>
+                    ارسال مجدد
+                  </Text>
                 </TouchableOpacity>
-
               </View>
 
               <View
                 //  className={Styles.formsRow}
-                style={[styles.formsRow]}
+                style={[styles.formsRow,
+                {
+                  marginBottom: 10,
+                }
+                ]}
               >
-                {/* <button
-          ref={refForRemovTimer}
-          className={Styles.btn}
-          onClick={() => {
-            return setRemovTimer(true);
-          }}
-          disabled={isDisabledRemovTimerBtn}
-        >
-          ریست تایمر
-        </button> */}
                 <TouchableOpacity
-                  style={[styles.btn]}
                   onPress={() => setTimer(0)}
                   disabled={isDisabledRemovTimerBtn}
+                  style={[{
+                    ...(isDisabledRemovTimerBtn === true && styles.disabledBtn),
+                    ...(!isDisabledRemovTimerBtn && styles.enableBtn),
+                  },
+                  {
+                    padding: 7,
+                    borderRadius: 7,
+                    width: "100%",
+                    height: 50,
+                  }
+                  ]}
                   activeOpacity={0.1}
                 >
-                  <Text>  ریست تایمر</Text>
+                  <Text
+                    numberOfLines={1}
+                    ellipsizeMode="tail"
+                    style={[styles.mediumTextStyle,
+                    {
+                      ...(isDisabledRemovTimerBtn === true && { color: 'white' }),
+                      ...(!isDisabledRemovTimerBtn && { color: 'white' }),
+                      fontSize: 16,
+                    }]}>
+                    ریست تایمر
+                  </Text>
                 </TouchableOpacity>
               </View>
             </>
@@ -788,9 +1164,9 @@ const styles = StyleSheet.create({
     width: "100%",
     borderRadius: 5,
   },
-  error: {
+  errorTextStyle: {
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
     color: "red",
-    marginBottom: 10,
   },
   link: {
     color: "blue",
@@ -812,18 +1188,25 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     marginHorizontal: 5,
   },
-  valueStyle: {
+  mediumTextStyle: {
     fontFamily: "IRANSansWeb(FaNum)_Medium",
+    color: "#6a6a6a",
   },
-  formsRow: {
-    marginBottom: 20,
+  timerTextStyle: {
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
+    color: "#d9534f",
   },
 
-  titleStyle: {
+  formsRow: {
+    display: "flex",
+    flexDirection: "row",
+  },
+
+  boldTextStyle: {
     fontFamily: "IRANSansWeb(FaNum)_Bold",
+    color: '#4b4949',
   },
   lablAndInputCont: {
-    direction: "rtl",
     display: "flex",
     flexDirection: "column",
   },
@@ -841,28 +1224,25 @@ const styles = StyleSheet.create({
   //   border: 1px solid red;
   //   box-shadow: 0px 0px 3px 0px red;
   // }
-  warningCont: {
-    fontSize: 12,
-    color: "red",
-  },
+
 
   disabledBtn: {
-    padding: 7,
-    borderRadius: 7,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: "#6f6b6e",
     opacity: 0.5,
-    color: "white",
-    width: "100%",
-    height: 50,
+
+
   },
 
-  btn: {
-    padding: 7,
-    borderRadius: 7,
-    backgroundColor: "#6f6b6e",
-    color: "white",
-    width: "100%",
-    height: 50,
+  enableBtn: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: "#459cff",
   },
   // .btn:hover {
   //   background-color: #969596;
@@ -870,7 +1250,7 @@ const styles = StyleSheet.create({
   // }
 
   BackBtn: {
-    padding: 10,
+    // padding: 10, //zare_nk_041214_commented
     borderRadius: 7,
     display: "flex",
     flexDirection: "row",
@@ -886,11 +1266,10 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    // backgroundColor: "inherit",
+    backgroundColor: "inherit",
     marginLeft: 10,
   },
   BackBtnTitleCont: {
-    // flex: 0 0 auto;
     flexGrow: 0,
     flexShrink: 0,
     flexBasis: 'auto',

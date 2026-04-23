@@ -76,7 +76,7 @@ const WelcomeScreen = (
 
       <ReusableButton
         title="بزن بریم پروفایل!"
-        // onPress={() => navigation.navigate("Profile")}
+        // onPress={() => navigation.navigate("Profile")
         onPress={() => navigation.navigate("Splash", { target: "Profile" })}
         backgroundColor="blue"
         textColor="white"
@@ -105,7 +105,7 @@ const WelcomeScreen = (
 
       <ReusableButton
         title="بزن بریم گیم(دووز) !"
-        onPress={() => navigation.navigate("Game")}
+        onPress={() => navigation.navigate("SupperGame")}
         backgroundColor={theme.buttonBackground}
         textColor="brown"
         width="80%"

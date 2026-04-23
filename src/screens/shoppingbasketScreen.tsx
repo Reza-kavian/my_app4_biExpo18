@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  //zare_nk_041127_okk
+// shoppingbasketScreen.tsx  //zare_nk_050130_okk
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -11,28 +11,13 @@ import { //zare_nk_041127_added
 
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041128_added
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_041128_added
-
-// let cachedBootstrap: typeof import("bootstrap") | null = null;  //zare_nk_041127_commented
-// import "@/styles/shoppingbasketCss.css";  //zare_nk_041127_commented
+import AsyncStorage from "@react-native-async-storage/async-storage";   
+import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";    //zare_nk_050130_nokteh(in ro begonjoonam age mishe)
 
 import { RefObject } from "react";
 import { MouseEvent } from "react";
 import ReusableButton from "../components/ReusableButton";
-
-import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
-
-////zare_nk_041127_commented_st
-// async function getBootstrap() {
-//   if (!cachedBootstrap) {
-//     cachedBootstrap = await import("bootstrap");
-//   }
-//   return cachedBootstrap;
-// }
-////zare_nk_041127_commented_end
-
-////zare_nk_041127_added_st
+import { SvgUri } from "react-native-svg";  
 
 const showNoStock = () => {
     if (Platform.OS === "android") {
@@ -41,7 +26,6 @@ const showNoStock = () => {
         // Alert.alert("خطا", "موجودی کافی نیست");
     }
 };
-////zare_nk_041127_added_end
 
 type MiddleCountTedadSefrType = {
     refForfather: RefObject<string | null>;
@@ -56,7 +40,7 @@ type MiddleCountTedadSefrType = {
     handlerForRemClick: () => void;  //zare_nk_041127_addeded(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
     ForCartContentsDesignType: number;
     bishAzMaxTedadYaMojoodi: number | null;
-    navigation: Props["navigation"];  //zare_nk_041127_added
+    navigation: Props["navigation"];   //zare_nk_050130_nokteh(navigation chi hast va az koja meghdar migireh?)
 };
 
 function MiddleCountTedadSefr({
@@ -155,7 +139,6 @@ function MiddleCountTedadSefr({
                         width: 35,  //zare_nk_041127_added
                         // borderRadius: '50%',  //zare_nk_041127_added
                         direction: 'rtl',  //zare_nk_041127_added
-
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
                         borderRadius: 17,  //zare_nk_041202_added
                     }}
@@ -175,7 +158,7 @@ function MiddleCountTedadSefr({
                     >
                         <View
                             style={{
-                                height: "100%",
+                                height: "100%",  
                                 // display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
@@ -260,6 +243,8 @@ function MiddleCountTedadSefr({
                                         uri="https://img.tochikala.com/tochikala/remove-icon.svg"
                                         width={20}
                                         height={20}
+                                        //zare_nk_050130_nokteh(ehtemalan age be pedaresh width bedim va be Image resizeMode:'contain' bedim niazi nest height ham 
+                                        // bedim(alan ke resizeMode nadadim majboorim baraye inke height ra barnameh pishfarz 0 nakoneh height ham bedim!))
                                     />
                                 </Text>
                             </TouchableOpacity>
@@ -710,19 +695,17 @@ function MiddleCountTedadSefr({
 
                                 activeOpacity={0.1}
 
-
                                 disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
                                 // title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}   //zare_nk_041127_commented
                                 //  onPress={() => { handlerForAddClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented
                                 onPress={() => {
-                                    if (Boolean(Number(bishAzMaxTedadYaMojoodi))) {
+                                    if (Boolean(Number(bishAzMaxTedadYaMojoodi))) {  
                                         showNoStock();
                                     } else {
                                         handlerForAddClick();
                                     }
                                 }}
                             >
-
                                 <Text
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
@@ -1142,7 +1125,7 @@ type SabadSatrProps = {
         addRemParam: addRemParamType,
     ) => void;
     openprodDetModal: (barcodeKala: string) => void;
-    navigation: Props["navigation"];  //zare_nk_041127_added
+    navigation: Props["navigation"];  //zare_nk_041127_added   //zare_nk_050130_nokteh(navigation chi hast va az koja meghdar migireh?)
 };
 
 function SabadSatrComponent({
@@ -1189,9 +1172,9 @@ function SabadSatrComponent({
                 direction: "rtl",
                 position: "relative",
                 //  borderStyle:'dashed',
-                //                 borderColor:'black',
-                //                 borderWidth:1,
-            }}
+                //  borderColor:'black',
+                //  borderWidth:1,
+            }}  
         >
             <View
                 // id={`ContInflxpedar2-${SabadRow.IdKala}`}
@@ -1203,8 +1186,8 @@ function SabadSatrComponent({
                     direction: "rtl",
                     position: "relative",
                     //  borderStyle:'dashed',
-                    //             borderColor:'red',
-                    //             borderWidth:1,
+                    //  borderColor:'red',
+                    //  borderWidth:1,
                 }}
             >
                 <View
@@ -1216,8 +1199,8 @@ function SabadSatrComponent({
                         position: "relative",
                         marginLeft: 5,  //zare_nk_041209_tahlilshe(sotoonre aks va chapesh)
                         //  borderStyle:'dashed',
-                        //         borderColor:'black',
-                        //         borderWidth:1,
+                        //  borderColor:'black',
+                        //  borderWidth:1,
                     }}
                 >
                     <TouchableOpacity
@@ -1235,9 +1218,7 @@ function SabadSatrComponent({
                             overflow: 'hidden',
                             // boxShadow: "#5e5e5e 0px 0px 3px 0px",
                             boxShadow: "#5e5e5e 0px 0px 3px 0px ",
-                            ////zare_nk_041203_added_end
-
-
+                            ////zare_nk_041203_added_end  
                         }}
                     // className="GotToDet"
                     >
@@ -1265,6 +1246,7 @@ function SabadSatrComponent({
                             <Image
                                 source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}
                                 style={{ backgroundColor: "#efefef", width: "100%", height: 92, }}
+                                ////zare_nk_050130_nokteh(resizeMode:'contain' test beshe bejaye height dadan)
                             />
                         </View>
                     </TouchableOpacity>
@@ -1300,8 +1282,8 @@ function SabadSatrComponent({
                         borderRadius: 5,
                         // padding: 5, //zare_nk_041209_comemnted
                         //  borderWidth:2,
-                        //     borderColor:'red',
-                        //     borderStyle:'solid',
+                        //  borderColor:'red',
+                        //  borderStyle:'solid',
                     }}
                 >
                     <View
@@ -1377,7 +1359,6 @@ function SabadSatrComponent({
                                 display: "flex",
                                 flexDirection: "column",
                                 justifyContent: "center",
-                                // width:10,  //hazfi
                             }}
                         >
                             <MiddleCountTedadSefr
@@ -1457,21 +1438,18 @@ function SabadSatrComponent({
                                     flexDirection: "row",
                                     marginBottom: 10,
                                     justifyContent: 'space-between',
-
                                     // borderWidth:2,
                                     // borderStyle:'dashed',
                                     // borderColor:'red',
                                 }}
                             >
-
-
                                 <View
                                     // className="titleInsabad"
                                     style={{
                                         display: "flex",
                                         flexDirection: "row",
                                         // marginLeft: 10,
-                                        //       borderWidth:2,
+                                        // borderWidth:2,
                                         // borderStyle:'solid',
                                         // borderColor:'blue',
                                     }}
@@ -1483,19 +1461,16 @@ function SabadSatrComponent({
                                         display: "flex",
                                         flexDirection: "row",
                                         justifyContent: 'flex-end',
-
                                         // borderWidth:3,
                                         // borderStyle:'dashed',
                                         // borderColor:'black',
-                                        // width:150,  //hazfi
                                     }}>
                                     <View
                                         // className="gheimatForooshInsabad titleStyle"
                                         style={{
                                             // display: "flex",
                                             flexDirection: "row",
-                                            marginLeft: 5,   //nahazfi
-                                            //      borderWidth:2,
+                                            // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'yellow',
                                         }}
@@ -1507,14 +1482,14 @@ function SabadSatrComponent({
                                         // className="rialInsabad valueStyle"
                                         style={{
                                             display: "flex", flexDirection: "row",
-                                            //      borderWidth:2,
+                                            // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'brown',
                                         }}
                                     >
                                         <Text style={{
                                             color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
-                                            //      borderWidth:2,
+                                            // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'red',
                                         }}>ریال</Text>
@@ -1526,8 +1501,8 @@ function SabadSatrComponent({
                                 display: "flex", flexDirection: "row",
                                 justifyContent: 'space-between',
                                 //   borderWidth:2,
-                                //     borderStyle:'dashed',
-                                //     borderColor:'red',
+                                //   borderStyle:'dashed',
+                                //   borderColor:'red',
                             }}>
 
                                 <View
@@ -1548,11 +1523,9 @@ function SabadSatrComponent({
                                         display: "flex",
                                         flexDirection: "row",
                                         justifyContent: 'flex-end',
-
                                         // borderWidth:3,
                                         // borderStyle:'dashed',
                                         // borderColor:'black',
-                                        // width:150,  //hazfi
                                     }}>
                                     <View
                                         // id={`majmooGheimatForooshSatrInsabad-${SabadRow.IdKala}`}
@@ -1561,7 +1534,7 @@ function SabadSatrComponent({
                                             // display: "flex",
                                             flexDirection: "row",
                                             marginLeft: 5,  //nahazfi
-                                            //      borderWidth:2,
+                                            // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'yellow',
                                         }}
@@ -1574,7 +1547,7 @@ function SabadSatrComponent({
                                     >
                                         <Text style={{
                                             color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
-                                            //      borderWidth:2,
+                                            // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'blue',
                                         }}>ریال</Text>
@@ -1651,7 +1624,7 @@ export default function ShallowRoutingExample({
     ////zare_nk_041209_added_st
     const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
     const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
-    const productUriForDet = '';// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
+    const productUriForDet = ''; // `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
     const [imgUriForDet, setImgUriForDet] = useState<string>('');
     ////zare_nk_041209_added_end
 
@@ -2779,8 +2752,6 @@ export default function ShallowRoutingExample({
                     console.error("zare_nk_041203-resendcode-in catch-3:", String(error));
                 }
             }
-
-
         }
     }
 
@@ -4740,7 +4711,8 @@ export default function ShallowRoutingExample({
                                             overflow: "hidden",
                                         }}
                                     >{/* bazkardane view pedare doorbin va kadr */}
-                                        {/* zare_nk_041205_nokteh(View ba positione statice komaki baraye inke tage pedar ke position: 'relative' dare ertefae sefr nagire,chon farzandani ke absolute bashan ertefae pedar ro barabare contente khodeshoon nemikonan) */}
+                                        {/* zare_nk_041205_nokteh(View ba positione statice komaki baraye inke tage pedar ke position: 'relative' dare ertefae
+                                         sefr nagire,chon farzandani ke absolute bashan ertefae pedar ro barabare contente khodeshoon nemikonan) */}
                                         <View style={[styles.scanFrame,]}> </View>
                                         <Camera //zare_nk_040923(komponent doorbin)
                                             style={[styles.scanFrame,
@@ -4888,6 +4860,8 @@ export default function ShallowRoutingExample({
                                                     onSubmitEditing={() => {
                                                         ManualInputBarcode(manualBarcode);
                                                     }}
+                                                    ////zare_nk_050130_nokteh(vaghti karbar matni ra dar TextInput vared kard va sepas rooye dokmeye 'done' dar keyboard zarbeh zad,
+                                                    // tabee tooye onSubmitEditing seda zadeh mishe(noe dokmeh tavassote propertiye returnKeyType taein mishe,dar inje 'done' lahaz kardim) )                                               
                                                     style={styles.input}
                                                     returnKeyType="done"
                                                 />

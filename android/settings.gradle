@@ -1,3 +1,7 @@
+////zare_nk_050129_okk
+////zare_nk_050127_nokteh(dar settings.gradle tanzimate lazem baraye edghame projeye reactNative ba mohite builde gradle anjam mishe) 
+////zare_nk_050127_nokteh(mohtaviate dakhele tamamiye file ha ba pasvande .gradle(mesle hamin file settings.gradle be zabane Groovy hastand, 
+////vali age pasvande .gradle.kts dashteh bashand be zabane Kotlin hastand))
 pluginManagement { includeBuild("../node_modules/@react-native/gradle-plugin") }
 plugins { id("com.facebook.react.settings") }
 extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autolinkLibrariesFromCommand() }

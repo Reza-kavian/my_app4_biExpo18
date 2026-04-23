@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_041124_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_050201_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -6,10 +6,10 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  //    SafeAreaView,  //zare_nk_0404431_commented(in navar vaziate balaye gooshi ro lahaz nemikone va mohtavash va navar ghati mishe!!)
+  //    SafeAreaView,  //zare_nk_040431_commented(in navar vaziate balaye gooshi ro lahaz nemikone va mohtavash va navar ghati mishe!!)
 } from "react-native";
 
-import { SafeAreaView } from "react-native-safe-area-context"; //zare_nk_0404431_added(in navar vaziate balaye gooshi ro lahaz mikone va mohtavash paeine navarvaziat mire va bahash ghati mishe!!)
+import { SafeAreaView } from "react-native-safe-area-context"; //zare_nk_040431_added(in navar vaziate balaye gooshi ro lahaz mikone va mohtavash paeine navarvaziat mire va bahash ghati nemishe)
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { NextJsApiAuthUrl } from "../constants/Urls";
@@ -89,7 +89,6 @@ const MyCustomHeader = ({
                     // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
                     // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
 
-
                     var FullName = data.decoded.FullName;  //zare_nk_041115_added(from api tochikala)
                     var Mobile = data.decoded.Mobile;  //zare_nk_041115_added(from api tochikala)
                     var name = data.decoded.name;
@@ -142,14 +141,13 @@ const MyCustomHeader = ({
 
   return (
     <SafeAreaView
-      style={[styles.container, { borderWidth: 3, borderColor: "yellow" }]}
+      style={[styles.container,]}
       edges={["top"]}
     >
       {/* لوگو سمت چپ */}
       <View
         style={[
           styles.buttonsContainer,
-          { borderWidth: 2, borderColor: "black" },
         ]}
       >
         {isLoggedIn ? (
@@ -158,13 +156,11 @@ const MyCustomHeader = ({
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              borderWidth: 3,
-              borderColor: "silver",
             }}
           >
             <TouchableOpacity
               onPress={handleLogout}
-              style={[styles.button, { borderWidth: 2, borderColor: "green" }]}
+              style={[styles.button,]}
             >
               <Text style={styles.buttonText}>خروج</Text>
             </TouchableOpacity>
@@ -185,19 +181,17 @@ const MyCustomHeader = ({
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-              borderWidth: 3,
-              borderColor: "silver",
             }}
           >
             <TouchableOpacity
               onPress={handleLogin}
-              style={[styles.button, { borderWidth: 2, borderColor: "green" }]}
+              style={[styles.button,]}
             >
               <Text style={styles.buttonText}>ورود</Text>
             </TouchableOpacity>
 
-            <Text style={{ fontSize: 18, fontWeight: "bold" }}>
-              {options.title ?? route.name}
+            <Text style={styles.buttonText}>
+              {/* {options.title ?? route.name} */}
               {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
             </Text>
           </View>
@@ -207,18 +201,20 @@ const MyCustomHeader = ({
       {/* عنوان وسط */}
       <View
         style={{
-          borderWidth: 2,
-          borderColor: "yellow",
         }}
       >
-        <Text style={styles.title}>خوش آمدید</Text>
+        {/* <Text style={styles.title}>خوش آمدید</Text> */}
+        <Text style={styles.buttonText}>
+          {options.title ?? route.name}
+          {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
+        </Text>
       </View>
 
       {/* دکمه‌ها سمت راست */}
       <View
         style={{
-          borderWidth: 2,
-          borderColor: "green",
+          // borderWidth: 2,
+          // borderColor: "green",
           display: "flex",
           flexDirection: "row",
           alignItems: "center",
@@ -226,21 +222,19 @@ const MyCustomHeader = ({
       >
         <TouchableOpacity
           onPress={() => {
-            navigation.navigate("Home");
+            navigation.navigate("Home")
           }}
         >
-          <Text style={styles.title}>TIC-TAC-TOE</Text>
-          {/* <Image
-          // source={require("../assets/icon.png")} 
-          source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
-          style={[styles.logo]}
-        /> */}
+          {/* <Text style={styles.title}>TIC-TAC-TOE</Text> */}
+          <Image
+            source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
+            style={{ width: 40, height: 40, borderRadius: 7 }}
+          />
         </TouchableOpacity>
 
         {back ? (
           <HeaderBackButton
-            onPress={navigation.goBack}
-            style={{ borderWidth: 2, borderColor: "red" }}
+            onPress={navigation.goBack} 
             tintColor="blue" // رنگ فلش
           />
         ) : null}
@@ -252,12 +246,12 @@ const MyCustomHeader = ({
 const styles = StyleSheet.create({
   container: {
     // height: 60,
-    backgroundColor: "orange", // رنگ آبی خوشگل
+    backgroundColor: "#459cff", // رنگ آبی خوشگل
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
     paddingHorizontal: 10,
-    // paddingTop: 10, // برای فضای status bar
+    paddingBottom: 5,
   },
   logo: {
     width: 40,
@@ -266,24 +260,27 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontWeight: "bold",
-    color: "white",
-    // flex: 1,
+    fontFamily: "IRANSansWeb(FaNum)_Bold",
+    color: "white", 
     textAlign: "center",
   },
   buttonsContainer: {
     flexDirection: "row",
   },
   button: {
+    display: 'flex',
+    justifyContent: 'center',
     marginRight: 10,
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor: "#005BBB",
+    paddingVertical: 5, 
+    backgroundColor: "orange", 
     borderRadius: 5,
+    boxShadow: "#5e5e5e 0px 0px 3px 1px", 
   },
   buttonText: {
     color: "white",
-    fontWeight: "600",
+    // fontWeight: "600",
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
   },
 });
 

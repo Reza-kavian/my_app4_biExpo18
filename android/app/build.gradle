@@ -1,3 +1,4 @@
+////zare_nk_050201_okk
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -22,7 +23,7 @@ android {
 		////pas mitoonam dar gooshim do noskheh ro kenare ham dashteh basham chon applicationId motefaveti daran
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6
+        versionCode 6  //zare_nk_050129_nokteh(age dar enteshar in versionCode tekrari bashe baese error va hoshdar dar googleplay va bazar myket mishim)
         versionName "1.0.5"
     }
     signingConfigs {

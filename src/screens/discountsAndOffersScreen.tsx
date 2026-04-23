@@ -1051,9 +1051,9 @@ export function SabadSatrComponent({
               flexDirection: "column",
               // height: "min-content",
               position: 'relative',
-              borderWidth: 2,
-              borderStyle: 'dashed',
-              borderColor: 'red',
+              // borderWidth: 2,
+              // borderStyle: 'dashed',
+              // borderColor: 'red',
             }}
           >
             {/* <img
@@ -1094,9 +1094,9 @@ export function SabadSatrComponent({
                   : { height: productHeight }),
                 ////zare_nk_041208_added_end(rahe tarkibiye ertefa)
 
-                borderWidth: 2,
+                // borderWidth: 2,
                 // borderStyle:'dashed',
-                borderColor: 'blue',
+                // borderColor: 'blue',
               }}
             />
           </View>
@@ -1220,9 +1220,9 @@ export function SabadSatrComponent({
             justifyContent: 'space-between',
             alignItems: "center",
             width: "100%",
-            borderWidth: 1,
-            borderStyle: 'dashed',
-            borderColor: 'black',
+            // borderWidth: 1,
+            // borderStyle: 'dashed',
+            // borderColor: 'black',
           }}
         >
 
@@ -1275,9 +1275,9 @@ export function SabadSatrComponent({
               display: "flex",
               flexDirection: 'row',
               justifyContent: 'flex-end',
-              borderWidth: 1,
-              borderStyle: 'dashed',
-              borderColor: 'green',
+              // borderWidth: 1,
+              // borderStyle: 'dashed',
+              // borderColor: 'green',
 
             }}
           >
@@ -4009,9 +4009,9 @@ export default function ShallowRoutingExample({
                 justifyContent: "center",
                 // marginBottom: 30,
                 // color: "red", 
-                borderWidth: 2,
-                borderStyle: 'dashed',
-                borderColor: 'black',
+                // borderWidth: 2,
+                // borderStyle: 'dashed',
+                // borderColor: 'black',
               }}
             >
               <Text
@@ -4020,9 +4020,9 @@ export default function ShallowRoutingExample({
                 style={{
                   color: "red",
                   fontFamily: "IRANSansWeb(FaNum)_Medium",
-                  borderWidth: 2,
-                  borderStyle: 'dashed',
-                  borderColor: 'black',
+                  // borderWidth: 2,
+                  // borderStyle: 'dashed',
+                  // borderColor: 'black',
                 }}>کالای مورد نظر یافت نشد</Text>
             </View>
             {/* </View> */}

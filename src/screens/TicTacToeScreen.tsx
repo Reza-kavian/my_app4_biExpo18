@@ -169,9 +169,15 @@ export default function TicTacToeScreen() {
 
     /* -------------------- TIMER EFFECT -------------------- */
     useEffect(() => {
+        ////zare_nk_050211_nokteh_st(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
+        // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+        // inja ro az comment dar miavordim ))
         if (intervalRef.current) {
             clearInterval(intervalRef.current);
         }
+        ////zare_nk_050211_nokteh_end(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
+        // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+        // inja ro az comment dar miavordim ))
 
         if (calculateWinner(currentSquares)) {  //zare_nk_041021_nokteh(age bazi tamoom shodeh timer ejra neshe)
             return;
@@ -186,12 +192,14 @@ export default function TicTacToeScreen() {
                 return prev - 1;
             });
         }, 1000) as unknown as number;
-
+        ////zare_nk_050211_nokteh_st(tabee cleanUp ke dar onMounte component va hamchenin seda zadeh shodane mojadade useEffect dar hamin component ghabl az ejraye useEffect seda Zade mishe)
         return () => {
             if (intervalRef.current) {
                 clearInterval(intervalRef.current);
             }
         };
+        ////zare_nk_050211_nokteh_end(tabee cleanUp ke dar onMounte component va hamchenin seda zadeh shodane mojadade useEffect dar hamin component ghabl az ejraye useEffect seda Zade mishe)
+
     }, [currentMove, xIsNextState]);
 
     /* -------------------- SAVE TIMER -------------------- */

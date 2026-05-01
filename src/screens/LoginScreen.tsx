@@ -66,11 +66,16 @@ export default function LoginScreen({
   ////zare_nk_041020_commented_end
 
   useEffect(() => {
-    ////zare_nk_041020_added_st
+    ////zare_nk_050211_nokteh_st(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
+    // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+    // inja ro az comment dar miavordim ))
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    ////zare_nk_041020_added_end
+    ////zare_nk_050211_nokteh_end(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
+    // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+    // inja ro az comment dar miavordim ))
+
     // if (step !== "secondPage") return;    //zare_nk_041020_commented
     //zare_nk_041020_added_st
     if (step !== "secondPage") {
@@ -97,12 +102,15 @@ export default function LoginScreen({
         return prev - 1000;
       });
     }, 1000);
+    ////zare_nk_050211_nokteh_st(tabee cleanUp ke dar onMounte component va hamchenin seda zadeh shodane mojadade useEffect dar hamin component ghabl az ejraye useEffect seda Zade mishe)
     return () => {
       if (intervalRef.current) clearInterval(intervalRef.current);
       //zare_nk_040530_commented(molahezeh mishe ke dar har render bayad dar entehaye useEffect intervalRef.current ra hazf konim,
       // bekhatere mahiate intervalRef ke meghdare jadid ke begire meghdare ghadimesh az pardazeshe cpu hazf nemishe va amal mikoneh
       // va dar renderhaye mokhtalef ba anboohi az maghadire intervalRef movajeh mishavim ke har kodoom timer ra meghdardehi mikonan va ba ham tadakhol khahand dasht )
     };
+    ////zare_nk_050211_nokteh_end(tabee cleanUp ke dar onMounte component va hamchenin seda zadeh shodane mojadade useEffect dar hamin component ghabl az ejraye useEffect seda Zade mishe)
+
     // }, [removTimer, timer]);//zare_nk_041020_commented(mani nadare timer taghir kard in useEffect seda zadeh beshe ke toosh dobare setTimer darim, va removTimer ke kollan hazf shod)
   }, [step]);//zare_nk_041020_added(dakhele useEffect ham goftim: step secondPage shod interval ijad va firstPage shod interval hazf mikonim) 
 

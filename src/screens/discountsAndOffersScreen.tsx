@@ -1,3 +1,4 @@
+////zare_nk_050214_okk
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -850,6 +851,7 @@ type ForCartContInProdDetValType = {
   ForCartContentsDesignType: number;
   idTag: string;
 };
+
 ////zare_nk_041207_commented_st
 // type SabadRowType = {
 //   tedadInSabadOrDet: number;

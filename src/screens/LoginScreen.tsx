@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041124_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_050214_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -67,14 +67,14 @@ export default function LoginScreen({
 
   useEffect(() => {
     ////zare_nk_050211_nokteh_st(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
-    // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
-    // inja ro az comment dar miavordim ))
-    if (intervalRef.current) {
-      clearInterval(intervalRef.current);
-    }
+    //// dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+    //// inja ro az comment dar miavordim ))
+    // if (intervalRef.current) {
+    //   clearInterval(intervalRef.current);
+    // }
     ////zare_nk_050211_nokteh_end(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
-    // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
-    // inja ro az comment dar miavordim ))
+    //// dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+    //// inja ro az comment dar miavordim ))
 
     // if (step !== "secondPage") return;    //zare_nk_041020_commented
     //zare_nk_041020_added_st
@@ -556,7 +556,6 @@ export default function LoginScreen({
   ////zare_nk_041214_added_end
 
   return (
-
     <ScrollView horizontal={false}
       style={{
         width: '100%',
@@ -916,12 +915,8 @@ export default function LoginScreen({
                     </Text>
                   </View>
                 </TouchableOpacity>
-
-
               </View>
-
-
-
+              
               {/* <View
                 // className={`${Styles.formsRow}  ${Styles.darkFont}`}
                 style={[styles.formsRow,
@@ -1151,7 +1146,6 @@ export default function LoginScreen({
         </View>
       </View>
     </ScrollView>
-
   );
 }
 

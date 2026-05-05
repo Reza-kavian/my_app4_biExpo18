@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  //zare_nk_050130_okk
+// shoppingbasketScreen.tsx  //zare_nk_050214_okk
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -570,8 +570,6 @@ function MiddleCountTedadSefr({
                                     />
                                 </Text>
                             </TouchableOpacity>
-
-
                         </View>
                     </View>
 
@@ -1428,8 +1426,8 @@ function SabadSatrComponent({
                                 flexDirection: "column",
                                 paddingTop: 5,
                                 // borderWidth:2,
-                                //     borderStyle:'dashed',
-                                //     borderColor:'black',
+                                // borderStyle:'dashed',
+                                // borderColor:'black',
                             }}
                         >
                             <View
@@ -1500,11 +1498,10 @@ function SabadSatrComponent({
                             <View style={{
                                 display: "flex", flexDirection: "row",
                                 justifyContent: 'space-between',
-                                //   borderWidth:2,
-                                //   borderStyle:'dashed',
-                                //   borderColor:'red',
+                                // borderWidth:2,
+                                // borderStyle:'dashed',
+                                // borderColor:'red',
                             }}>
-
                                 <View
                                     // className="titleInsabad"
                                     style={{
@@ -1761,7 +1758,7 @@ export default function ShallowRoutingExample({
     const [scannedValue, setScannedValue] = useState<string | null>(null);   //zare_nk_041007_added
     // const [resultModalVisible, setResultModalVisible] = useState(false);     //zare_nk_041128_commented(resultModalVisible baraye namayeshe barcode ast ke niazi nist dar projeyeman, bejash dar productModal lahaz mikonim barcode ra)
 
-    const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0)
+    const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0))
 
     const [manualBarcode, setManualBarcode] = useState(String);
     ////zare_nk_041128_added_end 
@@ -1771,12 +1768,12 @@ export default function ShallowRoutingExample({
     }, []);
 
     useEffect(() => {
-        if (!isOpenedCodeScannerModal || !isScanning) {  //zare_nk_041205_forUpdateName
+        if (!isOpenedCodeScannerModal || !isScanning) {   
             scanLineAnim.stopAnimation();
             return;
         }
         ////zare_nk_041007_added_st(age bekhaim meghdare scanLineAnim ra bebinim)
-        scanLineAnim.addListener(({ value }) => { //dastoore x01
+        scanLineAnim.addListener(({ value }) => {  
             console.log(value);
         });
         ////zare_nk_041007_added_end(age bekhaim meghdare scanLineAnim ra bebinim)
@@ -1796,7 +1793,7 @@ export default function ShallowRoutingExample({
                 }),
             ])
         ).start();
-    }, [isOpenedCodeScannerModal, isScanning]);  //zare_nk_041205_forUpdateName
+    }, [isOpenedCodeScannerModal, isScanning]);   
     ////zare_nk_041203_added_end 
 
     ////zare_nk_041128_commented_st
@@ -1843,16 +1840,13 @@ export default function ShallowRoutingExample({
                     setIsScanning(false);
                     // setScannedValue(code.value);  //zare_nk_041129_commented
 
-                    ////baste shodane modal
-                    // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
-                    setIsOpenedCodeScannerModal(false);  //okk   //zare_nk_041205_forUpdateName
-                    setManualBarcode('');  //zare_nk_041205_added
-
+                    ////baste shodane modal 
+                    setIsOpenedCodeScannerModal(false);   
+                    setManualBarcode('');    
                     ////shenasaei va openprodDetModal 
-                    ShowDetails(code.value);  //okk
-                    setIsOpenedProdDetModal(true);  //okk
-                    setAddOrRemChanged(null);  //okk
-
+                    ShowDetails(code.value);  
+                    setIsOpenedProdDetModal(true);  
+                    setAddOrRemChanged(null);  
                     break;
                 }
             }
@@ -2998,17 +2992,11 @@ export default function ShallowRoutingExample({
                 visible={isOpenedMymodalForWarning}
                 transparent
                 animationType="fade"
-                ////zare_nk_041203_added_st
                 onRequestClose={() => {
-                    // Alert.alert('aaaaa');
-                    // setAddOrRemChanged("notNull");
-                    // setBisatrInProductDet(false);
-
                     setIsOpenedMymodalForWarning(false);
                     setScannedValue(null);
                     setIsScanning(true);
                 }}
-            ////zare_nk_041203_added_end
             >
                 <View style={styles.resultOverlay}>
                     <View style={styles.resultBox}>
@@ -4033,7 +4021,7 @@ export default function ShallowRoutingExample({
                                                     // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
                                                     source={{ uri: imgUriForDet }}   //zare_nk_041207_added
                                                     style={{
-                                                        backgroundColor: "#EFEFEF", width: "100%",   //zare_nk_041211_alan
+                                                        backgroundColor: "#EFEFEF", width: "100%",    
                                                         ...(productHeightForDet === 0
                                                             ? { aspectRatio: 1 }
                                                             : { height: productHeightForDet }),
@@ -4671,7 +4659,7 @@ export default function ShallowRoutingExample({
                     </ScrollView>
                 </Modal>
                 ////zare_nk_041209_modale
-            ) : isOpenedCodeScannerModal == true ? (  //zare_nk_041205_forUpdateName
+            ) : isOpenedCodeScannerModal == true ? (   
                 !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
                     (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
                         (<Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
@@ -4931,10 +4919,6 @@ export default function ShallowRoutingExample({
                         // borderStyle: 'dashed',
                         backgroundColor: 'white',
                         ////zare_nk_041203_added_end
-
-                        //   borderStyle:'dashed',
-                        //         borderColor:'blue',
-                        //         borderWidth:4,
                     }]}
                     contentContainerStyle={[{
                         // paddingBottom: 45

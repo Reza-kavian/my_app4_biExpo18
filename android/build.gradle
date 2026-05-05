@@ -1,4 +1,4 @@
-////zare_nk_050201_okk
+////zare_nk_050214_okk
 buildscript {
     ext {
         buildToolsVersion = "36.0.0"  //zare_nk_050127_nokteh(noskheye SDKBuildTools ke baraye compile va bastebandiye applicatione android estefadeh mishe)  

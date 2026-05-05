@@ -17,6 +17,7 @@ android {
     compileSdk rootProject.ext.compileSdkVersion
 
     namespace "com.my_app4_biexpo18"
+
     defaultConfig {
         applicationId "com.zare.ShoppingCartManagement.Beta"
         ////manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar sho az lafze Stable estefadeh mikonam)

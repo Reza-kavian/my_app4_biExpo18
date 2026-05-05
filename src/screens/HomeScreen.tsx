@@ -1,4 +1,4 @@
-////zare_nk_050130_okk
+////zare_nk_050214_okk
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -156,7 +156,7 @@ export function MiddleCountTedadSefr({
             direction: 'rtl',  //zare_nk_041127_added
 
             flexDirection: 'row-reverse',  //zare_nk_041202_added
-            borderRadius: 17,  //zare_nk_041202_added
+            borderRadius: 17,  //zare_nk_041202_added(jaigozine classe rounded-pill bootstarpi)
           }}
         // dir="ltr" 
         >
@@ -915,7 +915,7 @@ type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 export default function HomeScreen({
   navigation,
   route,
-}:  // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+}:// back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {

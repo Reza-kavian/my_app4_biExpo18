@@ -170,14 +170,14 @@ export default function TicTacToeScreen() {
     /* -------------------- TIMER EFFECT -------------------- */
     useEffect(() => {
         ////zare_nk_050211_nokteh_st(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
-        // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
-        // inja ro az comment dar miavordim ))
-        if (intervalRef.current) {
-            clearInterval(intervalRef.current);
-        }
+        //// dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+        //// inja ro az comment dar miavordim ))
+        // if (intervalRef.current) {
+        //     clearInterval(intervalRef.current);
+        // }
         ////zare_nk_050211_nokteh_end(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
-        // dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
-        // inja ro az comment dar miavordim ))
+        //// dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
+        //// inja ro az comment dar miavordim ))
 
         if (calculateWinner(currentSquares)) {  //zare_nk_041021_nokteh(age bazi tamoom shodeh timer ejra neshe)
             return;

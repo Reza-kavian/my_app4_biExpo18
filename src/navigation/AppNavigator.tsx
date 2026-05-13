@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_050214_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_050223_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -23,6 +23,7 @@ import MyCustomHeader from "../components/MyCustomHeader";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
+
 const AppNavigator = () => {
   return (
     // <NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)

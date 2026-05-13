@@ -1,4 +1,4 @@
-////zare_nk_050214_okk
+////zare_nk_050223_okk
 buildscript {
     ext {
         buildToolsVersion = "36.0.0"  //zare_nk_050127_nokteh(noskheye SDKBuildTools ke baraye compile va bastebandiye applicatione android estefadeh mishe)  
@@ -22,5 +22,5 @@ buildscript {
     }
 }
 
-apply plugin: "com.facebook.react.rootproject"  //zare_nk_050127(in file ra dar risheye projeh gharar dad, masalan dar filehaye dige(masalan dar /android/app/build.gradle) age
-// bezanim rootProject.ext.ndkVersion be ndkVersion ke dar bala meghdar dadim dastresi darim)
+apply plugin: "com.facebook.react.rootproject"  //zare_nk_050127(in file ra dar risheye projeh gharar dad, masalan dar filehaye dige(masalan  
+//// dar /android/app/build.gradle) age bezanim rootProject.ext.ndkVersion be ndkVersion ke dar bala meghdar dadim dastresi darim)

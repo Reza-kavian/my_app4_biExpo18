@@ -52,7 +52,6 @@ export default function LoginScreen({
 
   const { height } = useWindowDimensions();
 
-
   ////zare_nk_041020_commented_st
   // useEffect(() => {   //0021
   //   //zare_nk_040531_nokteh(dar har render age nobate safhe tagheir kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)

@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_041124_okk
+//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050224_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View,
@@ -216,7 +216,7 @@ export default function LoginScreen({
             "Welcome",
           ] as const;
 
-          type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+          type RouteName = (typeof validRoutes)[number]; ////number yani har kodoom az andis haye in araye, darvaghe har kodoom az 4 khooneye araye
 
           const redirectRaw = await AsyncStorage.getItem("redirect");
 
@@ -314,8 +314,8 @@ export default function LoginScreen({
 
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
-    const subscription = Linking.addListener("url", async ({ url }) => { //zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
-      // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
+    const subscription = Linking.addListener("url", async ({ url }) => { ////zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
+      // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh, masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
       Alert.alert('useEffect called!!-token: ' + token);
@@ -339,7 +339,7 @@ export default function LoginScreen({
           "Welcome",
         ] as const;
 
-        type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+        type RouteName = (typeof validRoutes)[number]; //// number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
 
         const redirectRaw = await AsyncStorage.getItem("redirect");
         Alert.alert('useEffect called!!-redirectRaw: ' + redirectRaw);

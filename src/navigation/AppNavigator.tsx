@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_050223_okk
+// src/navigation/AppNavigator.tsx    //zare_nk_050224_okk
 // import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -41,7 +41,7 @@ const AppNavigator = () => {
       <Stack.Screen name="Home" component={HomeScreen}
         options={({ navigation }) => ({
           //header: (props) => <MyCustomHeader {...props} />, //zare_nk_040530_commented(chon dar pedarash yani Stack.Navigator 
-          // MyCustomHeader ra baraye kolle safahat manzoor kardim inja baraye tak tak safahat zekr nemikonim)
+          //// MyCustomHeader ra baraye kolle safahat manzoor kardim inja baraye tak tak safahat zekr nemikonim)
           title: "همیار خرید",   //zare_nk_041008_nokteh(options.title === "همیار خرید")
           headerShown: true,
         })}

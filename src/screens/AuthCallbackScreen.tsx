@@ -1,4 +1,4 @@
-// AuthCallbackScreen.tsx     //zare_nk_050223_okk
+// AuthCallbackScreen.tsx     //zare_nk_050224_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { Alert } from "react-native";
@@ -21,6 +21,8 @@ export default function AuthCallbackScreen({ route }: any) {
         console.log('zare_nk_040929-token: '+token);
         // ذخیره توکن
         await AsyncStorage.setItem("token", token);
+        ////zare_nk_050224_nokteh(navigation.reset history ghabl ra reset mikoneh(hazf mikoneh), vali navigation.replace on addresi ke mireh tosh ra az history haye badi 
+        //// hazf mikoneh(history rooye dokmeye back barnameh tasir mizareh))
         navigation.reset({
           index: 0,
           routes: [{ name: "Welcome" }],

@@ -1,4 +1,4 @@
-////zare_nk_050214_okk
+////zare_nk_050224_okk
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -269,7 +269,6 @@ export function MiddleCountTedadSefr({
                 onPress={() => { handlerForAddClick() }}
                 activeOpacity={0.1}
               >
-
                 <Text
                   style={{
                     color: "red",
@@ -4073,9 +4072,9 @@ export default function ShallowRoutingExample({
               hengame dideh shodan dar scorl ha,albate FlatList baraye mavaredi mesle sabade kharid ke tedad Itemha khaili ziad nist lazem nist,vali masalan
               baraye safheye pishnahadat ke masalan 500 kala miad baraye jologiri az kond shodane loade yekjaye 500 farzand,mofideh)*/}
               <FlatList
-                key={width}
+                key={width}  //zare_nk_050224_nokteh(key age avaz beshe react componente <FlatList /> ra kamelan destroy va mojadad mount mikoneh)
                 data={sabadRows}
-                keyExtractor={(item) => item.IdKala.toString()}
+                keyExtractor={(item) => item.IdKala.toString()}  //zare_nk_050224_nokteh(keyExtractor marboot be itemhaye list hast(dar inja goftim har ozv az sabadRows))
                 renderItem={({ item }) => (
                   // <SabadSatrComponent item={item} />
                   <SabadSatrComponent

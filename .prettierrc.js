@@ -1,4 +1,4 @@
-//// zare_nk_050214_okk(in file dar projehaye js mesle nextjs ya reactnative , ... karbord dareh, va karesh modiriate formate codezani ast(bishtar 
+//// zare_nk_050224_okk(in file dar projehaye js mesle nextjs ya reactnative , ... karbord dareh, va karesh modiriate formate codezani ast(bishtar 
 //// zibaeiye codezani va moratab boodane code ha , ... ro modiriat mikoneh. pishniaze tamame tanzimate in file in ast ke dar tanzimate vscode Format
 ////  On Save ro faal konim ke man nakardam(chon mitarsam kharabkari koneh(pas tamame tanzimate paein beraye man kar nemikonan chon Format On Save ro faal nakardam)) ))
 module.exports = {

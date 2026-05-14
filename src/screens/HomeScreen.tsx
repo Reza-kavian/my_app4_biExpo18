@@ -1,4 +1,4 @@
-////zare_nk_050214_okk
+////zare_nk_050224_okk
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -455,7 +455,6 @@ export function MiddleCountTedadSefr({
                 onPress={() => { handlerForRemClick(); }}   //be login befresteh dar adtoocart be jaye bazi ba e.preventdefault...
                 activeOpacity={0.1}
               >
-
                 <Text
                   style={{
                     // height: "80%",  //zare_nk_041202_commented

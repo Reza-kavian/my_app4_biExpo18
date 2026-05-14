@@ -1,4 +1,4 @@
-// src/screens/TicTacToeScreen.tsx   //zare_nk_041124_okk
+// src/screens/TicTacToeScreen.tsx   //zare_nk_050224_okk
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -10,13 +10,13 @@ type SquareProps = {
     onSquareClick: () => void;
     andis: number;
 
-    //refForBtn: React.RefObject<(HTMLButtonElement | null)[]>; //zare_nk_041017_commented(chon ref dar reactnative manteghi nist bekhatere inke ref dar DOM tasir mizasht ke ba web mach bood)
-    colorState: "default" | "clicked" | "wined" | "lineWined"; //zare_nk_041017_added
+    //refForBtn: React.RefObject<(HTMLButtonElement | null)[]>; ////zare_nk_041017_commented(chon ref dar reactnative manteghi nist bekhatere inke ref dar DOM tasir mizasht ke ba web mach bood)
+    colorState: "default" | "clicked" | "wined" | "lineWined"; ////zare_nk_041017_added
 
-    //className?: string; //zare_nk_041017_commented(chon tage className dar reactnative vojood nadareh)
+    //className?: string;  ////zare_nk_041017_commented(chon tage className dar reactnative vojood nadareh)
 };
 
-function Square({ value, onSquareClick, andis, colorState }: SquareProps) {  //zare_nk_041017_nokteh(colorState jaigozine refForBtne next)
+function Square({ value, onSquareClick, andis, colorState }: SquareProps) {  ////zare_nk_041017_nokteh(colorState jaigozine refForBtne next)
     const getBackgroundColor = () => {
         switch (colorState) {  //zare_nk_041017_nkteh(jaigozine className ke range dokmeh ha ro migereft masalan,chon dar 
             // reactNative attribute className mani nadare baraye module.css va bejash az StyleSheet estefadeh mishe(className={Styles.mohreh})
@@ -139,7 +139,7 @@ export default function TicTacToeScreen() {
                 setTimer(Number(JSON.parse(storedTimer)));
             }
             ////zare_nk_050130_nokteh(ehtemalan inja bayad baghiyeye AsyncStorage ro ham dar loade bedim? tahlilshe)
-            ////zare_nk_050130_added_st(baraye ezafe kardan baghieyeye AsysncStorage ha,hatman khorooji begiram va check konam)
+            ////zare_nk_050130_added_st(baraye ezafe kardan baghieyeye AsysncStorage ha, hatman khorooji begiram va check konam)
             const storedXIsNextState = await AsyncStorage.getItem("xIsNextState");
             if (storedXIsNextState !== null) {
                 setXIsNextState(Boolean(JSON.parse(storedXIsNextState)));
@@ -162,7 +162,7 @@ export default function TicTacToeScreen() {
                 const parsedHistory: Squares[] = JSON.parse(storedHistory);
                 setHistory(parsedHistory);
             }
-            ////zare_nk_050130_added_end(baraye ezafe kardan baghieyeye AsysncStorage ha,hatman khorooji begiram va check konam)
+            ////zare_nk_050130_added_end(baraye ezafe kardan baghieyeye AsysncStorage ha, hatman khorooji begiram va check konam)
 
         })();
     }, []);
@@ -179,7 +179,7 @@ export default function TicTacToeScreen() {
         //// dastoorate ebtedaye useEffect(yani hamin khotoot) ejra mishe va in khotoote clearInterval ezafian, age dar cleanUp cleanUp ro seda nemizadim clearInterval ro 
         //// inja ro az comment dar miavordim ))
 
-        if (calculateWinner(currentSquares)) {  //zare_nk_041021_nokteh(age bazi tamoom shodeh timer ejra neshe)
+        if (calculateWinner(currentSquares)) {  ////zare_nk_041021_nokteh(age bazi tamoom shodeh timer ejra neshe)
             return;
         }
 

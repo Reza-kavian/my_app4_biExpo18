@@ -1,4 +1,4 @@
-////zare_nk_041124_okk
+////zare_nk_050224_okk
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, Button, Modal, StyleSheet, Alert, Animated } from "react-native";
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
@@ -13,8 +13,8 @@ const ScannerScreen = () => {
   const [scannedValue, setScannedValue] = useState<string | null>(null);   //zare_nk_041007_added
   const [resultModalVisible, setResultModalVisible] = useState(false);     //zare_nk_041007_added
 
-  const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0)
-  // yek object bar migardooneh ,be hamin khater baraye console gereftane meghdaresh bayad mannande dastoore x01 az addListener estefadeh kard)
+  const scanLineAnim = useRef(new Animated.Value(0)).current; ////zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0)
+  //// yek object bar migardooneh ,be hamin khater baraye console gereftane meghdaresh bayad mannande dastoore x01 az addListener estefadeh kard)
 
   // const blinkAnim = useRef(new Animated.Value(1)).current; //zare_nk_041004_added (baraye khatte cheshmakzane vasate kardr)
 
@@ -34,14 +34,14 @@ const ScannerScreen = () => {
     ////zare_nk_041007_added_end(age bekhaim meghdare scanLineAnim ra bebinim)
     Animated.loop(
       Animated.sequence([
-        Animated.timing(scanLineAnim, { //zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti 
-        // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
+        Animated.timing(scanLineAnim, { ////zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti 
+          //// misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
           toValue: 1, //zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 1 meghdare hadafe Animated.Value hast)
           duration: 1500,
           useNativeDriver: true,   //zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
         }),
         Animated.timing(scanLineAnim, { //zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti
-        // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
+          // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
           toValue: 0, //zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 0 meghdare hadafe Animated.Value hast)
           duration: 1500,
           useNativeDriver: true,   //zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
@@ -111,7 +111,7 @@ const ScannerScreen = () => {
   const hasTorch = device?.hasTorch ?? false;  //zare_nk_040927_added_st(baraye danestane flash dashtane dastgah)
   return (
     <View style={styles.container}>
-      {/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/} 
+      {/*zare_nk_040923(dokmeye baraye baz kardan modal baraye scan kardan)*/}
       <ReusableButton
         title="بازکردن بارکدخوان"
         onPress={() => {
@@ -144,7 +144,7 @@ const ScannerScreen = () => {
             {/*<View style={styles.scanFrame} />*/}
             {/*zare_nk_041003_added_st(kadre rahnama baraye gharar dadane barcode dar an(haviye khatte pareshkon))*/}
             <View style={styles.scanFrame}>
-              {/*zare_nk_040923(Animated.View haman khat hast ke ba translateY jabeja mishe,nokteye jaleb ine Animated.View niaz be rendere mojadade component ba setState
+              {/*zare_nk_040923(Animated.View haman khat hast ke ba translateY jabeja mishe, nokteye jaleb ine Animated.View niaz be rendere mojadade component ba setState
                nadare va dar haman rendere feli taghir mikoneh! va in maziyate khoobe ThreadNative hast ke bedoone rendere mojadade react taghirat ra roye UI anjam mideh)*/}
               <Animated.View
                 style={[
@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
   },
   modalContainer: {
     flex: 1,
-    backgroundColor: "black", 
+    backgroundColor: "black",
   },
   overlay: {
     ...StyleSheet.absoluteFill,  //zare_nk_040923(moadele css: position: absolute; top: 0; left: 0; right: 0; bottom: 0;)
@@ -261,7 +261,7 @@ const styles = StyleSheet.create({
     height: 250,
     borderWidth: 2,
     borderColor: "#00FF00",
-    borderStyle:"solid",
+    borderStyle: "solid",
     backgroundColor: "transparent",
     marginBottom: 20,
     borderRadius: 10,

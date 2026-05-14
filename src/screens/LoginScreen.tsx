@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_050214_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_050224_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -54,7 +54,8 @@ export default function LoginScreen({
 
   ////zare_nk_041020_commented_st
   // useEffect(() => {   //0021
-  //   //zare_nk_040531_nokteh(dar har render age nobate safhe tagheir kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe,chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
+  ////zare_nk_040531_nokteh(dar har render age nobate safhe tagheir kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe, 
+  //// chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
   //   if (step === "secondPage") {
   //     // setTimer(40000);  //zare_nk_040431_commented(bordim be dastoore 0010 ta az rendere ezafi jologiri beshe,ye bar setStep("secondPage") baese render shod
   //     // ,setTimer(40000) ke inja bashe mojebe rendere mojadade component mishe,pas behtere setTimer(40000) dar kenare setStep("secondPage") gharar begire,yani hamoon dstoore 0010)
@@ -87,7 +88,7 @@ export default function LoginScreen({
     //zare_nk_041020_added_end
     intervalRef.current = setInterval(() => {
       setTimer((prev) => {
-        // if (removTimer || prev <= 0) {  //zare_nk_041020_commented
+        // if (removTimer || prev <= 0) {  ////zare_nk_041020_commented
         if (prev <= 0) {   //zare_nk_041020_added
           // if (intervalRef.current) clearInterval(intervalRef.current);  //zare_nk_041020_added(and commented(chon age Interval dar cpu bemooneh kheili kond nemikoneh va 
           // midoonim aslan rabti be reRender shodane component nadare, khodesham dar entehaye useEfffect clearInterval gozashtim va age az safhe berim hazf mishe))
@@ -476,7 +477,8 @@ export default function LoginScreen({
       //   input.classList.add("invalid");
       // } 
       setMobileError("ورود شماره تماس الزامی است"); //zare_nk_040224_added(rahe3-ba useState-reactpasandtarine) 
-      setIsDisabledMobileCheckBtn(true); //zare_nk_04022_added(javab dad chon meghdare ebtedaeiye disabled ra dar khate tarife MobileCheckBtn ba meghdare isDisabledMobileCheckBtn dadim va setIsDisabledMobileCheckBtn tavanaeiye tagheiresho dare )
+      setIsDisabledMobileCheckBtn(true);  ////zare_nk_04022_added(javab dad chon meghdare ebtedaeiye disabled ra dar khatte tarife MobileCheckBtn ba meghdare isDisabledMobileCheckBtn dadim
+      ////  va setIsDisabledMobileCheckBtn tavanaeiye tagheiresho dare )
       // if (refForMobileCheckBtn.current) {
       //   refForMobileCheckBtn.current.classList.add(Styles.disabledBtn);
       //   refForMobileCheckBtn.current.classList.remove(Styles.btn);

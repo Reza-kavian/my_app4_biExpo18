@@ -1,4 +1,4 @@
-////zare_nk_050211_okk
+////zare_nk_050224_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -23,8 +23,8 @@ export default function SplashScreen() {
       const token = await AsyncStorage.getItem("token");
       // Alert.alert('01-route.params?.target: '+route.params?.target);
       // نام صفحه‌ای که کاربر قصد ورود دارد
-      const targetScreen = route.params?.target || "Welcome";   //zare_nk_040608_added(noe in parametre target bayad RootStackParamList dahkele navigation.ts ezafeh 
-      // beshe va meghdaresh ham dar hengame hedayat behesh ba navigation.navigate taein mishe, mesle navigation.navigate("Splash", { target: "Profile" }))
+      const targetScreen = route.params?.target || "Welcome";   ////zare_nk_040608_added(noe in parametre target bayad RootStackParamList dahkele navigation.ts ezafeh 
+      //// beshe va meghdaresh ham dar hengame hedayat behesh ba navigation.navigate taein mishe, mesle navigation.navigate("Splash", { target: "Profile" }))
 
       if (protectedScreens.includes(targetScreen)) {
         // Alert.alert('02');

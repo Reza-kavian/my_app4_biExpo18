@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  //zare_nk_050214_okk
+// shoppingbasketScreen.tsx  //zare_nk_050224_okk
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -1853,7 +1853,8 @@ export default function ShallowRoutingExample({
         },
     });
 
-    async function openprodDetModal(barcodeKala: string) {
+    async function openprodDetModal(barcodeKala: string) {   ////zare_nk_050224_nokteh(methode openprodDetModal methode ShowDetails ra seda mizanad, setIsOpenedProdDetModal ra 
+    //// true mikoneh, setAddOrRemChanged ra ham null mikoneh)
         console.log('ShallowRoutingExample called-openprodDetModal called!!');
         await ShowDetails(barcodeKala);
         setIsOpenedProdDetModal(true);

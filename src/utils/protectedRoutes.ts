@@ -1,4 +1,4 @@
-//zare_nk_050201_okk
+//zare_nk_050224_okk
 export const protectedScreens = [
     "Profile",
     "discountsAndOffers",

@@ -1,4 +1,4 @@
-// "use client";   //zare_nk_041130_commented
+// "use client";   //zare_nk_050224_commented
 // import { useRouter } from "next/navigation";   //zare_nk_041130_commented
 import { useState, useEffect, useRef } from "react";
 import { //zare_nk_041129_added
@@ -104,7 +104,8 @@ export default function ShallowRoutingExample({
 
     ////zare_nk_041202_added_ثدی(moadele @media baraye responsive kardane site) 
 
-    type ForoshStateType = {
+  // type ForoshStateType = {   //zare_nk_050222_commented(baraye lafze khanatar)
+   type sumValsForForooshSatrType = {   //zare_nk_050222_added(baraye lafze khanatar)
         ShomarehFaktorForoosh: number;
         IdFaktorForoosh: number;
         TarikhSefaresh: string;
@@ -116,7 +117,7 @@ export default function ShallowRoutingExample({
     };
 
     const [ForooshSatrHideForooshTitr, setForooshSatrHideForooshTitr] =
-        useState<ForoshStateType | null>(null);
+        useState<sumValsForForooshSatrType | null>(null);
     const [bisatr, setBisatr] = useState(true);
     const [bisatrDarSatr, setBisatrDarSatr] = useState(true);
 

@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_050224_okk
+//my-app/src/screens/LoginScreen.tsx   //zare_nk_050227_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -13,6 +13,8 @@ import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
 import { SvgUri } from "react-native-svg";
+import type { RootStackParamList } from "../types/navigation";
+
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -22,7 +24,6 @@ import { SvgUri } from "react-native-svg";
 //zare_nk_040530_commented_end(rahe1)
 
 //zare_nk_040530_added_st(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-parameterhaye voroodi ra barname automat az React Navigation migire)
-import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "Login">;
 export default function LoginScreen({
@@ -339,7 +340,7 @@ export default function LoginScreen({
 
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
-    const subscription = Linking.addListener("url", async ({ url }) => { //zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
+    const subscription = Linking.addListener("url", async ({ url }) => {  ////zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
       // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");

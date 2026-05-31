@@ -1,4 +1,4 @@
-// AboutScreen.tsx     //zare_nk_050224_okk
+// AboutScreen.tsx     //zare_nk_050231_okk
 ////zare_nk_041124_added_st
 // import { notFound } from "next/navigation";
 // import Image from "next/image";
@@ -13,10 +13,10 @@ import React, { useEffect, useState, useCallback, useRef } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from "react-native";  //zare_nk_041027_added
 import ReusableButton from "../components/ReusableButton";     //zare_nk_041027_added
 
-import SplashIcon from "../assets/splash-icon.png"; //zare_nk_041107_nokteh(TypeScript zatan faghat .ts .tsx .js .json ro beonvane module mojaze import kardan mishnase
-// be haminkhater ma majboorim ke dar file images.d.ts type png ra beonvane mojaz tarif konim va be typeScript begim be in type hengame import kardanaha gire sepich nedeh!
-// darzemn behtare ke dar tsconfig.json ham dar include name file images.d.ts ra gheid konim(makhsoosan age images.d.ts dar risheye projeh nabashe,
-// albateh chon alan dar risheye projeh hast mamoolan gir nemideh age dar tsconfig.json lahaz nakonim))
+import SplashIcon from "../assets/splash-icon.png"; ////zare_nk_041107_nokteh(TypeScript zatan faghat .ts .tsx .js .json ro beonvane module mojaze import kardan mishnase
+//// be haminkhater ma majboorim ke dar file images.d.ts type png ra beonvane mojaz tarif konim va be typeScript begim be in type hengame import kardanaha gire sepich nedeh!
+//// darzemn behtare ke dar tsconfig.json ham dar include name file images.d.ts ra gheid konim(makhsoosan age images.d.ts dar risheye projeh nabashe,
+//// albateh chon alan dar risheye projeh hast mamoolan gir nemideh age dar tsconfig.json lahaz nakonim))
 
 export default function Page() {
     ////zare_nk_041028_commented_st

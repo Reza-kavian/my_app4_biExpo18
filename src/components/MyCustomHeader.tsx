@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_050224_okk
+// src/components/MyCustomHeader.tsx    //zare_nk_050231_okk
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -6,7 +6,7 @@ import {
   Image,
   TouchableOpacity,
   StyleSheet,
-  //    SafeAreaView,  //zare_nk_040431_commented(in navar vaziate balaye gooshi ro lahaz nemikone va mohtavash va navar ghati mishe!!)
+  //    SafeAreaView,  ////zare_nk_040431_commented(in navar vaziate balaye gooshi ro lahaz nemikone va mohtavash va navar ghati mishe!!)
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context"; //zare_nk_040431_added(in navar vaziate balaye gooshi ro lahaz mikone va mohtavash paeine navarvaziat mire va bahash ghati nemishe)
@@ -35,8 +35,8 @@ const MyCustomHeader = ({
   route,
   options,
 }: NativeStackHeaderProps) => {
-  //zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
-  // parameterhaye voroodi ra barname automat az React Navigation migire)  //zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
+  ////zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
+  //// parameterhaye voroodi ra barname automat az React Navigation migire)  ////zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
   const [usersCodeOrName, setUsersCodeOrName] = useState({
     FullName: null,
@@ -45,12 +45,12 @@ const MyCustomHeader = ({
   });
 
   useFocusEffect(
-    //zare_nk_040431(har bar ke karbar ba zadane back be componente MyCustomHeader biad focus soorat migire va useFocusEffect seda zadeh mishe, 
-    // vali age useEffect(...,[]) bezanim va az safheye 1 back bezanim biaim safhe 2 chon MyCustomHeader unmount nashode(chon dar layout hast 
-    // va layout shamele har do safhe ast) eseEffect(...,[]) seda zadeh nemishe )
+    ////zare_nk_040431(har bar ke karbar ba zadane back be componente MyCustomHeader biad focus soorat migire va useFocusEffect seda zadeh mishe, 
+    //// vali age useEffect(...,[]) bezanim va az safheye 1 back bezanim biaim safhe 2 chon MyCustomHeader unmount nashode(chon dar layout hast 
+    //// va layout shamele har do safhe ast) eseEffect(...,[]) seda zadeh nemishe )
     useCallback(() => {
-      //zare_nk_040431_nokteh(useCallback be hamrahe useFocusEffect tosiyeh mishe)
-      const checkLoginStatus = async () => {//zare_nk_051020_nokteh(dar useCallback ham manande useEffect nemitavan az lafze async estefadeh kard va be methode komaki niaz darim mesle checkLoginStatus)
+      ////zare_nk_040431_nokteh(useCallback be hamrahe useFocusEffect tosiyeh mishe)
+      const checkLoginStatus = async () => {  ////zare_nk_051020_nokteh(dar useCallback ham manande useEffect nemitavan az lafze async estefadeh kard va be methode komaki niaz darim mesle checkLoginStatus)
         const token = await AsyncStorage.getItem("token");
         if (token) {
           try {

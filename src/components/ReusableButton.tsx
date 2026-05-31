@@ -1,11 +1,11 @@
-//// src\components\ReusableButton.tsx    //zare_nk_050224_okk
+//// src\components\ReusableButton.tsx    ////zare_nk_050231_okk
 import {
   Text,
   TouchableOpacity,
   StyleSheet,
   ViewStyle,
   TextStyle,
-  DimensionValue,
+  DimensionValue,  ////zare_nk_050231_nokteh(noe variable ro ham darsadi(string) va ham number(pixeli) mishe dad)
 } from 'react-native';
    
 type Props = {

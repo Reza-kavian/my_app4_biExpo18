@@ -1,4 +1,4 @@
-////zare_nk_050223_okk
+////zare_nk_050309_okk
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -20,11 +20,11 @@ android {
 
     defaultConfig {
         applicationId "com.zare.ShoppingCartManagement.Beta"
-        ////manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar sho az lafze Stable estefadeh mikonam)
-		////pas mitoonam dar gooshim do noskheh ro kenare ham dashteh basham chon applicationId motefaveti daran
+        ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar sho az lafze Stable estefadeh mikonam)
+		////  pas mitoonam dar gooshim do noskheh ro kenare ham dashteh basham chon applicationId motefaveti daran)
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 6  //zare_nk_050129_nokteh(age dar enteshar in versionCode tekrari bashe baese error va hoshdar dar googleplay va bazar myket mishim)
+        versionCode 6  ////  zare_nk_050129_nokteh(age dar enteshar in versionCode tekrari bashe baese error va hoshdar dar googleplay va bazar myket mishim)
         versionName "1.0.5"
     }
     signingConfigs {

@@ -1,4 +1,4 @@
-////zare_nk_050224_okk
+////zare_nk_050225_okk
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef } from "react";
@@ -3771,7 +3771,8 @@ export default function HomeScreen({
                       overflow: "hidden",
                     }}
                   >{/* bazkardane view pedare doorbin va kadr */}
-                    {/* zare_nk_041205_nokteh(View ba positione statice komaki baraye inke tage pedar ke position: 'relative' dare ertefae sefr nagire,chon farzandani ke absolute bashan ertefae pedar ro barabare contente khodeshoon nemikonan) */}
+                    {/* zare_nk_041205_nokteh(View ba positione statice komaki baraye inke tage pedar ke position: 'relative' dare ertefae sefr nagire, chon farzandani
+                     ke absolute bashan ertefae pedar ro barabare contente khodeshoon nemikonan) */}
                     <View style={[styles.scanFrame,]}> </View>
                     <Camera //zare_nk_040923(komponent doorbin)
                       style={[styles.scanFrame,

@@ -1,6 +1,6 @@
-//src/types/navigation.ts     //zare_nk_050224_okk
+////src/types/navigation.ts     ////zare_nk_050309_okk
 export type RootStackParamList = {
-  Splash: { target?: keyof RootStackParamList } | undefined;  //zare_nk_041003_nokteh(yani target shamele yeki az anasore hamin RootStackParamList
+  Splash: { target?: keyof RootStackParamList } | undefined;  ////zare_nk_041003_nokteh(yani target shamele yeki az anasore hamin RootStackParamList
   // basheh(mesle Welcome ya Profile va ...))
   Welcome: undefined;
   Profile: undefined;

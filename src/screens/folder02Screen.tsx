@@ -1,12 +1,12 @@
-////src/screens/folder02Screen.tsx  //zare_nk_050224_okk
+////src/screens/folder02Screen.tsx  ////zare_nk_050231_okk
 // "use client";  //zare_nk_041024_commented
 // import { useRouter, useParams, useSearchParams } from "next/navigation";  //zare_nk_041025_commented
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { View, Text, Image, TouchableOpacity, StyleSheet, Alert } from "react-native";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk_041025_added
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_041027_added
-import ReusableButton from "../components/ReusableButton";     //zare_nk_041027_added
+import AsyncStorage from "@react-native-async-storage/async-storage";   ////zare_nk_041025_added
+import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   ////zare_nk_041027_added
+import ReusableButton from "../components/ReusableButton";     ////zare_nk_041027_added
 
 ////zare_nk_041025_commented_st
 // function getCookie(name: any) {
@@ -46,9 +46,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "folder02">;
 export default function ProductPage({
     navigation,
     route,
-}:  // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-    // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-    // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+}:  // back,  ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+    // route, ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+    // options, ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
     Props) {
     ////zare_nk_041026_added_end
 
@@ -67,9 +67,9 @@ export default function ProductPage({
     //const [error, setError] = useState("");
     ////zare_nk_041024_added_olgu_end
 
-    // const idUSerRef = useRef<HTMLHeadingElement | null>(null);  //zare_nk_041024_commented
-    // const [idUSerText, setIdUSerText] = useState<(string | null)[]>(Array(1).fill(""));   //zare_nk_041024_added(and zare_nk_041027_commented(chon niaz be araye aslan nist va manteghi ham nist!))
-    const [idUSerText, setIdUSerText] = useState<string | null>("");  //zare_nk_041027_added 
+    // const idUSerRef = useRef<HTMLHeadingElement | null>(null);  ////zare_nk_041024_commented
+    // const [idUSerText, setIdUSerText] = useState<(string | null)[]>(Array(1).fill(""));   ////zare_nk_041024_added(and zare_nk_041027_commented(chon niaz be araye aslan nist va manteghi ham nist!))
+    const [idUSerText, setIdUSerText] = useState<string | null>("");  ////zare_nk_041027_added 
 
     // const router = useRouter();  //zare_nk_041026_commented 
     ////zare_nk_041026_added_st_olgu

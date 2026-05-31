@@ -1,4 +1,4 @@
-// "use client";   //zare_nk_050224_commented
+// "use client";   //zare_nk_050227_commented
 // import { useRouter } from "next/navigation";   //zare_nk_041130_commented
 import { useState, useEffect, useRef } from "react";
 import { //zare_nk_041129_added
@@ -428,7 +428,7 @@ export default function ShallowRoutingExample({
                         flexDirection: "column",
                         justifyContent: 'center',
                         alignItems: "center",
-                        // paddingVertical: 20,
+                        // paddingVertical: 20,س
                         paddingHorizontal: 7,
                     }}
                 >

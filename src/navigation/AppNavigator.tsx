@@ -1,5 +1,5 @@
-// src/navigation/AppNavigator.tsx    //zare_nk_050224_okk
-// import { NavigationContainer } from "@react-navigation/native";  //zare_nk_040604_commented
+// src/navigation/AppNavigator.tsx    ////zare_nk_050309_okk
+// import { NavigationContainer } from "@react-navigation/native";  ////zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
 import WelcomeScreen from "../screens/WelcomeScreen";
@@ -26,7 +26,7 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 
 const AppNavigator = () => {
   return (
-    // <NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
+    // <NavigationContainer>  ////zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
     <Stack.Navigator
       initialRouteName="Home"
       screenOptions={({ navigation }) => ({
@@ -35,7 +35,7 @@ const AppNavigator = () => {
         ////zare_nk_050201_nokteh(<MyCustomHeader {...props} /> moadel ast ba : <MyCustomHeader navigation={...} route={...} options={...} />)
         ////zare_nk_050201_nokteh(<MyCustomHeader props={props} /> molahezeh mishe ke az raveshe classice seda zadane component va meghdar dehiye parametrhayash estefadeh kardim )
 
-        headerShown: true,  //zare_nk_050129_added(pish farz inja true hast, man jahate moroor gozashtam)
+        headerShown: true,  ////zare_nk_050129_added(pish farz inja true hast, man jahate moroor gozashtam)
       })}
     >
       <Stack.Screen name="Home" component={HomeScreen}
@@ -135,7 +135,7 @@ const AppNavigator = () => {
       />
 
     </Stack.Navigator>
-    // </NavigationContainer>  //zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
+    // </NavigationContainer>  ////zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
   );
 };
 

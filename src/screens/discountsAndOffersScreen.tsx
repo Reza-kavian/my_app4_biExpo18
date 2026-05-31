@@ -1,4 +1,4 @@
-////zare_nk_050224_okk
+////zare_nk_050231_okk
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -8,9 +8,9 @@ import { //zare_nk_041129_added
   StyleProp, Modal, Button, Animated, TextInput,
   Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions
 } from "react-native";
-// import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";  //reza_nk_041207_commented
+
 import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041129_added
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_041129_added 
+import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   ////zare_nk_041129_added 
 // let cachedBootstrap: typeof import("bootstrap") | null = null; //zare_nk_041129_commented 
 // import "@/styles/DiscountsAndOffersCss.css";   //zare_nk_041129_commented 
 
@@ -51,7 +51,7 @@ type MiddleCountTedadSefrType = {
   handlerForRemClick: () => void;  //zare_nk_041127_addeded(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
   ForCartContentsDesignType: number;
   bishAzMaxTedadYaMojoodi: number | null;
-  navigation: Props["navigation"];  //zare_nk_041127_added
+  navigation: Props["navigation"];  ////zare_nk_041127_added
 };
 
 export function MiddleCountTedadSefr({
@@ -64,7 +64,7 @@ export function MiddleCountTedadSefr({
   handlerForRemClick,
   ForCartContentsDesignType,
   bishAzMaxTedadYaMojoodi,
-  navigation,  //zare_nk_041127_added
+  navigation,  ////zare_nk_041127_added
 }: MiddleCountTedadSefrType) {
   console.log('ShallowRoutingExample called-MiddleCountTedadSefr-tedadInSabadOrDet: ' + tedadInSabadOrDet);
 
@@ -613,11 +613,11 @@ export function MiddleCountTedadSefr({
             borderStyle: 'solid',
             overflow: "hidden",
             width: "auto",  //zare_nk_041127_added
-            // borderRadius: '50%',  //zare_nk_041127_added
+            // borderRadius: '50%',  ////zare_nk_041127_added
             direction: 'rtl',  //zare_nk_041127_added
 
             flexDirection: 'row-reverse',  //zare_nk_041202_added
-            borderRadius: 17,  //zare_nk_041202_added
+            borderRadius: 17,  ////zare_nk_041202_added
           }}
         // dir="ltr"
         >
@@ -654,8 +654,8 @@ export function MiddleCountTedadSefr({
                     paddingHorizontal: 2,
                     justifyContent: "center",
                     alignItems: "center",
-                    // borderRadius: "50%",  //zare_nk_041202_commented
-                    borderRadius: 17,  //zare_nk_041202_added
+                    // borderRadius: "50%",  ////zare_nk_041202_commented
+                    borderRadius: 17,  ////zare_nk_041202_added
                   }
                 ]}
 
@@ -827,8 +827,8 @@ type addRemParamType = {
   father: any;
   bishAzMaxTedadYaMojoodi: number | null;
   fromShowDetails: boolean;
-  // event?: MouseEvent<HTMLAnchorElement> | null | undefined;  //zare_nk_041127_commented
-  event?: null;  //zare_nk_041127_added
+  // event?: MouseEvent<HTMLAnchorElement> | null | undefined;  ////zare_nk_041127_commented
+  event?: null;  ////zare_nk_041127_added
 };
 
 type ForCartContInProdDetValType = {
@@ -897,7 +897,7 @@ export function SabadSatrComponent({
   handlerForAddClick,
   handlerForRemClick,
   openprodDetModal,
-  navigation, //zare_nk_041127_added
+  navigation, ////zare_nk_041127_added
 }: SabadSatrProps) {
   ////zare_nk_041207_added_st
   const [productHeight, setProductHeight] = useState<number>(0);
@@ -917,7 +917,6 @@ export function SabadSatrComponent({
   }
   //////responsive_for_Subprograms_added_end 
   ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
-
 
   // Alert.alert("SabadRow.Mojoodi: "+SabadRow.Mojoodi);
   var Tedad = SabadRow.tedadInSabadOrDet;
@@ -944,7 +943,6 @@ export function SabadSatrComponent({
           0;
   // }, [SabadRow]);  
   // Alert.alert("ForCartContentsDesignTypeLet: "+ForCartContentsDesignTypeLet);
-
 
   ////zare_nk_041207_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
   const onImageLayout = (event: LayoutChangeEvent) => {
@@ -1068,7 +1066,7 @@ export function SabadSatrComponent({
           //  onLoad="$(this).css(\'background-color\',\'inherit\');$(this).css(\'height\',\'auto\');"
           /> */}
             <Image
-              onLayout={onImageLayout}  //zare_nk_041207_added
+              onLayout={onImageLayout}  ////zare_nk_041207_added
               onError={() => {
                 const productUriOnError = 'https://img.tochikala.com/Logo/tochi.png';
                 setImgUri(productUriOnError);
@@ -1427,9 +1425,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "discountsAndOffers">;
 export default function ShallowRoutingExample({
   navigation,
   route,
-}:  // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-  // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-  // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+}:  // back,  ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+  // route, ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+  // options, ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
   console.log('041210-1-ShallowRoutingExample called!!');
   // const [windowWidth, setWindowWidth] = useState(Dimensions.get("window").width);
@@ -1445,12 +1443,12 @@ export default function ShallowRoutingExample({
   ////zare_nk_041209_added_st
   const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
   const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
-  const productUriForDet = '';// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
+  const productUriForDet = '';  //// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
   const [imgUriForDet, setImgUriForDet] = useState<string>('');
   ////zare_nk_041209_added_end
   ////zare_nk_041206_added_st(moadele @media baraye responsive kardane site) 
-  const { width } = useWindowDimensions();  //zare_nk_041208_nokteh(useWindowDimensions tosiye mishe bejaye Dimensions,chon useWindowDimensions ba taghire size
-  //  arze safhe(masalan ofoghi va amoodai kardane mobile baese rerendere automate componenti ke tooshe mishe,vali Dimensions ghadimitare va bayad  ye state 
+  const { width } = useWindowDimensions();   ////zare_nk_041208_nokteh(useWindowDimensions tosiye mishe bejaye Dimensions, chon useWindowDimensions ba taghire size
+  //  arze safhe(masalan ofoghi va amoodai kardane mobile baese rerendere automate componenti ke tooshe mishe, vali Dimensions ghadimitare va bayad ye state 
   // baraye reRendere dastiye component tarif konim va baraye Dimensions addEventListenere change benevisim ke ba tagheire sizesh ba setState yadshodeh component ra rafresh konim ))
   //////responsive_for_sabadItemsAndTotalInf_added_st
   let SubprogramsContResponse: StyleProp<ViewStyle>;

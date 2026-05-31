@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  //zare_nk_050224_okk
+// shoppingbasketScreen.tsx  //zare_nk_050229_okk
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -1831,7 +1831,8 @@ export default function ShallowRoutingExample({
     ////zare_nk_041128_commented_end
 
     const codeScanner = useCodeScanner({
-        codeTypes: ["qr", "ean-13", "upc-a"],
+        // codeTypes: ["qr", "ean-13", "upc-a"],  ////zare_nk_050310_commented
+        codeTypes: ["ean-13"],  ////zare_nk_050310_added(upc-a ra hazf kardam, mamollan dar amrika estefadeh mishe na iran)
         onCodeScanned: (codes) => {
             if (!isScanning) return;
             for (const code of codes) {

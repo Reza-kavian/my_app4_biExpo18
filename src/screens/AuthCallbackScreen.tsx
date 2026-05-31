@@ -1,4 +1,4 @@
-// AuthCallbackScreen.tsx     //zare_nk_050224_okk
+// AuthCallbackScreen.tsx     //zare_nk_050231_okk
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { Alert } from "react-native";
@@ -12,7 +12,7 @@ type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Login">;
 export default function AuthCallbackScreen({ route }: any) {  
   // const navigation = useNavigation();
   const navigation = useNavigation<NavigationProp>();
-  const { token } = route.params || {};  //zare_nk_040608_added(in parametre token bayad RootStackParamList dahkele navigation.ts ezafeh beshe)
+  const { token } = route.params || {};  ////zare_nk_040608_added(in parametre token bayad RootStackParamList dahkele navigation.ts ezafeh beshe)
 
   useEffect(() => {
     const handleAuth = async () => {

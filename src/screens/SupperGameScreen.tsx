@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback, useRef } from "react";
-import { //zare_nk_041127_added
+import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
   useWindowDimensions,
   StyleProp, Modal, Button, Animated, TextInput,
@@ -31,15 +31,28 @@ export default function SupperGameScreen({
   if (width < 576) {
     SubprogramsContResponse = styles.SubprogramsCont_STH576;
   }
+  ////zare_nk_050229_commented_st(nete khareji vasl shod barrasi she)
+  // else if (width >= 576) {
+  //   SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+  // }
+  // else if (width >= 768) {
+  //   SubprogramsContResponse = styles.SubprogramsCont_BTH576;   
+  // }
+  // else if (width >= 992) {
+  //   SubprogramsContResponse = styles.SubprogramsCont_BTH576;   
+  // }
+  ////zare_nk_050229_commented_end(nete khareji vasl shod barrasi she)
+  ////zare_nk_050229_added_st(nete khareji vasl shod barrasi she)
   else if (width >= 576) {
     SubprogramsContResponse = styles.SubprogramsCont_BTH576;
   }
-  else if (width >= 768) {
-    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
-  }
   else if (width >= 992) {
-    SubprogramsContResponse = styles.SubprogramsCont_BTH576;
+    SubprogramsContResponse = styles.SubprogramsCont_BTH992;
   }
+  else if (width >= 1400) {
+    SubprogramsContResponse = styles.SubprogramsCont_BTH1400;
+  }
+  ////zare_nk_050229_added_st(nete khareji vasl shod barrasi she)
   //////responsive_for_sabadItemsAndTotalInf_added_end
 
   //////responsive_for_Subprograms_added_st

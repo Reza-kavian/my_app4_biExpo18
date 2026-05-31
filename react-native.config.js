@@ -1,4 +1,4 @@
-////zare_nk_050224_okk
+////zare_nk_050231_okk
 module.exports = {
   // assets: ['./src/assets/fonts'],
   assets: [

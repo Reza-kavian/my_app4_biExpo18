@@ -53,7 +53,7 @@ async function getCookie(name: any) {
     ////zare_nk_041128_added_end_olgu
     // await AsyncStorage.removeItem("token");
     let cookieGeted = await AsyncStorage.getItem(name);
-    Alert.alert("cookieGeted in getCookie: " + cookieGeted);
+    // Alert.alert("cookieGeted in getCookie: " + cookieGeted);
     if (cookieGeted) {
         return cookieGeted;
     }

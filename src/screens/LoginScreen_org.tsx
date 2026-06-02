@@ -233,7 +233,7 @@ export default function LoginScreen({
           console.log("❌ verifyToken failed");
           setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
           await AsyncStorage.removeItem("token");
-          Alert.alert("❌ verifyToken failed");
+          // Alert.alert("❌ verifyToken failed");
         }
         // } catch (error) {
         //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
@@ -249,9 +249,9 @@ export default function LoginScreen({
         //   setError("متاسفانه خطایی رخ داده است34:eeee" + ApiLoginUser2Result.errors[0]);    //zare_nk_040925_updated 
         // }
       } else {
-        Alert.alert(
-          "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
-        );
+        // Alert.alert(
+        //   "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
+        // );
         console.log("zare_nk_040218-!!response.ok");
         await AsyncStorage.removeItem("token");
         setError(  ApiLoginUser2Result.errors?ApiLoginUser2Result.errors[0]:"متاسفانه خطایی رخ داده است34:eeee");
@@ -259,9 +259,9 @@ export default function LoginScreen({
 
       ////zare_nk_040428_added_end
     } catch (err: any) {
-      Alert.alert(
-        "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
-      );
+      // Alert.alert(
+      //   "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
+      // );
       console.log(
         "second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );
@@ -318,9 +318,9 @@ export default function LoginScreen({
       // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh, masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
-      Alert.alert('useEffect called!!-token: ' + token);
+      // Alert.alert('useEffect called!!-token: ' + token);
       if (token) {
-        Alert.alert('useEffect called!!-040603_JWT: ' + token);
+        // Alert.alert('useEffect called!!-040603_JWT: ' + token);
         ////zare_nk_040929_added_st
         const expires = new Date(
           Date.now() + 1 * 60 * 1000
@@ -342,11 +342,11 @@ export default function LoginScreen({
         type RouteName = (typeof validRoutes)[number]; //// number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
 
         const redirectRaw = await AsyncStorage.getItem("redirect");
-        Alert.alert('useEffect called!!-redirectRaw: ' + redirectRaw);
+        // Alert.alert('useEffect called!!-redirectRaw: ' + redirectRaw);
         const redirect = validRoutes.includes(redirectRaw as RouteName)
           ? (redirectRaw as RouteName)
           : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
-        Alert.alert('useEffect called!!-redirect: ' + redirect);
+        // Alert.alert('useEffect called!!-redirect: ' + redirect);
         // 3. حذف مسیر redirect از AsyncStorage
         await AsyncStorage.removeItem("redirect");
 
@@ -356,7 +356,7 @@ export default function LoginScreen({
       }
       ////////////////////////////////////zare_nk_040929_added_st
       else {
-        Alert.alert('useEffect called!!-token nadarim ke: ' + token);
+        // Alert.alert('useEffect called!!-token nadarim ke: ' + token);
         const error = getQueryParam(url, "error");
         if (error) {
           setError('khata dar ehraze hoviat ba google!: ' + error);

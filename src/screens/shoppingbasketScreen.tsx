@@ -2,7 +2,7 @@
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
-import { //zare_nk_041127_added
+import {  ////zare_nk_041127_added
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
     StyleProp, Modal, Button, Animated, TextInput,
@@ -11,13 +11,13 @@ import { //zare_nk_041127_added
 
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
 
-import AsyncStorage from "@react-native-async-storage/async-storage";   
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";    //zare_nk_050130_nokteh(in ro begonjoonam age mishe)
 
 import { RefObject } from "react";
 import { MouseEvent } from "react";
 import ReusableButton from "../components/ReusableButton";
-import { SvgUri } from "react-native-svg";  
+import { SvgUri } from "react-native-svg";
 
 const showNoStock = () => {
     if (Platform.OS === "android") {
@@ -158,7 +158,7 @@ function MiddleCountTedadSefr({
                     >
                         <View
                             style={{
-                                height: "100%",  
+                                height: "100%",
                                 // display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
@@ -243,8 +243,8 @@ function MiddleCountTedadSefr({
                                         uri="https://img.tochikala.com/tochikala/remove-icon.svg"
                                         width={20}
                                         height={20}
-                                        //zare_nk_050130_nokteh(ehtemalan age be pedaresh width bedim va be Image resizeMode:'contain' bedim niazi nest height ham 
-                                        // bedim(alan ke resizeMode nadadim majboorim baraye inke height ra barnameh pishfarz 0 nakoneh height ham bedim!))
+                                    //zare_nk_050130_nokteh(ehtemalan age be pedaresh width bedim va be Image resizeMode:'contain' bedim niazi nest height ham 
+                                    // bedim(alan ke resizeMode nadadim majboorim baraye inke height ra barnameh pishfarz 0 nakoneh height ham bedim!))
                                     />
                                 </Text>
                             </TouchableOpacity>
@@ -697,7 +697,7 @@ function MiddleCountTedadSefr({
                                 // title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""}   //zare_nk_041127_commented
                                 //  onPress={() => { handlerForAddClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented
                                 onPress={() => {
-                                    if (Boolean(Number(bishAzMaxTedadYaMojoodi))) {  
+                                    if (Boolean(Number(bishAzMaxTedadYaMojoodi))) {
                                         showNoStock();
                                     } else {
                                         handlerForAddClick();
@@ -1172,7 +1172,7 @@ function SabadSatrComponent({
                 //  borderStyle:'dashed',
                 //  borderColor:'black',
                 //  borderWidth:1,
-            }}  
+            }}
         >
             <View
                 // id={`ContInflxpedar2-${SabadRow.IdKala}`}
@@ -1244,7 +1244,7 @@ function SabadSatrComponent({
                             <Image
                                 source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}
                                 style={{ backgroundColor: "#efefef", width: "100%", height: 92, }}
-                                ////zare_nk_050130_nokteh(resizeMode:'contain' test beshe bejaye height dadan)
+                            ////zare_nk_050130_nokteh(resizeMode:'contain' test beshe bejaye height dadan)
                             />
                         </View>
                     </TouchableOpacity>
@@ -1625,6 +1625,8 @@ export default function ShallowRoutingExample({
     const [imgUriForDet, setImgUriForDet] = useState<string>('');
     ////zare_nk_041209_added_end
 
+    const refForBarcodeValue = useRef<string | null>(null);   ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
+
     ////zare_nk_041202_added_st(moadele @media baraye responsive kardane site) 
     const { width } = useWindowDimensions();
     //////responsive_for_sabadItemsAndTotalInf_added_st
@@ -1674,35 +1676,35 @@ export default function ShallowRoutingExample({
     }
     //////responsive_for_sabadItemsCont_added_end
 
- //////responsive_for_sabadItemsAndTotalInf_added_st
-  let DetailsImgAndInfoContResponse: StyleProp<ViewStyle>;
-  if (width < 576) {
-    DetailsImgAndInfoContResponse = styles.DetailsImgAndInfoCont_STH576;
-  }
-  else if (width >= 576) {
-    DetailsImgAndInfoContResponse = styles.DetailsImgAndInfoCont_BTH576;
-  }
-  //////responsive_for_sabadItemsAndTotalInf_added_end
+    //////responsive_for_sabadItemsAndTotalInf_added_st
+    let DetailsImgAndInfoContResponse: StyleProp<ViewStyle>;
+    if (width < 576) {
+        DetailsImgAndInfoContResponse = styles.DetailsImgAndInfoCont_STH576;
+    }
+    else if (width >= 576) {
+        DetailsImgAndInfoContResponse = styles.DetailsImgAndInfoCont_BTH576;
+    }
+    //////responsive_for_sabadItemsAndTotalInf_added_end
 
-  //////responsive_for_sabadItemsAndTotalInf_added_st
-  let CurrentImgContResponse: StyleProp<ViewStyle>;
-  if (width < 576) {
-    CurrentImgContResponse = styles.CurrentImgCont_STH576;
-  }
-  else if (width >= 576) {
-    CurrentImgContResponse = styles.CurrentImgCont_BTH576;
-  }
-  //////responsive_for_sabadItemsAndTotalInf_added_end
+    //////responsive_for_sabadItemsAndTotalInf_added_st
+    let CurrentImgContResponse: StyleProp<ViewStyle>;
+    if (width < 576) {
+        CurrentImgContResponse = styles.CurrentImgCont_STH576;
+    }
+    else if (width >= 576) {
+        CurrentImgContResponse = styles.CurrentImgCont_BTH576;
+    }
+    //////responsive_for_sabadItemsAndTotalInf_added_end
 
-  //////responsive_for_sabadItemsAndTotalInf_added_st
-  let DetailsInfoContResponse: StyleProp<ViewStyle>;
-  if (width < 576) {
-    DetailsInfoContResponse = styles.DetailsInfoCont_STH576;
-  }
-  else if (width >= 576) {
-    DetailsInfoContResponse = styles.DetailsInfoCont_BTH576;
-  }
-  //////responsive_for_sabadItemsAndTotalInf_added_end
+    //////responsive_for_sabadItemsAndTotalInf_added_st
+    let DetailsInfoContResponse: StyleProp<ViewStyle>;
+    if (width < 576) {
+        DetailsInfoContResponse = styles.DetailsInfoCont_STH576;
+    }
+    else if (width >= 576) {
+        DetailsInfoContResponse = styles.DetailsInfoCont_BTH576;
+    }
+    //////responsive_for_sabadItemsAndTotalInf_added_end
 
 
     ////zare_nk_041202_added_end(moadele @media baraye responsive kardane site) 
@@ -1768,12 +1770,12 @@ export default function ShallowRoutingExample({
     }, []);
 
     useEffect(() => {
-        if (!isOpenedCodeScannerModal || !isScanning) {   
+        if (!isOpenedCodeScannerModal || !isScanning) {
             scanLineAnim.stopAnimation();
             return;
         }
         ////zare_nk_041007_added_st(age bekhaim meghdare scanLineAnim ra bebinim)
-        scanLineAnim.addListener(({ value }) => {  
+        scanLineAnim.addListener(({ value }) => {
             console.log(value);
         });
         ////zare_nk_041007_added_end(age bekhaim meghdare scanLineAnim ra bebinim)
@@ -1793,7 +1795,7 @@ export default function ShallowRoutingExample({
                 }),
             ])
         ).start();
-    }, [isOpenedCodeScannerModal, isScanning]);   
+    }, [isOpenedCodeScannerModal, isScanning]);
     ////zare_nk_041203_added_end 
 
     ////zare_nk_041128_commented_st
@@ -1842,12 +1844,14 @@ export default function ShallowRoutingExample({
                     // setScannedValue(code.value);  //zare_nk_041129_commented
 
                     ////baste shodane modal 
-                    setIsOpenedCodeScannerModal(false);   
-                    setManualBarcode('');    
+                    setIsOpenedCodeScannerModal(false);
+                    setManualBarcode('');
                     ////shenasaei va openprodDetModal 
-                    ShowDetails(code.value);  
-                    setIsOpenedProdDetModal(true);  
-                    setAddOrRemChanged(null);  
+                    // ShowDetails(code.value);  ////zare_nk_050311_commented
+                    addDetectedToCart(code.value.toString());  ////zare_nk_050311_added
+                    refForBarcodeValue.current = code.value.toString()     ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
+                    setIsOpenedProdDetModal(true);
+                    setAddOrRemChanged(null);
                     break;
                 }
             }
@@ -1855,7 +1859,7 @@ export default function ShallowRoutingExample({
     });
 
     async function openprodDetModal(barcodeKala: string) {   ////zare_nk_050224_nokteh(methode openprodDetModal methode ShowDetails ra seda mizanad, setIsOpenedProdDetModal ra 
-    //// true mikoneh, setAddOrRemChanged ra ham null mikoneh)
+        //// true mikoneh, setAddOrRemChanged ra ham null mikoneh)
         console.log('ShallowRoutingExample called-openprodDetModal called!!');
         await ShowDetails(barcodeKala);
         setIsOpenedProdDetModal(true);
@@ -2034,6 +2038,12 @@ export default function ShallowRoutingExample({
                 //     span.innerText = "لطفا ابتدا آنلاین شوید";
                 // }
             }
+            ////zare_nk_050311_added_st
+            else {
+                setIsOpenedMymodalForWarning(true);
+                setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
+            }
+            ////zare_nk_050311_added_end
         }
     }
 
@@ -2263,6 +2273,12 @@ export default function ShallowRoutingExample({
                 //     span.innerText = "لطفا ابتدا آنلاین شوید";
                 // }
             }
+            ////zare_nk_050311_added_st
+            else {
+                setIsOpenedMymodalForWarning(true);
+                setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
+            }
+            ////zare_nk_050311_added_end
         }
     }
 
@@ -2375,6 +2391,12 @@ export default function ShallowRoutingExample({
                         //     span.innerText = "لطفا ابتدا آنلاین شوید";
                         // }
                     }
+                    ////zare_nk_050311_added_st
+                    else {
+                        setIsOpenedMymodalForWarning(true);
+                        setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
+                    }
+                    ////zare_nk_050311_added_end
                 }
             }
         }
@@ -2526,6 +2548,12 @@ export default function ShallowRoutingExample({
                 //     span.innerText = "لطفا ابتدا آنلاین شوید";
                 // }
             }
+            ////zare_nk_050311_added_st
+            else {
+                setIsOpenedMymodalForWarning(true);
+                setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
+            }
+            ////zare_nk_050311_added_end
         }
     }
 
@@ -2737,6 +2765,13 @@ export default function ShallowRoutingExample({
                         //     span.innerText = "لطفا ابتدا آنلاین شوید";
                         // }
                     }
+                    ////zare_nk_050311_added_st
+                    else {
+                        setIsOpenedMymodalForWarning(true);
+                        setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
+                    }
+                    ////zare_nk_050311_added_end
+
                 }
 
             }
@@ -2962,6 +2997,12 @@ export default function ShallowRoutingExample({
                     //     span.innerText = "لطفا ابتدا آنلاین شوید";
                     // }
                 }
+                ////zare_nk_050311_added_st
+                else {
+                    setIsOpenedMymodalForWarning(true);
+                    setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
+                }
+                ////zare_nk_050311_added_end
             }
         }
     }
@@ -3844,7 +3885,7 @@ export default function ShallowRoutingExample({
                                     height: 30,
                                 }}
                                 onPress={() => {
-                                    Alert.alert('close btn clicked in modalprodDet');
+                                    // Alert.alert('close btn clicked in modalprodDet');
                                     setIsOpenedProdDetModal(false);
                                     setAddOrRemChanged("notNull");
                                     setBisatrInProductDet(false);
@@ -4023,7 +4064,7 @@ export default function ShallowRoutingExample({
                                                     // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
                                                     source={{ uri: imgUriForDet }}   //zare_nk_041207_added
                                                     style={{
-                                                        backgroundColor: "#EFEFEF", width: "100%",    
+                                                        backgroundColor: "#EFEFEF", width: "100%",
                                                         ...(productHeightForDet === 0
                                                             ? { aspectRatio: 1 }
                                                             : { height: productHeightForDet }),
@@ -4651,7 +4692,8 @@ export default function ShallowRoutingExample({
                                     borderWidth: 2,
                                     borderStyle: 'dashed',
                                     borderColor: 'black',
-                                }}>کالای مورد نظر یافت نشد</Text>
+                                }}>کالای مورد نظر یافت نشد({refForBarcodeValue.current})</Text>
+                            {/* zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani)) */}
                         </View>
                         {/* </View> */}
                         {/* </View> */}
@@ -4661,7 +4703,7 @@ export default function ShallowRoutingExample({
                     </ScrollView>
                 </Modal>
                 ////zare_nk_041209_modale
-            ) : isOpenedCodeScannerModal == true ? (   
+            ) : isOpenedCodeScannerModal == true ? (
                 !device ? (<Text style={styles.centerText}>دوربین یافت نشد</Text>) :
                     (!hasPermission ? (<Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>) :
                         (<Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
@@ -5421,31 +5463,31 @@ const styles = StyleSheet.create({
     },
 
 
-   DetailsImgAndInfoCont_STH576: {
-    flexDirection: 'column',
-  },
-  DetailsImgAndInfoCont_BTH576: {
-    flexDirection:'row-reverse',
-  },
+    DetailsImgAndInfoCont_STH576: {
+        flexDirection: 'column',
+    },
+    DetailsImgAndInfoCont_BTH576: {
+        flexDirection: 'row-reverse',
+    },
 
-  CurrentImgCont_STH576: {
-    width: '100%',
-     marginBottom: 3,
-  },
-  CurrentImgCont_BTH576: {
-    width: 150, 
-    marginLeft: 3,
-  },
+    CurrentImgCont_STH576: {
+        width: '100%',
+        marginBottom: 3,
+    },
+    CurrentImgCont_BTH576: {
+        width: 150,
+        marginLeft: 3,
+    },
 
-  DetailsInfoCont_STH576: {
-    width: '100%',
+    DetailsInfoCont_STH576: {
+        width: '100%',
 
-  },
-  DetailsInfoCont_BTH576: {
-    flexBasis: 'auto',
-    flexGrow: 1,
-    flexShrink: 1,
-  } 
+    },
+    DetailsInfoCont_BTH576: {
+        flexBasis: 'auto',
+        flexGrow: 1,
+        flexShrink: 1,
+    }
     /////////////////////////////////////////////zare_nk_041202_added_end(for responsives @media) 
 
 });

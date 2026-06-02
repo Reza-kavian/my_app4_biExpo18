@@ -17,7 +17,7 @@ export default function AuthCallbackScreen({ route }: any) {
   useEffect(() => {
     const handleAuth = async () => {
       if (token) {
-        Alert.alert('token: '+token);
+        // Alert.alert('token: '+token);
         console.log('zare_nk_040929-token: '+token);
         // ذخیره توکن
         await AsyncStorage.setItem("token", token);
@@ -28,7 +28,7 @@ export default function AuthCallbackScreen({ route }: any) {
           routes: [{ name: "Welcome" }],
         });
       } else {
-        Alert.alert('token nadarim');
+        // Alert.alert('token nadarim');
         console.log('zare_nk_040929-token nadarim');
         navigation.reset({
           index: 0,

@@ -23,7 +23,7 @@ export default function SupperGameScreen({
   // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
-  Alert.alert('041206');
+  // Alert.alert('041206');
   ////zare_nk_041206_added_st(moadele @media baraye responsive kardane site) 
   const { width } = useWindowDimensions();
   //////responsive_for_sabadItemsAndTotalInf_added_st

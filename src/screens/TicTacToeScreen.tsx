@@ -93,7 +93,7 @@ function Board({
             setBtnsColor(updatedColors);
             AsyncStorage.setItem("BtnsColor", JSON.stringify(updatedColors)); //zare_nk_050130_added
             setTimer(0);
-            Alert.alert("Winner!", `Player ${winnerValue} won!`);
+            // Alert.alert("Winner!", `Player ${winnerValue} won!`);
         }
     };
     //zare_nk_041124(wined gonjoondeh nashod!!)

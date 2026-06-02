@@ -46,7 +46,7 @@ const showNoStock = () => {
   if (Platform.OS === "android") {
     ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
   } else {
-    Alert.alert("خطا", "موجودی کافی نیست");
+    // Alert.alert("خطا", "موجودی کافی نیست");
   }
 };
 ////zare_nk_041127_added_end
@@ -848,7 +848,7 @@ async function getCookie(name: any) {
   ////zare_nk_041128_added_end_olgu
   // await AsyncStorage.removeItem("token");
   let cookieGeted = await AsyncStorage.getItem(name);
-  Alert.alert("cookieGeted in getCookie: " + cookieGeted);
+  // Alert.alert("cookieGeted in getCookie: " + cookieGeted);
   if (cookieGeted) {
     return cookieGeted;
   }
@@ -2023,13 +2023,15 @@ export default function HomeScreen({
 
   // const seePrices = async () => {  //zare_nk_041205_commented(forUpdateName)
   const forOpenCodeScanner = async () => {  //zare_nk_041205_added(forUpdateName) 
-    const token = await getCookie("token");
-    if (token == null) {
-      // window.location.href = "/login";
-      setIsOpenedMymodalForWarning(true);
-      setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-      return;
-    }
+    ////zare_nk_050312_commented_st
+    // const token = await getCookie("token");
+    // if (token == null) {
+    //   // window.location.href = "/login";
+    //   setIsOpenedMymodalForWarning(true);
+    //   setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+    //   return;
+    // }
+    ////zare_nk_050312_commented_end
     setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
     setIsOpenedCodeScannerModal(true);
     // setAddOrRemChanged(null);
@@ -2045,7 +2047,7 @@ export default function HomeScreen({
         animationType="fade"
         ////zare_nk_041203_added_st
         onRequestClose={() => {
-          Alert.alert('aaaaa');
+          // Alert.alert('aaaaa');
           // setAddOrRemChanged("notNull");
           // setBisatrInProductDet(false);
 
@@ -2062,14 +2064,50 @@ export default function HomeScreen({
               {warningTextInMymodalForWarning}
             </Text>
 
-            <Button
+            {/* <Button
               title="تأیید"
               onPress={() => {
                 setIsOpenedMymodalForWarning(false);
                 setScannedValue(null);
                 setIsScanning(true);
               }}
-            />
+            /> */}
+
+            <TouchableOpacity
+              style={{
+                borderRadius: 8,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                cursor: 'pointer',
+                // padding: 4,
+                // borderWidth: 1,
+                // borderStyle: 'solid',
+                // borderColor: 'rgb(165, 165, 165)',
+                backgroundColor: 'red',
+                width: 120,
+                height: 40,
+              }}
+              onPress={() => {
+                setIsOpenedMymodalForWarning(false);
+                setScannedValue(null);
+                setIsScanning(true);
+              }}
+              activeOpacity={0.6}
+            >
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{
+                  fontFamily: "IRANSansWeb(FaNum)_Medium",
+                  color: "white",
+                }}
+              >
+                تأیید
+              </Text>
+            </TouchableOpacity>
+
           </View>
         </View>
       </Modal>
@@ -2923,7 +2961,7 @@ export default function HomeScreen({
                   height: 30,
                 }}
                 onPress={() => {
-                  Alert.alert('close btn clicked in modalprodDet');
+                  // Alert.alert('close btn clicked in modalprodDet');
                   setIsOpenedProdDetModal(false);
                   // setAddOrRemChanged("notNull");  //zare_nk_041130_commented(AddOrRemChanged dar in safhe karbord nadare)
                   setBisatrInProductDet(false);
@@ -3994,7 +4032,8 @@ export default function HomeScreen({
               <TouchableOpacity
                 // className="vorsab"
                 // href="/shoppingbasket"
-                onPress={() => { return navigation.replace("Splash", { target: "shoppingbasket" }); }}
+                // onPress={() => { return navigation.replace("Splash", { target: "shoppingbasket" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
+                onPress={() => { return navigation.navigate("Splash", { target: "shoppingbasket" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)              
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4288,8 +4327,9 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/ordersHistory" 
-                onPress={() => { return navigation.replace("Splash", { target: "ordersHistory" }); }}
+                // href="/ordersHistory"  
+                // onPress={() => { return navigation.replace("Splash", { target: "ordersHistory" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
+                onPress={() => { return navigation.navigate("Splash", { target: "ordersHistory" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she) 
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4448,8 +4488,9 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/discountsAndOffers" 
-                onPress={() => { return navigation.replace("Splash", { target: "discountsAndOffers" }); }}
+                // href="/discountsAndOffers"  
+                // onPress={() => { return navigation.replace("Splash", { target: "discountsAndOffers" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
+                onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4594,8 +4635,9 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/games" 
-                onPress={() => { return navigation.replace("Splash", { target: "SupperGame" }); }}
+                // href="/games"  
+                // onPress={() => { return navigation.replace("Splash", { target: "SupperGame" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
+                onPress={() => { return navigation.navigate("Splash", { target: "SupperGame" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4738,9 +4780,8 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/ComparePage"
-                // onPress={() => { return navigation.replace('ComparePage'); }}
-                // onPress={() => { return navigation.replace("Splash", { target: "ComparePage" }); }} 
+                // href="/ComparePage" 
+                // onPress={() => { return navigation.navigate("Splash", { target: "ComparePage" }); }} 
                 style={{
                   width: "100%",
                   display: "flex",
@@ -4992,6 +5033,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
     color: "#333",
+    fontFamily: "IRANSansWeb(FaNum)_Medium",
   },
 
   /////////////////////////////////////////////zare_nk_041206_added_st(for responsives @media) 

@@ -15,6 +15,8 @@ import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
 import { SvgUri } from "react-native-svg";
 import type { RootStackParamList } from "../types/navigation";
 
+import LoginIcon from "../assets/login-icon.svg";
+
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
@@ -259,7 +261,7 @@ export default function LoginScreen({
           console.log("❌ zare_nk_041207-verifyToken failed");
           setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
           await AsyncStorage.removeItem("token");
-          Alert.alert("❌ verifyToken failed");
+          // Alert.alert("❌ verifyToken failed");
         }
         // } catch (error) {
         //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
@@ -275,9 +277,9 @@ export default function LoginScreen({
         //   setError("متاسفانه خطایی رخ داده است34:eeee" + ApiLoginUser2Result.errors[0]);    //zare_nk_040925_updated 
         // }
       } else {
-        Alert.alert(
-          "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
-        );
+        // Alert.alert(
+        //   "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
+        // );
         console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");
         setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
@@ -285,9 +287,9 @@ export default function LoginScreen({
 
       ////zare_nk_040428_added_end
     } catch (err: any) {
-      Alert.alert(
-        "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
-      );
+      // Alert.alert(
+      //   "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
+      // );
       console.log(
         "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );
@@ -344,9 +346,9 @@ export default function LoginScreen({
       // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
-      Alert.alert('useEffect called!!-token: ' + token);
+      // Alert.alert('useEffect called!!-token: ' + token);
       if (token) {
-        Alert.alert('useEffect called!!-040603_JWT: ' + token);
+        // Alert.alert('useEffect called!!-040603_JWT: ' + token);
         ////zare_nk_040929_added_st
         const expires = new Date(
           Date.now() + 15 * 60 * 1000
@@ -368,11 +370,11 @@ export default function LoginScreen({
         type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
 
         const redirectRaw = await AsyncStorage.getItem("redirect");
-        Alert.alert('useEffect called!!-redirectRaw: ' + redirectRaw);
+        // Alert.alert('useEffect called!!-redirectRaw: ' + redirectRaw);
         const redirect = validRoutes.includes(redirectRaw as RouteName)
           ? (redirectRaw as RouteName)
           : "Welcome"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
-        Alert.alert('useEffect called!!-redirect: ' + redirect);
+        // Alert.alert('useEffect called!!-redirect: ' + redirect);
         // 3. حذف مسیر redirect از AsyncStorage
         await AsyncStorage.removeItem("redirect");
 
@@ -382,7 +384,7 @@ export default function LoginScreen({
       }
       ////////////////////////////////////zare_nk_040929_added_st
       else {
-        Alert.alert('useEffect called!!-token nadarim ke: ' + token);
+        // Alert.alert('useEffect called!!-token nadarim ke: ' + token);
         const error = getQueryParam(url, "error");
         if (error) {
           setError('khata dar ehraze hoviat ba google!: ' + error);
@@ -580,7 +582,7 @@ export default function LoginScreen({
           // borderStyle: 'dashed',
           display: "flex",
           flexDirection: "column",
-          justifyContent: 'center',
+          // justifyContent: 'center',  ////zare_nk_050312_commented 
           alignItems: "center",
           width: '100%',
           minHeight: height,
@@ -603,12 +605,25 @@ export default function LoginScreen({
             // className={Styles.formsRow}
             style={[styles.formsRow, {
               justifyContent: "center",
+              flexGrow: 0,
+              flexShrink: 0,
+              flexBasis: 'auto',
             }]}
           >
-            <Image
+            {/* <Image
               source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
-              style={{ width: 55, height: 55, }}
+              // style={{ width: 55, height: 55, }}
+              style={{ width: 155, height: 155, }}
+            /> */}
+            <SvgUri
+              // source={require("../assets/favicon.png")}
+              uri="https://img.tochikala.com/tochikala/login-icon-2.svg"
+              // uri="https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg" 
+              width={150}
+              height={150}  
             />
+            <LoginIcon width={155} height={155} />
+            
           </View>
           {/* {error && <Text style={styles.error}>{error}</Text>} */}
           {error && (
@@ -634,7 +649,19 @@ export default function LoginScreen({
             </View>
           )}
           {step === "firstPage" ? (
-            <>
+            <View
+              style={{
+                flexGrow: 1,
+                flexShrink: 0,
+                flexBasis: 'auto',
+                borderColor: 'blue',
+                borderStyle: 'dashed',
+                borderWidth: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+              }}
+            >
               <View
                 // className={`${Styles.formsRow} ${Styles.boldTextStyle}`}
                 style={[styles.formsRow,
@@ -642,9 +669,9 @@ export default function LoginScreen({
                   justifyContent: 'flex-start',
                   marginBottom: 20,
 
-                  // borderColor: 'red',
-                  // borderStyle: 'dashed',
-                  // borderWidth: 2,
+                  borderColor: 'red',
+                  borderStyle: 'dashed',
+                  borderWidth: 2,
                 }
                 ]}
               >
@@ -654,7 +681,7 @@ export default function LoginScreen({
                   // borderStyle: 'dashed',
                   // borderWidth: 2,
                 }
-                ]}>ورود | ثبت نام</Text>
+                ]}>ورود03 | ثبت نام</Text>
               </View>
 
               <View
@@ -820,9 +847,21 @@ export default function LoginScreen({
                   </Text>
                 </TouchableOpacity>
               </View>
-            </>
+            </View>
           ) : (
-            <>
+            <View
+              style={{
+                flexGrow: 1,
+                flexShrink: 0,
+                flexBasis: 'auto',
+                borderColor: 'blue',
+                borderStyle: 'dashed',
+                borderWidth: 2,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'flex-end',
+              }}
+            >
               <View
                 // ref={refForTimerCont}
                 // id="timermoveOpportunityCont"
@@ -918,7 +957,7 @@ export default function LoginScreen({
                   </View>
                 </TouchableOpacity>
               </View>
-              
+
               {/* <View
                 // className={`${Styles.formsRow}  ${Styles.darkFont}`}
                 style={[styles.formsRow,
@@ -1143,7 +1182,7 @@ export default function LoginScreen({
                   </Text>
                 </TouchableOpacity>
               </View>
-            </>
+            </View>
           )}
         </View>
       </View>
@@ -1179,18 +1218,27 @@ const styles = StyleSheet.create({
   },
   ////////////////////////////////////////////////////////////az nextJs
   loginForm: {
+    ////zare_nk_050312_commented_st
     borderWidth: 1,
     borderColor: "#a9a9a9",
     borderStyle: 'solid',
-    borderRadius: 20,
-    boxShadow: "#5e5e5e 0px 0px 3px 0px",
-    backgroundColor: "#f6f6f6",
+    // borderRadius: 20,
+    // boxShadow: "#5e5e5e 0px 0px 3px 0px",
+    // backgroundColor: "#f6f6f6",
+    ////zare_nk_050312_commented_end
     width: "100%",
+    height: '100%',   ////zare_nk_050312_added(ta borderdare vasatamoodi neshe!)
     // height: 350,  //zare_nk_041211_commented
     //  minHeight: "min-content", 
-    paddingVertical: 20,
+    // paddingVertical: 20,  ////zare_nk_050312_commented
+    paddingVertical: 40,  ////zare_nk_050312_added
     paddingHorizontal: 10,
     marginHorizontal: 5,
+    ////zare_nk_050312_added_st
+    display: 'flex',
+    flexDirection: 'column',
+    // justifyContent:'flex-end',
+    ////zare_nk_050312_added_end
   },
   mediumTextStyle: {
     fontFamily: "IRANSansWeb(FaNum)_Medium",

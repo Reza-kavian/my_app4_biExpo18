@@ -22,7 +22,7 @@ import ReusableButton from "../components/ReusableButton";     ////zare_nk_04102
 async function getCookie(name: any) {
     // await AsyncStorage.removeItem("token");
     let cookieGeted = await AsyncStorage.getItem(name);
-    Alert.alert("cookieGeted in getCookie: " + cookieGeted);
+    // Alert.alert("cookieGeted in getCookie: " + cookieGeted);
     // await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
     // await AsyncStorage.setItem("token_expires", expires);
     // console.log("1-zare_nk_041009-tokenni is: " + tokenni);
@@ -81,7 +81,7 @@ export default function ProductPage({
     useEffect(() => {
         async function asyncFunctionInUseEffect() {
             const token = await getCookie("token");
-            Alert.alert('token in ProductPage: ' + token);
+            // Alert.alert('token in ProductPage: ' + token);
             if (token != null) {
                 try {
                     // const response = await fetch("/api/auth/verifyToken", {  //zare_nk_041027_commented

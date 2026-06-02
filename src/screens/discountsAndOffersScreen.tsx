@@ -34,7 +34,7 @@ const showNoStock = () => {
   if (Platform.OS === "android") {
     ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
   } else {
-    Alert.alert("خطا", "موجودی کافی نیست");
+    // Alert.alert("خطا", "موجودی کافی نیست");
   }
 };
 ////zare_nk_041127_added_end
@@ -3126,7 +3126,7 @@ export default function ShallowRoutingExample({
           visible={isOpenedProdDetModal}    //zare_nk_040923(halat namayesh modal)
           animationType="slide"  //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
           onRequestClose={() => {
-            Alert.alert('onRequestClose in modalprodDet');
+            // Alert.alert('onRequestClose in modalprodDet');
             ////zare_nk_041128_nokteh(moadele methode hiddenHandlerForProdDetModal)
             setIsOpenedProdDetModal(false);
             setAddOrRemChanged("notNull");
@@ -3216,7 +3216,7 @@ export default function ShallowRoutingExample({
                   height: 30,
                 }}
                 onPress={() => {
-                  Alert.alert('close btn clicked in modalprodDet');
+                  // Alert.alert('close btn clicked in modalprodDet');
                   setIsOpenedProdDetModal(false);
                   setAddOrRemChanged("notNull");
                   setBisatrInProductDet(false);

@@ -8,11 +8,12 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package", 
+    "convert-svg": "npx @svgr/cli --native --typescript --out-dir src/components/icons src/assets/"
   },
   "dependencies": {
     "@react-native-async-storage/async-storage": "^2.2.0",
-    "@react-navigation/native": "^7.1.26",   
+    "@react-navigation/native": "^7.1.26",
     "@react-navigation/native-stack": "^7.9.0",
     "axios": "^1.13.2",
     "patch-package": "^8.0.1",
@@ -36,6 +37,7 @@
     "@react-native/eslint-config": "0.83.0",
     "@react-native/metro-config": "0.83.0",
     "@react-native/typescript-config": "0.83.0",
+    "@svgr/cli": "^8.1.0",
     "@types/jest": "^29.5.13",
     "@types/react": "^19.2.0",
     "@types/react-test-renderer": "^19.1.0",

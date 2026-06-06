@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useMemo } from "react";
-import {   
+import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
     StyleProp, Modal, Button, Animated, TextInput,
@@ -28,6 +28,10 @@ type NavigationType = NativeStackNavigationProp<
 >;
 ////zare_nk_050315_nokteh_end(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 
+// import AddToCartIcon from "../components/icons/images/AddToCart";   ////zare_nk_050316_added
+import AddToCartTapsiIcon from "../components/icons/images/AddToCartTapsi";   ////zare_nk_050316_added
+import RemoveFromCartTapsiIcon from "../components/icons/images/RemoveFromCartTapsi";   ////zare_nk_050316_added
+import RecycleBinIcon from "../components/icons/images/RecycleBin";   ////zare_nk_050316_added
 
 // type MiddleCountTedadSefrType = {
 type addRemBtnsAndCountPackegeType = {
@@ -137,15 +141,19 @@ export default function AddRemBtnsAndCountPackege({
                         alignItems: "center",
                         alignContent: "center",
                         // border: "1px solid red",
-                        borderWidth: 1,
-                        borderColor: "red",
-                        borderStyle: 'solid',
+                        ////zare_nk_050316_commented_st
+                        // borderWidth: 1,
+                        // borderColor: "red",
+                        // borderStyle: 'solid',
+                        ////zare_nk_050316_commented_end
+                        boxShadow: '0px 2px 5px rgba(0,0,0,.2)',  ////zare_nk_050316_added
                         overflow: "hidden",
                         width: 35,  //zare_nk_041127_added
                         // borderRadius: '50%',  //zare_nk_041127_added
                         direction: 'rtl',  //zare_nk_041127_added
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
-                        borderRadius: 17,  //zare_nk_041202_added
+                        // borderRadius: 17,  ////zare_nk_050316_commented
+                        borderRadius: 100,  ////zare_nk_050316_added
                     }}
                 // dir="ltr" 
                 >
@@ -215,7 +223,7 @@ export default function AddRemBtnsAndCountPackege({
                                         flexBasis: 'auto',
                                         height: "100%",
                                         paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
                                         justifyContent: "center",
                                         alignItems: "center",
 
@@ -263,27 +271,29 @@ export default function AddRemBtnsAndCountPackege({
                             height: "100%",
                             flexGrow: 1,
                             flexShrink: 1,
-                            flexBasis: '45%',
-                            flexDirection: "column",
-                            ////zare_nk_041202_added_st
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            alignContent: "center",
-                            overflow: "hidden",
-                            ////zare_nk_041202_added_end
+                            // flexBasis: '45%',   ////zare_nk_050316_commented
+                            flexBasis: 'auto',     ////zare_nk_050316_added
+                            // flexDirection: "column",   ////zare_nk_050316_commented
+                            ////zare_nk_050316_added_st
+                            // display: "flex",
+                            // justifyContent: "center",
+                            // alignItems: "center",
+                            // alignContent: "center",
+                            // overflow: "hidden",
+                            ////zare_nk_050316_added_end
                         }}
                     >
-                        <Text
+                        <View
                             style={{
                                 height: "100%",
-                                ////zare_nk_041202_commented_st
-                                // display: "flex",
-                                // justifyContent: "center",
-                                // alignItems: "center",
-                                // alignContent: "center",
-                                // overflow: "hidden",
-                                ////zare_nk_041202_commented_end
+                                ////zare_nk_050316_added_st
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                alignContent: "center",
+                                overflow: "hidden",
+                                paddingHorizontal: 4,   
+                                ////zare_nk_050316_added_end  
                             }}
                         >
                             {/* <a
@@ -325,17 +335,26 @@ export default function AddRemBtnsAndCountPackege({
                                 style={[
                                     {
                                         //flex: "1 1 auto",
-                                        flexGrow: 1,
-                                        flexShrink: 1,
+                                        flexGrow: 0,  ////zare_nk_050316_updated(1 to 0)
+                                        flexShrink: 0,  ////zare_nk_050316_updated(1 to 0)
                                         flexBasis: 'auto',
-                                        height: "100%",
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        // height: "100%",  ////zare_nk_050316_commented
+                                        // paddingVertical: 0,  ////zare_nk_050316_commented
+                                        // paddingHorizontal: 4,    ////zare_nk_050316_commented
                                         justifyContent: "center",
                                         alignItems: "center",
                                         // borderRadius: "50%",  //zare_nk_041202_commented
-                                        borderRadius: 17,  //zare_nk_041202_added
+                                        // borderRadius: 17,   ////zare_nk_050316_commented
                                         opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
+
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 28,
+                                        height: 28,
+                                        backgroundColor: "#1b1c1d",
                                     }
                                 ]}
                                 onPress={() => { handlerForAddClick() }}
@@ -344,27 +363,34 @@ export default function AddRemBtnsAndCountPackege({
                                 <Text
                                     style={{
                                         color: "red",
-                                        fontSize: 14,
+                                        // fontSize: 14,  ////zare_nk_050316_commented
                                         // height: "80%",
-                                        backgroundColor: "white",
+                                        // backgroundColor: "blue",
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
                                         // alignItems: "center",
                                         // justifyContent: "center",
                                         ////zare_nk_041202_commented_end
+                                        ////zare_nk_050316_added_st
+                                        ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
+                                        borderRadius: 100,
+                                        width: 20,
+                                        height: 20,
+                                        ////zare_nk_050316_added_end
                                     }}
                                 // className="plussMinus"
                                 >
                                     {/* + */}
-                                    <SvgUri
+                                    {/* <SvgUri
                                         uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
                                         width={20}
                                         height={20}
-                                    />
+                                    /> */}
+                                    <AddToCartTapsiIcon />
                                 </Text>
                             </TouchableOpacity>
 
-                        </Text>
+                        </View>
                     </View>
 
                     <View
@@ -435,7 +461,7 @@ export default function AddRemBtnsAndCountPackege({
                                         flexBasis: 'auto',
                                         height: "100%",
                                         paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
                                         justifyContent: "center",
                                         alignItems: "center",
 
@@ -498,16 +524,19 @@ export default function AddRemBtnsAndCountPackege({
                         justifyContent: "center",
                         alignItems: "center",
                         alignContent: "center",
-                        // border: "1px solid red",
-                        borderWidth: 1,
-                        borderColor: "red",
-                        borderStyle: 'solid',
+                        ////zare_nk_050316_commented_st
+                        // borderWidth: 1,
+                        // borderColor: "red",
+                        // borderStyle: 'solid',
+                        ////zare_nk_050316_commented_end
+                        boxShadow: '0px 2px 5px rgba(0,0,0,.2)',  ////zare_nk_050316_added
                         overflow: "hidden",
                         width: "auto",  //zare_nk_041127_added
                         // borderRadius: '50%',  //zare_nk_041127_added
                         direction: 'rtl',  //zare_nk_041127_added
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
-                        borderRadius: 17,  //zare_nk_041202_added 
+                        // borderRadius: 17,  ////zare_nk_050316_commened
+                        borderRadius: 100,    ////zare_nk_050316_added
                     }}
                 >
                     <View
@@ -524,11 +553,12 @@ export default function AddRemBtnsAndCountPackege({
                         <View
                             style={{
                                 height: "100%",
-                                // display: "flex",
+                                display: "flex",
                                 justifyContent: "center",
                                 alignItems: "center",
                                 alignContent: "center",
                                 overflow: "hidden",
+                                paddingHorizontal: 4,  ////zare_nk_050316_added
                             }}
                         >
                             <TouchableOpacity
@@ -536,17 +566,27 @@ export default function AddRemBtnsAndCountPackege({
                                 style={[
                                     {
                                         //flex: "1 1 auto",
-                                        flexGrow: 1,
-                                        flexShrink: 1,
+                                        flexGrow: 0,  ////zare_nk_050316_updated(padde 1 be 0)
+                                        flexShrink: 0,  ////zare_nk_050316_updated(padde 1 be 0)
                                         flexBasis: 'auto',
-                                        height: "100%",
+                                        // height: "100%",  ////zare_nk_050316_commented
                                         //padding: "0px 2px", 
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        // paddingVertical: 0,  ////zare_nk_050316_commented
+                                        // paddingHorizontal: 4,  ////zare_nk_050316_commented
                                         justifyContent: "center",
                                         alignItems: "center",
                                         // borderRadius: "50%",
-                                        borderRadius: 17,
+                                        // borderRadius: 17,  ////zare_nk_050316_commented
+                                        ////zare_nk_050316_added_st
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 28,
+                                        height: 28,
+                                        backgroundColor: "#e6e9ea", 
+                                        ////zare_nk_050316_added_end
                                     }
                                 ]}
                                 onPress={() => { handlerForRemClick(); }}   //be login befresteh dar adtoocart be jaye bazi ba e.preventdefault...
@@ -555,12 +595,17 @@ export default function AddRemBtnsAndCountPackege({
                                 <Text
                                     style={{
                                         // height: "80%",  //zare_nk_041202_commented
-                                        backgroundColor: "white",
+                                        // backgroundColor: "blue",
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
                                         // alignItems: "center",
                                         // justifyContent: "center",
                                         ////zare_nk_041202_commented_end
+                                        ////zare_nk_050316_added_st
+                                        borderRadius: 100,
+                                        width: 20,
+                                        height: 20,
+                                        ////zare_nk_050316_added_end
                                     }}
                                 // className="plussMinus"
                                 >
@@ -568,11 +613,12 @@ export default function AddRemBtnsAndCountPackege({
                                         source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
                                     /> */}
-                                    <SvgUri
+                                    {/* <SvgUri
                                         uri="https://img.tochikala.com/tochikala/remove-icon.svg"
                                         width={20}
                                         height={20}
-                                    />
+                                    /> */}
+                                    <RecycleBinIcon />
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -582,14 +628,13 @@ export default function AddRemBtnsAndCountPackege({
                         // className={`middleCount-${IdKala}`}
                         style={{
                             height: "100%",
-                            flexDirection: "row",
-                            ////zare_nk_041202_added_st
-                            width: 40,
                             display: "flex",
+                            flexDirection: "row", 
+                            // width: 40, ////zare_nk_050316_commented
+                            width: 30, ////zare_nk_050316_added 
                             justifyContent: "center",
                             alignItems: 'center',
-                            alignContent: "center",
-                            ////zare_nk_041202_added_end 
+                            alignContent: "center", 
                         }}
                     >
                         <Text
@@ -600,8 +645,7 @@ export default function AddRemBtnsAndCountPackege({
                                 ////zare_nk_041202_commented_st 
                                 // flexGrow: 1,
                                 // flexShrink: 0,
-                                // flexBasis: '40%',
-                                // width: 40, 
+                                // flexBasis: '40%', 
                                 // display: "flex",
                                 // justifyContent: "center",
                                 // alignItems: "center",
@@ -612,7 +656,7 @@ export default function AddRemBtnsAndCountPackege({
                         >
                             {tedadInSabadOrDet}
                         </Text>
-                        <Text> </Text>
+                        {/* <Text> </Text> */}
                     </View>
 
                     <View
@@ -634,6 +678,7 @@ export default function AddRemBtnsAndCountPackege({
                                 alignItems: "center",
                                 alignContent: "center",
                                 overflow: "hidden",
+                                paddingHorizontal: 4,  ////zare_nk_050316_added
                             }}
                         >
                             {/* <a
@@ -682,17 +727,27 @@ export default function AddRemBtnsAndCountPackege({
                                 data-baz="1"
                                 style={[
                                     {
-                                        flexGrow: 1,
-                                        flexShrink: 1,
+                                        flexGrow: 0,  ////zare_nk_050316_updated(padde 1 be 0)
+                                        flexShrink: 0,  ////zare_nk_050316_updated(padde 1 be 0)
                                         flexBasis: 'auto',
-                                        height: "100%",
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        // height: "100%",    ////zare_nk_050316_commented
+                                        // paddingVertical: 0,  ////zare_nk_050316_commented
+                                        // paddingHorizontal: 4,  ////zare_nk_050316_commented
                                         justifyContent: "center",
                                         alignItems: "center",
                                         // borderRadius: "50%",
-                                        borderRadius: 17,
+                                        // borderRadius: 17,  ////zare_nk_050316_commented
                                         opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
+
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 28,
+                                        height: 28,
+                                        backgroundColor: "#1b1c1d",
+
                                     }
                                 ]}
 
@@ -713,13 +768,23 @@ export default function AddRemBtnsAndCountPackege({
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
                                         // height: "80%",  //zare_nk_041202_commented
-                                        backgroundColor: "white",
+                                        // backgroundColor: "blue",
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
                                         // alignItems: "center",
                                         // justifyContent: "center",
                                         ////zare_nk_041202_commented_end
                                         ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
+
+                                        ////zare_nk_050316_added_st
+                                        // display:'flex',
+                                        // flexDirection:'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 20,
+                                        height: 20,
+                                        ////zare_nk_050316_added_end
                                     }}
                                 // className="plussMinus"
                                 // disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
@@ -728,11 +793,12 @@ export default function AddRemBtnsAndCountPackege({
                                         source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
                                     /> */}
-                                    <SvgUri
+                                    {/* <SvgUri
                                         uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
                                         width={20}
                                         height={20}
-                                    />
+                                    /> */}
+                                    <AddToCartTapsiIcon />
                                 </Text>
                             </TouchableOpacity>
                         </View>
@@ -759,17 +825,22 @@ export default function AddRemBtnsAndCountPackege({
                         justifyContent: "center",
                         alignItems: "center",
                         alignContent: "center",
-                        // border: "1px solid red",
-                        borderWidth: 1,
-                        borderColor: "red",
-                        borderStyle: 'solid',
+                        ////zare_nk_050316_commented_st
+                        // borderWidth: 1,
+                        // borderColor: "red",
+                        // borderStyle: 'solid',
+                        ////zare_nk_050316_commented_end
+                        boxShadow: '0px 2px 5px rgba(0,0,0,.2)',  ////zare_nk_050316_added
+                        // boxShadow: '0px 2px 5px rgba(255, 0, 0, 0.2)',  ////zare_nk_050316_added
+
                         overflow: "hidden",
                         width: "auto",  //zare_nk_041127_added
                         // borderRadius: '50%',  //zare_nk_041127_added
                         direction: 'rtl',  //zare_nk_041127_added
 
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
-                        borderRadius: 17,  //zare_nk_041202_added
+                        // borderRadius: 17,  ////zare_nk_050316_commened
+                        borderRadius: 100,    ////zare_nk_050316_added
                     }}
                 >
                     <View
@@ -791,6 +862,7 @@ export default function AddRemBtnsAndCountPackege({
                                 alignItems: "center",
                                 alignContent: "center",
                                 overflow: "hidden",
+                                paddingHorizontal: 4,  ////zare_nk_050316_added
                             }}
                         >
                             {/* <a
@@ -835,16 +907,27 @@ export default function AddRemBtnsAndCountPackege({
                                 data-baz="1"
                                 style={[
                                     {
-                                        flexGrow: 1,
-                                        flexShrink: 1,
+                                        flexGrow: 0,  ////zare_nk_050316_updated(padde 1 be 0)
+                                        flexShrink: 0,  ////zare_nk_050316_updated(padde 1 be 0)
                                         flexBasis: 'auto',
-                                        height: "100%",
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        // height: "100%",  ////zare_nk_050316_commented
+                                        // paddingVertical: 0,  ////zare_nk_050316_commented
+                                        // paddingHorizontal: 4,  ////zare_nk_050316_comemnted
                                         justifyContent: "center",
                                         alignItems: "center",
                                         // borderRadius: "50%",  //zare_nk_041202_comemnted
-                                        borderRadius: 17,    //zare_nk_041202_added
+                                        // borderRadius: 17,  ////zare_nk_050316_commented
+
+                                        ////zare_nk_050316_added_st
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 28,
+                                        height: 28,
+                                        backgroundColor: "#e6e9ea",
+                                        ////zare_nk_050316_added_end
                                     }
                                 ]}
 
@@ -852,17 +935,22 @@ export default function AddRemBtnsAndCountPackege({
 
                                 onPress={() => { handlerForRemClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented                                
                             >
-
                                 <Text
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
                                         // height: "80%",  //zare_nk_041202_commented
-                                        backgroundColor: "white",
+                                        // backgroundColor: "white",  ////zare_nk_050316_commented
+                                        // backgroundColor: "blue",  ////zare_nk_050316_added
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
                                         // alignItems: "center",
                                         // justifyContent: "center",
                                         ////zare_nk_041202_commented_end
+                                        ////zare_nk_050316_added_st  
+                                        borderRadius: 100,
+                                        width: 20,
+                                        height: 20,
+                                        ////zare_nk_050316_added_end
                                     }}
                                 // className="plussMinus" 
                                 >
@@ -872,11 +960,12 @@ export default function AddRemBtnsAndCountPackege({
                                     /> */}
 
 
-                                    <SvgUri
+                                    {/* <SvgUri
                                         uri="https://img.tochikala.com/tochikala/remove-from-cart.svg"
                                         width={20}
                                         height={20}
-                                    />
+                                    />   */}
+                                    <RemoveFromCartTapsiIcon />
                                 </Text>
                             </TouchableOpacity>
 
@@ -887,15 +976,13 @@ export default function AddRemBtnsAndCountPackege({
                         // className={`middleCount-${IdKala}`}
                         style={{
                             height: "100%",
-                            // display: "flex",
-                            ////zare_nk_041202_added_st
-                            flexDirection: "column",
-                            width: 40,
-                            display: "flex",
+                            display: "flex", 
+                            flexDirection: "row",
+                            // width: 40, ////zare_nk_050316_commented
+                            width: 30, ////zare_nk_050316_added 
                             justifyContent: "center",
                             alignItems: 'center',
-                            alignContent: "center",
-                            ////zare_nk_041202_added_end
+                            alignContent: "center", 
                         }}
                     >
                         <Text
@@ -906,8 +993,7 @@ export default function AddRemBtnsAndCountPackege({
                                 ////zare_nk_041202_commented_st
                                 // flexGrow: 1,
                                 // flexShrink: 0,
-                                // flexBasis: '40%',
-                                // width: 40,
+                                // flexBasis: '40%', 
                                 // display: "flex",
                                 // justifyContent: "center",
                                 // alignItems: 'center',
@@ -940,6 +1026,7 @@ export default function AddRemBtnsAndCountPackege({
                                 alignItems: "center",
                                 alignContent: "center",
                                 overflow: "hidden",
+                                paddingHorizontal: 4,  ////zare_nk_050316_added
                             }}
                         >
 
@@ -989,17 +1076,30 @@ export default function AddRemBtnsAndCountPackege({
                                 data-baz="1"
                                 style={[
                                     {
-                                        flexGrow: 1,
-                                        flexShrink: 1,
+                                        flexGrow: 0,
+                                        flexShrink: 0,
                                         flexBasis: 'auto',
-                                        height: "100%",
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 2,
+                                        // height: "100%",  ////zare_nk_050316_commented
+                                        // paddingVertical: 0,
+                                        // paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
                                         justifyContent: "center",
                                         alignItems: "center",
                                         // borderRadius: "50%",  //zare_nk_041202_commented
-                                        borderRadius: 17,  //zare_nk_041202_added 
+                                        // borderRadius: 17,  //zare_nk_041202_added 
                                         opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
+
+                                        // borderWidth: 1,
+                                        // borderStyle: 'dashed',
+                                        // borderColor: 'blue',
+
+                                        display: 'flex',
+                                        flexDirection: 'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 28,
+                                        height: 28,
+                                        backgroundColor: "#1b1c1d",
                                     }
                                 ]}
 
@@ -1023,13 +1123,27 @@ export default function AddRemBtnsAndCountPackege({
                                     //  title={Number(bishAzMaxTedadYaMojoodi) === 1 ? "موجودی کافی نیست" : ""} 
                                     style={{
                                         // height: "80%",  //zare_nk_041202_commented
-                                        backgroundColor: "white",
+                                        // backgroundColor: "white",  ////zare_nk_050316_commented
+                                        // backgroundColor: "blue",  ////zare_nk_050316_added
                                         ////zare_nk_041202_commented_st
                                         // padding: 0,
                                         // alignItems: "center",
                                         // justifyContent: "center",
                                         ////zare_nk_041202_commented_end
                                         ...(Number(bishAzMaxTedadYaMojoodi) === 1 && { opacity: 0.3 }),
+
+                                        // borderWidth: 1,
+                                        // borderStyle: 'dashed',
+                                        // borderColor: 'red',
+                                        ////zare_nk_050316_added_st
+                                        // display:'flex',
+                                        // flexDirection:'row',
+                                        // justifyContent:'center',
+                                        // alignItems:'center',
+                                        borderRadius: 100,
+                                        width: 20,
+                                        height: 20,
+                                        ////zare_nk_050316_added_end
                                     }}
                                 // className="plussMinus"
                                 // disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}
@@ -1038,11 +1152,21 @@ export default function AddRemBtnsAndCountPackege({
                                         source={{ uri: "https://img.tochikala.com/tochikala/add-to-cart.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
                                     /> */}
-                                    <SvgUri
+                                    {/* <SvgUri
                                         uri="https://img.tochikala.com/tochikala/add-to-cart.svg"
-                                        width={20}
-                                        height={20}
-                                    />
+                                        width={28}
+                                        height={28}
+                                        style={{ 
+                                            // borderWidth: 1,
+                                            // borderStyle: 'dashed',
+                                            // borderColor: 'blue',
+                                            // borderRadius:100,
+                                        }}
+                                    />   */}
+
+                                    {/* <AddToCartIcon width={28} height={28} /> */}
+                                    <AddToCartTapsiIcon />
+
                                 </Text>
                             </TouchableOpacity>
                         </View>

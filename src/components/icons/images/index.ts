@@ -1,5 +1,10 @@
+export { default as AddToCartTapsi } from './AddToCartTapsi';
+export { default as AddToCart } from './AddToCart';
 export { default as LoginIcon2 } from './LoginIcon2';
 export { default as LoginIconDimcolor } from './LoginIconDimcolor';
 export { default as LoginIcon } from './LoginIcon';
+export { default as RecycleBin } from './RecycleBin';
+export { default as RemoveFromCartTapsi } from './RemoveFromCartTapsi';
 export { default as RequestAgain } from './RequestAgain';
 export { default as ReturnToMpbilenumber } from './ReturnToMpbilenumber';
+export { default as SpecialOffer } from './SpecialOffer';

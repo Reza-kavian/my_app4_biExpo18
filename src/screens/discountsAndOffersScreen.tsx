@@ -20,6 +20,18 @@ import ReusableButton from "../components/ReusableButton";
 
 import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 
+
+////zare_nk_050315_nokteh_st 
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
+type NavigationType = NativeStackNavigationProp<
+    RootStackParamList,
+    "shoppingbasket"
+>;
+////zare_nk_050315_nokteh_end 
+
+import SpecialOfferIcon from "../components/icons/images/SpecialOffer";   ////zare_nk_050316_added
+import AddRemBtnsAndCountPackege from '../components/addRemBtnsAndCountPackege';   ////zare_nk_050316_added
+
 ////zare_nk_041129_commented_st
 // async function getBootstrap() {
 //   if (!cachedBootstrap) {
@@ -51,7 +63,8 @@ type MiddleCountTedadSefrType = {
   handlerForRemClick: () => void;  //zare_nk_041127_addeded(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
   ForCartContentsDesignType: number;
   bishAzMaxTedadYaMojoodi: number | null;
-  navigation: Props["navigation"];  ////zare_nk_041127_added
+     // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+    navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 export function MiddleCountTedadSefr({
@@ -375,7 +388,7 @@ export function MiddleCountTedadSefr({
         // id={`${idTag}`}
         // style={{ width: "100%", display: "flex" }}
         style={{
-          width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center', 
+          width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center',
         }}
       >
         <View
@@ -409,7 +422,7 @@ export function MiddleCountTedadSefr({
               // flex: "1 1 auto",
               flexGrow: 1,
               flexShrink: 1,
-              flexBasis: 'auto', 
+              flexBasis: 'auto',
             }}
           >
             <View
@@ -419,7 +432,7 @@ export function MiddleCountTedadSefr({
                 justifyContent: "center",
                 alignItems: "center",
                 alignContent: "center",
-                overflow: "hidden", 
+                overflow: "hidden",
               }}
             >
               <TouchableOpacity
@@ -889,7 +902,8 @@ type SabadSatrProps = {
     addRemParam: addRemParamType,
   ) => void;
   openprodDetModal: (barcodeKala: string) => void;
-  navigation: Props["navigation"];  //zare_nk_041127_added
+     // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+    navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 export function SabadSatrComponent({
@@ -998,12 +1012,14 @@ export function SabadSatrComponent({
           // border: "1px solid #e4e4e4",  
 
           height: "auto",
-          borderWidth: 1,
-          borderColor: "#a9a9a9",
-          borderStyle: 'solid',
-          boxShadow: "#5e5e5e 0px 0px 3px 0px",
+          // borderWidth: 1,
+          ////zare_nk_050316_commented_st
+          // borderColor: "#a9a9a9",  
+          // borderStyle: 'solid',   
+          // boxShadow: "#5e5e5e 0px 0px 3px 0px",  
+          ////zare_nk_050316_commented_end
           // borderRadius: 25,
-          borderRadius: 17,
+          borderRadius: 16,
           backgroundColor: "white",
           overflow: "hidden",
         }}
@@ -1015,18 +1031,70 @@ export function SabadSatrComponent({
             position: "relative"
           }}
         >
-          {/* {((SabadRow.DarsadTakhfif ?? 0) >= 30) &&(  */}
-          {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif >= 30) && (
+
+
+
+
+
+          {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif != 0) && (
             <View
-              // className={`specialOffer-${SabadRow.IdKala}`}
+              // id={`darsadTakhfifInsabad-${SabadRow.IdKala}`}
+              // className="darsadTakhfifInsabad rounded-pill"
               style={{
-                // display: "flex",
                 position: "absolute",
                 top: 7,
                 left: 7,
+                display: 'flex',
+
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: 'center',
+                backgroundColor: "#ff3151",
+                width: 39,
+                height: 20,
+                // flexGrow: 0,
+                // flexShrink: 0,
+                // flexBasis: 'auto',
+                marginLeft: 5,
+                borderRadius: 100,
+                zIndex: 2,
+                // borderWidth:1,
+                // borderStyle:'dashed',
+                // borderColor:'red',
+              }}
+            >
+              <Text
+                // className="forDiscount"
+                style={{
+                  fontSize: 12,
+                  color: "white",
+                  opacity: 1,
+                  fontFamily: "IRANSansWeb(FaNum)_Medium",
+                  // borderWidth: 2,
+                  // borderStyle: 'dashed',
+                  // borderColor: 'black',
+                }}
+              >
+                {`${SabadRow.DarsadTakhfif}%`}
+              </Text>
+            </View>
+          )}
+
+          {/* {((SabadRow.DarsadTakhfif ?? 0) >= 30) &&(  */}
+          {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif >= 15) && (
+            <View
+              // className={`specialOffer-${SabadRow.IdKala}`}
+              style={{
+                position: "absolute",
+                top: 7,
+                right: 7,
+                display: "flex",
                 // fontSize: "100%",
                 backgroundColor: "inherit",
                 zIndex: 2,
+                // borderWidth:1,
+                // borderStyle:'dashed',
+                // borderColor:'red', 
               }}
             >
               {/* <img
@@ -1034,10 +1102,16 @@ export function SabadSatrComponent({
               src="https://img.tochikala.com/Icon/special-offer.svg"
               alt="علاقه&zwnj;مندی&zwnj;ها"
             /> */}
-              <Image
+              {/* <Image
                 source={{ uri: "https://img.tochikala.com/Icon/special-offer.svg" }}
                 style={{ width: 64, height: 14 }}
-              />
+              /> */}
+              {/* <SvgUri
+                uri="https://img.tochikala.com/Icon/special-offer.svg"
+                width={64}
+                height={14}
+              /> */}
+              <SpecialOfferIcon />
             </View>
           )}
 
@@ -1115,7 +1189,8 @@ export function SabadSatrComponent({
               right: 0,
             }}
           >
-            <MiddleCountTedadSefr
+            {/* <MiddleCountTedadSefr */}
+            <AddRemBtnsAndCountPackege
               refForfather={SabadRow.refForfather}
               fromShowDetails={SabadRow.fromShowDetails}
               IdKala={SabadRow.IdKala}
@@ -1178,17 +1253,21 @@ export function SabadSatrComponent({
 
         <View
           style={{
-            height: 42,
-            // display: "flex",
+            height: 37, 
+            display: "flex",
             flexWrap: "wrap",
             flexDirection: "row",
             marginTop: 7,
+            marginBottom: 5,
             // padding: "0px 10px 0px 10px",
             paddingVertical: 0,
             paddingHorizontal: 10,
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             width: "100%",
+              //             borderWidth: 1,
+              // borderStyle: 'dashed',
+              // borderColor: 'red',
           }}
         >
           <Text
@@ -1197,26 +1276,93 @@ export function SabadSatrComponent({
             style={{
               fontFamily: "IRANSansWeb(FaNum)_Medium",
               fontSize: 13,
-              // lineHeight: 32,  //zare_nk_commented(numberOfLines dar reactNative behtare)
+              color: '#454545',  ////zare_nk_050316_added
+              lineHeight: 18,  ////zare_nk_050316_added
               // borderWidth: 1,
               // borderStyle: 'dashed',
               // borderColor: 'red',
             }}
           >
-            {SabadRow.NameKala}
+            {SabadRow.NameKala}   
           </Text>
         </View>
 
+        {/* {((SabadRow.DarsadTakhfif ?? 0) != 0) ? ( */}
+        {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif != 0) ? (
+          <View
+            // id={`PriceBeforeDiscount-${SabadRow.IdKala}`}
+            style={{
+              // visibility: "visible",  ////zare_nk_050316_commented(dar react native visibility nadarim)
+              opacity: 1,  ////zare_nk_050316_added(dar react native visibility nadarim)
+              display: "flex",
+              flexDirection: "row",
+              paddingLeft: 10,
+              justifyContent: 'flex-end',
+              alignItems: "center", 
+              width: "100%", 
+              // borderWidth: 1,
+              // borderStyle: 'dashed',
+              // borderColor: 'red',
+            }}
+          >
+            <Text
+              // className="PriceBeforeDiscount"
+              style={{
+                fontSize: 11,
+                textDecorationLine: "line-through",
+                color: '#888',  ////zare_nk_050316_added
+                fontFamily: "IRANSansWeb(FaNum)_Medium",
+                lineHeight: 10,  ////zare_nk_050316_added
+              }}
+            >
+              {SabadRow.FeeMasraf.toLocaleString()}
+            </Text>
+          </View>
+        ) : (
+          <View
+            // id={`PriceBeforeDiscount-${SabadRow.IdKala}`}
+            style={{
+              // visibility: "hidden",  ////zare_nk_050316_commented(dar react native visibility nadarim)
+              opacity: 0,  ////zare_nk_050316_added(dar react native visibility nadarim)
+              display: "flex",
+              flexDirection: "row",
+              paddingLeft: 10,
+              justifyContent: 'flex-end',
+              alignItems: "center", 
+              width: "100%",
+              // borderWidth: 1,
+              // borderStyle: 'dashed',
+              // borderColor: 'blue',
+            }}
+          >
+            <Text
+              // className="PriceBeforeDiscount"
+              style={{
+                fontSize: 11,
+                // opacity: 0.7,  
+                textDecorationLine: "line-through",
+                color: '#888',  ////zare_nk_050316_added
+                fontFamily: "IRANSansWeb(FaNum)_Medium",
+                 lineHeight: 10,  ////zare_nk_050316_added
+              }}
+            >
+              {SabadRow.FeeMasraf.toLocaleString()}
+            </Text>
+          </View>
+        )}
+
         <View
           style={{
-            // display: "flex",
+            display: "flex",
             flexWrap: "wrap",
             flexDirection: "row",
             marginTop: 0,
+            marginBottom: 5,
             // padding: "0px 10px 0px 10px",
             paddingVertical: 0,
             paddingHorizontal: 10,
-            justifyContent: 'space-between',
+            // justifyContent: 'space-between',  ////zare_nk_050316_commented
+            justifyContent: 'flex-start',  ////zare_nk_050316_added
             alignItems: "center",
             width: "100%",
             // borderWidth: 1,
@@ -1226,26 +1372,24 @@ export function SabadSatrComponent({
         >
 
           {/* {((SabadRow.DarsadTakhfif ?? 0) != 0) &&(  */}
-          {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif != 0) && (
+          {/* {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif != 0) && (
             <View
               // id={`darsadTakhfifInsabad-${SabadRow.IdKala}`}
               // className="darsadTakhfifInsabad rounded-pill"
               style={{
-                backgroundColor: "#dc3545",
-                width: 35,
-                height: 25,
+                backgroundColor: "#ff3151",
+                width: 39,
+                height: 20,
                 // flex: "0 0 auto",
+                display: 'flex',
+                flexDirection: "row",
+                justifyContent: "center",
+                alignItems: 'center',
                 flexGrow: 0,
                 flexShrink: 0,
                 flexBasis: 'auto',
-                // display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
                 marginLeft: 5,
-                // borderWidth: 2,
-                // borderStyle: 'dashed',
-                // borderColor: 'blue',
-                borderRadius: 7,
+                borderRadius: 100,
               }}
             >
               <Text
@@ -1255,16 +1399,15 @@ export function SabadSatrComponent({
                   color: "white",
                   opacity: 1,
                   fontFamily: "IRANSansWeb(FaNum)_Medium",
-
-                  //     borderWidth: 2,
+                  // borderWidth: 2,
                   // borderStyle: 'dashed',
                   // borderColor: 'black',
                 }}
               >
-                {`${SabadRow.DarsadTakhfif}٪`}
+                {`${SabadRow.DarsadTakhfif}%`}
               </Text>
             </View>
-          )}
+          )} */}
           <View
             style={{
               // flex: "1 0 auto", 
@@ -1277,7 +1420,6 @@ export function SabadSatrComponent({
               // borderWidth: 1,
               // borderStyle: 'dashed',
               // borderColor: 'green',
-
             }}
           >
             <Text
@@ -1286,69 +1428,16 @@ export function SabadSatrComponent({
                 fontSize: 13,
                 marginLeft: 5,
                 fontFamily: "IRANSansWeb(FaNum)_Medium",
+                color: '#3d3d3d',   ////zare_nk_050316_added
               }}>
               {SabadRow.FeeForoosh.toLocaleString()}
             </Text>
             <Text
-              style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", }}
-            >ریال</Text>
+              style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}
+            >تومان</Text>
           </View>
         </View>
 
-        {/* {((SabadRow.DarsadTakhfif ?? 0) != 0) ? ( */}
-        {(SabadRow.DarsadTakhfif != null && SabadRow.DarsadTakhfif != 0) ? (
-          <View
-            // id={`PriceBeforeDiscount-${SabadRow.IdKala}`}
-            style={{
-              // visibility: "visible",
-              opacity: 0,
-              display: "flex",
-              flexDirection: "row",
-              paddingLeft: 18,
-              justifyContent: 'flex-end',
-              alignItems: "center",
-              marginBottom: 5,
-              width: "100%"
-            }}
-          >
-            <Text
-              // className="PriceBeforeDiscount"
-              style={{
-                fontSize: 12,
-                opacity: 0.7,
-                textDecorationLine: "line-through",
-              }}
-            >
-              {SabadRow.FeeMasraf.toLocaleString()}
-            </Text>
-          </View>
-        ) : (
-          <View
-            // id={`PriceBeforeDiscount-${SabadRow.IdKala}`}
-            style={{
-              // visibility: "hidden",
-              opacity: 0,
-              display: "flex",
-              flexDirection: "row",
-              paddingLeft: 18,
-              justifyContent: 'flex-end',
-              alignItems: "center",
-              marginBottom: 5,
-              width: "100%",
-            }}
-          >
-            <Text
-              // className="PriceBeforeDiscount"
-              style={{
-                fontSize: 12,
-                opacity: 0.7,
-                textDecorationLine: "line-through",
-              }}
-            >
-              {SabadRow.FeeMasraf.toLocaleString()}
-            </Text>
-          </View>
-        )}
         {/* zare_nk_041121_commented_st(felan chon fielde TozihatKala ra nagonjandim) */}
         {/* <div
         className="TozihatforKala-' + parsedList[j].IdKala + '"
@@ -1420,6 +1509,7 @@ async function getCookie(name: any) {
 ////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { LoginIcon } from "../components/icons/images";
 type Props = NativeStackScreenProps<RootStackParamList, "discountsAndOffers">;
 
 export default function ShallowRoutingExample({
@@ -3187,7 +3277,7 @@ export default function ShallowRoutingExample({
                 display: "flex",
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                alignItems: 'center',  
+                alignItems: 'center',
               }}
             >
               <Text
@@ -3222,7 +3312,7 @@ export default function ShallowRoutingExample({
                   setBisatrInProductDet(false);
                 }}
                 activeOpacity={0.6}
-              > 
+              >
                 {/* <Image
                           source={{ uri: "https://img.tochikala.com/tochikala/close-modal.svg" }}
                           style={{ width: 32, }}
@@ -3242,7 +3332,7 @@ export default function ShallowRoutingExample({
                 flexShrink: 1,
                 flexBasis: "auto",
                 display: bisatrInProductDet === true ? "none" : "flex", //zare_nk_041129_rahe2(tosiye mishe)
-                justifyContent: "center",   
+                justifyContent: "center",
                 width: '100%',
               }}
             >
@@ -3251,7 +3341,7 @@ export default function ShallowRoutingExample({
                 style={{
                   marginTop: 10,
                   overflow: "hidden",
-                  width: "100%", 
+                  width: "100%",
                   display: 'flex',
                   flexDirection: 'row',
                 }}
@@ -3265,7 +3355,7 @@ export default function ShallowRoutingExample({
                     marginTop: 0,
                     // marginRight: 10, //zare_nk_041209_commented
                     // marginBottom: 10, //zare_nk_041209_commented
-                    marginLeft: 0, 
+                    marginLeft: 0,
                   }}
                 >
                   {/* <Text style={{ fontSize: 14, }}></Text> */}
@@ -3274,8 +3364,8 @@ export default function ShallowRoutingExample({
                 <View
                   // id="DetailsImgAndInfoCont"
                   style={[{
-                    display: 'flex', 
-                    width: '100%', 
+                    display: 'flex',
+                    width: '100%',
                   }, DetailsImgAndInfoContResponse]}
                 >
                   <View
@@ -3284,7 +3374,7 @@ export default function ShallowRoutingExample({
                       // marginBottom: 7, 
                       padding: 3,
                       display: 'flex',
-                      flexDirection: 'row', 
+                      flexDirection: 'row',
                       flexBasis: 'auto',
                       flexGrow: 0,
                       flexShrink: 0,
@@ -3300,7 +3390,7 @@ export default function ShallowRoutingExample({
                         borderRadius: 10,
                         // border: "none",
                         boxShadow: "0px 0px 3px 0px silver",
-                        marginRight: 0, 
+                        marginRight: 0,
                       }}
                     >
                       <View
@@ -3331,9 +3421,9 @@ export default function ShallowRoutingExample({
                         backgroundColor: "white",
                         borderWidth: 0,
                         borderStyle: 'solid',
-                        borderColor: 'silver', 
-                        width: '100%',  
-                      },]} 
+                        borderColor: 'silver',
+                        width: '100%',
+                      },]}
                     >
                       <View
                         id="heartContInDetails"
@@ -3354,9 +3444,14 @@ export default function ShallowRoutingExample({
                                                                     src="https://img.tochikala.com/icon/heart/heart01(0).svg"
                                                                     alt="علاقه&zwnj;مندی&zwnj;ها"
                                                                 /> */}
-                        <Image
+                        {/* <Image
                           source={{ uri: "https://img.tochikala.com/icon/heart/heart01(0).svg" }}
                           style={{ width: 32, }}
+                        /> */}
+                        <SvgUri
+                          uri="https://img.tochikala.com/icon/heart/heart01(0).svg"
+                          width={32}
+                          height={32}
                         />
                       </View>
                       {ForCartContInProdDetVal != undefined && (
@@ -3397,7 +3492,7 @@ export default function ShallowRoutingExample({
                             backgroundColor: "#EFEFEF", width: "100%",   //zare_nk_041211_alan
                             ...(productHeightForDet === 0
                               ? { aspectRatio: 1 }
-                              : { height: productHeightForDet }), 
+                              : { height: productHeightForDet }),
                           }}
                         />
                       )}
@@ -3433,7 +3528,7 @@ export default function ShallowRoutingExample({
                         style={{
                           // display: "flex",
                           flexDirection: "column",
-                          width: "100%", 
+                          width: "100%",
                         }}
                       >
                         {ForCartContInProdDetVal != null && (
@@ -3462,7 +3557,7 @@ export default function ShallowRoutingExample({
                         )}
 
                         <View style={{
-                          display: "flex", flexDirection: "row", 
+                          display: "flex", flexDirection: "row",
                         }}>
 
                           <View
@@ -3519,7 +3614,7 @@ export default function ShallowRoutingExample({
                               )}
                             </View>
                           </View>
-                          
+
                           <View
                             style={{
                               // display: "flex",
@@ -3533,8 +3628,8 @@ export default function ShallowRoutingExample({
                           >
                             <View
                               style={{
-                                width: 0,    
-                                height: 30, 
+                                width: 0,
+                                height: 30,
                                 borderLeftWidth: 1,
                                 borderLeftColor: "#ccc",
                                 borderStyle: 'solid',
@@ -3759,7 +3854,7 @@ export default function ShallowRoutingExample({
                           // display: "flex",
                           flexDirection: "column",
                           width: "100%",
-                          marginTop: 10, 
+                          marginTop: 10,
                         }}
                       >
                         <View
@@ -3780,7 +3875,8 @@ export default function ShallowRoutingExample({
                             }}
                           >
                             {ForCartContInProdDetVal != null && (
-                              <MiddleCountTedadSefr
+                              //  <MiddleCountTedadSefr
+                              <AddRemBtnsAndCountPackege
                                 // SabadRow={ForCartContInProdDetVal}  //zare_nk_041120_commented
                                 ////zare_nk_041120_added_st
                                 refForfather={ForCartContInProdDetVal.refForfather}
@@ -3976,10 +4072,16 @@ export default function ShallowRoutingExample({
                                                                                         style={{ width: "15px" }}
                                                                                         alt="نمایش بیشتر"
                                                                                     /> */}
-                                  <Image
+                                  {/* <Image
                                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow.svg" }}
                                     style={{ width: 15 }}
+                                  /> */}
+                                  <SvgUri
+                                    uri="https://img.tochikala.com/tochikala/left-arrow.svg"
+                                    width={15}
+                                    height={15}
                                   />
+
                                 </View>
                               </View>
                             </TouchableOpacity>
@@ -4275,15 +4377,15 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   DetailsImgAndInfoCont_BTH576: {
-    flexDirection:'row-reverse',
+    flexDirection: 'row-reverse',
   },
 
   CurrentImgCont_STH576: {
     width: '100%',
-     marginBottom: 3,
+    marginBottom: 3,
   },
   CurrentImgCont_BTH576: {
-    width: 150, 
+    width: 150,
     marginLeft: 3,
   },
 
@@ -4295,6 +4397,6 @@ const styles = StyleSheet.create({
     flexBasis: 'auto',
     flexGrow: 1,
     flexShrink: 1,
-  } 
+  }
   /////////////////////////////////////////////zare_nk_041206_added_end(for responsives @media) 
 });

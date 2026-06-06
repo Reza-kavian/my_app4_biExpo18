@@ -51,7 +51,7 @@ export default function LoginScreen({
   const [mobileError, setMobileError] = useState<string | null>(null);   //zare_nk_041214_added
   const [smsError, setSmsError] = useState<string | null>(null); //zare_nk_040531_nokteh(state ke errore formate varedeye sms ra negah midareh)
   const [isDisabledMobileCheckBtn, setIsDisabledMobileCheckBtn] = //zare_nk_040531_nokteh(state ke disable ya enable boodane dokmeye MobileCheckBtn ra negah midareh)
-    useState(false);
+    useState(true);
   const [isDisabledCheckSmsBtn, setIsDisabledCheckSmsBtn] = useState(false); //zare_nk_040531_nokteh(state ke disable ya enable boodane dokmeye CheckSmsBtn ra negah midareh)
   const [isDisabledResendCode, setIsDisabledResendCode] = useState(true); //zare_nk_040531_nokteh(state ke disable ya enable boodane dokmeye ResendCode ra negah midareh)
   const [isDisabledRemovTimerBtn, setIsDisabledRemovTimerBtn] = useState(true); //zare_nk_040531_nokteh(state ke disable ya enable boodane dokmeye RemovTimerBtn ra negah midareh)
@@ -164,7 +164,7 @@ export default function LoginScreen({
       console.error("zare_nk_040218-resendcode-in catch:", error);
       if (error instanceof Error) {
         console.error("zare_nk_040218-resendcode-in catch-2:", error.message);
-        setMobileError("متاسفانه خطایی رخ داده است222:" + error.message);
+        setMobileError("متاسفانه خطایی رخ داده است:" + error.message);
       } else {
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));
         setMobileError("متاسفانه خطایی رخ داده است333:" + String(error));
@@ -488,8 +488,8 @@ export default function LoginScreen({
       console.error("zare_nk_040218-resendcode-in catch:", error);
       if (error instanceof Error) {
         console.error("zare_nk_040218-resendcode-in catch-2:", error.message);
-        // setError("متاسفانه خطایی رخ داده است222:" + error.message);  ////zare_nk_050314_commented
-        setSmsError("متاسفانه خطایی رخ داده است222:" + error.message);  ////zare_nk_050314_added
+        // setError("متاسفانه خطایی رخ داده است:" + error.message);  ////zare_nk_050314_commented
+        setSmsError("متاسفانه خطایی رخ داده است:" + error.message);  ////zare_nk_050314_added
       } else {
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));
         // setError("متاسفانه خطایی رخ داده است333:" + String(error));  ////zare_nk_050314_commented
@@ -623,8 +623,7 @@ export default function LoginScreen({
     // if (eventOrElement && "target" in eventOrElement) {
     //   input = eventOrElement.target;
     //   vall = input.value;
-    // } else {
-    //   // alert("22222222222");
+    // } else { 
     //   //zare_nk_040224_nokteh(age ba taghire mohtavaye mobileTxt tavasote dokmeye backBtnClick biaim dar methode mobileChanged)
     //   ////zare_nk_040409_commented_st
     //   // input = refForMobileInput.current[0];
@@ -747,14 +746,14 @@ export default function LoginScreen({
     //     setNewSmsVal(tempnewSmsVal);
     //   }
     // });
-     SmsInputRefs.current.map((inputItem, index) => {
+    SmsInputRefs.current.map((inputItem, index) => {
       // SmsInputRefs.current.forEach((inputItem, index) => {
       // let inputItemVal = SmsInputRefs.current[index]?.textContent;  ////zare_nk_050314_commented(dar reactnative ba ref nemitoonim ve mohtavaye tag ha 
       // dastresi dashteh bashim va faghat mishe selevt va clear kard tagharo, yani rooshoon bazi methodharo anjam dad, na inke mohtavashoon ro get 
       // kard, textContent ham faghat esmesh ghalatandaze va mohtavaye textbox nist!)
       // let inputItemVal=arrayForSmsVal[index];  ////zare_nk_050314_added(and 050314_commented(chon newSmsTxtChanged ra dar hamin rendere jari seda zadim va hanooz arrayForSmsVal berooz nashodeh dar in render))
-       let inputItemVal=tempArrayForSmsVal[index];  ////zare_nk_050314_added(chon newSmsTxtChanged ra dar hamin rendere jari seda zadim va hanooz arrayForSmsVal berooz nashodeh dar in render, pas majboor shodim tempArrayForSmsVal ra be parametre voroodiye newSmsTxtChanged pas bedim)
-      
+      let inputItemVal = tempArrayForSmsVal[index];  ////zare_nk_050314_added(chon newSmsTxtChanged ra dar hamin rendere jari seda zadim va hanooz arrayForSmsVal berooz nashodeh dar in render, pas majboor shodim tempArrayForSmsVal ra be parametre voroodiye newSmsTxtChanged pas bedim)
+
       console.log('inde224: ' + inputItemVal);
       if (!inputItemVal) {
         return;
@@ -952,11 +951,12 @@ export default function LoginScreen({
               >
                 <Text style={[styles.boldTextStyle,
                 {
+                  // color: '#4b4949',
+                  color: '#1b1c1d',   ////zare_nk_050315_tapsifoodi
                   // borderColor: 'blue',
                   // borderStyle: 'dashed',
                   // borderWidth: 2,
-                }
-                ]} >عضویت یا ورود </Text>
+                }]} >عضویت یا ورود </Text>
               </View>
 
               <View
@@ -970,7 +970,8 @@ export default function LoginScreen({
                   styles.mediumTextStyle,
                   {
                     marginBottom: 10,
-
+                    // color: "#6a6a6a",
+                    color: '#878b92',   ////zare_nk_050315_tapsifoodi
                     // borderColor: 'blue',
                     // borderStyle: 'dashed',
                     // borderWidth: 2,
@@ -979,11 +980,13 @@ export default function LoginScreen({
                 </Text>
 
                 <TextInput
-                  style={[styles.txtBox,
+                  style={[styles.txtBox, styles.mediumTextStyle,
                   {
-                    textAlign: "center"
+                    textAlign: "center",
+                    color: '#878b92',
                   }]}
                   placeholder="شماره موبایل"
+                  placeholderTextColor="#b0b4bb"  ////zare_nk_050315_added
                   value={mobileVal}
                   onChangeText={(textVaredeh) => {
                     mobileChanged(textVaredeh);
@@ -1039,6 +1042,7 @@ export default function LoginScreen({
                       ...(isDisabledMobileCheckBtn === true && { color: 'white' }),
                       ...(!isDisabledMobileCheckBtn && { color: 'white' }),
                       fontSize: 16,
+                      color: (!isDisabledMobileCheckBtn ? "white" : 'white'),  //#6a6a6a
                     }]}>
                     دریافت کد تایید
                   </Text>
@@ -1113,16 +1117,17 @@ export default function LoginScreen({
 
               <View
                 style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', }}>
+                <Text style={[styles.boldTextStyle,
+                { fontSize: 16, color: '#1b1c1d', marginBottom: 0, }]}>تایید شماره موبایل</Text>
 
-                <Text style={{ fontSize: 16, color: '#1b1c1d', marginBottom: 0, fontFamily: "IRANSansWeb_Bold(adad_fa)", }}>تایید شماره موبایل</Text>
-
-                <Text style={{ fontSize: 14, color: '#878b92', marginBottom: 0, paddingTop: 4, fontFamily: "IRANSansWeb_Medium(adad_fa)", }}>کد تأیید ارسال&zwnj;شده به شماره
+                <Text style={[styles.mediumTextStyle,
+                { fontSize: 14, color: '#878b92', marginBottom: 0, paddingTop: 4, }]}>کد تأیید ارسال&zwnj;شده به شماره
                   &zwnj;{mobileVal}&zwnj;
                   را وارد کن</Text>
               </View>
 
               <View style={{
-                display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', columnGap: 16, marginTop: 40, 
+                display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', columnGap: 16, marginTop: 40,
                 // borderColor: 'red',
                 // borderStyle: 'dashed',
                 // borderWidth: 1,
@@ -1168,7 +1173,7 @@ export default function LoginScreen({
                             console.log('arrayForSmsVal-new is: ' + JSON.stringify(tempArrayForSmsVal));
                             setArrayForSmsVal(tempArrayForSmsVal);
                             // newSmsTxtChanged(newtextVaredeh, index);   ////zare_nk_050314_commented
-                             newSmsTxtChanged(tempArrayForSmsVal, index);  ////zare_nk_050314_added
+                            newSmsTxtChanged(tempArrayForSmsVal, index);  ////zare_nk_050314_added
                           }}
 
                           // onKeyDown={(e) => {
@@ -1180,24 +1185,24 @@ export default function LoginScreen({
                           }}
 
                           style={{
-                            borderWidth: 0,   
+                            borderWidth: 0,
                             width: '100%', color: '#a5abb1', fontSize: 14, lineHeight: 20, textAlign: 'center',
                             // outline: '2px solid transparent'  ////zare_nk_050312_commented(dar reactnative vojood nadareh, moadelesh underlineColorAndroid hast ke gozashtam)                            
                           }}
                           underlineColorAndroid="transparent"  ////zare_nk_050312_commented(jaigozine outline: '2px solid transparent') // این خط زیرین اندروید را حذف می‌کند
 
-                          onFocus={(e) => {                            
+                          onFocus={(e) => {
                             setTimeout(() => {
                               // e.target.select();
-                               SmsInputRefs.current[index]?.setSelection(0,1);
+                              SmsInputRefs.current[index]?.setSelection(0, 1);
                               // SmsInputRefs.current[index]?.setNativeProps({
                               //   selection: { start: 0, end: 1 },
                               // });
                             }, 0);
                           }}
-                          // onBlur={handleBlur}          //zare_nk_050105_olgu
+                        // onBlur={handleBlur}          //zare_nk_050105_olgu
 
-                            // autoFocus={index===0?true:false}
+                        // autoFocus={index===0?true:false}
 
                         />
 
@@ -1286,7 +1291,8 @@ export default function LoginScreen({
                       // borderStyle: 'dashed',
                       // borderWidth: 1,
                     }}>
-                      <Text style={{ color: '#ff5900', fontSize: 14, }}>درخواست دوباره</Text>
+                      <Text style={[styles.mediumTextStyle,
+                      { color: '#ff5900', fontSize: 14, }]}>درخواست دوباره</Text>
                     </View>
                   </TouchableOpacity>
                   ) :
@@ -1306,13 +1312,13 @@ export default function LoginScreen({
                       }}
                     >
                       <Text
-                        style={
-                          {
-                            display: "flex", flexDirection: "row", color: "red",
-                            // borderColor: 'blue',
-                            // borderStyle: 'dashed',
-                            // borderWidth: 1,
-                          }}>
+                        style={[styles.mediumTextStyle,
+                        {
+                          display: "flex", flexDirection: "row", color: "red",
+                          // borderColor: 'blue',
+                          // borderStyle: 'dashed',
+                          // borderWidth: 1,
+                        }]}>
                         تایمر: {Math.floor(timer / 1000)} ثانیه
                       </Text>
                     </View>
@@ -1370,7 +1376,8 @@ export default function LoginScreen({
                     // borderStyle: 'dashed',
                     // borderWidth: 1,
                   }}>
-                    <Text style={{ color: '#ff5900', fontSize: 14, }}>ویرایش موبایل</Text>
+                    <Text style={[styles.mediumTextStyle,
+                    { color: '#ff5900', fontSize: 14, }]}>ویرایش موبایل</Text>
                     {/* fontFamily: "IRANSansWeb_Medium(adad_fa)", */}
                   </View>
                 </TouchableOpacity>
@@ -1693,7 +1700,7 @@ const styles = StyleSheet.create({
   },
   mediumTextStyle: {
     fontFamily: "IRANSansWeb(FaNum)_Medium",
-    color: "#6a6a6a",
+    // color: "#6a6a6a",   ////zare_nk_050315_commented
   },
   timerTextStyle: {
     fontFamily: "IRANSansWeb(FaNum)_Medium",
@@ -1707,7 +1714,7 @@ const styles = StyleSheet.create({
 
   boldTextStyle: {
     fontFamily: "IRANSansWeb(FaNum)_Bold",
-    color: '#4b4949',
+    // color: '#4b4949',   ////zare_nk_050315_commented
   },
   lablAndInputCont: {
     display: "flex",
@@ -1720,7 +1727,7 @@ const styles = StyleSheet.create({
     // border: 1px solid silver;
     borderWidth: 1,
     borderColor: "#e0e3e5",
-    borderStyle: 'solid', 
+    borderStyle: 'solid',
   },
   // .txtBox:focus {
   //   outline: none;

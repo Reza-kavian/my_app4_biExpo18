@@ -96,7 +96,6 @@ type SabadTitrType = {
     [key: string]: any;
 };
 
- 
 async function getCookie(name: any) {
     ////zare_nk_041128_added_st_olgu 
     // await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
@@ -114,7 +113,7 @@ async function getCookie(name: any) {
         return cookieGeted;
     }
     return null;
-} 
+}
 
 // export default function ShallowRoutingExample(){  //zare_nk_041127_commented
 ////zare_nk_041127_added_st
@@ -3508,11 +3507,11 @@ export default function ShallowRoutingExample({
                                 // borderWidth: 1,
                                 // borderColor: "#a9a9a9",
                                 // borderStyle: 'solid',
-                                borderRadius: 10,
+                                // borderRadius: 10,    ////zare_nk_050315_commented
                                 // padding: 7,  //zare_nk_041209_commented
                                 paddingTop: 7,  //zare_nk_041209_added
-                                backgroundColor: "#f6f6f6",
-                                boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                                // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
+                                // boxShadow: "#5e5e5e 0px 0px 3px 0px",   ////zare_nk_050315_commented
                             }, sabadItemsCont]}
                         >
                             <View
@@ -3523,7 +3522,8 @@ export default function ShallowRoutingExample({
                                     flexDirection: "row",
                                     justifyContent: "space-between",
                                     alignItems: "center",
-                                    marginBottom: 10,
+                                    // marginBottom: 10,  ////zare_nk_050316_commented
+                                    marginRight:5,  ////zare_nk_050316_added                                   
                                 }}
                             >
                                 <View
@@ -3532,8 +3532,7 @@ export default function ShallowRoutingExample({
                                         flexDirection: "row",
                                         justifyContent: 'flex-start',
                                         // fontSize: 14,
-                                        // color: "#322E2E",
-                                        paddingRight: 5,
+                                        // color: "#322E2E", 
                                     }}
                                 >
                                     {/* <Text
@@ -3542,15 +3541,13 @@ export default function ShallowRoutingExample({
                                     <TouchableOpacity
                                         // className="BarCodeScan btn btn-danger"
                                         style={{
-                                            borderRadius: 10,
-                                            ////zare_nk_041202_added_st
+                                            borderRadius: 10, 
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                             flexDirection: 'row',
                                             padding: 7,
-                                            backgroundColor: '#d9534f'
-                                            ////zare_nk_041202_added_end
+                                            backgroundColor: '#ff3151' 
                                         }}
                                         onPress={() => { return forOpenCodeScanner(); }}  //zare_nk_041205_forUpdateName
                                         activeOpacity={0.1}
@@ -3575,7 +3572,9 @@ export default function ShallowRoutingExample({
 
                             <View
                                 // className="addressKharejInSabadCont"
-                                style={{ display: "none", flexDirection: "row" }}
+                                style={{ display: "none", flexDirection: "row",
+                                    marginRight:5,  ////zare_nk_050316_added
+                                 }}
                             >
                                 <Text style={{ color: "red" }}
                                 // className="addressKharejInSabad"
@@ -3587,25 +3586,30 @@ export default function ShallowRoutingExample({
                             <View
                                 // className="StoresTitleCont"
                                 // id="sabadSafheHeader"
-                                style={{ flexDirection: "column" }}
+                                style={{
+                                    display: 'flex',
+                                    flexDirection: "column", 
+                                    marginRight:5,  ////zare_nk_050316_added
+                                }}
                             >
                                 <View style={{
-                                    //  display: "flex",
-                                    flexDirection: "row"
+                                    display: "flex",
+                                    flexDirection: "row", 
                                 }}>
                                     <View
                                         style={{
                                             display: "flex",
                                             flexDirection: "column",
-                                            marginLeft: 10,
+                                            // marginLeft: 10,  ////zare_nk_050316_commented
                                         }}
                                     >
                                         <View
                                             // className="rounded-pilll"
                                             style={{
-                                                // display: "flex",
+                                                display: "flex",
                                                 flexDirection: "row",
-                                                padding: 10,
+                                                // padding: 10,  ////zare_nk_050316_commented
+                                                marginLeft: 10,  ////zare_nk_050316_added 
                                             }}
                                         >
                                             {/* <img
@@ -3637,6 +3641,8 @@ export default function ShallowRoutingExample({
                                             }}
                                         >
                                             <Text
+                                                numberOfLines={1}
+                                                ellipsizeMode="tail"
                                                 //  className="nameShobe titleStyle"
                                                 style={{ fontFamily: "IRANSansWeb(FaNum)_Bold", }}
                                             >هاپر کرفو</Text>
@@ -3650,9 +3656,8 @@ export default function ShallowRoutingExample({
                                 // className="sabadItemsCont hisGrandFather"
                                 style={{
                                     flexDirection: "column",
-                                    // padding: "0px 5px" 
                                     paddingVertical: 0,
-                                    paddingHorizontal: 5,
+                                    paddingHorizontal: 5, 
                                 }}
                             >
                                 {!bisatr && (
@@ -3686,9 +3691,9 @@ export default function ShallowRoutingExample({
                                 // borderWidth: 1,
                                 // borderColor: "#a9a9a9",
                                 // borderStyle: 'solid',
-                                borderRadius: 10,
-                                backgroundColor: "#f6f6f6",
-                                boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                                // borderRadius: 10,    ////zare_nk_050315_commented
+                                // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
+                                // boxShadow: "#5e5e5e 0px 0px 3px 0px",    ////zare_nk_050315_commented
                             }}
                         >
                             <View
@@ -3729,17 +3734,29 @@ export default function ShallowRoutingExample({
                                         >
                                             <Text
                                                 // id="jamKolSpan"
-                                                style={{ fontSize: 14, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
-                                            // IRANSansWeb(FaNum)_Bold
+                                                style={{
+                                                    fontSize: 12, color: "#878b92", fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                                }}
                                             >جمع کل :</Text>
-                                            <Text>{" "}</Text>
-                                            <Text
-                                                // id="kolGheymatInSabad"
-                                                style={{ fontSize: 14, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
-                                            >
-                                                {jamKol ? jamKol.toLocaleString() : jamKol}
-                                            </Text>
+                                            {/* <Text>{" "}</Text> */}
+                                            <View style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                // justifyContent: "space-between", 
+                                            }}>
+                                                <Text
+                                                    // id="kolGheymatInSabad"  .75rem
+                                                    style={{ fontSize: 12, color: '#313335', fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}
+                                                >
+                                                    {jamKol ? jamKol.toLocaleString() : jamKol}
+                                                </Text>
+                                                <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
+                                                    تومان
+                                                </Text>
+                                            </View>
+
                                         </View>
+
                                         <View
                                             // className="harSefareshCalcCont"
                                             style={{
@@ -3763,20 +3780,30 @@ export default function ShallowRoutingExample({
                                                 flexDirection: "row",
                                                 justifyContent: "space-between",
                                                 marginBottom: 5,
-                                                // fontSize: 15,
-                                                // color: "#B80000",
                                             }}
                                         >
                                             <Text
                                                 // className="titleStyle"
-                                                style={{ fontSize: 15, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
+                                                style={{ fontSize: 12, color: "#1a9f49", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
                                             >سود شما از خرید : </Text>
-                                            <Text
-                                                //  className="valueStyle" id="soodKolInSabad"
-                                                style={{ fontSize: 15, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
-                                            >
-                                                {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
-                                            </Text>
+
+                                            <View style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                // justifyContent: "space-between", 
+                                            }}>
+                                                <Text
+                                                    //  className="valueStyle" id="soodKolInSabad"
+                                                    style={{ fontSize: 12, color: "#313335", fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}
+                                                >
+                                                    {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
+                                                </Text>
+                                                <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
+                                                    تومان
+                                                </Text>
+
+                                            </View>
+
                                         </View>
 
                                         <View
@@ -3786,20 +3813,30 @@ export default function ShallowRoutingExample({
                                                 flexDirection: "row",
                                                 justifyContent: "space-between",
                                                 marginBottom: 5,
-                                                // fontSize: 15,
-                                                // color: "#B80000",
                                             }}
                                         >
                                             <Text
                                                 // className="titleStyle"
-                                                style={{ fontSize: 15, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
+                                                style={{ fontSize: 12, color: "#878b92", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
                                             >مبلغ قابل پرداخت :</Text>
-                                            <Text
-                                                // className="valueStyle" id="ghabelePardakhtInSabad"
-                                                style={{ fontSize: 15, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium" }}
-                                            >
-                                                {jamKol ? jamKol.toLocaleString() : 0}
-                                            </Text>
+
+                                            <View style={{
+                                                display: "flex",
+                                                flexDirection: "row",
+                                                // justifyContent: "space-between", 
+                                            }}>
+                                                <Text
+                                                    // id="kolGheymatInSabad"  .75rem
+                                                    style={{ fontSize: 12, color: '#313335', fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}
+                                                >
+                                                    {jamKol ? jamKol.toLocaleString() : 0}
+                                                </Text>
+                                                <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
+                                                    تومان
+                                                </Text>
+
+                                            </View>
+
                                         </View>
                                     </View>
 

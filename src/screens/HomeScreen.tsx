@@ -4043,9 +4043,9 @@ export default function HomeScreen({
                   padding: 10,
                   // alignItems: "center",   //zare_nk_041206_commented
                   borderWidth: 1,
-                  borderColor: "#a9a9a9",
+                  borderColor: "#a9a9a9",   
                   borderStyle: 'solid',
-                  boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                  boxShadow: "#5e5e5e 0px 0px 3px 0px",  
                   borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
@@ -4191,11 +4191,11 @@ export default function HomeScreen({
                   justifyContent: "space-between",
                   // padding: 15,   
                   padding: 10,
-                  // alignItems: "center",  //zare_nk_041206_commented 
+                  // alignItems: "center",    //zare_nk_041206_commented
                   borderWidth: 1,
                   borderColor: "#a9a9a9",
                   borderStyle: 'solid',
-                  boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                  boxShadow: "#5e5e5e 0px 0px 3px 0px",   
                   borderRadius: 25,
                   backgroundColor: "white",
                   overflow: "hidden",
@@ -4337,9 +4337,9 @@ export default function HomeScreen({
                   justifyContent: "space-between",
                   // padding: 15,   
                   padding: 10,
-                  // alignItems: "center",   //zare_nk_041206_commented 
+                  // alignItems: "center",    //zare_nk_041206_commented   
                   borderWidth: 1,
-                  borderColor: "#a9a9a9",
+                  borderColor: "#a9a9a9",   
                   borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
                   borderRadius: 25,
@@ -4500,7 +4500,8 @@ export default function HomeScreen({
                   padding: 10,
                   // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
-                  borderColor: "#a9a9a9",
+                  // borderColor: "#a9a9a9",   ////zare_nk_050317_commented_movaghat
+                  borderColor: "white",   ////zare_nk_050317_added_movaghat
                   borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
                   borderRadius: 25,
@@ -4625,7 +4626,8 @@ export default function HomeScreen({
               </TouchableOpacity>
             </View>
 
-            <View
+            {/* zare_nk_050317_commented_st(felan nemikhaim) */}
+            {/* <View
               // id="Subprograms-5"
               // className="Subprograms"
               style={[{
@@ -4690,11 +4692,7 @@ export default function HomeScreen({
                         minHeight: 85.6,
                         // width:86
                       }}
-                    >
-                      {/* <Image
-                        source={{ uri: "/images/Subprograms/game.png" }}
-                        style={{ width: 64, }}
-                      /> */}
+                    > 
                       <Image
                         source={gameImage}
                         style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
@@ -4755,12 +4753,7 @@ export default function HomeScreen({
                 <View
                   // className="leftArrowInSubprograms"
                   style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
-                >
-
-                  {/* <Image
-                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                    style={{ width: 20, }}
-                  /> */}
+                > 
                   <SvgUri
                     uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     width={20}
@@ -4836,11 +4829,7 @@ export default function HomeScreen({
                         minHeight: 85.6,
                         // width:86
                       }}
-                    >
-                      {/* <Image
-                        source={{ uri: "/images/Subprograms/superMarket.png" }}
-                        style={{ width: 64, }}
-                      /> */}
+                    > 
                       <Image
                         source={superMarketImage}
                         style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
@@ -4902,12 +4891,7 @@ export default function HomeScreen({
                 <View
                   // className="leftArrowInSubprograms"
                   style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
-                >
-
-                  {/* <Image
-                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                    style={{ width: 20, }}
-                  /> */}
+                > 
                   <SvgUri
                     uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     width={20}
@@ -4915,7 +4899,8 @@ export default function HomeScreen({
                   />
                 </View>
               </TouchableOpacity>
-            </View>
+            </View> */}
+            {/* zare_nk_050317_commented_end(felan nemikhaim) */}
 
             {/* zare_nk_041206_nokteh(be khatere dadane gap dar css az taktike ijade view haye tookhaliye komakiye akhare container ejtenab mikonim,
 vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava ham dare ye gape bimored mideh ke shahede ye marginLefte

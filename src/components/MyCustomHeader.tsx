@@ -29,6 +29,10 @@ import { HeaderBackButton } from "@react-navigation/elements";
 //zare_nk_040530_added_st(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
 // parameterhaye voroodi ra barname automat az React Navigation migire)
 import { NativeStackHeaderProps } from "@react-navigation/native-stack"; //zare_nk_040530_added
+
+// import BackButtonIcon from "../components/icons/images/BackButton";   ////zare_nk_050317_added
+import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   ////zare_nk_050317_added
+
 const MyCustomHeader = ({
   navigation,
   back,
@@ -141,14 +145,31 @@ const MyCustomHeader = ({
 
   return (
     <SafeAreaView
-      style={[styles.container,]}
+      style={[styles.container,
+      {
+        // borderWidth: 2,
+        // borderColor: "black",
+        // borderStyle: 'dashed',
+      }
+      ]}
       edges={["top"]}
     >
       {/* لوگو سمت چپ */}
       <View
         style={[
           styles.buttonsContainer,
-        ]}
+          {
+            display: 'flex',
+            flexDirection: 'row',
+            // borderWidth: 2,
+            // borderColor: "green",
+            // borderStyle: 'dashed',
+            ////zare_nk_050317_added_st
+            flexBasis: '31%',
+            flexGrow: 1,
+            flexShrink: 1,
+            ////zare_nk_050317_added_end
+          }]}
       >
         {isLoggedIn ? (
           <View
@@ -201,42 +222,84 @@ const MyCustomHeader = ({
       {/* عنوان وسط */}
       <View
         style={{
-        }}
-      >
-        {/* <Text style={styles.title}>خوش آمدید</Text> */}
-        <Text style={styles.buttonText}>
-          {options.title ?? route.name}
-          {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
-        </Text>
-      </View>
-
-      {/* دکمه‌ها سمت راست */}
-      <View
-        style={{
+          display: 'flex',
+          flexDirection: 'row', 
+          justifyContent: 'center',
           // borderWidth: 2,
-          // borderColor: "green",
-          display: "flex",
-          flexDirection: "row",
-          alignItems: "center",
+          // borderColor: "red",
+          // borderStyle: 'dashed',
+          ////zare_nk_050317_added_st
+          flexBasis: '31%',
+          flexGrow: 1,
+          flexShrink: 1,
+          ////zare_nk_050317_added_end
         }}
       >
         <TouchableOpacity
           onPress={() => {
             navigation.navigate("Home")
           }}
+          style={{
+            // borderWidth: 1,
+            // borderColor: "black",
+            // borderStyle: 'dashed',
+          }}
         >
-          {/* <Text style={styles.title}>TIC-TAC-TOE</Text> */}
           <Image
             source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
             style={{ width: 40, height: 40, borderRadius: 7 }}
           />
         </TouchableOpacity>
+      </View>
+
+      {/* دکمه‌ها سمت راست */}
+      <View
+        style={{
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: 'flex-end',
+          alignItems: "center",
+          direction: 'ltr',
+          // borderWidth: 2,
+          // borderColor: "green",
+          // borderStyle: 'dashed',
+          ////zare_nk_050317_added_st
+          flexBasis: '31%',
+          flexGrow: 1,
+          flexShrink: 1,
+          ////zare_nk_050317_added_end
+        }}
+      >
+        {/* <TouchableOpacity
+          onPress={() => {
+            navigation.navigate("Home")
+          }}
+        > 
+          <Image
+            source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
+            style={{ width: 40, height: 40, borderRadius: 7 }}
+          />
+        </TouchableOpacity> */}
+        <Text style={[styles.buttonText,
+        {
+          // borderWidth: 1,
+          // borderColor: "white",
+          // borderStyle: 'dashed',
+        }
+        ]}>
+          {options.title ?? route.name}
+          {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
+        </Text>
 
         {back ? (
-          <HeaderBackButton
-            onPress={navigation.goBack} 
-            tintColor="blue" // رنگ فلش
-          />
+          <>
+            <HeaderBackButton
+              onPress={navigation.goBack}
+              tintColor="white"
+              backImage={() => <BackButtonWhiteIcon />}  ////zare_nk_050317_nokteh(age backImage nadim reactnative khodeshe icone pishfarzi ro jahate android lahaz 
+            //// mikoneh, vali man khastam sefareshi konam )
+            />
+          </>
         ) : null}
       </View>
     </SafeAreaView>
@@ -249,7 +312,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#459cff", // رنگ آبی خوشگل
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    // justifyContent: "space-between",  ////zare_nk_050317_commented
     paddingHorizontal: 10,
     paddingBottom: 5,
   },
@@ -261,7 +324,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 18,
     fontFamily: "IRANSansWeb(FaNum)_Bold",
-    color: "white", 
+    color: "white",
     textAlign: "center",
   },
   buttonsContainer: {
@@ -272,10 +335,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 10,
     paddingHorizontal: 10,
-    paddingVertical: 5, 
-    backgroundColor: "orange", 
+    paddingVertical: 5,
+    backgroundColor: "orange",
     borderRadius: 5,
-    boxShadow: "#5e5e5e 0px 0px 3px 1px", 
+    // boxShadow: "#5e5e5e 0px 0px 3px 1px",  ////zare_nk_050317_commented(nabashe ghashangtare)
   },
   buttonText: {
     color: "white",

@@ -1,5 +1,7 @@
 export { default as AddToCartTapsi } from './AddToCartTapsi';
 export { default as AddToCart } from './AddToCart';
+export { default as BackButtonWhite } from './BackButtonWhite';
+export { default as BackButton } from './BackButton';
 export { default as LoginIcon2 } from './LoginIcon2';
 export { default as LoginIconDimcolor } from './LoginIconDimcolor';
 export { default as LoginIcon } from './LoginIcon';

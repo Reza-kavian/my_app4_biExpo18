@@ -1869,21 +1869,23 @@ export default function ShallowRoutingExample({
     async function ShowDetails(barcodeKala: any) {
         // Alert.alert('ShowDetails called!!');
         const token = await getCookie("token");
-        if (token == null) {
-            setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-            // const bootstrap = await getBootstrap();
-            // const mymodalForWarning = new bootstrap.Modal(
-            //     document.getElementById("mymodalForWarning")
-            // );
-            // mymodalForWarning.show();
-            // const span = document.querySelector(
-            //     "#mymodalForWarning .errorInMymodalForWarning"
-            // );
-            // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
-            // }
-        }
+        ////zare_nk_050318_commented_st
+        // if (token == null) {
+        //     setIsOpenedMymodalForWarning(true);
+        //     setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+        //     // const bootstrap = await getBootstrap();
+        //     // const mymodalForWarning = new bootstrap.Modal(
+        //     //     document.getElementById("mymodalForWarning")
+        //     // );
+        //     // mymodalForWarning.show();
+        //     // const span = document.querySelector(
+        //     //     "#mymodalForWarning .errorInMymodalForWarning"
+        //     // );
+        //     // if (span instanceof HTMLElement) {
+        //     //     span.innerText = "لطفا ابتدا آنلاین شوید";
+        //     // }
+        // }
+        ////zare_nk_050318_commented_end
 
         let ApiUrl = "https://api.tochikala.com/api/";
         var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
@@ -1906,7 +1908,7 @@ export default function ShallowRoutingExample({
             var result = data;
             if (result.status != 0) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning(result.errors[0] + '-aaa');
+                setWarningTextInMymodalForWarning(result.errors[0]);
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")

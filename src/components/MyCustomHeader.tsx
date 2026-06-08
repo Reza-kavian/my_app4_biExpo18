@@ -223,7 +223,7 @@ const MyCustomHeader = ({
       <View
         style={{
           display: 'flex',
-          flexDirection: 'row', 
+          flexDirection: 'row',
           justifyContent: 'center',
           // borderWidth: 2,
           // borderColor: "red",
@@ -280,13 +280,16 @@ const MyCustomHeader = ({
             style={{ width: 40, height: 40, borderRadius: 7 }}
           />
         </TouchableOpacity> */}
-        <Text style={[styles.buttonText,
-        {
-          // borderWidth: 1,
-          // borderColor: "white",
-          // borderStyle: 'dashed',
-        }
-        ]}>
+        <Text
+          numberOfLines={1}
+          ellipsizeMode="tail"
+          style={[styles.buttonText,
+          {
+            // borderWidth: 1,
+            // borderColor: "white",
+            // borderStyle: 'dashed',
+          }
+          ]}>
           {options.title ?? route.name}
           {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
         </Text>

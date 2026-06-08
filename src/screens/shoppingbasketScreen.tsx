@@ -140,6 +140,8 @@ export default function ShallowRoutingExample({
 
     const refForBarcodeValue = useRef<string | null>(null);   ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
 
+    const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
+
     ////zare_nk_041202_added_st(moadele @media baraye responsive kardane site) 
     const { width } = useWindowDimensions();
     //////responsive_for_sabadItemsAndTotalInf_added_st
@@ -384,22 +386,23 @@ export default function ShallowRoutingExample({
     async function ShowDetails(barcodeKala: any) {
         // Alert.alert('ShowDetails called!!');
         const token = await getCookie("token");
-        if (token == null) {
-            setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-            // const bootstrap = await getBootstrap();
-            // const mymodalForWarning = new bootstrap.Modal(
-            //     document.getElementById("mymodalForWarning")
-            // );
-            // mymodalForWarning.show();
-            // const span = document.querySelector(
-            //     "#mymodalForWarning .errorInMymodalForWarning"
-            // );
-            // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
-            // }
-        }
-
+        ////zare_nk_050318_commented_st
+        // if (token == null) {
+        //     setIsOpenedMymodalForWarning(true);
+        //     setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+        //     // const bootstrap = await getBootstrap();
+        //     // const mymodalForWarning = new bootstrap.Modal(
+        //     //     document.getElementById("mymodalForWarning")
+        //     // );
+        //     // mymodalForWarning.show();
+        //     // const span = document.querySelector(
+        //     //     "#mymodalForWarning .errorInMymodalForWarning"
+        //     // );
+        //     // if (span instanceof HTMLElement) {
+        //     //     span.innerText = "لطفا ابتدا آنلاین شوید";
+        //     // }
+        // }
+        ////zare_nk_050318_commented_end
         let ApiUrl = "https://api.tochikala.com/api/";
         var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
         const response = await fetch(urlApi_SelectShobehJashnvareh, {
@@ -515,6 +518,7 @@ export default function ShallowRoutingExample({
                 }
 
                 const idTag = "ForCart-" + parsedList[0].IdKala;
+                setImgUriForDet(`https://img.tochikala.com/Product/${parsedList[0].IdKala}.webp`);  //zare_nk_050318_added
                 setForCartContInProdDetVal(() => {
                     return {
                         tedadInSabadOrDet: parsedList[0].TedadDarSabad,
@@ -1252,6 +1256,7 @@ export default function ShallowRoutingExample({
                             ForCartContentsDesignTypeLet = 1;
                         }
                         if (addRemParam.fromShowDetails) {
+                            setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050318_added
                             setForCartContInProdDetVal(() => {
                                 const idTag = "ForCart-" + addRemParam.IdKala;
                                 return {
@@ -1453,6 +1458,7 @@ export default function ShallowRoutingExample({
                         ForCartContentsDesignTypeLet = 1;
                     }
                     if (addRemParam.fromShowDetails) {
+                        setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050318_added
                         setForCartContInProdDetVal(() => {
                             const idTag = "ForCart-" + addRemParam.IdKala;
                             return {
@@ -1582,7 +1588,7 @@ export default function ShallowRoutingExample({
                                 setScannedValue(null);
                                 setIsScanning(true);
                             }}
-                        /> */} 
+                        /> */}
                         <TouchableOpacity
                             style={{
                                 borderRadius: 8,
@@ -1616,18 +1622,7 @@ export default function ShallowRoutingExample({
                             >
                                 تأیید
                             </Text>
-                        </TouchableOpacity>
-
-
-
-
-
-
-
-
-
-
-
+                        </TouchableOpacity>  
 
                     </View>
                 </View>
@@ -1891,8 +1886,7 @@ export default function ShallowRoutingExample({
                                                     onLayout={onImageLayoutForDet}
                                                     onError={() => {
                                                         const productUriOnError = 'https://img.tochikala.com/Logo/tochi.png';
-                                                        setImgUriForDet(productUriOnError);
-
+                                                        setImgUriForDet(productUriOnError); 
                                                         if (productWidthForDet > 0) {
                                                             Image.getSize(productUriOnError, (imgWidth, imgHeight) => {
                                                                 const ratio = imgHeight / imgWidth;
@@ -1900,11 +1894,12 @@ export default function ShallowRoutingExample({
                                                             });
                                                         }
                                                     }}
-                                                    onLoad={() => console.log('Image loaded')}
+                                                    onLoad={() => { setIsLoadedIroductImage(true); }}
                                                     // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
                                                     source={{ uri: imgUriForDet }}   //zare_nk_041207_added
                                                     style={{
-                                                        backgroundColor: "#EFEFEF", width: "100%",
+                                                        backgroundColor: isLoadedIroductImage ? "#ffffff" : "#efefef", 
+                                                        width: "100%",
                                                         ...(productHeightForDet === 0
                                                             ? { aspectRatio: 1 }
                                                             : { height: productHeightForDet }),
@@ -2519,9 +2514,9 @@ export default function ShallowRoutingExample({
                                 justifyContent: "center",
                                 // marginBottom: 30,
                                 // color: "red", 
-                                borderWidth: 2,
-                                borderStyle: 'dashed',
-                                borderColor: 'black',
+                                // borderWidth: 2,
+                                // borderStyle: 'dashed',
+                                // borderColor: 'black',
                             }}
                         >
                             <Text
@@ -2530,9 +2525,9 @@ export default function ShallowRoutingExample({
                                 style={{
                                     color: "red",
                                     fontFamily: "IRANSansWeb(FaNum)_Medium",
-                                    borderWidth: 2,
-                                    borderStyle: 'dashed',
-                                    borderColor: 'black',
+                                    // borderWidth: 2,
+                                    // borderStyle: 'dashed',
+                                    // borderColor: 'black',
                                 }}>کالای مورد نظر یافت نشد({refForBarcodeValue.current})</Text>
                             {/* zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani)) */}
                         </View>

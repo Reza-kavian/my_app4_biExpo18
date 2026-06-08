@@ -25,7 +25,8 @@ import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type NavigationType = NativeStackNavigationProp<
   RootStackParamList,
-  "shoppingbasket"
+  //"shoppingbasket"   ////zare_nk_050318_commented
+  "discountsAndOffers"   ////zare_nk_050318_added
 >;
 ////zare_nk_050315_nokteh_end 
 
@@ -913,6 +914,9 @@ export function SabadSatrComponent({
   openprodDetModal,
   navigation, ////zare_nk_041127_added
 }: SabadSatrProps) {
+
+  const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
+
   ////zare_nk_041207_added_st
   const [productHeight, setProductHeight] = useState<number>(0);
   const [productWidth, setProductWidth] = useState<number>(0);  //zare_nk_041208_dded
@@ -1152,11 +1156,12 @@ export function SabadSatrComponent({
                   });
                 }
               }}
-              onLoad={() => console.log('Image loaded')}
+              onLoad={() => { setIsLoadedIroductImage(true); }}
               // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
               source={{ uri: imgUri }}   //zare_nk_041207_added
               style={{
-                backgroundColor: "#EFEFEF", width: "100%",
+                backgroundColor: isLoadedIroductImage ? "#ffffff" : "#efefef",
+                width: "100%",
                 // height: 'auto',  //zare_nk_041207_comemnted(height: 'auto' dar reactNative dorost amal nemikoneh)
                 //// aspectRatio: 1,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))(rahe aspectRatioye ertefa)
                 // height: productHeight,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))(rahe onLayoutiye ertefa)
@@ -1522,6 +1527,8 @@ export default function ShallowRoutingExample({
   console.log('041210-1-ShallowRoutingExample called!!');
   // const [windowWidth, setWindowWidth] = useState(Dimensions.get("window").width);
 
+  const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);
+
   // useEffect(() => {
   //   const subscription = Dimensions.addEventListener("change", ({ window }) => {
   //     Alert.alert("window.width: " + window.width);
@@ -1646,22 +1653,24 @@ export default function ShallowRoutingExample({
 
   async function ShowDetails(barcodeKala: any) {
     const token = await getCookie("token");
-    if (token == null) {
-      setIsOpenedMymodalForWarning(true);
-      setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-      // const bootstrap = await getBootstrap();
-      // const mymodalForWarning = new bootstrap.Modal(
-      //     document.getElementById("mymodalForWarning")
-      // );
-      // mymodalForWarning.show();
-      // const span = document.querySelector(
-      //     "#mymodalForWarning .errorInMymodalForWarning"
-      // );
-      // if (span instanceof HTMLElement) {
-      //     span.innerText = "لطفا ابتدا آنلاین شوید";
-      // }
-      return;  //zare_nk_041130_added
-    }
+    ////zare_nk_050318_commented_st
+    // if (token == null) {
+    //   setIsOpenedMymodalForWarning(true);
+    //   setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+    //   // const bootstrap = await getBootstrap();
+    //   // const mymodalForWarning = new bootstrap.Modal(
+    //   //     document.getElementById("mymodalForWarning")
+    //   // );
+    //   // mymodalForWarning.show();
+    //   // const span = document.querySelector(
+    //   //     "#mymodalForWarning .errorInMymodalForWarning"
+    //   // );
+    //   // if (span instanceof HTMLElement) {
+    //   //     span.innerText = "لطفا ابتدا آنلاین شوید";
+    //   // }
+    //   return;  //zare_nk_041130_added
+    // }
+    ////zare_nk_050318_commented_end
 
     let ApiUrl = "https://api.tochikala.com/api/";
     var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
@@ -1894,180 +1903,182 @@ export default function ShallowRoutingExample({
     console.log('041210-5-addOrRemChanged in useEffect-isOpenedProdDetModal != true');
     async function tempFuncForAsync() {
       const token = await getCookie("token");
-      if (token == null) {
-        console.log('041210-6-addOrRemChanged in useEffect-token == null');
-        setIsOpenedMymodalForWarning(true);
-        setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-        // const bootstrap = await getBootstrap();
-        // const mymodalForWarning = new bootstrap.Modal(
-        //     document.getElementById("mymodalForWarning")
-        // );
-        // mymodalForWarning.show();
-        // const span = document.querySelector(
-        //     "#mymodalForWarning .errorInMymodalForWarning"
-        // );
-        // if (span instanceof HTMLElement) {
-        //     span.innerText = "لطفا ابتدا آنلاین شوید";
-        // }
-        return;
-      } else {
-        console.log('041210-7-addOrRemChanged in useEffect-token != null');
-        type InputDataType = {
-          IdShobeh: number;
-          IsJashnvareh: number;
-          NameKala: string;
-          IdG1: number;
-          IdG2: number;
-          IdG3: number;
-          IdG4: number;
-          IsMostBuy: number;
-          Sort: number;
-          IsFavorite: number;
-          IdVitrin: number;
-        };
+      ////zare_nk_050318_commented_st
+      // if (token == null) { 
+      // console.log('041210-6-addOrRemChanged in useEffect-token == null');
+      // setIsOpenedMymodalForWarning(true);
+      // setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+      // // const bootstrap = await getBootstrap();
+      // // const mymodalForWarning = new bootstrap.Modal(
+      // //     document.getElementById("mymodalForWarning")
+      // // );
+      // // mymodalForWarning.show();
+      // // const span = document.querySelector(
+      // //     "#mymodalForWarning .errorInMymodalForWarning"
+      // // );
+      // // if (span instanceof HTMLElement) {
+      // //     span.innerText = "لطفا ابتدا آنلاین شوید";
+      // // }
+      // return; 
+      // } else {
+      ////zare_nk_050318_commented_end
+      console.log('041210-7-addOrRemChanged in useEffect-token != null');
+      type InputDataType = {
+        IdShobeh: number;
+        IsJashnvareh: number;
+        NameKala: string;
+        IdG1: number;
+        IdG2: number;
+        IdG3: number;
+        IdG4: number;
+        IsMostBuy: number;
+        Sort: number;
+        IsFavorite: number;
+        IdVitrin: number;
+      };
 
-        const inputData: InputDataType = {
-          IdShobeh: 6,
-          // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
-          IsJashnvareh: -1,  //zare_nk_041208_added_testi
-          NameKala: "",
-          // IdG1: -1,//zare_nk_041208_commented_testi
-          IdG1: 1,//zare_nk_041208_added_testi
-          IdG2: -1,
-          IdG3: -1,
-          IdG4: -1,
-          IsMostBuy: -1,
-          Sort: -1,
-          IsFavorite: -1,
-          IdVitrin: -1,
-        };
-        console.log('041210-8-addOrRemChanged in useEffect-token != null');
-        let ApiUrl = "https://api.tochikala.com/api/";
-        var urlSelectKalaShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
-        const response = await fetch(urlSelectKalaShobeh, {   //zare_nk_041121_added(for shopToDiscount)
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + token,
-          },
-          body: JSON.stringify({
-            IdShobeh: inputData.IdShobeh,
-            IsJashnvareh: inputData.IsJashnvareh,
-            NameKala: inputData.NameKala,
-            IdG1: inputData.IdG1,
-            IdG2: inputData.IdG2,
-            IdG3: inputData.IdG3,
-            IdG4: inputData.IdG4,
-            IsMostBuy: inputData.IsMostBuy,
-            Sort: inputData.Sort,
-            IsFavorite: inputData.IsFavorite,
-            IdVitrin: inputData.IdVitrin,
-          }),
-        });
-        console.log('041210-9-addOrRemChanged in useEffect');
-        const data = await response.json();
-        console.log('041210-10-addOrRemChanged in useEffect');
-        if (response.ok) {
-          console.log('041210-10-addOrRemChanged in useEffect-response.ok');
-          var result = JSON.parse(data.data.list);
-          console.log('041210-10-addOrRemChanged in useEffect-result: ' + JSON.stringify(result));
-          console.log('041210-11-addOrRemChanged in useEffect-data.status: ' + data.status);
-          if (data.status != 0) {
-            console.log('041210-12-data.status != 0');
-            setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning(data.errors[0]);
-            // const bootstrap = await getBootstrap();
-            // const mymodalForWarning = new bootstrap.Modal(
-            //     document.getElementById("mymodalForWarning")
-            // );
-            // mymodalForWarning.show();
-            // const span = document.querySelector(
-            //     "#mymodalForWarning .errorInMymodalForWarning"
-            // );
-            // if (span instanceof HTMLElement) {
-            //     span.innerText = data.errors[0];
-            // }
-          } else if (data.status == 0) {
-            console.log('041210-12-data.status == 0');
-            if (result.length == 0) {
-              console.log('041210-13-result.length == 0');
-              console.log('result.length == 0: ' + result.length)
-              setBisatr(true);
-              return;
-            }
-            console.log('041210-14-result.length == 0');
-            setBisatr(false);
-            refForfather.current = "#cardcontainer2";
-            console.log('041210-15');
-            setSabadRows(() => {
-              return (
-                result.map((item: any) => {
-                  var bishAzMaxTedadYaMojoodi = 0;
-                  if (item.MaxTedad != null) {
-                    if (item.MaxTedad <= item.TedadDarSabad) {
-                      bishAzMaxTedadYaMojoodi = 1;
-                    }
-                  } else {
-                    if (item.Mojoodi <= item.TedadDarSabad) {
-                      bishAzMaxTedadYaMojoodi = 1;
-                    }
+      const inputData: InputDataType = {
+        IdShobeh: 6,
+        // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
+        IsJashnvareh: -1,  //zare_nk_041208_added_testi
+        NameKala: "",
+        // IdG1: -1,//zare_nk_041208_commented_testi
+        IdG1: 1,//zare_nk_041208_added_testi
+        IdG2: -1,
+        IdG3: -1,
+        IdG4: -1,
+        IsMostBuy: -1,
+        Sort: -1,
+        IsFavorite: -1,
+        IdVitrin: -1,
+      };
+      console.log('041210-8-addOrRemChanged in useEffect-token != null');
+      let ApiUrl = "https://api.tochikala.com/api/";
+      var urlSelectKalaShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
+      const response = await fetch(urlSelectKalaShobeh, {   //zare_nk_041121_added(for shopToDiscount)
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          IdShobeh: inputData.IdShobeh,
+          IsJashnvareh: inputData.IsJashnvareh,
+          NameKala: inputData.NameKala,
+          IdG1: inputData.IdG1,
+          IdG2: inputData.IdG2,
+          IdG3: inputData.IdG3,
+          IdG4: inputData.IdG4,
+          IsMostBuy: inputData.IsMostBuy,
+          Sort: inputData.Sort,
+          IsFavorite: inputData.IsFavorite,
+          IdVitrin: inputData.IdVitrin,
+        }),
+      });
+      console.log('041210-9-addOrRemChanged in useEffect');
+      const data = await response.json();
+      console.log('041210-10-addOrRemChanged in useEffect');
+      if (response.ok) {
+        console.log('041210-10-addOrRemChanged in useEffect-response.ok');
+        var result = JSON.parse(data.data.list);
+        console.log('041210-10-addOrRemChanged in useEffect-result: ' + JSON.stringify(result));
+        console.log('041210-11-addOrRemChanged in useEffect-data.status: ' + data.status);
+        if (data.status != 0) {
+          console.log('041210-12-data.status != 0');
+          setIsOpenedMymodalForWarning(true);
+          setWarningTextInMymodalForWarning(data.errors[0]);
+          // const bootstrap = await getBootstrap();
+          // const mymodalForWarning = new bootstrap.Modal(
+          //     document.getElementById("mymodalForWarning")
+          // );
+          // mymodalForWarning.show();
+          // const span = document.querySelector(
+          //     "#mymodalForWarning .errorInMymodalForWarning"
+          // );
+          // if (span instanceof HTMLElement) {
+          //     span.innerText = data.errors[0];
+          // }
+        } else if (data.status == 0) {
+          console.log('041210-12-data.status == 0');
+          if (result.length == 0) {
+            console.log('041210-13-result.length == 0');
+            console.log('result.length == 0: ' + result.length)
+            setBisatr(true);
+            return;
+          }
+          console.log('041210-14-result.length == 0');
+          setBisatr(false);
+          refForfather.current = "#cardcontainer2";
+          console.log('041210-15');
+          setSabadRows(() => {
+            return (
+              result.map((item: any) => {
+                var bishAzMaxTedadYaMojoodi = 0;
+                if (item.MaxTedad != null) {
+                  if (item.MaxTedad <= item.TedadDarSabad) {
+                    bishAzMaxTedadYaMojoodi = 1;
                   }
+                } else {
+                  if (item.Mojoodi <= item.TedadDarSabad) {
+                    bishAzMaxTedadYaMojoodi = 1;
+                  }
+                }
 
-                  let ForCartContentsDesignTypeLet = 0
+                let ForCartContentsDesignTypeLet = 0
 
-                  if (item.TedadDarSabad == 0) {
-                    ForCartContentsDesignTypeLet = 0;
-                  }
-                  else if (item.TedadDarSabad > item.ZaribForoosh) {
-                    ForCartContentsDesignTypeLet = 2;
-                  }
-                  else if (item.TedadDarSabad == item.ZaribForoosh) {
-                    ForCartContentsDesignTypeLet = 1;
-                  }
-                  return ({
-                    tedadInSabadOrDet: item.TedadDarSabad,
-                    ZaribForoosh: item.ZaribForoosh,
-                    IdKala: item.IdKala,
-                    NameKala: item.NameKala,
-                    DarsadTakhfif: item.DarsadTakhfif,
-                    NameBerand: item.NameBerand,
-                    FeeForoosh: item.FeeForoosh,
-                    FeeMasraf: item.FeeMasraf,
-                    BarcodeKala: item.BarcodeKala,
-                    Mojoodi: item.Mojoodi,
-                    MaxTedad: item.MaxTedad,
-                    MasrafSatr: item.MasrafSatr,
-                    father: "#cardcontainer2",
-                    refForfather: refForfather,
-                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-                    fromShowDetails: false,
-                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-                    idTag: "ForCart-" + item.IdKala,
-                  })
+                if (item.TedadDarSabad == 0) {
+                  ForCartContentsDesignTypeLet = 0;
+                }
+                else if (item.TedadDarSabad > item.ZaribForoosh) {
+                  ForCartContentsDesignTypeLet = 2;
+                }
+                else if (item.TedadDarSabad == item.ZaribForoosh) {
+                  ForCartContentsDesignTypeLet = 1;
+                }
+                return ({
+                  tedadInSabadOrDet: item.TedadDarSabad,
+                  ZaribForoosh: item.ZaribForoosh,
+                  IdKala: item.IdKala,
+                  NameKala: item.NameKala,
+                  DarsadTakhfif: item.DarsadTakhfif,
+                  NameBerand: item.NameBerand,
+                  FeeForoosh: item.FeeForoosh,
+                  FeeMasraf: item.FeeMasraf,
+                  BarcodeKala: item.BarcodeKala,
+                  Mojoodi: item.Mojoodi,
+                  MaxTedad: item.MaxTedad,
+                  MasrafSatr: item.MasrafSatr,
+                  father: "#cardcontainer2",
+                  refForfather: refForfather,
+                  bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+                  fromShowDetails: false,
+                  ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+                  idTag: "ForCart-" + item.IdKala,
                 })
-              )
-            });
-            ////zare_nk_041121_added_end(for shopToDiscount)
-          }
-        } else {
-          console.log('!!response.ok')
-          if (response.status == 401) {
-            setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-            // const bootstrap = await getBootstrap();
-            // const mymodalForWarning = new bootstrap.Modal(
-            //     document.getElementById("mymodalForWarning")
-            // );
-            // mymodalForWarning.show();
-            // const span = document.querySelector(
-            //     "#mymodalForWarning .errorInMymodalForWarning"
-            // );
-            // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
-            // }
-          }
+              })
+            )
+          });
+          ////zare_nk_041121_added_end(for shopToDiscount)
+        }
+      } else {
+        console.log('!!response.ok')
+        if (response.status == 401) {
+          setIsOpenedMymodalForWarning(true);
+          setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+          // const bootstrap = await getBootstrap();
+          // const mymodalForWarning = new bootstrap.Modal(
+          //     document.getElementById("mymodalForWarning")
+          // );
+          // mymodalForWarning.show();
+          // const span = document.querySelector(
+          //     "#mymodalForWarning .errorInMymodalForWarning"
+          // );
+          // if (span instanceof HTMLElement) {
+          //     span.innerText = "لطفا ابتدا آنلاین شوید";
+          // }
         }
       }
+      // }////zare_nk_050318_commented
     }
     tempFuncForAsync();
   }, [addOrRemChanged]);
@@ -3530,11 +3541,12 @@ export default function ShallowRoutingExample({
                               });
                             }
                           }}
-                          onLoad={() => console.log('Image loaded')}
+                          onLoad={() => { setIsLoadedIroductImage(true); }}
                           // source={{ uri: `https://img.tochikala.com/Product/${SabadRow.IdKala}.webp` }}  //zare_nk_041207_commented
                           source={{ uri: imgUriForDet }}   //zare_nk_041207_added
                           style={{
-                            backgroundColor: "#EFEFEF", width: "100%",   //zare_nk_041211_alan
+                            backgroundColor: isLoadedIroductImage ? "#ffffff" : "#efefef",
+                            width: "100%",   //zare_nk_041211_alan
                             ...(productHeightForDet === 0
                               ? { aspectRatio: 1 }
                               : { height: productHeightForDet }),
@@ -4234,9 +4246,9 @@ export default function ShallowRoutingExample({
                 style={{
                   width: "100%",
                   overflow: "hidden",
-                  borderColor: 'blue',
-                  borderStyle: 'solid',
-                  borderWidth: 3,
+                  // borderColor: 'blue',
+                  // borderStyle: 'solid',
+                  // borderWidth: 3,
                 }}
                 contentContainerStyle={[{
                   display: "flex",

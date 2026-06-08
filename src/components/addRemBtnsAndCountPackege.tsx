@@ -24,7 +24,8 @@ import type { RootStackParamList } from "../types/navigation";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type NavigationType = NativeStackNavigationProp<
     RootStackParamList,
-    "shoppingbasket"
+    //"shoppingbasket" ////zare_nk_050318_commented
+    "shoppingbasket" | "discountsAndOffers" | "Home"  ////zare_nk_050318_added
 >;
 ////zare_nk_050315_nokteh_end(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 
@@ -292,7 +293,7 @@ export default function AddRemBtnsAndCountPackege({
                                 alignItems: "center",
                                 alignContent: "center",
                                 overflow: "hidden",
-                                paddingHorizontal: 4,   
+                                paddingHorizontal: 4,
                                 ////zare_nk_050316_added_end  
                             }}
                         >
@@ -585,7 +586,7 @@ export default function AddRemBtnsAndCountPackege({
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,
-                                        backgroundColor: "#e6e9ea", 
+                                        backgroundColor: "#e6e9ea",
                                         ////zare_nk_050316_added_end
                                     }
                                 ]}
@@ -629,12 +630,12 @@ export default function AddRemBtnsAndCountPackege({
                         style={{
                             height: "100%",
                             display: "flex",
-                            flexDirection: "row", 
+                            flexDirection: "row",
                             // width: 40, ////zare_nk_050316_commented
                             width: 30, ////zare_nk_050316_added 
                             justifyContent: "center",
                             alignItems: 'center',
-                            alignContent: "center", 
+                            alignContent: "center",
                         }}
                     >
                         <Text
@@ -976,13 +977,13 @@ export default function AddRemBtnsAndCountPackege({
                         // className={`middleCount-${IdKala}`}
                         style={{
                             height: "100%",
-                            display: "flex", 
+                            display: "flex",
                             flexDirection: "row",
                             // width: 40, ////zare_nk_050316_commented
                             width: 30, ////zare_nk_050316_added 
                             justifyContent: "center",
                             alignItems: 'center',
-                            alignContent: "center", 
+                            alignContent: "center",
                         }}
                     >
                         <Text

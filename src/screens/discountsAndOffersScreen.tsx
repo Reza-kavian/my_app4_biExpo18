@@ -24,8 +24,8 @@ import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 ////zare_nk_050315_nokteh_st 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type NavigationType = NativeStackNavigationProp<
-    RootStackParamList,
-    "shoppingbasket"
+  RootStackParamList,
+  "shoppingbasket"
 >;
 ////zare_nk_050315_nokteh_end 
 
@@ -63,8 +63,8 @@ type MiddleCountTedadSefrType = {
   handlerForRemClick: () => void;  //zare_nk_041127_addeded(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
   ForCartContentsDesignType: number;
   bishAzMaxTedadYaMojoodi: number | null;
-     // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-    navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+  // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+  navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 export function MiddleCountTedadSefr({
@@ -902,8 +902,8 @@ type SabadSatrProps = {
     addRemParam: addRemParamType,
   ) => void;
   openprodDetModal: (barcodeKala: string) => void;
-     // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-    navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+  // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+  navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 export function SabadSatrComponent({
@@ -1253,7 +1253,7 @@ export function SabadSatrComponent({
 
         <View
           style={{
-            height: 37, 
+            height: 37,
             display: "flex",
             flexWrap: "wrap",
             flexDirection: "row",
@@ -1265,9 +1265,9 @@ export function SabadSatrComponent({
             justifyContent: 'flex-start',
             alignItems: 'flex-start',
             width: "100%",
-              //             borderWidth: 1,
-              // borderStyle: 'dashed',
-              // borderColor: 'red',
+            //             borderWidth: 1,
+            // borderStyle: 'dashed',
+            // borderColor: 'red',
           }}
         >
           <Text
@@ -1283,7 +1283,7 @@ export function SabadSatrComponent({
               // borderColor: 'red',
             }}
           >
-            {SabadRow.NameKala}   
+            {SabadRow.NameKala}
           </Text>
         </View>
 
@@ -1298,8 +1298,8 @@ export function SabadSatrComponent({
               flexDirection: "row",
               paddingLeft: 10,
               justifyContent: 'flex-end',
-              alignItems: "center", 
-              width: "100%", 
+              alignItems: "center",
+              width: "100%",
               // borderWidth: 1,
               // borderStyle: 'dashed',
               // borderColor: 'red',
@@ -1328,7 +1328,7 @@ export function SabadSatrComponent({
               flexDirection: "row",
               paddingLeft: 10,
               justifyContent: 'flex-end',
-              alignItems: "center", 
+              alignItems: "center",
               width: "100%",
               // borderWidth: 1,
               // borderStyle: 'dashed',
@@ -1343,7 +1343,7 @@ export function SabadSatrComponent({
                 textDecorationLine: "line-through",
                 color: '#888',  ////zare_nk_050316_added
                 fontFamily: "IRANSansWeb(FaNum)_Medium",
-                 lineHeight: 10,  ////zare_nk_050316_added
+                lineHeight: 10,  ////zare_nk_050316_added
               }}
             >
               {SabadRow.FeeMasraf.toLocaleString()}
@@ -2470,14 +2470,59 @@ export default function ShallowRoutingExample({
               {warningTextInMymodalForWarning}
             </Text>
 
-            <Button
+            {/* <Button
               title="تأیید"
               onPress={() => {
                 setIsOpenedMymodalForWarning(false);
                 // setScannedValue(null);
                 // setIsScanning(true);
               }}
-            />
+            /> */}
+            <TouchableOpacity
+              style={{
+                borderRadius: 8,
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+                flexDirection: 'row',
+                cursor: 'pointer',
+                // padding: 4,
+                // borderWidth: 1,
+                // borderStyle: 'solid',
+                // borderColor: 'rgb(165, 165, 165)',
+                backgroundColor: 'red',
+                width: 120,
+                height: 40,
+              }}
+              onPress={() => {
+                setIsOpenedMymodalForWarning(false);
+                // setScannedValue(null);
+                // setIsScanning(true);
+              }}
+              activeOpacity={0.6}
+            >
+              <Text
+                numberOfLines={1}
+                ellipsizeMode="tail"
+                style={{
+                  fontFamily: "IRANSansWeb(FaNum)_Medium",
+                  color: "white",
+                }}
+              >
+                تأیید
+              </Text>
+            </TouchableOpacity>
+
+
+
+
+
+
+
+
+
+
+
           </View>
         </View>
       </Modal>

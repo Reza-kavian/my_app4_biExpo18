@@ -23,7 +23,7 @@ import MyCustomHeader from "../components/MyCustomHeader";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-
+ 
 const AppNavigator = () => {
   return (
     // <NavigationContainer>  ////zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)

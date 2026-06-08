@@ -104,8 +104,8 @@ export default function ShallowRoutingExample({
 
     ////zare_nk_041202_added_ثدی(moadele @media baraye responsive kardane site) 
 
-  // type ForoshStateType = {   //zare_nk_050222_commented(baraye lafze khanatar)
-   type sumValsForForooshSatrType = {   //zare_nk_050222_added(baraye lafze khanatar)
+    // type ForoshStateType = {   //zare_nk_050222_commented(baraye lafze khanatar)
+    type sumValsForForooshSatrType = {   //zare_nk_050222_added(baraye lafze khanatar)
         ShomarehFaktorForoosh: number;
         IdFaktorForoosh: number;
         TarikhSefaresh: string;
@@ -405,14 +405,48 @@ export default function ShallowRoutingExample({
                             {warningTextInMymodalForWarning}
                         </Text>
 
-                        <Button
+                        {/* <Button
                             title="تأیید"
                             onPress={() => {
                                 setIsOpenedMymodalForWarning(false);
                                 // setScannedValue(null);
                                 // setIsScanning(true);
                             }}
-                        />
+                        /> */}
+                        <TouchableOpacity
+                            style={{
+                                borderRadius: 8,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                flexDirection: 'row',
+                                cursor: 'pointer',
+                                // padding: 4,
+                                // borderWidth: 1,
+                                // borderStyle: 'solid',
+                                // borderColor: 'rgb(165, 165, 165)',
+                                backgroundColor: 'red',
+                                width: 120,
+                                height: 40,
+                            }}
+                            onPress={() => {
+                                setIsOpenedMymodalForWarning(false);
+                                // setScannedValue(null);
+                                // setIsScanning(true);
+                            }}
+                            activeOpacity={0.6}
+                        >
+                            <Text
+                                numberOfLines={1}
+                                ellipsizeMode="tail"
+                                style={{
+                                    fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                    color: "white",
+                                }}
+                            >
+                                تأیید
+                            </Text>
+                        </TouchableOpacity>
                     </View>
                 </View>
             </Modal>
@@ -421,7 +455,7 @@ export default function ShallowRoutingExample({
                     // id="MyOrdersDetCont"
                     style={{
                         width: "100%",
-                        direction: "rtl", 
+                        direction: "rtl",
                     }}
                     contentContainerStyle={{
                         display: "flex",
@@ -667,7 +701,7 @@ export default function ShallowRoutingExample({
                                                         borderBottomColor: '#F5F5F5',
                                                         // padding: "10px 0px",
                                                         paddingVertical: 10,
-                                                        paddingHorizontal: 0, 
+                                                        paddingHorizontal: 0,
                                                     }}
                                                 >
                                                     <View
@@ -678,9 +712,9 @@ export default function ShallowRoutingExample({
                                                             borderRadius: 10,
                                                             overflow: 'hidden',
                                                             boxShadow: "#5e5e5e 0px 0px 3px 0px ",
-                                                             flexBasis:'auto',
-                                                            flexShrink:0,
-                                                            flexGrow:0,
+                                                            flexBasis: 'auto',
+                                                            flexShrink: 0,
+                                                            flexGrow: 0,
                                                         }}
                                                     >
                                                         {/* <img
@@ -702,12 +736,12 @@ export default function ShallowRoutingExample({
 
                                                     <View
                                                         style={{
-                                                            flexBasis:'auto',
-                                                            flexShrink:1,
-                                                            flexGrow:1,
+                                                            flexBasis: 'auto',
+                                                            flexShrink: 1,
+                                                            flexGrow: 1,
                                                             display: "flex",
                                                             flexDirection: "column",
-                                                            justifyContent: "space-around", 
+                                                            justifyContent: "space-around",
                                                         }}
                                                     >
                                                         <View style={{ display: "flex", flexDirection: "row" }}>
@@ -715,11 +749,11 @@ export default function ShallowRoutingExample({
                                                                 numberOfLines={2}
                                                                 ellipsizeMode="tail"
                                                                 style={{
-                                                                    fontSize: 13, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", 
+                                                                    fontSize: 13, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium",
 
                                                                 }}
                                                             >
-                                                                {item.NameKala  || ""}
+                                                                {item.NameKala || ""}
                                                             </Text>
                                                         </View>
 

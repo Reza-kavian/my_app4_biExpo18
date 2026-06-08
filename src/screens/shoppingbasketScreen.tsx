@@ -363,7 +363,9 @@ export default function ShallowRoutingExample({
                     // ShowDetails(code.value);  ////zare_nk_050311_commented
                     addDetectedToCart(code.value.toString());  ////zare_nk_050311_added
                     refForBarcodeValue.current = code.value.toString()     ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
-                    setIsOpenedProdDetModal(true);
+
+                    // setIsOpenedProdDetModal(true);   ////zare_nk_050317_commented(hatman tahlilshe)                   
+
                     setAddOrRemChanged(null);
                     break;
                 }
@@ -561,6 +563,12 @@ export default function ShallowRoutingExample({
     }
 
     useEffect(() => {
+        ////zare_nk_050317_added_st(hatman tahlilshe)
+        if (!isOpenedProdDetModal) {
+            setForCartContInProdDetVal(undefined);
+        }
+        ////zare_nk_050317_added_end(hatman tahlilshe)
+
         // if (isOpenedProdDetModal == false) {
         //     return;
         // }
@@ -999,6 +1007,13 @@ export default function ShallowRoutingExample({
 
                 if (parsedList.length == 0) {
                     setBisatrInProductDet(true);
+
+                    ////zare_nk_050317_added_st
+                    setIsOpenedMymodalForWarning(true);
+                    // setWarningTextInMymodalForWarning('کالای مورد نظر یافت نشد ');
+                    setWarningTextInMymodalForWarning('کالایی با بارکد  ' + BarcodeKala + ' یافت نشد');
+                    ////zare_nk_050317_added_end
+
                     // const productNotExist = document.getElementById("productNotExist");
                     // if (productNotExist) {
                     //     productNotExist.style.display = "flex";
@@ -1560,752 +1575,64 @@ export default function ShallowRoutingExample({
                             {warningTextInMymodalForWarning}
                         </Text>
 
-                        <Button
+                        {/* <Button
                             title="تأیید"
                             onPress={() => {
                                 setIsOpenedMymodalForWarning(false);
                                 setScannedValue(null);
                                 setIsScanning(true);
                             }}
-                        />
+                        /> */} 
+                        <TouchableOpacity
+                            style={{
+                                borderRadius: 8,
+                                display: 'flex',
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                flexDirection: 'row',
+                                cursor: 'pointer',
+                                // padding: 4,
+                                // borderWidth: 1,
+                                // borderStyle: 'solid',
+                                // borderColor: 'rgb(165, 165, 165)',
+                                backgroundColor: 'red',
+                                width: 120,
+                                height: 40,
+                            }}
+                            onPress={() => {
+                                setIsOpenedMymodalForWarning(false);
+                                setScannedValue(null);
+                                setIsScanning(true);
+                            }}
+                            activeOpacity={0.6}
+                        >
+                            <Text
+                                numberOfLines={1}
+                                ellipsizeMode="tail"
+                                style={{
+                                    fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                    color: "white",
+                                }}
+                            >
+                                تأیید
+                            </Text>
+                        </TouchableOpacity>
+
+
+
+
+
+
+
+
+
+
+
+
                     </View>
                 </View>
             </Modal>
             {isOpenedProdDetModal == true ? (
-                // <div
-                //     className="modal px-0"
-                //     id="prodDetModal"
-                //     style={{ overflow: "hidden" }}
-                // >
-                //     <div
-                //         className="modal-dialog"
-                //         style={{
-                //             display: "flex",
-                //             justifyContent: "center",
-                //             height: "100%",
-                //             alignItems: "center",
-                //         }}
-                //     >
-                //         <div
-                //             className="modal-content"
-                //             style={{
-                //                 borderRadius: "10px",
-                //                 width: "900px",
-                //                 flex: "0 0 900px",
-                //                 maxWidth: "100%",
-                //                 display: "flex",
-                //                 flexDirection: "column",
-                //                 height: "fitContent",
-                //                 maxHeight: "98vh",
-                //                 backgroundColor: "#fcfcfc !important",
-                //             }}
-                //         >
-                //             <div
-                //                 className="modal-header"
-                //                 style={{ border: "none", padding: "16px 16px 5px 16px" }}
-                //             >
-                //                 <div
-                //                     style={{
-                //                         width: "100%",
-                //                         display: "flex",
-                //                         flexDirection: "row",
-                //                         justifyContent: "space-between",
-                //                     }}
-                //                 >
-                //                     <div
-                //                         className="spanCont"
-                //                         style={{
-                //                             fontFamily: "IRANSansWeb(FaNum)_Medium",
-                //                             fontSize: "18px",
-                //                         }}
-                //                     >
-                //                         <span>جزئیات محصول</span>
-                //                     </div>
-                //                     <div className="h4Cont"></div>
-                //                     <div
-                //                         className="buttonCont buttonHover"
-                //                         style={{
-                //                             display: "flex",
-                //                             flexDirection: "row",
-                //                             alignContent: "center",
-                //                             alignItems: "center",
-                //                         }}
-                //                     >
-                //                         <span
-                //                             style={{
-                //                                 cursor: "pointer",
-                //                                 padding: "4px",
-                //                                 borderRadius: "8px",
-                //                                 border: "1px solid #A5A5A5",
-                //                                 width: "24px",
-                //                                 height: "24px",
-                //                                 display: "flex",
-                //                                 flexDirection: "row",
-                //                                 justifyContent: "center",
-                //                                 alignContent: "center",
-                //                             }}
-                //                             data-bs-dismiss="modal"
-                //                         >
-                //                             <img src="https://img.tochikala.com/tochikala/close-modal.svg" />
-                //                         </span>
-                //                     </div>
-                //                 </div>
-                //             </div>
-                //             <div
-                //                 className="modal-body text-center thinScroll"
-                //                 style={{ flex: "1 1 auto", display: "flex", flexDirection: "column" }}
-                //             >
-                //                 <div
-                //                     className="inModalBody"
-                //                     style={{ display: "flex", flexDirection: "column", height: "100%" }}
-                //                 >
-                //                     <div
-                //                         className="scrollContInModal"
-                //                         id="prodDetCont"
-                //                         style={{
-                //                             flex: "1 1 auto",
-                //                             display: "flex",
-                //                             flexDirection: "column",
-                //                             overflow: "hidden",
-                //                         }}
-                //                     >
-                //                         <div
-                //                             // id="productExist"
-                //                             style={{
-                //                                 height: "100%",
-                //                                 display: bisatrInProductDet === false ? "flex" : "none",
-                //                                 justifyContent: "center",
-                //                                 marginBottom: "30px",
-                //                             }}
-                //                         >
-                //                             <div
-                //                                 id="DetailsPageCont"
-                //                                 style={{
-                //                                     marginTop: "10px",
-                //                                     overflow: "hidden",
-                //                                     width: "100%",
-                //                                     paddingTop: "5px",
-                //                                     height: "fit-content",
-                //                                 }}
-                //                             >
-                //                                 <div
-                //                                     id="groupsInDetailsPageCont"
-                //                                     style={{
-                //                                         display: "none",
-                //                                         flexDirection: "row",
-                //                                         alignItems: "center",
-                //                                         fontSize: "14px",
-                //                                         margin: "0px 10px 10px 0px",
-                //                                     }}
-                //                                 ></div>
-
-                //                                 <div
-                //                                     id="DetailsImgAndInfoCont"
-                //                                     style={{
-                //                                         paddingLeft: "3px",
-                //                                         paddingRight: "3px",
-                //                                         paddingBottom: "3px",
-                //                                     }}
-                //                                 >
-                //                                     <div
-                //                                         id="ImgAndSwiperCont"
-                //                                         style={{ marginBottom: "7px", width: "100%" }}
-                //                                     >
-                //                                         <div
-                //                                             id="ImageColectionInDetails"
-                //                                             className="swiper"
-                //                                             style={{
-                //                                                 display:'none',
-                //                                                 marginLeft: "10px",
-                //                                                 padding: "7px",
-                //                                                 borderRadius: "10px",
-                //                                                 border: "none",
-                //                                                 boxShadow: "0px 0px 3px 0px silver",
-                //                                                 marginRight: "0px",
-                //                                             }}
-                //                                         >
-                //                                             <div className="swiper-wrapper"></div>
-                //                                             <div className="swiper-pagination"></div>
-                //                                             <div className="swiper-scrollbar"></div>
-                //                                         </div>
-                //                                         <div
-                //                                             id="CurrentImgCont"
-                //                                             style={{
-                //                                                 padding: "15px 0px",
-                //                                                 overflow: "hidden",
-                //                                                 borderRadius: "15px 15px 0px 0px",
-                //                                                 position: "relative",
-                //                                                 border: "none",
-                //                                                 boxShadow: "0px 0px 3px 0px silver",
-                //                                                 display: "flex",
-                //                                                 justifyContent: "center",
-                //                                                 backgroundColor: "white",
-                //                                             }}
-                //                                         >
-                //                                             <div
-                //                                                 id="heartContInDetails"
-                //                                                 style={{
-                //                                                     display: "none",
-                //                                                     zIndex: "898",
-                //                                                     cursor: "pointer",
-                //                                                     position: "absolute",
-                //                                                     top: "7px",
-                //                                                     right: "7px",
-                //                                                     fontSize: "100%",
-                //                                                     opacity: "0.7",
-                //                                                     backgroundColor: "inherit",
-                //                                                 }}
-                //                                             >
-                //                                                 <img
-                //                                                     id="heartImgInDetails"
-                //                                                     style={{ width: "32px" }}
-                //                                                     src="https://img.tochikala.com/icon/heart/heart01(0).svg"
-                //                                                     alt="علاقه&zwnj;مندی&zwnj;ها"
-                //                                                 />
-                //                                             </div>
-                //                                             {ForCartContInProdDetVal != undefined && (
-                //                                                 <img
-                //                                                     loading="lazy"
-                //                                                     id="CurrentImg"
-                //                                                     style={{ height: "fit-content" }}
-                //                                                     src={`https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`}
-                //                                                     alt={ForCartContInProdDetVal.NameKala ?? ""}
-                //                                                 />
-                //                                             )}
-                //                                         </div>
-                //                                     </div>
-
-                //                                     <div
-                //                                         id="DetailsInfoCont"
-                //                                         className="hisGrandFather WantCompress"
-                //                                         style={{
-                //                                             justifyContent: "space-between",
-                //                                             backgroundColor: "white",
-                //                                             padding: "10px",
-                //                                             borderRadius: "0px 0px 15px 15px",
-                //                                             boxShadow: "0px 0px 3px 0px silver",
-                //                                         }}
-                //                                     >
-                //                                         <div
-                //                                             id="titleAndGeoupInDetailsInfoCont"
-                //                                             style={{
-                //                                                 display: "flex",
-                //                                                 flexDirection: "column",
-                //                                                 width: "100%",
-                //                                             }}
-                //                                         >
-                //                                             {ForCartContInProdDetVal != null && (
-                //                                                 <h1
-                //                                                     id="nameKalaInDetailsInfoCont"
-                //                                                     style={{
-                //                                                         fontSize: "16px",
-                //                                                         marginBottom: "30px",
-                //                                                         fontFamily: "IRANSansWeb(FaNum)_Medium",
-                //                                                         lineHeight: "2.0",
-                //                                                         textOverflow: "ellipsis",
-                //                                                         overflow: "hidden",
-                //                                                         display: "-webkit-box",
-                //                                                         WebkitLineClamp: "2",
-                //                                                         lineClamp: "2",
-                //                                                         WebkitBoxOrient: "vertical",
-                //                                                         textAlign: "right",
-                //                                                     }}
-                //                                                 >
-                //                                                     {ForCartContInProdDetVal.NameKala}
-                //                                                 </h1>
-                //                                             )}
-
-                //                                             <div style={{ display: "flex", flexDirection: "row" }}>
-
-                //                                                 <div
-                //                                                     style={{
-                //                                                         flex: "1 1 30%",
-                //                                                         display: "flex",
-                //                                                         flexDirection: "column",
-                //                                                         paddingLeft: "5px",
-                //                                                         alignItems: "center",
-                //                                                         color: "#322E2E",
-                //                                                         justifyContent: "space-around",
-                //                                                     }}
-                //                                                 >
-                //                                                     <div
-                //                                                         style={{
-                //                                                             display: "flex",
-                //                                                             flexDirection: "row",
-                //                                                             fontFamily: "IRANSansWeb(FaNum)_Medium",
-                //                                                             color: "#888888",
-                //                                                         }}
-                //                                                     >
-                //                                                         <span>برند</span>
-                //                                                     </div>
-                //                                                     <div
-                //                                                         style={{
-                //                                                             flex: "0 0 auto",
-                //                                                             display: "flex",
-                //                                                             flexDirection: "row",
-                //                                                             paddingLeft: "5px",
-                //                                                             alignItems: "center",
-                //                                                         }}
-                //                                                     >
-                //                                                         {ForCartContInProdDetVal != null && (
-                //                                                             <span id="nameBerandInDetailsInfoCont">
-                //                                                                 {ForCartContInProdDetVal.NameBerand}
-                //                                                             </span>
-                //                                                         )}
-                //                                                     </div>
-                //                                                 </div>
-                //                                                 <div
-                //                                                     style={{
-                //                                                         display: "flex",
-                //                                                         flexDirection: "row",
-                //                                                         alignContent: "center",
-                //                                                         alignItems: "center",
-                //                                                         padding: "0px 8px 0px 8px",
-                //                                                     }}
-                //                                                 >
-                //                                                     <div
-                //                                                         style={{
-                //                                                             width: "0px",
-                //                                                             height: "30px",
-                //                                                             borderLeft: "2px solid silver",
-                //                                                         }}
-                //                                                     ></div>
-                //                                                 </div>
-                //                                                 <div
-                //                                                     style={{
-                //                                                         display: "flex",
-                //                                                         flexDirection: "column",
-                //                                                         flex: "1 1 30%",
-                //                                                         alignItems: "center",
-                //                                                         justifyContent: "space-around",
-                //                                                     }}
-                //                                                 >
-                //                                                     <div
-                //                                                         style={{
-                //                                                             display: "flex",
-                //                                                             flexDirection: "row",
-                //                                                             marginBottom: "10px",
-                //                                                         }}
-                //                                                     >
-                //                                                         {ForCartContInProdDetVal != null &&
-                //                                                             ForCartContInProdDetVal.DarsadTakhfif != 0 && (
-                //                                                                 <div
-                //                                                                     id="gheimatMasrafInDetailsInfoCont"
-                //                                                                     className="gheimatMasrafInsabad"
-                //                                                                     style={{
-                //                                                                         // display: "none",
-                //                                                                         display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
-                //                                                                         flexDirection: "row",
-                //                                                                         justifyContent: "end",
-                //                                                                         textDecoration: "line-through",
-                //                                                                         fontSize: "14px",
-                //                                                                         alignItems: "center",
-                //                                                                     }}
-                //                                                                 >
-                //                                                                     {/* {ForCartContInProdDetVal != null && ( */}
-                //                                                                     <span>
-                //                                                                         {ForCartContInProdDetVal.FeeMasraf}
-                //                                                                     </span>
-                //                                                                     {/* )} */}
-                //                                                                 </div>
-                //                                                             )}
-                //                                                     </div>
-                //                                                     <div
-                //                                                         style={{
-                //                                                             display: "flex",
-                //                                                             flexDirection: "row-reverse",
-                //                                                             height: "35px",
-                //                                                             alignContent: "center",
-                //                                                             fontSize: "24px",
-                //                                                         }}
-                //                                                     >
-                //                                                         <div
-                //                                                             id="gheimatForooshInDetailsInfoCont"
-                //                                                             className="gheimatForooshInsabad"
-                //                                                             style={{
-                //                                                                 display: "flex",
-                //                                                                 flexDirection: "row",
-                //                                                                 marginLeft: "5px",
-                //                                                                 alignItems: "center",
-                //                                                                 fontSize: "16px",
-                //                                                             }}
-                //                                                         >
-                //                                                             {ForCartContInProdDetVal != null && (
-                //                                                                 <span>
-                //                                                                     {ForCartContInProdDetVal.FeeForoosh}
-                //                                                                 </span>
-                //                                                             )}
-                //                                                         </div>
-                //                                                         <div
-                //                                                             className="rialInsabad  valueStyle"
-                //                                                             style={{
-                //                                                                 display: "flex",
-                //                                                                 flexDirection: "row",
-                //                                                                 alignItems: "center",
-                //                                                                 fontSize: "14px",
-                //                                                             }}
-                //                                                         >
-                //                                                             ریال
-                //                                                         </div>
-                //                                                     </div>
-                //                                                 </div>
-
-                //                                                 {ForCartContInProdDetVal != null &&
-                //                                                     ForCartContInProdDetVal.DarsadTakhfif != 0 && (
-                //                                                         <div
-                //                                                             id="lastDividerInDetails"
-                //                                                             style={{
-                //                                                                 // display: "flex",
-                //                                                                 display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
-                //                                                                 flexDirection: "row",
-                //                                                                 alignContent: "center",
-                //                                                                 alignItems: "center",
-                //                                                                 padding: "0px 8px 0px 8px",
-                //                                                             }}
-                //                                                         >
-                //                                                             <div
-                //                                                                 style={{
-                //                                                                     width: "0px",
-                //                                                                     height: "30px",
-                //                                                                     borderLeft: "2px solid silver",
-                //                                                                 }}
-                //                                                             ></div>
-                //                                                         </div>
-                //                                                     )}
-                //                                                 {ForCartContInProdDetVal != null &&
-                //                                                     ForCartContInProdDetVal.DarsadTakhfif != 0 && (
-                //                                                         <div
-                //                                                             id="DiscountContInDetails"
-                //                                                             style={{
-                //                                                                 // display: "flex",
-                //                                                                 display: Number(ForCartContInProdDetVal.DarsadTakhfif) === 0 ? "none" : "flex",
-                //                                                                 flexDirection: "column",
-                //                                                                 flex: "1 1 30%",
-                //                                                                 alignItems: "center",
-                //                                                                 justifyContent: "space-around",
-                //                                                             }}
-                //                                                         >
-                //                                                             <div
-                //                                                                 style={{
-                //                                                                     display: "flex",
-                //                                                                     flexDirection: "row",
-                //                                                                     marginBottom: "10px",
-                //                                                                     width: "100%",
-                //                                                                     justifyContent: "center",
-                //                                                                 }}
-                //                                                             >
-                //                                                                 <div
-                //                                                                     id="darsadTakhfifInDetails"
-                //                                                                     className="darsadTakhfifInDetails"
-                //                                                                     style={{
-                //                                                                         backgroundColor: "red",
-                //                                                                         flex: "0 0 auto",
-                //                                                                         display: "flex",
-                //                                                                         justifyContent: "center",
-                //                                                                         alignItems: "center",
-                //                                                                         marginLeft: "15px",
-                //                                                                         borderRadius: "15px",
-                //                                                                         width: "100%",
-                //                                                                         maxWidth: "70px",
-                //                                                                         height: "50px",
-                //                                                                     }}
-                //                                                                 >
-                //                                                                     <span
-                //                                                                         style={{
-                //                                                                             color: "white",
-                //                                                                             opacity: "1",
-                //                                                                             fontSize: "18px",
-                //                                                                         }}
-                //                                                                     >
-                //                                                                         %
-                //                                                                     </span>
-
-                //                                                                     {/* {ForCartContInProdDetVal != null && ( */}
-                //                                                                     <span
-                //                                                                         id="forDiscountInDetails"
-                //                                                                         className="forDiscount"
-                //                                                                         style={{
-                //                                                                             color: "white",
-                //                                                                             opacity: "1",
-                //                                                                             fontSize: "18px",
-                //                                                                         }}
-                //                                                                     >
-                //                                                                         {ForCartContInProdDetVal.DarsadTakhfif}
-                //                                                                     </span>
-                //                                                                     {/* )} */}
-                //                                                                 </div>
-                //                                                             </div>
-                //                                                         </div>
-                //                                                     )}
-                //                                             </div>
-                //                                         </div>
-                //                                         <div
-                //                                             id="CartAndPriceInDetailsInfoCont"
-                //                                             style={{
-                //                                                 display: "flex",
-                //                                                 flexDirection: "column",
-                //                                                 width: "100%",
-                //                                                 marginTop: "10px",
-                //                                                 paddingRight: "20px",
-                //                                             }}
-                //                                         >
-                //                                             <div
-                //                                                 id="InCartAndPriceInDetailsInfoCont"
-                //                                                 style={{
-                //                                                     width: "100%",
-                //                                                     display: "flex",
-                //                                                     flexDirection: "row",
-                //                                                     justifyContent: "space-between",
-                //                                                 }}
-                //                                             >
-                //                                                 <div
-                //                                                     id="ForCartContInProdDet"
-                //                                                     style={{
-                //                                                         display: "flex",
-                //                                                         flexDirection: "column",
-                //                                                         justifyContent: "end",
-                //                                                     }}
-                //                                                 >
-                //                                                     {ForCartContInProdDetVal != null && (
-                //                                                         <MiddleCountTedadSefr
-                //                                                             // SabadRow={ForCartContInProdDetVal}  //zare_nk_041120_commented
-                //                                                             ////zare_nk_041120_added_st
-                //                                                             refForfather={ForCartContInProdDetVal.refForfather}
-                //                                                             fromShowDetails={ForCartContInProdDetVal.fromShowDetails}
-                //                                                             IdKala={ForCartContInProdDetVal.IdKala}
-                //                                                             idTag={ForCartContInProdDetVal.idTag}
-                //                                                             tedadInSabadOrDet={ForCartContInProdDetVal.tedadInSabadOrDet}
-
-                //                                                             // handlerForAddClick={(e) => { //zare_nk_041128_commented
-                //                                                             handlerForAddClick={() => {   //zare_nk_041128_added
-                //                                                                 return handlerForAddClick(
-                //                                                                     {
-                //                                                                         tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
-                //                                                                         ZaribForoosh: ForCartContInProdDetVal.ZaribForoosh,
-                //                                                                         IdKala: ForCartContInProdDetVal.IdKala,
-                //                                                                         NameKala: ForCartContInProdDetVal.NameKala,
-                //                                                                         DarsadTakhfif: ForCartContInProdDetVal.DarsadTakhfif,
-                //                                                                         NameBerand: ForCartContInProdDetVal.NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
-                //                                                                         FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
-                //                                                                         FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
-                //                                                                         BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                //                                                                         Mojoodi: ForCartContInProdDetVal.Mojoodi,
-                //                                                                         MaxTedad: ForCartContInProdDetVal.MaxTedad,
-                //                                                                         father: refForfather.current,
-                //                                                                         bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
-                //                                                                         fromShowDetails: true,
-                //                                                                         // event: e,  //zare_nk_041128_commented
-                //                                                                         event: null,  //zare_nk_041128_added
-                //                                                                     }
-                //                                                                 );
-                //                                                             }}
-                //                                                             // handlerForRemClick={(e) => { //zare_nk_041128_commented
-                //                                                             handlerForRemClick={() => {  //zare_nk_041128_added
-                //                                                                 return handlerForRemClick(
-                //                                                                     {
-                //                                                                         tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
-                //                                                                         ZaribForoosh: ForCartContInProdDetVal.ZaribForoosh,
-                //                                                                         IdKala: ForCartContInProdDetVal.IdKala,
-                //                                                                         NameKala: ForCartContInProdDetVal.NameKala,
-                //                                                                         DarsadTakhfif: ForCartContInProdDetVal.DarsadTakhfif,
-                //                                                                         NameBerand: ForCartContInProdDetVal.NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
-                //                                                                         FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
-                //                                                                         FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
-                //                                                                         BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                //                                                                         Mojoodi: ForCartContInProdDetVal.Mojoodi,
-                //                                                                         MaxTedad: ForCartContInProdDetVal.MaxTedad,
-                //                                                                         father: refForfather.current,
-                //                                                                         bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
-                //                                                                         fromShowDetails: true,
-                //                                                                         // event: e,  //zare_nk_041128_commented
-                //                                                                         event: null,  //zare_nk_041128_added
-                //                                                                     }
-                //                                                                 );
-                //                                                             }}
-                //                                                             ForCartContentsDesignType={ForCartContInProdDetVal.ForCartContentsDesignType}
-                //                                                             bishAzMaxTedadYaMojoodi={ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi}
-                //                                                         />
-                //                                                     )}
-                //                                                 </div>
-                //                                             </div>
-                //                                         </div>
-                //                                     </div>
-                //                                     <div id="imgzoomed"></div>
-                //                                 </div>
-                //                                 <div
-                //                                     id="navContInDetCont"
-                //                                     style={{
-                //                                         display: "none",
-                //                                         flexDirection: "column",
-                //                                         borderBottom: "1px solid #E7E7E0",
-                //                                         padding: "0px 0px 0px 0px",
-                //                                     }}
-                //                                 >
-                //                                     <div className="navContInDet">
-                //                                         <ul className="nav nav-tabs" role="tablist">
-                //                                             <li
-                //                                                 className="nav-item"
-                //                                                 style={{ borderBottom: "2px solid red" }}
-                //                                             >
-                //                                                 <a
-                //                                                     className="nav-link active"
-                //                                                     data-bs-toggle="tab"
-                //                                                     href="#home"
-                //                                                     style={{ color: "inherit" }}
-                //                                                 >
-                //                                                     ویژگی کالا
-                //                                                 </a>
-                //                                             </li>
-                //                                             <li className="nav-item">
-                //                                                 <a
-                //                                                     className="nav-link"
-                //                                                     data-bs-toggle="tab"
-                //                                                     href="#menu1"
-                //                                                     style={{ color: "inherit" }}
-                //                                                 >
-                //                                                     جزئیات کالا
-                //                                                 </a>
-                //                                             </li>
-                //                                             <li className="nav-item" style={{ display: "none" }}>
-                //                                                 <a
-                //                                                     className="nav-link"
-                //                                                     data-bs-toggle="tab"
-                //                                                     href="#menu2"
-                //                                                     style={{ color: "inherit" }}
-                //                                                 >
-                //                                                     Menu 2
-                //                                                 </a>
-                //                                             </li>
-                //                                         </ul>
-                //                                         <div
-                //                                             className="tab-content"
-                //                                             style={{ color: "#545454" }}
-                //                                         >
-                //                                             <div id="home" className="containerr tab-pane active">
-                //                                                 <div
-                //                                                     style={{
-                //                                                         display: "flex",
-                //                                                         flexDirection: "row",
-                //                                                         justifyContent: "center",
-                //                                                         justifyItems: "center",
-                //                                                         alignContent: "center",
-                //                                                         padding: "10px 0px",
-                //                                                     }}
-                //                                                 >
-                //                                                     <p style={{ margin: "0px" }}>
-                //                                                         ویژگی برای این محصول وجود ندارد
-                //                                                     </p>
-                //                                                 </div>
-                //                                             </div>
-                //                                             <div id="menu1" className="containerr tab-pane fade">
-                //                                                 <div
-                //                                                     id="ProductDescription"
-                //                                                     style={{
-                //                                                         marginTop: "15px",
-                //                                                         flexDirection: "column",
-                //                                                         position: "relative",
-                //                                                         paddingBottom: "48px",
-                //                                                     }}
-                //                                                 >
-                //                                                     <div
-                //                                                         id="contentContInProdDes"
-                //                                                         style={{
-                //                                                             marginBottom: "10px",
-                //                                                             display: "flex",
-                //                                                             flexDirection: "column",
-                //                                                             maxHeight: "120px",
-                //                                                             overflow: "hidden",
-                //                                                         }}
-                //                                                     ></div>
-                //                                                     <div
-                //                                                         style={{
-                //                                                             display: "flex",
-                //                                                             flexDirection: "column",
-                //                                                             position: "absolute",
-                //                                                             right: "10px",
-                //                                                             bottom: "10px",
-                //                                                         }}
-                //                                                     >
-                //                                                         <a
-                //                                                             id="bishtarInProdDes"
-                //                                                             className="buttonHover"
-                //                                                             href="#ProductDescription"
-                //                                                             style={{
-                //                                                                 padding: "10px",
-                //                                                                 borderRadius: "7px",
-                //                                                                 display: "flex",
-                //                                                                 flexDirection: "row",
-                //                                                                 textDecoration: "none",
-                //                                                                 color: "rgb(2, 160, 164)",
-                //                                                                 backgroundColor: "inherit",
-                //                                                             }}
-                //                                                         >
-                //                                                             <div
-                //                                                                 style={{
-                //                                                                     flex: "0 0 auto",
-                //                                                                     display: "flex",
-                //                                                                     flexDirection: "row",
-                //                                                                     paddingLeft: "5px",
-                //                                                                     alignItems: "center",
-                //                                                                 }}
-                //                                                             >
-                //                                                                 <span id="TextInBishtarInProdDes">
-                //                                                                     نمایش بیشتر{" "}
-                //                                                                 </span>
-                //                                                             </div>
-                //                                                             <div
-                //                                                                 style={{
-                //                                                                     display: "flex",
-                //                                                                     flexDirection: "column",
-                //                                                                     justifyContent: "center",
-                //                                                                 }}
-                //                                                             >
-                //                                                                 <div
-                //                                                                     className="rounded-pill"
-                //                                                                     style={{
-                //                                                                         display: "flex",
-                //                                                                         flexDirection: "row",
-                //                                                                         backgroundColor: "inherit",
-                //                                                                     }}
-                //                                                                 >
-                //                                                                     <img
-                //                                                                         src="https://img.tochikala.com/tochikala/left-arrow.svg"
-                //                                                                         style={{ width: "15px" }}
-                //                                                                         alt="نمایش بیشتر"
-                //                                                                     />
-                //                                                                 </div>
-                //                                                             </div>
-                //                                                         </a>
-                //                                                     </div>
-                //                                                 </div>
-                //                                             </div>
-                //                                             <div id="menu2" className="containerr tab-pane fade">
-                //                                                 salam menu2
-                //                                             </div>
-                //                                         </div>
-                //                                     </div>
-                //                                 </div>
-                //                             </div>
-                //                         </div>
-                //                         <View
-                //                             // id="productNotExist"
-                //                             style={{
-                //                                 height: "100%",
-                //                                 display: bisatrInProductDet === false ? "none" : "flex",
-                //                                 justifyContent: "center",
-                //                                 marginBottom: 30,
-                //                                 // color: "red",
-                //                                 // fontFamily: "IRANSansWeb(FaNum)_Medium",
-                //                             }}
-                //                         >
-                //                             <Text style={{ color: "red", fontFamily: "IRANSansWeb(FaNum)_Medium", }}> کالای مورد نظر یافت نشد</Text>
-                //                         </View>
-                //                     </div>
-                //                 </div>
-                //             </div>
-                //         </div>
-                //     </div>
-                // </div> 
                 <Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
                     visible={isOpenedProdDetModal}    //zare_nk_040923(halat namayesh modal)
                     animationType="slide"  //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
@@ -3523,7 +2850,7 @@ export default function ShallowRoutingExample({
                                     justifyContent: "space-between",
                                     alignItems: "center",
                                     // marginBottom: 10,  ////zare_nk_050316_commented
-                                    marginRight:5,  ////zare_nk_050316_added                                   
+                                    marginRight: 5,  ////zare_nk_050316_added                                   
                                 }}
                             >
                                 <View
@@ -3541,13 +2868,13 @@ export default function ShallowRoutingExample({
                                     <TouchableOpacity
                                         // className="BarCodeScan btn btn-danger"
                                         style={{
-                                            borderRadius: 10, 
+                                            borderRadius: 10,
                                             display: 'flex',
                                             justifyContent: 'center',
                                             alignItems: 'center',
                                             flexDirection: 'row',
                                             padding: 7,
-                                            backgroundColor: '#ff3151' 
+                                            backgroundColor: '#ff3151'
                                         }}
                                         onPress={() => { return forOpenCodeScanner(); }}  //zare_nk_041205_forUpdateName
                                         activeOpacity={0.1}
@@ -3572,9 +2899,10 @@ export default function ShallowRoutingExample({
 
                             <View
                                 // className="addressKharejInSabadCont"
-                                style={{ display: "none", flexDirection: "row",
-                                    marginRight:5,  ////zare_nk_050316_added
-                                 }}
+                                style={{
+                                    display: "none", flexDirection: "row",
+                                    marginRight: 5,  ////zare_nk_050316_added
+                                }}
                             >
                                 <Text style={{ color: "red" }}
                                 // className="addressKharejInSabad"
@@ -3588,13 +2916,13 @@ export default function ShallowRoutingExample({
                                 // id="sabadSafheHeader"
                                 style={{
                                     display: 'flex',
-                                    flexDirection: "column", 
-                                    marginRight:5,  ////zare_nk_050316_added
+                                    flexDirection: "column",
+                                    marginRight: 5,  ////zare_nk_050316_added
                                 }}
                             >
                                 <View style={{
                                     display: "flex",
-                                    flexDirection: "row", 
+                                    flexDirection: "row",
                                 }}>
                                     <View
                                         style={{
@@ -3657,7 +2985,7 @@ export default function ShallowRoutingExample({
                                 style={{
                                     flexDirection: "column",
                                     paddingVertical: 0,
-                                    paddingHorizontal: 5, 
+                                    paddingHorizontal: 5,
                                 }}
                             >
                                 {!bisatr && (

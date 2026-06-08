@@ -14,7 +14,7 @@ import ReusableButton from "../components/ReusableButton";     //zare_nk_041027_
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "folder03">;
-export default function folder03Screen({
+export default function Folder03Screen({
   navigation,
   route,
 }: // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)

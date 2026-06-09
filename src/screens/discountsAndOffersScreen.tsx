@@ -89,7 +89,7 @@ type ForCartContInProdDetValType = {
   ForCartContentsDesignType: number;
   idTag: string;
 };
- 
+
 // type SabadSatrProps = {
 type OfferSatrComponentType = {
   offerRow: ForCartContInProdDetValType
@@ -828,7 +828,7 @@ export default function ShallowRoutingExample({
   const [bisatr, setBisatr] = useState(true);
   const [bisatrInProductDet, setBisatrInProductDet] = useState(true); //zare_nk_041128_added
 
-   const [offerRows, setOfferRows] = useState<ForCartContInProdDetValType[]>([]); 
+  const [offerRows, setOfferRows] = useState<ForCartContInProdDetValType[]>([]);
 
   const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null);
   const [jamKol, setJamKol] = useState<number | null>(null);
@@ -2680,6 +2680,7 @@ export default function ShallowRoutingExample({
                 );
 
               })}   */}
+              {/* zare_nk_050319_added_st(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
               {/* zare_nk_041208_nokteh(baraye load shodane farzandan faghat zamane scroll shodan az FlatList estefadeh kardim ta sorate barname balatar bere,
               <FlatList ra jaigozine <ScrollView kardim,chon ScrollView faghat haviye scrol bood vali FlatList ham scrol darad ham loade farzandanash faghat 
               hengame dideh shodan dar scorl ha,albate FlatList baraye mavaredi mesle sabade kharid ke tedad Itemha khaili ziad nist lazem nist,vali masalan
@@ -2720,6 +2721,41 @@ export default function ShallowRoutingExample({
                 numColumns={numSubprogramsResponseInPerRow}
                 showsVerticalScrollIndicator={false}
               />
+              {/* zare_nk_050319_added_end(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
+              {/* zare_nk_050319_added_st(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}
+              {/* <ScrollView horizontal={false}
+                style={[{
+                  width: "100%",
+                  overflow: "hidden",
+                  display: "flex",
+                  direction: "rtl",
+                }, SubprogramsContResponse]}
+              >
+                <View
+                  style={[{
+                    width: "100%",
+                    overflow: "hidden",
+                    display: "flex",
+                    direction: "rtl",
+                    flexDirection: "row",
+                    flexWrap: "wrap",
+                  }, SubprogramsContResponse]} >
+                  {offerRows?.map((item, index) => {
+                    return (
+                      <OfferSatrComponent
+                        key={index || item.IdKala}
+                        offerRow={item}
+                        handlerForAddClick={handlerForAddClick}
+                        handlerForRemClick={handlerForRemClick}
+                        openprodDetModal={openprodDetModal}
+                        navigation={navigation}
+                      />
+                    );
+                  })}
+                </View>
+              </ScrollView> */}
+              {/* zare_nk_050319_added_end(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}
+
               {/* zare_nk_041121_added_end(for shopToDiscount) */}
 
               {/* zare_nk_041207_added_st(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 

@@ -115,13 +115,13 @@ async function getCookie(name: any) {
     return null;
 }
 
-// export default function ShallowRoutingExample(){  //zare_nk_041127_commented
+// export default function shoppingbasketComponent(){  //zare_nk_041127_commented
 ////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "shoppingbasket">;
 
-export default function ShallowRoutingExample({
+export default function shoppingbasketComponent({
     navigation,
     route,
 }:  // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
@@ -129,7 +129,7 @@ export default function ShallowRoutingExample({
     // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
     Props) {
     ////zare_nk_041127_added_end
-    console.log('ShallowRoutingExample called!!');
+    console.log('shoppingbasketComponent called!!');
 
     ////zare_nk_041209_added_st
     const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
@@ -377,7 +377,7 @@ export default function ShallowRoutingExample({
 
     async function openprodDetModal(barcodeKala: string) {   ////zare_nk_050224_nokteh(methode openprodDetModal methode ShowDetails ra seda mizanad, setIsOpenedProdDetModal ra 
         //// true mikoneh, setAddOrRemChanged ra ham null mikoneh)
-        console.log('ShallowRoutingExample called-openprodDetModal called!!');
+        console.log('shoppingbasketComponent called-openprodDetModal called!!');
         await ShowDetails(barcodeKala);
         setIsOpenedProdDetModal(true);
         setAddOrRemChanged(null);

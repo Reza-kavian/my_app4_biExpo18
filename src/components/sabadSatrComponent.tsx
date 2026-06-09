@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo,memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
@@ -81,13 +81,20 @@ type SabadSatrProps = {
     navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
-export default function SabadSatrComponent({
+// export default function SabadSatrComponent({
+//     SabadRow,
+//     handlerForAddClick,
+//     handlerForRemClick,
+//     openprodDetModal,
+//     navigation,
+// }: SabadSatrProps) {
+const SabadSatrComponent = ({
     SabadRow,
     handlerForAddClick,
     handlerForRemClick,
     openprodDetModal,
     navigation,
-}: SabadSatrProps) {
+}: SabadSatrProps) => {
 
     const [productImageError, setproductImageError] = useState<boolean>(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate jaigoziniye akse pishfarze tochi)
     const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate hazfe backgrounde khakestariye(range khakestariye ghbleloadi hast))
@@ -245,15 +252,6 @@ export default function SabadSatrComponent({
                                         : { height: productHeightForDet }),
                                 }}
                             /> */}
-
-
-
-
-
-
-
-
-
 
 
                         </View>
@@ -607,3 +605,5 @@ export default function SabadSatrComponent({
         </View>
     );
 }
+
+export default memo(SabadSatrComponent);

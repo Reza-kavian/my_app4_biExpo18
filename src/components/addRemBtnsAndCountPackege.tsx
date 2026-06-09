@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo } from "react";
+import { useState, useEffect, useRef, useMemo,memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
@@ -34,6 +34,16 @@ import AddToCartTapsiIcon from "../components/icons/images/AddToCartTapsi";   //
 import RemoveFromCartTapsiIcon from "../components/icons/images/RemoveFromCartTapsi";   ////zare_nk_050316_added
 import RecycleBinIcon from "../components/icons/images/RecycleBin";   ////zare_nk_050316_added
 
+////zare_nk_050319_added_st
+const showNoStock = () => {
+  if (Platform.OS === "android") {
+    ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
+  } else {
+    // Alert.alert("خطا", "موجودی کافی نیست");
+  }
+};
+////zare_nk_050319_added_end
+
 // type MiddleCountTedadSefrType = {
 type addRemBtnsAndCountPackegeType = {
     refForfather: RefObject<string | null>;
@@ -52,8 +62,20 @@ type addRemBtnsAndCountPackegeType = {
     navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
-// function MiddleCountTedadSefr({
-export default function AddRemBtnsAndCountPackege({
+ 
+// export default function AddRemBtnsAndCountPackege({
+//     refForfather,
+//     fromShowDetails,
+//     IdKala,
+//     idTag,
+//     tedadInSabadOrDet,
+//     handlerForAddClick,
+//     handlerForRemClick,
+//     ForCartContentsDesignType,
+//     bishAzMaxTedadYaMojoodi,
+//     navigation,   
+// }: addRemBtnsAndCountPackegeType) {
+const AddRemBtnsAndCountPackege = ({
     refForfather,
     fromShowDetails,
     IdKala,
@@ -63,10 +85,10 @@ export default function AddRemBtnsAndCountPackege({
     handlerForRemClick,
     ForCartContentsDesignType,
     bishAzMaxTedadYaMojoodi,
-    navigation,  //zare_nk_041127_added
-}: addRemBtnsAndCountPackegeType) {
-    // Alert.alert("tedadInSabadOrDet: " + tedadInSabadOrDet);
-    console.log('ShallowRoutingExample called-MiddleCountTedadSefr-ForCartContentsDesignType: ' + ForCartContentsDesignType);
+    navigation,
+}: addRemBtnsAndCountPackegeType) => {
+ 
+    // console.log('ShallowRoutingExample called-MiddleCountTedadSefr-ForCartContentsDesignType: ' + ForCartContentsDesignType);
     useEffect(() => {
         ////zare_nk_041120_commented_st
         // console.log('2-041119-SabadRow: ' + JSON.stringify(SabadRow));
@@ -1177,3 +1199,5 @@ export default function AddRemBtnsAndCountPackege({
         );
     }
 }
+
+export default memo(AddRemBtnsAndCountPackege);

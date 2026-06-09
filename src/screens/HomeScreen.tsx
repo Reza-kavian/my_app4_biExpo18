@@ -1263,6 +1263,7 @@ export default function HomeScreen({
   ////zare_nk_050317_added_st(hatman tahlilshe)
   useEffect(() => {
     if (!isOpenedProdDetModal) {
+      setImgUriForDet('');  //zare_nk_050319_added
       setForCartContInProdDetVal(undefined);
     }
   }, [isOpenedProdDetModal]);
@@ -1505,6 +1506,7 @@ export default function HomeScreen({
           // }
           ////zare_nk_041130_commented_end
           const idTag = "ForCart-" + parsedList[0].IdKala;
+          setImgUriForDet(`https://img.tochikala.com/Product/${parsedList[0].IdKala}.webp`);  //zare_nk_050319_added
           setForCartContInProdDetVal(() => {
             return {
               tedadInSabadOrDet: parsedList[0].TedadDarSabad,
@@ -1553,6 +1555,7 @@ export default function HomeScreen({
       }
     } catch (error) {
       ////zare_nk_050317_added_st(tahlilshe)
+      setImgUriForDet('');
       setForCartContInProdDetVal(undefined);
       setIsOpenedProdDetModal(false);
       ////zare_nk_050317_added_end(tahlilshe)
@@ -1703,6 +1706,7 @@ export default function HomeScreen({
             ForCartContentsDesignTypeLet = 1;
           }
           if (addRemParam.fromShowDetails) {
+            setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050319_added
             setForCartContInProdDetVal(() => {
               const idTag = "ForCart-" + addRemParam.IdKala;
               return {
@@ -1893,6 +1897,7 @@ export default function HomeScreen({
             ForCartContentsDesignTypeLet = 1;
           }
           if (addRemParam.fromShowDetails) {
+            setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050318_added
             setForCartContInProdDetVal(() => {
               const idTag = "ForCart-" + addRemParam.IdKala;
               return {
@@ -2162,6 +2167,7 @@ export default function HomeScreen({
             setIsOpenedProdDetModal(false);
             // setAddOrRemChanged("notNull");  //zare_nk_041130_commented(AddOrRemChanged dar in safhe karbord nadare)
             setBisatrInProductDet(false);
+            setImgUriForDet('');  ////zare_nk_050319_added
             setForCartContInProdDetVal(undefined);    ////zare_nk_050317_added_st(tahlilshe)
           }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
         >

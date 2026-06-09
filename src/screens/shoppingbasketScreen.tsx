@@ -121,7 +121,7 @@ import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "shoppingbasket">;
 
-export default function shoppingbasketComponent({
+export default function ShoppingbasketComponent({
     navigation,
     route,
 }:  // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
@@ -2047,6 +2047,7 @@ export default function shoppingbasketComponent({
                                                             }}
                                                         ></View>
                                                     </View>
+                                                    
                                                     <View
                                                         style={{
                                                             // display: "flex",
@@ -2140,7 +2141,7 @@ export default function shoppingbasketComponent({
                                                                     // borderStyle: 'solid',
                                                                     // borderColor: 'yellow',
                                                                 }}
-                                                            > <Text style={{
+                                                            ><Text style={{
                                                                 fontSize: 12,
                                                                 fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
                                                             }}> ریال</Text>
@@ -2581,7 +2582,7 @@ export default function shoppingbasketComponent({
                                     >{/* bazkardane view pedare doorbin va kadr */}
                                         {/* zare_nk_041205_nokteh(View ba positione statice komaki baraye inke tage pedar ke position: 'relative' dare ertefae
                                          sefr nagire,chon farzandani ke absolute bashan ertefae pedar ro barabare contente khodeshoon nemikonan) */}
-                                        <View style={[styles.scanFrame,]}> </View>
+                                        <View style={[styles.scanFrame,]}></View>
                                         <Camera //zare_nk_040923(komponent doorbin)
                                             style={[styles.scanFrame,
                                             // StyleSheet.absoluteFill,

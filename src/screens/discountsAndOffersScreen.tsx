@@ -2286,7 +2286,7 @@ export default function ShallowRoutingExample({
                                   // borderStyle: 'solid',
                                   // borderColor: 'yellow',
                                 }}
-                              > <Text style={{
+                              ><Text style={{
                                 fontSize: 12,
                                 fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
                               }}> ریال</Text>

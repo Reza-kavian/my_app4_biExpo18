@@ -1315,7 +1315,7 @@ export default function ShallowRoutingExample({
                         </>
                     )}
                 </ScrollView>
-            )};
+            )}
         </>
     );
 }

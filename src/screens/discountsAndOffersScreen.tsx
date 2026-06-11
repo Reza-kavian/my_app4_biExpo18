@@ -827,6 +827,7 @@ export default function ShallowRoutingExample({
   const [ForCartContInProdDetVal, setForCartContInProdDetVal] =
     useState<ForCartContInProdDetValType>();
   const refForfather = useRef<string | null>(null);
+
   ////zare_nk_041115_added_st(albate felan niazam nemisheh)
   // const [sabadTitr, setSabadTitr] = useState<SabadTitrType[] | null>(null); //zare_nk_041207_commented
   ////zare_nk_041115_added_end(albate felan niazam nemisheh)
@@ -839,7 +840,7 @@ export default function ShallowRoutingExample({
   // const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null);  ////zare_nk_050320_commented(jash ro be state page dad(addOrRemChanged baraye seda zadane api 
   //// pishnahadat va rikhtane pasokh dar setOfferRows estefadeh mishod(addOrRemChanged dar bastane modale joziate kala va dokmehaye + va - meghdar migireh) ke jash ro
   //// be setPage(setPage dar rendere avval va scroll be entehaye FlatList meghdar migire )))
-  
+
   const [page, setPage] = useState<number | null>(1);   ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))
   const [jamKol, setJamKol] = useState<number | null>(null);
   const [jamKolTakhfif, setJamKolTakhfif] = useState<number | null>(null);
@@ -850,6 +851,7 @@ export default function ShallowRoutingExample({
   const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
   const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
   // console.log('041210-2-ShallowRoutingExample called!!');
+  const rofForEnteha = useRef<boolean>(false);  ////zare_nk_050321_added(ta entehaye list boodan page ra modiriat konim) 
 
   // async function ShowDetails(barcodeKala: any) {   ////zare_nk_050319_commented(for use callback)
   const ShowDetails = useCallback(async (barcodeKala: any) => {  ////zare_nk_050319_added(for use callback)
@@ -1109,8 +1111,7 @@ export default function ShallowRoutingExample({
   }, [isOpenedProdDetModal]);
 
   useEffect(() => {
-    // if (isOpenedProdDetModal == true) {  ////zare_nk_050320_commented
-    if (isOpenedProdDetModal == true) {  ////zare_nk_050320_added
+    if (isOpenedProdDetModal == true) {   
       return;
     }
 
@@ -1150,7 +1151,7 @@ export default function ShallowRoutingExample({
         IdVitrin: -1,
 
         page: page,  ////zare_nk_050320_added
-        take: 5,     ////zare_nk_050320_added
+        take: 20,     ////zare_nk_050320_added
       };
 
       let ApiUrl = "https://api.tochikala.com/api/";
@@ -1181,8 +1182,10 @@ export default function ShallowRoutingExample({
 
       const data = await response.json();
       if (response.ok) {
+        Alert.alert('inja-1');
         var result = JSON.parse(data.data.list);
         if (data.status != 0) {
+          Alert.alert('inja-2');
           // console.log('041210-12-data.status != 0');
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(data.errors[0]);
@@ -1198,10 +1201,24 @@ export default function ShallowRoutingExample({
           //     span.innerText = data.errors[0];
           // }
         } else if (data.status == 0) {
+          Alert.alert('inja-3');
           if (result.length == 0) {
-            setBisatr(true);
+            Alert.alert('inja-4');
+            // setBisatr(true);  ////zare_nk_050321_commented
+            ////zare_nk_050321_added_st
+            if (page == null) {
+              Alert.alert('inja-setBisatr shod!!');
+              setBisatr(true);
+            }
+            else {
+              Alert.alert('inja-entihaa!!');
+              rofForEnteha.current = true; ////zare_nk_050321_nokteh(ta ba vojoode entehaye list boodan page ra ezafeh nakone)
+            }
+            ////zare_nk_050321_added_end
+
             return;
           }
+          Alert.alert('inja-5');
           setBisatr(false);
           refForfather.current = "#cardcontainer2";
           return (
@@ -1357,7 +1374,6 @@ export default function ShallowRoutingExample({
           let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
           let Tedad = satrInoInResult.Tedad;
 
-
           var bishAzMaxTedadYaMojoodi = 0;
           if (addRemParam.MaxTedad != null) {
             if (addRemParam.MaxTedad <= Tedad) {
@@ -1383,6 +1399,7 @@ export default function ShallowRoutingExample({
             ForCartContentsDesignTypeLet = 1;
           }
           if (addRemParam.fromShowDetails) {
+            Alert.alert('detim');
             setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_041209_added
             setForCartContInProdDetVal(() => {
               const idTag = "ForCart-" + addRemParam.IdKala;
@@ -1406,15 +1423,46 @@ export default function ShallowRoutingExample({
                 idTag: idTag,
               };
             });
-          } 
+          }
+          Alert.alert('baghiye');
 
           ////zare_nk_050321_added_alan_st
-          offerRows.map((curItem: any, index: number) => {
-            if (curItem.IdKala == addRemParam.IdKala) {
-              // return(   ////zare_nk_050321_nokteh(lazem nist)
-              setOfferRows((cur) => {
+          // offerRows.map((curItem: any, index: number) => {
+          //   if (curItem.IdKala == addRemParam.IdKala) {
+          //     // return(   ////zare_nk_050321_nokteh(lazem nist)
+          //     setOfferRows((cur) => {
+          //       return (
+          //         [...cur,
+          //         {
+          //           tedadInSabadOrDet: Tedad,
+          //           ZaribForoosh: addRemParam.ZaribForoosh,
+          //           IdKala: addRemParam.IdKala,
+          //           NameKala: addRemParam.NameKala,
+          //           DarsadTakhfif: addRemParam.DarsadTakhfif,
+          //           NameBerand: addRemParam.NameBerand,
+          //           FeeForoosh: addRemParam.FeeForoosh,
+          //           FeeMasraf: addRemParam.FeeMasraf,
+          //           BarcodeKala: addRemParam.BarcodeKala,
+          //           Mojoodi: addRemParam.Mojoodi,
+          //           MaxTedad: addRemParam.MaxTedad,
+          //           MasrafSatr: curItem.MasrafSatr,
+          //           father: "#cardcontainer2",
+          //           refForfather: refForfather,
+          //           bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+          //           fromShowDetails: false,
+          //           ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+          //           idTag: "ForCart-" + addRemParam.IdKala,
+          //         }
+          //         ]
+          //       )
+          //     })
+          //     // )   ////zare_nk_050321_nokteh(lazem nist) 
+          //   }
+          // })
+          setOfferRows((curRows) => {
+            return curRows.map((curItem: any, index: number) => {
+              if (curItem.IdKala == addRemParam.IdKala) {
                 return (
-                  [...cur,
                   {
                     tedadInSabadOrDet: Tedad,
                     ZaribForoosh: addRemParam.ZaribForoosh,
@@ -1435,14 +1483,14 @@ export default function ShallowRoutingExample({
                     ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
                     idTag: "ForCart-" + addRemParam.IdKala,
                   }
-                  ]
                 )
-              })
-              // )   ////zare_nk_050321_nokteh(lazem nist) 
-            }
+              }
+              // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+              return curItem;
+            })
           })
           ////zare_nk_050321_added_alan_end
- 
+
         }
       } else {
         // console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
@@ -1630,13 +1678,43 @@ export default function ShallowRoutingExample({
             });
           }
 
-           ////zare_nk_050321_added_alan_st
-          offerRows.map((curItem: any, index: number) => {
-            if (curItem.IdKala == addRemParam.IdKala) {
-              // return(   ////zare_nk_050321_nokteh(lazem nist)
-              setOfferRows((cur) => {
+          ////zare_nk_050321_added_alan_st
+          // offerRows.map((curItem: any, index: number) => {
+          //   if (curItem.IdKala == addRemParam.IdKala) {
+          //     // return(   ////zare_nk_050321_nokteh(lazem nist)
+          //     setOfferRows((cur) => {
+          //       return (
+          //         [...cur,
+          //         {
+          //           tedadInSabadOrDet: Tedad,
+          //           ZaribForoosh: addRemParam.ZaribForoosh,
+          //           IdKala: addRemParam.IdKala,
+          //           NameKala: addRemParam.NameKala,
+          //           DarsadTakhfif: addRemParam.DarsadTakhfif,
+          //           NameBerand: addRemParam.NameBerand,
+          //           FeeForoosh: addRemParam.FeeForoosh,
+          //           FeeMasraf: addRemParam.FeeMasraf,
+          //           BarcodeKala: addRemParam.BarcodeKala,
+          //           Mojoodi: addRemParam.Mojoodi,
+          //           MaxTedad: addRemParam.MaxTedad,
+          //           MasrafSatr: curItem.MasrafSatr,
+          //           father: "#cardcontainer2",
+          //           refForfather: refForfather,
+          //           bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+          //           fromShowDetails: false,
+          //           ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+          //           idTag: "ForCart-" + addRemParam.IdKala,
+          //         }
+          //         ]
+          //       )
+          //     })
+          //     // )   ////zare_nk_050321_nokteh(lazem nist) 
+          //   }
+          // })
+          setOfferRows((curRows) => {
+            return curRows.map((curItem: any, index: number) => {
+              if (curItem.IdKala == addRemParam.IdKala) {
                 return (
-                  [...cur,
                   {
                     tedadInSabadOrDet: Tedad,
                     ZaribForoosh: addRemParam.ZaribForoosh,
@@ -1657,11 +1735,11 @@ export default function ShallowRoutingExample({
                     ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
                     idTag: "ForCart-" + addRemParam.IdKala,
                   }
-                  ]
                 )
-              })
-              // )   ////zare_nk_050321_nokteh(lazem nist) 
-            }
+              }
+              // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+              return curItem;
+            })
           })
           ////zare_nk_050321_added_alan_end
 
@@ -1768,10 +1846,10 @@ export default function ShallowRoutingExample({
   ]);
   ////zare_nk_050319_added_end(az useCallback baraye sorate bishtar estefadeh kardim)
 
-
+  ////zare_nk_050320_added_st
   const loadMore = async () => {
 
-    // const nextPage = page??0 + 1;
+    // const nextPage = page + 1;
 
     // const res = await fetch(API, {
     //   method: "POST",
@@ -1786,11 +1864,17 @@ export default function ShallowRoutingExample({
 
     // setData(prev => [...prev, ...newData]); // اضافه کردن به لیست
     // setPage(nextPage);
+    if (rofForEnteha.current) {
+      Alert.alert('ahkarin safhe tebghe apiye akharin');
+      return;
+    }
 
-    const nextPage = page ? page + 1 : 0;
-    Alert.alert('5 taye : ' + nextPage);
+    const nextPage = page ? page + 1 : null;
+    Alert.alert('5 taye chandom: ' + nextPage);
     setPage(nextPage);
   }
+  ////zare_nk_050320_added_end
+
   return (
     <>
       <Modal
@@ -1951,7 +2035,7 @@ export default function ShallowRoutingExample({
                   // Alert.alert('close btn clicked in modalprodDet');
                   setIsOpenedProdDetModal(false);
                   // setAddOrRemChanged("notNull");  ////zare_nk_050320_commented(jash ro be state page dad) 
-                  setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) 
+                  // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
                   Alert.alert('5 tay to basmodal(1) : ' + 1);
                   setBisatrInProductDet(false);
                 }}
@@ -2852,7 +2936,6 @@ export default function ShallowRoutingExample({
             }}
             numColumns={numSubprogramsResponseInPerRow}
             showsVerticalScrollIndicator={false}
-
 
             onEndReached={loadMore}
             onEndReachedThreshold={0.5}

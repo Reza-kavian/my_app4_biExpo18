@@ -744,8 +744,7 @@ export default function ShallowRoutingExample({
   const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
   const productUriForDet = '';  //// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
   const [imgUriForDet, setImgUriForDet] = useState<string>('');
-  ////zare_nk_041209_added_end 
-
+  ////zare_nk_041209_added_end
   ////zare_nk_041206_added_st(moadele @media baraye responsive kardane site) 
   const { width } = useWindowDimensions();   ////zare_nk_041208_nokteh(useWindowDimensions tosiye mishe bejaye Dimensions, chon useWindowDimensions ba taghire size
   //  arze safhe(masalan ofoghi va amoodai kardane mobile baese rerendere automate componenti ke tooshe mishe, vali Dimensions ghadimitare va bayad ye state 
@@ -836,11 +835,7 @@ export default function ShallowRoutingExample({
 
   const [offerRows, setOfferRows] = useState<ForCartContInProdDetValType[]>([]);
 
-  // const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null);  ////zare_nk_050320_commented(jash ro be state page dad(addOrRemChanged baraye seda zadane api 
-  //// pishnahadat va rikhtane pasokh dar setOfferRows estefadeh mishod(addOrRemChanged dar bastane modale joziate kala va dokmehaye + va - meghdar migireh) ke jash ro
-  //// be setPage(setPage dar rendere avval va scroll be entehaye FlatList meghdar migire )))
-  
-  const [page, setPage] = useState<number | null>(1);   ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))
+  const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null);
   const [jamKol, setJamKol] = useState<number | null>(null);
   const [jamKolTakhfif, setJamKolTakhfif] = useState<number | null>(null);
   const [jamKolNahaei, setJamKolNahaei] = useState<number | null>(null);
@@ -1030,9 +1025,7 @@ export default function ShallowRoutingExample({
     // console.log('ShallowRoutingExample called-openprodDetModal called!!');
     await ShowDetails(barcodeKala);
     setIsOpenedProdDetModal(true);
-    // setAddOrRemChanged(null); ////zare_nk_050320_commented(jash ro be state page dad)
-    // setPage(null);      ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))   ////zare_nk_050321_commented(okk)
-    // setOfferRows([]);   ////zare_nk_050320_added();   ////zare_nk_050321_commented(okk)
+    setAddOrRemChanged(null);
     // }  ////zare_nk_050319_commented(for use callback)
   }, [ShowDetails]);  ////zare_nk_050319_added(for use callback)
 
@@ -1109,14 +1102,34 @@ export default function ShallowRoutingExample({
   }, [isOpenedProdDetModal]);
 
   useEffect(() => {
-    // if (isOpenedProdDetModal == true) {  ////zare_nk_050320_commented
-    if (isOpenedProdDetModal == true) {  ////zare_nk_050320_added
+    // console.log('041210-3-addOrRemChanged in useEffect!!');
+    if (isOpenedProdDetModal == true) {
+      // console.log('041210-4-addOrRemChanged in useEffect-isOpenedProdDetModal == true');
       return;
     }
-
+    // console.log('041210-5-addOrRemChanged in useEffect-isOpenedProdDetModal != true');
     async function tempFuncForAsync() {
       const token = await getCookie("token");
-
+      ////zare_nk_050318_commented_st
+      // if (token == null) { 
+      // console.log('041210-6-addOrRemChanged in useEffect-token == null');
+      // setIsOpenedMymodalForWarning(true);
+      // setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+      // // const bootstrap = await getBootstrap();
+      // // const mymodalForWarning = new bootstrap.Modal(
+      // //     document.getElementById("mymodalForWarning")
+      // // );
+      // // mymodalForWarning.show();
+      // // const span = document.querySelector(
+      // //     "#mymodalForWarning .errorInMymodalForWarning"
+      // // );
+      // // if (span instanceof HTMLElement) {
+      // //     span.innerText = "لطفا ابتدا آنلاین شوید";
+      // // }
+      // return; 
+      // } else {
+      ////zare_nk_050318_commented_end
+      // console.log('041210-7-addOrRemChanged in useEffect-token != null');
       type InputDataType = {
         IdShobeh: number;
         IsJashnvareh: number;
@@ -1129,9 +1142,6 @@ export default function ShallowRoutingExample({
         Sort: number;
         IsFavorite: number;
         IdVitrin: number;
-
-        page: number | null,  ////zare_nk_050320_added
-        take: number,  ////zare_nk_050320_added
       };
 
       const inputData: InputDataType = {
@@ -1148,14 +1158,11 @@ export default function ShallowRoutingExample({
         Sort: -1,
         IsFavorite: -1,
         IdVitrin: -1,
-
-        page: page,  ////zare_nk_050320_added
-        take: 5,     ////zare_nk_050320_added
       };
-
+      // console.log('041210-8-addOrRemChanged in useEffect-token != null');
       let ApiUrl = "https://api.tochikala.com/api/";
       var urlSelectKalaShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
-      const response = await fetch(urlSelectKalaShobeh, {
+      const response = await fetch(urlSelectKalaShobeh, {   //zare_nk_041121_added(for shopToDiscount)
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -1173,15 +1180,16 @@ export default function ShallowRoutingExample({
           Sort: inputData.Sort,
           IsFavorite: inputData.IsFavorite,
           IdVitrin: inputData.IdVitrin,
-
-          page: inputData.page,  ////zare_nk_050320_added
-          take: inputData.take,  ////zare_nk_050320_added
         }),
       });
-
+      // console.log('041210-9-addOrRemChanged in useEffect');
       const data = await response.json();
+      // console.log('041210-10-addOrRemChanged in useEffect');
       if (response.ok) {
+        // console.log('041210-10-addOrRemChanged in useEffect-response.ok');
         var result = JSON.parse(data.data.list);
+        // console.log('041210-10-addOrRemChanged in useEffect-result: ' + JSON.stringify(result));
+        // console.log('041210-11-addOrRemChanged in useEffect-data.status: ' + data.status);
         if (data.status != 0) {
           // console.log('041210-12-data.status != 0');
           setIsOpenedMymodalForWarning(true);
@@ -1198,60 +1206,66 @@ export default function ShallowRoutingExample({
           //     span.innerText = data.errors[0];
           // }
         } else if (data.status == 0) {
+          // console.log('041210-12-data.status == 0');
           if (result.length == 0) {
+            // console.log('041210-13-result.length == 0');
+            // console.log('result.length == 0: ' + result.length)
             setBisatr(true);
             return;
           }
+          // console.log('041210-14-result.length == 0');
           setBisatr(false);
           refForfather.current = "#cardcontainer2";
-          return (
-            result.map((item: any) => {
-              var bishAzMaxTedadYaMojoodi = 0;
-              if (item.MaxTedad != null) {
-                if (item.MaxTedad <= item.TedadDarSabad) {
-                  bishAzMaxTedadYaMojoodi = 1;
+          // console.log('041210-15');
+          setOfferRows(() => {
+            return (
+              result.map((item: any) => {
+                var bishAzMaxTedadYaMojoodi = 0;
+                if (item.MaxTedad != null) {
+                  if (item.MaxTedad <= item.TedadDarSabad) {
+                    bishAzMaxTedadYaMojoodi = 1;
+                  }
+                } else {
+                  if (item.Mojoodi <= item.TedadDarSabad) {
+                    bishAzMaxTedadYaMojoodi = 1;
+                  }
                 }
-              } else {
-                if (item.Mojoodi <= item.TedadDarSabad) {
-                  bishAzMaxTedadYaMojoodi = 1;
+
+                let ForCartContentsDesignTypeLet = 0
+
+                if (item.TedadDarSabad == 0) {
+                  ForCartContentsDesignTypeLet = 0;
                 }
-              }
-
-              let ForCartContentsDesignTypeLet = 0
-
-              if (item.TedadDarSabad == 0) {
-                ForCartContentsDesignTypeLet = 0;
-              }
-              else if (item.TedadDarSabad > item.ZaribForoosh) {
-                ForCartContentsDesignTypeLet = 2;
-              }
-              else if (item.TedadDarSabad == item.ZaribForoosh) {
-                ForCartContentsDesignTypeLet = 1;
-              }
-              setOfferRows(prev => [...prev,
-              {   ////zare_nk_050321_okk
-                tedadInSabadOrDet: item.TedadDarSabad,
-                ZaribForoosh: item.ZaribForoosh,
-                IdKala: item.IdKala,
-                NameKala: item.NameKala,
-                DarsadTakhfif: item.DarsadTakhfif,
-                NameBerand: item.NameBerand,
-                FeeForoosh: item.FeeForoosh,
-                FeeMasraf: item.FeeMasraf,
-                BarcodeKala: item.BarcodeKala,
-                Mojoodi: item.Mojoodi,
-                MaxTedad: item.MaxTedad,
-                MasrafSatr: item.MasrafSatr,
-                father: "#cardcontainer2",
-                refForfather: refForfather,
-                bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-                fromShowDetails: false,
-                ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-                idTag: "ForCart-" + item.IdKala,
-              }
-              ]);
-            })
-          )
+                else if (item.TedadDarSabad > item.ZaribForoosh) {
+                  ForCartContentsDesignTypeLet = 2;
+                }
+                else if (item.TedadDarSabad == item.ZaribForoosh) {
+                  ForCartContentsDesignTypeLet = 1;
+                }
+                return ({
+                  tedadInSabadOrDet: item.TedadDarSabad,
+                  ZaribForoosh: item.ZaribForoosh,
+                  IdKala: item.IdKala,
+                  NameKala: item.NameKala,
+                  DarsadTakhfif: item.DarsadTakhfif,
+                  NameBerand: item.NameBerand,
+                  FeeForoosh: item.FeeForoosh,
+                  FeeMasraf: item.FeeMasraf,
+                  BarcodeKala: item.BarcodeKala,
+                  Mojoodi: item.Mojoodi,
+                  MaxTedad: item.MaxTedad,
+                  MasrafSatr: item.MasrafSatr,
+                  father: "#cardcontainer2",
+                  refForfather: refForfather,
+                  bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+                  fromShowDetails: false,
+                  ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+                  idTag: "ForCart-" + item.IdKala,
+                })
+              })
+            )
+          });
+          ////zare_nk_041121_added_end(for shopToDiscount)
         }
       } else {
         // console.log('!!response.ok')
@@ -1271,11 +1285,10 @@ export default function ShallowRoutingExample({
           // }
         }
       }
+      // }////zare_nk_050318_commented
     }
     tempFuncForAsync();
-    // }, [addOrRemChanged]); ////zare_nk_050320_commented(jash ro be state page dad)
-  }, [page]);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_okk
-
+  }, [addOrRemChanged]);
 
   async function addToCartInIndex(
     addRemParam: addRemParamType,
@@ -1335,9 +1348,7 @@ export default function ShallowRoutingExample({
       const data = await response.json();
       if (response.ok) {
         // console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
-        // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut); ////zare_nk_050320_commented(jash ro be state page dad)
-        // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) ////zare_nk_050321_commented(okk)
-
+        setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);
         var result = data;
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
@@ -1356,7 +1367,6 @@ export default function ShallowRoutingExample({
         } else if (result.status == 0) {
           let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
           let Tedad = satrInoInResult.Tedad;
-
 
           var bishAzMaxTedadYaMojoodi = 0;
           if (addRemParam.MaxTedad != null) {
@@ -1406,43 +1416,8 @@ export default function ShallowRoutingExample({
                 idTag: idTag,
               };
             });
-          } 
 
-          ////zare_nk_050321_added_alan_st
-          offerRows.map((curItem: any, index: number) => {
-            if (curItem.IdKala == addRemParam.IdKala) {
-              // return(   ////zare_nk_050321_nokteh(lazem nist)
-              setOfferRows((cur) => {
-                return (
-                  [...cur,
-                  {
-                    tedadInSabadOrDet: Tedad,
-                    ZaribForoosh: addRemParam.ZaribForoosh,
-                    IdKala: addRemParam.IdKala,
-                    NameKala: addRemParam.NameKala,
-                    DarsadTakhfif: addRemParam.DarsadTakhfif,
-                    NameBerand: addRemParam.NameBerand,
-                    FeeForoosh: addRemParam.FeeForoosh,
-                    FeeMasraf: addRemParam.FeeMasraf,
-                    BarcodeKala: addRemParam.BarcodeKala,
-                    Mojoodi: addRemParam.Mojoodi,
-                    MaxTedad: addRemParam.MaxTedad,
-                    MasrafSatr: curItem.MasrafSatr,
-                    father: "#cardcontainer2",
-                    refForfather: refForfather,
-                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-                    fromShowDetails: false,
-                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-                    idTag: "ForCart-" + addRemParam.IdKala,
-                  }
-                  ]
-                )
-              })
-              // )   ////zare_nk_050321_nokteh(lazem nist) 
-            }
-          })
-          ////zare_nk_050321_added_alan_end
- 
+          }
         }
       } else {
         // console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
@@ -1574,9 +1549,8 @@ export default function ShallowRoutingExample({
           //     span.innerText = result.errors[0];
           // }
         } else if (result.status == 0) {
-          // console.log('041116-result.status == 0'); 
-          // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);  ////zare_nk_050320_commented(jash ro be state page dad)
-          // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
+          // console.log('041116-result.status == 0');
+          setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);
 
           let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
           let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
@@ -1629,41 +1603,6 @@ export default function ShallowRoutingExample({
               };
             });
           }
-
-           ////zare_nk_050321_added_alan_st
-          offerRows.map((curItem: any, index: number) => {
-            if (curItem.IdKala == addRemParam.IdKala) {
-              // return(   ////zare_nk_050321_nokteh(lazem nist)
-              setOfferRows((cur) => {
-                return (
-                  [...cur,
-                  {
-                    tedadInSabadOrDet: Tedad,
-                    ZaribForoosh: addRemParam.ZaribForoosh,
-                    IdKala: addRemParam.IdKala,
-                    NameKala: addRemParam.NameKala,
-                    DarsadTakhfif: addRemParam.DarsadTakhfif,
-                    NameBerand: addRemParam.NameBerand,
-                    FeeForoosh: addRemParam.FeeForoosh,
-                    FeeMasraf: addRemParam.FeeMasraf,
-                    BarcodeKala: addRemParam.BarcodeKala,
-                    Mojoodi: addRemParam.Mojoodi,
-                    MaxTedad: addRemParam.MaxTedad,
-                    MasrafSatr: curItem.MasrafSatr,
-                    father: "#cardcontainer2",
-                    refForfather: refForfather,
-                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-                    fromShowDetails: false,
-                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-                    idTag: "ForCart-" + addRemParam.IdKala,
-                  }
-                  ]
-                )
-              })
-              // )   ////zare_nk_050321_nokteh(lazem nist) 
-            }
-          })
-          ////zare_nk_050321_added_alan_end
 
           if (Tedad == 0) {
             // alert('areeee');
@@ -1767,30 +1706,6 @@ export default function ShallowRoutingExample({
     navigation
   ]);
   ////zare_nk_050319_added_end(az useCallback baraye sorate bishtar estefadeh kardim)
-
-
-  const loadMore = async () => {
-
-    // const nextPage = page??0 + 1;
-
-    // const res = await fetch(API, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     ...filters,
-    //     Page: nextPage,
-    //     PageSize: 20,
-    //   }),
-    // });
-
-    // const newData = await res.json();
-
-    // setData(prev => [...prev, ...newData]); // اضافه کردن به لیست
-    // setPage(nextPage);
-
-    const nextPage = page ? page + 1 : 0;
-    Alert.alert('5 taye : ' + nextPage);
-    setPage(nextPage);
-  }
   return (
     <>
       <Modal
@@ -1851,7 +1766,7 @@ export default function ShallowRoutingExample({
           </View>
         </View>
       </Modal>
-      {isOpenedProdDetModal == true && (
+      {isOpenedProdDetModal == true ? (
         <Modal   //zare_nk_040923(component modal baraye namayesh doorbin va scan kardan)
           visible={isOpenedProdDetModal}    ////zare_nk_040923(halat namayesh modal)
           animationType="slide"  ////zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
@@ -1859,9 +1774,7 @@ export default function ShallowRoutingExample({
             // Alert.alert('onRequestClose in modalprodDet');
             ////zare_nk_041128_nokteh(moadele methode hiddenHandlerForProdDetModal)
             setIsOpenedProdDetModal(false);
-            // setAddOrRemChanged("notNull");  ////zare_nk_050320_commented(jash ro be state page dad) 
-            // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
-            Alert.alert('5 tay to basmodal : ' + 1);
+            setAddOrRemChanged("notNull");
             setBisatrInProductDet(false);
           }}   ////zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
         >
@@ -1950,9 +1863,7 @@ export default function ShallowRoutingExample({
                 onPress={() => {
                   // Alert.alert('close btn clicked in modalprodDet');
                   setIsOpenedProdDetModal(false);
-                  // setAddOrRemChanged("notNull");  ////zare_nk_050320_commented(jash ro be state page dad) 
-                  setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) 
-                  Alert.alert('5 tay to basmodal(1) : ' + 1);
+                  setAddOrRemChanged("notNull");
                   setBisatrInProductDet(false);
                 }}
                 activeOpacity={0.6}
@@ -2778,27 +2689,28 @@ export default function ShallowRoutingExample({
             {/* zare_nk_041128_added_end */}
           </ScrollView>
         </Modal>
-      )}
-      {/* <ScrollView
-          // id="cardcontainer2"
-          // className="mtt-1 gfForAddRemm WantCompress hisGrandFather"
-          style={{
-            width: "100%",
-            overflow: "hidden",
-          }}
-          contentContainerStyle={[{
-            display: "flex",
-            flexDirection: "row",
-            // justifyContent: 'flex-start',  //zare_nk_041207_commented
-            justifyContent: "space-between",  //zare_nk_041207_added
-            flexWrap: "wrap",
-            direction: "rtl",
-          }, SubprogramsContResponse]}
-        > */}
-      {!bisatr && (
+      ) : (
+        // <ScrollView
+        //   // id="cardcontainer2"
+        //   // className="mtt-1 gfForAddRemm WantCompress hisGrandFather"
+        //   style={{
+        //     width: "100%",
+        //     overflow: "hidden",
+        //   }}
+        //   contentContainerStyle={[{
+        //     display: "flex",
+        //     flexDirection: "row",
+        //     // justifyContent: 'flex-start',  //zare_nk_041207_commented
+        //     justifyContent: "space-between",  //zare_nk_041207_added
+        //     flexWrap: "wrap",
+        //     direction: "rtl",
+        //   }, SubprogramsContResponse]}
+        // >
         <>
-          {/* zare_nk_041121_added_st(for shopToDiscount) */}
-          {/* {offerRows?.map((item, index) => { 
+          {!bisatr && (
+            <>
+              {/* zare_nk_041121_added_st(for shopToDiscount) */}
+              {/* {offerRows?.map((item, index) => { 
                 return (
                   <SabadSatrComponent
                     key={index || item.IdKala}
@@ -2811,55 +2723,51 @@ export default function ShallowRoutingExample({
                 );
 
               })}   */}
-          {/* zare_nk_050319_added_st(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
-          {/* zare_nk_041208_nokteh(baraye load shodane farzandan faghat zamane scroll shodan az FlatList estefadeh kardim ta sorate barname balatar bere,
+              {/* zare_nk_050319_added_st(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
+              {/* zare_nk_041208_nokteh(baraye load shodane farzandan faghat zamane scroll shodan az FlatList estefadeh kardim ta sorate barname balatar bere,
               <FlatList ra jaigozine <ScrollView kardim,chon ScrollView faghat haviye scrol bood vali FlatList ham scrol darad ham loade farzandanash faghat 
               hengame dideh shodan dar scorl ha,albate FlatList baraye mavaredi mesle sabade kharid ke tedad Itemha khaili ziad nist lazem nist,vali masalan
               baraye safheye pishnahadat ke masalan 500 kala miad baraye jologiri az kond shodane loade yekjaye 500 farzand,mofideh)*/}
-          <FlatList
-            key={width}  //zare_nk_050224_nokteh(key age avaz beshe react componente <FlatList /> ra kamelan destroy va mojadad mount mikoneh)
-            data={offerRows}
-            keyExtractor={(item) => item.IdKala.toString()}  //zare_nk_050224_nokteh(keyExtractor marboot be itemhaye list hast(dar inja goftim har ozv az offerRows))
-            ////zare_nk_050319_commented_st(az useCallback baraye sorate bishtar estefadeh kardim)
-            // renderItem={({ item }) => ( 
-            //   <OfferSatrComponent 
-            //     offerRow={item}
-            //     handlerForAddClick={handlerForAddClick}
-            //     handlerForRemClick={handlerForRemClick}
-            //     openprodDetModal={openprodDetModal}
-            //     navigation={navigation}  //zare_nk_041127_added
-            //   />
-            // )}
-            ////zare_nk_050319_commented_end(az useCallback baraye sorate bishtar estefadeh kardim)
-            renderItem={renderOfferItem}    ////zare_nk_050319_added(az useCallback baraye sorate bishtar estefadeh kardim)
-            style={{
-              width: "100%",
-              overflow: "hidden",
-              // borderColor: 'blue',
-              // borderStyle: 'solid',
-              // borderWidth: 3,
-            }}
-            contentContainerStyle={[{
-              display: "flex",
-              // flexDirection: "row",
-              // justifyContent: "space-between",  
-              // flexWrap: "wrap",
-              direction: "rtl",
-            }, SubprogramsContResponse]}
-            columnWrapperStyle={{
-              // justifyContent: "space-between",
-              // marginBottom: 10,
-            }}
-            numColumns={numSubprogramsResponseInPerRow}
-            showsVerticalScrollIndicator={false}
-
-
-            onEndReached={loadMore}
-            onEndReachedThreshold={0.5}
-          />
-          {/* zare_nk_050319_added_end(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
-          {/* zare_nk_050319_added_st(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}
-          {/* <ScrollView horizontal={false}
+              <FlatList
+                key={width}  //zare_nk_050224_nokteh(key age avaz beshe react componente <FlatList /> ra kamelan destroy va mojadad mount mikoneh)
+                data={offerRows}
+                keyExtractor={(item) => item.IdKala.toString()}  //zare_nk_050224_nokteh(keyExtractor marboot be itemhaye list hast(dar inja goftim har ozv az offerRows))
+                ////zare_nk_050319_commented_st(az useCallback baraye sorate bishtar estefadeh kardim)
+                // renderItem={({ item }) => ( 
+                //   <OfferSatrComponent 
+                //     offerRow={item}
+                //     handlerForAddClick={handlerForAddClick}
+                //     handlerForRemClick={handlerForRemClick}
+                //     openprodDetModal={openprodDetModal}
+                //     navigation={navigation}  //zare_nk_041127_added
+                //   />
+                // )}
+                ////zare_nk_050319_commented_end(az useCallback baraye sorate bishtar estefadeh kardim)
+                renderItem={renderOfferItem}    ////zare_nk_050319_added(az useCallback baraye sorate bishtar estefadeh kardim)
+                style={{
+                  width: "100%",
+                  overflow: "hidden",
+                  // borderColor: 'blue',
+                  // borderStyle: 'solid',
+                  // borderWidth: 3,
+                }}
+                contentContainerStyle={[{
+                  display: "flex",
+                  // flexDirection: "row",
+                  // justifyContent: "space-between",  
+                  // flexWrap: "wrap",
+                  direction: "rtl",
+                }, SubprogramsContResponse]}
+                columnWrapperStyle={{
+                  // justifyContent: "space-between",
+                  // marginBottom: 10,
+                }}
+                numColumns={numSubprogramsResponseInPerRow}
+                showsVerticalScrollIndicator={false}
+              />
+              {/* zare_nk_050319_added_end(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
+              {/* zare_nk_050319_added_st(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}
+              {/* <ScrollView horizontal={false}
                 style={[{
                   width: "100%",
                   overflow: "hidden",
@@ -2890,13 +2798,13 @@ export default function ShallowRoutingExample({
                   })}
                 </View>
               </ScrollView> */}
-          {/* zare_nk_050319_added_end(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}
+              {/* zare_nk_050319_added_end(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}
 
-          {/* zare_nk_041121_added_end(for shopToDiscount) */}
+              {/* zare_nk_041121_added_end(for shopToDiscount) */}
 
-          {/* zare_nk_041207_added_st(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 
+              {/* zare_nk_041207_added_st(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 
               akhar ra nemidahim,pas satrhaye komaki dege niazi nist va commenteshoon kardim) */}
-          {/* {offerRows?.slice(0, 2).map((item) => (
+              {/* {offerRows?.slice(0, 2).map((item) => (
                 <View
                   style={[{
                     display: "flex",
@@ -2908,12 +2816,14 @@ export default function ShallowRoutingExample({
                   }, SubprogramsResponse]}
                 ></View>
               ))} */}
-          {/* zare_nk_041207_added_end(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 
+              {/* zare_nk_041207_added_end(be khatere estefadeh az maxWidth baraye farzandan ejazeye ziad shodane arze farzandane satre 
               akhar ra nemidahim,pas satrhaye komaki dege niazi nist va commenteshoon kardim) */}
 
+            </>
+          )}
+          {/* </ScrollView> */}
         </>
       )}
-      {/* </ScrollView> */}
     </>
   );
 }
@@ -3032,25 +2942,23 @@ const styles = StyleSheet.create({
   Subprograms_BaseResponse: {
     flexGrow: 1,
     flexShrink: 1,
-    // flexBasis: '45%', //zare_nk_041208_nokteh(chon az <FlatList../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
+    // flexBasis: '45%', //zare_nk_041208_nokteh(chon az <FlatList ../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
     //  estefade shode va dige flexBasise darsadi be farzandan nadadim)
     maxWidth: '50%', //zare_nk_041208_nokteh(jaigozine farzandane tookhaliye komaki baraye satre akhar shodeh)
     padding: 5,
   },
-
   Subprograms_BTH576: {
     flexGrow: 1,
     flexShrink: 1,
-    // flexBasis: '21%',//zare_nk_041208_nokteh(chon az <FlatList../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
+    // flexBasis: '21%',//zare_nk_041208_nokteh(chon az <FlatList ../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
     //  estefade shode va dige flexBasise darsadi be farzandan nadadim)
     maxWidth: '25%', //zare_nk_041208_nokteh(jaigozine farzandane tookhaliye komaki baraye satre akhar shodeh)
     padding: 5,
   },
-
   Subprograms_BTH992: {
     flexGrow: 1,
     flexShrink: 1,
-    // flexBasis: '15%',//zare_nk_041208_nokteh(chon az <FlatList../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
+    // flexBasis: '15%',//zare_nk_041208_nokteh(chon az <FlatList ../> estefadeh shodeh az ghabeliate numColumns khode FlatList baraye responsive
     //  estefade shode va dige flexBasise darsadi be farzandan nadadim)
     maxWidth: '16.6%', //zare_nk_041208_nokteh(jaigozine farzandane tookhaliye komaki baraye satre akhar shodeh)
     padding: 5,
@@ -3060,7 +2968,6 @@ const styles = StyleSheet.create({
   DetailsImgAndInfoCont_STH576: {
     flexDirection: 'column',
   },
-
   DetailsImgAndInfoCont_BTH576: {
     flexDirection: 'row-reverse',
   },
@@ -3069,7 +2976,6 @@ const styles = StyleSheet.create({
     width: '100%',
     marginBottom: 3,
   },
-
   CurrentImgCont_BTH576: {
     width: 150,
     marginLeft: 3,
@@ -3079,7 +2985,6 @@ const styles = StyleSheet.create({
     width: '100%',
 
   },
-
   DetailsInfoCont_BTH576: {
     flexBasis: 'auto',
     flexGrow: 1,

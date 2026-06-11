@@ -8,7 +8,7 @@
     "lint": "eslint .",
     "start": "react-native start",
     "test": "jest",
-    "postinstall": "patch-package", 
+    "postinstall": "patch-package",
     "convert-svg": "npx @svgr/cli --native --typescript --out-dir src/components/icons src/assets/"
   },
   "dependencies": {

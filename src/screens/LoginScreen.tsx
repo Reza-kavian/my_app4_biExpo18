@@ -3,7 +3,8 @@ import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
   useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
-  StyleProp, Modal, Linking, ScrollView, TextInputEndEditingEvent, TextInputChangeEvent,
+  StyleProp, Modal, Linking, ScrollView, TextInputEndEditingEvent, TextInputChangeEvent, KeyboardAvoidingView,
+   Platform,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -441,7 +442,6 @@ export default function LoginScreen({
         await AsyncStorage.removeItem("token");
         setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
       }
-
       ////zare_nk_040428_added_end
     } catch (err: any) {
       // Alert.alert(
@@ -806,117 +806,137 @@ export default function LoginScreen({
   ////zare_nk_050312_added_end
   // Alert.alert(mobileVal)
   return (
-    <ScrollView horizontal={false}
+    <KeyboardAvoidingView
       style={{
-        width: '100%',
-        backgroundColor: 'white',
-        // borderWidth: 4,
-        // borderColor: 'blue',
-        // borderStyle: 'dashed', 
+        flex: 1, ////zare_nk_050320_nokteh(age moadele 3propsiye flex:1 ra bedim emkan dare taghirate az 0 be grow ra KeyboardAvoidingView motevajjeh nashe va fekr kone chon 
+        //// farzandan flexBasis: 0 daran ertefae kolle motava 0 ast va niazi be keshidane maotava dar balayash nabashad va khodesh faghat bala miad va mohtava miran ziresh )
+        ////zare_nk_050320_nokteh_st(sabke 3propsi(moadele flex:1) ke baraye kar ba KeyboardAvoidingView javab nemideh)
+        // flexBasis: 0,
+        // flexShrink: 0,
+        // flexGrow: 1,
+        ////zare_nk_050320_nokteh_end(sabke 3propsi(moadele flex:1) ke baraye kar ba KeyboardAvoidingView javab nemideh)
+        // borderWidth: 3,
+        // borderColor: '#df1b1b',
+        // borderStyle: 'dashed',
       }}
-      contentContainerStyle={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: 'center',
-        alignItems: "center",
-      }}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}   ////zare_nk_050320_nokteh(in bayad basheh) 
+      keyboardVerticalOffset={0} ////zare_nk_050320_nokteh(migim alaveh bar bala keshidane mohtava tebghe ertefaeshan, masalan 20 pixel bishtar ham bala bekesh mohtava ra(yani margine
+    ////  20 pixel balaye keyboard mireh))
     >
-      <View
+      <ScrollView horizontal={false}
         style={{
-          // borderWidth: 4,
-          // borderColor: 'red',
-          // borderStyle: 'dashed',
+          // height: "100%",
+          width: '100%',
+          // overflow: "hidden",  ////zare_nk_nokteh(overflow: "hidden" baes mishe age mohtevaye ScrollView azash bishtar bood ghesmate ezafi ra hidden konad va dige niazi be scroll nabashe! )
+          backgroundColor: 'white',
+          // borderWidth: 3,
+          // borderColor: '#020202',
+          // borderStyle: 'dotted',
+        }}
+        contentContainerStyle={{
           display: "flex",
           flexDirection: "column",
-          // justifyContent: 'center',  ////zare_nk_050312_commented 
+          justifyContent: 'center',
           alignItems: "center",
-          width: '100%',
-          minHeight: height,
-          paddingVertical: 20,
-          paddingHorizontal: 7,
-        }}>
+        }}
+        keyboardShouldPersistTaps="handled"  ////zare_nk_050320_nokteh(baraye taamole ScrollView ba KeyboardAvoidingView pishnahad mishe(albateh comment kardam ham farghi nakard))
+      >
         <View
-          // id="loginForm"
-          // onSubmit={(event) => {
-          //   event.preventDefault();
-          // }}
-          // className={`${Styles.loginForm} ${Styles.valueStyle}`}
-          style={[styles.loginForm,
-          {
-            direction: "rtl",
-          }
-          ]}
-        >
+          style={{
+            // borderWidth: 4,
+            // borderColor: 'red',
+            // borderStyle: 'dashed',
+            display: "flex",
+            flexDirection: "column",
+            // justifyContent: 'center',  ////zare_nk_050312_commented 
+            alignItems: "center",
+            width: '100%',
+            minHeight: height,
+            paddingVertical: 20,
+            paddingHorizontal: 7,
+          }}>
           <View
-            // className={Styles.formsRow}
-            style={[styles.formsRow, {
-              justifyContent: "center",
-              flexGrow: 0,
-              flexShrink: 0,
-              flexBasis: 'auto',
-            }]}
+            // id="loginForm"
+            // onSubmit={(event) => {
+            //   event.preventDefault();
+            // }}
+            // className={`${Styles.loginForm} ${Styles.valueStyle}`}
+            style={[styles.loginForm,
+            {
+              direction: "rtl",
+            }
+            ]}
           >
-            {/* <Image
+            <View
+              // className={Styles.formsRow}
+              style={[styles.formsRow, {
+                justifyContent: "center",
+                flexGrow: 0,
+                flexShrink: 0,
+                flexBasis: 'auto',
+              }]}
+            >
+              {/* <Image
               source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
               // style={{ width: 55, height: 55, }}
               style={{ width: 155, height: 155, }}
             /> */}
-            {/* zare_nk_050313_nokteh_st(rahe1-tosiyeh nemishe chon ba load az site khareji kond load mishe) */}
-            {/* <SvgUri
+              {/* zare_nk_050313_nokteh_st(rahe1-tosiyeh nemishe chon ba load az site khareji kond load mishe) */}
+              {/* <SvgUri
               // source={require("../assets/favicon.png")}
               uri="https://img.tochikala.com/tochikala/login-icon.svg"
               // uri="https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg" 
               width={200}
               height={200}  
             />    */}
-            {/* zare_nk_050313_nokteh_end(rahe1-tosiyeh nemishe chon ba load az site khareji kond load mishe) */}
-            {/* zare_nk_050313_nokteh_st(rahe2-tosiyeh mishe chon ba load az directoriye dakheli saritar load mishe(ham mitoonim file svg ra mostaghim import konim , va 
+              {/* zare_nk_050313_nokteh_end(rahe1-tosiyeh nemishe chon ba load az site khareji kond load mishe) */}
+              {/* zare_nk_050313_nokteh_st(rahe2-tosiyeh mishe chon ba load az directoriye dakheli saritar load mishe(ham mitoonim file svg ra mostaghim import konim , va 
             ham mitoonim az @svgr/cli estefadeh konim ke be component tabdil konim dar masire masiri ke dar package.json moshakhas mikonim, ke sorate loade barname ba 
             @svgr/cli kheili behinehtare(file svgr-cli-rules moroor shavad ta har bar file svg ezafe kardim, npm run convert-svg  ra bezanim va ghavanine dastkariye svg ha) )) */}
-            <LoginIcon width={300} height={300} />
-            {/* zare_nk_050313_nokteh_end(rahe2-tosiyeh mishe chon ba load az directoriye dakheli saritar load mishe(ham mitoonim file svg ra mostaghim import konim , va 
+              <LoginIcon width={300} height={300} />
+              {/* zare_nk_050313_nokteh_end(rahe2-tosiyeh mishe chon ba load az directoriye dakheli saritar load mishe(ham mitoonim file svg ra mostaghim import konim , va 
             ham mitoonim az @svgr/cli estefadeh konim ke be component tabdil konim dar masire masiri ke dar package.json moshakhas mikonim, ke sorate loade barname ba 
             @svgr/cli kheili behinehtare(file svgr-cli-rules moroor shavad ta har bar file svg ezafe kardim, npm run convert-svg  ra bezanim va ghavanine dastkariye svg ha) )) */}
-          </View>
-          {/* {error && <Text style={styles.error}>{error}</Text>} */}
-          {error && (
-            <View
-              // className={`${Styles.formsRow} ${Styles.warningCont}`}
-              style={[styles.formsRow,
-              {
-                justifyContent: 'center',
-                marginVertical: 10,
-              }
-              ]}
-            >
-              <Text
-                // className="forErrorMobile error"
-                style={[styles.errorTextStyle,
+            </View>
+            {/* {error && <Text style={styles.error}>{error}</Text>} */}
+            {error && (
+              <View
+                // className={`${Styles.formsRow} ${Styles.warningCont}`}
+                style={[styles.formsRow,
                 {
-                  fontSize: 14,
-                  // borderColor: 'red',
+                  justifyContent: 'center',
+                  marginVertical: 10,
+                }
+                ]}
+              >
+                <Text
+                  // className="forErrorMobile error"
+                  style={[styles.errorTextStyle,
+                  {
+                    fontSize: 14,
+                    // borderColor: 'red',
+                    // borderStyle: 'dashed',
+                    // borderWidth: 2,
+                  }]}
+                >{error}</Text>
+              </View>
+            )}
+            {step === "firstPage" ? (
+              <View
+                style={{
+                  flexGrow: 1,
+                  flexShrink: 0,
+                  flexBasis: 'auto',
+                  // borderColor: 'blue',
                   // borderStyle: 'dashed',
                   // borderWidth: 2,
-                }]}
-              >{error}</Text>
-            </View>
-          )}
-          {step === "firstPage" ? (
-            <View
-              style={{
-                flexGrow: 1,
-                flexShrink: 0,
-                flexBasis: 'auto',
-                // borderColor: 'blue',
-                // borderStyle: 'dashed',
-                // borderWidth: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-              }}
-            >
-              {/* zare_nk_050312_added_st */}
-              {/* <View
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                {/* zare_nk_050312_added_st */}
+                {/* <View
                 style={{
                   flexGrow: 0,
                   flexShrink: 0,
@@ -935,121 +955,121 @@ export default function LoginScreen({
                   style={{ width: 30, height: 30, }}
                 />
               </View> */}
-              {/* zare_nk_050312_added_end */}
-              <View
-                // className={`${Styles.formsRow} ${Styles.boldTextStyle}`}
-                style={[styles.formsRow,
-                {
-                  justifyContent: 'flex-start',
-                  marginBottom: 20,
-
-                  // borderColor: 'red',
-                  // borderStyle: 'dashed',
-                  // borderWidth: 2,
-                }
-                ]}
-              >
-                <Text style={[styles.boldTextStyle,
-                {
-                  // color: '#4b4949',
-                  color: '#1b1c1d',   ////zare_nk_050315_tapsifoodi
-                  // borderColor: 'blue',
-                  // borderStyle: 'dashed',
-                  // borderWidth: 2,
-                }]} >عضویت یا ورود </Text>
-              </View>
-
-              <View
-                // className={`${Styles.lablAndInputCont}  `} 
-                style={[styles.lablAndInputCont, {
-                  justifyContent: 'flex-start',
-                  marginBottom: 5,
-                }]}
-              >
-                <Text style={[
-                  styles.mediumTextStyle,
+                {/* zare_nk_050312_added_end */}
+                <View
+                  // className={`${Styles.formsRow} ${Styles.boldTextStyle}`}
+                  style={[styles.formsRow,
                   {
-                    marginBottom: 10,
-                    // color: "#6a6a6a",
-                    color: '#878b92',   ////zare_nk_050315_tapsifoodi
-                    // borderColor: 'blue',
+                    justifyContent: 'flex-start',
+                    marginBottom: 20,
+
+                    // borderColor: 'red',
                     // borderStyle: 'dashed',
                     // borderWidth: 2,
-                  }]}>
-                  شماره تلفن همراه:
-                </Text>
-
-                <TextInput
-                  style={[styles.txtBox, styles.mediumTextStyle,
-                  {
-                    textAlign: "center",
-                    color: '#878b92',
-                  }]}
-                  placeholder="شماره موبایل"
-                  placeholderTextColor="#b0b4bb"  ////zare_nk_050315_added
-                  value={mobileVal}
-                  onChangeText={(textVaredeh) => {
-                    mobileChanged(textVaredeh);
-                  }}
-                  keyboardType="phone-pad"
-                />
-              </View>
-
-              {mobileError && (
-                <View
-                  // className={`${Styles.formsRow} ${Styles.warningCont}`}
-                  style={[styles.formsRow]}
-                >
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    // className="forErrorMobile error"
-                    style={[styles.errorTextStyle,
-                    {
-                      fontSize: 12,
-                    }]}
-                  >{mobileError}</Text>
-                </View>
-              )}
-
-              <View
-                // className={Styles.formsRow}
-                style={[styles.formsRow,
-                {
-                  marginTop: 15,
-                  marginBottom: 10,
-                }
-                ]}
-              >
-                <TouchableOpacity
-                  onPress={mobileButtonClick}
-                  disabled={isDisabledMobileCheckBtn}
-                  style={[{
-                    ...(isDisabledMobileCheckBtn === true && styles.disabledBtn),
-                    ...(!isDisabledMobileCheckBtn && styles.enableBtn),
-                  },
-                  {
-                    padding: 7,
-                    borderRadius: 7,
-                    width: "100%",
-                    height: 50,
                   }
                   ]}
                 >
-                  <Text
-                    style={[styles.mediumTextStyle,
-                    {
-                      ...(isDisabledMobileCheckBtn === true && { color: 'white' }),
-                      ...(!isDisabledMobileCheckBtn && { color: 'white' }),
-                      fontSize: 16,
-                      color: (!isDisabledMobileCheckBtn ? "white" : 'white'),  //#6a6a6a
-                    }]}>
-                    دریافت کد تایید
-                  </Text>
-                </TouchableOpacity>
-              </View>
+                  <Text style={[styles.boldTextStyle,
+                  {
+                    // color: '#4b4949',
+                    color: '#1b1c1d',   ////zare_nk_050315_tapsifoodi
+                    // borderColor: 'blue',
+                    // borderStyle: 'dashed',
+                    // borderWidth: 2,
+                  }]} >عضویت یا ورود </Text>
+                </View>
 
-              {/* <View
+                <View
+                  // className={`${Styles.lablAndInputCont}  `} 
+                  style={[styles.lablAndInputCont, {
+                    justifyContent: 'flex-start',
+                    marginBottom: 5,
+                  }]}
+                >
+                  <Text style={[
+                    styles.mediumTextStyle,
+                    {
+                      marginBottom: 10,
+                      // color: "#6a6a6a",
+                      color: '#878b92',   ////zare_nk_050315_tapsifoodi
+                      // borderColor: 'blue',
+                      // borderStyle: 'dashed',
+                      // borderWidth: 2,
+                    }]}>
+                    شماره تلفن همراه:
+                  </Text>
+
+                  <TextInput
+                    style={[styles.txtBox, styles.mediumTextStyle,
+                    {
+                      textAlign: "center",
+                      color: '#878b92',
+                    }]}
+                    placeholder="شماره موبایل"
+                    placeholderTextColor="#b0b4bb"  ////zare_nk_050315_added
+                    value={mobileVal}
+                    onChangeText={(textVaredeh) => {
+                      mobileChanged(textVaredeh);
+                    }}
+                    keyboardType="phone-pad"
+                  />
+                </View>
+
+                {mobileError && (
+                  <View
+                    // className={`${Styles.formsRow} ${Styles.warningCont}`}
+                    style={[styles.formsRow]}
+                  >
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      // className="forErrorMobile error"
+                      style={[styles.errorTextStyle,
+                      {
+                        fontSize: 12,
+                      }]}
+                    >{mobileError}</Text>
+                  </View>
+                )}
+
+                <View
+                  // className={Styles.formsRow}
+                  style={[styles.formsRow,
+                  {
+                    marginTop: 15,
+                    marginBottom: 10,
+                  }
+                  ]}
+                >
+                  <TouchableOpacity
+                    onPress={mobileButtonClick}
+                    disabled={isDisabledMobileCheckBtn}
+                    style={[{
+                      ...(isDisabledMobileCheckBtn === true && styles.disabledBtn),
+                      ...(!isDisabledMobileCheckBtn && styles.enableBtn),
+                    },
+                    {
+                      padding: 7,
+                      borderRadius: 7,
+                      width: "100%",
+                      height: 50,
+                    }
+                    ]}
+                  >
+                    <Text
+                      style={[styles.mediumTextStyle,
+                      {
+                        ...(isDisabledMobileCheckBtn === true && { color: 'white' }),
+                        ...(!isDisabledMobileCheckBtn && { color: 'white' }),
+                        fontSize: 16,
+                        color: (!isDisabledMobileCheckBtn ? "white" : 'white'),  //#6a6a6a
+                      }]}>
+                      دریافت کد تایید
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                {/* <View
                 // className={Styles.formsRow}
                 style={[styles.formsRow]}
               >
@@ -1079,23 +1099,23 @@ export default function LoginScreen({
                 </TouchableOpacity>
               </View> */}
 
-            </View>
-          ) : (
-            <View
-              style={{
-                flexGrow: 1,
-                flexShrink: 0,
-                flexBasis: 'auto',
-                // borderColor: 'blue',
-                // borderStyle: 'dashed',
-                // borderWidth: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'flex-end',
-              }}
-            >
-              {/* zare_nk_050312_added_st */}
-              {/* <View
+              </View>
+            ) : (
+              <View
+                style={{
+                  flexGrow: 1,
+                  flexShrink: 0,
+                  flexBasis: 'auto',
+                  // borderColor: 'blue',
+                  // borderStyle: 'dashed',
+                  // borderWidth: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'flex-end',
+                }}
+              >
+                {/* zare_nk_050312_added_st */}
+                {/* <View
                 style={{
                   flexGrow: 0,
                   flexShrink: 0,
@@ -1115,138 +1135,220 @@ export default function LoginScreen({
                 />
               </View> */}
 
-              <View
-                style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', }}>
-                <Text style={[styles.boldTextStyle,
-                { fontSize: 16, color: '#1b1c1d', marginBottom: 0, }]}>تایید شماره موبایل</Text>
+                <View
+                  style={{ display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', }}>
+                  <Text style={[styles.boldTextStyle,
+                  { fontSize: 16, color: '#1b1c1d', marginBottom: 0, }]}>تایید شماره موبایل</Text>
 
-                <Text style={[styles.mediumTextStyle,
-                { fontSize: 14, color: '#878b92', marginBottom: 0, paddingTop: 4, }]}>کد تأیید ارسال&zwnj;شده به شماره
-                  &zwnj;{mobileVal}&zwnj;
-                  را وارد کن</Text>
-              </View>
+                  <Text style={[styles.mediumTextStyle,
+                  { fontSize: 14, color: '#878b92', marginBottom: 0, paddingTop: 4, }]}>کد تأیید ارسال&zwnj;شده به شماره
+                    &zwnj;{mobileVal}&zwnj;
+                    را وارد کن</Text>
+                </View>
 
-              <View style={{
-                display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', columnGap: 16, marginTop: 40,
-                // borderColor: 'red',
-                // borderStyle: 'dashed',
-                // borderWidth: 1,
-              }}>
-                {
-                  arrayForSmsVal.map((valueAndGrad, index) => {
-                    return (
-                      <View
-                        key={index}
-                        style={{
-                          backgroundColor: 'white',
-                          borderColor: '#e0e3e5',
-                          borderStyle: 'solid',
-                          borderWidth: 1,
-                          width: 56, //  maxWidth: 56,
-                          height: 56,
-                          display: 'flex', justifyContent: 'center',
-                          alignItems: 'center',
-                          // paddingVertical: 16,     ////zare_nk_050314_commented(kolle fazaye adad ra gereft va chizi baraye tage TextInput namand)
-                          // paddingHorizontal: 12,   ////zare_nk_050314_commented
-                          borderRadius: 12,
-                        }}>
-
-                        <TextInput
+                <View style={{
+                  display: 'flex', flexDirection: 'row-reverse', justifyContent: 'center', columnGap: 16, marginTop: 40,
+                  // borderColor: 'red',
+                  // borderStyle: 'dashed',
+                  // borderWidth: 1,
+                }}>
+                  {
+                    arrayForSmsVal.map((valueAndGrad, index) => {
+                      return (
+                        <View
                           key={index}
-                          maxLength={1}   // فقط یک کاراکتر مجاز است
-                          keyboardType="number-pad"  //zare_nk_050312_added
-                          value={valueAndGrad}  //zare_nk_050312_added
-
-                          // onChange={(e) => {
-                          //   let tempArrayForSmsVal = arrayForSmsVal;
-                          //   tempArrayForSmsVal[index] = e.target.value;
-                          //   console.log('arrayForSmsVal is: ' + JSON.stringify(arrayForSmsVal));
-                          //   setArrayForSmsVal(tempArrayForSmsVal);
-                          //   newSmsTxtChanged(e.target.value, index);
-                          // }}
-                          onChangeText={(newtextVaredeh) => {
-                            // mobileChanged(newtextVaredeh);  ////zare_nk_050314_commented(mobileChanged baraye mobile varedeh hast, na inja)
-                            // let tempArrayForSmsVal = arrayForSmsVal;  //zare_nk_050312_commented(shekle copy az state nadoroste)
-                            let tempArrayForSmsVal = [...arrayForSmsVal]; //zare_nk_050312_commented(shekle copy az state doroste)
-                            tempArrayForSmsVal[index] = newtextVaredeh;
-                            console.log('arrayForSmsVal is: ' + JSON.stringify(arrayForSmsVal));
-                            console.log('arrayForSmsVal-new is: ' + JSON.stringify(tempArrayForSmsVal));
-                            setArrayForSmsVal(tempArrayForSmsVal);
-                            // newSmsTxtChanged(newtextVaredeh, index);   ////zare_nk_050314_commented
-                            newSmsTxtChanged(tempArrayForSmsVal, index);  ////zare_nk_050314_added
-                          }}
-
-                          // onKeyDown={(e) => {
-                          //   smsInputKeyDown(e, index);
-                          // }}                          
-
-                          ref={(e) => {
-                            SmsInputRefs.current[index] = e;
-                          }}
-
                           style={{
-                            borderWidth: 0,
-                            width: '100%', color: '#a5abb1', fontSize: 14, lineHeight: 20, textAlign: 'center',
-                            // outline: '2px solid transparent'  ////zare_nk_050312_commented(dar reactnative vojood nadareh, moadelesh underlineColorAndroid hast ke gozashtam)                            
-                          }}
-                          underlineColorAndroid="transparent"  ////zare_nk_050312_commented(jaigozine outline: '2px solid transparent') // این خط زیرین اندروید را حذف می‌کند
+                            backgroundColor: 'white',
+                            borderColor: '#e0e3e5',
+                            borderStyle: 'solid',
+                            borderWidth: 1,
+                            width: 56, //  maxWidth: 56,
+                            height: 56,
+                            display: 'flex', justifyContent: 'center',
+                            alignItems: 'center',
+                            // paddingVertical: 16,     ////zare_nk_050314_commented(kolle fazaye adad ra gereft va chizi baraye tage TextInput namand)
+                            // paddingHorizontal: 12,   ////zare_nk_050314_commented
+                            borderRadius: 12,
+                          }}>
 
-                          onFocus={(e) => {
-                            setTimeout(() => {
-                              // e.target.select();
-                              SmsInputRefs.current[index]?.setSelection(0, 1);
-                              // SmsInputRefs.current[index]?.setNativeProps({
-                              //   selection: { start: 0, end: 1 },
-                              // });
-                            }, 0);
-                          }}
-                        // onBlur={handleBlur}          //zare_nk_050105_olgu
+                          <TextInput
+                            key={index}
+                            maxLength={1}   // فقط یک کاراکتر مجاز است
+                            keyboardType="number-pad"  //zare_nk_050312_added
+                            value={valueAndGrad}  //zare_nk_050312_added
 
-                        // autoFocus={index===0?true:false}
+                            // onChange={(e) => {
+                            //   let tempArrayForSmsVal = arrayForSmsVal;
+                            //   tempArrayForSmsVal[index] = e.target.value;
+                            //   console.log('arrayForSmsVal is: ' + JSON.stringify(arrayForSmsVal));
+                            //   setArrayForSmsVal(tempArrayForSmsVal);
+                            //   newSmsTxtChanged(e.target.value, index);
+                            // }}
+                            onChangeText={(newtextVaredeh) => {
+                              // mobileChanged(newtextVaredeh);  ////zare_nk_050314_commented(mobileChanged baraye mobile varedeh hast, na inja)
+                              // let tempArrayForSmsVal = arrayForSmsVal;  //zare_nk_050312_commented(shekle copy az state nadoroste)
+                              let tempArrayForSmsVal = [...arrayForSmsVal]; //zare_nk_050312_commented(shekle copy az state doroste)
+                              tempArrayForSmsVal[index] = newtextVaredeh;
+                              console.log('arrayForSmsVal is: ' + JSON.stringify(arrayForSmsVal));
+                              console.log('arrayForSmsVal-new is: ' + JSON.stringify(tempArrayForSmsVal));
+                              setArrayForSmsVal(tempArrayForSmsVal);
+                              // newSmsTxtChanged(newtextVaredeh, index);   ////zare_nk_050314_commented
+                              newSmsTxtChanged(tempArrayForSmsVal, index);  ////zare_nk_050314_added
+                            }}
 
-                        />
+                            // onKeyDown={(e) => {
+                            //   smsInputKeyDown(e, index);
+                            // }}                          
 
+                            ref={(e) => {
+                              SmsInputRefs.current[index] = e;
+                            }}
+
+                            style={{
+                              borderWidth: 0,
+                              width: '100%', color: '#a5abb1', fontSize: 14, lineHeight: 20, textAlign: 'center',
+                              // outline: '2px solid transparent'  ////zare_nk_050312_commented(dar reactnative vojood nadareh, moadelesh underlineColorAndroid hast ke gozashtam)                            
+                            }}
+                            underlineColorAndroid="transparent"  ////zare_nk_050312_commented(jaigozine outline: '2px solid transparent') // این خط زیرین اندروید را حذف می‌کند
+
+                            onFocus={(e) => {
+                              setTimeout(() => {
+                                // e.target.select();
+                                SmsInputRefs.current[index]?.setSelection(0, 1);
+                                // SmsInputRefs.current[index]?.setNativeProps({
+                                //   selection: { start: 0, end: 1 },
+                                // });
+                              }, 0);
+                            }}
+                          // onBlur={handleBlur}          //zare_nk_050105_olgu
+
+                          // autoFocus={index===0?true:false}
+
+                          />
+
+                        </View>
+                      )
+                    })
+                  }
+                </View>
+
+                {smsError && (
+                  <View
+                    // className={`${Styles.formsRow} ${Styles.warningCont}`}
+                    style={[styles.formsRow, { marginBottom: 20, }]}
+                  >
+                    <Text
+                      numberOfLines={1}
+                      ellipsizeMode="tail"
+                      // className="forErrorMobile error"
+                      style={[styles.errorTextStyle,
+                      {
+                        fontSize: 12,
+                        // borderStyle: 'dashed',
+                        // borderWidth: 2,
+                        // borderColor: 'green',
+                        color: 'red',
+                      }]}
+                    >{smsError}</Text>
+                  </View>
+                )}
+
+                <View style={{
+                  display: 'flex', flexDirection: 'row', justifyContent: 'space-between',
+                  paddingBottom: 20, paddingLeft: 20, paddingRight: 20, marginTop: 28,
+                }}>
+                  {!isDisabledResendCode ?
+                    (<TouchableOpacity
+                      // id="ResendCode"
+                      // ref={refForResendCode}
+
+                      // onClick={ResendCodefunc}
+                      onPress={ResendCodefunc}
+
+                      disabled={isDisabledResendCode}
+                      //  className={`${Styles.BackBtn}  ${Styles.buttonHover}`}
+                      style={{
+                        padding: 10,
+                        borderRadius: 7,
+                        display: 'flex',
+                        flexDirection: 'row',
+                        //  border: none;
+                        // borderWidth: 0,
+                        backgroundColor: 'inherit',
+                        //  fontFamily: "IRANSansWeb_Medium(adad_fa)",
+                        direction: 'rtl',
+
+                        // borderColor: 'red',
+                        // borderStyle: 'dashed',
+                        // borderWidth: 1,
+                      }}
+                    >
+                      <View style={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        //  background-color: inherit;
+                        marginLeft: 10,
+                        // borderColor: 'red',
+                        // borderStyle: 'dashed',
+                        // borderWidth: 1,
+                      }}>
+                        {/* <img
+                        src="/images/login/request-again.svg"
+                        style={{ width: "18px" }}
+                        alt="درخواست مجدد"
+                      /> */}
+                        <RequestAgainIcon width={18} height={18} />
+                      </View>
+                      <View style={{
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
+                        display: 'flex',
+                        flexDirection: 'row',
+                        alignItems: 'center',
+                        // borderColor: 'red',
+                        // borderStyle: 'dashed',
+                        // borderWidth: 1,
+                      }}>
+                        <Text style={[styles.mediumTextStyle,
+                        { color: '#ff5900', fontSize: 14, }]}>درخواست دوباره</Text>
+                      </View>
+                    </TouchableOpacity>
+                    ) :
+                    (
+                      <View
+                        // ref={refForTimer}
+                        // id="timermoveOpportunityCont"
+                        // style={[styles.formsRow,
+                        style={{
+                          //  display: timerDisplay,
+                          display: "flex",
+                          flexDirection: "row",
+                          alignItems: 'center',
+                          // borderColor: 'red',
+                          // borderStyle: 'dashed',
+                          // borderWidth: 1,
+                        }}
+                      >
+                        <Text
+                          style={[styles.mediumTextStyle,
+                          {
+                            display: "flex", flexDirection: "row", color: "red",
+                            // borderColor: 'blue',
+                            // borderStyle: 'dashed',
+                            // borderWidth: 1,
+                          }]}>
+                          تایمر: {Math.floor(timer / 1000)} ثانیه
+                        </Text>
                       </View>
                     )
-                  })
-                }
-              </View>
-
-              {smsError && (
-                <View
-                  // className={`${Styles.formsRow} ${Styles.warningCont}`}
-                  style={[styles.formsRow, { marginBottom: 20, }]}
-                >
-                  <Text
-                    numberOfLines={1}
-                    ellipsizeMode="tail"
-                    // className="forErrorMobile error"
-                    style={[styles.errorTextStyle,
-                    {
-                      fontSize: 12,
-                      // borderStyle: 'dashed',
-                      // borderWidth: 2,
-                      // borderColor: 'green',
-                      color: 'red',
-                    }]}
-                  >{smsError}</Text>
-                </View>
-              )}
-
-              <View style={{
-                display: 'flex', flexDirection: 'row', justifyContent: 'space-between',
-                paddingBottom: 20, paddingLeft: 20, paddingRight: 20, marginTop: 28,
-              }}>
-                {!isDisabledResendCode ?
-                  (<TouchableOpacity
-                    // id="ResendCode"
-                    // ref={refForResendCode}
-
-                    // onClick={ResendCodefunc}
-                    onPress={ResendCodefunc}
-
-                    disabled={isDisabledResendCode}
-                    //  className={`${Styles.BackBtn}  ${Styles.buttonHover}`}
+                  }
+                  {/* zare_nk_050102_added_st */}
+                  {/* <div className={Styles.formsRow} style={{ direction: "rtl" }}> */}
+                  <TouchableOpacity
+                    id="backToFirsPage"
+                    // className={`${Styles.BackBtn} ${Styles.buttonHover}`}
                     style={{
                       padding: 10,
                       borderRadius: 7,
@@ -1254,14 +1356,15 @@ export default function LoginScreen({
                       flexDirection: 'row',
                       //  border: none;
                       // borderWidth: 0,
-                      backgroundColor: 'inherit',
+                      //  background-color: inherit;
                       //  fontFamily: "IRANSansWeb_Medium(adad_fa)",
                       direction: 'rtl',
-
                       // borderColor: 'red',
                       // borderStyle: 'dashed',
                       // borderWidth: 1,
                     }}
+                    // onClick={backBtnClick} 
+                    onPress={() => setStep("firstPage")}
                   >
                     <View style={{
                       display: 'flex',
@@ -1273,120 +1376,37 @@ export default function LoginScreen({
                       // borderStyle: 'dashed',
                       // borderWidth: 1,
                     }}>
-                      {/* <img
-                        src="/images/login/request-again.svg"
-                        style={{ width: "18px" }}
-                        alt="درخواست مجدد"
-                      /> */}
-                      <RequestAgainIcon width={18} height={18} />
+                      {/* <img 
+                      src="/images/login/return-to-mpbilenumber.svg"
+                      style={{ width: "18px" }}
+                      alt="ویرایش موبایل"
+                    /> */}
+                      <ReturnToMobilenumberIcon width={18} height={18} />
+
                     </View>
                     <View style={{
+                      //  flex: 0 0 auto;
                       flexGrow: 0,
                       flexShrink: 0,
                       flexBasis: 'auto',
                       display: 'flex',
                       flexDirection: 'row',
                       alignItems: 'center',
-                      // borderColor: 'red',
+                      // borderColor: 'blue',
                       // borderStyle: 'dashed',
                       // borderWidth: 1,
                     }}>
                       <Text style={[styles.mediumTextStyle,
-                      { color: '#ff5900', fontSize: 14, }]}>درخواست دوباره</Text>
+                      { color: '#ff5900', fontSize: 14, }]}>ویرایش موبایل</Text>
+                      {/* fontFamily: "IRANSansWeb_Medium(adad_fa)", */}
                     </View>
                   </TouchableOpacity>
-                  ) :
-                  (
-                    <View
-                      // ref={refForTimer}
-                      // id="timermoveOpportunityCont"
-                      // style={[styles.formsRow,
-                      style={{
-                        //  display: timerDisplay,
-                        display: "flex",
-                        flexDirection: "row",
-                        alignItems: 'center',
-                        // borderColor: 'red',
-                        // borderStyle: 'dashed',
-                        // borderWidth: 1,
-                      }}
-                    >
-                      <Text
-                        style={[styles.mediumTextStyle,
-                        {
-                          display: "flex", flexDirection: "row", color: "red",
-                          // borderColor: 'blue',
-                          // borderStyle: 'dashed',
-                          // borderWidth: 1,
-                        }]}>
-                        تایمر: {Math.floor(timer / 1000)} ثانیه
-                      </Text>
-                    </View>
-                  )
-                }
-                {/* zare_nk_050102_added_st */}
-                {/* <div className={Styles.formsRow} style={{ direction: "rtl" }}> */}
-                <TouchableOpacity
-                  id="backToFirsPage"
-                  // className={`${Styles.BackBtn} ${Styles.buttonHover}`}
-                  style={{
-                    padding: 10,
-                    borderRadius: 7,
-                    display: 'flex',
-                    flexDirection: 'row',
-                    //  border: none;
-                    // borderWidth: 0,
-                    //  background-color: inherit;
-                    //  fontFamily: "IRANSansWeb_Medium(adad_fa)",
-                    direction: 'rtl',
-                    // borderColor: 'red',
-                    // borderStyle: 'dashed',
-                    // borderWidth: 1,
-                  }}
-                  // onClick={backBtnClick} 
-                  onPress={() => setStep("firstPage")}
-                >
-                  <View style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    //  background-color: inherit;
-                    marginLeft: 10,
-                    // borderColor: 'red',
-                    // borderStyle: 'dashed',
-                    // borderWidth: 1,
-                  }}>
-                    {/* <img 
-                      src="/images/login/return-to-mpbilenumber.svg"
-                      style={{ width: "18px" }}
-                      alt="ویرایش موبایل"
-                    /> */}
-                    <ReturnToMobilenumberIcon width={18} height={18} />
-
-                  </View>
-                  <View style={{
-                    //  flex: 0 0 auto;
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: 'auto',
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    // borderColor: 'blue',
-                    // borderStyle: 'dashed',
-                    // borderWidth: 1,
-                  }}>
-                    <Text style={[styles.mediumTextStyle,
-                    { color: '#ff5900', fontSize: 14, }]}>ویرایش موبایل</Text>
-                    {/* fontFamily: "IRANSansWeb_Medium(adad_fa)", */}
-                  </View>
-                </TouchableOpacity>
-                {/* </div> */}
-                {/* zare_nk_050102_added_end */}
-              </View>
-              {/* zare_nk_050312_added_end */}
-              {/* zare_nk_050312_commented_st */}
-              {/* <View
+                  {/* </div> */}
+                  {/* zare_nk_050102_added_end */}
+                </View>
+                {/* zare_nk_050312_added_end */}
+                {/* zare_nk_050312_commented_st */}
+                {/* <View
                 // ref={refForTimerCont}
                 // id="timermoveOpportunityCont"
                 style={[styles.formsRow,
@@ -1638,13 +1658,14 @@ export default function LoginScreen({
                   </Text>
                 </TouchableOpacity>
               </View> */}
-              {/* zare_nk_050312_commented_end */}
-            </View>
-          )}
+                {/* zare_nk_050312_commented_end */}
+              </View>
+            )}
 
+          </View>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </KeyboardAvoidingView>
   );
 }
 

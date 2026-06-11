@@ -860,7 +860,6 @@ async function getCookie(name: any) {
 }
 ////zare_nk_041128_added_end 
 
-
 type addRemParamType = {
   tedadInSabadOrDet: number;
   ZaribForoosh: number;
@@ -1994,7 +1993,6 @@ export default function HomeScreen({
   // if (!device) return <Text style={styles.centerText}>دوربین یافت نشد</Text>; //zare_nk_041201_commented
   // if (!hasPermission) return <Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>;   //zare_nk_041201_commented
   const hasTorch = device?.hasTorch ?? false;  //zare_nk_040927_added_st(baraye danestane flash dashtane dastgah)
-
 
   ////zare_nk_041128_commented_st
   // async function ManualInputBarcode(
@@ -3916,6 +3914,141 @@ export default function HomeScreen({
             </View>
 
             {/* zare_nk_050317_commented_st(felan nemikhaim) */}
+            <View
+              // id="Subprograms-5"
+              // className="Subprograms"
+              style={[{
+                display: "flex",
+                flexDirection: "row",
+              }, SubprogramsResponse]}
+            >
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/games"  
+                // onPress={() => { return navigation.replace("Splash", { target: "SupperGame" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
+                onPress={() => { return navigation.navigate("folder02"); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  // padding: 15,   
+                  padding: 10,
+                  // alignItems: "center",  //zare_nk_041206_commented 
+                  borderWidth: 1,
+                  borderColor: "#a9a9a9",
+                  borderStyle: 'solid',
+                  boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                  borderRadius: 25,
+                  backgroundColor: "white",
+                  overflow: "hidden",
+                }}
+              >
+                <View
+                  // className="imgAndTextInSubprograms"
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",                    
+                    flexGrow: 1,
+                    flexShrink: 1,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}
+                >
+                  <View
+                    // className="roundedPillsCont"
+                    style={[{
+                      display: "flex",
+                      flexDirection: "row",
+                      // width: "fit-content",
+
+                    }, roundedPillsContResponse]}
+                  >
+                    <View
+                      // className="rounded-pill"
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: 'center',
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
+                        borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
+                      }}
+                    > 
+                      <Image
+                        source={gameImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
+                      />
+                    </View>
+                  </View>
+                  <View
+                    style={[{
+                      display: "flex",
+                      flexDirection: "column",
+                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                      // width: "fit-content", 
+                    }, subSysTextContResponse]}
+                  >
+                    <View
+                      style={{
+                        // flex: "0 0 auto",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
+                        display: "flex",
+                        flexDirection: "row",
+                        marginBottom: 7,  //zare_nk_041205_added
+                      }}
+                    >
+                      <Text
+                        // className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}
+                      >بازی و سرگرمی</Text>
+                    </View>
+                    <View
+                      style={{ flexDirection: "row", }}
+                    // className="decsInSubprograms"
+                    >
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Text
+                          // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
+                          style={[{
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}
+                        >
+                          لحظات خوش کودکان در محیط هایپر!
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View
+                  // className="leftArrowInSubprograms"
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
+                > 
+                  <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
+                  />
+                </View>
+              </TouchableOpacity>
+            </View>
             {/* <View
               // id="Subprograms-5"
               // className="Subprograms"

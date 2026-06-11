@@ -1182,7 +1182,7 @@ export default function ShallowRoutingExample({
 
       const data = await response.json();
       if (response.ok) {
-        Alert.alert('inja-1');
+        // Alert.alert('inja-1');
         var result = JSON.parse(data.data.list);
         if (data.status != 0) {
           Alert.alert('inja-2');
@@ -1201,24 +1201,24 @@ export default function ShallowRoutingExample({
           //     span.innerText = data.errors[0];
           // }
         } else if (data.status == 0) {
-          Alert.alert('inja-3');
+          // Alert.alert('inja-3');
           if (result.length == 0) {
-            Alert.alert('inja-4');
+            // Alert.alert('inja-4');
             // setBisatr(true);  ////zare_nk_050321_commented
             ////zare_nk_050321_added_st
             if (page == null) {
-              Alert.alert('inja-setBisatr shod!!');
+              // Alert.alert('inja-setBisatr shod!!');
               setBisatr(true);
             }
             else {
-              Alert.alert('inja-entihaa!!');
+              // Alert.alert('inja-entihaa!!');
               rofForEnteha.current = true; ////zare_nk_050321_nokteh(ta ba vojoode entehaye list boodan page ra ezafeh nakone)
             }
             ////zare_nk_050321_added_end
 
             return;
           }
-          Alert.alert('inja-5');
+          // Alert.alert('inja-5');
           setBisatr(false);
           refForfather.current = "#cardcontainer2";
           return (
@@ -1399,7 +1399,7 @@ export default function ShallowRoutingExample({
             ForCartContentsDesignTypeLet = 1;
           }
           if (addRemParam.fromShowDetails) {
-            Alert.alert('detim');
+            // Alert.alert('detim');
             setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_041209_added
             setForCartContInProdDetVal(() => {
               const idTag = "ForCart-" + addRemParam.IdKala;
@@ -1424,7 +1424,7 @@ export default function ShallowRoutingExample({
               };
             });
           }
-          Alert.alert('baghiye');
+          // Alert.alert('baghiye');
 
           ////zare_nk_050321_added_alan_st
           // offerRows.map((curItem: any, index: number) => {
@@ -1832,6 +1832,7 @@ export default function ShallowRoutingExample({
   ////zare_nk_050319_added_st(az useCallback baraye sorate bishtar estefadeh kardim) 
   const renderOfferItem: ListRenderItem<ForCartContInProdDetValType> = useCallback(({ item }) => (
     <OfferSatrComponent
+      key={item.IdKala}   
       offerRow={item}
       handlerForAddClick={handlerForAddClick}
       handlerForRemClick={handlerForRemClick}
@@ -1865,12 +1866,12 @@ export default function ShallowRoutingExample({
     // setData(prev => [...prev, ...newData]); // اضافه کردن به لیست
     // setPage(nextPage);
     if (rofForEnteha.current) {
-      Alert.alert('ahkarin safhe tebghe apiye akharin');
+      // Alert.alert('ahkarin safhe tebghe apiye akharin');
       return;
     }
 
     const nextPage = page ? page + 1 : null;
-    Alert.alert('5 taye chandom: ' + nextPage);
+    // Alert.alert('5 taye chandom: ' + nextPage);
     setPage(nextPage);
   }
   ////zare_nk_050320_added_end
@@ -1945,7 +1946,7 @@ export default function ShallowRoutingExample({
             setIsOpenedProdDetModal(false);
             // setAddOrRemChanged("notNull");  ////zare_nk_050320_commented(jash ro be state page dad) 
             // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
-            Alert.alert('5 tay to basmodal : ' + 1);
+            // Alert.alert('5 tay to basmodal : ' + 1);
             setBisatrInProductDet(false);
           }}   ////zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
         >
@@ -2036,7 +2037,7 @@ export default function ShallowRoutingExample({
                   setIsOpenedProdDetModal(false);
                   // setAddOrRemChanged("notNull");  ////zare_nk_050320_commented(jash ro be state page dad) 
                   // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
-                  Alert.alert('5 tay to basmodal(1) : ' + 1);
+                  // Alert.alert('5 tay to basmodal(1) : ' + 1);
                   setBisatrInProductDet(false);
                 }}
                 activeOpacity={0.6}

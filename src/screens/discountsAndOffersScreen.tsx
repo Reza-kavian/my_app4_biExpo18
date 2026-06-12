@@ -45,15 +45,15 @@ import OfferSatrComponent from '../components/OfferSatrComponent';  ////zare_nk_
 // }
 ////zare_nk_041129_commented_end
 
-////zare_nk_041127_added_st
-const showNoStock = () => {
-  if (Platform.OS === "android") {
-    ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
-  } else {
-    // Alert.alert("خطا", "موجودی کافی نیست");
-  }
-};
-////zare_nk_041127_added_end
+////zare_nk_050322_commented_st(chon methode showNoStock estefadeh nashod dar in safhe comemnt shod)
+// const showNoStock = () => {
+//   if (Platform.OS === "android") {
+//     ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
+//   } else {
+//     // Alert.alert("خطا", "موجودی کافی نیست");
+//   }
+// };
+////zare_nk_050322_commented_end(chon methode showNoStock estefadeh nashod dar in safhe comemnt shod)
 
 type addRemParamType = {
   tedadInSabadOrDet: number;
@@ -93,592 +93,6 @@ type ForCartContInProdDetValType = {
   ForCartContentsDesignType: number;
   idTag: string;
 };
-
-////zare_nk_050319_commented_st(bordim be componente joda)
-// type OfferSatrComponentType = {
-//   offerRow: ForCartContInProdDetValType
-//   handlerForAddClick: (
-//     addRemParam: addRemParamType,
-//   ) => void;
-//   handlerForRemClick: (
-//     addRemParam: addRemParamType,
-//   ) => void;
-//   openprodDetModal: (barcodeKala: string) => void;
-//   // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-//   navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-// };
-
-// export function OfferSatrComponent({
-//   offerRow,
-//   handlerForAddClick,
-//   handlerForRemClick,
-//   openprodDetModal,
-//   navigation,  
-// }: OfferSatrComponentType) {
-
-//   const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
-
-//   ////zare_nk_041207_added_st
-//   const [productHeight, setProductHeight] = useState<number>(0);
-//   const [productWidth, setProductWidth] = useState<number>(0);  //zare_nk_041208_dded
-//   const productUri = `https://img.tochikala.com/Product/${offerRow.IdKala}.webp`; // تبدیل به متغیر
-//   const [imgUri, setImgUri] = useState(productUri);
-//   ////zare_nk_041207_added_end
-//   ////zare_nk_041206_added_st(moadele @media baraye responsive kardane site) 
-//   const { width } = useWindowDimensions();
-//   //////responsive_for_Subprograms_added_st
-//   let SubprogramsResponse: StyleProp<ViewStyle> = styles.Subprograms_BaseResponse;
-//   if (width >= 576) {
-//     SubprogramsResponse = styles.Subprograms_BTH576;
-//   }
-//   if (width >= 992) {
-//     SubprogramsResponse = styles.Subprograms_BTH992;
-//   }
-//   //////responsive_for_Subprograms_added_end 
-//   ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
-
-//   // Alert.alert("offerRow.Mojoodi: "+offerRow.Mojoodi);
-//   var Tedad = offerRow.tedadInSabadOrDet;
-//   var bishAzMaxTedadYaMojoodi = 0;
-//   if (offerRow.MaxTedad != null) {
-//     if (offerRow.MaxTedad <= Tedad) {
-//       bishAzMaxTedadYaMojoodi = 1;
-//     }
-//   } else {
-//     if (offerRow.Mojoodi <= Tedad) {
-//       bishAzMaxTedadYaMojoodi = 1;
-//     }
-//   }
-
-//   console.log('zare_nk_041121-offerRow: ' + JSON.stringify(offerRow));
-//   // const ForCartContentsDesignTypeLet = useMemo(() => {
-//   const tedadInSabadOrDetToNumber = Number(offerRow.tedadInSabadOrDet);
-//   const ZaribForooshToNumber = Number(offerRow.ZaribForoosh);
-
-//   const ForCartContentsDesignTypeLet =
-//     tedadInSabadOrDetToNumber === 0 ? 0 :
-//       tedadInSabadOrDetToNumber > ZaribForooshToNumber ? 2 :
-//         tedadInSabadOrDetToNumber === ZaribForooshToNumber ? 1 :
-//           0;
-//   // }, [offerRow]);  
-//   // Alert.alert("ForCartContentsDesignTypeLet: "+ForCartContentsDesignTypeLet);
-
-//   ////zare_nk_041207_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
-//   const onImageLayout = (event: LayoutChangeEvent) => {
-//     const { width } = event.nativeEvent.layout; // عرض واقعی خود Image
-//     setProductWidth(width);  //zare_nk_041208_added
-//     // محاسبه ارتفاع بر اساس نسبت واقعی تصویر
-//     Image.getSize(productUri, (imgWidth, imgHeight) => {
-//       const ratio = imgHeight / imgWidth;
-//       setProductHeight(width * ratio);
-//     });
-//   };
-//   ////zare_nk_041207_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
-
-//   return (
-//     <View
-//       // id="Subprograms-1"
-//       // className="Subprograms"
-//       style={[{
-//         display: "flex",
-//         flexDirection: "row",
-//       }, SubprogramsResponse]}
-//     >
-//       <TouchableOpacity
-//         // id={`cardd-${offerRow.IdKala}`}
-//         // type="button"
-//         // onClick={(event) => openprodDetModal(offerRow.BarcodeKala)}
-//         onPress={(event) => openprodDetModal(offerRow.BarcodeKala)}
-//         // onMouseEnter={(event) => {
-//         //   event.currentTarget.style.boxShadow = "0px 0px 2px 0px #D7D6D6";
-//         // }}
-//         // onMouseLeave={(event) => {
-//         //   event.currentTarget.style.boxShadow = "none";
-//         // }}
-//         // className="cardd Mainslides GotToDet"
-//         style={{
-//           // color: "inherit",
-//           // textDecoration: "none",
-//           // display: "inline-block",
-
-//           width: "100%",
-//           display: "flex",
-//           flexDirection: "column",
-
-//           // direction: "rtl",
-//           // padding: "0px 2px 5px 2px",
-//           paddingTop: 0,
-//           paddingRight: 2,
-//           paddingBottom: 5,
-//           paddingLeft: 2,
-//           marginLeft: -1,
-//           marginBottom: -1,
-//           // margin: 3,  
-//           // border: "1px solid #e4e4e4",  
-
-//           height: "auto",
-//           // borderWidth: 1,
-//           ////zare_nk_050316_commented_st
-//           // borderColor: "#a9a9a9",  
-//           // borderStyle: 'solid',   
-//           // boxShadow: "#5e5e5e 0px 0px 3px 0px",  
-//           ////zare_nk_050316_commented_end
-//           // borderRadius: 25,
-//           borderRadius: 16,
-//           backgroundColor: "white",
-//           overflow: "hidden",
-//         }}
-//       >
-//         <View
-//           style={{
-//             // display: "flex", 
-//             flexDirection: "column",
-//             position: "relative"
-//           }}
-//         >
-
-
-
-
-
-//           {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif != 0) && (
-//             <View
-//               // id={`darsadTakhfifInsabad-${offerRow.IdKala}`}
-//               // className="darsadTakhfifInsabad rounded-pill"
-//               style={{
-//                 position: "absolute",
-//                 top: 7,
-//                 left: 7,
-//                 display: 'flex',
-
-//                 flexDirection: "row",
-//                 justifyContent: "center",
-//                 alignItems: 'center',
-//                 backgroundColor: "#ff3151",
-//                 width: 39,
-//                 height: 20,
-//                 // flexGrow: 0,
-//                 // flexShrink: 0,
-//                 // flexBasis: 'auto',
-//                 marginLeft: 5,
-//                 borderRadius: 100,
-//                 zIndex: 2,
-//                 // borderWidth:1,
-//                 // borderStyle:'dashed',
-//                 // borderColor:'red',
-//               }}
-//             >
-//               <Text
-//                 // className="forDiscount"
-//                 style={{
-//                   fontSize: 12,
-//                   color: "white",
-//                   opacity: 1,
-//                   fontFamily: "IRANSansWeb(FaNum)_Medium",
-//                   // borderWidth: 2,
-//                   // borderStyle: 'dashed',
-//                   // borderColor: 'black',
-//                 }}
-//               >
-//                 {`${offerRow.DarsadTakhfif}%`}
-//               </Text>
-//             </View>
-//           )}
-
-//           {/* {((offerRow.DarsadTakhfif ?? 0) >= 30) &&(  */}
-//           {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif >= 15) && (
-//             <View
-//               // className={`specialOffer-${offerRow.IdKala}`}
-//               style={{
-//                 position: "absolute",
-//                 top: 7,
-//                 right: 7,
-//                 display: "flex",
-//                 // fontSize: "100%",
-//                 backgroundColor: "inherit",
-//                 zIndex: 2,
-//                 // borderWidth:1,
-//                 // borderStyle:'dashed',
-//                 // borderColor:'red', 
-//               }}
-//             >
-//               {/* <img
-//               style={{ width: "64px" }}
-//               src="https://img.tochikala.com/Icon/special-offer.svg"
-//               alt="علاقه&zwnj;مندی&zwnj;ها"
-//             /> */}
-//               {/* <Image
-//                 source={{ uri: "https://img.tochikala.com/Icon/special-offer.svg" }}
-//                 style={{ width: 64, height: 14 }}
-//               /> */}
-//               {/* <SvgUri
-//                 uri="https://img.tochikala.com/Icon/special-offer.svg"
-//                 width={64}
-//                 height={14}
-//               /> */}
-//               <SpecialOfferIcon />
-//             </View>
-//           )}
-
-//           <View
-//             // className="imgcontainer"
-//             // id={`imgcontainer-${offerRow.IdKala}`} 
-//             style={{
-//               width: "100%",
-//               // display: "flex",
-//               flexDirection: "column",
-//               // height: "min-content",
-//               position: 'relative',
-//               // borderWidth: 2,
-//               // borderStyle: 'dashed',
-//               // borderColor: 'red',
-//             }}
-//           >
-//             {/* <img
-//             loading="lazy"
-//             src={`https://img.tochikala.com/Product/${offerRow.IdKala}.webp`}
-//             id={`card-img-top-${offerRow.IdKala}`}
-//             className="card-img-top"
-//             alt={offerRow.NameKala ? offerRow.NameKala : ''}
-//             style={{ width: "100%", backgroundColor: "#EFEFEF" }}
-//           //  onError={this.onerror=null;this.src=\'https://img.tochikala.com/Logo/tochi.png\';$(this).css(\'height\',\'auto\') }}
-//           //  onLoad="$(this).css(\'background-color\',\'inherit\');$(this).css(\'height\',\'auto\');"
-//           /> */}
-//             <Image
-//               onLayout={onImageLayout}  ////zare_nk_041207_added
-//               onError={() => {
-//                 const productUriOnError = 'https://img.tochikala.com/Logo/tochi.png';
-//                 setImgUri(productUriOnError);
-
-//                 if (productWidth > 0) {
-//                   Image.getSize(productUriOnError, (imgWidth, imgHeight) => {
-//                     const ratio = imgHeight / imgWidth;
-//                     setProductHeight(productWidth * ratio);
-//                   });
-//                 }
-//               }}
-//               onLoad={() => { setIsLoadedIroductImage(true); }}
-//               // source={{ uri: `https://img.tochikala.com/Product/${offerRow.IdKala}.webp` }}  //zare_nk_041207_commented
-//               source={{ uri: imgUri }}   //zare_nk_041207_added
-//               style={{
-//                 backgroundColor: isLoadedIroductImage ? "#ffffff" : "#efefef",
-//                 width: "100%",
-//                 // height: 'auto',  //zare_nk_041207_comemnted(height: 'auto' dar reactNative dorost amal nemikoneh)
-//                 //// aspectRatio: 1,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))(rahe aspectRatioye ertefa)
-//                 // height: productHeight,   //zare_nk_041207_added(height ra nesbat be width mohasebe mikoneh(monasebe zamani ke nesbate width/height ra midanim))(rahe onLayoutiye ertefa)
-
-//                 ////zare_nk_041208_added_st(rahe tarkibiye ertefa)
-//                 ...(productHeight === 0
-//                   ? { aspectRatio: 1 }
-//                   : { height: productHeight }),
-//                 ////zare_nk_041208_added_end(rahe tarkibiye ertefa)
-
-//                 // borderWidth: 2,
-//                 // borderStyle:'dashed',
-//                 // borderColor: 'blue',
-//               }}
-//             />
-//           </View>
-
-//           <View
-//             // id={`ForCartContInProdDet-${offerRow.IdKala}`}
-//             style={{
-//               // display: "flex",
-//               flexDirection: "column",
-//               justifyContent: "center",
-//               marginTop: 7,
-//               // padding: "0px 10px",
-//               paddingVertical: 0,
-//               paddingHorizontal: 10,
-//               position: 'absolute',
-//               bottom: 0,
-//               right: 0,
-//             }}
-//           >
-//             {/* <MiddleCountTedadSefr */}
-//             <AddRemBtnsAndCountPackege
-//               refForfather={offerRow.refForfather}
-//               fromShowDetails={offerRow.fromShowDetails}
-//               IdKala={offerRow.IdKala}
-//               idTag={offerRow.idTag}
-//               tedadInSabadOrDet={offerRow.tedadInSabadOrDet}
-
-//               // handlerForAddClick={(e) => {  //zare_nk_041127_commented
-//               handlerForAddClick={() => {  //zare_nk_041127_added
-//                 return handlerForAddClick(
-//                   {
-//                     tedadInSabadOrDet: offerRow.tedadInSabadOrDet,
-//                     ZaribForoosh: offerRow.ZaribForoosh,
-//                     IdKala: offerRow.IdKala,
-//                     NameKala: offerRow.NameKala,
-//                     DarsadTakhfif: offerRow.DarsadTakhfif,
-//                     NameBerand: offerRow.NameBerand,
-//                     FeeForoosh: offerRow.FeeForoosh,
-//                     FeeMasraf: offerRow.FeeMasraf,
-//                     BarcodeKala: offerRow.BarcodeKala,
-//                     Mojoodi: offerRow.Mojoodi,
-//                     MaxTedad: offerRow.MaxTedad,
-//                     father: offerRow.father,
-//                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
-//                     fromShowDetails: false,
-//                     // event: e,  //zare_nk_041127_commented
-//                     event: null,  //zare_nk_041127_added
-//                   }
-//                 );
-//               }}
-//               // handlerForRemClick={(e) => {  //zare_nk_041127_commented
-//               handlerForRemClick={() => {  //zare_nk_041127_added
-//                 return handlerForRemClick(
-//                   {
-//                     tedadInSabadOrDet: offerRow.tedadInSabadOrDet,
-//                     ZaribForoosh: offerRow.ZaribForoosh,
-//                     IdKala: offerRow.IdKala,
-//                     NameKala: offerRow.NameKala,
-//                     DarsadTakhfif: offerRow.DarsadTakhfif,
-//                     NameBerand: offerRow.NameBerand,
-//                     FeeForoosh: offerRow.FeeForoosh,
-//                     FeeMasraf: offerRow.FeeMasraf,
-//                     BarcodeKala: offerRow.BarcodeKala,
-//                     Mojoodi: offerRow.Mojoodi,
-//                     MaxTedad: offerRow.MaxTedad,
-//                     father: offerRow.father,
-//                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
-//                     fromShowDetails: false,
-//                     // event: e,  //zare_nk_041127_commented
-//                     event: null,  //zare_nk_041127_added
-//                   }
-//                 );
-//               }}
-//               ForCartContentsDesignType={ForCartContentsDesignTypeLet}
-//               bishAzMaxTedadYaMojoodi={bishAzMaxTedadYaMojoodi}
-//               navigation={navigation}  //zare_nk_041128_added
-//             />
-
-//           </View>
-//         </View>
-
-//         <View
-//           style={{
-//             height: 37,
-//             display: "flex",
-//             flexWrap: "wrap",
-//             flexDirection: "row",
-//             marginTop: 7,
-//             marginBottom: 5,
-//             // padding: "0px 10px 0px 10px",
-//             paddingVertical: 0,
-//             paddingHorizontal: 10,
-//             justifyContent: 'flex-start',
-//             alignItems: 'flex-start',
-//             width: "100%",
-//             //             borderWidth: 1,
-//             // borderStyle: 'dashed',
-//             // borderColor: 'red',
-//           }}
-//         >
-//           <Text
-//             numberOfLines={2}
-//             ellipsizeMode="tail"
-//             style={{
-//               fontFamily: "IRANSansWeb(FaNum)_Medium",
-//               fontSize: 13,
-//               color: '#454545',  ////zare_nk_050316_added
-//               lineHeight: 18,  ////zare_nk_050316_added
-//               // borderWidth: 1,
-//               // borderStyle: 'dashed',
-//               // borderColor: 'red',
-//             }}
-//           >
-//             {offerRow.NameKala}
-//           </Text>
-//         </View>
-
-//         {/* {((offerRow.DarsadTakhfif ?? 0) != 0) ? ( */}
-//         {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif != 0) ? (
-//           <View
-//             // id={`PriceBeforeDiscount-${offerRow.IdKala}`}
-//             style={{
-//               // visibility: "visible",  ////zare_nk_050316_commented(dar react native visibility nadarim)
-//               opacity: 1,  ////zare_nk_050316_added(dar react native visibility nadarim)
-//               display: "flex",
-//               flexDirection: "row",
-//               paddingLeft: 10,
-//               justifyContent: 'flex-end',
-//               alignItems: "center",
-//               width: "100%",
-//               // borderWidth: 1,
-//               // borderStyle: 'dashed',
-//               // borderColor: 'red',
-//             }}
-//           >
-//             <Text
-//               // className="PriceBeforeDiscount"
-//               style={{
-//                 fontSize: 11,
-//                 textDecorationLine: "line-through",
-//                 color: '#888',  ////zare_nk_050316_added
-//                 fontFamily: "IRANSansWeb(FaNum)_Medium",
-//                 lineHeight: 10,  ////zare_nk_050316_added
-//               }}
-//             >
-//               {offerRow.FeeMasraf.toLocaleString()}
-//             </Text>
-//           </View>
-//         ) : (
-//           <View
-//             // id={`PriceBeforeDiscount-${offerRow.IdKala}`}
-//             style={{
-//               // visibility: "hidden",  ////zare_nk_050316_commented(dar react native visibility nadarim)
-//               opacity: 0,  ////zare_nk_050316_added(dar react native visibility nadarim)
-//               display: "flex",
-//               flexDirection: "row",
-//               paddingLeft: 10,
-//               justifyContent: 'flex-end',
-//               alignItems: "center",
-//               width: "100%",
-//               // borderWidth: 1,
-//               // borderStyle: 'dashed',
-//               // borderColor: 'blue',
-//             }}
-//           >
-//             <Text
-//               // className="PriceBeforeDiscount"
-//               style={{
-//                 fontSize: 11,
-//                 // opacity: 0.7,  
-//                 textDecorationLine: "line-through",
-//                 color: '#888',  ////zare_nk_050316_added
-//                 fontFamily: "IRANSansWeb(FaNum)_Medium",
-//                 lineHeight: 10,  ////zare_nk_050316_added
-//               }}
-//             >
-//               {offerRow.FeeMasraf.toLocaleString()}
-//             </Text>
-//           </View>
-//         )}
-
-//         <View
-//           style={{
-//             display: "flex",
-//             flexWrap: "wrap",
-//             flexDirection: "row",
-//             marginTop: 0,
-//             marginBottom: 5,
-//             // padding: "0px 10px 0px 10px",
-//             paddingVertical: 0,
-//             paddingHorizontal: 10,
-//             // justifyContent: 'space-between',  ////zare_nk_050316_commented
-//             justifyContent: 'flex-start',  ////zare_nk_050316_added
-//             alignItems: "center",
-//             width: "100%",
-//             // borderWidth: 1,
-//             // borderStyle: 'dashed',
-//             // borderColor: 'black',
-//           }}
-//         >
-
-//           {/* {((offerRow.DarsadTakhfif ?? 0) != 0) &&(  */}
-//           {/* {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif != 0) && (
-//             <View
-//               // id={`darsadTakhfifInsabad-${offerRow.IdKala}`}
-//               // className="darsadTakhfifInsabad rounded-pill"
-//               style={{
-//                 backgroundColor: "#ff3151",
-//                 width: 39,
-//                 height: 20,
-//                 // flex: "0 0 auto",
-//                 display: 'flex',
-//                 flexDirection: "row",
-//                 justifyContent: "center",
-//                 alignItems: 'center',
-//                 flexGrow: 0,
-//                 flexShrink: 0,
-//                 flexBasis: 'auto',
-//                 marginLeft: 5,
-//                 borderRadius: 100,
-//               }}
-//             >
-//               <Text
-//                 // className="forDiscount"
-//                 style={{
-//                   fontSize: 12,
-//                   color: "white",
-//                   opacity: 1,
-//                   fontFamily: "IRANSansWeb(FaNum)_Medium",
-//                   // borderWidth: 2,
-//                   // borderStyle: 'dashed',
-//                   // borderColor: 'black',
-//                 }}
-//               >
-//                 {`${offerRow.DarsadTakhfif}%`}
-//               </Text>
-//             </View>
-//           )} */}
-//           <View
-//             style={{
-//               // flex: "1 0 auto", 
-//               flexGrow: 1,
-//               flexShrink: 0,
-//               flexBasis: 'auto',
-//               display: "flex",
-//               flexDirection: 'row',
-//               justifyContent: 'flex-end',
-//               // borderWidth: 1,
-//               // borderStyle: 'dashed',
-//               // borderColor: 'green',
-//             }}
-//           >
-//             <Text
-//               //  className="mablagh" 
-//               style={{
-//                 fontSize: 13,
-//                 marginLeft: 5,
-//                 fontFamily: "IRANSansWeb(FaNum)_Medium",
-//                 color: '#3d3d3d',   ////zare_nk_050316_added
-//               }}>
-//               {offerRow.FeeForoosh.toLocaleString()}
-//             </Text>
-//             <Text
-//               style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}
-//             >تومان</Text>
-//           </View>
-//         </View>
-
-//         {/* zare_nk_041121_commented_st(felan chon fielde TozihatKala ra nagonjandim) */}
-//         {/* <div
-//         className="TozihatforKala-' + parsedList[j].IdKala + '"
-//         style={{
-//           padding: "5px",
-//           borderRadius: "15px",
-//           display: "flex",
-//           flexWrap: "wrap",
-//           flexFlow: "row",
-//           margin: "0px 3px 5px 3px",
-//           justifyContent: "start",
-//           color: "red",
-//           alignItems: "center",
-//         }}
-//       >
-//         <h6
-//           style={{
-//             textAlign: "center",
-//             fontSize: "12px",
-//             margin: "0px",
-//             lineHeight: "2.0",
-//             textOverflow: "ellipsis",
-//             overflow: "hidden",
-//             lineClamp: "2",
-//           }}
-//         >
-//           {TozihatKala == null ? "" : TozihatKala}
-//         </h6>
-//       </div> */}
-//         {/* zare_nk_041121_commented_end(felan chon fielde TozihatKala ra nagonjandim) */}
-//       </TouchableOpacity>
-//     </View>
-//   );
-// }
-////zare_nk_050319_commented_end(bordim be componente joda)
 
 ////zare_nk_041128_commented_st
 // function getCookie(name: any) {
@@ -726,7 +140,7 @@ export default function ShallowRoutingExample({
   // route, ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   // options, ////zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
-  // console.log('041210-1-ShallowRoutingExample called!!');
+  console.log('050322-ShallowRoutingExample called!!');
   // const [windowWidth, setWindowWidth] = useState(Dimensions.get("window").width);
 
   const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);
@@ -805,20 +219,20 @@ export default function ShallowRoutingExample({
   }
   //////responsive_for_sabadItemsAndTotalInf_added_end
 
-
   ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
 
-
   ////zare_nk_041209_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
-  const onImageLayoutForDet = (event: LayoutChangeEvent) => {
-    let { width } = event.nativeEvent.layout; // عرض واقعی خود Image
-    setProductWidthForDet(width);  //zare_nk_041208_added
-    // محاسبه ارتفاع بر اساس نسبت واقعی تصویر
-    Image.getSize(productUriForDet, (imgWidth, imgHeight) => {
-      let ratio = imgHeight / imgWidth;
-      setProductHeightForDet(width * ratio);
-    });
-  };
+  ////zare_nk_050322_commented_st(baraye teste sorate barname(chon methode onImageLayoutForDet setState anjam mideh baraye reRendere component))
+  // const onImageLayoutForDet = (event: LayoutChangeEvent) => {
+  //   let { width } = event.nativeEvent.layout; // عرض واقعی خود Image
+  //   setProductWidthForDet(width);  //zare_nk_041208_added
+  //   // محاسبه ارتفاع بر اساس نسبت واقعی تصویر
+  //   Image.getSize(productUriForDet, (imgWidth, imgHeight) => {
+  //     let ratio = imgHeight / imgWidth;
+  //     setProductHeightForDet(width * ratio);
+  //   });
+  // };
+  ////zare_nk_050322_commented_end(baraye teste sorate barname(chon methode onImageLayoutForDet setState anjam mideh baraye reRendere component))
   ////zare_nk_041209_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
 
 
@@ -1151,7 +565,7 @@ export default function ShallowRoutingExample({
         IdVitrin: -1,
 
         page: page,  ////zare_nk_050320_added
-        take: 5,     ////zare_nk_050320_added
+        take: 20,     ////zare_nk_050320_added
       };
 
       let ApiUrl = "https://api.tochikala.com/api/";
@@ -1373,7 +787,6 @@ export default function ShallowRoutingExample({
     tempFuncForAsync();
     // }, [addOrRemChanged]); ////zare_nk_050320_commented(jash ro be state page dad)
   }, [page]);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_okk
-
 
   async function addToCartInIndex(
     addRemParam: addRemParamType,
@@ -2287,27 +1700,31 @@ export default function ShallowRoutingExample({
                         // /> 
 
                         <Image
-                          onLayout={onImageLayoutForDet}
+                          // onLayout={onImageLayoutForDet}  ////zare_nk_050322_commented(baraye teste sorate barname(chon methode onImageLayoutForDet setState anjam mideh baraye reRendere component))
                           onError={() => {
                             const productUriOnError = 'https://img.tochikala.com/Logo/tochi.png';
                             setImgUriForDet(productUriOnError);
-
-                            if (productWidthForDet > 0) {
-                              Image.getSize(productUriOnError, (imgWidth, imgHeight) => {
-                                const ratio = imgHeight / imgWidth;
-                                setProductHeightForDet(productWidthForDet * ratio);
-                              });
-                            }
+                            ////zare_nk_050322_commented_st(baraye teste sorate barname(chon setProductHeightForDete baese reRendere component mishe))
+                            // if (productWidthForDet > 0) {
+                            //   Image.getSize(productUriOnError, (imgWidth, imgHeight) => {
+                            //     const ratio = imgHeight / imgWidth;
+                            //     setProductHeightForDet(productWidthForDet * ratio);
+                            //   });
+                            // }
+                            ////zare_nk_050322_commented_end(baraye teste sorate barname(chon setProductHeightForDete baese reRendere component mishe))
                           }}
                           onLoad={() => { setIsLoadedIroductImage(true); }}
                           // source={{ uri: `https://img.tochikala.com/Product/${offerRow.IdKala}.webp` }}  //zare_nk_041207_commented
                           source={{ uri: imgUriForDet }}   //zare_nk_041207_added
                           style={{
                             backgroundColor: isLoadedIroductImage ? "#ffffff" : "#efefef",
-                            width: "100%",   //zare_nk_041211_alan
-                            ...(productHeightForDet === 0
-                              ? { aspectRatio: 1 }
-                              : { height: productHeightForDet }),
+                            width: "100%",
+                            ////zare_nk_050322_commented_st(baraye teste sorate barname(chon setProductHeightForDete baese reRendere component mishe va comment shod))
+                            // ...(productHeightForDet === 0
+                            //   ? { aspectRatio: 1 }
+                            //   : { height: productHeightForDet }),
+                            ////zare_nk_050322_commented_end(baraye teste sorate barname(chon setProductHeightForDete baese reRendere component mishe va comment shod))
+                            aspectRatio: 1,  ////zare_nk_050322_added_st(baraye teste sorate barname(chon setProductHeightForDete baese reRendere component mishe va comment shod))
                           }}
                         />
                       )}

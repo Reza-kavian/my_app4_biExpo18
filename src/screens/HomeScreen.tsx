@@ -1181,9 +1181,9 @@ export default function HomeScreen({
           "currentLocation",
           JSON.stringify(coords)
         );
-        ////zare_nk_050323_nokteh_st(ijade location_expires baraye modiriate enghezaye location)
-        // const locationExpires = new Date(Date.now() + 15 * 60 * 1000).toISOString();
-        const locationExpires = Date.now() + 30 * 1000; // (24 * 60 * 60 * 1000);
+        ////zare_nk_050323_nokteh_st(ijade location_expires baraye modiriate enghezaye location) 
+        // const locationExpires = Date.now() + (24 * 60 * 60 * 1000);  ////zare_nk_050323_nokteh(24 saat)
+        const locationExpires = Date.now() + 30 * 1000;   ////zare_nk_050323_nokteh(30 saniyeh)
         AsyncStorage.setItem("location_expires", String(locationExpires));
         ////zare_nk_050323_nokteh_end(ijade location_expires baraye modiriate enghezaye location)
 

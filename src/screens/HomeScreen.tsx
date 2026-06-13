@@ -1152,13 +1152,29 @@ export default function HomeScreen({
               Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid');
             }
             else {
-              Alert.alert('050323-barnameh nemitavanad providerhaye mogheiate makani shoma ra peyda konad' );
+              Alert.alert('050323-barnameh nemitavanad providerhaye mogheiate makani shoma ra peyda konad');
             }
           },
           {
-            enableHighAccuracy: true,
-            timeout: 30000,
-            maximumAge: 10000,
+            enableHighAccuracy: true,  ////zare_nk_050323_nokteh(mizane deghate location ro moshakhas mikoneh(age true bashe daryafte location ra bekhatere hasasiate
+            ////  deghat kami kond mikoneh)(age nanevisim pishfarz false hast))
+            timeout: 30000,  ////zare_nk_050323_nokteh(age bad az zamane timeout dastoore Geolocation.getCurrentPosition namovafagh bood barnameh 
+            //// be bolooke (error) => {} mireh.(nokteye mohem ine ke maximumAge ghabl az gashtan donbale locatione jadid amal mikone va age cache ro lahaz 
+            //// koneh donbale locatione jadid nemigardeh, vali vaghti chache ro lahaz nakoneh va donbale location bagardeh zamane timeout shoroo mishe va
+            ////  age ta payane timeout peyda nakoneh be booke error mireh ))
+            
+            maximumAge: 30000,  ////zare_nk_050323_nokteh(systemamel mamoolan akharin location ro ke migireh cache mikonehm, ma ba maximumAge be barnameh migim
+            ////  age masalan 30000 milisaniyeh az akharin locationi ke barnameh cache kardeh gozashteh az cache estefadeh nakon vagarnah az hamoon cache estefadeh
+            ////  kon)(age sefr bedim barnameh hagh nadareh az locatione cache shodeh estefadeh koneh)(age nanevisim pishfarzeh sefr hast))
+            ////zare_nk_050323_nokteh(baraye appe fooshgahi ke mesle apphaye masiryabe rannandegi dar 30 saniye sadhametr ba mashin jabeja nemishim 30 saniyeh manteghiye
+
+            forceRequestLocation: true,  ////zare_nk_050323_nokteh(age true bashe barnameh ro majboor mikoneh locatione taze az system begire va az cache barnameh
+            ////  estefadeh nakoneh, vali age natoonest locatione jadid begireh va maximumAge moshakhas mikonim barnameh hagh dare az locatione cache shodeh estefadeh
+            ////  koneh ya kheir(age nanevisim pishfarz false hast))
+
+            showLocationDialog: true,   ////zare_nk_050323_nokteh(age locatione gooshi khamoosh bashe va showLocationDialog: true benevisim, baese namayeshe 
+            //// popupe "for the better experience, your device will need to use location accuracy" mishe, nanevisim systemamel khodesh tasmim migire neshoon 
+            //// bedeh ya na(ke mamoolan namayesh mideh), age benevisim va true bedim popup neshoon dadeh mishe, age false benevisim namayash dadeh nemishe)
           }
         );
       }

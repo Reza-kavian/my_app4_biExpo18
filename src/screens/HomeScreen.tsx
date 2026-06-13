@@ -1129,6 +1129,37 @@ export default function HomeScreen({
       latitude: number
     };
   };
+
+  async function IsLocationExpiresValidFunc() {
+    const currentLocation = await getCookie("currentLocation");
+    const locationExpires = await AsyncStorage.getItem("location_expires");
+
+    let IsValid: boolean = false;
+    let lat: number | null = null;
+    let lon: number | null = null;
+    if (currentLocation && locationExpires) {
+      const expiresTime = Number(locationExpires);
+      if (expiresTime <= Date.now()) {
+        await AsyncStorage.removeItem("currentLocation");
+        await AsyncStorage.removeItem("location_expires");
+      }
+      else {
+        IsValid = true;
+        const parsedCurrentLocation = JSON.parse(currentLocation);
+        lat = parsedCurrentLocation.latitude;
+        lon = parsedCurrentLocation.longitude;
+      }
+    }
+    else {
+      await AsyncStorage.removeItem("currentLocation");
+    }
+
+    return {
+      IsValid: IsValid,
+      lat: lat,
+      lon: lon,
+    };
+  }
   ////zare_nk_050323_added_end
 
   useEffect(() => {
@@ -1142,7 +1173,7 @@ export default function HomeScreen({
         );
         ////zare_nk_050323_nokteh_st(ijade location_expires baraye modiriate enghezaye location)
         // const locationExpires = new Date(Date.now() + 15 * 60 * 1000).toISOString();
-        const locationExpires = Date.now() + 15 * 60 * 1000;
+        const locationExpires = Date.now() + 30 * 1000; // (24 * 60 * 60 * 1000);
         AsyncStorage.setItem("location_expires", String(locationExpires));
         ////zare_nk_050323_nokteh_end(ijade location_expires baraye modiriate enghezaye location)
 
@@ -1188,30 +1219,12 @@ export default function HomeScreen({
     async function tempAsyncFuncForLocationPermission() {
       ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
       //// baraye modiriate monghazi boodan estefadeh kardim) donbale location nagardeh va hamin ro darnazar begireh, vagarnah currentLocation ro hazf koneh)
-      const currentLocation = await getCookie("currentLocation");
-      const locationExpires = await AsyncStorage.getItem("location_expires");
-
-      let IsLocationExpiresValid = false;
-      if (locationExpires) {
-        const expiresTime = Number(locationExpires);
-        if (expiresTime <= Date.now()) {
-          await AsyncStorage.removeItem("currentLocation");
-        }
-        else {
-          IsLocationExpiresValid = true;
-        }
-      }
-      else {
-        await AsyncStorage.removeItem("currentLocation");
+      const IsLocationExpiresValid = await IsLocationExpiresValidFunc();
+      if (IsLocationExpiresValid.IsValid) {
+        return;
       }
       ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
       //// baraye modiriate monghazi boodan estefadeh kardim) donbale location nagardeh va hamin ro darnazar begireh, vagarnah currentLocation ro hazf koneh)
-
-      if (currentLocation) {
-        return;
-      }
-      ////zare_nk_050323_nokteh_end(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation vojood dare donbale location 
-      //// nagardeh va hamin ro darnazar begireh)
 
       const hasPermission = await requestLocationPermission();
       console.log('permission:', hasPermission);
@@ -2260,19 +2273,17 @@ export default function HomeScreen({
   // const seePrices = async () => {  //zare_nk_041205_commented(forUpdateName)
   const forOpenCodeScanner = async () => {  //zare_nk_041205_added(forUpdateName) 
 
-    ////zare_nk_050323_added_st 
-    const currentLocation = await getCookie("currentLocation");
-    if (!currentLocation) {
+    const IsLocationExpiresValid = await IsLocationExpiresValidFunc();
+    if (!IsLocationExpiresValid.IsValid) {
       setIsOpenedMymodalForWarning(true);
       setWarningTextInMymodalForWarning('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');
       return;
     }
     else {
-      const parsedcurrentLocation = JSON.parse(currentLocation);
-      const curLat = parsedcurrentLocation.latitude;
-      const curLon = parsedcurrentLocation.longitude;
-      Alert.alert('curLat: ' + curLat + '-curLon: ' + curLon);
+      Alert.alert('loc darim berim barcodkhooni-lat:' + (IsLocationExpiresValid.lat ? IsLocationExpiresValid.lat.toString() : '') + '-lon: ' +
+        (IsLocationExpiresValid.lon ? IsLocationExpiresValid.lon.toString() : ''));
     }
+
     ////zare_nk_050323_added_end
 
     ////zare_nk_050312_commented_st

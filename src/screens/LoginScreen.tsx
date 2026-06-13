@@ -4,7 +4,7 @@ import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
   useWindowDimensions, //zare_nk_041126_added(moadele @media baraye responsive kardane site)
   StyleProp, Modal, Linking, ScrollView, TextInputEndEditingEvent, TextInputChangeEvent, KeyboardAvoidingView,
-   Platform,
+  Platform,
 } from "react-native";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -365,17 +365,21 @@ export default function LoginScreen({
         const data = await response.json();
 
         if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
-          //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
-          const expires = new Date(
-            Date.now() + 20000 * 60 * 1000
-          ).toISOString();
+          ////zare_nk_050323_nokteh_st(rahe EX1- kond tar hast va tosiye nemishe)
+          // const expires = new Date(
+          //   Date.now() + 20000 * 60 * 1000
+          // ).toISOString();
+          ////zare_nk_050323_nokteh_end(rahe EX1- kond tar hast va tosiye nemishe)
+          const expires = Date.now() + 20000 * 60 * 1000;    ////zare_nk_050323_nokteh(rahe EX2- saritar hast va tosiye mishe)
+
           // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
-          let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
-          console.log("0-zare_nk_041207-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
-          await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
-          await AsyncStorage.setItem("token_expires", expires);
-          tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
-          console.log("1-zare_nk_041207-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
+          let tokenni = await AsyncStorage.getItem("token");        ////zare_nk_040925_added_pakkardani
+          console.log("0-zare_nk_041207-tokenni is: " + tokenni);   ////zare_nk_040925_added_pakkardani
+          await AsyncStorage.setItem("token", token);  ////moadele cooki dar reactnative ast
+          // await AsyncStorage.setItem("token_expires", expires);  ////zare_nk_050323_nokteh(age az rahe EX1 estefadeh konim) 
+          await AsyncStorage.setItem("token_expires", String(expires));  ////zare_nk_050323_nokteh_st(age az rahe EX2 estefadeh konim)
+          tokenni = await AsyncStorage.getItem("token");   //zare_nk_040925_added_pakkardani
+          console.log("1-zare_nk_041207-tokenni is: " + tokenni);    //zare_nk_040925_added_pakkardani
 
           ////zare_nk_041207_commented_st
           // const validRoutes = [

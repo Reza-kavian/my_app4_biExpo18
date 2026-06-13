@@ -34,9 +34,9 @@ export default function SplashScreen() {
           try {
             const tokenExpires = await AsyncStorage.getItem("token_expires");
             if (tokenExpires) {
-              // Alert.alert('06');
-              const expiresDate = new Date(tokenExpires).getTime();
-              if (expiresDate <= Date.now()) {
+              // Alert.alert('06'); 
+              const expiresTime = Number(tokenExpires);
+              if (expiresTime <= Date.now()) {
                 // Alert.alert('08');
                 // توکن منقضی شده، باید حذفش کنی و کاربر رو لاگ اوت کنی 
                 // مثلا هدایت به لاگین یا splash                

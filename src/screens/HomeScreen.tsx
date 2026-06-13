@@ -1120,69 +1120,156 @@ export default function HomeScreen({
     return true;
   }
   ////zare_nk_050323_added_end(jahate majaveze location)
+  ////zare_nk_050323_added_st
+  type PositionCoords = {
+    coords: {
+      // longitude: number | null | undefined;
+      // latitude: number | null | undefined;
+      longitude: number;
+      latitude: number
+    };
+  };
+  ////zare_nk_050323_added_end
 
   useEffect(() => {
     requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
 
+    async function saveLocation(coords: PositionCoords['coords']) {
+      try {
+        await AsyncStorage.setItem(
+          "currentLocation",
+          JSON.stringify(coords)
+        );
+        ////zare_nk_050323_nokteh_st(ijade location_expires baraye modiriate enghezaye location)
+        // const locationExpires = new Date(Date.now() + 15 * 60 * 1000).toISOString();
+        const locationExpires = Date.now() + 15 * 60 * 1000;
+        AsyncStorage.setItem("location_expires", String(locationExpires));
+        ////zare_nk_050323_nokteh_end(ijade location_expires baraye modiriate enghezaye location)
+
+        console.log("050323-AsyncStorage saved!!!!!!!");
+        Alert.alert("050323-AsyncStorage saved!!!!!!!");
+      } catch (e) {
+        console.log("050323-AsyncStorage save error:", e);
+      }
+    }
+
+    async function handleLocationError(error: any) {
+      console.log('050323-error.code: ' + error.code + '-error.message:' + error.message);
+      Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid' + 'error.message');
+      if (error.code == 2) {
+        Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid');
+      }
+      else {
+        Alert.alert('050323-barnameh nemitavanad providerhaye mogheiate makani shoma ra peyda konad');
+      }
+      if (error.code === 1) {
+        // permission denied → پاک کن
+        await AsyncStorage.removeItem("currentLocation");
+        await AsyncStorage.removeItem("location_expires"); ////zare_nk_050323_nokteh(ijade location_expires baraye modiriate enghezaye location)
+      }
+
+      if (error.code === 2) {
+        // no provider → شاید پاک کنی
+      }
+
+      if (error.code === 3) {
+        // timeout → ❌ پاک نکن
+      }
+
+      if (error.code === 4) {
+        // google play services → ❌ پاک نکن
+      }
+    }
+
+    // await AsyncStorage.removeItem("currentLocation");  ////////zare_nk_050323_commented(kardam, chon nemikhaim zamani ke varede hamin safhe mojadad shodim
+    ////  vali omre masalan 10min ) 
+
     ////zare_nk_050323_added_st(jahate gereftane mokhtasate location)
     async function tempAsyncFuncForLocationPermission() {
+      ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
+      //// baraye modiriate monghazi boodan estefadeh kardim) donbale location nagardeh va hamin ro darnazar begireh, vagarnah currentLocation ro hazf koneh)
+      const currentLocation = await getCookie("currentLocation");
+      const locationExpires = await AsyncStorage.getItem("location_expires");
+
+      let IsLocationExpiresValid = false;
+      if (locationExpires) {
+        const expiresTime = Number(locationExpires);
+        if (expiresTime <= Date.now()) {
+          await AsyncStorage.removeItem("currentLocation");
+        }
+        else {
+          IsLocationExpiresValid = true;
+        }
+      }
+      else {
+        await AsyncStorage.removeItem("currentLocation");
+      }
+      ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
+      //// baraye modiriate monghazi boodan estefadeh kardim) donbale location nagardeh va hamin ro darnazar begireh, vagarnah currentLocation ro hazf koneh)
+
+      if (currentLocation) {
+        return;
+      }
+      ////zare_nk_050323_nokteh_end(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation vojood dare donbale location 
+      //// nagardeh va hamin ro darnazar begireh)
+
       const hasPermission = await requestLocationPermission();
       console.log('permission:', hasPermission);
       Alert.alert('permission:', hasPermission.toString());
       Alert.alert('050323-first useEffect');
-      if (hasPermission) {
-        Alert.alert('050323-dastresi doorbin hast alan');
-        console.log('050323-dastresi doorbin hast alan');
-        Geolocation.getCurrentPosition(
-          (position) => {
-            Alert.alert('050323-' + position.coords.latitude.toString());
-            console.log('050323-' + position.coords.latitude.toString());
-            Alert.alert('050323-' + position.coords.longitude.toString());
-            console.log('050323-' + position.coords.longitude.toString());
-          },
-          (error) => {
-            ////یعنی Android نتوانسته هیچ provider برای لوکیشن پیدا کند، مثل:
-            // GPS (ماهواره)
-            // Network location (WiFi / موبایل دیتا)
 
-            Alert.alert('050323-' + error.code + '-' + error.message);
-            console.log('050323-' + error.code + '-' + error.message);
-            Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid' + 'error.message');
-            if (error.code == 2) {
-              Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid');
-            }
-            else {
-              Alert.alert('050323-barnameh nemitavanad providerhaye mogheiate makani shoma ra peyda konad');
-            }
-          },
-          {
-            enableHighAccuracy: true,  ////zare_nk_050323_nokteh(mizane deghate location ro moshakhas mikoneh(age true bashe daryafte location ra bekhatere hasasiate
-            ////  deghat kami kond mikoneh)(age nanevisim pishfarz false hast))
-            timeout: 30000,  ////zare_nk_050323_nokteh(age bad az zamane timeout dastoore Geolocation.getCurrentPosition namovafagh bood barnameh 
-            //// be bolooke (error) => {} mireh.(nokteye mohem ine ke maximumAge ghabl az gashtan donbale locatione jadid amal mikone va age cache ro lahaz 
-            //// koneh donbale locatione jadid nemigardeh, vali vaghti chache ro lahaz nakoneh va donbale location bagardeh zamane timeout shoroo mishe va
-            ////  age ta payane timeout peyda nakoneh be booke error mireh ))
-            
-            maximumAge: 30000,  ////zare_nk_050323_nokteh(systemamel mamoolan akharin location ro ke migireh cache mikonehm, ma ba maximumAge be barnameh migim
-            ////  age masalan 30000 milisaniyeh az akharin locationi ke barnameh cache kardeh gozashteh az cache estefadeh nakon vagarnah az hamoon cache estefadeh
-            ////  kon)(age sefr bedim barnameh hagh nadareh az locatione cache shodeh estefadeh koneh)(age nanevisim pishfarzeh sefr hast))
-            ////zare_nk_050323_nokteh(baraye appe fooshgahi ke mesle apphaye masiryabe rannandegi dar 30 saniye sadhametr ba mashin jabeja nemishim 30 saniyeh manteghiye
-
-            forceRequestLocation: true,  ////zare_nk_050323_nokteh(age true bashe barnameh ro majboor mikoneh locatione taze az system begire va az cache barnameh
-            ////  estefadeh nakoneh, vali age natoonest locatione jadid begireh va maximumAge moshakhas mikonim barnameh hagh dare az locatione cache shodeh estefadeh
-            ////  koneh ya kheir(age nanevisim pishfarz false hast))
-
-            showLocationDialog: true,   ////zare_nk_050323_nokteh(age locatione gooshi khamoosh bashe va showLocationDialog: true benevisim, baese namayeshe 
-            //// popupe "for the better experience, your device will need to use location accuracy" mishe, nanevisim systemamel khodesh tasmim migire neshoon 
-            //// bedeh ya na(ke mamoolan namayesh mideh), age benevisim va true bedim popup neshoon dadeh mishe, age false benevisim namayash dadeh nemishe)
-          }
-        );
-      }
-      else {
+      if (!hasPermission) {
         Alert.alert('050323-lotfan mojavveze dastrasi be mogheiyat ra be barname badahid');
         console.log('050323-lotfan mojavveze dastrasi be mogheiyat ra be barname badahid222');
         Alert.alert('Permission denied');
+        return;
       }
+
+      Alert.alert('050323-dastresi doorbin hast alan');
+      console.log('050323-dastresi doorbin hast alan');
+      Geolocation.getCurrentPosition(
+        (position: PositionCoords) => {  ////zare_nk_050323_nokteh(behtar ast bolooke (position: PositionCoords) => {} ra async nakonim(chon shaya baese eshtebah dar revale
+          ////  kare Geolocation beshe), age be await niaz darim methode async ra dakhele bolooke (position: PositionCoords) => {} tarif konim ya sedash bezanim )
+          ////zare_nk_050323_nokteh(che az locatione cache estefadeh koneh va che az locatione jadid, barnameh be in blooke (position: PositionCoords) => {} miad)
+          Alert.alert('050323-latitude: ' + position.coords.latitude.toString());
+          console.log('050323-latitude: ' + position.coords.latitude.toString());
+          Alert.alert('050323-longitude: ' + position.coords.longitude.toString());
+          console.log('050323-longitude: ' + position.coords.longitude.toString());
+
+          // await AsyncStorage.setItem("currentLocation", JSON.stringify(position.coords));  ////zare_nk_050323_commented(ta majboor nashim jahate bolooke (position: PositionCoords) => {} ra async konim)
+          saveLocation(position.coords);  ////zare_nk_050323_added(ta majboor nashim jahate bolooke (position: PositionCoords) => {} ra async konim)
+
+        },
+        (error) => {  ////zare_nk_050323_nokteh(behtar ast bolooke (error) => {} ra async nakonim(chon shaya baese eshtebah dar revale
+          ////  kare Geolocation beshe), age be await niaz darim methode async ra dakhele bolooke (error) => {} tarif konim ya sedash bezanim )
+
+          ////یعنی Android نتوانسته هیچ provider برای لوکیشن پیدا کند، مثل:
+          // GPS (ماهواره)
+          // Network location (WiFi / موبایل دیتا)  
+          handleLocationError(error);
+        },
+        {
+          enableHighAccuracy: true,  ////zare_nk_050323_nokteh(mizane deghate location ro moshakhas mikoneh(age true bashe daryafte location ra bekhatere hasasiate
+          ////  deghat kami kond mikoneh)(age nanevisim pishfarz false hast))
+          timeout: 30000,  ////zare_nk_050323_nokteh(age bad az zamane timeout dastoore Geolocation.getCurrentPosition namovafagh bood barnameh 
+          //// be bolooke (error) => {} mireh.(nokteye mohem ine ke maximumAge ghabl az gashtan donbale locatione jadid amal mikone va age cache ro lahaz 
+          //// koneh donbale locatione jadid nemigardeh, vali vaghti chache ro lahaz nakoneh va donbale location bagardeh zamane timeout shoroo mishe va
+          ////  age ta payane timeout peyda nakoneh be booke error mireh ))
+
+          maximumAge: 30000,  ////zare_nk_050323_nokteh(systemamel mamoolan akharin location ro ke migireh cache mikonehm, ma ba maximumAge be barnameh migim
+          ////  age masalan 30000 milisaniyeh az akharin locationi ke barnameh cache kardeh gozashteh az cache estefadeh nakon vagarnah az hamoon cache estefadeh
+          ////  kon)(age sefr bedim barnameh hagh nadareh az locatione cache shodeh estefadeh koneh)(age nanevisim pishfarzeh sefr hast))
+          ////zare_nk_050323_nokteh(baraye appe fooshgahi ke mesle apphaye masiryabe rannandegi dar 30 saniye sadhametr ba mashin jabeja nemishim 30 saniyeh manteghiye
+
+          forceRequestLocation: true,  ////zare_nk_050323_nokteh(age true bashe barnameh ro majboor mikoneh locatione taze az system begire va az cache barnameh
+          ////  estefadeh nakoneh, vali age natoonest locatione jadid begireh va maximumAge moshakhas mikonim barnameh hagh dare az locatione cache shodeh estefadeh
+          ////  koneh ya kheir(age nanevisim pishfarz false hast))
+
+          showLocationDialog: true,   ////zare_nk_050323_nokteh(age locatione gooshi khamoosh bashe va showLocationDialog: true benevisim, baese namayeshe 
+          //// popupe "for the better experience, your device will need to use location accuracy" mishe, nanevisim systemamel khodesh tasmim migire neshoon 
+          //// bedeh ya na(ke mamoolan namayesh mideh), age benevisim va true bedim popup neshoon dadeh mishe, age false benevisim namayash dadeh nemishe)
+        }
+      );
     }
 
     tempAsyncFuncForLocationPermission();
@@ -2172,6 +2259,22 @@ export default function HomeScreen({
 
   // const seePrices = async () => {  //zare_nk_041205_commented(forUpdateName)
   const forOpenCodeScanner = async () => {  //zare_nk_041205_added(forUpdateName) 
+
+    ////zare_nk_050323_added_st 
+    const currentLocation = await getCookie("currentLocation");
+    if (!currentLocation) {
+      setIsOpenedMymodalForWarning(true);
+      setWarningTextInMymodalForWarning('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');
+      return;
+    }
+    else {
+      const parsedcurrentLocation = JSON.parse(currentLocation);
+      const curLat = parsedcurrentLocation.latitude;
+      const curLon = parsedcurrentLocation.longitude;
+      Alert.alert('curLat: ' + curLat + '-curLon: ' + curLon);
+    }
+    ////zare_nk_050323_added_end
+
     ////zare_nk_050312_commented_st
     // const token = await getCookie("token");
     // if (token == null) {

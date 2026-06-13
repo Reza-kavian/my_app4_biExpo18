@@ -1067,6 +1067,9 @@ export default function HomeScreen({
   const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
   const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
 
+  const [isOpenedModalForGetLocation, setIsOpenedModalForGetLocation] = useState(false);  ////zare_nk_050323_added
+  const [textInModalForGetLocation, setTextInModalForGetLocation] = useState('');  ////zare_nk_050323_added
+
   const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
   const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
   const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
@@ -1077,6 +1080,8 @@ export default function HomeScreen({
   const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0)
 
   const [manualBarcode, setManualBarcode] = useState(String);
+
+  const [getLoc, setGetLoc] = useState<boolean>(false);   ////zare_nk_050323_added
 
   ////zare_nk_050322_nokteh_st(navigator makhsoose moroorgar ha hast va dar reactnative vojood nadareh!)
   // async function getLocation() {
@@ -1163,7 +1168,12 @@ export default function HomeScreen({
   ////zare_nk_050323_added_end
 
   useEffect(() => {
-    requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
+    requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim ) 
+  }, []);
+
+  ////zare_nk_050323_added_end(jahate gereftane mokhtasate location)
+  useEffect(() => {
+    if (!setGetLoc) { return; }
 
     async function saveLocation(coords: PositionCoords['coords']) {
       try {
@@ -1215,12 +1225,12 @@ export default function HomeScreen({
     // await AsyncStorage.removeItem("currentLocation");  ////////zare_nk_050323_commented(kardam, chon nemikhaim zamani ke varede hamin safhe mojadad shodim
     ////  vali omre masalan 10min ) 
 
-    ////zare_nk_050323_added_st(jahate gereftane mokhtasate location)
     async function tempAsyncFuncForLocationPermission() {
       ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
       //// baraye modiriate monghazi boodan estefadeh kardim) donbale location nagardeh va hamin ro darnazar begireh, vagarnah currentLocation ro hazf koneh)
       const IsLocationExpiresValid = await IsLocationExpiresValidFunc();
       if (IsLocationExpiresValid.IsValid) {
+        await Alert.alert('valiiid loc');
         return;
       }
       ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
@@ -1286,9 +1296,8 @@ export default function HomeScreen({
     }
 
     tempAsyncFuncForLocationPermission();
-    ////zare_nk_050323_added_end(jahate gereftane mokhtasate location)
-
-  }, []);
+  }, [getLoc]);
+  ////zare_nk_050323_added_st(jahate gereftane mokhtasate location)
 
   useEffect(() => {
     if (!isOpenedCodeScannerModal || !isScanning) {
@@ -2272,7 +2281,6 @@ export default function HomeScreen({
 
   // const seePrices = async () => {  //zare_nk_041205_commented(forUpdateName)
   const forOpenCodeScanner = async () => {  //zare_nk_041205_added(forUpdateName) 
-
     const IsLocationExpiresValid = await IsLocationExpiresValidFunc();
     if (!IsLocationExpiresValid.IsValid) {
       setIsOpenedMymodalForWarning(true);
@@ -2301,6 +2309,23 @@ export default function HomeScreen({
     setIsScanning(true);  //zare_nk_041203_added
   };
   ////zare_nk_041130_added_end
+
+  ////zare_nk_050323_added_st
+  const tryGoSplashWithTarget = async (target: keyof RootStackParamList) => {
+    const IsLocationExpiresValid = await IsLocationExpiresValidFunc();
+    if (!IsLocationExpiresValid.IsValid) {
+      setIsOpenedModalForGetLocation(true);
+      setTextInModalForGetLocation('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');
+      return;
+    }
+    else {
+      Alert.alert('loc darim berim barcodkhooni-lat:' + (IsLocationExpiresValid.lat ? IsLocationExpiresValid.lat.toString() : '') + '-lon: ' +
+        (IsLocationExpiresValid.lon ? IsLocationExpiresValid.lon.toString() : ''));
+      // navigation.navigate("Splash", { target: "shoppingbasket" });
+      navigation.navigate("Splash", { target: target });
+    }
+  }
+  ////zare_nk_050323_added_end
 
   return (
     <>
@@ -2370,6 +2395,89 @@ export default function HomeScreen({
               </Text>
             </TouchableOpacity>
 
+          </View>
+        </View>
+      </Modal>
+      <Modal
+        visible={isOpenedModalForGetLocation}
+        transparent
+        animationType="fade"
+        onRequestClose={() => {
+          setIsOpenedModalForGetLocation(false);
+        }}
+      ////zare_nk_041203_added_end
+      >
+        <View style={styles.resultOverlay}>
+          <View style={styles.resultBox}>
+            <Text style={styles.resultValue}>
+              {textInModalForGetLocation}
+            </Text>
+            <View style={{
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-around",
+              alignItems: "center",
+              width:"100%",
+            }}>              
+              <TouchableOpacity
+                style={{
+                  borderRadius: 8,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  cursor: 'pointer',
+                  backgroundColor: 'red',
+                  width: 120,
+                  height: 40,
+                }}
+                onPress={() => {
+                  setIsOpenedModalForGetLocation(false);
+                  setGetLoc(false);
+                }}
+                activeOpacity={0.6}
+              >
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={{
+                    fontFamily: "IRANSansWeb(FaNum)_Medium",
+                    color: "white",
+                  }}
+                >
+                  عدم دسترسی
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  borderRadius: 8,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  flexDirection: 'row',
+                  cursor: 'pointer',
+                  backgroundColor: 'green',
+                  width: 120,
+                  height: 40,
+                }}
+                onPress={() => {
+                  setIsOpenedModalForGetLocation(false);
+                  setGetLoc(true);
+                }}
+                activeOpacity={0.6}
+              >
+                <Text
+                  numberOfLines={1}
+                  ellipsizeMode="tail"
+                  style={{
+                    fontFamily: "IRANSansWeb(FaNum)_Medium",
+                    color: "white",
+                  }}
+                >
+                  تأیید
+                </Text>
+              </TouchableOpacity>
+            </View>
           </View>
         </View>
       </Modal>
@@ -3536,9 +3644,9 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/shoppingbasket"
-                // onPress={() => { return navigation.replace("Splash", { target: "shoppingbasket" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
-                onPress={() => { return navigation.navigate("Splash", { target: "shoppingbasket" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)              
+                // href="/shoppingbasket" 
+                // onPress={() => { return navigation.navigate("Splash", { target: "shoppingbasket" }); }}    ////zare_nk_050323_commented
+                onPress={() => { tryGoSplashWithTarget("shoppingbasket"); }}    ////zare_nk_050323_added             
                 style={{
                   width: "100%",
                   display: "flex",
@@ -3832,9 +3940,8 @@ export default function HomeScreen({
             >
               <TouchableOpacity
                 // className="vorsab"
-                // href="/ordersHistory"  
-                // onPress={() => { return navigation.replace("Splash", { target: "ordersHistory" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
-                onPress={() => { return navigation.navigate("Splash", { target: "ordersHistory" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she) 
+                // href="/ordersHistory"   
+                onPress={() => { return navigation.navigate("Splash", { target: "ordersHistory" }); }}    ////zare_nk_050323_nokteh(felan tashkhis dadam baraye tarikhcheye sefareshat niazi be location nist )                 
                 style={{
                   width: "100%",
                   display: "flex",
@@ -3994,8 +4101,8 @@ export default function HomeScreen({
               <TouchableOpacity
                 // className="vorsab"
                 // href="/discountsAndOffers"  
-                // onPress={() => { return navigation.replace("Splash", { target: "discountsAndOffers" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
-                onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)
+                // onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}   ////zare_nk_050323_commented
+                onPress={() => { tryGoSplashWithTarget("discountsAndOffers"); }}    ////zare_nk_050323_added
                 style={{
                   width: "100%",
                   display: "flex",

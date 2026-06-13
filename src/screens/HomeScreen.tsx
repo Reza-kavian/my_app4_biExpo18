@@ -6,10 +6,13 @@ import { //zare_nk_041127_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
   useWindowDimensions,
   StyleProp, Modal, Button, Animated, TextInput,
-  Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions
+  Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions,
+  PermissionsAndroid  ////zare_nk_050323_added
 } from "react-native";
 
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
+
+import Geolocation from 'react-native-geolocation-service';  ////zare_nk_050323_added(jahate gereftane location)
 
 import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041128_added
 import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";   //zare_nk_041128_added
@@ -1035,9 +1038,7 @@ export default function HomeScreen({
   else if (width >= 576) {
     DetailsInfoContResponse = styles.DetailsInfoCont_BTH576;
   }
-  //////responsive_for_sabadItemsAndTotalInf_added_end
-
-
+  //////responsive_for_sabadItemsAndTotalInf_added_end 
   ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
 
   ////zare_nk_041209_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
@@ -1053,7 +1054,6 @@ export default function HomeScreen({
   ////zare_nk_041209_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
 
   console.log('041123-ShallowRoutingExample called!!');
-  // const router = useRouter();  //zare_nk_041128_commented 
 
   const [ForCartContInProdDetVal, setForCartContInProdDetVal] =
     useState<ForCartContInProdDetValType>();
@@ -1067,7 +1067,6 @@ export default function HomeScreen({
   const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
   const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
 
-  ////zare_nk_041128_added_st
   const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
   const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
   const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
@@ -1078,11 +1077,101 @@ export default function HomeScreen({
   const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0)
 
   const [manualBarcode, setManualBarcode] = useState(String);
-  ////zare_nk_041128_added_end 
 
-  ////zare_nk_041203_added_st
+  ////zare_nk_050322_nokteh_st(navigator makhsoose moroorgar ha hast va dar reactnative vojood nadareh!)
+  // async function getLocation() {
+  //     if (navigator.geolocation) {
+  //         await navigator.geolocation.getCurrentPosition(showPosition, showError,
+  //             { timeout: 30000, enableHighAccuracy: true, maximumAge: 10000 }
+  //         );
+  //     } else {
+  //         showPosition([53.0585, 36.5659]);
+  //     }
+  // }
+  ////zare_nk_050322_nokteh_end(navigator makhsoose moroorgar ha hast va dar reactnative vojood nadareh!)
+
+  ////zare_nk_050323_added_st(jahate majaveze location)
+  // async function requestLocationPermission_org() {
+  //   if (Platform.OS === 'android') {
+  //     const granted = await PermissionsAndroid.request(
+  //       PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION
+  //     );
+
+  //     return granted === PermissionsAndroid.RESULTS.GRANTED;
+  //   }
+
+  //   return true;
+  // }
+  async function requestLocationPermission() {
+    if (Platform.OS === 'android') {
+      const granted = await PermissionsAndroid.requestMultiple([
+        PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+        PermissionsAndroid.PERMISSIONS.ACCESS_COARSE_LOCATION,  ////zare_nk_050322_added
+      ]);
+
+      return (
+        granted['android.permission.ACCESS_FINE_LOCATION'] ===
+        PermissionsAndroid.RESULTS.GRANTED ||
+        granted['android.permission.ACCESS_COARSE_LOCATION'] ===
+        PermissionsAndroid.RESULTS.GRANTED
+      );
+    }
+
+    return true;
+  }
+  ////zare_nk_050323_added_end(jahate majaveze location)
+
   useEffect(() => {
     requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
+
+    ////zare_nk_050323_added_st(jahate gereftane mokhtasate location)
+    async function tempAsyncFuncForLocationPermission() {
+      const hasPermission = await requestLocationPermission();
+      console.log('permission:', hasPermission);
+      Alert.alert('permission:', hasPermission.toString());
+      Alert.alert('050323-first useEffect');
+      if (hasPermission) {
+        Alert.alert('050323-dastresi doorbin hast alan');
+        console.log('050323-dastresi doorbin hast alan');
+        Geolocation.getCurrentPosition(
+          (position) => {
+            Alert.alert('050323-' + position.coords.latitude.toString());
+            console.log('050323-' + position.coords.latitude.toString());
+            Alert.alert('050323-' + position.coords.longitude.toString());
+            console.log('050323-' + position.coords.longitude.toString());
+          },
+          (error) => {
+            ////یعنی Android نتوانسته هیچ provider برای لوکیشن پیدا کند، مثل:
+            // GPS (ماهواره)
+            // Network location (WiFi / موبایل دیتا)
+
+            Alert.alert('050323-' + error.code + '-' + error.message);
+            console.log('050323-' + error.code + '-' + error.message);
+            Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid' + 'error.message');
+            if (error.code == 2) {
+              Alert.alert('050323-lolfan az roshan boodane locaione khod etminan hasel konid');
+            }
+            else {
+              Alert.alert('050323-barnameh nemitavanad providerhaye mogheiate makani shoma ra peyda konad' );
+            }
+          },
+          {
+            enableHighAccuracy: true,
+            timeout: 30000,
+            maximumAge: 10000,
+          }
+        );
+      }
+      else {
+        Alert.alert('050323-lotfan mojavveze dastrasi be mogheiyat ra be barname badahid');
+        console.log('050323-lotfan mojavveze dastrasi be mogheiyat ra be barname badahid222');
+        Alert.alert('Permission denied');
+      }
+    }
+
+    tempAsyncFuncForLocationPermission();
+    ////zare_nk_050323_added_end(jahate gereftane mokhtasate location)
+
   }, []);
 
   useEffect(() => {
@@ -1112,7 +1201,6 @@ export default function HomeScreen({
       ])
     ).start();
   }, [isOpenedCodeScannerModal, isScanning]);
-  ////zare_nk_041203_added_end 
 
   const codeScanner = useCodeScanner({
     codeTypes: ["qr", "ean-13", "upc-a"],
@@ -3913,7 +4001,7 @@ export default function HomeScreen({
               </TouchableOpacity>
             </View>
 
-            {/* zare_nk_050317_commented_st(felan nemikhaim) */}           
+            {/* zare_nk_050317_commented_st(felan nemikhaim) */}
             {/* <View
               // id="Subprograms-5"
               // className="Subprograms"

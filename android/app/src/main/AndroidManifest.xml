@@ -6,6 +6,12 @@
     <!-- zare_nk_050201_nokteh_st(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
     <uses-permission android:name="android.permission.CAMERA" />
 
+<!-- zare_nk_050322_nokteh_st(ACCESS_FINE_LOCATION va ACCESS_COARSE_LOCATION ro baraye mojaveze location ezafeh kardam) -->
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+<!-- zare_nk_050322_nokteh_end(ACCESS_FINE_LOCATION va ACCESS_COARSE_LOCATION ro baraye mojaveze location ezafeh kardam) -->
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />

@@ -1180,12 +1180,14 @@ export default function HomeScreen({
   ////zare_nk_050324_nokteh_st(rah01-estefade az useFocusEffect+useCallback(baraye modiriate rendere nashi az focusha va setstateha(be khatere sorate balatar pishnahad mishe) ))
   useFocusEffect(
     useCallback(() => {
+      // Alert.alert('ddd');
       if (!getLoc) { return; }
       ////zare_nk_050324_nokteh_end(rah01-estefade az useFocusEffect+useCallback(baraye modiriate rendere nashi az focusha va setstateha(be khatere sorate balatar pishnahad mishe) ))
 
       ////zare_nk_050324_nokteh_st(rah02-estefade az useIsFocused+useEffect(baraye modiriate rendere nashi az focusha va setstateha(be khatere sorate paeintar pishnahad nemishe) ))
       // const isFocused = useIsFocused();
-      // useEffect(() => {   
+      // useEffect(() => { 
+      // Alert.alert('ddd');  
       //   if (!isFocused && !getLoc) { return }
       ////zare_nk_050324_nokteh_end(rah02-estefade az useIsFocused+useEffect(baraye modiriate rendere nashi az focusha va setstateha(be khatere sorate paeintar pishnahad nemishe) ))
 

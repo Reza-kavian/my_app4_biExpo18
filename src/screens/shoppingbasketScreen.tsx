@@ -413,7 +413,7 @@ export default function ShoppingbasketComponent({
             },
             body: JSON.stringify({
                 BarcodeKala: barcodeKala,
-                IdShobeh: 6,
+                IdShobeh: 12,
                 // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
                 //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
             }),

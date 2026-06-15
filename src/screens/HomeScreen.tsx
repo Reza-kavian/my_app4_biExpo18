@@ -1083,7 +1083,8 @@ export default function HomeScreen({
 
   const [manualBarcode, setManualBarcode] = useState(String);
 
-  const [getLoc, setGetLoc] = useState<boolean>(false);   ////zare_nk_050323_added
+  // const [getLoc, setGetLoc] = useState<boolean>(false);   ////zare_nk_050325_commented
+  const [getLoc, setGetLoc] = useState<boolean>(false);   ////zare_nk_050325_added
 
   ////zare_nk_050322_nokteh_st(navigator makhsoose moroorgar ha hast va dar reactnative vojood nadareh!)
   // async function getLocation() {
@@ -1177,6 +1178,135 @@ export default function HomeScreen({
   }, []);
   ////zare_nk_050323_added_end(jahate gereftane mokhtasate location) 
 
+  ////zare_nk_050325_added_st(baraye api gereftane IdShobe az locationesh)
+  async function getIdShobeFrom(latitude: number, longitude: number) {
+    console.log("050325-getIdShobeFrom-latitude: " + latitude + "-longitude: " + longitude);
+    //  const token = await getCookie("token");   /////zare_nk_050325_commented(chon in api niazi be online boodan nadareh)
+    ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
+    // let ApiUrl = "https://api.tochikala.com/api/";
+    // var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
+    ////zare_nk_050325_commented_end(tagheire api be hamyarForoosh)
+    ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
+    var urlApi_GetShobehByLocation = NextJsApiUrl + "Api_GetShobehByLocation";
+    ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
+    try {
+      console.log("050325-getIdShobeFrom-try01-urlApi_GetShobehByLocation: " + urlApi_GetShobehByLocation);
+      const response = await fetch(urlApi_GetShobehByLocation, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: "Bearer " + token,     /////zare_nk_050325_commented(chon in api niazi be online boodan nadareh)
+        },
+        body: JSON.stringify({
+          lat: latitude,
+          lon: longitude,
+        }),
+        // credentials: "include", //zare_nk_040402_commented
+      });
+      console.log("050325-getIdShobeFrom-try02-"+response.status);
+
+      if (response.ok) {
+        console.log("050325-getIdShobeFrom-response.ok");
+        const data = await response.json();
+        var result = data;
+        if (result.status != 0) {
+          console.log("050325-getIdShobeFrom-result.status != 0");
+          setIsOpenedMymodalForWarning(true);
+          setWarningTextInMymodalForWarning(result.errors[0] + '-خطا در گرفتن شعبه');
+        } else if (result.status == 0) {
+          console.log("050325-getIdShobeFrom-result.status == 0");
+          if (result.data.list == undefined) {
+            console.log("050325-getIdShobeFrom-result.data.list == undefined");
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning(() => {
+              return (
+                result.message.length == 0
+                  ? "خطا در گرفتن شعبه"
+                  : result.message + '-خطا در گرفتن شعبه'
+              )
+            });
+            return;
+          }
+          var parsedList = JSON.parse(result.data.list);
+          console.log("050325-result.data.list: " + result.data.list);
+          if (parsedList.length == 0) {
+            console.log("050325-getIdShobeFrom-parsedList.length == 0");
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning('خطا در گرفتن شعبه');
+            return;
+          }
+
+
+          //parsedList[0]
+          // await AsyncStorage.setItem(
+          //   "currentShobeh",
+          //   JSON.stringify(parsedList[0].)
+          // );
+
+          // const idTag = "ForCart-" + parsedList[0].IdKala;
+          // setImgUriForDet(`https://img.tochikala.com/Product/${parsedList[0].IdKala}.webp`);  //zare_nk_050319_added
+          // setForCartContInProdDetVal(() => {
+          //   return {
+          //     tedadInSabadOrDet: parsedList[0].TedadDarSabad,
+          //     ZaribForoosh: parsedList[0].ZaribForoosh,
+          //     IdKala: parsedList[0].IdKala,
+          //     NameKala: parsedList[0].NameKala,
+          //     DarsadTakhfif: parsedList[0].DarsadTakhfif,
+          //     NameBerand: parsedList[0].NameBerand,
+          //     FeeForoosh: parsedList[0].FeeForoosh,
+          //     FeeMasraf: parsedList[0].FeeMasraf,
+          //     BarcodeKala: parsedList[0].BarcodeKala,
+          //     Mojoodi: parsedList[0].Mojoodi,
+          //     MaxTedad: parsedList[0].MaxTedad,
+          //     father: "#DetailsInfoCont",
+          //     refForfather: refForfather,
+          //     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
+          //     fromShowDetails: true,
+          //     ForCartContentsDesignType: ForCartContentsDesignTypeLet,
+          //     idTag: idTag,
+          //   };
+          // });
+        }
+      } else {
+        console.log("050325-getIdShobeFrom-response.ok==false");
+        ////ForCartContInProdDetVal
+        if (response.status == 401) {
+          ////zare_nk_050325_nokteh(albate midoonim apiye Api_GetShobehByLocation be logine ejbari nemikhad va be statuse 401 nemire inja )  
+          setIsOpenedMymodalForWarning(true);
+          setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+        }
+        else {
+          setIsOpenedMymodalForWarning(true);
+          setWarningTextInMymodalForWarning("خطا در گرفتن شعبه");
+        }
+      }
+    } catch (error) {
+      console.log("050325-getIdShobeFrom-catch");
+      setIsOpenedMymodalForWarning(true);
+      let WarningText = '';
+      if (error instanceof Error) {
+        WarningText = error.message
+        if (error.message === "Failed to fetch") {
+          WarningText = "اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+        }
+        else if (error.message === "Network request failed") {
+          WarningText = "درخواست شبکه ناموفق بود";
+         console.log('050325-error.name: ' + error.name);
+        }
+        else {
+          WarningText = 'درخواست نا موفق بود';
+          console.log('050325-error.message: ' + error.message);
+        }
+      } else {
+        WarningText = String(error) + '-خطا در گرفتن شعبه';
+      }
+      setWarningTextInMymodalForWarning(() => {
+        return (WarningText)
+      });
+    }
+  }
+  ////zare_nk_050325_added_end(baraye api gereftane IdShobe az locationesh)
+
   ////zare_nk_050324_nokteh_st(rah01-estefade az useFocusEffect+useCallback(baraye modiriate rendere nashi az focusha va setstateha(be khatere sorate balatar pishnahad mishe) ))
   useFocusEffect(
     useCallback(() => {
@@ -1203,8 +1333,13 @@ export default function HomeScreen({
           AsyncStorage.setItem("location_expires", String(locationExpires));
           ////zare_nk_050323_nokteh_end(ijade location_expires baraye modiriate enghezaye location)
 
-          console.log("050323-AsyncStorage saved!!!!!!!");
+          console.log("050325-AsyncStorage saved!!!!!!!");
           // Alert.alert("050323-AsyncStorage saved!!!!!!!");
+
+          ////zare_nk_050325_added_alan_st
+          getIdShobeFrom(coords.latitude, coords.longitude);
+
+          ////zare_nk_050325_added_alan_end
         } catch (e) {
           console.log("050323-AsyncStorage save error:", e);
         }
@@ -1278,7 +1413,6 @@ export default function HomeScreen({
 
             // await AsyncStorage.setItem("currentLocation", JSON.stringify(position.coords));  ////zare_nk_050323_commented(ta majboor nashim jahate bolooke (position: PositionCoords) => {} ra async konim)
             saveLocation(position.coords);  ////zare_nk_050323_added(ta majboor nashim jahate bolooke (position: PositionCoords) => {} ra async konim)
-
           },
           (error) => {  ////zare_nk_050323_nokteh(behtar ast bolooke (error) => {} ra async nakonim(chon shaya baese eshtebah dar revale
             ////  kare Geolocation beshe), age be await niaz darim methode async ra dakhele bolooke (error) => {} tarif konim ya sedash bezanim )

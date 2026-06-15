@@ -1,4 +1,4 @@
-//my-app/App.tsx   ////zare_nk_050309_okk
+//my-app/App.tsx   ////zare_nk_050324_okk
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native"; 
 import AsyncStorage from "@react-native-async-storage/async-storage";  
@@ -7,8 +7,7 @@ import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";
 import { ThemeContext } from "./src/context/ThemeContext";
 
-// import * as Linking from "expo-linking"; //zare_nk_040604_nokteh(age az ghabeliate ezafiye expo bekhaim estefadeh konim)
-// import { Linking } from "react-native";  //zare_nk_040604_nokteh(age az ghabeliate mamoolitare react-native bekhaim estefadeh konim)
+// import { Linking } from "react-native";  //zare_nk_040604_nokteh(age az ghabeliate react-native bekhaim estefadeh konim)
 import { NavigationContainer } from "@react-navigation/native"; 
 ////zare_nk_040928_added_st(ijade Deep Linking ke az biroon masalan site ha dar moroorgar link konim be in apk)
 const linking = {
@@ -27,7 +26,6 @@ const linking = {
 };
 ////zare_nk_040928_added_end(ijade Deep Linking ke az biroon masalan site ha dar moroorgar link konim be in apk)
 
-////zare_nk_041006_added_st
 // 🔑 کلید ذخیره آخرین ورژن دیده‌شده
 const LAST_SEEN_VERSION_KEY = "last_seen_version";
 // 📝 متن تغییرات هر نسخه
@@ -43,19 +41,16 @@ const CHANGELOG: Record<string, string[]> = {
     "✅ رفع مشکل ها",
   ],
 };
-////zare_nk_041006_added_end
 
 export default function App() {
-  // 🔹 مدیریت تم
   const [isDark, setIsDark] = useState(false);
   const toggleTheme = () => setIsDark((prev) => !prev);
   const theme = isDark ? darkTheme : lightTheme;
-  ////zare_nk_041006_added_st
-  // 🔥 چک ورژن و نمایش تغییرات (فقط یک‌بار)
+
   useEffect(() => {
     const checkVersionAndShowChangelog = async () => {
       try {
-        const currentVersion = DeviceInfo.getVersion(); // versionName
+        const currentVersion = DeviceInfo.getVersion(); 
         const lastSeenVersion = await AsyncStorage.getItem(
           LAST_SEEN_VERSION_KEY
         );
@@ -83,7 +78,7 @@ export default function App() {
 
     checkVersionAndShowChangelog();
   }, []);
-  ////zare_nk_041006_added_end
+  
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme, theme }}> 
       <NavigationContainer linking={linking}>

@@ -139,7 +139,12 @@ export default function LoginScreen({
     }
     try {
       setIsDisabledMobileCheckBtn(true);
-      const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });   //zare_nk_041114_added
+      // const response = await axios.post(NextJsApiUrl  + "User/Api_LoginUser1", { mobile: mobileVal });  ////zare_nk_050325_commented(agheire api be hamyarForoosh)
+      const response = await axios.post(NextJsApiUrl  + "Api_LoginUser1", 
+        { 
+          mobile: mobileVal ,
+          IdShobeh:12,
+        });  ////zare_nk_050325_added(agheire api be hamyarForoosh)
       const data = await response.data;
       if (response.status == 200) {
         console.log("zare_nk_040218-data: " + JSON.stringify(data) + '-response.status: ' + response.status);
@@ -164,7 +169,7 @@ export default function LoginScreen({
       await AsyncStorage.removeItem("token");
       console.error("zare_nk_040218-resendcode-in catch:", error);
       if (error instanceof Error) {
-        console.error("zare_nk_040218-resendcode-in catch-2:", error.message);
+        console.error("zare_nk_040218-resendcode-in catch-2:", error.message+'-error.name: '+error.name+'-error.stack'+error.stack);
         setMobileError("متاسفانه خطایی رخ داده است:" + error.message);
       } else {
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));

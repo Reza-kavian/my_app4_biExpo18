@@ -1336,10 +1336,12 @@ export default function HomeScreen({
           console.log("050325-AsyncStorage saved!!!!!!!");
           // Alert.alert("050323-AsyncStorage saved!!!!!!!");
 
-          ////zare_nk_050325_added_alan_st
-          getIdShobeFrom(coords.latitude, coords.longitude);
-
-          ////zare_nk_050325_added_alan_end
+          ////zare_nk_050325_added_st
+          // getIdShobeFrom(coords.latitude, coords.longitude);
+          getIdShobeFrom(36.53090635056917, 52.63756385886034);
+          //36.53108415606361,52.6380172399453     ////from neshan
+          //36.53090635056917, 52.63756385886034   ////from googleMap
+          ////zare_nk_050325_added_end
         } catch (e) {
           console.log("050323-AsyncStorage save error:", e);
         }

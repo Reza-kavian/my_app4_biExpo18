@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   //zare_nk_050227_okk
+//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050325_okk
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -140,10 +140,10 @@ export default function LoginScreen({
     try {
       setIsDisabledMobileCheckBtn(true);
       // const response = await axios.post(NextJsApiUrl  + "User/Api_LoginUser1", { mobile: mobileVal });  ////zare_nk_050325_commented(agheire api be hamyarForoosh)
-      const response = await axios.post(NextJsApiUrl  + "Api_LoginUser1", 
-        { 
-          mobile: mobileVal ,
-          IdShobeh:12,
+      const response = await axios.post(NextJsApiUrl + "Api_LoginUser1",
+        {
+          mobile: mobileVal,
+          IdShobeh: 12,
         });  ////zare_nk_050325_added(agheire api be hamyarForoosh)
       const data = await response.data;
       if (response.status == 200) {
@@ -169,7 +169,7 @@ export default function LoginScreen({
       await AsyncStorage.removeItem("token");
       console.error("zare_nk_040218-resendcode-in catch:", error);
       if (error instanceof Error) {
-        console.error("zare_nk_040218-resendcode-in catch-2:", error.message+'-error.name: '+error.name+'-error.stack'+error.stack);
+        console.error("zare_nk_040218-resendcode-in catch-2:", error.message + '-error.name: ' + error.name + '-error.stack' + error.stack);
         setMobileError("متاسفانه خطایی رخ داده است:" + error.message);
       } else {
         console.error("zare_nk_040218-resendcode-in catch-3:", String(error));
@@ -330,11 +330,23 @@ export default function LoginScreen({
     }
     try {
       setIsDisabledCheckSmsBtn(true);
-      const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
-        mobile: mobileVal,
-        smsCode: sms,
-        Password: ""
-      });
+      ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
+      // const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
+      //   mobile: mobileVal,
+      //   smsCode: sms,
+      //   Password: ""
+      // });
+      ////zare_nk_050325_commented_end(agheire api be hamyarForoosh) 
+      ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
+      const res = await axios.post(NextJsApiUrl + "Api_LoginUser2",
+        {
+          mobile: mobileVal,
+          smsCode: sms,
+          Password: "",
+          IdShobeh: 12,
+        });
+      ////zare_nk_050325_added_end(agheire api be hamyarForoosh)   
+
       console.log("zare_nk_041207-01");
       const ApiLoginUser2Result = res.data; // await res.json();
       console.log("zare_nk_041207-02");
@@ -343,12 +355,21 @@ export default function LoginScreen({
         "zare_nk_041207-03-JSON.stringify(ApiLoginUser2Result): " +
         JSON.stringify(ApiLoginUser2Result)
       );
-      //zare_nk_0409225_alan
+
       //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-9,"message":"","data":null,"errors":["کد پیامکی وارد شده اشتباه است"]}
       //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-11,"message":"","data":null,"errors":["کد ورود شما منقضی شده است. لطفا مجددا درخواست کد پیامکی کنید"]}
       //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":0,"message":"",
       // "data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA"}
       // ,"errors":[]}
+      // {
+      //     "status": 0,
+      //     "message": "",
+      //     "data": {
+      //         "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzgxNTE5OTkzLCJleHAiOjE3ODIxMjQ3OTMsImlhdCI6MTc4MTUxOTk5M30.Dr85hC3f2_zrqZ9jBHFEuP3avpKNP5B_QsR7AI5sNfw"
+      //     },
+      //     "errors": []
+      // }
+
       // if (res.status === 200) {
       if (res.status === 200 && ApiLoginUser2Result.status == 0) {
         // if (ApiLoginUser2Result.status == 0) {
@@ -471,7 +492,12 @@ export default function LoginScreen({
     try {
       // setIsDisabledResendCode(true); ////zare_nk_050314_commented
       setIsDisabledRemovTimerBtn(false);
-      const response = await axios.post(NextJsApiUrl + "User/Api_LoginUser1", { mobile: mobileVal });
+      // const response = await axios.post(NextJsApiUrl  + "User/Api_LoginUser1", { mobile: mobileVal });  ////zare_nk_050325_commented(agheire api be hamyarForoosh)
+      const response = await axios.post(NextJsApiUrl + "Api_LoginUser1",
+        {
+          mobile: mobileVal,
+          IdShobeh: 12,
+        });  ////zare_nk_050325_added(agheire api be hamyarForoosh)
       const data = await response.data;
       if (response.status == 200) {
         console.log("zare_nk_040218-data: " + JSON.stringify(data) + '-response.status: ' + response.status);

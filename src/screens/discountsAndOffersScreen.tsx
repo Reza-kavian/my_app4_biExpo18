@@ -289,49 +289,35 @@ export default function ShallowRoutingExample({
     // }
     ////zare_nk_050318_commented_end
 
-    let ApiUrl = "https://api.tochikala.com/api/";
-    var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
-    const response = await fetch(urlApi_SelectShobehJashnvareh, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: "Bearer " + token,
-      },
-      body: JSON.stringify({
-        BarcodeKala: barcodeKala,
-        IdShobeh: 6,
-        // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
-        //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
-      }),
-      // credentials: "include", //zare_nk_040402_commented
-    });
-    if (response.ok) {
-      const data = await response.json();
-      var result = data;
-      if (result.status != 0) {
-        setIsOpenedMymodalForWarning(true);
-        setWarningTextInMymodalForWarning(result.errors[0]);
-        // const bootstrap = await getBootstrap();
-        // const mymodalForWarning = new bootstrap.Modal(
-        //     document.getElementById("mymodalForWarning")
-        // );
-        // mymodalForWarning.show();
-        // const span = document.querySelector(
-        //     "#mymodalForWarning .modal-body span"
-        // );
-        // if (span instanceof HTMLElement) {
-        //     span.innerText = result.errors[0];
-        // }
-      } else if (result.status == 0) {
-        if (result.data.list == undefined) {
+    ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
+    // let ApiUrl = "https://api.tochikala.com/api/";
+    // var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
+    ////zare_nk_050325_commented_end(tagheire api be hamyarForoosh)
+    ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
+    var urlApi_SelectShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
+    ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
+    try {
+      const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+      const response = await fetch(urlApi_SelectShobehJashnvareh, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        },
+        body: JSON.stringify({
+          BarcodeKala: barcodeKala,
+          IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
+          // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
+          //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
+        }),
+        // credentials: "include", //zare_nk_040402_commented
+      });
+      if (response.ok) {
+        const data = await response.json();
+        var result = data;
+        if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(() => {
-            return (
-              result.message.length == 0
-                ? "ارتباط با سرور برقرار نشد"
-                : result.message
-            )
-          });
+          setWarningTextInMymodalForWarning(result.errors[0]);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -341,101 +327,149 @@ export default function ShallowRoutingExample({
           //     "#mymodalForWarning .modal-body span"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText =
-          //         result.message.length == 0
-          //             ? "ارتباط با سرور برقرار نشد"
-          //             : result.message;
+          //     span.innerText = result.errors[0];
           // }
-          return;
-        }
-        var parsedList = JSON.parse(result.data.list);
-        if (parsedList.length == 0) {
-          setBisatrInProductDet(true);
+        } else if (result.status == 0) {
+          if (result.data.list == undefined) {
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning(() => {
+              return (
+                result.message.length == 0
+                  ? "ارتباط با سرور برقرار نشد"
+                  : result.message
+              )
+            });
+            // const bootstrap = await getBootstrap();
+            // const mymodalForWarning = new bootstrap.Modal(
+            //     document.getElementById("mymodalForWarning")
+            // );
+            // mymodalForWarning.show();
+            // const span = document.querySelector(
+            //     "#mymodalForWarning .modal-body span"
+            // );
+            // if (span instanceof HTMLElement) {
+            //     span.innerText =
+            //         result.message.length == 0
+            //             ? "ارتباط با سرور برقرار نشد"
+            //             : result.message;
+            // }
+            return;
+          }
+          var parsedList = JSON.parse(result.data.list);
+          if (parsedList.length == 0) {
+            setBisatrInProductDet(true);
+            // const productExist = document.getElementById("productExist");
+            // if (productExist instanceof HTMLElement) {
+            //     productExist.style.display = "none";
+            // }
+            // const productNotExist = document.getElementById("productNotExist");
+            // if (productNotExist instanceof HTMLElement) {
+            //     productNotExist.style.display = "flex";
+            // }
+            return;
+          }
+          setBisatrInProductDet(false);
           // const productExist = document.getElementById("productExist");
           // if (productExist instanceof HTMLElement) {
-          //     productExist.style.display = "none";
+          //     productExist.style.display = "flex";
           // }
           // const productNotExist = document.getElementById("productNotExist");
           // if (productNotExist instanceof HTMLElement) {
-          //     productNotExist.style.display = "flex";
+          //     productNotExist.style.display = "none";
           // }
-          return;
-        }
-        setBisatrInProductDet(false);
-        // const productExist = document.getElementById("productExist");
-        // if (productExist instanceof HTMLElement) {
-        //     productExist.style.display = "flex";
-        // }
-        // const productNotExist = document.getElementById("productNotExist");
-        // if (productNotExist instanceof HTMLElement) {
-        //     productNotExist.style.display = "none";
-        // }
-        // console.log("rr-parsedList: " + JSON.stringify(parsedList) + '-parsedList.length: ' + parsedList.length + '-parsedList[0].IdKala : ' + parsedList[0].IdKala);
+          // console.log("rr-parsedList: " + JSON.stringify(parsedList) + '-parsedList.length: ' + parsedList.length + '-parsedList[0].IdKala : ' + parsedList[0].IdKala);
 
-        var bishAzMaxTedadYaMojoodi = 0;
-        if (parsedList[0].MaxTedad != null) {
-          if (parsedList[0].MaxTedad <= parsedList[0].TedadDarSabad) {
-            bishAzMaxTedadYaMojoodi = 1;
+          var bishAzMaxTedadYaMojoodi = 0;
+          if (parsedList[0].MaxTedad != null) {
+            if (parsedList[0].MaxTedad <= parsedList[0].TedadDarSabad) {
+              bishAzMaxTedadYaMojoodi = 1;
+            }
+          } else {
+            if (parsedList[0].Mojoodi <= parsedList[0].TedadDarSabad) {
+              bishAzMaxTedadYaMojoodi = 1;
+            }
           }
-        } else {
-          if (parsedList[0].Mojoodi <= parsedList[0].TedadDarSabad) {
-            bishAzMaxTedadYaMojoodi = 1;
+
+          refForfather.current = "#DetailsInfoCont";
+          let ForCartContentsDesignTypeLet = 0
+
+          if (parsedList[0].TedadDarSabad == 0) {
+            ForCartContentsDesignTypeLet = 0;
           }
+          else if (parsedList[0].TedadDarSabad > parsedList[0].ZaribForoosh) {
+            ForCartContentsDesignTypeLet = 2;
+          }
+          else if (parsedList[0].TedadDarSabad == parsedList[0].ZaribForoosh) {
+            ForCartContentsDesignTypeLet = 1;
+          }
+          // console.log('parsedList[0].NameKala: ' + parsedList[0].NameKala + '-parsedList[0].TedadDarSabad: ' + parsedList[0].TedadDarSabad);
+          const idTag = "ForCart-" + parsedList[0].IdKala;
+          setImgUriForDet(`https://img.tochikala.com/Product/${parsedList[0].IdKala}.webp`);  //zare_nk_041209_added
+          setForCartContInProdDetVal(() => {
+            return {
+              tedadInSabadOrDet: parsedList[0].TedadDarSabad,
+              ZaribForoosh: parsedList[0].ZaribForoosh,
+              IdKala: parsedList[0].IdKala,
+              NameKala: parsedList[0].NameKala,
+              DarsadTakhfif: parsedList[0].DarsadTakhfif,
+              NameBerand: parsedList[0].NameBerand,
+              FeeForoosh: parsedList[0].FeeForoosh,
+              FeeMasraf: parsedList[0].FeeMasraf,
+              BarcodeKala: parsedList[0].BarcodeKala,
+              Mojoodi: parsedList[0].Mojoodi,
+              MaxTedad: parsedList[0].MaxTedad,
+              father: "#DetailsInfoCont",
+              refForfather: refForfather,
+              bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
+              fromShowDetails: true,
+              ForCartContentsDesignType: ForCartContentsDesignTypeLet,
+              idTag: idTag,
+            };
+          });
         }
-
-        refForfather.current = "#DetailsInfoCont";
-        let ForCartContentsDesignTypeLet = 0
-
-        if (parsedList[0].TedadDarSabad == 0) {
-          ForCartContentsDesignTypeLet = 0;
+      } else {
+        if (response.status == 401) {
+          setIsOpenedMymodalForWarning(true);
+          setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+          // const bootstrap = await getBootstrap();
+          // const mymodalForWarning = new bootstrap.Modal(
+          //     document.getElementById("mymodalForWarning")
+          // );
+          // mymodalForWarning.show();
+          // const span = document.querySelector(
+          //     "#mymodalForWarning .errorInMymodalForWarning"
+          // );
+          // if (span instanceof HTMLElement) {
+          //     span.innerText = "لطفا ابتدا آنلاین شوید";
+          // }
         }
-        else if (parsedList[0].TedadDarSabad > parsedList[0].ZaribForoosh) {
-          ForCartContentsDesignTypeLet = 2;
-        }
-        else if (parsedList[0].TedadDarSabad == parsedList[0].ZaribForoosh) {
-          ForCartContentsDesignTypeLet = 1;
-        }
-        // console.log('parsedList[0].NameKala: ' + parsedList[0].NameKala + '-parsedList[0].TedadDarSabad: ' + parsedList[0].TedadDarSabad);
-        const idTag = "ForCart-" + parsedList[0].IdKala;
-        setImgUriForDet(`https://img.tochikala.com/Product/${parsedList[0].IdKala}.webp`);  //zare_nk_041209_added
-        setForCartContInProdDetVal(() => {
-          return {
-            tedadInSabadOrDet: parsedList[0].TedadDarSabad,
-            ZaribForoosh: parsedList[0].ZaribForoosh,
-            IdKala: parsedList[0].IdKala,
-            NameKala: parsedList[0].NameKala,
-            DarsadTakhfif: parsedList[0].DarsadTakhfif,
-            NameBerand: parsedList[0].NameBerand,
-            FeeForoosh: parsedList[0].FeeForoosh,
-            FeeMasraf: parsedList[0].FeeMasraf,
-            BarcodeKala: parsedList[0].BarcodeKala,
-            Mojoodi: parsedList[0].Mojoodi,
-            MaxTedad: parsedList[0].MaxTedad,
-            father: "#DetailsInfoCont",
-            refForfather: refForfather,
-            bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
-            fromShowDetails: true,
-            ForCartContentsDesignType: ForCartContentsDesignTypeLet,
-            idTag: idTag,
-          };
-        });
       }
-    } else {
-      if (response.status == 401) {
-        setIsOpenedMymodalForWarning(true);
-        setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-        // const bootstrap = await getBootstrap();
-        // const mymodalForWarning = new bootstrap.Modal(
-        //     document.getElementById("mymodalForWarning")
-        // );
-        // mymodalForWarning.show();
-        // const span = document.querySelector(
-        //     "#mymodalForWarning .errorInMymodalForWarning"
-        // );
-        // if (span instanceof HTMLElement) {
-        //     span.innerText = "لطفا ابتدا آنلاین شوید";
-        // }
+    } catch (error) {
+      // setImgUriForDet('');    ////zare_nk_050325_commented(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+      setForCartContInProdDetVal(undefined);
+      // setIsOpenedProdDetModal(false);  ////zare_nk_050325_commented(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+
+      setIsOpenedMymodalForWarning(true);
+      let WarningText = '';
+      if (error instanceof Error) {
+        WarningText = error.message
+        if (error.message === "Failed to fetch") {
+          WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+        }
+        else if (error.message === "Network request failed") {
+          WarningText = "درخواست شبکه ناموفق بود";
+        }
+        else {
+          WarningText = 'درخواست نا موفق بود';
+        }
+      } else {
+        WarningText = String(error);
       }
+
+      setWarningTextInMymodalForWarning(() => {
+        return (WarningText)
+      });
+
     }
 
     // }  ////zare_nk_050319_commented(for use callback)
@@ -549,8 +583,9 @@ export default function ShallowRoutingExample({
         take: number,  ////zare_nk_050320_added
       };
 
+       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
       const inputData: InputDataType = {
-        IdShobeh: 6,
+        IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
         // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
         IsJashnvareh: -1,  //zare_nk_041208_added_testi
         NameKala: "",
@@ -568,221 +603,259 @@ export default function ShallowRoutingExample({
         take: 20,     ////zare_nk_050320_added
       };
 
-      let ApiUrl = "https://api.tochikala.com/api/";
-      var urlSelectKalaShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
-      const response = await fetch(urlSelectKalaShobeh, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token,
-        },
-        body: JSON.stringify({
-          IdShobeh: inputData.IdShobeh,
-          IsJashnvareh: inputData.IsJashnvareh,
-          NameKala: inputData.NameKala,
-          IdG1: inputData.IdG1,
-          IdG2: inputData.IdG2,
-          IdG3: inputData.IdG3,
-          IdG4: inputData.IdG4,
-          IsMostBuy: inputData.IsMostBuy,
-          Sort: inputData.Sort,
-          IsFavorite: inputData.IsFavorite,
-          IdVitrin: inputData.IdVitrin,
 
-          page: inputData.page,  ////zare_nk_050320_added
-          take: inputData.take,  ////zare_nk_050320_added
-        }),
-      });
+      ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
+      // let ApiUrl = "https://api.tochikala.com/api/";
+      // var urlSelectKalaShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
+      ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
+      ////zare_nk_050325_add_st(agheire api be hamyarForoosh) 
+      var urlSelectKalaShobeh = NextJsApiUrl + "Api_SelectKala";
+      ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
 
-      const data = await response.json();
-      if (response.ok) {
-        // Alert.alert('inja-1');
-        var result = JSON.parse(data.data.list);
-        if (data.status != 0) {
-          Alert.alert('inja-2');
-          // console.log('041210-12-data.status != 0');
-          setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(data.errors[0]);
-          // const bootstrap = await getBootstrap();
-          // const mymodalForWarning = new bootstrap.Modal(
-          //     document.getElementById("mymodalForWarning")
-          // );
-          // mymodalForWarning.show();
-          // const span = document.querySelector(
-          //     "#mymodalForWarning .errorInMymodalForWarning"
-          // );
-          // if (span instanceof HTMLElement) {
-          //     span.innerText = data.errors[0];
-          // }
-        } else if (data.status == 0) {
-          // Alert.alert('inja-3');
-          if (result.length == 0) {
-            // Alert.alert('inja-4');
-            // setBisatr(true);  ////zare_nk_050321_commented
-            ////zare_nk_050321_added_st
-            if (page == null) {
-              // Alert.alert('inja-setBisatr shod!!');
-              setBisatr(true);
-            }
-            else {
-              // Alert.alert('inja-entihaa!!');
-              rofForEnteha.current = true; ////zare_nk_050321_nokteh(ta ba vojoode entehaye list boodan page ra ezafeh nakone)
-            }
-            ////zare_nk_050321_added_end
+      try {
+       
+        const response = await fetch(urlSelectKalaShobeh, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token,
+          },
+          body: JSON.stringify({
+            IdShobeh: inputData.IdShobeh,
+            IsJashnvareh: inputData.IsJashnvareh,
+            NameKala: inputData.NameKala,
+            IdG1: inputData.IdG1,
+            IdG2: inputData.IdG2,
+            IdG3: inputData.IdG3,
+            IdG4: inputData.IdG4,
+            IsMostBuy: inputData.IsMostBuy,
+            Sort: inputData.Sort,
+            IsFavorite: inputData.IsFavorite,
+            IdVitrin: inputData.IdVitrin,
 
-            return;
-          }
-          // Alert.alert('inja-5');
-          setBisatr(false);
-          refForfather.current = "#cardcontainer2";
-          ////zare_nk_050322_nokteh_st(rahe1(natije doroste vali kheili kond mishe barname)- chon dar har halghe yek setState darim ke baese reRender shodane Component be 
-          // andazeye tedad item haye api ast(behtare az rahe3 estefadeh konim ke ebteda kolle map ra dakhele yek moteghayere komaki mirize sepas yekja moteghayyer ro dakhele yek setState mirizim))
-          // return (
-          //   result.map((item: any) => {
-          //     var bishAzMaxTedadYaMojoodi = 0;
-          //     if (item.MaxTedad != null) {
-          //       if (item.MaxTedad <= item.TedadDarSabad) {
-          //         bishAzMaxTedadYaMojoodi = 1;
-          //       }
-          //     } else {
-          //       if (item.Mojoodi <= item.TedadDarSabad) {
-          //         bishAzMaxTedadYaMojoodi = 1;
-          //       }
-          //     }
+            page: inputData.page,  ////zare_nk_050320_added
+            take: inputData.take,  ////zare_nk_050320_added
+          }),
+        });
 
-          //     let ForCartContentsDesignTypeLet = 0
-
-          //     if (item.TedadDarSabad == 0) {
-          //       ForCartContentsDesignTypeLet = 0;
-          //     }
-          //     else if (item.TedadDarSabad > item.ZaribForoosh) {
-          //       ForCartContentsDesignTypeLet = 2;
-          //     }
-          //     else if (item.TedadDarSabad == item.ZaribForoosh) {
-          //       ForCartContentsDesignTypeLet = 1;
-          //     }
-          //     setOfferRows(prev => [...prev,
-          //     {   ////zare_nk_050321_okk
-          //       tedadInSabadOrDet: item.TedadDarSabad,
-          //       ZaribForoosh: item.ZaribForoosh,
-          //       IdKala: item.IdKala,
-          //       NameKala: item.NameKala,
-          //       DarsadTakhfif: item.DarsadTakhfif,
-          //       NameBerand: item.NameBerand,
-          //       FeeForoosh: item.FeeForoosh,
-          //       FeeMasraf: item.FeeMasraf,
-          //       BarcodeKala: item.BarcodeKala,
-          //       Mojoodi: item.Mojoodi,
-          //       MaxTedad: item.MaxTedad,
-          //       MasrafSatr: item.MasrafSatr,
-          //       father: "#cardcontainer2",
-          //       refForfather: refForfather,
-          //       bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-          //       fromShowDetails: false,
-          //       ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-          //       idTag: "ForCart-" + item.IdKala,
-          //     }
-          //     ]);
-          //   })
-          // )
-          ////zare_nk_050322_nokteh_end(rahe1(natije doroste vali kheili kond mishe barname)- chon dar har halghe yek setState darim ke baese reRender shodane Component be 
-          // andazeye tedad item haye api ast(behtare az rahe3 estefadeh konim ke ebteda kolle map ra dakhele yek moteghayere komaki mirize sepas yekja moteghayyer ro dakhele yek setState mirizim))
-
-          ////zare_nk_050322_nokteh_st(rahe2(kollan eshtebahe barmigardooneh!)- chon prev ke biroone map hast hamvareh meghdare avaliye dare va ba har halghe meghdare iteme feli ro bedorosti migire, amma meghdare Iteme ghabli ro hazf mikoneh(chon midoonim hanooz reRender nashode ke meghdare prev berooz beshe, pas bayad kolle map ro yeja bahesh bedi))
-          // setOfferRows((prev) => {
-          //   return result.map((item: any) => { 
-          //     return ([...prev,
-          //     {
-          //       tedadInSabadOrDet: item.TedadDarSabad,
-          //       ZaribForoosh: item.ZaribForoosh,
-          //       IdKala: item.IdKala,
-          //       NameKala: item.NameKala,
-          //       DarsadTakhfif: item.DarsadTakhfif,
-          //       NameBerand: item.NameBerand,
-          //       FeeForoosh: item.FeeForoosh,
-          //       FeeMasraf: item.FeeMasraf,
-          //       BarcodeKala: item.BarcodeKala,
-          //       Mojoodi: item.Mojoodi,
-          //       MaxTedad: item.MaxTedad,
-          //       MasrafSatr: item.MasrafSatr,
-          //       father: "#cardcontainer2",
-          //       refForfather: refForfather,
-          //       bishAzMaxTedadYaMojoodi: 111,
-          //       fromShowDetails: false,
-          //       ForCartContentsDesignType: 111,
-          //       idTag: "ForCart-" + item.IdKala,
-          //     }]
-          //     ) 
-          //   });
-          // })
-          ////zare_nk_050322_nokteh_end(rahe2(kollan eshtebahe barmigardooneh!)- chon prev ke biroone map hast hamvareh meghdare avaliye dare va ba har halghe meghdare iteme feli ro bedorosti migire, amma meghdare Iteme ghabli ro hazf mikoneh(chon midoonim hanooz reRender nashode ke meghdare prev berooz beshe, pas bayad kolle map ro yeja bahesh bedi))
-
-          ////zare_nk_050322_nokteh_st(rahe3(ham natijeye dorost mideh va ham sorate barname kond nemishe)- dar har halghe setState nemikonim ke kolli rerender dashteh bashim(balke kolle halghehaye api ro dakhele yek moteghayyere komakim mirizim va dar tanha yek setState moteghayere komaki ro dakhele state mirizim))
-          const tempArrayForOneSetState = result.map((item: any) => {
-            var bishAzMaxTedadYaMojoodi = 0;
-            if (item.MaxTedad != null) {
-              if (item.MaxTedad <= item.TedadDarSabad) {
-                bishAzMaxTedadYaMojoodi = 1;
+        const data = await response.json();
+        if (response.ok) {
+          // Alert.alert('inja-1');
+          var result = JSON.parse(data.data.list);
+          if (data.status != 0) {
+            Alert.alert('inja-2');
+            // console.log('041210-12-data.status != 0');
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning(data.errors[0]);
+            // const bootstrap = await getBootstrap();
+            // const mymodalForWarning = new bootstrap.Modal(
+            //     document.getElementById("mymodalForWarning")
+            // );
+            // mymodalForWarning.show();
+            // const span = document.querySelector(
+            //     "#mymodalForWarning .errorInMymodalForWarning"
+            // );
+            // if (span instanceof HTMLElement) {
+            //     span.innerText = data.errors[0];
+            // }
+          } else if (data.status == 0) {
+            // Alert.alert('inja-3');
+            if (result.length == 0) {
+              // Alert.alert('inja-4');
+              // setBisatr(true);  ////zare_nk_050321_commented
+              ////zare_nk_050321_added_st
+              if (page == null) {
+                // Alert.alert('inja-setBisatr shod!!');
+                setBisatr(true);
               }
-            } else {
-              if (item.Mojoodi <= item.TedadDarSabad) {
-                bishAzMaxTedadYaMojoodi = 1;
+              else {
+                // Alert.alert('inja-entihaa!!');
+                rofForEnteha.current = true; ////zare_nk_050321_nokteh(ta ba vojoode entehaye list boodan page ra ezafeh nakone)
               }
-            }
+              ////zare_nk_050321_added_end
 
-            let ForCartContentsDesignTypeLet = 0
+              return;
+            }
+            // Alert.alert('inja-5');
+            setBisatr(false);
+            refForfather.current = "#cardcontainer2";
+            ////zare_nk_050322_nokteh_st(rahe1(natije doroste vali kheili kond mishe barname)- chon dar har halghe yek setState darim ke baese reRender shodane Component be 
+            // andazeye tedad item haye api ast(behtare az rahe3 estefadeh konim ke ebteda kolle map ra dakhele yek moteghayere komaki mirize sepas yekja moteghayyer ro dakhele yek setState mirizim))
+            // return (
+            //   result.map((item: any) => {
+            //     var bishAzMaxTedadYaMojoodi = 0;
+            //     if (item.MaxTedad != null) {
+            //       if (item.MaxTedad <= item.TedadDarSabad) {
+            //         bishAzMaxTedadYaMojoodi = 1;
+            //       }
+            //     } else {
+            //       if (item.Mojoodi <= item.TedadDarSabad) {
+            //         bishAzMaxTedadYaMojoodi = 1;
+            //       }
+            //     }
 
-            if (item.TedadDarSabad == 0) {
-              ForCartContentsDesignTypeLet = 0;
-            }
-            else if (item.TedadDarSabad > item.ZaribForoosh) {
-              ForCartContentsDesignTypeLet = 2;
-            }
-            else if (item.TedadDarSabad == item.ZaribForoosh) {
-              ForCartContentsDesignTypeLet = 1;
-            }
-            return ({
-              tedadInSabadOrDet: item.TedadDarSabad,
-              ZaribForoosh: item.ZaribForoosh,
-              IdKala: item.IdKala,
-              NameKala: item.NameKala,
-              DarsadTakhfif: item.DarsadTakhfif,
-              NameBerand: item.NameBerand,
-              FeeForoosh: item.FeeForoosh,
-              FeeMasraf: item.FeeMasraf,
-              BarcodeKala: item.BarcodeKala,
-              Mojoodi: item.Mojoodi,
-              MaxTedad: item.MaxTedad,
-              MasrafSatr: item.MasrafSatr,
-              father: "#cardcontainer2",
-              refForfather: refForfather,
-              bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-              fromShowDetails: false,
-              ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-              idTag: "ForCart-" + item.IdKala,
+            //     let ForCartContentsDesignTypeLet = 0
+
+            //     if (item.TedadDarSabad == 0) {
+            //       ForCartContentsDesignTypeLet = 0;
+            //     }
+            //     else if (item.TedadDarSabad > item.ZaribForoosh) {
+            //       ForCartContentsDesignTypeLet = 2;
+            //     }
+            //     else if (item.TedadDarSabad == item.ZaribForoosh) {
+            //       ForCartContentsDesignTypeLet = 1;
+            //     }
+            //     setOfferRows(prev => [...prev,
+            //     {   ////zare_nk_050321_okk
+            //       tedadInSabadOrDet: item.TedadDarSabad,
+            //       ZaribForoosh: item.ZaribForoosh,
+            //       IdKala: item.IdKala,
+            //       NameKala: item.NameKala,
+            //       DarsadTakhfif: item.DarsadTakhfif,
+            //       NameBerand: item.NameBerand,
+            //       FeeForoosh: item.FeeForoosh,
+            //       FeeMasraf: item.FeeMasraf,
+            //       BarcodeKala: item.BarcodeKala,
+            //       Mojoodi: item.Mojoodi,
+            //       MaxTedad: item.MaxTedad,
+            //       MasrafSatr: item.MasrafSatr,
+            //       father: "#cardcontainer2",
+            //       refForfather: refForfather,
+            //       bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+            //       fromShowDetails: false,
+            //       ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+            //       idTag: "ForCart-" + item.IdKala,
+            //     }
+            //     ]);
+            //   })
+            // )
+            ////zare_nk_050322_nokteh_end(rahe1(natije doroste vali kheili kond mishe barname)- chon dar har halghe yek setState darim ke baese reRender shodane Component be 
+            // andazeye tedad item haye api ast(behtare az rahe3 estefadeh konim ke ebteda kolle map ra dakhele yek moteghayere komaki mirize sepas yekja moteghayyer ro dakhele yek setState mirizim))
+
+            ////zare_nk_050322_nokteh_st(rahe2(kollan eshtebahe barmigardooneh!)- chon prev ke biroone map hast hamvareh meghdare avaliye dare va ba har halghe meghdare iteme feli ro bedorosti migire, amma meghdare Iteme ghabli ro hazf mikoneh(chon midoonim hanooz reRender nashode ke meghdare prev berooz beshe, pas bayad kolle map ro yeja bahesh bedi))
+            // setOfferRows((prev) => {
+            //   return result.map((item: any) => { 
+            //     return ([...prev,
+            //     {
+            //       tedadInSabadOrDet: item.TedadDarSabad,
+            //       ZaribForoosh: item.ZaribForoosh,
+            //       IdKala: item.IdKala,
+            //       NameKala: item.NameKala,
+            //       DarsadTakhfif: item.DarsadTakhfif,
+            //       NameBerand: item.NameBerand,
+            //       FeeForoosh: item.FeeForoosh,
+            //       FeeMasraf: item.FeeMasraf,
+            //       BarcodeKala: item.BarcodeKala,
+            //       Mojoodi: item.Mojoodi,
+            //       MaxTedad: item.MaxTedad,
+            //       MasrafSatr: item.MasrafSatr,
+            //       father: "#cardcontainer2",
+            //       refForfather: refForfather,
+            //       bishAzMaxTedadYaMojoodi: 111,
+            //       fromShowDetails: false,
+            //       ForCartContentsDesignType: 111,
+            //       idTag: "ForCart-" + item.IdKala,
+            //     }]
+            //     ) 
+            //   });
+            // })
+            ////zare_nk_050322_nokteh_end(rahe2(kollan eshtebahe barmigardooneh!)- chon prev ke biroone map hast hamvareh meghdare avaliye dare va ba har halghe meghdare iteme feli ro bedorosti migire, amma meghdare Iteme ghabli ro hazf mikoneh(chon midoonim hanooz reRender nashode ke meghdare prev berooz beshe, pas bayad kolle map ro yeja bahesh bedi))
+
+            ////zare_nk_050322_nokteh_st(rahe3(ham natijeye dorost mideh va ham sorate barname kond nemishe)- dar har halghe setState nemikonim ke kolli rerender dashteh bashim(balke kolle halghehaye api ro dakhele yek moteghayyere komakim mirizim va dar tanha yek setState moteghayere komaki ro dakhele state mirizim))
+            const tempArrayForOneSetState = result.map((item: any) => {
+              var bishAzMaxTedadYaMojoodi = 0;
+              if (item.MaxTedad != null) {
+                if (item.MaxTedad <= item.TedadDarSabad) {
+                  bishAzMaxTedadYaMojoodi = 1;
+                }
+              } else {
+                if (item.Mojoodi <= item.TedadDarSabad) {
+                  bishAzMaxTedadYaMojoodi = 1;
+                }
+              }
+
+              let ForCartContentsDesignTypeLet = 0
+
+              if (item.TedadDarSabad == 0) {
+                ForCartContentsDesignTypeLet = 0;
+              }
+              else if (item.TedadDarSabad > item.ZaribForoosh) {
+                ForCartContentsDesignTypeLet = 2;
+              }
+              else if (item.TedadDarSabad == item.ZaribForoosh) {
+                ForCartContentsDesignTypeLet = 1;
+              }
+              return ({
+                tedadInSabadOrDet: item.TedadDarSabad,
+                ZaribForoosh: item.ZaribForoosh,
+                IdKala: item.IdKala,
+                NameKala: item.NameKala,
+                DarsadTakhfif: item.DarsadTakhfif,
+                NameBerand: item.NameBerand,
+                FeeForoosh: item.FeeForoosh,
+                FeeMasraf: item.FeeMasraf,
+                BarcodeKala: item.BarcodeKala,
+                Mojoodi: item.Mojoodi,
+                MaxTedad: item.MaxTedad,
+                MasrafSatr: item.MasrafSatr,
+                father: "#cardcontainer2",
+                refForfather: refForfather,
+                bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+                fromShowDetails: false,
+                ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+                idTag: "ForCart-" + item.IdKala,
+              });
             });
-          });
-          setOfferRows((prev) => [...prev, ...tempArrayForOneSetState]);
-          ////zare_nk_050322_nokteh_end(rahe3(ham natijeye dorost mideh va ham sorate barname kond nemishe)- dar har halghe setState nemikonim ke kolli rerender dashteh bashim(balke kolle halghehaye api ro dakhele yek moteghayyere komakim mirizim va dar tanha yek setState moteghayere komaki ro dakhele state mirizim))
+            setOfferRows((prev) => [...prev, ...tempArrayForOneSetState]);
+            ////zare_nk_050322_nokteh_end(rahe3(ham natijeye dorost mideh va ham sorate barname kond nemishe)- dar har halghe setState nemikonim ke kolli rerender dashteh bashim(balke kolle halghehaye api ro dakhele yek moteghayyere komakim mirizim va dar tanha yek setState moteghayere komaki ro dakhele state mirizim))
+          }
+        } else {
+          // console.log('!!response.ok')
+          if (response.status == 401) {
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            // const bootstrap = await getBootstrap();
+            // const mymodalForWarning = new bootstrap.Modal(
+            //     document.getElementById("mymodalForWarning")
+            // );
+            // mymodalForWarning.show();
+            // const span = document.querySelector(
+            //     "#mymodalForWarning .errorInMymodalForWarning"
+            // );
+            // if (span instanceof HTMLElement) {
+            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            // }
+          }
         }
-      } else {
-        // console.log('!!response.ok')
-        if (response.status == 401) {
-          setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-          // const bootstrap = await getBootstrap();
-          // const mymodalForWarning = new bootstrap.Modal(
-          //     document.getElementById("mymodalForWarning")
-          // );
-          // mymodalForWarning.show();
-          // const span = document.querySelector(
-          //     "#mymodalForWarning .errorInMymodalForWarning"
-          // );
-          // if (span instanceof HTMLElement) {
-          //     span.innerText = "لطفا ابتدا آنلاین شوید";
-          // }
+      } catch (error) {
+        ////zare_nk_050317_added_st(tahlilshe)
+        setImgUriForDet('');
+        setForCartContInProdDetVal(undefined);
+        setIsOpenedProdDetModal(false);
+        ////zare_nk_050317_added_end(tahlilshe)
+        setIsOpenedMymodalForWarning(true);
+        let WarningText = '';
+        if (error instanceof Error) {
+          WarningText = error.message
+          if (error.message === "Failed to fetch") {
+            WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+          }
+          else if (error.message === "Network request failed") {
+            WarningText = "درخواست شبکه ناموفق بود";
+          }
+          else {
+            WarningText = 'درخواست نا موفق بود';
+          }
+        } else {
+          WarningText = String(error);
         }
+
+        setWarningTextInMymodalForWarning(() => {
+          return (WarningText)
+        });
+
       }
+
     }
     tempFuncForAsync();
     // }, [addOrRemChanged]); ////zare_nk_050320_commented(jash ro be state page dad)
@@ -817,18 +890,27 @@ export default function ShallowRoutingExample({
       //   }
       ////zare_nk_041129_commented_end
       return;
-    } else {
+    }
+    //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
+    try {
       // console.log('041120-addToCartInIndex-else 1');
       var TedadOut = 0;
       var TedadOuttoAjax = 0;
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
       TedadOut = addRemParam.tedadInSabadOrDet + zarib;
       TedadOuttoAjax = addRemParam.ZaribForoosh;
-      const token = await getCookie("token");
+      // const token = await getCookie("token");
       // console.log('041120-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
 
-      let ApiUrl = "https://api.tochikala.com/api/";
-      var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
+      ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
+      // let ApiUrl = "https://api.tochikala.com/api/";
+      // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
+      ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
+      ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
+      var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
+      console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
+      ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
+      const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
       const response = await fetch(urlInsertToSabad, {
         method: "POST",
         headers: {
@@ -837,10 +919,12 @@ export default function ShallowRoutingExample({
         },
         body: JSON.stringify({
           BarcodeKala: addRemParam.BarcodeKala,
-          Tedad: TedadOut,
-          IdKala: addRemParam.IdKala,
-          IdShobeh: 6,
-          IdAddress: 23990
+          // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+          Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+
+          // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
+          IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
+          // IdAddress: 23990  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdAddress nemikhad)
         }),
       });
       const data = await response.json();
@@ -1006,7 +1090,33 @@ export default function ShallowRoutingExample({
           // }
         }
       }
+    } catch (error) {
+      ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+      // setForCartContInProdDetVal(undefined);
+      // setIsOpenedProdDetModal(false);
+      ////zare_nk_050325_commented_end(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+      setIsOpenedMymodalForWarning(true);
+      let WarningText = '';
+      if (error instanceof Error) {
+        WarningText = error.message
+        if (error.message === "Failed to fetch") {
+          WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+        }
+        else if (error.message === "Network request failed") {
+          WarningText = "درخواست شبکه ناموفق بود";
+        }
+        else {
+          WarningText = 'درخواست نا موفق بود';
+        }
+      } else {
+        WarningText = String(error);
+      }
+
+      setWarningTextInMymodalForWarning(() => {
+        return (WarningText)
+      });
     }
+    // } ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
   }
 
   async function remveFromCartInIndex(
@@ -1036,17 +1146,26 @@ export default function ShallowRoutingExample({
       //   }
       ////zare_nk_041129_commented_end
       return;
-    } else {
+    }
+    //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
+    try {
       // console.log('041116-001');
       var TedadOut = 0;
       var TedadOuttoAjax = 0;
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
       TedadOut = addRemParam.tedadInSabadOrDet - zarib;
       TedadOuttoAjax = -(addRemParam.ZaribForoosh);
-      const token = await getCookie("token");
+      // const token = await getCookie("token");
 
-      let ApiUrl = "https://api.tochikala.com/api/";
-      var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
+      ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
+      // let ApiUrl = "https://api.tochikala.com/api/";
+      // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
+      ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
+      ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
+      var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
+      console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
+      ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
+      const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
       const response = await fetch(urlInsertToSabad, {
         method: "POST",
         headers: {
@@ -1055,10 +1174,12 @@ export default function ShallowRoutingExample({
         },
         body: JSON.stringify({
           BarcodeKala: addRemParam.BarcodeKala,
-          Tedad: TedadOut,
-          IdKala: addRemParam.IdKala,
-          IdShobeh: 6,
-          IdAddress: 23990
+          // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+          Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+
+          // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
+          IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
+          // IdAddress: 23990  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdAddress nemikhad)
         }),
       });
 
@@ -1291,7 +1412,33 @@ export default function ShallowRoutingExample({
           // }
         }
       }
+    } catch (error) {
+      ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+      // setForCartContInProdDetVal(undefined);
+      // setIsOpenedProdDetModal(false);
+      ////zare_nk_050325_commented_end(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+      setIsOpenedMymodalForWarning(true);
+      let WarningText = '';
+      if (error instanceof Error) {
+        WarningText = error.message
+        if (error.message === "Failed to fetch") {
+          WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+        }
+        else if (error.message === "Network request failed") {
+          WarningText = "درخواست شبکه ناموفق بود";
+        }
+        else {
+          WarningText = 'درخواست نا موفق بود';
+        }
+      } else {
+        WarningText = String(error);
+      }
+
+      setWarningTextInMymodalForWarning(() => {
+        return (WarningText)
+      });
     }
+    // }  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
   }
 
   ////zare_nk_050319_added_st(rahe1- bedoone callback ))

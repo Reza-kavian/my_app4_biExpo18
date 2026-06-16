@@ -206,64 +206,98 @@ export default function ShallowRoutingExample({
             // } 
             return;
         } else {
-            // let ApiUrl = "https://testotmapi.sarinmehr.com/api/v1/Hyper/";
-            // var urlSelectFaktorForooshSatr = ApiUrl + "Api_SelectFaktorForooshSatr";
-            let ApiUrl = "https://api.tochikala.com/api/";
-            var urlSelectFaktorForooshSatr = ApiUrl + "User/Api_SelectForooshSatr";
-            const response = await fetch(urlSelectFaktorForooshSatr, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer " + token,
-                },
-                body: JSON.stringify({
-                    IdForooshTitr: IdFaktorForoosh,
-                }),
-                // credentials: "include", //zare_nk_040402_commented
-            });
-            const data = await response.json();
-            if (response.ok) {
-                if (data.status != 0) {
-                    setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(result.errors[0]);
-                    // const bootstrap = await getBootstrap();
-                    // const mymodalForWarning = new bootstrap.Modal(
-                    //     document.getElementById("mymodalForWarning")
-                    // );
-                    // mymodalForWarning.show();
-                    // const span = document.querySelector(
-                    //     "#mymodalForWarning .modal-body span"
-                    // );
-                    // if (span instanceof HTMLElement) {
-                    //     span.innerText = result.errors[0];
-                    // }
-                } else if (data.status == 0) {
-                    var result = JSON.parse(data.data.list);
-                    console.log('zare_nk_041123-resultSatr: ' + JSON.stringify(result));
-                    console.log('zare_nk_041123-resultSatr.length: ' + result.length);
-                    if (result.length == 0) {
-                        setBisatrDarSatr(true);
-                        return;
+
+
+            ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
+            // let ApiUrl = "https://api.tochikala.com/api/";
+            // var urlSelectFaktorForooshSatr = ApiUrl + "User/Api_SelectForooshSatr";
+            ////zare_nk_050325_commented_end(tagheire api be hamyarForoosh)
+            ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
+            var urlSelectFaktorForooshSatr = NextJsApiUrl + "Api_SelectFaktorForooshSatr";
+            ////zare_nk_050325_added_end(tagheire api be hamyarForoosh) 
+
+            try {
+                const response = await fetch(urlSelectFaktorForooshSatr, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + token,
+                    },
+                    body: JSON.stringify({
+                        IdForooshTitr: IdFaktorForoosh,
+                    }),
+                    // credentials: "include", //zare_nk_040402_commented
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    if (data.status != 0) {
+                        setIsOpenedMymodalForWarning(true);
+                        setWarningTextInMymodalForWarning(result.errors[0]);
+                        // const bootstrap = await getBootstrap();
+                        // const mymodalForWarning = new bootstrap.Modal(
+                        //     document.getElementById("mymodalForWarning")
+                        // );
+                        // mymodalForWarning.show();
+                        // const span = document.querySelector(
+                        //     "#mymodalForWarning .modal-body span"
+                        // );
+                        // if (span instanceof HTMLElement) {
+                        //     span.innerText = result.errors[0];
+                        // }
+                    } else if (data.status == 0) {
+                        var result = JSON.parse(data.data.list);
+                        console.log('zare_nk_041123-resultSatr: ' + JSON.stringify(result));
+                        console.log('zare_nk_041123-resultSatr.length: ' + result.length);
+                        if (result.length == 0) {
+                            setBisatrDarSatr(true);
+                            return;
+                        }
+                        setBisatrDarSatr(false);
+                        setForooshSatrRows(result);
                     }
-                    setBisatrDarSatr(false);
-                    setForooshSatrRows(result);
+                } else {
+                    if (response.status == 401) {
+                        setIsOpenedMymodalForWarning(true);
+                        setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                        // const bootstrap = await getBootstrap();
+                        // const mymodalForWarning = new bootstrap.Modal(
+                        //     document.getElementById("mymodalForWarning")
+                        // );
+                        // mymodalForWarning.show();
+                        // const span = document.querySelector(
+                        //     "#mymodalForWarning .errorInMymodalForWarning"
+                        // );
+                        // if (span instanceof HTMLElement) {
+                        //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                        // }
+                    }
                 }
-            } else {
-                if (response.status == 401) {
-                    setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-                    // const bootstrap = await getBootstrap();
-                    // const mymodalForWarning = new bootstrap.Modal(
-                    //     document.getElementById("mymodalForWarning")
-                    // );
-                    // mymodalForWarning.show();
-                    // const span = document.querySelector(
-                    //     "#mymodalForWarning .errorInMymodalForWarning"
-                    // );
-                    // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا آنلاین شوید";
-                    // }
+            } catch (error) {
+                ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+                // setForCartContInProdDetVal(undefined);
+                // setIsOpenedProdDetModal(false);
+                ////zare_nk_050325_commented_end(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+                setIsOpenedMymodalForWarning(true);
+                let WarningText = '';
+                if (error instanceof Error) {
+                    WarningText = error.message
+                    if (error.message === "Failed to fetch") {
+                        WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+                    }
+                    else if (error.message === "Network request failed") {
+                        WarningText = "درخواست شبکه ناموفق بود";
+                    }
+                    else {
+                        WarningText = 'درخواست نا موفق بود';
+                    }
+                } else {
+                    WarningText = String(error);
                 }
+
+                setWarningTextInMymodalForWarning(() => {
+                    return (WarningText)
+                });
+
             }
         }
     }
@@ -315,69 +349,100 @@ export default function ShallowRoutingExample({
                 // }  
                 return;
             } else {
-                // const token = getCookie("token");
-                // let ApiUrl = "https://testotmapi.sarinmehr.com/api/v1/Hyper/";
-                // var urlSelectFaktorForooshTitr = ApiUrl + "Api_SelectFaktorForooshTitr";
-                let ApiUrl = "https://api.tochikala.com/api/";
-                var urlSelectFaktorForooshTitr = ApiUrl + "User/Api_SelectForooshTitr";
-                const response = await fetch(urlSelectFaktorForooshTitr, {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer " + token,
-                    },
-                    // body: JSON.stringify({}),  //zare_nk_0411123_commented
-                    ////zare_nk_0411123_added_st
-                    body: JSON.stringify({
-                        'Sort': 'IdFaktorForoosh',
-                        'SortDir': 'DESC',
-                    }),
-                    ////zare_nk_0411123_added_end
-                    // credentials: "include", //zare_nk_040402_commented
-                });
-                const data = await response.json();
-                if (response.ok) {
-                    if (data.status != 0) {
-                        setIsOpenedMymodalForWarning(true);
-                        setWarningTextInMymodalForWarning(data.errors[0]);
-                        // const bootstrap = await getBootstrap();
-                        // const mymodalForWarning = new bootstrap.Modal(
-                        //     document.getElementById("mymodalForWarning")
-                        // );
-                        // mymodalForWarning.show();
-                        // const span = document.querySelector(
-                        //     "#mymodalForWarning .errorInMymodalForWarning"
-                        // );
-                        // if (span instanceof HTMLElement) {
-                        //     span.innerText = data.errors[0];
-                        // }
-                    } else if (data.status == 0) {
-                        var result = JSON.parse(data.data.list);
-                        console.log('zare_nk_041123-result: ' + JSON.stringify(result));
-                        console.log('zare_nk_041123-resresult.lengthult: ' + result.length);
-                        if (result.length == 0) {
-                            setBisatr(true);
-                            return;
+                // const token = getCookie("token");                
+                ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
+                // let ApiUrl = "https://api.tochikala.com/api/";
+                // var urlSelectFaktorForooshTitr = ApiUrl + "User/Api_SelectForooshTitr";
+                ////zare_nk_050325_commented_end(tagheire api be hamyarForoosh)
+                ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
+                var urlSelectFaktorForooshTitr = NextJsApiUrl + "Api_SelectFaktorForooshTitr";
+                ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
+                try {
+                    const response = await fetch(urlSelectFaktorForooshTitr, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + token,
+                        },
+                        // body: JSON.stringify({}),  //zare_nk_0411123_commented
+                        ////zare_nk_0411123_added_st
+                        body: JSON.stringify({
+                            'Sort': 'IdFaktorForoosh',
+                            'SortDir': 'DESC',
+                        }),
+                        ////zare_nk_0411123_added_end
+                        // credentials: "include", //zare_nk_040402_commented
+                    });
+                    const data = await response.json();
+                    if (response.ok) {
+                        if (data.status != 0) {
+                            setIsOpenedMymodalForWarning(true);
+                            setWarningTextInMymodalForWarning(data.errors[0]);
+                            // const bootstrap = await getBootstrap();
+                            // const mymodalForWarning = new bootstrap.Modal(
+                            //     document.getElementById("mymodalForWarning")
+                            // );
+                            // mymodalForWarning.show();
+                            // const span = document.querySelector(
+                            //     "#mymodalForWarning .errorInMymodalForWarning"
+                            // );
+                            // if (span instanceof HTMLElement) {
+                            //     span.innerText = data.errors[0];
+                            // }
+                        } else if (data.status == 0) {
+                            var result = JSON.parse(data.data.list);
+                            console.log('zare_nk_041123-result: ' + JSON.stringify(result));
+                            console.log('zare_nk_041123-resresult.lengthult: ' + result.length);
+                            if (result.length == 0) {
+                                setBisatr(true);
+                                return;
+                            }
+                            setBisatr(false);
+                            setForooshTitrRows(result);
                         }
-                        setBisatr(false);
-                        setForooshTitrRows(result);
+                    } else {
+                        if (response.status == 401) {
+                            setIsOpenedMymodalForWarning(true);
+                            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                            // const bootstrap = await getBootstrap();
+                            // const mymodalForWarning = new bootstrap.Modal(
+                            //     document.getElementById("mymodalForWarning")
+                            // );
+                            // mymodalForWarning.show();
+                            // const span = document.querySelector(
+                            //     "#mymodalForWarning .errorInMymodalForWarning"
+                            // );
+                            // if (span instanceof HTMLElement) {
+                            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                            // }
+                        }
                     }
-                } else {
-                    if (response.status == 401) {
-                        setIsOpenedMymodalForWarning(true);
-                        setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
-                        // const bootstrap = await getBootstrap();
-                        // const mymodalForWarning = new bootstrap.Modal(
-                        //     document.getElementById("mymodalForWarning")
-                        // );
-                        // mymodalForWarning.show();
-                        // const span = document.querySelector(
-                        //     "#mymodalForWarning .errorInMymodalForWarning"
-                        // );
-                        // if (span instanceof HTMLElement) {
-                        //     span.innerText = "لطفا ابتدا آنلاین شوید";
-                        // }
+                } catch (error) {
+                    ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+                    // setForCartContInProdDetVal(undefined);
+                    // setIsOpenedProdDetModal(false);
+                    ////zare_nk_050325_commented_end(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+                    setIsOpenedMymodalForWarning(true);
+                    let WarningText = '';
+                    if (error instanceof Error) {
+                        WarningText = error.message
+                        if (error.message === "Failed to fetch") {
+                            WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
+                        }
+                        else if (error.message === "Network request failed") {
+                            WarningText = "درخواست شبکه ناموفق بود";
+                        }
+                        else {
+                            WarningText = 'درخواست نا موفق بود';
+                        }
+                    } else {
+                        WarningText = String(error);
                     }
+
+                    setWarningTextInMymodalForWarning(() => {
+                        return (WarningText)
+                    });
+
                 }
             }
         }

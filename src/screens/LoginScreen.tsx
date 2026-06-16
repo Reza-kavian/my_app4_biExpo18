@@ -493,11 +493,13 @@ export default function LoginScreen({
       // setIsDisabledResendCode(true); ////zare_nk_050314_commented
       setIsDisabledRemovTimerBtn(false);
       // const response = await axios.post(NextJsApiUrl  + "User/Api_LoginUser1", { mobile: mobileVal });  ////zare_nk_050325_commented(agheire api be hamyarForoosh)
+      ////zare_nk_050325_added_st(agheire api be hamyarForoosh)
       const response = await axios.post(NextJsApiUrl + "Api_LoginUser1",
         {
           mobile: mobileVal,
           IdShobeh: 12,
-        });  ////zare_nk_050325_added(agheire api be hamyarForoosh)
+        });
+      ////zare_nk_050325_added_end(agheire api be hamyarForoosh)
       const data = await response.data;
       if (response.status == 200) {
         console.log("zare_nk_040218-data: " + JSON.stringify(data) + '-response.status: ' + response.status);

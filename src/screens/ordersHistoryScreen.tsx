@@ -229,6 +229,7 @@ export default function ShallowRoutingExample({
                     // credentials: "include", //zare_nk_040402_commented
                 });
                 const data = await response.json();
+                console.log("050326-data-rere: " + +JSON.stringify(data));
                 if (response.ok) {
                     if (data.status != 0) {
                         setIsOpenedMymodalForWarning(true);
@@ -288,7 +289,7 @@ export default function ShallowRoutingExample({
                         WarningText = "درخواست شبکه ناموفق بود";
                     }
                     else {
-                        WarningText = 'درخواست نا موفق بود';
+                        WarningText = '2درخواست نا موفق بود';
                     }
                 } else {
                     WarningText = String(error);
@@ -374,6 +375,8 @@ export default function ShallowRoutingExample({
                         // credentials: "include", //zare_nk_040402_commented
                     });
                     const data = await response.json();
+                    console.log("050326-data-rere22: " +JSON.stringify(data) );
+                    //{"status":1,"message":"","data":null,"errors":["متاسفانه عملیات با خطا مواجه شد. لطفا مجددا تلاش کنید"]}
                     if (response.ok) {
                         if (data.status != 0) {
                             setIsOpenedMymodalForWarning(true);
@@ -433,7 +436,7 @@ export default function ShallowRoutingExample({
                             WarningText = "درخواست شبکه ناموفق بود";
                         }
                         else {
-                            WarningText = 'درخواست نا موفق بود';
+                            WarningText = '1درخواست نا موفق بود';
                         }
                     } else {
                         WarningText = String(error);

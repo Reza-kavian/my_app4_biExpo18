@@ -460,7 +460,7 @@ export default function ShallowRoutingExample({
           WarningText = "درخواست شبکه ناموفق بود";
         }
         else {
-          WarningText = 'درخواست نا موفق بود';
+          WarningText = '1درخواست نا موفق بود';
         }
       } else {
         WarningText = String(error);
@@ -583,7 +583,8 @@ export default function ShallowRoutingExample({
         take: number,  ////zare_nk_050320_added
       };
 
-       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+      const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+      console.log("Number(currentShobeh): " + Number(currentShobeh));
       const inputData: InputDataType = {
         IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
         // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
@@ -613,7 +614,6 @@ export default function ShallowRoutingExample({
       ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
 
       try {
-       
         const response = await fetch(urlSelectKalaShobeh, {
           method: "POST",
           headers: {
@@ -639,6 +639,10 @@ export default function ShallowRoutingExample({
         });
 
         const data = await response.json();
+
+        ////zare_nk_050326_nokteh_st(bayad icon loading ro adame namayesh bedam be karbar)
+        ////zare_nk_050326_nokteh_end(bayad icon loading ro adame namayesh bedam be karbar)
+
         if (response.ok) {
           // Alert.alert('inja-1');
           var result = JSON.parse(data.data.list);
@@ -844,7 +848,7 @@ export default function ShallowRoutingExample({
             WarningText = "درخواست شبکه ناموفق بود";
           }
           else {
-            WarningText = 'درخواست نا موفق بود';
+            WarningText = '2درخواست نا موفق بود';
           }
         } else {
           WarningText = String(error);
@@ -1106,7 +1110,7 @@ export default function ShallowRoutingExample({
           WarningText = "درخواست شبکه ناموفق بود";
         }
         else {
-          WarningText = 'درخواست نا موفق بود';
+          WarningText = '3درخواست نا موفق بود';
         }
       } else {
         WarningText = String(error);
@@ -1428,7 +1432,7 @@ export default function ShallowRoutingExample({
           WarningText = "درخواست شبکه ناموفق بود";
         }
         else {
-          WarningText = 'درخواست نا موفق بود';
+          WarningText = '4درخواست نا موفق بود';
         }
       } else {
         WarningText = String(error);
@@ -1515,10 +1519,13 @@ export default function ShallowRoutingExample({
       return;
     }
 
+    ////zare_nk_050326_nokteh_st(bayad icon loading ro namayesh bedam be karbar)
+    ////zare_nk_050326_nokteh_end(bayad icon loading ro namayesh bedam be karbar)
+
     const nextPage = page ? page + 1 : null;
     // Alert.alert('5 taye chandom: ' + nextPage);
     setPage(nextPage);
-  }
+  } 
   ////zare_nk_050320_added_end
 
   return (

@@ -1878,7 +1878,7 @@ export default function HomeScreen({
           WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
         }
         else if (error.message === "Network request failed") {
-          WarningText = "درخواست شبکه ناموفق بود";
+          WarningText = "3درخواست شبکه ناموفق بود";
         }
         else {
           WarningText = 'درخواست نا موفق بود';
@@ -1973,7 +1973,7 @@ export default function HomeScreen({
           BarcodeKala: addRemParam.BarcodeKala,
           // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
           Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-          
+
           // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
           IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
           // IdAddress: 23990  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdAddress nemikhad)
@@ -2092,7 +2092,7 @@ export default function HomeScreen({
           WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
         }
         else if (error.message === "Network request failed") {
-          WarningText = "درخواست شبکه ناموفق بود";
+          WarningText = "1درخواست شبکه ناموفق بود";
         }
         else {
           WarningText = 'درخواست نا موفق بود';
@@ -2347,7 +2347,7 @@ export default function HomeScreen({
           WarningText = "❌ اتصال اینترنت برقرار نیست یا سرور در دسترس نمی‌باشد";
         }
         else if (error.message === "Network request failed") {
-          WarningText = "درخواست شبکه ناموفق بود";
+          WarningText = "1درخواست شبکه ناموفق بود";
         }
         else {
           WarningText = 'درخواست نا موفق بود';

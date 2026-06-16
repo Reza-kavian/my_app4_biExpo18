@@ -6,7 +6,7 @@ import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
   useWindowDimensions,
   StyleProp, Modal, Button, Animated, TextInput,
-  Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions
+  Platform, ToastAndroid, LayoutChangeEvent, FlatList, ScrollView, Dimensions, ActivityIndicator
 } from "react-native";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";   //zare_nk041129_added
@@ -256,6 +256,9 @@ export default function ShallowRoutingExample({
   //// be setPage(setPage dar rendere avval va scroll be entehaye FlatList meghdar migire )))
 
   const [page, setPage] = useState<number | null>(1);   ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))
+
+  const [loadingMore, setLoadingMore] = useState(false);  ////zare_nk_050326_nokteh(bayad icon loading ro namayesh bedam be karbar)
+
   const [jamKol, setJamKol] = useState<number | null>(null);
   const [jamKolTakhfif, setJamKolTakhfif] = useState<number | null>(null);
   const [jamKolNahaei, setJamKolNahaei] = useState<number | null>(null);
@@ -291,14 +294,14 @@ export default function ShallowRoutingExample({
 
     ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
     // let ApiUrl = "https://api.tochikala.com/api/";
-    // var urlApi_SelectShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
+    // var urlApi_SelectShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
     ////zare_nk_050325_commented_end(tagheire api be hamyarForoosh)
     ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
-    var urlApi_SelectShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
+    var urlApi_SelectShobeh = NextJsApiUrl + "Api_SelectKala";
     ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
     try {
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
-      const response = await fetch(urlApi_SelectShobehJashnvareh, {
+      const response = await fetch(urlApi_SelectShobeh, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -586,7 +589,7 @@ export default function ShallowRoutingExample({
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
       console.log("Number(currentShobeh): " + Number(currentShobeh));
       const inputData: InputDataType = {
-        IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
+        IdShobeh: 6,// Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
         // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
         IsJashnvareh: -1,  //zare_nk_041208_added_testi
         NameKala: "",
@@ -604,17 +607,15 @@ export default function ShallowRoutingExample({
         take: 20,     ////zare_nk_050320_added
       };
 
-
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
-      // let ApiUrl = "https://api.tochikala.com/api/";
-      // var urlSelectKalaShobeh = ApiUrl + "User/Api_SelectKalaShobeh";
+      let ApiUrl = "https://api.tochikala.com/api/";
+      var urlSelectKalaShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_add_st(agheire api be hamyarForoosh) 
-      var urlSelectKalaShobeh = NextJsApiUrl + "Api_SelectKala";
+      // var urlSelectKalaShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
       ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
-
       try {
-        const response = await fetch(urlSelectKalaShobeh, {
+        const response = await fetch(urlSelectKalaShobehJashnvareh, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -639,9 +640,6 @@ export default function ShallowRoutingExample({
         });
 
         const data = await response.json();
-
-        ////zare_nk_050326_nokteh_st(bayad icon loading ro adame namayesh bedam be karbar)
-        ////zare_nk_050326_nokteh_end(bayad icon loading ro adame namayesh bedam be karbar)
 
         if (response.ok) {
           // Alert.alert('inja-1');
@@ -857,9 +855,12 @@ export default function ShallowRoutingExample({
         setWarningTextInMymodalForWarning(() => {
           return (WarningText)
         });
-
       }
-
+      finally{
+         ////zare_nk_050326_nokteh_st(bayad icon loading ro adame namayesh bedam be karbar)  ////pishnahade man ke javab dad  ////zare_nk_050326_nokteh(ba codeHaye chatGPT bordamesh be finallye methode loadMore)
+        setLoadingMore(false);
+        ////zare_nk_050326_nokteh_end(bayad icon loading ro adame namayesh bedam be karbar)  ////pishnahade man ke javab dad  ////zare_nk_050326_nokteh(ba codeHaye chatGPT bordamesh be finallye methode loadMore)
+      }
     }
     tempFuncForAsync();
     // }, [addOrRemChanged]); ////zare_nk_050320_commented(jash ro be state page dad)
@@ -1481,7 +1482,7 @@ export default function ShallowRoutingExample({
   ////zare_nk_050319_added_st(az useCallback baraye sorate bishtar estefadeh kardim) 
   const renderOfferItem: ListRenderItem<ForCartContInProdDetValType> = useCallback(({ item }) => (
     <OfferSatrComponent
-      key={item.IdKala}
+      // key={item.IdKala}   ////zare_nk_050326_commented
       offerRow={item}
       handlerForAddClick={handlerForAddClick}
       handlerForRemClick={handlerForRemClick}
@@ -1498,7 +1499,6 @@ export default function ShallowRoutingExample({
 
   ////zare_nk_050320_added_st
   const loadMore = async () => {
-
     // const nextPage = page + 1;
 
     // const res = await fetch(API, {
@@ -1520,12 +1520,13 @@ export default function ShallowRoutingExample({
     }
 
     ////zare_nk_050326_nokteh_st(bayad icon loading ro namayesh bedam be karbar)
+    setLoadingMore(true);
     ////zare_nk_050326_nokteh_end(bayad icon loading ro namayesh bedam be karbar)
 
     const nextPage = page ? page + 1 : null;
     // Alert.alert('5 taye chandom: ' + nextPage);
     setPage(nextPage);
-  } 
+  }
   ////zare_nk_050320_added_end
 
   return (
@@ -2596,6 +2597,17 @@ export default function ShallowRoutingExample({
 
             onEndReached={loadMore}
             onEndReachedThreshold={0.5}
+            ////zare_nk_050326_nokteh_st(bayad icon loading ro namayesh bedam be karbar)
+            ListFooterComponent={
+              loadingMore ? (
+                <View style={{ 
+                  flex: 1, justifyContent: "center", alignItems: "center", paddingVertical: 30, position:'absolute',bottom:40, alignSelf: 'center',
+                 }}>
+                  <ActivityIndicator size="large" />
+                </View>
+              ) : null
+            }
+          ////zare_nk_050326_nokteh_end(bayad icon loading ro namayesh bedam be karbar)
           />
           {/* zare_nk_050319_added_end(rahe2-ba FlatList(kolle offerRows ra load nemikoneh balke faghat halghehhaei ke dar namayesh dide mishe ro load mikoneh, va baghiyeye halghehhaei ba scroll load mishan(pas behineh hast dar tedadhaye ziad))) */}
           {/* zare_nk_050319_added_st(rahe1-ba ScrollView va map(kolle offerRows ra load mikoneh va behineh naist dar tedadhaye ziad)) */}

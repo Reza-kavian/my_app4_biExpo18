@@ -1917,7 +1917,7 @@ export default function HomeScreen({
   async function addToCartInIndex(
     addRemParam: addRemParamType,
   ) {
-    console.log('041120-addToCartInIndex called!-addRemParam: ' + addRemParam.FeeForoosh);
+    console.log('050327-ar00-addToCartInIndex called!-addRemParam: ' + addRemParam.FeeForoosh);
     // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
     ////zare_nk_041129_commented_st
     // if (addRemParam.event != null) {
@@ -1945,8 +1945,9 @@ export default function HomeScreen({
       return;
     }
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
-    console.log('050326-addToCartInIndex-else 1');
+    console.log('050327-ar01-addToCartInIndex-else 1');
     try {
+      console.log('050327-ar02-addToCartInIndex-else 1');
       var TedadOut = 0;
       var TedadOuttoAjax = 0;
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
@@ -1959,10 +1960,14 @@ export default function HomeScreen({
       // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
-      var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
+      // var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";  ////zare_nk_050326_commented_movaghat(test)
+      var urlInsertToSabad = "https://192.168.3.126:7265/api/v1/hyper/" + "Api_InsertToSabad";   ////zare_nk_050326_added_movaghat(test)
+
       console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
       ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
+      
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+      console.log('050327-ar04-addToCartInIndex-else 1-BarcodeKala: '+addRemParam.BarcodeKala+'-Tedad: '+zarib+'-IdShobeh: '+Number(currentShobeh));
       const response = await fetch(urlInsertToSabad, {
         method: "POST",
         headers: {
@@ -1979,9 +1984,9 @@ export default function HomeScreen({
           // IdAddress: 23990  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdAddress nemikhad)
         }),
       });
-      console.log('050326-001');
-      const data = await response.json();
-      console.log('050326-002-data: ' + JSON.stringify(data));
+      console.log('050327-005-urlInsertToSabad: ' + urlInsertToSabad);
+      const data = await response.json(); 
+      console.log('050327-006-data: ' + JSON.stringify(data));
       if (response.ok) {
         console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         console.log('041120-addToCartInIndex-else 5 IdKala response.ok-addRemParam.BarcodeKala: ' + addRemParam.BarcodeKala +
@@ -2080,6 +2085,7 @@ export default function HomeScreen({
         }
       }
     } catch (error) {
+      console.log('050327-ar03-addToCartInIndex-else 1');
       ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
       // setForCartContInProdDetVal(undefined);
       // setIsOpenedProdDetModal(false);

@@ -808,7 +808,16 @@ export default function ShallowRoutingExample({
                 idTag: "ForCart-" + item.IdKala,
               });
             });
-            setOfferRows((prev) => [...prev, ...tempArrayForOneSetState]);
+ 
+            setOfferRows(prev => {
+              const newList = [...prev, ...tempArrayForOneSetState];
+              ////zare_nk_050326_nokteh_st(teste adame idkala haye tekrari(chon be Keye flatlist dadim bayad yekta bashe))
+              // const ids = newList.map(x => x.IdKala);
+              // const duplicates = ids.filter((id, i) => ids.indexOf(id) !== i);
+              // console.log("DUPLICATES:", duplicates);
+              ////zare_nk_050326_nokteh_end(teste adame idkala haye tekrari(chon be Keye flatlist dadim bayad yekta bashe))
+              return newList;
+            });
             ////zare_nk_050322_nokteh_end(rahe3(ham natijeye dorost mideh va ham sorate barname kond nemishe)- dar har halghe setState nemikonim ke kolli rerender dashteh bashim(balke kolle halghehaye api ro dakhele yek moteghayyere komakim mirizim va dar tanha yek setState moteghayere komaki ro dakhele state mirizim))
           }
         } else {
@@ -856,8 +865,8 @@ export default function ShallowRoutingExample({
           return (WarningText)
         });
       }
-      finally{
-         ////zare_nk_050326_nokteh_st(bayad icon loading ro adame namayesh bedam be karbar)  ////pishnahade man ke javab dad  ////zare_nk_050326_nokteh(ba codeHaye chatGPT bordamesh be finallye methode loadMore)
+      finally {
+        ////zare_nk_050326_nokteh_st(bayad icon loading ro adame namayesh bedam be karbar)  ////pishnahade man ke javab dad  ////zare_nk_050326_nokteh(ba codeHaye chatGPT bordamesh be finallye methode loadMore)
         setLoadingMore(false);
         ////zare_nk_050326_nokteh_end(bayad icon loading ro adame namayesh bedam be karbar)  ////pishnahade man ke javab dad  ////zare_nk_050326_nokteh(ba codeHaye chatGPT bordamesh be finallye methode loadMore)
       }
@@ -1499,22 +1508,7 @@ export default function ShallowRoutingExample({
 
   ////zare_nk_050320_added_st
   const loadMore = async () => {
-    // const nextPage = page + 1;
-
-    // const res = await fetch(API, {
-    //   method: "POST",
-    //   body: JSON.stringify({
-    //     ...filters,
-    //     Page: nextPage,
-    //     PageSize: 20,
-    //   }),
-    // });
-
-    // const newData = await res.json();
-
-    // setData(prev => [...prev, ...newData]); // اضافه کردن به لیست
-    // setPage(nextPage);
-    if (rofForEnteha.current) {
+    if (rofForEnteha.current && loadingMore) {  ////zare_nk_050327_updated(added loadingMore)
       // Alert.alert('ahkarin safhe tebghe apiye akharin');
       return;
     }
@@ -1524,7 +1518,7 @@ export default function ShallowRoutingExample({
     ////zare_nk_050326_nokteh_end(bayad icon loading ro namayesh bedam be karbar)
 
     const nextPage = page ? page + 1 : null;
-    // Alert.alert('5 taye chandom: ' + nextPage);
+    console.log("nextPage1: "+nextPage);
     setPage(nextPage);
   }
   ////zare_nk_050320_added_end
@@ -2600,9 +2594,9 @@ export default function ShallowRoutingExample({
             ////zare_nk_050326_nokteh_st(bayad icon loading ro namayesh bedam be karbar)
             ListFooterComponent={
               loadingMore ? (
-                <View style={{ 
-                  flex: 1, justifyContent: "center", alignItems: "center", paddingVertical: 30, position:'absolute',bottom:40, alignSelf: 'center',
-                 }}>
+                <View style={{
+                  flex: 1, justifyContent: "center", alignItems: "center", paddingVertical: 30, position: 'absolute', bottom: 40, alignSelf: 'center',
+                }}>
                   <ActivityIndicator size="large" />
                 </View>
               ) : null

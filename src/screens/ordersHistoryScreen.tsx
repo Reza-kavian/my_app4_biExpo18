@@ -100,18 +100,16 @@ export default function ShallowRoutingExample({
     }
     //////responsive_for_sabadItemsAndTotalInf_added_st
 
-
-
     ////zare_nk_041202_added_ثدی(moadele @media baraye responsive kardane site) 
 
     // type ForoshStateType = {   //zare_nk_050222_commented(baraye lafze khanatar)
     type sumValsForForooshSatrType = {   //zare_nk_050222_added(baraye lafze khanatar)
-        ShomarehFaktorForoosh: number;
+        // ShomarehFaktorForoosh: number; ////zare_nk_050328_commented
         IdFaktorForoosh: number;
         TarikhSefaresh: string;
         MablaghMasraf: number;
         JamTakhfifTitr: number;
-        JamTakhfifSatr: number;
+        // JamTakhfifSatr: number;  ////zare_nk_050328_commented
         MablaghKhales: number;
         forooshTitrRowsLength: number;
     };
@@ -125,8 +123,10 @@ export default function ShallowRoutingExample({
         IdKala: number;
         NameKala: string;
         Tedad: number;
-        IsVazni: number;
-        ForooshSatr: number;
+        // IsVazni: number;  ////zare_nk_050328_commented(baraye tochi)
+        IdNoeVazni: number;  ////zare_nk_050328_added(baraye hamyar)
+        // ForooshSatr: number;  ////zare_nk_050328_commented(baraye tochi)
+        MablaghKhalesForooshSatr: number; ////zare_nk_050328_added(baraye hamyar)
         // [key: string]: any; //yani az IdKala motmaen hastim vali fildhaye digare db ra parsa ina tagheir dadan dar in peroujeh shayad aslan
         //  be man nagan va timi kar nakonim,pas [key: string]: any; gozashtam ke kolli hast(chon hameye fieldha ro neveshtam commentesh kardam)
     };
@@ -135,15 +135,22 @@ export default function ShallowRoutingExample({
 
     type ForooshTitrType = {
         IdFaktorForoosh: number;
+        IdShobe: number;  ////zare_nk_050328_added 
         NameSobe: string;
-        VaziatFactor: string;
-        UserFullName: string;
-        TarikhSefaresh: string;
-        JamKhales: number;
+        // VaziatFactor: string; ////zare_nk_050328_commented
+        TaeedFaktorForoosh: number;  ////zare_nk_050328_added
+        // UserFullName: string; ////zare_nk_050328_commented
+        NameMoshtari: string;  ////zare_nk_050328_added
+        // TarikhSefaresh: string;  ////zare_nk_050328_commented
+        TarikhShamsiTaeed: string;  ////zare_nk_050328_added
+        // JamKhales: number;  ////zare_nk_050328_commented
+        MablaghKhales: number;  ////zare_nk_050328_added
         ShomareFaktor: number;
-        JamMasraf: number;
-        JamTakhfifTitr: number;
-        JamTakhfifSatr: number;
+        // JamMasraf: number; ////zare_nk_050328_commented
+        MablaghKolMasraf: number;   ////zare_nk_050328_added
+        // JamTakhfifTitr: number; ////zare_nk_050328_commented
+        TakhfifTitr: number;  ////zare_nk_050328_added
+        // JamTakhfifSatr: number;    ////zare_nk_050328_commented(tahlilshe-chera dar titr oomad?!)
         // [key: string]: any; //yani az IdKala motmaen hastim vali fildhaye digare db ra parsa ina tagheir dadan dar in peroujeh shayad aslan 
         // be man nagan va timi kar nakonim,pas [key: string]: any; gozashtam ke kolli hast(chon hameye fieldha ro neveshtam commentesh kardam)
     };
@@ -154,23 +161,23 @@ export default function ShallowRoutingExample({
     const [isShowFaktorForooshTitr, setIsShowFaktorForooshTitr] = useState<string | null>(null);
 
     type ShowForooshSatrHideForooshTitrType = {
-        ShomarehFaktorForoosh: number;
+        // ShomarehFaktorForoosh: number;   ////zare_nk_050328_commented
         IdFaktorForoosh: number;
         TarikhSefaresh: string;
         MablaghMasraf: number;
         JamTakhfifTitr: number;
-        JamTakhfifSatr: number;
+        // JamTakhfifSatr: number;  ////zare_nk_050328_commented
         MablaghKhales: number;
         forooshTitrRowsLength: number;
     };
 
     async function ShowForooshSatrHideForooshTitr({
-        ShomarehFaktorForoosh,
+        // ShomarehFaktorForoosh,  ////zare_nk_050328_commented
         IdFaktorForoosh,
         TarikhSefaresh,
         MablaghMasraf,
         JamTakhfifTitr,
-        JamTakhfifSatr,
+        // JamTakhfifSatr,  ////zare_nk_050328_commented
         MablaghKhales,
         forooshTitrRowsLength,
     }:
@@ -179,12 +186,12 @@ export default function ShallowRoutingExample({
         setIsShowFaktorForooshTitr(null);
         setForooshSatrHideForooshTitr(() => {
             return {
-                ShomarehFaktorForoosh: ShomarehFaktorForoosh,
+                // ShomarehFaktorForoosh: ShomarehFaktorForoosh,  ////zare_nk_050328_commented
                 IdFaktorForoosh: IdFaktorForoosh,
                 TarikhSefaresh: TarikhSefaresh,
                 MablaghMasraf: MablaghMasraf,
                 JamTakhfifTitr: JamTakhfifTitr,
-                JamTakhfifSatr: JamTakhfifSatr,
+                // JamTakhfifSatr: JamTakhfifSatr,
                 MablaghKhales: MablaghKhales,
                 forooshTitrRowsLength: forooshTitrRowsLength,
             };
@@ -224,7 +231,8 @@ export default function ShallowRoutingExample({
                         Authorization: "Bearer " + token,
                     },
                     body: JSON.stringify({
-                        IdForooshTitr: IdFaktorForoosh,
+                        // IdForooshTitr: IdFaktorForoosh,   ////zare_nk_050327_nokteh(parametre api tochikala)
+                        IdFaktorForooshTitr: IdFaktorForoosh,   ////zare_nk_050327_nokteh(parametre api hamyar)
                     }),
                     // credentials: "include", //zare_nk_040402_commented
                 });
@@ -375,7 +383,7 @@ export default function ShallowRoutingExample({
                         // credentials: "include", //zare_nk_040402_commented
                     });
                     const data = await response.json();
-                    console.log("050326-data-rere22: " +JSON.stringify(data) );
+                    console.log("050326-data-rere22: " + JSON.stringify(data));
                     //{"status":1,"message":"","data":null,"errors":["متاسفانه عملیات با خطا مواجه شد. لطفا مجددا تلاش کنید"]}
                     if (response.ok) {
                         if (data.status != 0) {
@@ -835,7 +843,9 @@ export default function ShallowRoutingExample({
                                                                 {item.Tedad ?? ""}
                                                             </Text>
                                                             <Text style={{ fontSize: 14, color: "#888888", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>
-                                                                {item.IsVazni === 0 ? "عدد" : "کیلوگرم"}
+                                                                {/* zare_nk_050328_nokteh(dar tochi IsVazni va dar hamyar IdNoeVazni) */}
+                                                                {/* {item.IsVazni === 0 ? "عدد" : "کیلوگرم"} */}
+                                                                {item.IdNoeVazni === 0 ? "عدد" : "کیلوگرم"}
                                                             </Text>
 
                                                             <Text
@@ -857,8 +867,12 @@ export default function ShallowRoutingExample({
                                                                     marginLeft: 5,
                                                                     fontSize: 14, color: "#888888", fontFamily: "IRANSansWeb(FaNum)_Medium",
                                                                 }}>
-                                                                    {item.ForooshSatr != null
+                                                                    {/* zare_nk_050328_nokteh(dar tochi ForooshSatr va dar hamyar MablaghKhalesForooshSatr) */}
+                                                                    {/* {item.ForooshSatr != null
                                                                         ? item.ForooshSatr.toLocaleString()
+                                                                        : ""} */}
+                                                                    {item.MablaghKhalesForooshSatr != null
+                                                                        ? item.MablaghKhalesForooshSatr.toLocaleString()
                                                                         : ""}
                                                                 </Text>
                                                                 <Text
@@ -961,8 +975,8 @@ export default function ShallowRoutingExample({
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         {ForooshSatrHideForooshTitr != null && (
                                             <Text style={{ marginLeft: 10, fontSize: 16 }}>
-                                                {ForooshSatrHideForooshTitr.JamTakhfifSatr?.toLocaleString() ??
-                                                    0}
+                                                {/* {ForooshSatrHideForooshTitr.JamTakhfifSatr?.toLocaleString() ?? 0} */}
+                                                 {ForooshSatrHideForooshTitr.JamTakhfifTitr?.toLocaleString() ?? 0}
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{jamTakhfifSatr?.toLocaleString() ?? ''}</span> */}
@@ -973,7 +987,7 @@ export default function ShallowRoutingExample({
                                 {/* zare_nk_041123_added_st(codeTakhfif zirmajmooeye JamTakhfifTitr hast) */}
                                 <View
                                     style={{
-                                        display: "flex",
+                                        display: "none",
                                         flexDirection: "row",
                                         justifyContent: "space-between",
                                         // borderBottom: "1px solid #F5F5F5",
@@ -1142,7 +1156,9 @@ export default function ShallowRoutingExample({
                                                             // className="nameShobe titleStyle"
                                                             style={{ fontSize: 12, color: "#444343", }}
                                                         >
-                                                            {item.NameSobe}
+                                                            {/* zare_nk_050328_nokteh(felan dar pasokhe api hamyar parsafar nazasht NameSobe ra) */}
+                                                            {/* {item.NameSobe} */}
+                                                            {item.IdShobe}
                                                         </Text>
                                                     </View>
                                                 </View>
@@ -1175,7 +1191,9 @@ export default function ShallowRoutingExample({
                                                             color: "#adadad",
                                                         }}
                                                     >
-                                                        {item.VaziatFactor}
+                                                        {/* zare_nk_050328_nokteh(felan dar pasokhe api hamyar parsafar nazasht NameSobe ra) */}
+                                                        {/* {item.VaziatFactor} */}
+                                                        {item.TaeedFaktorForoosh}
                                                     </Text>
                                                 </View>
                                             </View>
@@ -1245,7 +1263,9 @@ export default function ShallowRoutingExample({
                                                                 fontFamily: "IRANSansWeb(FaNum)_Bold",
                                                             }}
                                                         >
-                                                            {item.UserFullName}{" "}
+                                                            {/* zare_nk_050328_nokteh(dar pasokhe api tochi UserFullName hast va dar hamyar NameMoshtari hast) */}
+                                                            {/* {item.UserFullName}{" "} */}
+                                                            {item.NameMoshtari}{" "}
                                                         </Text>
                                                     </View>
 
@@ -1283,7 +1303,11 @@ export default function ShallowRoutingExample({
                                                                 fontSize: 14,
                                                                 color: "#888888",
                                                             }}
-                                                        >{item.TarikhSefaresh}</Text>
+                                                        >
+                                                            {/* zare_nk_050328_nokteh(dar pasokhe api tochi TarikhSefaresh hast va dar hamyar TarikhShamsiTaeed hast) */}
+                                                            {/* {item.TarikhSefaresh} */}
+                                                            {item.TarikhShamsiTaeed}
+                                                        </Text>
                                                     </View>
                                                 </View>
                                                 <View
@@ -1320,7 +1344,9 @@ export default function ShallowRoutingExample({
                                                             color: "#888888",
                                                         }}
                                                     >
-                                                        {item.JamKhales.toLocaleString()}{" "}
+                                                        {/* zare_nk_050328_nokteh(dar pasokhe api tochi JamKhales hast va dar hamyar MablaghKhales hast) */}
+                                                        {/* {item.JamKhales.toLocaleString()}{" "} */}
+                                                        {item.MablaghKhales.toLocaleString()}{" "}
                                                     </Text>
                                                     <Text
                                                         // className="valueStyle"
@@ -1336,13 +1362,19 @@ export default function ShallowRoutingExample({
                                                     // onClick={(e) => {
                                                     onPress={() => {
                                                         ShowForooshSatrHideForooshTitr({
-                                                            ShomarehFaktorForoosh: item.ShomareFaktor,
+                                                            // ShomarehFaktorForoosh: item.ShomareFaktor,  ////zare_nk_050328_commented(baraye tochikala) 
                                                             IdFaktorForoosh: item.IdFaktorForoosh,
-                                                            TarikhSefaresh: item.TarikhSefaresh,
-                                                            MablaghMasraf: item.JamMasraf,
-                                                            JamTakhfifTitr: item.JamTakhfifTitr,
-                                                            JamTakhfifSatr: item.JamTakhfifSatr,
-                                                            MablaghKhales: item.JamKhales,
+                                                            // TarikhSefaresh: item.TarikhSefaresh,  ////zare_nk_050328_commented(baraye tochikala)
+                                                            TarikhSefaresh: item.TarikhShamsiTaeed, ////zare_nk_050328_added(baraye hamyar)
+                                                            // MablaghMasraf: item.JamMasraf,  ////zare_nk_050328_commented(baraye tochikala)
+                                                            MablaghMasraf: item.MablaghKolMasraf,    ////zare_nk_050328_added(baraye hamyar)
+
+                                                            // JamTakhfifTitr: item.JamTakhfifTitr,  ////zare_nk_050328_commented(baraye tochikala)
+                                                            JamTakhfifTitr: item.TakhfifTitr,  ////zare_nk_050328_added(baraye hamyar)
+
+                                                            // JamTakhfifSatr: item.JamTakhfifSatr,  ////zare_nk_050328_commented(tahlilshe-baraye tochikala-vali chera dar pasokhe api faktorTitr oomad?!!)
+                                                            // MablaghKhales: item.JamKhales,  ////zare_nk_050328_commented(baraye tochikala)
+                                                            MablaghKhales: item.MablaghKhales,   ////zare_nk_050328_added(baraye hamyar)
                                                             forooshTitrRowsLength: forooshTitrRows.length,
                                                         });
                                                     }}
@@ -1356,8 +1388,6 @@ export default function ShallowRoutingExample({
 
                                                         paddingVertical: 7,
                                                         paddingHorizontal: 20,
-
-
 
                                                         borderRadius: 10,
                                                         ////zare_nk_041202_added_st

@@ -932,6 +932,9 @@ export default function HomeScreen({
   const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
   const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
   const productUriForDet = '';// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
+
+  const refForBarcodeValue = useRef<string | null>(null);   ////zare_nk_050328_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
+
   const [imgUriForDet, setImgUriForDet] = useState<string>('');
   ////zare_nk_041209_added_end
 
@@ -1474,7 +1477,6 @@ export default function HomeScreen({
     }, [getLoc])
   );
 
-
   ////zare_nk_050324_nokteh_end(rah01-estefade az useFocusEffect+useCallback(baraye modiriate rendere nashi az focusha va setstateha(be khatere sorate balatar pishnahad mishe) ))
 
   ////zare_nk_050323_added_st(jahate gereftane mokhtasate location)
@@ -1523,8 +1525,11 @@ export default function HomeScreen({
           setManualBarcode('');  //zare_nk_041205_added
 
           ////shenasaei va openprodDetModal 
-          // ShowDetails(code.value);  ////zare_nk_050326_commented(movaghat, chon kalahaye kerfu pisham nist scan konam)
-          ShowDetails(6262961900810);  ////zare_nk_050326_added(movaghat, chon kalahaye kerfu pisham nist scan konam)
+          ShowDetails(code.value);  ////zare_nk_050326_commented(movaghat, chon kalahaye kerfu pisham nist scan konam)
+          // ShowDetails(6262961900810);  ////zare_nk_050326_added(movaghat, chon kalahaye kerfu pisham nist scan konam)
+
+          refForBarcodeValue.current = code.value.toString()     ////zare_nk_050328_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
+
           setIsOpenedProdDetModal(true);  //okk
           setAddOrRemChanged(null);  //okk
 
@@ -1691,6 +1696,8 @@ export default function HomeScreen({
     ////zare_nk_050325_added_end(agheire api be hamyarForoosh)
     try {
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+      console.log('050328-ShowDetails-barcodeKala: ' + barcodeKala + '-Number(currentShobeh): ' + Number(currentShobeh))
+
       const response = await fetch(urlApi_SelectShobehJashnvareh, {
         method: "POST",
         headers: {
@@ -1827,7 +1834,9 @@ export default function HomeScreen({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala,
+              // BarcodeKala: parsedList[0].BarcodeKala,    ////zare_nk_050328_commented(dar pasokhe apiye Api_SelectKala hamyar BarcodeKala ra null mideh(darsoorati ke dar 
+              //// voroodiye hamin apiye Api_SelectKala barcode ro migireh va satr ro be dorosti barmigardooneh))
+              BarcodeKala: barcodeKala,   ////zare_nk_050328_added
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",
@@ -1960,14 +1969,14 @@ export default function HomeScreen({
       // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
-      // var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";  ////zare_nk_050326_commented_movaghat(test)
-      var urlInsertToSabad = "https://192.168.3.126:7265/api/v1/hyper/" + "Api_InsertToSabad";   ////zare_nk_050326_added_movaghat(test)
+      var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";  ////zare_nk_050326_commented_movaghat(test)
+      // var urlInsertToSabad = "https://192.168.3.126:7265/api/v1/hyper/" + "Api_InsertToSabad";   ////zare_nk_050326_added_movaghat(test)
 
       console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
       ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
-      
+
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
-      console.log('050327-ar04-addToCartInIndex-else 1-BarcodeKala: '+addRemParam.BarcodeKala+'-Tedad: '+zarib+'-IdShobeh: '+Number(currentShobeh));
+      console.log('050327-ar04-addToCartInIndex-else 1-BarcodeKala: ' + addRemParam.BarcodeKala + '-Tedad: ' + zarib + '-IdShobeh: ' + Number(currentShobeh));
       const response = await fetch(urlInsertToSabad, {
         method: "POST",
         headers: {
@@ -1985,7 +1994,7 @@ export default function HomeScreen({
         }),
       });
       console.log('050327-005-urlInsertToSabad: ' + urlInsertToSabad);
-      const data = await response.json(); 
+      const data = await response.json();
       console.log('050327-006-data: ' + JSON.stringify(data));
       if (response.ok) {
         console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
@@ -2009,7 +2018,8 @@ export default function HomeScreen({
           //     span.innerText = result.errors[0];
           // }
         } else if (result.status == 0) {
-          let satrInoInResult = JSON.parse(result.data.satr)[0];
+          // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
+          let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
           let Tedad = satrInoInResult.Tedad;
           console.log('041124-result.data.satr[0]Tedad: ' + Tedad);
           var bishAzMaxTedadYaMojoodi = 0;
@@ -2144,7 +2154,7 @@ export default function HomeScreen({
     }
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     try {
-      console.log('041116-001');
+      console.log('050328-rem-token: ' + token);
       var TedadOut = 0;
       var TedadOuttoAjax = 0;
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
@@ -2157,8 +2167,10 @@ export default function HomeScreen({
       // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
-      var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
-      console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
+
+      var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";  ////zare_nk_050326_commented_movaghat(test)
+      // var urlInsertToSabad = "https://192.168.3.126:7265/api/v1/hyper/" + "Api_InsertToSabad";   ////zare_nk_050326_added_movaghat(test)
+      console.log('050328-rem-001-urlInsertToSabad: ' + urlInsertToSabad);
       ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
       const response = await fetch(urlInsertToSabad, {
@@ -2179,8 +2191,9 @@ export default function HomeScreen({
       });
 
       const data = await response.json();
+      console.log('050328-rem-006-remveFromCartInIndex-data: ' + JSON.stringify(data));
       if (response.ok) {
-        console.log('041120-remveFromCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
+        console.log('050328-rem-remveFromCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
 
         var result = data;
 
@@ -2237,8 +2250,8 @@ export default function HomeScreen({
           // }
         } else if (result.status == 0) {
           console.log('041116-result.status == 0');
-          // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);  //zare_nk_041123_commented
-          let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
+          // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
+          let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
           let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
           console.log('041124-Tedad: ' + Tedad);
           var bishAzMaxTedadYaMojoodi = 0;
@@ -2319,7 +2332,7 @@ export default function HomeScreen({
           }
         }
       } else {
-        console.log('041116-!!response.ok');
+        console.log('050328-rem-!!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -2345,6 +2358,7 @@ export default function HomeScreen({
       // setForCartContInProdDetVal(undefined);
       // setIsOpenedProdDetModal(false);
       ////zare_nk_050325_commented_end(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
+      console.log('050328-rem-006-catch-error: ' + error);
       setIsOpenedMymodalForWarning(true);
       let WarningText = '';
       if (error instanceof Error) {
@@ -3560,7 +3574,7 @@ export default function HomeScreen({
                 style={{
                   color: "red",
                   fontFamily: "IRANSansWeb(FaNum)_Medium",
-                }}>کالای مورد نظر یافت نشد</Text>
+                }}>کالای مورد نظر یافت نشد({refForBarcodeValue.current})</Text>
             </View>
             {/* </View> */}
             {/* </View> */}

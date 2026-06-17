@@ -368,7 +368,8 @@ export default function ShoppingbasketComponent({
                     setManualBarcode('');
                     ////shenasaei va openprodDetModal 
                     // ShowDetails(code.value);  ////zare_nk_050311_commented
-                    addDetectedToCart(code.value.toString());  ////zare_nk_050311_added
+                    addDetectedToCart(code.value.toString());  ////zare_nk_050328_commented(movaghat, chon kalahaye kerfu pisham nist scan konam)
+                    // addDetectedToCart("6262961900810");  ////zare_nk_050328_added(movaghat, chon kalahaye kerfu pisham nist scan konam)
                     refForBarcodeValue.current = code.value.toString()     ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
 
                     // setIsOpenedProdDetModal(true);   ////zare_nk_050317_commented(hatman tahlilshe)                   
@@ -595,7 +596,7 @@ export default function ShoppingbasketComponent({
                     WarningText = "درخواست شبکه ناموفق بود";
                 }
                 else {
-                    WarningText = 'درخواست نا موفق بود';
+                    WarningText = '22درخواست نا موفق بود';
                 }
             } else {
                 WarningText = String(error);
@@ -787,9 +788,9 @@ export default function ShoppingbasketComponent({
             console.log('050326-014-data is sabad: ' + JSON.stringify(data));
             if (response.ok) {
                 ////zare_nk_050326_added_st(jaigozine state haye .... ke baese reRender mishan)
-                const jameKolTakhfif = JSON.parse(data.data.jameKolTakhfif);
+                const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);  //jameKolTakhfif  
                 setJamKolTakhfif(jameKolTakhfif);
-                const jameKol = JSON.parse(data.data.jameKol);
+                const jameKol = JSON.parse(data.data.jamKol);   //jameKol  
                 setJamKolNahaei(jameKol);
                 // const [jamKol, setJamKol] = useState<number | null>(null);
                 // const [jamKolTakhfif, setJamKolTakhfif] = useState<number | null>(null);
@@ -913,7 +914,7 @@ export default function ShoppingbasketComponent({
                     WarningText = "درخواست شبکه ناموفق بود";
                 }
                 else {
-                    WarningText = 'درخواست نا موفق بود';
+                    WarningText = '33درخواست نا موفق بود';
                 }
             } else {
                 WarningText = String(error);
@@ -1087,6 +1088,8 @@ export default function ShoppingbasketComponent({
         ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
         var urlApi_SelectShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
         ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
+
+        console.log('050328-adddet-01');
         try {
             const response = await fetch(urlApi_SelectShobehJashnvareh, {
                 method: "POST",
@@ -1102,8 +1105,27 @@ export default function ShoppingbasketComponent({
                 }),
                 // credentials: "include", //zare_nk_040402_commented
             });
+            console.log('050328-adddet-02');
             if (response.ok) {
                 const data = await response.json();
+                console.log('050328-adddet-03-data: ' + JSON.stringify(data));
+                //// 050328-adddet-03-data: 
+                // {
+                //"status":0,
+                // "message":"",
+                // "data":
+                // {"list":"[
+                // {\"IdKala\":66440,\"NameKala\":\"آنیکا خیارشور درجه یک 1500 گرم شیشه (6)\",\"IdBerand\":1458,\"NameBerand\":\"آنیکا \",\"IdGoroohKala\":6,\"TedadDarKarton\":6,
+                // \"TedadDarBasteh\":0,\"BarcodeKala\":6262961900810,\"VaznKhales\":0.0,\"IdNoeVazni\":0,\"FeeKharid\":0,\"FeeForoosh\":1426000,\"FeeMasraf\":2300000,\"MM\":38,
+                // \"Mojoodi\":123.0,\"TedadDarSabad\":2.0,\"MaxTedad\":10,\"ZaribForoosh\":1,\"IsChangeTedad\":1}
+                // ]",
+
+                // "isChange":1
+                // },
+
+                // "errors":[]}
+
+                ////050328-adddet-03-data: {"status":0,"message":"","data":{"list":"[{\"IdKala\":30384,\"NameKala\":\"سی کلاس لاک غلط گیر 12میل (12)\",\"IdBerand\":2601,\"NameBerand\":\"لوازم التحریر \",\"IdGoroohKala\":12,\"TedadDarKarton\":0,\"TedadDarBasteh\":0,\"BarcodeKala\":null,\"VaznKhales\":0.0,\"IdNoeVazni\":0,\"FeeKharid\":0,\"FeeForoosh\":143800,\"FeeMasraf\":143800,\"MM\":0,\"Mojoodi\":2.0,\"TedadDarSabad\":0.0,\"MaxTedad\":10,\"ZaribForoosh\":1,\"IsChangeTedad\":1}]","isChange":1},"errors":[]}
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
@@ -1146,7 +1168,7 @@ export default function ShoppingbasketComponent({
                         return;
                     }
                     var parsedList = JSON.parse(result.data.list);
-                    console.log('041120-result in Api_SelectKalaShobeh: ' + JSON.stringify(parsedList));
+                    console.log('050328-adddet-result in Api_SelectKalaShobeh: ' + JSON.stringify(parsedList));
 
                     if (parsedList.length == 0) {
                         setBisatrInProductDet(true);
@@ -1163,7 +1185,7 @@ export default function ShoppingbasketComponent({
                         // }
                         return;
                     }
-                    console.log('BarcodeKala is: ' + parsedList[0].BarcodeKala + '-BarcodeKala: ' + BarcodeKala)
+                    console.log('050328-adddet-BarcodeKala is: ' + parsedList[0].BarcodeKala + '-BarcodeKala: ' + BarcodeKala)
                     setBisatrInProductDet(false);
                     // const productNotExist = document.getElementById("productNotExist");
                     // if (productNotExist) {
@@ -1193,7 +1215,9 @@ export default function ShoppingbasketComponent({
                             NameBerand: parsedList[0].NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            BarcodeKala: parsedList[0].BarcodeKala,
+                            // BarcodeKala: parsedList[0].BarcodeKala,  ////zare_nk_050328_commented(dar pasokhe apiye Api_SelectKala hamyar BarcodeKala ra null mideh(darsoorati ke dar 
+                            //// voroodiye hamin apiye Api_SelectKala barcode ro migireh va satr ro be dorosti barmigardooneh))
+                            BarcodeKala: BarcodeKala,  ////zare_nk_050328_added
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#sabadItemsContInSafhe",
@@ -1243,7 +1267,7 @@ export default function ShoppingbasketComponent({
                     WarningText = "درخواست شبکه ناموفق بود";
                 }
                 else {
-                    WarningText = 'درخواست نا موفق بود';
+                    WarningText = '44درخواست نا موفق بود';
                 }
             } else {
                 WarningText = String(error);
@@ -1407,7 +1431,8 @@ export default function ShoppingbasketComponent({
                     //     span.innerText = result.errors[0];
                     // }
                 } else if (result.status == 0) {
-                    let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
+                    // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
+                    let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
                     let Tedad = satrInoInResult.Tedad;
 
                     var bishAzMaxTedadYaMojoodi = 0;
@@ -1501,7 +1526,7 @@ export default function ShoppingbasketComponent({
                     WarningText = "درخواست شبکه ناموفق بود";
                 }
                 else {
-                    WarningText = 'درخواست نا موفق بود';
+                    WarningText = '55درخواست نا موفق بود';
                 }
             } else {
                 WarningText = String(error);
@@ -1517,6 +1542,7 @@ export default function ShoppingbasketComponent({
     async function remveFromCartInIndex(
         addRemParam: addRemParamType,
     ) {
+        console.log('050329-001.01');
         // Alert.alert('remveFromCartInIndex');
         ////zare_nk_041129_commented_st
         // if (addRemParam.event != null) {
@@ -1545,7 +1571,7 @@ export default function ShoppingbasketComponent({
         }
         //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
         try {
-            console.log('041116-001');
+            console.log('050329-001.02');
             var TedadOut = 0;
             var TedadOuttoAjax = 0;
             const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
@@ -1559,7 +1585,7 @@ export default function ShoppingbasketComponent({
             ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
             ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
             var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
-            console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
+            console.log('050329-001-urlInsertToSabad: ' + urlInsertToSabad);
             ////zare_nk_050325_added__end(agheire api be hamyarForoosh) 
             const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
             const response = await fetch(urlInsertToSabad, {
@@ -1634,12 +1660,32 @@ export default function ShoppingbasketComponent({
                     //     span.innerText = result.errors[0];
                     // }
                 } else if (result.status == 0) {
-                    console.log('041116-result.status == 0');
+                    console.log('050329-result.status == 0-data: ' + JSON.stringify(result));
+
+                    ////050329-result.status == 0-data: 
+                    // {
+                    //"status":0,
+                    // "message":"افزودن با موفقیت انجام شد",
+
+                    // "data":
+                    // "[
+                    // {\"IdPishfaktor\":9862950,\"ShomarePishFaktor\":9351091287,\"IsJayzeh\":0,\"BarcodeKala\":6262961900810,\"IdKala\":66440,\"NameKala\":\"آنیکا خیارشور درجه یک 1500 گرم شیشه (6)\",
+                    // \"Tedad\":2.0,\"FeeMasraf\":2300000,\"FeeForoosh\":1426000,\"FeeJayzeh\":0,\"DarsadTakhfif\":38,\"VaznKala\":0.0,\"GheimatTedadi\":0,\"NoeVazni\":0,\"IdAnbar\":0,\"IsMashmool\":0,
+                    // \"IdUser\":null,\"DatePish\":\"2026-06-16T08:23:21.153\",\"JamMasraf\":4600000.0,\"JamForoosh\":2852000.0,\"JamVazn\":0.0,\"TakhfifMoshtari\":0,\"JamJayze\":0.0,
+                    // \"TakhfifiMoshtariNoe\":0,\"Radif\":74,\"ShoTarakonesh\":9351091287,\"IdSandoogh\":null,\"JamKol\":2852000.0,\"TakhfifKol\":0,\"IdBrand\":1458,\"IdTaminKonande\":67,
+                    // \"IsChangeTedad\":1,\"Mojoodi\":10,\"MaxTedad\":10,\"ZaribForoosh\":1}
+                    // ]",
+
+                    // "errors":[]
+
+                    //}
+
                     setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);
-
-                    let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
+                    console.log('050329-result.status == 0-01');
+                    // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
+                    let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
                     let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
-
+                    console.log('050329-result.status == 0-02');
                     var bishAzMaxTedadYaMojoodi = 0;
                     if (addRemParam.MaxTedad != null) {
                         if (addRemParam.MaxTedad <= Tedad) {
@@ -1651,7 +1697,7 @@ export default function ShoppingbasketComponent({
                         }
                     }
                     refForfather.current = addRemParam.father;
-
+                    console.log('050329-result.status == 0-03');
                     let ForCartContentsDesignTypeLet = 0
 
                     if (Tedad == 0) {
@@ -1663,7 +1709,9 @@ export default function ShoppingbasketComponent({
                     else if (Tedad == addRemParam.ZaribForoosh) {
                         ForCartContentsDesignTypeLet = 1;
                     }
+                    console.log('050329-result.status == 0-04');
                     if (addRemParam.fromShowDetails) {
+                        console.log('050329-result.status == 0-05');
                         setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050318_added
                         setForCartContInProdDetVal(() => {
                             const idTag = "ForCart-" + addRemParam.IdKala;
@@ -1688,6 +1736,7 @@ export default function ShoppingbasketComponent({
                             };
                         });
                     }
+                    console.log('050329-result.status == 0-06');
 
                     if (Tedad == 0) {
                         ////zare_nk_041129_commented_st
@@ -1721,7 +1770,7 @@ export default function ShoppingbasketComponent({
                     }
                 }
             } else {
-                console.log('041116-!!response.ok');
+                console.log('050329-!!response.ok');
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
                     setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -1760,7 +1809,8 @@ export default function ShoppingbasketComponent({
                     WarningText = "درخواست شبکه ناموفق بود";
                 }
                 else {
-                    WarningText = 'درخواست نا موفق بود';
+                    WarningText = '66درخواست نا موفق بود';
+                    console.log("050329-error.message: " + error.message)
                 }
             } else {
                 WarningText = String(error);
@@ -3387,7 +3437,7 @@ export default function ShoppingbasketComponent({
                                                     style={{ fontSize: 12, color: '#313335', fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}
                                                 >
                                                     {/* {jamKol ? jamKol.toLocaleString() : 0} */}
-                                                     {jamKolNahaei ? jamKolNahaei.toLocaleString() : 0} 
+                                                    {jamKolNahaei ? jamKolNahaei.toLocaleString() : 0}
                                                 </Text>
                                                 <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
                                                     تومان

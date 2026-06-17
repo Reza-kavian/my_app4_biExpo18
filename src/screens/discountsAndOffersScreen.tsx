@@ -808,7 +808,7 @@ export default function ShallowRoutingExample({
                 idTag: "ForCart-" + item.IdKala,
               });
             });
- 
+
             setOfferRows(prev => {
               const newList = [...prev, ...tempArrayForOneSetState];
               ////zare_nk_050326_nokteh_st(teste adame idkala haye tekrari(chon be Keye flatlist dadim bayad yekta bashe))
@@ -963,7 +963,8 @@ export default function ShallowRoutingExample({
           //     span.innerText = result.errors[0];
           // }
         } else if (result.status == 0) {
-          let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
+          // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
+          let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
           let Tedad = satrInoInResult.Tedad;
 
           var bishAzMaxTedadYaMojoodi = 0;
@@ -1121,6 +1122,7 @@ export default function ShallowRoutingExample({
         }
         else {
           WarningText = '3درخواست نا موفق بود';
+          console.log("errorerror: " + error);
         }
       } else {
         WarningText = String(error);
@@ -1257,7 +1259,8 @@ export default function ShallowRoutingExample({
           // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);  ////zare_nk_050320_commented(jash ro be state page dad)
           // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
 
-          let satrInoInResult = JSON.parse(result.data.satr)[0];  //zare_nk_041124_added
+          // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
+          let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
           let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
 
           var bishAzMaxTedadYaMojoodi = 0;
@@ -1518,7 +1521,7 @@ export default function ShallowRoutingExample({
     ////zare_nk_050326_nokteh_end(bayad icon loading ro namayesh bedam be karbar)
 
     const nextPage = page ? page + 1 : null;
-    console.log("nextPage1: "+nextPage);
+    console.log("nextPage1: " + nextPage);
     setPage(nextPage);
   }
   ////zare_nk_050320_added_end

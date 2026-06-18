@@ -359,7 +359,7 @@ export default function ShoppingbasketComponent({
             if (!isScanning) return;
             for (const code of codes) {
                 if (code.value) {
-                    console.log(`Scanned: ${code.value}`);
+                    console.log(`050329-Scanned: ${code.value}`);
                     setIsScanning(false);
                     // setScannedValue(code.value);  //zare_nk_041129_commented
 
@@ -1089,8 +1089,9 @@ export default function ShoppingbasketComponent({
         var urlApi_SelectShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
         ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
 
-        console.log('050328-adddet-01');
+        console.log('050328-adddet-01-BarcodeKala: '+BarcodeKala);
         try {
+            const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
             const response = await fetch(urlApi_SelectShobehJashnvareh, {
                 method: "POST",
                 headers: {
@@ -1099,7 +1100,7 @@ export default function ShoppingbasketComponent({
                 },
                 body: JSON.stringify({
                     BarcodeKala: BarcodeKala,
-                    IdShobeh: 12,
+                    IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast)
                     // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
                     //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
                 }),
@@ -1215,9 +1216,7 @@ export default function ShoppingbasketComponent({
                             NameBerand: parsedList[0].NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            // BarcodeKala: parsedList[0].BarcodeKala,  ////zare_nk_050328_commented(dar pasokhe apiye Api_SelectKala hamyar BarcodeKala ra null mideh(darsoorati ke dar 
-                            //// voroodiye hamin apiye Api_SelectKala barcode ro migireh va satr ro be dorosti barmigardooneh))
-                            BarcodeKala: BarcodeKala,  ////zare_nk_050328_added
+                            BarcodeKala: parsedList[0].BarcodeKala,
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#sabadItemsContInSafhe",
@@ -1345,7 +1344,7 @@ export default function ShoppingbasketComponent({
     ) {
         // Alert.alert('444');
         console.log('041203-addToCartInIndex called!-addRemParam: ' + addRemParam.NameKala);
-        // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
+        console.log('050329-addToCartInIndex called!-addRemParam01: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
         ////zare_nk_041129_commented_st
         // if (addRemParam.event != null) {
         //     addRemParam.event.stopPropagation();
@@ -1410,10 +1409,10 @@ export default function ShoppingbasketComponent({
             });
             //  const text = await response.text();
             //  console.log('041203-addToCartInIndex-text: ' + text);
-            console.log('041203-addToCartInIndex-response.status: ' + response.status);
+            console.log('050329-addToCartInIndex-response.status: ' + response.status);
             const data = await response.json();
             if (response.ok) {
-                console.log('041203-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
+                console.log('050329-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
                 setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);
                 var result = data;
                 if (result.status != 0) {

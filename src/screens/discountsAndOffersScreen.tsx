@@ -65,7 +65,7 @@ type addRemParamType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  Mojoodi: number;
+  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
   MaxTedad: number;
   father: any;
   bishAzMaxTedadYaMojoodi: number | null;
@@ -73,6 +73,28 @@ type addRemParamType = {
   // event?: MouseEvent<HTMLAnchorElement> | null | undefined;  ////zare_nk_041127_commented
   event?: null;  ////zare_nk_041127_added
 };
+
+////zare_nk_050328_added_st
+type offerRowsType = {
+  tedadInSabadOrDet: number;
+  ZaribForoosh: number;
+  IdKala: number;
+  NameKala: string | null;
+  DarsadTakhfif: number | null;
+  NameBerand: string | null;
+  FeeForoosh: number;
+  FeeMasraf: number;
+  BarcodeKala: string;
+  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  MaxTedad: number;
+  father: any;
+  refForfather: RefObject<string | null>;
+  bishAzMaxTedadYaMojoodi: number | null;
+  fromShowDetails: boolean;
+  ForCartContentsDesignType: number;
+  idTag: string;
+};
+////zare_nk_050328_added_end
 
 type ForCartContInProdDetValType = {
   tedadInSabadOrDet: number;
@@ -249,7 +271,8 @@ export default function ShallowRoutingExample({
   const [bisatr, setBisatr] = useState(true);
   const [bisatrInProductDet, setBisatrInProductDet] = useState(true); //zare_nk_041128_added
 
-  const [offerRows, setOfferRows] = useState<ForCartContInProdDetValType[]>([]);
+  // const [offerRows, setOfferRows] = useState<ForCartContInProdDetValType[]>([]);  ////zare_nk_050328_commented
+  const [offerRows, setOfferRows] = useState<offerRowsType[]>([]);  ////zare_nk_050328_added
 
   // const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null);  ////zare_nk_050320_commented(jash ro be state page dad(addOrRemChanged baraye seda zadane api 
   //// pishnahadat va rikhtane pasokh dar setOfferRows estefadeh mishod(addOrRemChanged dar bastane modale joziate kala va dokmehaye + va - meghdar migireh) ke jash ro
@@ -472,9 +495,7 @@ export default function ShallowRoutingExample({
       setWarningTextInMymodalForWarning(() => {
         return (WarningText)
       });
-
     }
-
     // }  ////zare_nk_050319_commented(for use callback)
   }, []);  ////zare_nk_050319_added(for use callback)
 
@@ -570,72 +591,92 @@ export default function ShallowRoutingExample({
       const token = await getCookie("token");
 
       type InputDataType = {
+        ////zare_nk_050325_commented_st(darkhast be apiye Api_SelectKalaShobeh tochikala)
+        // IdShobeh: number;
+        // IsJashnvareh: number;
+        // NameKala: string;
+        // IdG1: number;
+        // IdG2: number;
+        // IdG3: number;
+        // IdG4: number;
+        // IsMostBuy: number;
+        // Sort: number;
+        // IsFavorite: number;
+        // IdVitrin: number; 
+        // page: number | null,  ////zare_nk_050320_added
+        // take: number,  ////zare_nk_050320_added
+        ////zare_nk_050325_commented_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
+        ////zare_nk_050325_added_st(darkhast be apiye Api_SelectKalaShobeh tochikala)
         IdShobeh: number;
-        IsJashnvareh: number;
-        NameKala: string;
-        IdG1: number;
-        IdG2: number;
-        IdG3: number;
-        IdG4: number;
-        IsMostBuy: number;
-        Sort: number;
-        IsFavorite: number;
-        IdVitrin: number;
-
-        page: number | null,  ////zare_nk_050320_added
-        take: number,  ////zare_nk_050320_added
+        page: number | null,
+        take: number,
+        ////zare_nk_050325_added_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
       };
 
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
       console.log("Number(currentShobeh): " + Number(currentShobeh));
       const inputData: InputDataType = {
-        IdShobeh: 6,// Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
-        // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
-        IsJashnvareh: -1,  //zare_nk_041208_added_testi
-        NameKala: "",
-        // IdG1: -1,//zare_nk_041208_commented_testi
-        IdG1: 1,//zare_nk_041208_added_testi
-        IdG2: -1,
-        IdG3: -1,
-        IdG4: -1,
-        IsMostBuy: -1,
-        Sort: -1,
-        IsFavorite: -1,
-        IdVitrin: -1,
+        ////zare_nk_050325_commented_st(darkhast be apiye Api_SelectKalaShobeh tochikala)
+        // IdShobeh: 6,// Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
+        // // IsJashnvareh: 1,  //zare_nk_041208_commented_testi
+        // IsJashnvareh: -1,  //zare_nk_041208_added_testi
+        // NameKala: "",
+        // // IdG1: -1,//zare_nk_041208_commented_testi
+        // IdG1: 1,//zare_nk_041208_added_testi
+        // IdG2: -1,
+        // IdG3: -1,
+        // IdG4: -1,
+        // IsMostBuy: -1,
+        // Sort: -1,
+        // IsFavorite: -1,
+        // IdVitrin: -1,
 
-        page: page,  ////zare_nk_050320_added
-        take: 20,     ////zare_nk_050320_added
+        // page: page,  ////zare_nk_050320_added
+        // take: 20,     ////zare_nk_050320_added
+        ////zare_nk_050325_commented_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
+        ////zare_nk_050325_added_st(darkhast be apiye Api_SelectKalaShobeh tochikala)
+        IdShobeh: Number(currentShobeh),
+        page: page,
+        take: 20,
+        ////zare_nk_050325_added_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
       };
 
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
-      let ApiUrl = "https://api.tochikala.com/api/";
-      var urlSelectKalaShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
+      // let ApiUrl = "https://api.tochikala.com/api/";
+      // var urlSelectKalaShobehJashnvareh = ApiUrl + "User/Api_SelectKalaShobeh";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_add_st(agheire api be hamyarForoosh) 
-      // var urlSelectKalaShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
+      var urlSelectKalaTakhfifat = NextJsApiUrl + "Api_SelectKalaTakhfifat";
       ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
       try {
-        const response = await fetch(urlSelectKalaShobehJashnvareh, {
+        // const response = await fetch(urlSelectKalaShobehJashnvareh, {  ////zare_nk_050325_commented(darkhast be apiye Api_SelectKalaShobeh tochikala)
+        const response = await fetch(urlSelectKalaTakhfifat, {  ////zare_nk_050325_added(darkhast be apiye Api_SelectKalaTakhfifat hamyarForoosh) 
           method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token,
           },
           body: JSON.stringify({
-            IdShobeh: inputData.IdShobeh,
-            IsJashnvareh: inputData.IsJashnvareh,
-            NameKala: inputData.NameKala,
-            IdG1: inputData.IdG1,
-            IdG2: inputData.IdG2,
-            IdG3: inputData.IdG3,
-            IdG4: inputData.IdG4,
-            IsMostBuy: inputData.IsMostBuy,
-            Sort: inputData.Sort,
-            IsFavorite: inputData.IsFavorite,
-            IdVitrin: inputData.IdVitrin,
-
-            page: inputData.page,  ////zare_nk_050320_added
-            take: inputData.take,  ////zare_nk_050320_added
+            ////zare_nk_050325_commented_st(darkhast be apiye Api_SelectKalaShobeh tochikala)
+            // IdShobeh: inputData.IdShobeh,
+            // IsJashnvareh: inputData.IsJashnvareh,
+            // NameKala: inputData.NameKala,
+            // IdG1: inputData.IdG1,
+            // IdG2: inputData.IdG2,
+            // IdG3: inputData.IdG3,
+            // IdG4: inputData.IdG4,
+            // IsMostBuy: inputData.IsMostBuy,
+            // Sort: inputData.Sort,
+            // IsFavorite: inputData.IsFavorite,
+            // IdVitrin: inputData.IdVitrin, 
+            // page: inputData.page,  ////zare_nk_050320_added
+            // take: inputData.take,  ////zare_nk_050320_added
+            ////zare_nk_050325_commented_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
+            ////zare_nk_050325_added_st(darkhast be apiye Api_SelectKalaShobeh tochikala)
+            "IdShobeh": inputData.IdShobeh,
+            "page": inputData.page,
+            "take": inputData.take,
+            ////zare_nk_050325_added_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
           }),
         });
 
@@ -644,6 +685,8 @@ export default function ShallowRoutingExample({
         if (response.ok) {
           // Alert.alert('inja-1');
           var result = JSON.parse(data.data.list);
+          console.log('050329-SelectKalaTakhfifat-result.length: ' + result.length);
+          console.log('050329-SelectKalaTakhfifat-result: ' + JSON.stringify(result));
           if (data.status != 0) {
             Alert.alert('inja-2');
             // console.log('041210-12-data.status != 0');
@@ -770,11 +813,14 @@ export default function ShallowRoutingExample({
                 if (item.MaxTedad <= item.TedadDarSabad) {
                   bishAzMaxTedadYaMojoodi = 1;
                 }
-              } else {
-                if (item.Mojoodi <= item.TedadDarSabad) {
-                  bishAzMaxTedadYaMojoodi = 1;
-                }
               }
+              ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+              // else {
+              //   if (item.Mojoodi <= item.TedadDarSabad) {
+              //     bishAzMaxTedadYaMojoodi = 1;
+              //   }
+              // }
+              ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
 
               let ForCartContentsDesignTypeLet = 0
 
@@ -792,14 +838,16 @@ export default function ShallowRoutingExample({
                 ZaribForoosh: item.ZaribForoosh,
                 IdKala: item.IdKala,
                 NameKala: item.NameKala,
-                DarsadTakhfif: item.DarsadTakhfif,
+                // DarsadTakhfif: item.DarsadTakhfif, ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde DarsadTakhfif nadarim bejash MM darim)
+                DarsadTakhfif: item.MM, ////zare_nk_050328_added(dar apiye Api_SelectKalaTakhfifat hamyar fielde DarsadTakhfif nadarim bejash MM darim)
+
                 NameBerand: item.NameBerand,
                 FeeForoosh: item.FeeForoosh,
                 FeeMasraf: item.FeeMasraf,
                 BarcodeKala: item.BarcodeKala,
-                Mojoodi: item.Mojoodi,
+                // Mojoodi: item.Mojoodi,  ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
                 MaxTedad: item.MaxTedad,
-                MasrafSatr: item.MasrafSatr,
+                // MasrafSatr: item.MasrafSatr,   ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde MasrafSatr nadarim) 
                 father: "#cardcontainer2",
                 refForfather: refForfather,
                 bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -879,7 +927,7 @@ export default function ShallowRoutingExample({
     addRemParam: addRemParamType,
   ) {
     // console.log('041120-addToCartInIndex called!-addRemParam: ' + addRemParam.FeeForoosh);
-    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
+    console.log('050328-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
     ////zare_nk_041129_commented_st
     // if (addRemParam.event != null) {
     //     addRemParam.event.stopPropagation();
@@ -914,17 +962,18 @@ export default function ShallowRoutingExample({
       TedadOut = addRemParam.tedadInSabadOrDet + zarib;
       TedadOuttoAjax = addRemParam.ZaribForoosh;
       // const token = await getCookie("token");
-      // console.log('041120-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
-
+      console.log('050329-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
+    
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
       // let ApiUrl = "https://api.tochikala.com/api/";
       // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
       var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
-      console.log('050326-001-urlInsertToSabad: ' + urlInsertToSabad);
+      console.log('050329-001-urlInsertToSabad: ' + urlInsertToSabad);
       ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+      console.log('050329-addToCartInIndex-addRemParam.BarcodeKala: ' + addRemParam.BarcodeKala + '-IdShobeh: ' + Number(currentShobeh));
       const response = await fetch(urlInsertToSabad, {
         method: "POST",
         headers: {
@@ -941,8 +990,10 @@ export default function ShallowRoutingExample({
           // IdAddress: 23990  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdAddress nemikhad)
         }),
       });
+      console.log('050329-addToCartInIndex-response.status: ' + response.status);
       const data = await response.json();
       if (response.ok) {
+        console.log('050329-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         // console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut); ////zare_nk_050320_commented(jash ro be state page dad)
         // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) ////zare_nk_050321_commented(okk)
@@ -972,11 +1023,14 @@ export default function ShallowRoutingExample({
             if (addRemParam.MaxTedad <= Tedad) {
               bishAzMaxTedadYaMojoodi = 1;
             }
-          } else {
-            if (addRemParam.Mojoodi <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
           }
+          ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+          // else {
+          //   if (addRemParam.Mojoodi <= Tedad) {
+          //     bishAzMaxTedadYaMojoodi = 1;
+          //   }
+          // }
+          ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
 
           refForfather.current = addRemParam.father;
 
@@ -1006,7 +1060,8 @@ export default function ShallowRoutingExample({
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
-                Mojoodi: addRemParam.Mojoodi,
+                // Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050328_commented(dar addRemParam fielde Mojoodi nadarim)
+                Mojoodi: satrInoInResult.Mojoodi,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim) 
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
                 refForfather: refForfather,
@@ -1068,7 +1123,7 @@ export default function ShallowRoutingExample({
                     FeeForoosh: addRemParam.FeeForoosh,
                     FeeMasraf: addRemParam.FeeMasraf,
                     BarcodeKala: addRemParam.BarcodeKala,
-                    Mojoodi: addRemParam.Mojoodi,
+                    // Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
                     MaxTedad: addRemParam.MaxTedad,
                     MasrafSatr: curItem.MasrafSatr,
                     father: "#cardcontainer2",
@@ -1268,11 +1323,15 @@ export default function ShallowRoutingExample({
             if (addRemParam.MaxTedad <= Tedad) {
               bishAzMaxTedadYaMojoodi = 1;
             }
-          } else {
-            if (addRemParam.Mojoodi <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
           }
+          ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+          // else {
+          //   if (addRemParam.Mojoodi <= Tedad) {
+          //     bishAzMaxTedadYaMojoodi = 1;
+          //   }
+          // }
+          ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+
           refForfather.current = addRemParam.father;
 
           let ForCartContentsDesignTypeLet = 0
@@ -1300,7 +1359,8 @@ export default function ShallowRoutingExample({
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
-                Mojoodi: addRemParam.Mojoodi,
+                // Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050328_commented(dar addRemParam fielde Mojoodi nadarim)
+                Mojoodi: satrInoInResult.Mojoodi,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim) 
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
                 refForfather: refForfather,
@@ -1361,7 +1421,8 @@ export default function ShallowRoutingExample({
                     FeeForoosh: addRemParam.FeeForoosh,
                     FeeMasraf: addRemParam.FeeMasraf,
                     BarcodeKala: addRemParam.BarcodeKala,
-                    Mojoodi: addRemParam.Mojoodi,
+                    // Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+
                     MaxTedad: addRemParam.MaxTedad,
                     MasrafSatr: curItem.MasrafSatr,
                     father: "#cardcontainer2",
@@ -1492,7 +1553,8 @@ export default function ShallowRoutingExample({
   const handlerForRemClick = useCallback(remveFromCartInIndex, [remveFromCartInIndex]);  ////zare_nk_050319_added_st(rahe3- tabee voroodish ke remveFromCartInIndex hast dige niazi be useCalback nadare)
 
   ////zare_nk_050319_added_st(az useCallback baraye sorate bishtar estefadeh kardim) 
-  const renderOfferItem: ListRenderItem<ForCartContInProdDetValType> = useCallback(({ item }) => (
+  // const renderOfferItem: ListRenderItem<ForCartContInProdDetValType> = useCallback(({ item }) => (   ////zare_nk_050328_commented
+  const renderOfferItem: ListRenderItem<offerRowsType> = useCallback(({ item }) => (   ////zare_nk_050328_added
     <OfferSatrComponent
       // key={item.IdKala}   ////zare_nk_050326_commented
       offerRow={item}
@@ -2282,7 +2344,7 @@ export default function ShallowRoutingExample({
                                       FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
                                       FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
                                       BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                                      Mojoodi: ForCartContInProdDetVal.Mojoodi,
+                                      // Mojoodi: ForCartContInProdDetVal.Mojoodi,    ////zare_nk_050328_commented(dar addRemParamType fielde Mojoodi nadarim)
                                       MaxTedad: ForCartContInProdDetVal.MaxTedad,
                                       father: refForfather.current,
                                       bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
@@ -2305,7 +2367,7 @@ export default function ShallowRoutingExample({
                                       FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
                                       FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
                                       BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                                      Mojoodi: ForCartContInProdDetVal.Mojoodi,
+                                      // Mojoodi: ForCartContInProdDetVal.Mojoodi,    ////zare_nk_050328_commented(dar addRemParamType fielde Mojoodi nadarim)
                                       MaxTedad: ForCartContInProdDetVal.MaxTedad,
                                       father: refForfather.current,
                                       bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,

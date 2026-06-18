@@ -1834,9 +1834,7 @@ export default function HomeScreen({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              // BarcodeKala: parsedList[0].BarcodeKala,    ////zare_nk_050328_commented(dar pasokhe apiye Api_SelectKala hamyar BarcodeKala ra null mideh(darsoorati ke dar 
-              //// voroodiye hamin apiye Api_SelectKala barcode ro migireh va satr ro be dorosti barmigardooneh))
-              BarcodeKala: barcodeKala,   ////zare_nk_050328_added
+              BarcodeKala: parsedList[0].BarcodeKala,     
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",

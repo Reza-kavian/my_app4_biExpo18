@@ -40,7 +40,7 @@ type addRemParamType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  Mojoodi: number;
+  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
   MaxTedad: number;
   father: any;
   bishAzMaxTedadYaMojoodi: number | null;
@@ -49,7 +49,8 @@ type addRemParamType = {
   event?: null;  ////zare_nk_041127_added
 };
 
-type ForCartContInProdDetValType = {
+////zare_nk_050328_added_st
+type offerRowsType = {
   tedadInSabadOrDet: number;
   ZaribForoosh: number;
   IdKala: number;
@@ -59,7 +60,7 @@ type ForCartContInProdDetValType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  Mojoodi: number;
+  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
   MaxTedad: number;
   father: any;
   refForfather: RefObject<string | null>;
@@ -68,9 +69,34 @@ type ForCartContInProdDetValType = {
   ForCartContentsDesignType: number;
   idTag: string;
 };
+////zare_nk_050328_added_end
+
+////zare_nk_050328_commented_st
+// type ForCartContInProdDetValType = {
+//   tedadInSabadOrDet: number;
+//   ZaribForoosh: number;
+//   IdKala: number;
+//   NameKala: string | null;
+//   DarsadTakhfif: number | null;
+//   NameBerand: string | null;
+//   FeeForoosh: number;
+//   FeeMasraf: number;
+//   BarcodeKala: string;
+//   Mojoodi: number;
+//   MaxTedad: number;
+//   father: any;
+//   refForfather: RefObject<string | null>;
+//   bishAzMaxTedadYaMojoodi: number | null;
+//   fromShowDetails: boolean;
+//   ForCartContentsDesignType: number;
+//   idTag: string;
+// };
+////zare_nk_050328_commented_end
 
 type OfferSatrComponentType = {
-  offerRow: ForCartContInProdDetValType
+  // offerRow: ForCartContInProdDetValType   ////zare_nk_050328_commented
+  offerRow: offerRowsType   ////zare_nk_050328_added
+
   handlerForAddClick: (
     addRemParam: addRemParamType,
   ) => void;
@@ -125,11 +151,14 @@ const OfferSatrComponent = ({
     if (offerRow.MaxTedad <= Tedad) {
       bishAzMaxTedadYaMojoodi = 1;
     }
-  } else {
-    if (offerRow.Mojoodi <= Tedad) {
-      bishAzMaxTedadYaMojoodi = 1;
-    }
-  }
+  } 
+  ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  // else {
+  //   if (offerRow.Mojoodi <= Tedad) {
+  //     bishAzMaxTedadYaMojoodi = 1;
+  //   }
+  // }
+  ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
 
 //   console.log('zare_nk_041121-offerRow: ' + JSON.stringify(offerRow));
   // const ForCartContentsDesignTypeLet = useMemo(() => {
@@ -393,7 +422,7 @@ const OfferSatrComponent = ({
                     FeeForoosh: offerRow.FeeForoosh,
                     FeeMasraf: offerRow.FeeMasraf,
                     BarcodeKala: offerRow.BarcodeKala,
-                    Mojoodi: offerRow.Mojoodi,
+                    // Mojoodi: offerRow.Mojoodi,    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
                     MaxTedad: offerRow.MaxTedad,
                     father: offerRow.father,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
@@ -416,7 +445,7 @@ const OfferSatrComponent = ({
                     FeeForoosh: offerRow.FeeForoosh,
                     FeeMasraf: offerRow.FeeMasraf,
                     BarcodeKala: offerRow.BarcodeKala,
-                    Mojoodi: offerRow.Mojoodi,
+                    // Mojoodi: offerRow.Mojoodi,    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
                     MaxTedad: offerRow.MaxTedad,
                     father: offerRow.father,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,

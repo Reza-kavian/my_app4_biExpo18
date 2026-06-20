@@ -200,7 +200,7 @@ const OfferSatrComponent = ({
         // type="button"
         // onClick={(event) => openprodDetModal(offerRow.BarcodeKala)}
         onPress={(event) =>{
-          Alert.alert("offerRow.BarcodeKala: "+offerRow.BarcodeKala)
+          // Alert.alert("offerRow.BarcodeKala: "+offerRow.BarcodeKala)
            openprodDetModal(offerRow.BarcodeKala)
           }}
         // onMouseEnter={(event) => {

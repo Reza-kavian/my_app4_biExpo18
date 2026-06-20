@@ -295,6 +295,7 @@ export default function ShallowRoutingExample({
 
   // async function ShowDetails(barcodeKala: any) {   ////zare_nk_050319_commented(for use callback)
   const ShowDetails = useCallback(async (barcodeKala: any) => {  ////zare_nk_050319_added(for use callback)
+    console.log('050330-ShowDetails called!-barcodeKala: ' + barcodeKala);
     const token = await getCookie("token");
     ////zare_nk_050318_commented_st
     // if (token == null) {
@@ -338,9 +339,11 @@ export default function ShallowRoutingExample({
         }),
         // credentials: "include", //zare_nk_040402_commented
       });
+      console.log('050330-ShowDetails called!resid!');
       if (response.ok) {
         const data = await response.json();
         var result = data;
+        console.log('050332-ShowDetails called!-result: ' + JSON.stringify(result));
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]);
@@ -437,11 +440,11 @@ export default function ShallowRoutingExample({
               ZaribForoosh: parsedList[0].ZaribForoosh,
               IdKala: parsedList[0].IdKala,
               NameKala: parsedList[0].NameKala,
-              DarsadTakhfif: parsedList[0].DarsadTakhfif,
+              DarsadTakhfif: parsedList[0].MM,  ////zare_nk_050330_updated(MM bejaye DarsadTakhfif)
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala,
+              BarcodeKala: parsedList[0].BarcodeKala1,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala1s(ba c koochike!))
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",
@@ -454,6 +457,7 @@ export default function ShallowRoutingExample({
           });
         }
       } else {
+        console.log('050330-ShowDetails called!-!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -471,6 +475,7 @@ export default function ShallowRoutingExample({
         }
       }
     } catch (error) {
+      console.log('050330-ShowDetails called!catch!-error: ' + error);
       // setImgUriForDet('');    ////zare_nk_050325_commented(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
       setForCartContInProdDetVal(undefined);
       // setIsOpenedProdDetModal(false);  ////zare_nk_050325_commented(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
@@ -495,13 +500,14 @@ export default function ShallowRoutingExample({
       setWarningTextInMymodalForWarning(() => {
         return (WarningText)
       });
+
     }
     // }  ////zare_nk_050319_commented(for use callback)
   }, []);  ////zare_nk_050319_added(for use callback)
 
   // async function openprodDetModal(barcodeKala: string) {  ////zare_nk_050319_commented(for use callback)
   const openprodDetModal = useCallback(async (barcodeKala: string) => { ////zare_nk_050319_added(for use callback)
-    // console.log('ShallowRoutingExample called-openprodDetModal called!!');
+    console.log('050331-ShallowRoutingExample called-openprodDetModal called!!-barcodeKala: ' + barcodeKala);
     await ShowDetails(barcodeKala);
     setIsOpenedProdDetModal(true);
     // setAddOrRemChanged(null); ////zare_nk_050320_commented(jash ro be state page dad)
@@ -648,6 +654,7 @@ export default function ShallowRoutingExample({
       ////zare_nk_050325_add_st(agheire api be hamyarForoosh) 
       var urlSelectKalaTakhfifat = NextJsApiUrl + "Api_SelectKalaTakhfifat";
       ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
+      console.log("050332-Api_SelectKalaTakhfifat-inputData: " + JSON.stringify(inputData));
       try {
         // const response = await fetch(urlSelectKalaShobehJashnvareh, {  ////zare_nk_050325_commented(darkhast be apiye Api_SelectKalaShobeh tochikala)
         const response = await fetch(urlSelectKalaTakhfifat, {  ////zare_nk_050325_added(darkhast be apiye Api_SelectKalaTakhfifat hamyarForoosh) 
@@ -679,16 +686,17 @@ export default function ShallowRoutingExample({
             ////zare_nk_050325_added_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
           }),
         });
+        console.log("050332-Api_SelectKalaTakhfifat-residim" );
 
         const data = await response.json();
 
         if (response.ok) {
           // Alert.alert('inja-1');
           var result = JSON.parse(data.data.list);
-          console.log('050329-SelectKalaTakhfifat-result.length: ' + result.length);
-          console.log('050329-SelectKalaTakhfifat-result: ' + JSON.stringify(result));
+          console.log('050332-SelectKalaTakhfifat-result.length: ' + result.length);
+          console.log('050332-SelectKalaTakhfifat-result: ' + JSON.stringify(result));
           if (data.status != 0) {
-            Alert.alert('inja-2');
+            // Alert.alert('inja-2');
             // console.log('041210-12-data.status != 0');
             setIsOpenedMymodalForWarning(true);
             setWarningTextInMymodalForWarning(data.errors[0]);
@@ -760,7 +768,7 @@ export default function ShallowRoutingExample({
             //       NameBerand: item.NameBerand,
             //       FeeForoosh: item.FeeForoosh,
             //       FeeMasraf: item.FeeMasraf,
-            //       BarcodeKala: item.BarcodeKala,
+            //       BarcodeKala: item.BarCodeKala,
             //       Mojoodi: item.Mojoodi,
             //       MaxTedad: item.MaxTedad,
             //       MasrafSatr: item.MasrafSatr,
@@ -844,7 +852,7 @@ export default function ShallowRoutingExample({
                 NameBerand: item.NameBerand,
                 FeeForoosh: item.FeeForoosh,
                 FeeMasraf: item.FeeMasraf,
-                BarcodeKala: item.BarcodeKala,
+                BarcodeKala: item.BarCodeKala,  ////zare_nk_050330_nokteh(pasokhe apiye hamyar BarCodeKala(ba C bozorge!))
                 // Mojoodi: item.Mojoodi,  ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
                 MaxTedad: item.MaxTedad,
                 // MasrafSatr: item.MasrafSatr,   ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde MasrafSatr nadarim) 
@@ -927,7 +935,7 @@ export default function ShallowRoutingExample({
     addRemParam: addRemParamType,
   ) {
     // console.log('041120-addToCartInIndex called!-addRemParam: ' + addRemParam.FeeForoosh);
-    console.log('050328-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
+    console.log('050332-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
     ////zare_nk_041129_commented_st
     // if (addRemParam.event != null) {
     //     addRemParam.event.stopPropagation();
@@ -962,18 +970,18 @@ export default function ShallowRoutingExample({
       TedadOut = addRemParam.tedadInSabadOrDet + zarib;
       TedadOuttoAjax = addRemParam.ZaribForoosh;
       // const token = await getCookie("token");
-      console.log('050329-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
-    
+      console.log('050330-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
+
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
       // let ApiUrl = "https://api.tochikala.com/api/";
       // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
       ////zare_nk_050325_commented_end(agheire api be hamyarForoosh)
       ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
       var urlInsertToSabad = NextJsApiUrl + "Api_InsertToSabad";
-      console.log('050329-001-urlInsertToSabad: ' + urlInsertToSabad);
+      console.log('050330-001-urlInsertToSabad: ' + urlInsertToSabad);
       ////zare_nk_050325_added__end(agheire api be hamyarForoosh)
       const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
-      console.log('050329-addToCartInIndex-addRemParam.BarcodeKala: ' + addRemParam.BarcodeKala + '-IdShobeh: ' + Number(currentShobeh));
+      console.log('050330-addToCartInIndex-addRemParam.BarcodeKala: ' + addRemParam.BarcodeKala + '-IdShobeh: ' + Number(currentShobeh));
       const response = await fetch(urlInsertToSabad, {
         method: "POST",
         headers: {
@@ -990,16 +998,17 @@ export default function ShallowRoutingExample({
           // IdAddress: 23990  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdAddress nemikhad)
         }),
       });
-      console.log('050329-addToCartInIndex-response.status: ' + response.status);
+      console.log('050330-addToCartInIndex-response.status: ' + response.status);
       const data = await response.json();
       if (response.ok) {
-        console.log('050329-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
+        console.log('050330-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         // console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut); ////zare_nk_050320_commented(jash ro be state page dad)
         // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) ////zare_nk_050321_commented(okk)
 
         var result = data;
         if (result.status != 0) {
+          console.log('050330-addToCartInIndex-result.status != 0');
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]);
           // const bootstrap = await getBootstrap();
@@ -1014,6 +1023,7 @@ export default function ShallowRoutingExample({
           //     span.innerText = result.errors[0];
           // }
         } else if (result.status == 0) {
+          console.log('050330-addToCartInIndex-result.status == 0');
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
           let Tedad = satrInoInResult.Tedad;
@@ -1125,7 +1135,7 @@ export default function ShallowRoutingExample({
                     BarcodeKala: addRemParam.BarcodeKala,
                     // Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
                     MaxTedad: addRemParam.MaxTedad,
-                    MasrafSatr: curItem.MasrafSatr,
+                    // MasrafSatr: curItem.MasrafSatr,   ////zare_nk_050329_commented
                     father: "#cardcontainer2",
                     refForfather: refForfather,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -1143,7 +1153,7 @@ export default function ShallowRoutingExample({
 
         }
       } else {
-        // console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
+        console.log('050330-addToCartInIndex-!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
@@ -1161,6 +1171,7 @@ export default function ShallowRoutingExample({
         }
       }
     } catch (error) {
+      console.log('050330-addToCartInIndex-catch-error.message: ' + error);
       ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
       // setForCartContInProdDetVal(undefined);
       // setIsOpenedProdDetModal(false);
@@ -1424,7 +1435,7 @@ export default function ShallowRoutingExample({
                     // Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
 
                     MaxTedad: addRemParam.MaxTedad,
-                    MasrafSatr: curItem.MasrafSatr,
+                    // MasrafSatr: curItem.MasrafSatr,   ////zare_nk_050329_commented
                     father: "#cardcontainer2",
                     refForfather: refForfather,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -1587,7 +1598,7 @@ export default function ShallowRoutingExample({
     setPage(nextPage);
   }
   ////zare_nk_050320_added_end
-
+  console.log("050330-ForCartContInProdDetVal: " + JSON.stringify(ForCartContInProdDetVal));
   return (
     <>
       <Modal

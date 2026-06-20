@@ -123,6 +123,7 @@ const OfferSatrComponent = ({
   navigation,   
 }: OfferSatrComponentType) => {
 
+  console.log("050331-OfferSatrComponent-offerRow: "+JSON.stringify(offerRow));
   const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
 
   ////zare_nk_041207_added_st
@@ -198,7 +199,10 @@ const OfferSatrComponent = ({
         // id={`cardd-${offerRow.IdKala}`}
         // type="button"
         // onClick={(event) => openprodDetModal(offerRow.BarcodeKala)}
-        onPress={(event) => openprodDetModal(offerRow.BarcodeKala)}
+        onPress={(event) =>{
+          Alert.alert("offerRow.BarcodeKala: "+offerRow.BarcodeKala)
+           openprodDetModal(offerRow.BarcodeKala)
+          }}
         // onMouseEnter={(event) => {
         //   event.currentTarget.style.boxShadow = "0px 0px 2px 0px #D7D6D6";
         // }}
@@ -409,8 +413,8 @@ const OfferSatrComponent = ({
               idTag={offerRow.idTag}
               tedadInSabadOrDet={offerRow.tedadInSabadOrDet}
 
-              // handlerForAddClick={(e) => {  //zare_nk_041127_commented
-              handlerForAddClick={() => {  //zare_nk_041127_added
+              // handlerForAddClick={(e) => {  ////zare_nk_041127_commented
+              handlerForAddClick={() => {  ////zare_nk_041127_added
                 return handlerForAddClick(
                   {
                     tedadInSabadOrDet: offerRow.tedadInSabadOrDet,
@@ -432,8 +436,8 @@ const OfferSatrComponent = ({
                   }
                 );
               }}
-              // handlerForRemClick={(e) => {  //zare_nk_041127_commented
-              handlerForRemClick={() => {  //zare_nk_041127_added
+              // handlerForRemClick={(e) => {  ////zare_nk_041127_commented
+              handlerForRemClick={() => {  ////zare_nk_041127_added
                 return handlerForRemClick(
                   {
                     tedadInSabadOrDet: offerRow.tedadInSabadOrDet,

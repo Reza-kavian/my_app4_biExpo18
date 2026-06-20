@@ -95,7 +95,6 @@ const SabadSatrComponent = ({
     openprodDetModal,
     navigation,
 }: SabadSatrProps) => {
-
     const [productImageError, setproductImageError] = useState<boolean>(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate jaigoziniye akse pishfarze tochi)
     const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate hazfe backgrounde khakestariye(range khakestariye ghbleloadi hast))
     var Tedad = SabadRow.tedadInSabadOrDet;

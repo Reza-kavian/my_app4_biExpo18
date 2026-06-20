@@ -383,7 +383,7 @@ export default function ShoppingbasketComponent({
 
     async function openprodDetModal(barcodeKala: string) {   ////zare_nk_050224_nokteh(methode openprodDetModal methode ShowDetails ra seda mizanad, setIsOpenedProdDetModal ra 
         //// true mikoneh, setAddOrRemChanged ra ham null mikoneh)
-        console.log('shoppingbasketComponent called-openprodDetModal called!!');
+        console.log('050331-shoppingbasketComponent called-openprodDetModal called!!-barcodeKala: '+barcodeKala);
         await ShowDetails(barcodeKala);
         setIsOpenedProdDetModal(true);
         setAddOrRemChanged(null);
@@ -540,11 +540,11 @@ export default function ShoppingbasketComponent({
                             ZaribForoosh: parsedList[0].ZaribForoosh,
                             IdKala: parsedList[0].IdKala,
                             NameKala: parsedList[0].NameKala,
-                            DarsadTakhfif: parsedList[0].DarsadTakhfif,
+                            DarsadTakhfif: parsedList[0].MM,  ////zare_nk_050330_updated(MM bejaye DarsadTakhfif)
                             NameBerand: parsedList[0].NameBerand,
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            BarcodeKala: parsedList[0].BarcodeKala,
+                            BarcodeKala: parsedList[0]..BarcodeKala1,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala1s(ba c koochike!))
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#DetailsInfoCont",

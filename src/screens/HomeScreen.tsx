@@ -1407,7 +1407,7 @@ export default function HomeScreen({
         //// baraye modiriate monghazi boodan estefadeh kardim) donbale location nagardeh va hamin ro darnazar begireh, vagarnah currentLocation ro hazf koneh)
         const IsLocationExpiresValid = await IsLocationExpiresValidFunc();
         if (IsLocationExpiresValid.IsValid) {
-          await Alert.alert('valiiid loc');
+          // await Alert.alert('valiiid loc');
           return;
         }
         ////zare_nk_050323_nokteh_st(inja goftim bavojoode useEffecte aval dar safheye hom, age asyncStorage currentLocation monghazi nashodeh(az token_expires 
@@ -1834,7 +1834,7 @@ export default function HomeScreen({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala,     
+              BarcodeKala: parsedList[0].BarcodeKala1,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala1s(ba c koochike!))    
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",

@@ -123,7 +123,7 @@ const OfferSatrComponent = ({
   navigation,   
 }: OfferSatrComponentType) => {
 
-  console.log("050331-OfferSatrComponent-offerRow: "+JSON.stringify(offerRow));
+  console.log("050403-OfferSatrComponent-offerRow: "+JSON.stringify(offerRow));
   const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
 
   ////zare_nk_041207_added_st
@@ -200,7 +200,7 @@ const OfferSatrComponent = ({
         // type="button"
         // onClick={(event) => openprodDetModal(offerRow.BarcodeKala)}
         onPress={(event) =>{
-          // Alert.alert("offerRow.BarcodeKala: "+offerRow.BarcodeKala)
+           Alert.alert("050403-offerRow.BarcodeKala: "+offerRow.BarcodeKala)
            openprodDetModal(offerRow.BarcodeKala)
           }}
         // onMouseEnter={(event) => {

@@ -343,7 +343,7 @@ export default function ShallowRoutingExample({
       if (response.ok) {
         const data = await response.json();
         var result = data;
-        console.log('050332-ShowDetails called!-result: ' + JSON.stringify(result));
+        console.log('050403-ShowDetails called!-result: ' + JSON.stringify(result));
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]);
@@ -444,7 +444,7 @@ export default function ShallowRoutingExample({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala1,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala1s(ba c koochike!))
+              BarcodeKala: parsedList[0].BarcodeKala,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala(ba c koochike!))
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",
@@ -507,7 +507,7 @@ export default function ShallowRoutingExample({
 
   // async function openprodDetModal(barcodeKala: string) {  ////zare_nk_050319_commented(for use callback)
   const openprodDetModal = useCallback(async (barcodeKala: string) => { ////zare_nk_050319_added(for use callback)
-    console.log('050331-ShallowRoutingExample called-openprodDetModal called!!-barcodeKala: ' + barcodeKala);
+    console.log('050403-ShallowRoutingExample called-openprodDetModal called!!-barcodeKala: ' + barcodeKala);
     await ShowDetails(barcodeKala);
     setIsOpenedProdDetModal(true);
     // setAddOrRemChanged(null); ////zare_nk_050320_commented(jash ro be state page dad)
@@ -694,7 +694,7 @@ export default function ShallowRoutingExample({
           // Alert.alert('inja-1');
           var result = JSON.parse(data.data.list);
           console.log('050332-SelectKalaTakhfifat-result.length: ' + result.length);
-          console.log('050332-SelectKalaTakhfifat-result: ' + JSON.stringify(result));
+          console.log('050403-SelectKalaTakhfifat-result: ' + JSON.stringify(result));
           if (data.status != 0) {
             // Alert.alert('inja-2');
             // console.log('041210-12-data.status != 0');
@@ -1071,7 +1071,7 @@ export default function ShallowRoutingExample({
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
                 // Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050328_commented(dar addRemParam fielde Mojoodi nadarim)
-                Mojoodi: satrInoInResult.Mojoodi,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim) 
+                Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojood,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim)  ////zare_nk_050403_updated
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
                 refForfather: refForfather,
@@ -1268,6 +1268,7 @@ export default function ShallowRoutingExample({
       const data = await response.json();
       if (response.ok) {
         var result = data;
+        console.log('050403-result in rem: '+JSON.stringify(result)); 
         if (result.status == -1000) {
           ////zare_nk_041129_commented_st
           // const inputGroup = document.querySelector(
@@ -1371,7 +1372,7 @@ export default function ShallowRoutingExample({
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
                 // Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050328_commented(dar addRemParam fielde Mojoodi nadarim)
-                Mojoodi: satrInoInResult.Mojoodi,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim) 
+                Mojoodi:  satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim)  ////zare_nk_050403_updated
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
                 refForfather: refForfather,
@@ -2344,6 +2345,7 @@ export default function ShallowRoutingExample({
                                 ////zare_nk_041120_added_end
                                 // handlerForAddClick={(e) => {   //zare_nk_041129_commented  
                                 handlerForAddClick={() => {  //zare_nk_041129_added
+                                  console.log('050403-handlerForAddClick in before click +: '+JSON.stringify(ForCartContInProdDetVal));
                                   return handlerForAddClick(
                                     {
                                       tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,

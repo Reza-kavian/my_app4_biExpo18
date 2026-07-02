@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    //zare_nk_050229_okk
+//src\screens\WelcomeScreen.tsx    ////zare_nk_050411_okk(1)
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
@@ -7,14 +7,14 @@ import type { RootStackParamList } from "../types/navigation";
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 
-////zare_nk_0040608_commented_st
+////zare_nk_040608_commented_st
 // import { useNavigation } from "@react-navigation/native";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 // type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Welcome">;
 // const WelcomeScreen = () => {
 //   const navigation = useNavigation<NavigationProp>();
-////zare_nk_0040608_commented_end
-////zare_nk_0040608_added_st
+////zare_nk_040608_commented_end
+////zare_nk_040608_added_st
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;

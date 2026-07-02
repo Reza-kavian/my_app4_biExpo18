@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef, useMemo, useCallback,memo } from "react";
+import { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
 import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
   useWindowDimensions,
@@ -17,13 +17,13 @@ import ReusableButton from "../components/ReusableButton";
 
 import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 import type { RootStackParamList } from "../types/navigation";
- 
+
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 type NavigationType = NativeStackNavigationProp<
   RootStackParamList,
   //"shoppingbasket"   ////zare_nk_050318_commented
   "discountsAndOffers"   ////zare_nk_050318_added
->; 
+>;
 
 import SpecialOfferIcon from "../components/icons/images/SpecialOffer";   ////zare_nk_050316_added
 import AddRemBtnsAndCountPackege from '../components/addRemBtnsAndCountPackege';   ////zare_nk_050316_added
@@ -120,10 +120,10 @@ const OfferSatrComponent = ({
   handlerForAddClick,
   handlerForRemClick,
   openprodDetModal,
-  navigation,   
+  navigation,
 }: OfferSatrComponentType) => {
 
-  console.log("050403-OfferSatrComponent-offerRow: "+JSON.stringify(offerRow));
+  console.log("050403-OfferSatrComponent-offerRow: " + JSON.stringify(offerRow));
   const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
 
   ////zare_nk_041207_added_st
@@ -152,7 +152,7 @@ const OfferSatrComponent = ({
     if (offerRow.MaxTedad <= Tedad) {
       bishAzMaxTedadYaMojoodi = 1;
     }
-  } 
+  }
   ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
   // else {
   //   if (offerRow.Mojoodi <= Tedad) {
@@ -161,7 +161,7 @@ const OfferSatrComponent = ({
   // }
   ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
 
-//   console.log('zare_nk_041121-offerRow: ' + JSON.stringify(offerRow));
+  //   console.log('zare_nk_041121-offerRow: ' + JSON.stringify(offerRow));
   // const ForCartContentsDesignTypeLet = useMemo(() => {
   const tedadInSabadOrDetToNumber = Number(offerRow.tedadInSabadOrDet);
   const ZaribForooshToNumber = Number(offerRow.ZaribForoosh);
@@ -199,10 +199,10 @@ const OfferSatrComponent = ({
         // id={`cardd-${offerRow.IdKala}`}
         // type="button"
         // onClick={(event) => openprodDetModal(offerRow.BarcodeKala)}
-        onPress={(event) =>{
-           Alert.alert("050403-offerRow.BarcodeKala: "+offerRow.BarcodeKala)
-           openprodDetModal(offerRow.BarcodeKala)
-          }}
+        onPress={(event) => {
+          // Alert.alert("050403-offerRow.BarcodeKala: " + offerRow.BarcodeKala);
+          openprodDetModal(offerRow.BarcodeKala)
+        }}
         // onMouseEnter={(event) => {
         //   event.currentTarget.style.boxShadow = "0px 0px 2px 0px #D7D6D6";
         // }}
@@ -249,7 +249,7 @@ const OfferSatrComponent = ({
             flexDirection: "column",
             position: "relative"
           }}
-        > 
+        >
 
           {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif != 0) && (
             <View

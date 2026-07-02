@@ -1,4 +1,4 @@
-// src/screens/TicTacToeScreen.tsx   //zare_nk_050229_okk
+// src/screens/TicTacToeScreen.tsx   //zare_nk_050411_okk
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -11,7 +11,7 @@ type SquareProps = {
     andis: number;
 
     //refForBtn: React.RefObject<(HTMLButtonElement | null)[]>; ////zare_nk_041017_commented(chon ref dar reactnative manteghi nist bekhatere inke ref dar DOM tasir mizasht ke ba web mach bood)
-    colorState: "default" | "clicked" | "wined" | "lineWined"; ////zare_nk_041017_added
+    colorState: "default" | "clicked" | "wined" | "lineWined";  ////zare_nk_041017_added
 
     //className?: string;  ////zare_nk_041017_commented(chon tage className dar reactnative vojood nadareh)
 };
@@ -46,7 +46,9 @@ type BoardProps = {
     onPlay: (nextSquares: Squares) => void;
     xIsNextState: boolean;
     setXIsNextState: React.Dispatch<React.SetStateAction<boolean>>;
-    BtnsColor: ("default" | "clicked" | "wined" | "lineWined")[];
+    BtnsColor: ("default" | "clicked" | "wined" | "lineWined")[];  ////zare_nk_050411_nokteh(bejaye inke masalan styles.mohrehCliked ra dar arayeye noe string berizim ke barname barasase mahiate 
+    //// clashaye .module.css anra be stringe moadele styles.mohrehCliked(masalan dooz_mohrehCliked__B0Fdv) tabdil koneh, besoorate dasti lafze stringiye moadele styles.mohrehCliked ra khodemoon
+    ////  dasti ba name delkhah lahaz kardeh va dar methodi ba sharthaye mokhtalef(dar inja methode getBackgroundColor) moadele css(albate manzoor az css stylesheet ast) anra mohasebeh mikonim )
     setBtnsColor: React.Dispatch<
         React.SetStateAction<("default" | "clicked" | "wined" | "lineWined")[]>
     >;

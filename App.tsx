@@ -1,4 +1,4 @@
-//my-app/App.tsx   ////zare_nk_050324_okk
+//my-app/App.tsx   ////zare_nk_050411_okk(1)
 import React, { useEffect, useState } from "react";
 import { Alert } from "react-native"; 
 import AsyncStorage from "@react-native-async-storage/async-storage";  
@@ -30,7 +30,7 @@ const linking = {
 const LAST_SEEN_VERSION_KEY = "last_seen_version";
 // 📝 متن تغییرات هر نسخه
 const CHANGELOG: Record<string, string[]> = {
-  "1.0": [
+  "1.0.4": [
     "✅ رفع مشکل اعتبارسنجی توکن",
     "🚀 بهبود سرعت اجرای برنامه",
   ], 

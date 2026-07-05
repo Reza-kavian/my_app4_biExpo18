@@ -1,4 +1,5 @@
-import { useState, useEffect, useRef, useMemo,memo } from "react";
+////zare_nk_050413_okk(1)
+import { useState, useEffect, useRef, useMemo, memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
@@ -36,11 +37,11 @@ import RecycleBinIcon from "../components/icons/images/RecycleBin";   ////zare_n
 
 ////zare_nk_050319_added_st
 const showNoStock = () => {
-  if (Platform.OS === "android") {
-    ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
-  } else {
-    // Alert.alert("خطا", "موجودی کافی نیست");
-  }
+    if (Platform.OS === "android") {
+        ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
+    } else {
+        // Alert.alert("خطا", "موجودی کافی نیست");
+    }
 };
 ////zare_nk_050319_added_end
 
@@ -52,9 +53,9 @@ type addRemBtnsAndCountPackegeType = {
     idTag: string;
     tedadInSabadOrDet: number;
 
-    //   handlerForAddClick: (e?: MouseEvent<HTMLAnchorElement>) => void;  //zare_nk_041127_commented(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
+    // handlerForAddClick: (e?: MouseEvent<HTMLAnchorElement>) => void;  //zare_nk_041127_commented(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
     handlerForAddClick: () => void;  //zare_nk_041127_addeded(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
-    //   handlerForRemClick: (e?: MouseEvent<HTMLAnchorElement>) => void;  //zare_nk_041127_commented(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
+    // handlerForRemClick: (e?: MouseEvent<HTMLAnchorElement>) => void;  //zare_nk_041127_commented(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
     handlerForRemClick: () => void;  //zare_nk_041127_addeded(chon behtare dar mobile vabastegi be event hazf gardad,barakse web)
     ForCartContentsDesignType: number;
     bishAzMaxTedadYaMojoodi: number | null;
@@ -62,7 +63,7 @@ type addRemBtnsAndCountPackegeType = {
     navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
- 
+
 // export default function AddRemBtnsAndCountPackege({
 //     refForfather,
 //     fromShowDetails,
@@ -87,7 +88,7 @@ const AddRemBtnsAndCountPackege = ({
     bishAzMaxTedadYaMojoodi,
     navigation,
 }: addRemBtnsAndCountPackegeType) => {
- 
+
     // console.log('ShallowRoutingExample called-MiddleCountTedadSefr-ForCartContentsDesignType: ' + ForCartContentsDesignType);
     useEffect(() => {
         ////zare_nk_041120_commented_st
@@ -613,8 +614,7 @@ const AddRemBtnsAndCountPackege = ({
                                     }
                                 ]}
                                 onPress={() => { handlerForRemClick(); }}   //be login befresteh dar adtoocart be jaye bazi ba e.preventdefault...
-                                activeOpacity={0.1}
-                            >
+                                activeOpacity={0.1}>
                                 <Text
                                     style={{
                                         // height: "80%",  //zare_nk_041202_commented

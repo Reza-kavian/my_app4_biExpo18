@@ -1,4 +1,4 @@
-////zare_nk_050225_okk
+////zare_nk_050413_okk(1)
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -1243,9 +1243,7 @@ export default function HomeScreen({
           //06-16 08:33:00.646 14833 15084 I ReactNativeJS: 050325-result.data.list: [{"IdShobe":12,"NameShobe":"هایپر کرفو 12","Adress":"بابل","Distance":0.015787960065999078}]
           //parsedList[0]
           ////zare_nk_050326_added_st
-          await AsyncStorage.setItem(
-            "currentShobeh",
-            JSON.stringify(parsedList[0].IdShobe)
+          await AsyncStorage.setItem("currentShobeh", JSON.stringify(parsedList[0].IdShobe)
           );
           ////zare_nk_050326_added_st
 
@@ -1358,8 +1356,8 @@ export default function HomeScreen({
           // Alert.alert("050323-AsyncStorage saved!!!!!!!");
 
           ////zare_nk_050325_added_st
-          // getIdShobeFrom(coords.latitude, coords.longitude);  ////zare_nk_050325_commented_movaghat(ta locatione tooye foroshgah ha ro bedam!)
-          getIdShobeFrom(36.53090635056917, 52.63756385886034);  ////zare_nk_050325_added_movaghat(ta locatione tooye foroshgah ha ro bedam!)
+          getIdShobeFrom(coords.latitude, coords.longitude);  ////zare_nk_050325_commented_movaghat(ta locatione tooye foroshgah ha ro bedam!)
+          // getIdShobeFrom(36.53090635056917, 52.63756385886034);  ////zare_nk_050325_added_movaghat(ta locatione tooye foroshgah ha ro bedam!)
           //36.53108415606361,52.6380172399453     ////zare_nk_050325_nokteh(locatione kerfu az neshan)
           //36.53090635056917, 52.63756385886034   ////zare_nk_050325_nokteh(locatione kerfu az googleMap)
           ////zare_nk_050325_added_end
@@ -2480,7 +2478,7 @@ export default function HomeScreen({
     if (!IsLocationExpiresValid.IsValid) {
       setIsOpenedModalForGetLocation(true);
       setTextInModalForGetLocation('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');
-      setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast,pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))
+      setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast, pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))
       return;
     }
     else {
@@ -2499,7 +2497,7 @@ export default function HomeScreen({
     //   return;
     // }
     ////zare_nk_050312_commented_end
-    setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
+    setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood! chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
     setIsOpenedCodeScannerModal(true);
     // setAddOrRemChanged(null);
     setIsScanning(true);  //zare_nk_041203_added
@@ -2512,7 +2510,7 @@ export default function HomeScreen({
     if (!IsLocationExpiresValid.IsValid) {
       setIsOpenedModalForGetLocation(true);
       setTextInModalForGetLocation('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');
-      setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast,pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))
+      setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast, pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))
       return;
     }
     else {
@@ -2523,7 +2521,6 @@ export default function HomeScreen({
     }
   }
   ////zare_nk_050323_added_end
-
   return (
     <>
       <Modal
@@ -4309,8 +4306,8 @@ export default function HomeScreen({
                   padding: 10,
                   // alignItems: "center",  //zare_nk_041206_commented 
                   borderWidth: 1,
-                  // borderColor: "#a9a9a9",   ////zare_nk_050317_commented_movaghat
-                  borderColor: "white",   ////zare_nk_050317_added_movaghat
+                  borderColor: "#a9a9a9",   ////zare_nk_050317_commented_movaghat
+                  // borderColor: "white",   ////zare_nk_050317_added_movaghat
                   borderStyle: 'solid',
                   boxShadow: "#5e5e5e 0px 0px 3px 0px",
                   borderRadius: 25,

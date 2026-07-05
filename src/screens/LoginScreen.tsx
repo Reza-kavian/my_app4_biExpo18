@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050325_okk
+//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050413_okk(1)
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -24,7 +24,6 @@ import logoKerfu from "../assets/images/logo-kerfu.jpg";
 
 import ReturnToMobilenumberIcon from "../components/icons/images/ReturnToMpbilenumber";
 import RequestAgainIcon from "../components/icons/images/RequestAgain";
-
 
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
@@ -545,7 +544,7 @@ export default function LoginScreen({
   ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
     const subscription = Linking.addListener("url", async ({ url }) => {  ////zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
-      // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh,masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
+      // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh, masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
       // const token = new URL(url).searchParams.get("token");  //zare_nk_040926_commented
       const token = getQueryParam(url, "token");
       // Alert.alert('useEffect called!!-token: ' + token);
@@ -1260,9 +1259,7 @@ export default function LoginScreen({
                           // onBlur={handleBlur}          //zare_nk_050105_olgu
 
                           // autoFocus={index===0?true:false}
-
                           />
-
                         </View>
                       )
                     })

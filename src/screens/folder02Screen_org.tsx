@@ -1,4 +1,4 @@
-////src/screens/folder02Screen.tsx  ////zare_nk_050231_okk
+////src/screens/folder02Screen.tsx  ////zare_nk_050413_okk(1)
 // "use client";  //zare_nk_041024_commented
 // import { useRouter, useParams, useSearchParams } from "next/navigation";  //zare_nk_041025_commented
 import React, { useEffect, useState, useCallback, useRef } from "react";

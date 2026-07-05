@@ -1,4 +1,4 @@
-////zare_nk_050227_okk
+   ////zare_nk_050413_okk(1)
 import React, { useState, useEffect, useRef } from "react";
 import { View, Text, Button, Modal, StyleSheet, Alert, Animated } from "react-native";
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";

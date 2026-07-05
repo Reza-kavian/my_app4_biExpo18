@@ -1,4 +1,4 @@
-////zare_nk_050231_okk
+////zare_nk_050413_okk(1)
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
@@ -500,7 +500,6 @@ export default function ShallowRoutingExample({
       setWarningTextInMymodalForWarning(() => {
         return (WarningText)
       });
-
     }
     // }  ////zare_nk_050319_commented(for use callback)
   }, []);  ////zare_nk_050319_added(for use callback)
@@ -785,7 +784,7 @@ export default function ShallowRoutingExample({
             ////zare_nk_050322_nokteh_end(rahe1(natije doroste vali kheili kond mishe barname)- chon dar har halghe yek setState darim ke baese reRender shodane Component be 
             // andazeye tedad item haye api ast(behtare az rahe3 estefadeh konim ke ebteda kolle map ra dakhele yek moteghayere komaki mirize sepas yekja moteghayyer ro dakhele yek setState mirizim))
 
-            ////zare_nk_050322_nokteh_st(rahe2(kollan eshtebahe barmigardooneh!)- chon prev ke biroone map hast hamvareh meghdare avaliye dare va ba har halghe meghdare iteme feli ro bedorosti migire, amma meghdare Iteme ghabli ro hazf mikoneh(chon midoonim hanooz reRender nashode ke meghdare prev berooz beshe, pas bayad kolle map ro yeja bahesh bedi))
+            ////zare_nk_050322_nokteh_st(rahe2(kollan eshtebahe barmigardooneh!)- chon prev ke biroone map hast hamvareh meghdare avaliye dare va ba har halghe meghdare iteme feli ro bedorosti migire, amma meghdare Iteme ghabli ro hazf mikoneh(chon midoonim hanooz reRender nashode ke meghdare prev berooz beshe, pas bayad kolle map ro yeja behesh bedi))
             // setOfferRows((prev) => {
             //   return result.map((item: any) => { 
             //     return ([...prev,

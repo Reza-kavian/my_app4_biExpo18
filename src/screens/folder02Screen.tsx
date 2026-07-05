@@ -1,3 +1,4 @@
+////zare_nk_050413_okk(1)
 import React from 'react';
 import {
   View,
@@ -14,7 +15,7 @@ export default function App() {
       style={styles.container}
       behavior={Platform.OS === 'ios' ? 'padding' : 'height'}   ////zare_nk_050320_nokteh(in bayad basheh)
       keyboardVerticalOffset={20} ////zare_nk_050320_nokteh(migim alaveh bar bala keshidane mohtava tebghe ertefaeshan, masalan 20 pixel bishtar ham bala bekesh mohtava ra(yani margine
-    ////  20 pixel balaye keyboard mireh))
+    //// 20 pixel balaye keyboard mireh))
     >
       <ScrollView horizontal={false}
         style={{
@@ -37,9 +38,7 @@ export default function App() {
           paddingVertical: 10,
         }}
         keyboardShouldPersistTaps="handled"  ////zare_nk_050320_nokteh(baraye taamole ScrollView ba KeyboardAvoidingView pishnahad mishe(albateh comment kardam ham farghi nakard))
-
       >
-
         <View style={styles.content}>
           <TextInput
             placeholder="1متن را وارد کنید"
@@ -163,9 +162,7 @@ export default function App() {
 
       </ScrollView>
     </KeyboardAvoidingView>
-
   );
-
 }
 
 const styles = StyleSheet.create({

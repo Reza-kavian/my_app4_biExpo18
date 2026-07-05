@@ -1,3 +1,4 @@
+////zare_nk_050413_okk(1)
 // "use client";   //zare_nk_050227_commented
 // import { useRouter } from "next/navigation";   //zare_nk_041130_commented
 import { useState, useEffect, useRef } from "react";
@@ -100,10 +101,9 @@ export default function ShallowRoutingExample({
     }
     //////responsive_for_sabadItemsAndTotalInf_added_st
 
-    ////zare_nk_041202_added_ثدی(moadele @media baraye responsive kardane site) 
+    ////zare_nk_041202_added_end(moadele @media baraye responsive kardane site) 
 
-    // type ForoshStateType = {   //zare_nk_050222_commented(baraye lafze khanatar)
-    type sumValsForForooshSatrType = {   //zare_nk_050222_added(baraye lafze khanatar)
+    type sumValsForForooshSatrType = { 
         // ShomarehFaktorForoosh: number; ////zare_nk_050328_commented
         IdFaktorForoosh: number;
         TarikhSefaresh: string;
@@ -213,8 +213,6 @@ export default function ShallowRoutingExample({
             // } 
             return;
         } else {
-
-
             ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
             // let ApiUrl = "https://api.tochikala.com/api/";
             // var urlSelectFaktorForooshSatr = ApiUrl + "User/Api_SelectForooshSatr";
@@ -222,7 +220,6 @@ export default function ShallowRoutingExample({
             ////zare_nk_050325_added_st(tagheire api be hamyarForoosh) 
             var urlSelectFaktorForooshSatr = NextJsApiUrl + "Api_SelectFaktorForooshSatr";
             ////zare_nk_050325_added_end(tagheire api be hamyarForoosh) 
-
             try {
                 const response = await fetch(urlSelectFaktorForooshSatr, {
                     method: "POST",
@@ -302,11 +299,9 @@ export default function ShallowRoutingExample({
                 } else {
                     WarningText = String(error);
                 }
-
                 setWarningTextInMymodalForWarning(() => {
                     return (WarningText)
                 });
-
             }
         }
     }

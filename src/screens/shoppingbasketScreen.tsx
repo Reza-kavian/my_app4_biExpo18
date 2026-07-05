@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  //zare_nk_050229_okk
+// shoppingbasketScreen.tsx  //zare_nk_050413_okk(1)
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -136,12 +136,10 @@ export default function ShoppingbasketComponent({
     ////zare_nk_041127_added_end
     console.log('shoppingbasketComponent called!!');
 
-    ////zare_nk_041209_added_st
     const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
     const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
     const productUriForDet = ''; // `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
     const [imgUriForDet, setImgUriForDet] = useState<string>('');
-    ////zare_nk_041209_added_end
 
     const refForBarcodeValue = useRef<string | null>(null);   ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
 
@@ -225,8 +223,6 @@ export default function ShoppingbasketComponent({
         DetailsInfoContResponse = styles.DetailsInfoCont_BTH576;
     }
     //////responsive_for_sabadItemsAndTotalInf_added_end
-
-
     ////zare_nk_041202_added_end(moadele @media baraye responsive kardane site) 
 
     ////zare_nk_041209_added_st(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
@@ -271,8 +267,6 @@ export default function ShoppingbasketComponent({
     const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
     const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
 
-
-    ////zare_nk_041128_added_st
     const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
     const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
     const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
@@ -283,8 +277,7 @@ export default function ShoppingbasketComponent({
     const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0))
 
     const [manualBarcode, setManualBarcode] = useState(String);
-    ////zare_nk_041128_added_end 
-    ////zare_nk_041203_added_st
+
     useEffect(() => {
         requestPermission();   //zare_nk_040923(dar avalin render darkhaste dastresi be doorbin ra midahim )
     }, []);
@@ -301,22 +294,21 @@ export default function ShoppingbasketComponent({
         ////zare_nk_041007_added_end(age bekhaim meghdare scanLineAnim ra bebinim)
         Animated.loop(
             Animated.sequence([
-                Animated.timing(scanLineAnim, { //zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti 
+                Animated.timing(scanLineAnim, { ////zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti 
                     // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
-                    toValue: 1, //zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 1 meghdare hadafe Animated.Value hast)
+                    toValue: 1, ////zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 1 meghdare hadafe Animated.Value hast)
                     duration: 1500,
-                    useNativeDriver: true,   //zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
+                    useNativeDriver: true,   ////zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
                 }),
-                Animated.timing(scanLineAnim, { //zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti
+                Animated.timing(scanLineAnim, { ////zare_nk_041007_nokteh(timing yek tabe ketabkhaneye Animated hast ke animation ba zamanbandiye khatti
                     // misazeh(meghdare Animated.Value ra be tadrij yani 1500 milisaniye az meghdare feli be meghdare hadaf tagheir mideh))
                     toValue: 0, //zare_nk_041007_nokteh(scanLineAnim meghdare feliy Animated.Value hast, va toValue: 0 meghdare hadafe Animated.Value hast)
                     duration: 1500,
-                    useNativeDriver: true,   //zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
+                    useNativeDriver: true,   ////zare_nk_041007_nokteh(true yani animation rooye ThreadNative ejra shavad, useNativeDriver: true baes mishe age js sholough bashe animation ravan bemooneh)
                 }),
             ])
         ).start();
     }, [isOpenedCodeScannerModal, isScanning]);
-    ////zare_nk_041203_added_end 
 
     ////zare_nk_041128_commented_st
     // async function ShowCamera() {
@@ -372,8 +364,7 @@ export default function ShoppingbasketComponent({
                     // addDetectedToCart("6262961900810");  ////zare_nk_050328_added(movaghat, chon kalahaye kerfu pisham nist scan konam)
                     refForBarcodeValue.current = code.value.toString()     ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
 
-                    // setIsOpenedProdDetModal(true);   ////zare_nk_050317_commented(hatman tahlilshe)                   
-
+                    // setIsOpenedProdDetModal(true);   ////zare_nk_050317_commented(hatman tahlilshe)          
                     setAddOrRemChanged(null);
                     break;
                 }
@@ -865,7 +856,6 @@ export default function ShoppingbasketComponent({
                                     fromShowDetails: false,
                                     idTag: "ForCart-" + item.IdKala,
 
-
                                     //    majmooeKharidMasraf = result[0].SumFeeMasraf;
                                     soodAzKharid: jameKolTakhfif,
                                     // Kerayeh = result[0].HazineErsal;
@@ -1279,7 +1269,7 @@ export default function ShoppingbasketComponent({
         }
 
     }
-
+ 
     ////zare_nk_041128_commened_st
     // async function ManualInputBarcode(
     //     event: React.KeyboardEvent<HTMLInputElement>
@@ -2803,7 +2793,7 @@ export default function ShoppingbasketComponent({
                         >
                             <Text
                                 numberOfLines={1}
-                                ellipsizeMode="tail"
+                                ellipsizeMode="tail"        
                                 style={{
                                     color: "red",
                                     fontFamily: "IRANSansWeb(FaNum)_Medium",

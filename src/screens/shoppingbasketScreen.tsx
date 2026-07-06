@@ -374,7 +374,7 @@ export default function ShoppingbasketComponent({
 
     async function openprodDetModal(barcodeKala: string) {   ////zare_nk_050224_nokteh(methode openprodDetModal methode ShowDetails ra seda mizanad, setIsOpenedProdDetModal ra 
         //// true mikoneh, setAddOrRemChanged ra ham null mikoneh)
-        console.log('050331-shoppingbasketComponent called-openprodDetModal called!!-barcodeKala: '+barcodeKala);
+        console.log('050331-shoppingbasketComponent called-openprodDetModal called!!-barcodeKala: ' + barcodeKala);
         await ShowDetails(barcodeKala);
         setIsOpenedProdDetModal(true);
         setAddOrRemChanged(null);
@@ -386,7 +386,7 @@ export default function ShoppingbasketComponent({
         ////zare_nk_050318_commented_st
         // if (token == null) {
         //     setIsOpenedMymodalForWarning(true);
-        //     setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+        //     setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
         //     // const bootstrap = await getBootstrap();
         //     // const mymodalForWarning = new bootstrap.Modal(
         //     //     document.getElementById("mymodalForWarning")
@@ -396,7 +396,7 @@ export default function ShoppingbasketComponent({
         //     //     "#mymodalForWarning .errorInMymodalForWarning"
         //     // );
         //     // if (span instanceof HTMLElement) {
-        //     //     span.innerText = "لطفا ابتدا آنلاین شوید";
+        //     //     span.innerText = "لطفا ابتدا لاگین شوید";
         //     // }
         // }
         ////zare_nk_050318_commented_end
@@ -411,6 +411,7 @@ export default function ShoppingbasketComponent({
         ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
         try {
             const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+            console.log('050415-in sabad-currentShobeh: '+currentShobeh);		
             const response = await fetch(urlApi_SelectShobehJashnvareh, {
                 method: "POST",
                 headers: {
@@ -550,7 +551,7 @@ export default function ShoppingbasketComponent({
             } else {
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                    setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -560,7 +561,7 @@ export default function ShoppingbasketComponent({
                     //     "#mymodalForWarning .errorInMymodalForWarning"
                     // );
                     // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                    //     span.innerText = "لطفا ابتدا لاگین شوید";
                     // }
                 }
                 ////zare_nk_050311_added_st
@@ -763,6 +764,7 @@ export default function ShoppingbasketComponent({
         console.log('050326-011-urlSelectSabad: ' + urlSelectSabad);
         try {
             const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
+            console.log('050415-currentShobeh: '+currentShobeh);
             const response = await fetch(urlSelectSabad, {
                 method: "POST",
                 headers: {
@@ -868,7 +870,7 @@ export default function ShoppingbasketComponent({
             } else {
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                    setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -878,7 +880,7 @@ export default function ShoppingbasketComponent({
                     //     "#mymodalForWarning .errorInMymodalForWarning"
                     // );
                     // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                    //     span.innerText = "لطفا ابتدا لاگین شوید";
                     // }
                 }
                 ////zare_nk_050311_added_st
@@ -925,7 +927,7 @@ export default function ShoppingbasketComponent({
             // const token = await getCookie("token");
             // if (token == null) {
             //     setIsOpenedMymodalForWarning(true);
-            //     setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            //     setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
             //     // const bootstrap = await getBootstrap();
             //     // const mymodalForWarning = new bootstrap.Modal(
             //     //     document.getElementById("mymodalForWarning")
@@ -935,7 +937,7 @@ export default function ShoppingbasketComponent({
             //     //     "#mymodalForWarning .errorInMymodalForWarning"
             //     // );
             //     // if (span instanceof HTMLElement) {
-            //     //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            //     //     span.innerText = "لطفا ابتدا لاگین شوید";
             //     // }
             //     return;
             // } else {
@@ -1013,7 +1015,7 @@ export default function ShoppingbasketComponent({
             //         console.log('!!response.ok')
             //         if (response.status == 401) {
             //             setIsOpenedMymodalForWarning(true);
-            //             setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            //             setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
             //             // const bootstrap = await getBootstrap();
             //             // const mymodalForWarning = new bootstrap.Modal(
             //             //     document.getElementById("mymodalForWarning")
@@ -1023,7 +1025,7 @@ export default function ShoppingbasketComponent({
             //             //     "#mymodalForWarning .errorInMymodalForWarning"
             //             // );
             //             // if (span instanceof HTMLElement) {
-            //             //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            //             //     span.innerText = "لطفا ابتدا لاگین شوید";
             //             // }
             //         }
             //         ////zare_nk_050311_added_st
@@ -1039,7 +1041,7 @@ export default function ShoppingbasketComponent({
             const token = await getCookie("token");
             if (token == null) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                 return;
             }
             //    majmooeKharidMasraf = result[0].SumFeeMasraf;
@@ -1057,7 +1059,7 @@ export default function ShoppingbasketComponent({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -1067,7 +1069,7 @@ export default function ShoppingbasketComponent({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             // );
             // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            //     span.innerText = "لطفا ابتدا لاگین شوید";
             // }
         }
 
@@ -1079,7 +1081,7 @@ export default function ShoppingbasketComponent({
         var urlApi_SelectShobehJashnvareh = NextJsApiUrl + "Api_SelectKala";
         ////zare_nk_050325_added_end(tagheire api be hamyarForoosh)
 
-        console.log('050328-adddet-01-BarcodeKala: '+BarcodeKala);
+        console.log('050328-adddet-01-BarcodeKala: ' + BarcodeKala);
         try {
             const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
             const response = await fetch(urlApi_SelectShobehJashnvareh, {
@@ -1219,7 +1221,7 @@ export default function ShoppingbasketComponent({
             } else {
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                    setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -1229,7 +1231,7 @@ export default function ShoppingbasketComponent({
                     //     "#mymodalForWarning .errorInMymodalForWarning"
                     // );
                     // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                    //     span.innerText = "لطفا ابتدا لاگین شوید";
                     // }
                 }
                 ////zare_nk_050311_added_st
@@ -1269,7 +1271,7 @@ export default function ShoppingbasketComponent({
         }
 
     }
- 
+
     ////zare_nk_041128_commened_st
     // async function ManualInputBarcode(
     //     event: React.KeyboardEvent<HTMLInputElement>
@@ -1344,7 +1346,7 @@ export default function ShoppingbasketComponent({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
             ////zare_nk_041129_commented_st
             //   const bootstrap = await getBootstrap();
             //   const mymodalForWarning = new bootstrap.Modal(
@@ -1355,7 +1357,7 @@ export default function ShoppingbasketComponent({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             //   );
             //   if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            //     span.innerText = "لطفا ابتدا لاگین شوید";
             //   }
             ////zare_nk_041129_commented_end
             return;
@@ -1478,7 +1480,7 @@ export default function ShoppingbasketComponent({
                 console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                    setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -1488,7 +1490,7 @@ export default function ShoppingbasketComponent({
                     //     "#mymodalForWarning .errorInMymodalForWarning"
                     // );
                     // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                    //     span.innerText = "لطفا ابتدا لاگین شوید";
                     // }
                 }
                 ////zare_nk_050311_added_st
@@ -1542,7 +1544,7 @@ export default function ShoppingbasketComponent({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
             ////zare_nk_041129_commented_st
             //   const bootstrap = await getBootstrap();
             //   const mymodalForWarning = new bootstrap.Modal(
@@ -1553,7 +1555,7 @@ export default function ShoppingbasketComponent({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             //   );
             //   if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            //     span.innerText = "لطفا ابتدا لاگین شوید";
             //   }
             ////zare_nk_041129_commented_end
             return;
@@ -1762,7 +1764,7 @@ export default function ShoppingbasketComponent({
                 console.log('050329-!!response.ok');
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                    setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -1772,7 +1774,7 @@ export default function ShoppingbasketComponent({
                     //     "#mymodalForWarning .errorInMymodalForWarning"
                     // );
                     // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                    //     span.innerText = "لطفا ابتدا لاگین شوید";
                     // }
                 }
                 ////zare_nk_050311_added_st
@@ -2793,7 +2795,7 @@ export default function ShoppingbasketComponent({
                         >
                             <Text
                                 numberOfLines={1}
-                                ellipsizeMode="tail"        
+                                ellipsizeMode="tail"
                                 style={{
                                     color: "red",
                                     fontFamily: "IRANSansWeb(FaNum)_Medium",
@@ -3159,34 +3161,19 @@ export default function ShoppingbasketComponent({
                                     paddingVertical: 0,
                                     paddingHorizontal: 5,
                                     flexDirection: "column",
-                                }}
-                            >
+                                }}>
                                 <Text>{" "}</Text>
                             </View>
-
-                            <View
-                                // className="addressKharejInSabadCont"
-                                style={{
-                                    display: "none", flexDirection: "row",
-                                    marginRight: 5,  ////zare_nk_050316_added
-                                }}
-                            >
-                                <Text style={{ color: "red" }}
-                                // className="addressKharejInSabad"
-                                >
-                                    شما خارج از محدوده ارسال هستید
-                                </Text>
-                            </View>
-
-                            <View
+ 
+                            {/* zare_nk_050415_commented_st(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
+                            {/* <View
                                 // className="StoresTitleCont"
                                 // id="sabadSafheHeader"
                                 style={{
                                     display: 'flex',
                                     flexDirection: "column",
                                     marginRight: 5,  ////zare_nk_050316_added
-                                }}
-                            >
+                                }}>
                                 <View style={{
                                     display: "flex",
                                     flexDirection: "row",
@@ -3207,11 +3194,6 @@ export default function ShoppingbasketComponent({
                                                 marginLeft: 10,  ////zare_nk_050316_added 
                                             }}
                                         >
-                                            {/* <img
-                                        style={{ width: "64px", borderRadius: "12px" }}
-                                        src="https://img.tochikala.com/Logo/photo14359415832-Copy.jpg"
-                                        alt="هایپر‌کرفو"
-                                    /> */}
                                             <Image
                                                 source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
                                                 style={{ width: 64, height: 64, borderRadius: 12 }}
@@ -3244,7 +3226,8 @@ export default function ShoppingbasketComponent({
                                         </View>
                                     </View>
                                 </View>
-                            </View>
+                            </View> */}
+                            {/* zare_nk_050415_commented_end(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
 
                             <View
                                 // id="sabadItemsContInSafhe"

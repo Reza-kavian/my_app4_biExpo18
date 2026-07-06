@@ -63,7 +63,6 @@ type addRemBtnsAndCountPackegeType = {
     navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
-
 // export default function AddRemBtnsAndCountPackege({
 //     refForfather,
 //     fromShowDetails,
@@ -555,9 +554,9 @@ const AddRemBtnsAndCountPackege = ({
                         ////zare_nk_050316_commented_end
                         boxShadow: '0px 2px 5px rgba(0,0,0,.2)',  ////zare_nk_050316_added
                         overflow: "hidden",
-                        width: "auto",  //zare_nk_041127_added
-                        // borderRadius: '50%',  //zare_nk_041127_added
-                        direction: 'rtl',  //zare_nk_041127_added
+                        width: "auto",  
+                        // borderRadius: '50%',  
+                        direction: 'rtl',  
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
                         // borderRadius: 17,  ////zare_nk_050316_commened
                         borderRadius: 100,    ////zare_nk_050316_added
@@ -763,14 +762,11 @@ const AddRemBtnsAndCountPackege = ({
                                         opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
 
                                         display: 'flex',
-                                        flexDirection: 'row',
-                                        // justifyContent:'center',
-                                        // alignItems:'center',
+                                        flexDirection: 'row', 
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,
                                         backgroundColor: "#1b1c1d",
-
                                     }
                                 ]}
 
@@ -880,7 +876,7 @@ const AddRemBtnsAndCountPackege = ({
                         <View
                             style={{
                                 height: "100%",
-                                // display: "flex",
+                                display: "flex",  ////zare_nk_050415_added
                                 justifyContent: "center",
                                 alignItems: "center",
                                 alignContent: "center",
@@ -943,9 +939,7 @@ const AddRemBtnsAndCountPackege = ({
 
                                         ////zare_nk_050316_added_st
                                         display: 'flex',
-                                        flexDirection: 'row',
-                                        // justifyContent:'center',
-                                        // alignItems:'center',
+                                        flexDirection: 'row', 
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,
@@ -1116,9 +1110,7 @@ const AddRemBtnsAndCountPackege = ({
                                         // borderColor: 'blue',
 
                                         display: 'flex',
-                                        flexDirection: 'row',
-                                        // justifyContent:'center',
-                                        // alignItems:'center',
+                                        flexDirection: 'row', 
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,

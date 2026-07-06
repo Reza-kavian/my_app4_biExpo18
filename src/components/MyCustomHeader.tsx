@@ -235,7 +235,8 @@ const MyCustomHeader = ({
           ////zare_nk_050317_added_end
         }}
       >
-        <TouchableOpacity
+        {/* zare_nk_050415_commented_st(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
+        {/* <TouchableOpacity
           onPress={() => {
             navigation.navigate("Home")
           }}
@@ -249,7 +250,8 @@ const MyCustomHeader = ({
             source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
             style={{ width: 40, height: 40, borderRadius: 7 }}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
+        {/* zare_nk_050415_commented_end(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
       </View>
 
       {/* دکمه‌ها سمت راست */}

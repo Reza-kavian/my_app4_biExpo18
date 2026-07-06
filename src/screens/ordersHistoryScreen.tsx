@@ -103,7 +103,7 @@ export default function ShallowRoutingExample({
 
     ////zare_nk_041202_added_end(moadele @media baraye responsive kardane site) 
 
-    type sumValsForForooshSatrType = { 
+    type sumValsForForooshSatrType = {
         // ShomarehFaktorForoosh: number; ////zare_nk_050328_commented
         IdFaktorForoosh: number;
         TarikhSefaresh: string;
@@ -199,7 +199,7 @@ export default function ShallowRoutingExample({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -209,7 +209,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             // );
             // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+            //     span.innerText = "لطفا ابتدا لاگین شوید";
             // } 
             return;
         } else {
@@ -264,7 +264,7 @@ export default function ShallowRoutingExample({
                 } else {
                     if (response.status == 401) {
                         setIsOpenedMymodalForWarning(true);
-                        setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                        setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                         // const bootstrap = await getBootstrap();
                         // const mymodalForWarning = new bootstrap.Modal(
                         //     document.getElementById("mymodalForWarning")
@@ -274,7 +274,7 @@ export default function ShallowRoutingExample({
                         //     "#mymodalForWarning .errorInMymodalForWarning"
                         // );
                         // if (span instanceof HTMLElement) {
-                        //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                        //     span.innerText = "لطفا ابتدا لاگین شوید";
                         // }
                     }
                 }
@@ -339,7 +339,7 @@ export default function ShallowRoutingExample({
             const token = await getCookie("token");
             if (token == null) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")
@@ -349,7 +349,7 @@ export default function ShallowRoutingExample({
                 //     "#mymodalForWarning .errorInMymodalForWarning"
                 // );
                 // if (span instanceof HTMLElement) {
-                //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                //     span.innerText = "لطفا ابتدا لاگین شوید";
                 // }  
                 return;
             } else {
@@ -397,7 +397,7 @@ export default function ShallowRoutingExample({
                             // }
                         } else if (data.status == 0) {
                             var result = JSON.parse(data.data.list);
-                            console.log('zare_nk_041123-result: ' + JSON.stringify(result));
+                            console.log('zare_nk_050415-Api_SelectFaktorForooshTitr-result: ' + JSON.stringify(result));
                             console.log('zare_nk_041123-resresult.lengthult: ' + result.length);
                             if (result.length == 0) {
                                 setBisatr(true);
@@ -409,7 +409,7 @@ export default function ShallowRoutingExample({
                     } else {
                         if (response.status == 401) {
                             setIsOpenedMymodalForWarning(true);
-                            setWarningTextInMymodalForWarning("لطفا ابتدا آنلاین شوید");
+                            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
                             // const bootstrap = await getBootstrap();
                             // const mymodalForWarning = new bootstrap.Modal(
                             //     document.getElementById("mymodalForWarning")
@@ -419,7 +419,7 @@ export default function ShallowRoutingExample({
                             //     "#mymodalForWarning .errorInMymodalForWarning"
                             // );
                             // if (span instanceof HTMLElement) {
-                            //     span.innerText = "لطفا ابتدا آنلاین شوید";
+                            //     span.innerText = "لطفا ابتدا لاگین شوید";
                             // }
                         }
                     }
@@ -971,7 +971,7 @@ export default function ShallowRoutingExample({
                                         {ForooshSatrHideForooshTitr != null && (
                                             <Text style={{ marginLeft: 10, fontSize: 16 }}>
                                                 {/* {ForooshSatrHideForooshTitr.JamTakhfifSatr?.toLocaleString() ?? 0} */}
-                                                 {ForooshSatrHideForooshTitr.JamTakhfifTitr?.toLocaleString() ?? 0}
+                                                {ForooshSatrHideForooshTitr.JamTakhfifTitr?.toLocaleString() ?? 0}
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{jamTakhfifSatr?.toLocaleString() ?? ''}</span> */}
@@ -1100,42 +1100,35 @@ export default function ShallowRoutingExample({
                                             }}
                                         >
                                             <View style={{ display: "flex", flexDirection: "row" }}>
-                                                <View
+                                                {/* zare_nk_050415_commented_st(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam)) */}
+                                                {/* <View
                                                     style={{
                                                         display: "flex",
                                                         flexDirection: "column",
                                                         marginLeft: 10,
                                                     }}
                                                 >
-                                                    <View
-                                                        // className="rounded-pilll"
+                                                    <View // className="rounded-pilll"
                                                         style={{
                                                             display: "flex",
                                                             flexDirection: "row",
                                                             // padding: "0px 10px",
                                                             // paddingVertical: 0,
                                                             // paddingHorizontal: 10,
-                                                        }}
-                                                    >
-                                                        {/* <img
-                                                    style={{ width: "44px" }}
-                                                    src="https://img.tochikala.com/Logo/photo14359415832-Copy.jpg"
-                                                    alt="هایپر&zwnj;کرفو"
-                                                /> */}
+                                                        }}> 
                                                         <Image
                                                             source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
                                                             style={{ width: 44, height: 44, }}
                                                         />
                                                     </View>
-                                                </View>
-
+                                                </View> */}
+                                                {/* zare_nk_050415_commented_end(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
                                                 <View
                                                     style={{
                                                         display: "none",
                                                         flexDirection: "column",
                                                         justifyContent: "space-around",
-                                                    }}
-                                                >
+                                                    }} >
                                                     <View
                                                         style={{
                                                             // flex: "0 0 auto",

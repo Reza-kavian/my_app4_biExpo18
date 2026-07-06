@@ -1215,7 +1215,8 @@ export default function HomeScreen({
         if (result.status != 0) {
           console.log("050325-getIdShobeFrom-result.status != 0");
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0] + '-فروشگاه یافت نشد');
+          setWarningTextInMymodalForWarning(result.errors[0] + '-شما خارج از محدوده فروشگاه هستید');
+          await AsyncStorage.removeItem("currentLocation");   ////zare_nk_050415_added
         } else if (result.status == 0) {
           console.log("050325-getIdShobeFrom-result.status == 0");
           if (result.data.list == undefined) {
@@ -1224,10 +1225,11 @@ export default function HomeScreen({
             setWarningTextInMymodalForWarning(() => {
               return (
                 result.message.length == 0
-                  ? "فروشگاه یافت نشد"
-                  : result.message + '-فروشگاه یافت نشد'
+                  ? "شما خارج از محدوده فروشگاه هستید"
+                  : result.message + '-شما خارج از محدوده فروشگاه هستید'
               )
             });
+            await AsyncStorage.removeItem("currentLocation");   ////zare_nk_050415_added
             return;
           }
           var parsedList = JSON.parse(result.data.list);
@@ -1236,7 +1238,8 @@ export default function HomeScreen({
           if (parsedList.length == 0) {
             console.log("050325-getIdShobeFrom-parsedList.length == 0");
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning('فروشگاه یافت نشد');
+            setWarningTextInMymodalForWarning('شما خارج از محدوده فروشگاه هستید');
+            await AsyncStorage.removeItem("currentLocation");   ////zare_nk_050415_added
             return;
           }
 
@@ -1280,7 +1283,8 @@ export default function HomeScreen({
         }
         else {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("فروشگاه یافت نشد");
+          setWarningTextInMymodalForWarning("شما خارج از محدوده فروشگاه هستید");
+          await AsyncStorage.removeItem("currentLocation");   ////zare_nk_050415_added
         }
       }
     } catch (error) {
@@ -1301,7 +1305,7 @@ export default function HomeScreen({
           console.log('050325-error.message: ' + error.message);
         }
       } else {
-        WarningText = String(error) + '-فروشگاه یافت نشد';
+        WarningText = String(error) + '-خطا در دریافت شعبه';
       }
       setWarningTextInMymodalForWarning(() => {
         return (WarningText)

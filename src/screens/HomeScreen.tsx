@@ -2089,7 +2089,7 @@ export default function HomeScreen({
     }
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     console.log('050327-ar01-addToCartInIndex-else 1');
-    try {
+    try {    
       console.log('050327-ar02-addToCartInIndex-else 1');
       var TedadOut = 0;
       var TedadOuttoAjax = 0;

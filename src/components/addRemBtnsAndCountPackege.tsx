@@ -380,6 +380,7 @@ const AddRemBtnsAndCountPackege = ({
                                         backgroundColor: "#1b1c1d",
                                     }
                                 ]}
+                                disabled={Boolean(Number(bishAzMaxTedadYaMojoodi))}  ////zare_nk_050415_added
                                 onPress={() => { handlerForAddClick() }}
                                 activeOpacity={0.1}
                             >

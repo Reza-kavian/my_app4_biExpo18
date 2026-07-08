@@ -1974,7 +1974,7 @@ export default function HomeScreen({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala1,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala1s(ba c koochike!))    
+              BarcodeKala: parsedList[0].BarcodeKala,     
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",

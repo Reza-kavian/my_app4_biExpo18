@@ -536,7 +536,7 @@ export default function ShoppingbasketComponent({
                             NameBerand: parsedList[0].NameBerand,
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            BarcodeKala: parsedList[0].BarcodeKala1,  ////zare_nk_050330_nokteh(pasokhe apiye select_kala hamyar BarcodeKala1s(ba c koochike!))
+                            BarcodeKala: parsedList[0].BarcodeKala,  
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#DetailsInfoCont",
@@ -1498,8 +1498,7 @@ export default function ShoppingbasketComponent({
                     setIsOpenedMymodalForWarning(true);
                     setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
                 }
-                ////zare_nk_050311_added_end
-
+                ////zare_nk_050311_added_end 
             }
         } catch (error) {
             ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 

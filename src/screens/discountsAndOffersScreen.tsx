@@ -65,7 +65,7 @@ type addRemParamType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  Mojoodi: number; ////zare_nk_050418_added 
   MaxTedad: number;
   father: any;
   bishAzMaxTedadYaMojoodi: number | null;
@@ -85,7 +85,7 @@ type offerRowsType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  Mojoodi: number;  ////zare_nk_050418_added 
   MaxTedad: number;
   father: any;
   refForfather: RefObject<string | null>;
@@ -300,7 +300,7 @@ export default function ShallowRoutingExample({
     ////zare_nk_050318_commented_st
     // if (token == null) {
     //   setIsOpenedMymodalForWarning(true);
-    //   setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+    //   setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
     //   // const bootstrap = await getBootstrap();
     //   // const mymodalForWarning = new bootstrap.Modal(
     //   //     document.getElementById("mymodalForWarning")
@@ -310,7 +310,7 @@ export default function ShallowRoutingExample({
     //   //     "#mymodalForWarning .errorInMymodalForWarning"
     //   // );
     //   // if (span instanceof HTMLElement) {
-    //   //     span.innerText = "لطفا ابتدا لاگین شوید";
+    //   //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
     //   // }
     //   return;  //zare_nk_041130_added
     // }
@@ -344,9 +344,10 @@ export default function ShallowRoutingExample({
         const data = await response.json();
         var result = data;
         console.log('050403-ShowDetails called!-result: ' + JSON.stringify(result));
+
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -356,7 +357,7 @@ export default function ShallowRoutingExample({
           //     "#mymodalForWarning .modal-body span"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = result.errors[0];
+          //     span.innerText = result.message;
           // }
         } else if (result.status == 0) {
           if (result.data.list == undefined) {
@@ -385,6 +386,7 @@ export default function ShallowRoutingExample({
             return;
           }
           var parsedList = JSON.parse(result.data.list);
+          console.log('123123-parsedList[0].Mojoodi: ' + parsedList[0].Mojoodi + '123123-parsedList[0].MM: ' + parsedList[0].MM)
           if (parsedList.length == 0) {
             setBisatrInProductDet(true);
             // const productExist = document.getElementById("productExist");
@@ -460,7 +462,7 @@ export default function ShallowRoutingExample({
         console.log('050330-ShowDetails called!-!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -470,7 +472,7 @@ export default function ShallowRoutingExample({
           //     "#mymodalForWarning .errorInMymodalForWarning"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = "لطفا ابتدا لاگین شوید";
+          //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
           // }
         }
       }
@@ -685,20 +687,20 @@ export default function ShallowRoutingExample({
             ////zare_nk_050325_added_end(darkhast be apiye Api_SelectKalaShobeh tochikala)
           }),
         });
-        console.log("050332-Api_SelectKalaTakhfifat-residim" );
+        console.log("050332-Api_SelectKalaTakhfifat-residim");
 
         const data = await response.json();
 
         if (response.ok) {
           // Alert.alert('inja-1');
           var result = JSON.parse(data.data.list);
-          console.log('050332-SelectKalaTakhfifat-result.length: ' + result.length);
+          console.log('050332-SelectKalaTakhfifat-result.length: ' + result.length);   ////zare_nk_050418_nokteh(parsafar bayad mojoodi bedeh)
           console.log('050403-SelectKalaTakhfifat-result: ' + JSON.stringify(result));
           if (data.status != 0) {
             // Alert.alert('inja-2');
             // console.log('041210-12-data.status != 0');
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning(data.errors[0]);
+            setWarningTextInMymodalForWarning(data.message);
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -708,7 +710,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             // );
             // if (span instanceof HTMLElement) {
-            //     span.innerText = data.errors[0];
+            //     span.innerText = data.message;
             // }
           } else if (data.status == 0) {
             // Alert.alert('inja-3');
@@ -769,8 +771,7 @@ export default function ShallowRoutingExample({
             //       FeeMasraf: item.FeeMasraf,
             //       BarcodeKala: item.BarCodeKala,
             //       Mojoodi: item.Mojoodi,
-            //       MaxTedad: item.MaxTedad,
-            //       MasrafSatr: item.MasrafSatr,
+            //       MaxTedad: item.MaxTedad, 
             //       father: "#cardcontainer2",
             //       refForfather: refForfather,
             //       bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -799,8 +800,7 @@ export default function ShallowRoutingExample({
             //       FeeMasraf: item.FeeMasraf,
             //       BarcodeKala: item.BarcodeKala,
             //       Mojoodi: item.Mojoodi,
-            //       MaxTedad: item.MaxTedad,
-            //       MasrafSatr: item.MasrafSatr,
+            //       MaxTedad: item.MaxTedad, 
             //       father: "#cardcontainer2",
             //       refForfather: refForfather,
             //       bishAzMaxTedadYaMojoodi: 111,
@@ -821,13 +821,13 @@ export default function ShallowRoutingExample({
                   bishAzMaxTedadYaMojoodi = 1;
                 }
               }
-              ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
-              // else {
-              //   if (item.Mojoodi <= item.TedadDarSabad) {
-              //     bishAzMaxTedadYaMojoodi = 1;
-              //   }
-              // }
-              ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+              ////zare_nk_050418_added_st
+              else {
+                if (item.Mojoodi <= item.TedadDarSabad) {
+                  bishAzMaxTedadYaMojoodi = 1;
+                }
+              }
+              ////zare_nk_050418_added_end
 
               let ForCartContentsDesignTypeLet = 0
 
@@ -852,9 +852,8 @@ export default function ShallowRoutingExample({
                 FeeForoosh: item.FeeForoosh,
                 FeeMasraf: item.FeeMasraf,
                 BarcodeKala: item.BarCodeKala,  ////zare_nk_050330_nokteh(pasokhe apiye hamyar BarCodeKala(ba C bozorge!))
-                // Mojoodi: item.Mojoodi,  ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+                Mojoodi: item.Mojoodi,  ////zare_nk_050418_added 
                 MaxTedad: item.MaxTedad,
-                // MasrafSatr: item.MasrafSatr,   ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde MasrafSatr nadarim) 
                 father: "#cardcontainer2",
                 refForfather: refForfather,
                 bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -879,7 +878,7 @@ export default function ShallowRoutingExample({
           // console.log('!!response.ok')
           if (response.status == 401) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -889,7 +888,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             // );
             // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا لاگین شوید";
+            //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
             // }
           }
         }
@@ -944,7 +943,7 @@ export default function ShallowRoutingExample({
     const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
-      setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+      setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
       ////zare_nk_041129_commented_st
       //   const bootstrap = await getBootstrap();
       //   const mymodalForWarning = new bootstrap.Modal(
@@ -955,7 +954,7 @@ export default function ShallowRoutingExample({
       //     "#mymodalForWarning .errorInMymodalForWarning"
       //   );
       //   if (span instanceof HTMLElement) {
-      //     span.innerText = "لطفا ابتدا لاگین شوید";
+      //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
       //   }
       ////zare_nk_041129_commented_end
       return;
@@ -1009,7 +1008,7 @@ export default function ShallowRoutingExample({
         if (result.status != 0) {
           console.log('050330-addToCartInIndex-result.status != 0');
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -1019,27 +1018,27 @@ export default function ShallowRoutingExample({
           //     "#mymodalForWarning .modal-body span"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = result.errors[0];
+          //     span.innerText = result.message;
           // }
         } else if (result.status == 0) {
           console.log('050330-addToCartInIndex-result.status == 0');
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
           let Tedad = satrInoInResult.Tedad;
-
+          console.log('123123-satrInoInResult: ' + satrInoInResult.Mojoodi + '-addRemParam.Mojoodi: ' + addRemParam.Mojoodi);
           var bishAzMaxTedadYaMojoodi = 0;
           if (addRemParam.MaxTedad != null) {
             if (addRemParam.MaxTedad <= Tedad) {
               bishAzMaxTedadYaMojoodi = 1;
             }
           }
-          ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
-          // else {
-          //   if (addRemParam.Mojoodi <= Tedad) {
-          //     bishAzMaxTedadYaMojoodi = 1;
-          //   }
-          // }
-          ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+          ////zare_nk_050418_added_st
+          else {
+            if (addRemParam.Mojoodi <= Tedad) {
+              bishAzMaxTedadYaMojoodi = 1;
+            }
+          }
+          ////zare_nk_050418_added_end
 
           refForfather.current = addRemParam.father;
 
@@ -1069,8 +1068,8 @@ export default function ShallowRoutingExample({
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
-                // Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050328_commented(dar addRemParam fielde Mojoodi nadarim)
-                Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojood,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim)  ////zare_nk_050403_updated
+                Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050418_added
+                // Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,    ////zare_nk_050418_commented
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
                 refForfather: refForfather,
@@ -1101,8 +1100,7 @@ export default function ShallowRoutingExample({
           //           FeeMasraf: addRemParam.FeeMasraf,
           //           BarcodeKala: addRemParam.BarcodeKala,
           //           Mojoodi: addRemParam.Mojoodi,
-          //           MaxTedad: addRemParam.MaxTedad,
-          //           MasrafSatr: curItem.MasrafSatr,
+          //           MaxTedad: addRemParam.MaxTedad, 
           //           father: "#cardcontainer2",
           //           refForfather: refForfather,
           //           bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -1132,9 +1130,8 @@ export default function ShallowRoutingExample({
                     FeeForoosh: addRemParam.FeeForoosh,
                     FeeMasraf: addRemParam.FeeMasraf,
                     BarcodeKala: addRemParam.BarcodeKala,
-                    // Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+                    Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050418_added
                     MaxTedad: addRemParam.MaxTedad,
-                    // MasrafSatr: curItem.MasrafSatr,   ////zare_nk_050329_commented
                     father: "#cardcontainer2",
                     refForfather: refForfather,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -1155,17 +1152,17 @@ export default function ShallowRoutingExample({
         console.log('050330-addToCartInIndex-!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
-          //     document.getElementById("mymodalForWarning")
+          //     document.getElementById("mymodalForWarning"1)
           // );
           // mymodalForWarning.show();
           // const span = document.querySelector(
           //     "#mymodalForWarning .errorInMymodalForWarning"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = "لطفا ابتدا لاگین شوید";
+          //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
           // }
         }
       }
@@ -1212,7 +1209,7 @@ export default function ShallowRoutingExample({
     const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
-      setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+      setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
       ////zare_nk_041129_commented_st
       //   const bootstrap = await getBootstrap();
       //   const mymodalForWarning = new bootstrap.Modal(
@@ -1223,7 +1220,7 @@ export default function ShallowRoutingExample({
       //     "#mymodalForWarning .errorInMymodalForWarning"
       //   );
       //   if (span instanceof HTMLElement) {
-      //     span.innerText = "لطفا ابتدا لاگین شوید";
+      //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
       //   }
       ////zare_nk_041129_commented_end
       return;
@@ -1267,7 +1264,7 @@ export default function ShallowRoutingExample({
       const data = await response.json();
       if (response.ok) {
         var result = data;
-        console.log('050403-result in rem: '+JSON.stringify(result)); 
+        console.log('050403-result in rem: ' + JSON.stringify(result));
         if (result.status == -1000) {
           ////zare_nk_041129_commented_st
           // const inputGroup = document.querySelector(
@@ -1292,7 +1289,7 @@ export default function ShallowRoutingExample({
           // }
           // refForfather.current = addRemParam.father;
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const adameSabteNahaeiModal = new bootstrap.Modal(
           //     document.getElementById("adameSabteNahaeiModal")
@@ -1302,13 +1299,13 @@ export default function ShallowRoutingExample({
           //     "HoshdarInAdameSabteNahaeiModal"
           // );
           // if (HoshdarInAdameSabteNahaeiModalTag instanceof HTMLElement) {
-          //     HoshdarInAdameSabteNahaeiModalTag.innerText = result.errors[0];
+          //     HoshdarInAdameSabteNahaeiModalTag.innerText = result.message;
           // }
           ////zare_nk_041129_commented_end
         }
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -1318,7 +1315,7 @@ export default function ShallowRoutingExample({
           //     "#mymodalForWarning .modal-body span"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = result.errors[0];
+          //     span.innerText = result.message;
           // }
         } else if (result.status == 0) {
           // console.log('041116-result.status == 0'); 
@@ -1326,22 +1323,21 @@ export default function ShallowRoutingExample({
           // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
 
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
-          let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
-          let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
-
+          let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(age ba remove kardan 0 beshe tedad parsafer data:[] miferesteh, pas satrInoInResult==undefined misheh)  
+          let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;    
           var bishAzMaxTedadYaMojoodi = 0;
           if (addRemParam.MaxTedad != null) {
             if (addRemParam.MaxTedad <= Tedad) {
               bishAzMaxTedadYaMojoodi = 1;
             }
           }
-          ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
-          // else {
-          //   if (addRemParam.Mojoodi <= Tedad) {
-          //     bishAzMaxTedadYaMojoodi = 1;
-          //   }
-          // }
-          ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+          ////zare_nk_050418_added_st
+          else {
+            if (addRemParam.Mojoodi <= Tedad) {
+              bishAzMaxTedadYaMojoodi = 1;
+            }
+          }
+          ////zare_nk_050418_added_end
 
           refForfather.current = addRemParam.father;
 
@@ -1370,8 +1366,8 @@ export default function ShallowRoutingExample({
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
-                // Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050328_commented(dar addRemParam fielde Mojoodi nadarim)
-                Mojoodi:  satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,    ////zare_nk_050328_added(dar satrInoInResult fielde Mojoodi darim)  ////zare_nk_050403_updated
+                Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050418_added
+                // Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,     ////zare_nk_050418_commented
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
                 refForfather: refForfather,
@@ -1401,8 +1397,7 @@ export default function ShallowRoutingExample({
           //           FeeMasraf: addRemParam.FeeMasraf,
           //           BarcodeKala: addRemParam.BarcodeKala,
           //           Mojoodi: addRemParam.Mojoodi,
-          //           MaxTedad: addRemParam.MaxTedad,
-          //           MasrafSatr: curItem.MasrafSatr,
+          //           MaxTedad: addRemParam.MaxTedad, 
           //           father: "#cardcontainer2",
           //           refForfather: refForfather,
           //           bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -1432,10 +1427,8 @@ export default function ShallowRoutingExample({
                     FeeForoosh: addRemParam.FeeForoosh,
                     FeeMasraf: addRemParam.FeeMasraf,
                     BarcodeKala: addRemParam.BarcodeKala,
-                    // Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
-
+                    Mojoodi: addRemParam.Mojoodi,     ////zare_nk_0503418_added
                     MaxTedad: addRemParam.MaxTedad,
-                    // MasrafSatr: curItem.MasrafSatr,   ////zare_nk_050329_commented
                     father: "#cardcontainer2",
                     refForfather: refForfather,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
@@ -1448,46 +1441,13 @@ export default function ShallowRoutingExample({
               // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
               return curItem;
             })
-          })
-          ////zare_nk_050321_added_alan_end
-
-          if (Tedad == 0) {
-            // alert('areeee');
-            ////zare_nk_041129_commented_st
-            // const inputGroup = document.querySelector(
-            //   ".ForCart-" + addRemParam.IdKala + " .input-group"
-            // );
-            // if (inputGroup) {
-            //   let parent = inputGroup.closest(".flxpedar2_new");
-            //   if (parent) {
-            //     if (JSON.parse(result.data.titr).length == 0) {
-            //       parent.remove();
-            //     }
-            //   }
-            // }
-            ////zare_nk_041129_commented_end
-          }
-          else if (Tedad == addRemParam.ZaribForoosh) {
-            ////zare_nk_041129_commented_st
-            // let htmlTag;
-            // if (addRemParam.event) {
-            //   htmlTag = addRemParam.event.target as HTMLElement;
-            // }
-
-            // const wrapper = htmlTag?.closest(
-            //   ".flxpedar2_new"
-            // ) as HTMLElement | null;
-            // if (wrapper) {
-            //   wrapper.style.backgroundColor = "inherit";
-            // }
-            ////zare_nk_041129_commented_end
-          }
+          })         
         }
       } else {
         // console.log('041116-!!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -1497,7 +1457,7 @@ export default function ShallowRoutingExample({
           //     "#mymodalForWarning .errorInMymodalForWarning"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = "لطفا ابتدا لاگین شوید";
+          //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
           // }
         }
       }
@@ -1609,7 +1569,7 @@ export default function ShallowRoutingExample({
         <View style={styles.resultOverlay}>
           <View style={styles.resultBox}>
             {/* <Text style={styles.resultTitle}>✅ بارکد شناسایی شد</Text> */}
-            <Text style={styles.resultValue}>
+            <Text style={[styles.resultValue,{fontFamily: "IRANSansWeb(FaNum)_Medium",}]}>
               {warningTextInMymodalForWarning}
             </Text>
 
@@ -2137,7 +2097,7 @@ export default function ShallowRoutingExample({
                                       fontSize: 14, textDecorationLine: "line-through",
                                       fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
                                     }}>
-                                      {ForCartContInProdDetVal.FeeMasraf}
+                                      {ForCartContInProdDetVal.FeeMasraf.toLocaleString()}
                                     </Text>
                                     {/* )} */}
                                   </View>
@@ -2173,7 +2133,7 @@ export default function ShallowRoutingExample({
                                     fontSize: 16,
                                     fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
                                   }}>
-                                    {ForCartContInProdDetVal.FeeForoosh}
+                                    {ForCartContInProdDetVal.FeeForoosh.toLocaleString()}
                                   </Text>
                                 )}
                               </View>
@@ -2344,7 +2304,7 @@ export default function ShallowRoutingExample({
                                 ////zare_nk_041120_added_end
                                 // handlerForAddClick={(e) => {   //zare_nk_041129_commented  
                                 handlerForAddClick={() => {  //zare_nk_041129_added
-                                  console.log('050403-handlerForAddClick in before click +: '+JSON.stringify(ForCartContInProdDetVal));
+                                  console.log('050403-handlerForAddClick in before click +: ' + JSON.stringify(ForCartContInProdDetVal));
                                   return handlerForAddClick(
                                     {
                                       tedadInSabadOrDet: ForCartContInProdDetVal.tedadInSabadOrDet,
@@ -2356,7 +2316,7 @@ export default function ShallowRoutingExample({
                                       FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
                                       FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
                                       BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                                      // Mojoodi: ForCartContInProdDetVal.Mojoodi,    ////zare_nk_050328_commented(dar addRemParamType fielde Mojoodi nadarim)
+                                      Mojoodi: ForCartContInProdDetVal.Mojoodi,    ////zare_nk_050328_commented(dar addRemParamType fielde Mojoodi nadarim)
                                       MaxTedad: ForCartContInProdDetVal.MaxTedad,
                                       father: refForfather.current,
                                       bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,
@@ -2379,7 +2339,7 @@ export default function ShallowRoutingExample({
                                       FeeForoosh: ForCartContInProdDetVal.FeeForoosh,
                                       FeeMasraf: ForCartContInProdDetVal.FeeMasraf,
                                       BarcodeKala: ForCartContInProdDetVal.BarcodeKala,
-                                      // Mojoodi: ForCartContInProdDetVal.Mojoodi,    ////zare_nk_050328_commented(dar addRemParamType fielde Mojoodi nadarim)
+                                      Mojoodi: ForCartContInProdDetVal.Mojoodi,    ////zare_nk_050418_added
                                       MaxTedad: ForCartContInProdDetVal.MaxTedad,
                                       father: refForfather.current,
                                       bishAzMaxTedadYaMojoodi: ForCartContInProdDetVal.bishAzMaxTedadYaMojoodi,

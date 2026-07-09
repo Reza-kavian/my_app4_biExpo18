@@ -1099,7 +1099,7 @@ type SabadRowType = {
     BarcodeKala: string;
     Mojoodi: number;
     MaxTedad: number;
-    MasrafSatr: number;
+    JamForoosh: number;
     father: any;
     refForfather: RefObject<string | null>;
     fromShowDetails: boolean;
@@ -1536,7 +1536,7 @@ function SabadSatrComponent({
                                             // borderColor:'yellow',
                                         }}
                                     >
-                                        <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
+                                        <Text style={{ color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.JamForoosh ? SabadRow.JamForoosh.toLocaleString() : 0}</Text>
                                     </View>
                                     <View
                                         // className="rialInsabad valueStyle"
@@ -1872,7 +1872,7 @@ export default function ShallowRoutingExample({
         ////zare_nk_050318_commented_st
         // if (token == null) {
         //     setIsOpenedMymodalForWarning(true);
-        //     setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+        //     setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
         //     // const bootstrap = await getBootstrap();
         //     // const mymodalForWarning = new bootstrap.Modal(
         //     //     document.getElementById("mymodalForWarning")
@@ -1882,7 +1882,7 @@ export default function ShallowRoutingExample({
         //     //     "#mymodalForWarning .errorInMymodalForWarning"
         //     // );
         //     // if (span instanceof HTMLElement) {
-        //     //     span.innerText = "لطفا ابتدا لاگین شوید";
+        //     //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
         //     // }
         // }
         ////zare_nk_050318_commented_end
@@ -2027,7 +2027,7 @@ export default function ShallowRoutingExample({
         } else {
             if (response.status == 401) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")
@@ -2037,7 +2037,7 @@ export default function ShallowRoutingExample({
                 //     "#mymodalForWarning .errorInMymodalForWarning"
                 // );
                 // if (span instanceof HTMLElement) {
-                //     span.innerText = "لطفا ابتدا لاگین شوید";
+                //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                 // }
             }
             ////zare_nk_050311_added_st
@@ -2249,7 +2249,7 @@ export default function ShallowRoutingExample({
                                 BarcodeKala: item.BarcodeKala,
                                 Mojoodi: item.Mojoodi,
                                 MaxTedad: item.MaxTedad,
-                                MasrafSatr: item.MasrafSatr,
+                                JamForoosh: item.JamForoosh,
                                 father: "#sabadItemsContInSafhe",
                                 refForfather: refForfather,
                                 fromShowDetails: false,
@@ -2262,7 +2262,7 @@ export default function ShallowRoutingExample({
         } else {
             if (response.status == 401) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")
@@ -2272,7 +2272,7 @@ export default function ShallowRoutingExample({
                 //     "#mymodalForWarning .errorInMymodalForWarning"
                 // );
                 // if (span instanceof HTMLElement) {
-                //     span.innerText = "لطفا ابتدا لاگین شوید";
+                //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                 // }
             }
             ////zare_nk_050311_added_st
@@ -2292,7 +2292,7 @@ export default function ShallowRoutingExample({
             const token = await getCookie("token");
             if (token == null) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")
@@ -2302,7 +2302,7 @@ export default function ShallowRoutingExample({
                 //     "#mymodalForWarning .errorInMymodalForWarning"
                 // );
                 // if (span instanceof HTMLElement) {
-                //     span.innerText = "لطفا ابتدا لاگین شوید";
+                //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                 // }
                 return;
             } else {
@@ -2380,7 +2380,7 @@ export default function ShallowRoutingExample({
                     console.log('!!response.ok')
                     if (response.status == 401) {
                         setIsOpenedMymodalForWarning(true);
-                        setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                        setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                         // const bootstrap = await getBootstrap();
                         // const mymodalForWarning = new bootstrap.Modal(
                         //     document.getElementById("mymodalForWarning")
@@ -2390,7 +2390,7 @@ export default function ShallowRoutingExample({
                         //     "#mymodalForWarning .errorInMymodalForWarning"
                         // );
                         // if (span instanceof HTMLElement) {
-                        //     span.innerText = "لطفا ابتدا لاگین شوید";
+                        //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                         // }
                     }
                     ////zare_nk_050311_added_st
@@ -2409,7 +2409,7 @@ export default function ShallowRoutingExample({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -2419,7 +2419,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             // );
             // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا لاگین شوید";
+            //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
             // }
         }
 
@@ -2537,7 +2537,7 @@ export default function ShallowRoutingExample({
         } else {
             if (response.status == 401) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")
@@ -2547,7 +2547,7 @@ export default function ShallowRoutingExample({
                 //     "#mymodalForWarning .errorInMymodalForWarning"
                 // );
                 // if (span instanceof HTMLElement) {
-                //     span.innerText = "لطفا ابتدا لاگین شوید";
+                //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                 // }
             }
             ////zare_nk_050311_added_st
@@ -2633,7 +2633,7 @@ export default function ShallowRoutingExample({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
             ////zare_nk_041129_commented_st
             //   const bootstrap = await getBootstrap();
             //   const mymodalForWarning = new bootstrap.Modal(
@@ -2644,7 +2644,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             //   );
             //   if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا لاگین شوید";
+            //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
             //   }
             ////zare_nk_041129_commented_end
             return;
@@ -2754,7 +2754,7 @@ export default function ShallowRoutingExample({
                     console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
                     if (response.status == 401) {
                         setIsOpenedMymodalForWarning(true);
-                        setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                        setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                         // const bootstrap = await getBootstrap();
                         // const mymodalForWarning = new bootstrap.Modal(
                         //     document.getElementById("mymodalForWarning")
@@ -2764,7 +2764,7 @@ export default function ShallowRoutingExample({
                         //     "#mymodalForWarning .errorInMymodalForWarning"
                         // );
                         // if (span instanceof HTMLElement) {
-                        //     span.innerText = "لطفا ابتدا لاگین شوید";
+                        //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                         // }
                     }
                     ////zare_nk_050311_added_st
@@ -2801,7 +2801,7 @@ export default function ShallowRoutingExample({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
             ////zare_nk_041129_commented_st
             //   const bootstrap = await getBootstrap();
             //   const mymodalForWarning = new bootstrap.Modal(
@@ -2812,7 +2812,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             //   );
             //   if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا لاگین شوید";
+            //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
             //   }
             ////zare_nk_041129_commented_end
             return;
@@ -2986,7 +2986,7 @@ export default function ShallowRoutingExample({
                 console.log('041116-!!response.ok');
                 if (response.status == 401) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                    setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -2996,7 +2996,7 @@ export default function ShallowRoutingExample({
                     //     "#mymodalForWarning .errorInMymodalForWarning"
                     // );
                     // if (span instanceof HTMLElement) {
-                    //     span.innerText = "لطفا ابتدا لاگین شوید";
+                    //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                     // }
                 }
                 ////zare_nk_050311_added_st

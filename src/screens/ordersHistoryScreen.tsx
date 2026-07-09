@@ -199,7 +199,7 @@ export default function ShallowRoutingExample({
         const token = await getCookie("token");
         if (token == null) {
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+            setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -209,7 +209,7 @@ export default function ShallowRoutingExample({
             //     "#mymodalForWarning .errorInMymodalForWarning"
             // );
             // if (span instanceof HTMLElement) {
-            //     span.innerText = "لطفا ابتدا لاگین شوید";
+            //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
             // } 
             return;
         } else {
@@ -264,7 +264,7 @@ export default function ShallowRoutingExample({
                 } else {
                     if (response.status == 401) {
                         setIsOpenedMymodalForWarning(true);
-                        setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                        setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                         // const bootstrap = await getBootstrap();
                         // const mymodalForWarning = new bootstrap.Modal(
                         //     document.getElementById("mymodalForWarning")
@@ -274,7 +274,7 @@ export default function ShallowRoutingExample({
                         //     "#mymodalForWarning .errorInMymodalForWarning"
                         // );
                         // if (span instanceof HTMLElement) {
-                        //     span.innerText = "لطفا ابتدا لاگین شوید";
+                        //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                         // }
                     }
                 }
@@ -339,7 +339,7 @@ export default function ShallowRoutingExample({
             const token = await getCookie("token");
             if (token == null) {
                 setIsOpenedMymodalForWarning(true);
-                setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                 // const bootstrap = await getBootstrap();
                 // const mymodalForWarning = new bootstrap.Modal(
                 //     document.getElementById("mymodalForWarning")
@@ -349,7 +349,7 @@ export default function ShallowRoutingExample({
                 //     "#mymodalForWarning .errorInMymodalForWarning"
                 // );
                 // if (span instanceof HTMLElement) {
-                //     span.innerText = "لطفا ابتدا لاگین شوید";
+                //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                 // }  
                 return;
             } else {
@@ -409,7 +409,7 @@ export default function ShallowRoutingExample({
                     } else {
                         if (response.status == 401) {
                             setIsOpenedMymodalForWarning(true);
-                            setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+                            setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
                             // const bootstrap = await getBootstrap();
                             // const mymodalForWarning = new bootstrap.Modal(
                             //     document.getElementById("mymodalForWarning")
@@ -419,7 +419,7 @@ export default function ShallowRoutingExample({
                             //     "#mymodalForWarning .errorInMymodalForWarning"
                             // );
                             // if (span instanceof HTMLElement) {
-                            //     span.innerText = "لطفا ابتدا لاگین شوید";
+                            //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
                             // }
                         }
                     }
@@ -936,17 +936,17 @@ export default function ShallowRoutingExample({
                                     }}
                                 >
                                     <View style={{ display: "flex", flexDirection: "row" }}>
-                                        <Text style={{ fontSize: 14, }}>مجموع خرید شما</Text>
+                                        <Text style={{ fontSize: 13, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>مجموع خرید شما</Text>
                                     </View>
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         {ForooshSatrHideForooshTitr != null && (
-                                            <Text style={{ marginLeft: 10, fontSize: 16 }}>
+                                            <Text style={{ marginLeft: 10, fontSize: 14, color: "#888888", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>
                                                 {ForooshSatrHideForooshTitr.MablaghMasraf?.toLocaleString() ??
                                                     ""}
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{MablaghMasraf?.toLocaleString() ?? ''}</span> */}
-                                        <Text style={{ fontSize: 14, }}>ریال</Text>
+                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
 
@@ -965,17 +965,17 @@ export default function ShallowRoutingExample({
                                     }}
                                 >
                                     <View style={{ display: "flex", flexDirection: "row" }}>
-                                        <Text style={{ fontSize: 14, }}>سود شما از این خرید</Text>
+                                        <Text style={{ fontSize: 13, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>سود شما از این خرید</Text>
                                     </View>
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         {ForooshSatrHideForooshTitr != null && (
-                                            <Text style={{ marginLeft: 10, fontSize: 16 }}>
+                                            <Text style={{ marginLeft: 10, fontSize: 14, color: "#888888", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>
                                                 {/* {ForooshSatrHideForooshTitr.JamTakhfifSatr?.toLocaleString() ?? 0} */}
                                                 {ForooshSatrHideForooshTitr.JamTakhfifTitr?.toLocaleString() ?? 0}
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{jamTakhfifSatr?.toLocaleString() ?? ''}</span> */}
-                                        <Text>ریال</Text>
+                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
 
@@ -995,17 +995,17 @@ export default function ShallowRoutingExample({
                                     }}
                                 >
                                     <View style={{ display: "flex", flexDirection: "row" }}>
-                                        <Text style={{ fontSize: 14, }}>کد تخفیف</Text>
+                                        <Text style={{ fontSize: 13, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>کد تخفیف</Text>
                                     </View>
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         {ForooshSatrHideForooshTitr != null && (
-                                            <Text style={{ marginLeft: 10, fontSize: 16 }}>
+                                            <Text style={{ marginLeft: 10, fontSize: 14, color: "#888888", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>
                                                 {ForooshSatrHideForooshTitr.JamTakhfifTitr?.toLocaleString() ??
                                                     0}
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{JamTakhfifTitr?.toLocaleString() ?? ''}</span> */}
-                                        <Text>ریال</Text>
+                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
                                 {/* zare_nk_041123_added_end(codeTakhfif zirmajmooeye JamTakhfifTitr hast) */}
@@ -1021,18 +1021,18 @@ export default function ShallowRoutingExample({
                                     }}
                                 >
                                     <View style={{ display: "flex", flexDirection: "row" }}>
-                                        <Text style={{ fontSize: 14, }}>مبلغ خالص</Text>
+                                        <Text style={{ fontSize: 13, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>مبلغ خالص</Text>
                                     </View>
                                     <View style={{ display: "flex", flexDirection: "row" }}>
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{MablaghKhales?.toLocaleString() ?? ''}</span> */}
 
                                         {ForooshSatrHideForooshTitr != null && (
-                                            <Text style={{ marginLeft: 10, fontSize: 16 }}>
+                                            <Text style={{ marginLeft: 10, fontSize: 14, color: "#888888", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>
                                                 {ForooshSatrHideForooshTitr.MablaghKhales?.toLocaleString() ??
                                                     ""}
                                             </Text>
                                         )}
-                                        <Text>ریال</Text>
+                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
                             </View>

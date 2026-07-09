@@ -41,7 +41,7 @@ type addRemParamType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  Mojoodi: number;      ////zare_nk_050418_added
   MaxTedad: number;
   father: any;
   bishAzMaxTedadYaMojoodi: number | null;
@@ -61,7 +61,7 @@ type offerRowsType = {
   FeeForoosh: number;
   FeeMasraf: number;
   BarcodeKala: string;
-  // Mojoodi: number;    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  Mojoodi: number;   ////zare_nk_050418_added
   MaxTedad: number;
   father: any;
   refForfather: RefObject<string | null>;
@@ -427,7 +427,7 @@ const OfferSatrComponent = ({
                     FeeForoosh: offerRow.FeeForoosh,
                     FeeMasraf: offerRow.FeeMasraf,
                     BarcodeKala: offerRow.BarcodeKala,
-                    // Mojoodi: offerRow.Mojoodi,    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+                    Mojoodi: offerRow.Mojoodi,   ////zare_nk_050418_added
                     MaxTedad: offerRow.MaxTedad,
                     father: offerRow.father,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
@@ -450,7 +450,7 @@ const OfferSatrComponent = ({
                     FeeForoosh: offerRow.FeeForoosh,
                     FeeMasraf: offerRow.FeeMasraf,
                     BarcodeKala: offerRow.BarcodeKala,
-                    // Mojoodi: offerRow.Mojoodi,    ////zare_nk_050328_commented(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+                    Mojoodi: offerRow.Mojoodi,       ////zare_nk_050418_added
                     MaxTedad: offerRow.MaxTedad,
                     father: offerRow.father,
                     bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
@@ -651,7 +651,7 @@ const OfferSatrComponent = ({
             </Text>
             <Text
               style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}
-            >تومان</Text>
+            >ریال</Text>
           </View>
         </View>
 

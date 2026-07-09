@@ -1183,7 +1183,7 @@ export default function HomeScreen({
 
   ////zare_nk_050325_added_st(baraye api gereftane IdShobe az locationesh)
   async function getIdShobeFrom(latitude: number, longitude: number) {
-    console.log("050325-getIdShobeFrom-latitude: " + latitude + "-longitude: " + longitude);
+    console.log("050325-getIdShobeFrom-latitude2: " + latitude + "-longitude: " + longitude);
     //  const token = await getCookie("token");   /////zare_nk_050325_commented(chon in api niazi be online boodan nadareh)
     ////zare_nk_050325_commented_st(tagheire api be hamyarForoosh)
     // let ApiUrl = "https://api.tochikala.com/api/";
@@ -1212,10 +1212,11 @@ export default function HomeScreen({
         console.log("050325-getIdShobeFrom-response.ok");
         const data = await response.json();
         var result = data;
+        console.log('result ooo: '+JSON.stringify(result));
         if (result.status != 0) {
           console.log("050325-getIdShobeFrom-result.status != 0");
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0] + '-شما خارج از محدوده فروشگاه هستید');
+          setWarningTextInMymodalForWarning(result.message + '-شما خارج از محدوده فروشگاه هستید');
           await AsyncStorage.removeItem("currentLocation");   ////zare_nk_050415_added
         } else if (result.status == 0) {
           console.log("050325-getIdShobeFrom-result.status == 0");
@@ -1279,7 +1280,7 @@ export default function HomeScreen({
         if (response.status == 401) {
           ////zare_nk_050325_nokteh(albate midoonim apiye Api_GetShobehByLocation be logine ejbari nemikhad va be statuse 401 nemire inja )  
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
         }
         else {
           setIsOpenedMymodalForWarning(true);
@@ -1812,7 +1813,7 @@ export default function HomeScreen({
     ////zare_nk_050317_commented_st
     // if (token == null) {
     //   setIsOpenedMymodalForWarning(true);
-    //   setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+    //   setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
     //   // const bootstrap = await getBootstrap();
     //   // const mymodalForWarning = new bootstrap.Modal(
     //   //     document.getElementById("mymodalForWarning")
@@ -1822,7 +1823,7 @@ export default function HomeScreen({
     //   //     "#mymodalForWarning .errorInMymodalForWarning"
     //   // );
     //   // if (span instanceof HTMLElement) {
-    //   //     span.innerText = "لطفا ابتدا لاگین شوید";
+    //   //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
     //   // }
     // }
     ////zare_nk_050317_commented_end
@@ -1875,7 +1876,7 @@ export default function HomeScreen({
         if (result.status != 0) {
           // Alert.alert('1-barcodeKala: ' + barcodeKala);
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0] + '-345');
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -1893,7 +1894,7 @@ export default function HomeScreen({
             setWarningTextInMymodalForWarning(() => {
               return (
                 result.message.length == 0
-                  ? "ارتباط با سرور برقرار نشد-678"
+                  ? "ارتباط با سرور برقرار نشد-"
                   : result.message
               )
             });
@@ -1991,7 +1992,7 @@ export default function HomeScreen({
         if (response.status == 401) {
           ////zare_nk_050317_nokteh(albate midoonim apiye Api_SelectKalaShobeh be logine ejbari nemikhad va be statuse 401 nemire inja )  
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
           // modal?.hide();
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
@@ -2002,12 +2003,12 @@ export default function HomeScreen({
           //   "#mymodalForWarning .errorInMymodalForWarning"
           // );
           // if (span instanceof HTMLElement) {
-          //   span.innerText = "لطفا ابتدا لاگین شوید001";
+          //   span.innerText = "لطفا ابتدا وارد حساب کاربری شوید001";
           // }
         }
         else {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد-0123");
+          setWarningTextInMymodalForWarning("ارتباط با سرور برقرار نشد");
           console.log('050326-response.status: ' + response.status + '-response.statusText: ' + response.statusText);
         }
       }
@@ -2075,7 +2076,7 @@ export default function HomeScreen({
     const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
-      setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+      setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
       ////zare_nk_041129_commented_st
       //   const bootstrap = await getBootstrap();
       //   const mymodalForWarning = new bootstrap.Modal(
@@ -2086,7 +2087,7 @@ export default function HomeScreen({
       //     "#mymodalForWarning .errorInMymodalForWarning"
       //   );
       //   if (span instanceof HTMLElement) {
-      //     span.innerText = "لطفا ابتدا لاگین شوید";
+      //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
       //   }
       ////zare_nk_041129_commented_end
       return;
@@ -2143,7 +2144,7 @@ export default function HomeScreen({
         var result = data;
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -2153,7 +2154,7 @@ export default function HomeScreen({
           //     "#mymodalForWarning .modal-body span"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = result.errors[0];
+          //     span.innerText = result.message;
           // }
         } else if (result.status == 0) {
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
@@ -2214,7 +2215,7 @@ export default function HomeScreen({
         console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -2224,7 +2225,7 @@ export default function HomeScreen({
           //     "#mymodalForWarning .errorInMymodalForWarning"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = "لطفا ابتدا لاگین شوید";
+          //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
           // }
         }
         else {
@@ -2274,7 +2275,7 @@ export default function HomeScreen({
     const token = await getCookie("token");
     if (token == null) {
       setIsOpenedMymodalForWarning(true);
-      setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+      setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
       ////zare_nk_041129_commented_st
       //   const bootstrap = await getBootstrap();
       //   const mymodalForWarning = new bootstrap.Modal(
@@ -2285,7 +2286,7 @@ export default function HomeScreen({
       //     "#mymodalForWarning .errorInMymodalForWarning"
       //   );
       //   if (span instanceof HTMLElement) {
-      //     span.innerText = "لطفا ابتدا لاگین شوید";
+      //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
       //   }
       ////zare_nk_041129_commented_end
       return;
@@ -2359,7 +2360,7 @@ export default function HomeScreen({
           ////zare_nk_041130_commented_st
           refForfather.current = addRemParam.father;
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const adameSabteNahaeiModal = new bootstrap.Modal(
           //   document.getElementById("adameSabteNahaeiModal")
@@ -2369,12 +2370,12 @@ export default function HomeScreen({
           //   "HoshdarInAdameSabteNahaeiModal"
           // );
           // if (HoshdarInAdameSabteNahaeiModalTag instanceof HTMLElement) {
-          //   HoshdarInAdameSabteNahaeiModalTag.innerText = result.errors[0];
+          //   HoshdarInAdameSabteNahaeiModalTag.innerText = result.message;
           // }
         }
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]);
+          setWarningTextInMymodalForWarning(result.message);
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -2384,7 +2385,7 @@ export default function HomeScreen({
           //     "#mymodalForWarning .modal-body span"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = result.errors[0];
+          //     span.innerText = result.message;
           // }
         } else if (result.status == 0) {
           console.log('041116-result.status == 0');
@@ -2473,7 +2474,7 @@ export default function HomeScreen({
         console.log('050328-rem-!!response.ok');
         if (response.status == 401) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+          setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -2483,7 +2484,7 @@ export default function HomeScreen({
           //     "#mymodalForWarning .errorInMymodalForWarning"
           // );
           // if (span instanceof HTMLElement) {
-          //     span.innerText = "لطفا ابتدا لاگین شوید";
+          //     span.innerText = "لطفا ابتدا وارد حساب کاربری شوید";
           // }
         }
         else {
@@ -2652,7 +2653,7 @@ export default function HomeScreen({
     // if (token == null) {
     //   // window.location.href = "/login";
     //   setIsOpenedMymodalForWarning(true);
-    //   setWarningTextInMymodalForWarning("لطفا ابتدا لاگین شوید");
+    //   setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");
     //   return;
     // }
     ////zare_nk_050312_commented_end
@@ -3346,7 +3347,7 @@ export default function HomeScreen({
                                       fontSize: 14, textDecorationLine: "line-through",
                                       fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
                                     }}>
-                                      {ForCartContInProdDetVal.FeeMasraf}
+                                      {ForCartContInProdDetVal.FeeMasraf.toLocaleString()}
                                     </Text>
                                     {/* )} */}
                                   </View>
@@ -3382,7 +3383,7 @@ export default function HomeScreen({
                                     fontSize: 16,
                                     fontFamily: "IRANSansWeb(FaNum)_Medium", color: "#322E2E",
                                   }}>
-                                    {ForCartContInProdDetVal.FeeForoosh}
+                                    {ForCartContInProdDetVal.FeeForoosh.toLocaleString()}
                                   </Text>
                                 )}
                               </View>

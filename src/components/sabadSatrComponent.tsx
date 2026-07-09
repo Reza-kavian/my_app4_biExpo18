@@ -1,5 +1,5 @@
-   ////zare_nk_050413_okk(1)
-import { useState, useEffect, useRef, useMemo,memo } from "react";
+////zare_nk_050413_okk(1)
+import { useState, useEffect, useRef, useMemo, memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
@@ -62,7 +62,7 @@ type SabadRowType = {
     BarcodeKala: string;
     Mojoodi: number;
     MaxTedad: number;
-    MasrafSatr: number;
+    JamForoosh: number;
     father: any;
     refForfather: RefObject<string | null>;
     fromShowDetails: boolean;
@@ -360,10 +360,10 @@ const SabadSatrComponent = ({
                                     fontSize: 12,
                                     color: "white",
                                     opacity: 1,
-                                    fontFamily: "IRANSansWeb(FaNum)_Medium", 
+                                    fontFamily: "IRANSansWeb(FaNum)_Medium",
                                     // borderRadius: 8,
                                 }}
-                            > 
+                            >
                                 {`${SabadRow.DarsadTakhfif}%`}
                             </Text>
                         </View>
@@ -525,7 +525,7 @@ const SabadSatrComponent = ({
                                             // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'red',
-                                        }}>تومان</Text>
+                                        }}>ریال</Text>
                                     </View>
                                 </View>
                             </View>
@@ -571,18 +571,18 @@ const SabadSatrComponent = ({
                                             // borderColor:'yellow',
                                         }}
                                     >
-                                        <Text style={{ color: "#3d3d3d", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.MasrafSatr ? SabadRow.MasrafSatr.toLocaleString() : 0}</Text>
+                                        <Text style={{ color: "#3d3d3d", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 13, }}>{SabadRow.JamForoosh ? SabadRow.JamForoosh.toLocaleString() : 0}</Text>
                                     </View>
-                                    <View
-                                        // className="rialInsabad valueStyle"
-                                        style={{ display: "flex", flexDirection: "row" }}
-                                    >
+                                    <View // className="rialInsabad valueStyle"
+                                        style={{ display: "flex", flexDirection: "row" }} >
                                         <Text style={{
                                             color: "#6d6d6d", fontFamily: "IRANSansWeb(FaNum)_Medium", fontSize: 12,
                                             // borderWidth:2,
                                             // borderStyle:'solid',
                                             // borderColor:'blue',
-                                        }}>تومان</Text>
+                                        }}>
+                                            ریال
+                                        </Text>
                                     </View>
                                 </View>
                             </View>

@@ -913,12 +913,14 @@ export default function ShallowRoutingExample({
                                         // padding: "10px 0",
                                         paddingVertical: 10,
                                         paddingHorizontal: 0,
-                                    }}
-                                >
-                                    <Text
-                                        // className="titleStyle"
-                                        style={{ fontSize: 14, }}
-                                    >جزئیات فاکتور</Text>
+                                    }}>
+                                    <Text style={{
+                                        fontSize: 13,
+                                        //  color: "#444343",
+                                        fontFamily: "IRANSansWeb(FaNum)_Medium",
+                                    }}>
+                                        جزئیات فاکتور
+                                    </Text>
                                 </View>
 
                                 <View
@@ -946,7 +948,7 @@ export default function ShallowRoutingExample({
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{MablaghMasraf?.toLocaleString() ?? ''}</span> */}
-                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
 
@@ -975,7 +977,7 @@ export default function ShallowRoutingExample({
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{jamTakhfifSatr?.toLocaleString() ?? ''}</span> */}
-                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
 
@@ -1005,7 +1007,7 @@ export default function ShallowRoutingExample({
                                             </Text>
                                         )}
                                         {/* <span style={{ marginLeft: 10, fontSize: 16 }}>{JamTakhfifTitr?.toLocaleString() ?? ''}</span> */}
-                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
                                 {/* zare_nk_041123_added_end(codeTakhfif zirmajmooeye JamTakhfifTitr hast) */}
@@ -1032,7 +1034,7 @@ export default function ShallowRoutingExample({
                                                     ""}
                                             </Text>
                                         )}
-                                        <Text style={{ fontSize: 12,fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
+                                        <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Bold", color: "#888888", }}>ریال</Text>
                                     </View>
                                 </View>
                             </View>

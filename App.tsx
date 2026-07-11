@@ -35,18 +35,22 @@ const LAST_SEEN_VERSION_KEY = "last_seen_version";
 
 // 📝 متن تغییرات هر نسخه
 const CHANGELOG: Record<string, string[]> = {
-  "1.0.4": [
-    "✅ رفع مشکل اعتبارسنجی توکن",
-    "🚀 بهبود سرعت اجرای برنامه",
-  ],
-  "1.0.5": [
-    "✨ اضافه شدن اسکنر جدید",
-    "🐞 رفع چند باگ جزئی",
-    "✅ رفع مشکل اعتبارسنجی ورود به سیستم",
-    "✅ رفع مشکل ها",
-  ],
-};
-
+  // "1.0.0": [
+  //   "✅ رفع مشکل اعتبارسنجی توکن",
+  //   "🚀 بهبود سرعت اجرای برنامه",
+  // ],
+  // "1.0.1": [
+  //   "✨ اضافه شدن اسکنر جدید",
+  //   "🐞 رفع چند باگ جزئی",
+  //   "✅ رفع مشکل اعتبارسنجی ورود به سیستم",
+  //   "✅ رفع مشکل ها",
+  // ], 
+  "1.0.0": [   
+    // `رفع باگ${"\u200C"}های گزارش${"\u200C"}شده`,  ////zare_k_050420_nokteh(ijade nimSpace ba {"\u200C"})
+    `رفع باگ‌های گزارش‌شده`,  ////zare_k_050420_nokteh(ijade nimSpace ba feshordane kelid haye tarkibiye Ctrl + Shift + 2)
+    "بهبود سرعت اجرای برنامه",
+  ], 
+}; 
 ////zare_nk_050419_added_st(baraye downloade noskheye jadid)
 // مقایسه نسخه‌ها
 // مثال:
@@ -80,10 +84,17 @@ export default function App() {
     const checkVersionAndShowChangelog = async () => {
       try {
         const currentVersion = DeviceInfo.getVersion();
+        ////zare_nk_050420_nokteh_st(in sharte currentVersion=='1.0.0' ra basteh be saligham baraye versione 1.0.0(avvalin verion) comment mikonam ya uncomment)
+        // if(currentVersion=='1.0.0'){
+        //     console.log('zare_nk_050420_avvlin versione ke,emkanate jadid nemikhad');
+        //     return;
+        // }
+        ////zare_nk_050420_nokteh_end(in sharte currentVersion=='1.0.0' ra basteh be saligham baraye versione 1.0.0(avvalin verion) comment mikonam ya uncomment)
         const lastSeenVersion = await AsyncStorage.getItem(
           LAST_SEEN_VERSION_KEY
         );
 
+        console.log('050420-lastSeenVersion: '+lastSeenVersion+'-currentVersion: '+currentVersion);
         if (lastSeenVersion !== currentVersion) {
           const changes = CHANGELOG[currentVersion];
 
@@ -102,14 +113,14 @@ export default function App() {
         }
       } catch (e) {
         console.log("Version check error:", e);
-      }
+      } 
     };
-
+ 
     checkVersionAndShowChangelog();
-
+ 
     ////zare_nk_050419_added_st(baraye downloade noskheye jadid)
     // بررسی وجود نسخه جدید از سرور
-    const checkLatestVersion = async () => {
+    const checkLatestVersion = async () => { 
       console.log('zare_nk_050420-checkLatestVersion called!');
       // var urlInsertToSabad = NextJsApiUrl + "Api_getAppVersion";
       var urlInsertToSabad = 'https://testotmapi.sarinmehr.com/api/v1/Hyper/Api_getAppVersion';
@@ -182,7 +193,7 @@ export default function App() {
             if (parsedList[0].forceUpdate === true) {
               console.log('zare_nk_050420-niaz be update hast-ejbari');
               Alert.alert("نیاز به بروزرسانی",
-                `نسخه جدید ${parsedList[0].latestVersion} منتشر شده است.\n\nبرای ادامه استفاده از برنامه، لطفاً نسخه جدید را نصب کنید.`,
+                `برای ادامه استفاده از برنامه، لطفاً نسخه جدید ${parsedList[0].latestVersion} را نصب کنید.`,
                 [{
                   text: "آپدیت", onPress: async () => {
                     try {
@@ -207,8 +218,8 @@ export default function App() {
             // اگر آپدیت اختیاری باشد
             else {
               console.log('zare_nk_050420-niaz be update hast-gheire ejbari');
-              Alert.alert("نسخه جدید موجود است",
-                `نسخه ${parsedList[0].latestVersion} منتشر شده است.\n\nآیا مایل به دریافت نسخه جدید هستید؟`,
+              Alert.alert(`نسخه جدید ${parsedList[0].latestVersion} موجود است`, 
+                `آیا مایل به دریافت نسخه جدید هستید؟`,
                 [{ text: "بعداً" },
                 {
                   text: "دانلود", onPress: async () => {

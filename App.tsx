@@ -1,4 +1,4 @@
-//my-app/App.tsx   ////zare_nk_050411_okk(1)
+//my-app/App.tsx   ////zare_nk_050420_okk(1)
 import React, { useEffect, useState } from "react";
 import { Alert, Linking } from "react-native";   ////zare_nk_050419_nokteh(Linking ke betoonim az in apk be  biroon(masalan site ha) dar moroorgar hedayat konim)
 import AsyncStorage from "@react-native-async-storage/async-storage";

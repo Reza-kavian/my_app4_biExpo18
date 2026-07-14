@@ -1,4 +1,4 @@
-////zare_nk_050309_okk
+////zare_nk_050423_okk(1)
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -19,8 +19,9 @@ android {
     namespace "com.my_app4_biexpo18"
 
     defaultConfig {
-        applicationId "com.zare.hamyarKharid.Beta"
-        ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar sho az lafze Stable estefadeh mikonam)
+        // applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
+        applicationId "com.zare.hamyarKharid"  ////zare_nk_050423_nokteh(noskheye Production(asli))
+        ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar sho az lafze Stable estefadeh mikonam(ya az lafzi estefadeh nemikonam va com.zare.hamyarKharid kafiye))
 		////  pas mitoonam dar gooshim do noskheh ro kenare ham dashteh basham chon applicationId motefaveti daran)
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion

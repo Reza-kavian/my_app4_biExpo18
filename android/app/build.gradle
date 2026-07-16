@@ -1,4 +1,4 @@
-////zare_nk_050423_okk(1)
+////zare_nk_050425_okk(1)
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -11,6 +11,38 @@ def enableProguardInReleaseBuilds = false
 
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
+////zare_nk_050425_added_st(baraye chand noei boodane hooshmand, na dasti) 
+// def appId = "com.zare.hamyarKharid"   
+// //def appId = "com.zare.hamyarKharid.Beta"   
+// def isBeta = appId.endsWith(".Beta")
+ 
+
+def APP_TYPE_PRODUCTION = "production"
+def APP_TYPE_BETA = "beta"
+
+def appType = APP_TYPE_PRODUCTION
+//def appType = APP_TYPE_BETA 
+
+// بررسی معتبر بودن مقدار appType
+if (appType != APP_TYPE_PRODUCTION && appType != APP_TYPE_BETA) { 
+    throw new RuntimeException("zare_nk_050425_Invalid appType: ${appType}")
+}
+
+def isBeta = appType == APP_TYPE_BETA
+
+def appId = isBeta
+        ? "com.zare.hamyarKharid.Beta"
+        : "com.zare.hamyarKharid"
+
+def appName = isBeta
+        ? "همیار خرید بتا"
+        : "همیار خرید"
+
+def apkName = isBeta
+        ? "hamyarKharid-Beta"
+        : "hamyarKharid"
+////zare_nk_050425_added_end(baraye chand noei boodane hooshmand, na dasti)
+
 android {
     ndkVersion rootProject.ext.ndkVersion
     buildToolsVersion rootProject.ext.buildToolsVersion
@@ -19,10 +51,14 @@ android {
     namespace "com.my_app4_biexpo18"
 
     defaultConfig {
-        // applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
-        applicationId "com.zare.hamyarKharid"  ////zare_nk_050423_nokteh(noskheye Production(asli))
-        ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar sho az lafze Stable estefadeh mikonam(ya az lafzi estefadeh nemikonam va com.zare.hamyarKharid kafiye))
-		////  pas mitoonam dar gooshim do noskheh ro kenare ham dashteh basham chon applicationId motefaveti daran)
+    applicationId appId   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na dasti)
+
+        ////zare_nk_050425_commented_st(baraye chand noei boodane hooshmand, na dasti)
+        // // applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
+        // applicationId "com.zare.hamyarKharid"  ////zare_nk_050423_nokteh(noskheye Production(asli))
+        ////zare_nk_050425_commented_end(baraye chand noei boodane hooshmand, na dasti)
+        // ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar shod az lafze Stable estefadeh mikonam(ya az lafzi estefadeh nemikonam va 
+        // //// com.zare.hamyarKharid kafiye)), pas mitoonam dar gooshim do noskheh ro kenare ham dashteh basham chon applicationId motefaveti daran)
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         // versionCode 6  ////  zare_nk_050129_nokteh(age dar enteshar in versionCode tekrari bashe baese error va hoshdar dar googleplay va bazar myket mishim) 
@@ -30,6 +66,9 @@ android {
 
         versionCode 1  ////  zare_nk_050129_nokteh(age dar enteshar in versionCode tekrari bashe baese error va hoshdar dar googleplay va bazar myket mishim)
         versionName "1.0.0"
+
+        resValue "string", "app_name", appName   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na 
+        //// dasti(resValue name barnameye nabsbshode ra taein mikone va bar \android\app\src\main\res\values\strings.xml olaviat dareh))
     }
     signingConfigs {
         debug {
@@ -38,13 +77,22 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        ////zare_nk_050425_added_st(baraye lahaz kardane releaseKey ke khodam sakhtam bejaye /android/debug.keystore ke barnameh khodesh pishfarz sakhteh va amniati nist)
+        release {
+            storeFile rootProject.file(MYAPP_UPLOAD_STORE_FILE)
+            storePassword MYAPP_UPLOAD_STORE_PASSWORD
+            keyAlias MYAPP_UPLOAD_KEY_ALIAS
+            keyPassword MYAPP_UPLOAD_KEY_PASSWORD
+        }
+        ////zare_nk_050425_added_end(baraye lahaz kardane releaseKey ke khodam sakhtam bejaye /android/debug.keystore ke barnameh khodesh pishfarz sakhteh va amniati nist)
     }
     buildTypes {
         debug {
             signingConfig signingConfigs.debug
         }
         release {
-            signingConfig signingConfigs.debug
+            // signingConfig signingConfigs.debug   ////zare_nk_050425_added_commented(baraye lahaz kardane releaseKey ke khodam sakhtam bejaye /android/debug.keystore ke barnameh khodesh pishfarz sakhteh va amniati nist)
+            signingConfig signingConfigs.release    ////zare_nk_050425_added_st(baraye lahaz kardane releaseKey ke khodam sakhtam bejaye /android/debug.keystore ke barnameh khodesh pishfarz sakhteh va amniati nist)
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -52,8 +100,16 @@ android {
     ////zare_nk_041007_added_st(name apk nasbi pishfarz app-release.apk hast ma dar applicationVariants.all be name delkhah tagheiresh midim)
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
-            def newName = "hamyarKharid-${variant.versionName}.apk"    
+         ////zare_nk_050425_commented_st(baraye chand noei boodane hooshmand, na dasti)
+            // def newName = "hamyarKharid-${variant.versionName}.apk"    
+            // output.outputFileName = newName
+            ////zare_nk_050425_commented_end(baraye chand noei boodane hooshmand, na dasti)
+            ////zare_nk_050425_added_st(baraye chand noei boodane hooshmand, na dasti)
+            // def betaText = isBeta ? "-Beta" : ""
+            // def newName = "hamyarKharid${betaText}-${variant.versionName}.apk"
+            def newName = "${apkName}-${variant.versionName}.apk"
             output.outputFileName = newName
+            ////zare_nk_050425_added_end(baraye chand noei boodane hooshmand, na dasti)           
         }
     }
     ////zare_nk_041007_added_end(name apk nasbi pishfarz app-release.apk hast ma dar applicationVariants.all be name delkhah tagheiresh midim)

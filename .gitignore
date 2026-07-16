@@ -32,6 +32,8 @@ local.properties
 *.hprof
 .cxx/
 *.keystore
+#zare_nk_050425_added(baraye adame enteshare ReleaseKey *.jks ra ezafeh kardam)
+*.jks                  
 !debug.keystore
 .kotlin/
 

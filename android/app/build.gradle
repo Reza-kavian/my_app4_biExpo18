@@ -28,19 +28,13 @@ if (appType != APP_TYPE_PRODUCTION && appType != APP_TYPE_BETA) {
     throw new RuntimeException("zare_nk_050425_Invalid appType: ${appType}")
 }
 
-def isBeta = appType == APP_TYPE_BETA
+def isBeta = (appType == APP_TYPE_BETA)
 
-def appId = isBeta
-        ? "com.zare.hamyarKharid.Beta"
-        : "com.zare.hamyarKharid"
+def appId = isBeta ? "com.zare.hamyarKharid.Beta" : "com.zare.hamyarKharid"
 
-def appName = isBeta
-        ? "همیار خرید بتا"
-        : "همیار خرید"
+def appName = isBeta ? "همیار خرید بتا" : "همیار خرید"
 
-def apkName = isBeta
-        ? "hamyarKharid-Beta"
-        : "hamyarKharid"
+def apkName = isBeta ? "hamyarKharid-Beta" : "hamyarKharid"
 ////zare_nk_050425_added_end(baraye chand noei boodane hooshmand, na dasti)
 
 android {
@@ -54,7 +48,7 @@ android {
     applicationId appId   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na dasti)
 
         ////zare_nk_050425_commented_st(baraye chand noei boodane hooshmand, na dasti)
-        // // applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
+        // //   applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
         // applicationId "com.zare.hamyarKharid"  ////zare_nk_050423_nokteh(noskheye Production(asli))
         ////zare_nk_050425_commented_end(baraye chand noei boodane hooshmand, na dasti)
         // ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar shod az lafze Stable estefadeh mikonam(ya az lafzi estefadeh nemikonam va 

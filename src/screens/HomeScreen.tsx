@@ -2639,7 +2639,7 @@ export default function HomeScreen({
       ////zare_nk_050415_nokteh(shayad location kharej az mahdoodeh hast, ya IsLocationExpiresValid.IsValid==false hast ya 
       ////requestLocationPermission()==false hast ya masalan barname hanooz marahele gereftane locatione karbar va api zadan be Api_GetShobehByLocation va 
       // geraftane shobe va rikhtan dar asyncstorage currentShobeh ra tey nakardeh va chand saniyeye zaman mibareh ta porkoneh currentShobeh ra ya khata bedeh va por nakoneh )    
-      Alert.alert('5678');
+      // Alert.alert('5678');
       return;
     }
     ////zare_nk_050415_added_st(age curentshobe null bood ham return bedeh)

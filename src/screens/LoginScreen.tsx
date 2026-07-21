@@ -373,7 +373,7 @@ export default function LoginScreen({
       if (res.status === 200 && ApiLoginUser2Result.status == 0) {
         // if (ApiLoginUser2Result.status == 0) {
         let token = ApiLoginUser2Result.data.token;
-        console.log("zare_nk_041207-03-token: " + token);
+        console.log("zare_nk_050430-03-token: " + token);
         //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
        
         ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye

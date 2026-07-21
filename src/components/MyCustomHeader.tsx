@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_050413_okk(1)
+// src/components/MyCustomHeader.tsx    //zare_nk_050428_okk(1)
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,

@@ -1,4 +1,4 @@
-//my-app/App.tsx   ////zare_nk_050425_okk(1)
+//my-app/App.tsx   ////zare_nk_050428_okk(1)
 import React, { useEffect, useState } from "react";
 import { Alert, Linking } from "react-native";   ////zare_nk_050419_nokteh(Linking ke betoonim az in apk be  biroon(masalan site ha) dar moroorgar hedayat konim)
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -90,9 +90,7 @@ export default function App() {
         //     return;
         // }
         ////zare_nk_050420_nokteh_end(in sharte currentVersion=='1.0.0' ra basteh be saligham baraye versione 1.0.0(avvalin verion) comment mikonam ya uncomment)
-        const lastSeenVersion = await AsyncStorage.getItem(
-          LAST_SEEN_VERSION_KEY
-        );
+        const lastSeenVersion = await AsyncStorage.getItem(LAST_SEEN_VERSION_KEY);
 
         console.log('050420-lastSeenVersion: ' + lastSeenVersion + '-currentVersion: ' + currentVersion);
         if (lastSeenVersion !== currentVersion) {
@@ -123,7 +121,7 @@ export default function App() {
     const checkLatestVersion = async () => {
       console.log('zare_nk_050420-checkLatestVersion called!');
       // var urlInsertToSabad = 'https://testotmapi.sarinmehr.com/api/v1/Hyper/Api_getAppVersion';
-      var urlInsertToSabad = NextJsApiUrl + "Api_getAppVersion"; 
+      var urlInsertToSabad = NextJsApiUrl + "Api_getAppVersion";
       try {
         const currentVersion = DeviceInfo.getVersion();
         const currentVersionCode = Number(DeviceInfo.getBuildNumber());  ////zare_nk_050423_added(chon getBuildNumber string barmigardooneh man be adad tabdilesh kardam)
@@ -188,7 +186,7 @@ export default function App() {
               "latestVersionCode":2,  ////zare_nk_050423_added
               forceUpdate:false,
               downloadUrl:"https://..."
-            } */ 
+            } */
           ////zare_nk_050423_added_st
           const item = parsedList[0];
 
@@ -203,7 +201,7 @@ export default function App() {
           if (
             typeof latestVersion !== "string" ||
             latestVersion.trim() === "" ||
-            latestVersionCodeRaw == null ||
+            latestVersionCodeRaw == null ||   ////zare_nk_050428_nokteh(chon null isNaN nist joda neveshtim(masalan undefined isNaN hast va dar sherte paein migonjeh))
             isNaN(Number(latestVersionCodeRaw))
           ) {
             console.log("Invalid version info from server.");

@@ -375,81 +375,62 @@ export default function LoginScreen({
         let token = ApiLoginUser2Result.data.token;
         console.log("zare_nk_041207-03-token: " + token);
         //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
-        // try {
-        const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
-          ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin 
-          // pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ token }),
-        });
-        console.log("zare_nk_041207-1");
-        console.log("zare_nk_041207-a-1-response: " + response);
-        console.log("zare_nk_041207-a-2-JSON response: " + JSON.stringify(response));
-        // console.log("zare_nk_041207-a-3-data: " + JSON.stringify(data));
-        const data = await response.json();
+       
+        ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
+        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
+        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
 
-        if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
-          ////zare_nk_050323_nokteh_st(rahe EX1- kond tar hast va tosiye nemishe)
-          // const expires = new Date(
-          //   Date.now() + 20000 * 60 * 1000
-          // ).toISOString();
-          ////zare_nk_050323_nokteh_end(rahe EX1- kond tar hast va tosiye nemishe)
-          const expires = Date.now() + 20000 * 60 * 1000;    ////zare_nk_050323_nokteh(rahe EX2- saritar hast va tosiye mishe)
+        // const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
+        //   ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin 
+        //   // pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
+        //   method: "POST",
+        //   headers: { "Content-Type": "application/json" },
+        //   body: JSON.stringify({ token }),
+        // });
+        // console.log("zare_nk_041207-1");
+        // console.log("zare_nk_041207-a-1-response: " + response);
+        // console.log("zare_nk_041207-a-2-JSON response: " + JSON.stringify(response)); 
+        // const data = await response.json();
 
-          // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
-          let tokenni = await AsyncStorage.getItem("token");        ////zare_nk_040925_added_pakkardani
-          console.log("0-zare_nk_041207-tokenni is: " + tokenni);   ////zare_nk_040925_added_pakkardani
-          await AsyncStorage.setItem("token", token);  ////moadele cooki dar reactnative ast
-          // await AsyncStorage.setItem("token_expires", expires);  ////zare_nk_050323_nokteh(age az rahe EX1 estefadeh konim) 
-          await AsyncStorage.setItem("token_expires", String(expires));  ////zare_nk_050323_nokteh_st(age az rahe EX2 estefadeh konim)
-          tokenni = await AsyncStorage.getItem("token");   //zare_nk_040925_added_pakkardani
-          console.log("1-zare_nk_041207-tokenni is: " + tokenni);    //zare_nk_040925_added_pakkardani
+        // if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
+        ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
+        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
+        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
 
-          ////zare_nk_041207_commented_st
-          // const validRoutes = [
-          //   "AboutScreen",
-          //   "AuthCallback",
-          //   "discountsAndOffers",
-          //   "folder02",
-          //   "folder03",
-          //   "Home",
-          //   "Login",
-          //   "ordersHistory",
-          //   "Profile",
-          //   "Scanner",
-          //   "shoppingbasket",
-          //   "Splash",
-          //   "SupperApp",
-          //   "SupperGame",
-          //   "TicTacToe",
-          //   "Welcome",
-          // ] as const;
 
-          // type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
+        ////zare_nk_050323_nokteh_st(rahe EX1- kond tar hast va tosiye nemishe)
+        // const expires = new Date(
+        //   Date.now() + 20000 * 60 * 1000
+        // ).toISOString();
+        ////zare_nk_050323_nokteh_end(rahe EX1- kond tar hast va tosiye nemishe)
+        const expires = Date.now() + 20000 * 60 * 1000;    ////zare_nk_050323_nokteh(rahe EX2- saritar hast va tosiye mishe)
 
-          // const redirectRaw = await AsyncStorage.getItem("redirect");
+        // const expires =data.decoded.exp;  //zare_nk_050428-nokteh(zamane monghazi ra parsafar dar pasokhe apiye Api_LoginUser2 nemideh, man dasti midam)
+        let tokenni = await AsyncStorage.getItem("token");        ////zare_nk_040925_added_pakkardani
+        console.log("0-zare_nk_041207-tokenni is: " + tokenni);   ////zare_nk_040925_added_pakkardani
+        await AsyncStorage.setItem("token", token);  ////moadele cooki dar reactnative ast
+        // await AsyncStorage.setItem("token_expires", expires);  ////zare_nk_050323_nokteh(age az rahe EX1 estefadeh konim) 
+        await AsyncStorage.setItem("token_expires", String(expires));  ////zare_nk_050323_nokteh_st(age az rahe EX2 estefadeh konim)
+        tokenni = await AsyncStorage.getItem("token");   //zare_nk_040925_added_pakkardani
+        console.log("1-zare_nk_041207-tokenni is: " + tokenni);    //zare_nk_040925_added_pakkardani 
 
-          // const redirect = validRoutes.includes(redirectRaw as RouteName)
-          //   ? (redirectRaw as RouteName)
-          //   : "Home"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
+        const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
+        await AsyncStorage.removeItem("redirect");
+        navigation.replace(redirect as keyof RootStackParamList);
+        ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
+        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
+        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
 
-          //// 3. حذف مسیر redirect از AsyncStorage
-          // await AsyncStorage.removeItem("redirect"); 
-          //// 4. هدایت به مسیر redirect
-          // navigation.replace(redirect);   
-          ////zare_nk_041207_commented_end
-          ////zare_nk_041207_added_st
-          const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
-          await AsyncStorage.removeItem("redirect");
-          navigation.replace(redirect as keyof RootStackParamList);
-          ////zare_nk_041207_added_end
-        } else {
-          console.log("❌ zare_nk_041207-verifyToken failed");
-          setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
-          await AsyncStorage.removeItem("token");
-          // Alert.alert("❌ verifyToken failed");
-        }
+        // } else {
+        //   console.log("❌ zare_nk_041207-verifyToken failed");
+        //   setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
+        //   await AsyncStorage.removeItem("token");
+        //   // Alert.alert("❌ verifyToken failed");
+        // }
+        ////zare_nk_050428_commented_end(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
+        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
+        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
+
         // } catch (error) {
         //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
         //   console.error("❌ خطا در JWT:", error);  //[TypeError: "tokenni" is read-only]

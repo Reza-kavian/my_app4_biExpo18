@@ -1,4 +1,4 @@
-////zare_nk_050413_okk(1)
+////zare_nk_050428_okk(1)
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
@@ -18,15 +18,11 @@ import { RefObject } from "react";
 import { MouseEvent } from "react";
 import ReusableButton from "../components/ReusableButton";
 
-import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
+import { SvgUri } from "react-native-svg";
 
 ////zare_nk_050315_nokteh_st 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type NavigationType = NativeStackNavigationProp<
-  RootStackParamList,
-  //"shoppingbasket"   ////zare_nk_050318_commented
-  "discountsAndOffers"   ////zare_nk_050318_added
->;
+type NavigationType = NativeStackNavigationProp<RootStackParamList, "discountsAndOffers">;
 ////zare_nk_050315_nokteh_end 
 
 import SpecialOfferIcon from "../components/icons/images/SpecialOffer";   ////zare_nk_050316_added
@@ -260,8 +256,7 @@ export default function ShallowRoutingExample({
 
   ////zare_nk_041127_added_end 
   // const router = useRouter();  //zare_nk_041128_commented 
-  const [ForCartContInProdDetVal, setForCartContInProdDetVal] =
-    useState<ForCartContInProdDetValType>();
+  const [ForCartContInProdDetVal, setForCartContInProdDetVal] = useState<ForCartContInProdDetValType>();
   const refForfather = useRef<string | null>(null);
 
   ////zare_nk_041115_added_st(albate felan niazam nemisheh)
@@ -1324,7 +1319,7 @@ export default function ShallowRoutingExample({
 
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(age ba remove kardan 0 beshe tedad parsafer data:[] miferesteh, pas satrInoInResult==undefined misheh)  
-          let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;    
+          let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
           var bishAzMaxTedadYaMojoodi = 0;
           if (addRemParam.MaxTedad != null) {
             if (addRemParam.MaxTedad <= Tedad) {
@@ -1441,7 +1436,7 @@ export default function ShallowRoutingExample({
               // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
               return curItem;
             })
-          })         
+          })
         }
       } else {
         // console.log('041116-!!response.ok');
@@ -1523,9 +1518,8 @@ export default function ShallowRoutingExample({
   ////zare_nk_050319_added_end(rahe2- tabee voroodish ke remveFromCartInIndex hast ham niaz be useCalback dare(chon remveFromCartInIndex ham mesle handlerForRemClick tabe hast ))
   const handlerForRemClick = useCallback(remveFromCartInIndex, [remveFromCartInIndex]);  ////zare_nk_050319_added_st(rahe3- tabee voroodish ke remveFromCartInIndex hast dige niazi be useCalback nadare)
 
-  ////zare_nk_050319_added_st(az useCallback baraye sorate bishtar estefadeh kardim) 
-  // const renderOfferItem: ListRenderItem<ForCartContInProdDetValType> = useCallback(({ item }) => (   ////zare_nk_050328_commented
-  const renderOfferItem: ListRenderItem<offerRowsType> = useCallback(({ item }) => (   ////zare_nk_050328_added
+  ////zare_nk_050319_added_st(az useCallback baraye sorate bishtar estefadeh kardim)  
+  const renderOfferItem: ListRenderItem<offerRowsType> = useCallback(({ item }) => (   
     <OfferSatrComponent
       // key={item.IdKala}   ////zare_nk_050326_commented
       offerRow={item}
@@ -1569,7 +1563,7 @@ export default function ShallowRoutingExample({
         <View style={styles.resultOverlay}>
           <View style={styles.resultBox}>
             {/* <Text style={styles.resultTitle}>✅ بارکد شناسایی شد</Text> */}
-            <Text style={[styles.resultValue,{fontFamily: "IRANSansWeb(FaNum)_Medium",}]}>
+            <Text style={[styles.resultValue, { fontFamily: "IRANSansWeb(FaNum)_Medium", }]}>
               {warningTextInMymodalForWarning}
             </Text>
 

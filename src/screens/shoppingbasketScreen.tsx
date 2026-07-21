@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  //zare_nk_050413_okk(1)
+// shoppingbasketScreen.tsx  //zare_nk_050428_okk(1)
 // "use client";  //zare_nk_041127_commented
 // import { useRouter } from "next/navigation";  //zare_nk_041127_commented
 import { useState, useEffect, useRef, useMemo } from "react";
@@ -411,7 +411,7 @@ export default function ShoppingbasketComponent({
         ////zare_nk_050325_added_end(agheire api be hamyarForoosh)  
         try {
             const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
-            console.log('050415-in sabad-currentShobeh: '+currentShobeh);		
+            console.log('050415-in sabad-currentShobeh: ' + currentShobeh);
             const response = await fetch(urlApi_SelectShobehJashnvareh, {
                 method: "POST",
                 headers: {
@@ -536,7 +536,7 @@ export default function ShoppingbasketComponent({
                             NameBerand: parsedList[0].NameBerand,
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            BarcodeKala: parsedList[0].BarcodeKala,  
+                            BarcodeKala: parsedList[0].BarcodeKala,
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#DetailsInfoCont",
@@ -764,7 +764,7 @@ export default function ShoppingbasketComponent({
         console.log('050326-011-urlSelectSabad: ' + urlSelectSabad);
         try {
             const currentShobeh = await AsyncStorage.getItem("currentShobeh");  ////zare_nk_050326_added
-            console.log('050415-currentShobeh: '+currentShobeh);
+            console.log('050415-currentShobeh: ' + currentShobeh);
             const response = await fetch(urlSelectSabad, {
                 method: "POST",
                 headers: {
@@ -1405,7 +1405,7 @@ export default function ShoppingbasketComponent({
             const data = await response.json();
             if (response.ok) {
                 console.log('050329-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
-                setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);
+                // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);   ////zare_nk_050428_commented
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
@@ -1475,6 +1475,43 @@ export default function ShoppingbasketComponent({
                             };
                         });
                     }
+
+                    ////zare_nk_050428_added_st(baraye updatre offline sabad bad az addRemm kardanha)
+                    setSabadRows((curRows) => {
+                        return curRows.map((curItem: any, index: number) => {
+                            if (curItem.IdKala == addRemParam.IdKala) {
+                                return (
+                                    {
+                                        ...curItem,   ////zare_nk_050322_added(ta age fieldi ra ja gozashtim barnameh az meghdare feli estefadeh koneh, vagarnah an field undefiend mishavad!(masalan 
+                                        //// midoonim NameKala dar in setState tagheiri nemikoneh, niazi be meghdardehi mojadad nist va age inja dobareh meghdar nadim va az ...curItem ham estefadeh nakonim undegiend mideh ))
+                                        tedadInSabadOrDet: Tedad,
+                                        ZaribForoosh: addRemParam.ZaribForoosh,
+                                        IdKala: addRemParam.IdKala,
+                                        NameKala: addRemParam.NameKala,
+                                        DarsadTakhfif: addRemParam.DarsadTakhfif,
+                                        NameBerand: addRemParam.NameBerand,
+                                        FeeForoosh: addRemParam.FeeForoosh,
+                                        FeeMasraf: addRemParam.FeeMasraf,
+                                        BarcodeKala: addRemParam.BarcodeKala,
+                                        Mojoodi: addRemParam.Mojoodi,
+                                        MaxTedad: addRemParam.MaxTedad,
+                                        JamForoosh: addRemParam.JamForoosh,  ////zare_nk_050428_added
+                                        father: "#sabadItemsContInSafhe",
+                                        refForfather: refForfather,
+                                        //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
+                                        fromShowDetails: false,
+                                        // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
+                                        idTag: "ForCart-" + addRemParam.IdKala,
+                                        soodAzKharid: jameKolTakhfif,   ////zare_nk_050428_added
+                                        MablaghNahaee: jameKol,  ////zare_nk_050428_added
+                                    }
+                                )
+                            }
+                            // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+                            return curItem;
+                        })
+                    })
+                    ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha)
                 }
             } else {
                 console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
@@ -3163,7 +3200,7 @@ export default function ShoppingbasketComponent({
                                 }}>
                                 <Text>{" "}</Text>
                             </View>
- 
+
                             {/* zare_nk_050415_commented_st(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
                             {/* <View
                                 // className="StoresTitleCont"

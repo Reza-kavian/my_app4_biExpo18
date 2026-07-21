@@ -1,4 +1,4 @@
-////zare_nk_050413_okk(1)
+////zare_nk_050428_okk(1)
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
 import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,

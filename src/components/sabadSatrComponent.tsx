@@ -591,13 +591,11 @@ const SabadSatrComponent = ({
                 </View>
             </View>
 
-            <View
-                style={{
-                    display: "none",
-                    flexDirection: "row",
-                    paddingBottom: 5,
-                }}
-            >
+            <View style={{
+                display: "none",
+                flexDirection: "row",
+                paddingBottom: 5,
+            }}>
                 <Text style={{ marginRight: 10, fontSize: 12, color: "red" }}>
                     قیمت این کالا تغییر کرده است
                 </Text>

@@ -45,10 +45,10 @@ android {
     namespace "com.my_app4_biexpo18"
 
     defaultConfig {
-    applicationId appId   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na dasti)
+    // applicationId appId   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na dasti)
 
         ////zare_nk_050425_commented_st(baraye chand noei boodane hooshmand, na dasti)
-        // //   applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
+          applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
         // applicationId "com.zare.hamyarKharid"  ////zare_nk_050423_nokteh(noskheye Production(asli))
         ////zare_nk_050425_commented_end(baraye chand noei boodane hooshmand, na dasti)
         // ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar shod az lafze Stable estefadeh mikonam(ya az lafzi estefadeh nemikonam va 

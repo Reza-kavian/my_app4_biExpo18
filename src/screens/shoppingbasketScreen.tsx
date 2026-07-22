@@ -39,7 +39,7 @@ type addRemParamType = {
     NameBerand: string | null;
     FeeForoosh: number;
     FeeMasraf: number;
-    JamForoosh: number;  ////zare_nk_050430_added
+    // JamForoosh: number;  ////zare_nk_050430_added(and commented)
     BarcodeKala: string;
     Mojoodi: number;
     MaxTedad: number;
@@ -62,6 +62,7 @@ type ForCartContInProdDetValType = {
     BarcodeKala: string;
     Mojoodi: number;
     MaxTedad: number;
+    // JamForoosh: number;  ////zare_nk_050430_added(and commented)
     father: any;
     refForfather: RefObject<string | null>;
     bishAzMaxTedadYaMojoodi: number | null;
@@ -89,8 +90,8 @@ type SabadRowType = {
     idTag: string;
 
     ////zare_nk_050326_added_st(jaigozine state haye .... ke baese reRender mishodand)
-    soodAzKharid: number;
-    MablaghNahaee: number;
+    // soodAzKharid: number;
+    // MablaghNahaee: number;
     ////zare_nk_050326_added_end(jaigozine state haye .... ke baese reRender mishodand)
 };
 
@@ -817,27 +818,7 @@ export default function ShoppingbasketComponent({
                     console.log('041120-result in Api_SelectSabadKharidSatr: ' + JSON.stringify(result));
                     setBisatr(false);
                     refForfather.current = "#sabadItemsContInSafhe";
-
-                    // ////zare_nk_041119_added_st_olgu_1(dorost ba return va akoolad va parantezbandi)
-                    // setSabadRows(() => {
-                    //   return (
-                    //     result.map((item: any) => {
-                    //       return ({
-                    //         tedadInSabadOrDet: item.Tedad,
-                    //         // بقیه فیلدها
-                    //       })
-                    //     })
-                    //   )
-                    // });
-                    // ////zare_nk_041119_added_end_olgu_1(dorost ba return va akoolad va parantezbandi)
-                    // ////zare_nk_041119_added_st_olgu_2(dorost ba return va akoolad va parantezbandi)
-                    // setSabadRows(
-                    //   result.map((item: any) => ({
-                    //     tedadInSabadOrDet: item.Tedad,
-                    //     // بقیه فیلدها اینجا
-                    //   }))
-                    // );
-                    // ////zare_nk_041119_added_end_olgu_2(dorost ba return va akoolad va parantezbandi)
+ 
                     ////zare_nk_041119_added_st
                     setSabadRows(() => {
                         return (
@@ -861,9 +842,9 @@ export default function ShoppingbasketComponent({
                                     idTag: "ForCart-" + item.IdKala,
 
                                     //    majmooeKharidMasraf = result[0].SumFeeMasraf;
-                                    soodAzKharid: jameKolTakhfif,
-                                    // Kerayeh = result[0].HazineErsal;
-                                    MablaghNahaee: jameKol,
+                                    // soodAzKharid: jameKolTakhfif,
+                                    // // Kerayeh = result[0].HazineErsal;
+                                    // MablaghNahaee: jameKol,
                                 })
                             })
                         )
@@ -1206,7 +1187,7 @@ export default function ShoppingbasketComponent({
                             ZaribForoosh: parsedList[0].ZaribForoosh,
                             IdKala: parsedList[0].IdKala,
                             NameKala: parsedList[0].NameKala,
-                            DarsadTakhfif: parsedList[0].DarsadTakhfif,
+                            DarsadTakhfif: parsedList[0].MM,   ////zare_nk_050431_updated(DarsadTakhfif to MM)
                             NameBerand: parsedList[0].NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
@@ -1479,48 +1460,98 @@ export default function ShoppingbasketComponent({
                     }
 
                     ////zare_nk_050428_added_st(baraye updatre offline sabad bad az addRemm kardanha) 
-                    let jameKol = jamKolNahaei ?? 0; let soodAzKharid = jamKolTakhfif ?? 0;
-                    setSabadRows((curRows) => {
-                        return curRows.map((curItem: any, index: number) => {
-                            if (curItem.IdKala == addRemParam.IdKala) {
-                                console.log('050430-jameKolle ghadim: ' + jameKol)
-                                jameKol += (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
-                                console.log('050430-jameKolle jadid: ' + jameKol)
-                                soodAzKharid += ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
-
-                                setJamKolNahaei(jameKol); setJamKolTakhfif(soodAzKharid);
-                                return (
-                                    {
-                                        ...curItem,   ////zare_nk_050322_added(ta age fieldi ra ja gozashtim barnameh az meghdare feli estefadeh koneh, vagarnah an field undefiend mishavad!(masalan 
-                                        //// midoonim NameKala dar in setState tagheiri nemikoneh, niazi be meghdardehi mojadad nist va age inja dobareh meghdar nadim va az ...curItem ham estefadeh nakonim undegiend mideh ))
-                                        tedadInSabadOrDet: Tedad,
-                                        ZaribForoosh: addRemParam.ZaribForoosh,
-                                        IdKala: addRemParam.IdKala,
-                                        NameKala: addRemParam.NameKala,
-                                        DarsadTakhfif: addRemParam.DarsadTakhfif,
-                                        NameBerand: addRemParam.NameBerand,
-                                        FeeForoosh: addRemParam.FeeForoosh,
-                                        FeeMasraf: addRemParam.FeeMasraf,
-                                        BarcodeKala: addRemParam.BarcodeKala,
-                                        Mojoodi: addRemParam.Mojoodi,
-                                        MaxTedad: addRemParam.MaxTedad,
-                                        JamForoosh: satrInoInResult.JamForoosh,  ////zare_nk_050430_added
-                                        father: "#sabadItemsContInSafhe",
-                                        refForfather: refForfather,
-                                        //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
-                                        fromShowDetails: false,
-                                        // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
-                                        idTag: "ForCart-" + addRemParam.IdKala,
-                                        soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
-                                        MablaghNahaee: jameKol,  ////zare_nk_050430_added
-                                    }
-                                )
-                            }
-                            // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
-
-                            return curItem;
+                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak(chon kerbar age payapey dokmeye add ro bezaneh shayad hanooz component reRender nashodeh
+                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
+                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
+                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
+                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
+                    // let jameKol = jamKolNahaei ?? 0; let soodAzKharid = jamKolTakhfif ?? 0;
+                    // jameKol += (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
+                    // soodAzKharid += ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
+                    // setJamKolNahaei(jameKol);
+                    // setJamKolTakhfif(soodAzKharid);
+                    setJamKolNahaei(prev =>
+                        (prev ?? 0) + (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
+                    );
+                    setJamKolTakhfif(prev =>
+                        (prev ?? 0) + ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
+                    );
+                    ////zare_nk_050431_nokteh_end(raveshe setState khatarnak(chon kerbar age payapey dokmeye add ro bezaneh shayad hanooz component reRender nashodeh
+                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
+                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
+                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
+                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
+  
+                    // if (Tedad === 1) { ////zare_nk_050431_commented(shayad parsafar bedalile adame mojoodi mesgdare yeke ghabli ra mojadad yek 
+                    //// bedeh va man dobare ye satr behesh bedam!! pas rahe betterWay01 ro anjam midim)
+                    ////zare_nk_050431_added_st(betterWay01)
+                    const exists = sabadRows.some(
+                        item => item.IdKala === addRemParam.IdKala
+                    );
+                    ////zare_nk_050431_added_end(betterWay01)
+                    if (!exists) {
+                        let tempSabadRows: SabadRowType[] = [...sabadRows];
+                        tempSabadRows.push({
+                            tedadInSabadOrDet: Tedad,
+                            ZaribForoosh: addRemParam.ZaribForoosh,
+                            IdKala: addRemParam.IdKala,
+                            NameKala: addRemParam.NameKala,
+                            DarsadTakhfif: addRemParam.DarsadTakhfif,
+                            NameBerand: addRemParam.NameBerand,
+                            FeeForoosh: addRemParam.FeeForoosh,
+                            FeeMasraf: addRemParam.FeeMasraf,
+                            BarcodeKala: addRemParam.BarcodeKala,
+                            Mojoodi: addRemParam.Mojoodi,
+                            MaxTedad: addRemParam.MaxTedad,
+                            JamForoosh: satrInoInResult.JamForoosh,  ////zare_nk_050430_added
+                            father: "#sabadItemsContInSafhe",
+                            refForfather: refForfather,
+                            //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
+                            fromShowDetails: false,
+                            // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
+                            idTag: "ForCart-" + addRemParam.IdKala,
+                            // soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
+                            // MablaghNahaee: jameKol,  ////zare_nk_050430_added
                         })
+                        setSabadRows(tempSabadRows);
+                        return;
+                    }
+
+                    let tempSabadRows: SabadRowType[] = [...sabadRows];
+                    tempSabadRows = tempSabadRows.map((curItem, index) => {
+                        if (curItem.IdKala == addRemParam.IdKala) {
+                            return (
+                                {
+                                    ...curItem,   ////zare_nk_050322_added(ta age fieldi ra ja gozashtim barnameh az meghdare feli estefadeh koneh, vagarnah an field undefiend mishavad!(masalan 
+                                    //// midoonim NameKala dar in setState tagheiri nemikoneh, niazi be meghdardehi mojadad nist va age inja dobareh meghdar nadim va az ...curItem ham estefadeh nakonim undegiend mideh ))
+                                    tedadInSabadOrDet: Tedad,
+                                    ZaribForoosh: addRemParam.ZaribForoosh,
+                                    IdKala: addRemParam.IdKala,
+                                    NameKala: addRemParam.NameKala,
+                                    DarsadTakhfif: addRemParam.DarsadTakhfif,
+                                    NameBerand: addRemParam.NameBerand,
+                                    FeeForoosh: addRemParam.FeeForoosh,
+                                    FeeMasraf: addRemParam.FeeMasraf,
+                                    BarcodeKala: addRemParam.BarcodeKala,
+                                    Mojoodi: addRemParam.Mojoodi,
+                                    MaxTedad: addRemParam.MaxTedad,
+                                    JamForoosh: satrInoInResult.JamForoosh,  ////zare_nk_050430_added
+                                    father: "#sabadItemsContInSafhe",
+                                    refForfather: refForfather,
+                                    //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
+                                    fromShowDetails: false,
+                                    // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
+                                    idTag: "ForCart-" + addRemParam.IdKala,
+                                    // soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
+                                    // MablaghNahaee: jameKol,  ////zare_nk_050430_added
+                                }
+                            )
+                        }
+                        // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+                        return curItem;
                     })
+
+                    setSabadRows(tempSabadRows);
                     ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha)
                 }
             } else {
@@ -1776,24 +1807,39 @@ export default function ShoppingbasketComponent({
                     console.log('050329-result.status == 0-06');
 
                     ////zare_nk_050428_added_st(baraye updatre offline sabad bad az addRemm kardanha) 
-                    let jameKol = jamKolNahaei ?? 0; let soodAzKharid = jamKolTakhfif ?? 0;
+                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak(chon kerbar age payapey dokmeye rem ro bezaneh shayad hanooz component reRender nashodeh
+                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
+                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
+                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
+                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
+                    // let jameKol = jamKolNahaei ?? 0; let soodAzKharid = jamKolTakhfif ?? 0;
+                    //jameKol -= (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
+                    // soodAzKharid -= ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
+                    //setJamKolNahaei(jameKol); 
+                    // setJamKolTakhfif(soodAzKharid);
+                    setJamKolNahaei(prev =>
+                        (prev ?? 0) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
+                    );
+                    setJamKolTakhfif(prev =>
+                        (prev ?? 0) - ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
+                    );
+                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak(chon kerbar age payapey dokmeye rem ro bezaneh shayad hanooz component reRender nashodeh
+                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
+                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
+                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
+                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
+
+
                     setSabadRows((curRows) => {
                         ////zare_nk_050416_added_st(baraye hazfeh satre tedad sefr)
                         if (Tedad === 0) {
-                            // Alert.alert('fdsfs000');
-                            jameKol -= (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
-                            soodAzKharid -= ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
-                            setJamKolNahaei(jameKol); setJamKolTakhfif(soodAzKharid);
                             return curRows.filter(
                                 item => item.IdKala !== addRemParam.IdKala
                             );
                         }
                         ////zare_nk_050416_added_st(baraye hazfeh satre tedad sefr)
-                        return curRows.map((curItem: any, index: number) => {
+                        return curRows.map((curItem, index) => {
                             if (curItem.IdKala == addRemParam.IdKala) {
-                                jameKol -= (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
-                                soodAzKharid -= ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
-                                setJamKolNahaei(jameKol); setJamKolTakhfif(soodAzKharid);
                                 return (
                                     {
                                         ...curItem,   ////zare_nk_050322_added(ta age fieldi ra ja gozashtim barnameh az meghdare feli estefadeh koneh, vagarnah an field undefiend mishavad!(masalan 
@@ -1816,49 +1862,16 @@ export default function ShoppingbasketComponent({
                                         fromShowDetails: false,
                                         // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
                                         idTag: "ForCart-" + addRemParam.IdKala,
-                                        soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
-                                        MablaghNahaee: jameKol,  ////zare_nk_050430_added
+                                        // soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
+                                        // MablaghNahaee: jameKol,  ////zare_nk_050430_added
                                     }
                                 )
                             }
                             // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
-
                             return curItem;
                         })
                     })
-                    ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha)
-
-                    if (Tedad == 0) {
-                        ////zare_nk_041129_commented_st
-                        // const inputGroup = document.querySelector(
-                        //     ".ForCart-" + addRemParam.IdKala + " .input-group"
-                        // );
-                        // if (inputGroup) {
-                        //     let parent = inputGroup.closest(".flxpedar2_new");   
-                        //     if (parent) {
-                        //         if (JSON.parse(result.data.titr).length == 0) {
-                        //             parent.remove();
-                        //         }
-                        //     }
-                        // }
-                        ////zare_nk_041129_commented_st
-                    }
-                    else if (Tedad == addRemParam.ZaribForoosh) {
-                        ////zare_nk_041129_commented_st
-                        // let htmlTag;
-                        // if (addRemParam.event) {
-                        //     htmlTag = addRemParam.event.target as HTMLElement;
-                        // }
-
-                        // const wrapper = htmlTag?.closest(     
-                        //     ".flxpedar2_new"
-                        // ) as HTMLElement | null;
-                        // if (wrapper) {
-                        //     wrapper.style.backgroundColor = "inherit";
-                        // }
-                        ////zare_nk_041129_commented_end
-                    }
-
+                    ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha) 
                 }
             } else {
                 console.log('050329-!!response.ok');
@@ -2002,16 +2015,16 @@ export default function ShoppingbasketComponent({
             </Modal>
             {isOpenedProdDetModal == true ? (
                 <Modal   //zare_nk_040923(komponent modal baraye namayesh doorbin va scan kardan)
-                    visible={isOpenedProdDetModal}    //zare_nk_040923(halat namayesh modal)
-                    animationType="slide"  //zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
+                    visible={isOpenedProdDetModal}    ////zare_nk_040923(halat namayesh modal)
+                    animationType="slide"  ////zare_nk_040923(ta'sir gozashtan rooye namayesh modal)  //ye bar fade bezaram bebinam chi mishe!
                     onRequestClose={() => {
                         ////zare_nk_041128_nokteh(moadele methode hiddenHandlerForProdDetModal)
                         setIsOpenedProdDetModal(false);
                         setAddOrRemChanged("notNull");
                         setBisatrInProductDet(false);
                         setIsScanning(true);  //zare_nk_041203_added
-                    }}   //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
-                >
+                        //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
+                    }}>
                     <ScrollView horizontal={false}
                         style={{
                             height: "100%",
@@ -3160,113 +3173,113 @@ export default function ShoppingbasketComponent({
                         )
                     )
             ) : (
-                <ScrollView horizontal={false}
-                    // id="sabadSafhe"
-                    style={[{
-                        width: "100%",
-                        //overfloww: "hidden",   //zare_nk_041203_commented
-                        ////zare_nk_041203_added_st 
-                        // overflow: 'scroll',  //zare_nk_041203_commented(chon dar react native overflow: 'scroll' karbord nadare va overflow faghat maghadire visible va hidden migireh
-                        // va baraye scroll dadan be jaye tage View az tage ScrollView estefadeh mishe ke scrolle amoodi mideh,baraye scrolle ofoghi attribute horizontal={true} ra ezafeh mikonim)
-                        // borderWidth: 2,
-                        // borderColor: "#d00cc3",
-                        // borderStyle: 'dashed',
-                        backgroundColor: 'white',
-                        ////zare_nk_041203_added_end
-                    }]}
-                    contentContainerStyle={[{
-                        // paddingBottom: 45
-                    }, sabadSafhe]}
-                >
-                    <View
-                        // className="list-groupp"
-                        // id="listGroupAccordionInSafhe"
+                <>
+                    <ScrollView horizontal={false}
+                        // id="sabadSafhe"
                         style={[{
-                            // marginTop: "5px",
-                            // paddingTop: "5px",
-                            direction: "rtl",
-                            position: "relative",
-                            display: "flex",
                             width: "100%",
-                        }
-                            , sabadItemsAndTotalInf
-                        ]}
-                    >
+                            //overfloww: "hidden",   //zare_nk_041203_commented
+                            ////zare_nk_041203_added_st 
+                            // overflow: 'scroll',  //zare_nk_041203_commented(chon dar react native overflow: 'scroll' karbord nadare va overflow faghat maghadire visible va hidden migireh
+                            // va baraye scroll dadan be jaye tage View az tage ScrollView estefadeh mishe ke scrolle amoodi mideh,baraye scrolle ofoghi attribute horizontal={true} ra ezafeh mikonim)
+                            // borderWidth: 2,
+                            // borderColor: "#d00cc3",
+                            // borderStyle: 'dashed',
+                            // backgroundColor: 'white',
+                            ////zare_nk_041203_added_end 
+                        }]}
+                        contentContainerStyle={[{
+                            paddingBottom: 100,
+                        }, sabadSafhe]}>
                         <View
-                            // id="sabadHeaderAndItemsCont"
-                            // className="sabadHeaderAndItems"
+                            // className="list-groupp"
+                            // id="listGroupAccordionInSafhe"
                             style={[{
-                                // flex: "1 1 auto",
-                                flexGrow: 1,
-                                flexShrink: 1,
-                                flexBasis: 'auto',
-                                // borderWidth: 1,
-                                // borderColor: "#a9a9a9",
-                                // borderStyle: 'solid',
-                                // borderRadius: 10,    ////zare_nk_050315_commented
-                                // padding: 7,  //zare_nk_041209_commented
-                                paddingTop: 7,  //zare_nk_041209_added
-                                // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
-                                // boxShadow: "#5e5e5e 0px 0px 3px 0px",   ////zare_nk_050315_commented
-                            }, sabadItemsCont]}
-                        >
+                                // marginTop: "5px",
+                                // paddingTop: "5px",
+                                direction: "rtl",
+                                position: "relative",
+                                display: "flex",
+                                width: "100%",
+
+                            }
+                                , sabadItemsAndTotalInf
+                            ]}>
                             <View
-                                // className="sabadHeader"
-                                // id="sabadSafheHeader-FORTITR"
-                                style={{
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    justifyContent: "space-between",
-                                    alignItems: "center",
-                                    // marginBottom: 10,  ////zare_nk_050316_commented
-                                    marginRight: 5,  ////zare_nk_050316_added                                   
-                                }}
+                                // id="sabadHeaderAndItemsCont"
+                                // className="sabadHeaderAndItems"
+                                style={[{
+                                    // flex: "1 1 auto",
+                                    flexGrow: 1,
+                                    flexShrink: 1,
+                                    flexBasis: 'auto',
+                                    // borderWidth: 1,
+                                    // borderColor: "#a9a9a9",
+                                    // borderStyle: 'solid',
+                                    // borderRadius: 10,    ////zare_nk_050315_commented
+                                    // padding: 7,  //zare_nk_041209_commented
+                                    paddingTop: 7,  //zare_nk_041209_added
+                                    // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
+                                    // boxShadow: "#5e5e5e 0px 0px 3px 0px",   ////zare_nk_050315_commented
+                                }, sabadItemsCont]}
                             >
                                 <View
+                                    // className="sabadHeader"
+                                    // id="sabadSafheHeader-FORTITR"
                                     style={{
                                         display: "flex",
                                         flexDirection: "row",
-                                        justifyContent: 'flex-start',
-                                        // fontSize: 14,
-                                        // color: "#322E2E", 
+                                        justifyContent: "space-between",
+                                        alignItems: "center",
+                                        // marginBottom: 10,  ////zare_nk_050316_commented
+                                        marginRight: 5,  ////zare_nk_050316_added                                   
                                     }}
                                 >
-                                    {/* <Text
+                                    <View
+                                        style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            justifyContent: 'flex-start',
+                                            // fontSize: 14,
+                                            // color: "#322E2E", 
+                                        }}
+                                    >
+                                        {/* <Text
                                         id="adToSabadWidthBarCodeScan"
                                     > */}
-                                    <TouchableOpacity
-                                        // className="BarCodeScan btn btn-danger"
-                                        style={{
-                                            borderRadius: 10,
-                                            display: 'flex',
-                                            justifyContent: 'center',
-                                            alignItems: 'center',
-                                            flexDirection: 'row',
-                                            padding: 7,
-                                            backgroundColor: '#ff3151'
-                                        }}
-                                        onPress={() => { return forOpenCodeScanner(); }}  //zare_nk_041205_forUpdateName
-                                        activeOpacity={0.1}
-                                    >
-                                        <Text style={{ fontSize: 14, color: "white", fontFamily: "IRANSansWeb(FaNum)_Medium" }}> اضافه به سبد</Text>
-                                    </TouchableOpacity>
-                                    {/* </Text> */}
+                                        <TouchableOpacity
+                                            // className="BarCodeScan btn btn-danger"
+                                            style={{
+                                                borderRadius: 10,
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                alignItems: 'center',
+                                                flexDirection: 'row',
+                                                padding: 7,
+                                                backgroundColor: '#ff3151'
+                                            }}
+                                            onPress={() => { return forOpenCodeScanner(); }}  //zare_nk_041205_forUpdateName
+                                            activeOpacity={0.1}
+                                        >
+                                            <Text style={{ fontSize: 14, color: "white", fontFamily: "IRANSansWeb(FaNum)_Medium" }}> اضافه به سبد</Text>
+                                        </TouchableOpacity>
+                                        {/* </Text> */}
+                                    </View>
                                 </View>
-                            </View>
 
-                            <View
-                                // className="usersSabad"
-                                style={{
-                                    // padding: "0px 5px",
-                                    paddingVertical: 0,
-                                    paddingHorizontal: 5,
-                                    flexDirection: "column",
-                                }}>
-                                <Text>{" "}</Text>
-                            </View>
+                                <View
+                                    // className="usersSabad"
+                                    style={{
+                                        // padding: "0px 5px",
+                                        paddingVertical: 0,
+                                        paddingHorizontal: 5,
+                                        flexDirection: "column",
+                                    }}>
+                                    <Text>{" "}</Text>
+                                </View>
 
-                            {/* zare_nk_050415_commented_st(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
-                            {/* <View
+                                {/* zare_nk_050415_commented_st(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
+                                {/* <View
                                 // className="StoresTitleCont"
                                 // id="sabadSafheHeader"
                                 style={{
@@ -3327,78 +3340,70 @@ export default function ShoppingbasketComponent({
                                     </View>
                                 </View>
                             </View> */}
-                            {/* zare_nk_050415_commented_end(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
+                                {/* zare_nk_050415_commented_end(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
 
-                            <View
-                                // id="sabadItemsContInSafhe"
-                                // className="sabadItemsCont hisGrandFather"
-                                style={{
-                                    flexDirection: "column",
-                                    paddingVertical: 0,
-                                    paddingHorizontal: 5,
-                                }}
-                            >
-                                {!bisatr && (
-                                    <>
-                                        {sabadRows?.map((item, index) => {
-                                            return (
-                                                <SabadSatrComponent
-                                                    key={index || item.IdKala}
-                                                    SabadRow={item}
-                                                    handlerForAddClick={handlerForAddClick}
-                                                    handlerForRemClick={handlerForRemClick}
-                                                    openprodDetModal={openprodDetModal}
-                                                    navigation={navigation}  //zare_nk_041127_added
-                                                />
-                                            );
-                                        })}
-                                    </>
-                                )}
-                            </View>
-                        </View>
-
-                        <View
-                            // className="FtCollapsi"
-                            // id="footerInSabadSafhe"
-                            style={{
-                                // flex: "0 1 30%",
-                                flexGrow: 0,
-                                flexShrink: 0,
-                                flexBasis: 'auto',
-                                flexDirection: "column",
-                                // borderWidth: 1,
-                                // borderColor: "#a9a9a9",
-                                // borderStyle: 'solid',
-                                // borderRadius: 10,    ////zare_nk_050315_commented
-                                // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
-                                // boxShadow: "#5e5e5e 0px 0px 3px 0px",    ////zare_nk_050315_commented
-                            }}
-                        >
-                            <View
-                                // className="footerInSabadContent"
-                                // id="footerInSabadSafheContent"
-                                style={{
-                                    padding: 10,
-                                    flexDirection: "column",
-                                    borderRadius: 10,
-                                }}
-                            >
                                 <View
-                                    // className="footerInSabadContent"
-                                    // id="footerInSabadSafheContent"
+                                    // id="sabadItemsContInSafhe"
+                                    // className="sabadItemsCont hisGrandFather"
                                     style={{
-                                        padding: 10,
                                         flexDirection: "column",
-                                        borderRadius: 10,
+                                        paddingVertical: 0,
+                                        paddingHorizontal: 5,
                                     }}
                                 >
-                                    <View style={{
-                                        // display: "flex",
-                                        flexDirection: "column",
-                                        paddingBottom: 10,
-                                    }}>
-                                        {/* zare_nk_050430_commented_st(jamekolle masraf ro nemikhaim be karbar neshoon bedim va hamoon jamekolle foroosh ke nahaei hast kefiye, hezine ersal ham ke nadarim) */}
-                                        {/* <View style={{
+                                    {!bisatr && (
+                                        <>
+                                            {sabadRows?.map((item, index) => {
+                                                return (
+                                                    <SabadSatrComponent
+                                                        key={index || item.IdKala}
+                                                        SabadRow={item}
+                                                        handlerForAddClick={handlerForAddClick}
+                                                        handlerForRemClick={handlerForRemClick}
+                                                        openprodDetModal={openprodDetModal}
+                                                        navigation={navigation}  //zare_nk_041127_added
+                                                    />
+                                                );
+                                            })}
+                                        </>
+                                    )}
+                                </View>
+                            </View>
+
+
+                        </View>
+                    </ScrollView>
+                    <View style={{
+                        // flex: "0 1 30%",
+                        flexGrow: 0,
+                        flexShrink: 0,
+                        flexBasis: 'auto',
+                        flexDirection: "column",
+                        // borderWidth: 1,
+                        // borderColor: "#a9a9a9",  //boxShadow: '0px 10px 15px -3px #0000001a',
+                        // borderStyle: 'solid',
+                        // borderRadius: 10,    ////zare_nk_050315_commented
+                        // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
+                        // boxShadow: "#5e5e5e 0px 0px 3px 0px",    ////zare_nk_050315_commented
+                        zIndex: 50, bottom: 0, left: 0, right: 0, position: 'absolute', backgroundColor: 'white', boxShadow: '0px -10px 15px -3px #0000001a', direction: "rtl",
+                    }}>
+                        <View style={{
+                            padding: 10,
+                            flexDirection: "column",
+                            borderRadius: 10,
+                        }}>
+                            <View style={{
+                                padding: 10,
+                                flexDirection: "column",
+                                borderRadius: 10,
+                            }}>
+                                <View style={{
+                                    // display: "flex",
+                                    flexDirection: "column",
+                                    paddingBottom: 10,
+                                }}>
+                                    {/* zare_nk_050430_commented_st(jamekolle masraf ro nemikhaim be karbar neshoon bedim va hamoon jamekolle foroosh ke nahaei hast kefiye, hezine ersal ham ke nadarim) */}
+                                    {/* <View style={{
                                             display: "flex",
                                             flexDirection: "row",
                                             justifyContent: "space-between",
@@ -3441,89 +3446,65 @@ export default function ShoppingbasketComponent({
                                                 ۰
                                             </Text>
                                         </View> */}
-                                        {/* zare_nk_050430_commented_end(jamekolle masraf ro nemikhaim be karbar neshoon bedim va hamoon jamekolle foroosh ke nahaei hast kefiye, hezine ersal ham ke nadarim) */}
+                                    {/* zare_nk_050430_commented_end(jamekolle masraf ro nemikhaim be karbar neshoon bedim va hamoon jamekolle foroosh ke nahaei hast kefiye, hezine ersal ham ke nadarim) */}
+
+                                    <View style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "space-between",
+                                        marginBottom: 5,
+                                    }}>
+                                        <Text style={{ fontSize: 12, color: "#1a9f49", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>
+                                            سود شما از خرید :
+                                        </Text>
 
                                         <View style={{
                                             display: "flex",
                                             flexDirection: "row",
-                                            justifyContent: "space-between",
-                                            marginBottom: 5,
+                                            // justifyContent: "space-between", 
                                         }}>
-                                            <Text style={{ fontSize: 12, color: "#1a9f49", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>
-                                                سود شما از خرید :
+                                            <Text style={{ fontSize: 12, color: "#313335", fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}>
+                                                {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
                                             </Text>
-
-                                            <View style={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                // justifyContent: "space-between", 
-                                            }}>
-                                                <Text style={{ fontSize: 12, color: "#313335", fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}>
-                                                    {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
-                                                </Text>
-                                                <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
-                                                    ریال
-                                                </Text>
-                                            </View>
-                                        </View>
-
-                                        <View style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            justifyContent: "space-between",
-                                            marginBottom: 5,
-                                        }}>
-                                            <Text style={{ fontSize: 12, color: "#878b92", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>
-                                                مبلغ قابل پرداخت :
+                                            <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
+                                                ریال
                                             </Text>
-
-                                            <View style={{
-                                                display: "flex",
-                                                flexDirection: "row",
-                                                // justifyContent: "space-between", 
-                                            }}>
-                                                <Text style={{ fontSize: 12, color: '#313335', fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}>
-                                                    {jamKolNahaei ? jamKolNahaei.toLocaleString() : 0}
-                                                </Text>
-                                                <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
-                                                    ریال
-                                                </Text>
-
-                                            </View>
                                         </View>
                                     </View>
 
-                                    <View style={{ paddingTop: 10 }}>
+                                    <View style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: "space-between",
+                                        marginBottom: 5,
+                                    }}>
+                                        <Text style={{ fontSize: 12, color: "#878b92", fontFamily: "IRANSansWeb(FaNum)_Medium" }}>
+                                            مبلغ قابل پرداخت :
+                                        </Text>
+
+                                        <View style={{
+                                            display: "flex",
+                                            flexDirection: "row",
+                                            // justifyContent: "space-between", 
+                                        }}>
+                                            <Text style={{ fontSize: 12, color: '#313335', fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}>
+                                                {jamKolNahaei ? jamKolNahaei.toLocaleString() : 0}
+                                            </Text>
+                                            <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
+                                                ریال
+                                            </Text>
+
+                                        </View>
                                     </View>
                                 </View>
-                            </View>
 
-                            <View
-                                style={{ backgroundColor: 'red', display: 'none', }}
-                            >
-                                <Text>111111111111111111111111111111111111111111111111111111111111111111</Text>
-                                <Text>22222222</Text>
-                                <Text>33333333</Text>
-                                <Text>44444444</Text>
-                                <Text>55555555</Text>
-                                <Text>666666666666</Text>
-                                <Text>777777777777</Text>
-                                <Text>88888888888</Text>
-                                <Text>99999999</Text>
-                                <Text>llllllll</Text>
-                                <Text>22222222</Text>
-                                <Text>33333333</Text>
-                                <Text>44444444</Text>
-                                <Text>55555555</Text>
-                                <Text>666666666666</Text>
-                                <Text>777777777777</Text>
-                                <Text>88888888888</Text>
-                                <Text>99999999</Text>
+                                <View style={{ paddingTop: 10 }}>
+                                </View>
                             </View>
-
                         </View>
                     </View>
-                </ScrollView>
+                </>
+
             )}
         </>
     )
@@ -3647,22 +3628,23 @@ const styles = StyleSheet.create({
 
     sabadSafhe_STH576: {
         paddingTop: 7,
-        paddingBottom: 12,  //zare_nk_041203_nokteh(chon scroll mikoneh dar reactNative ta enteha nemireh scroll! va majboorim paddingBotom ra kami bishtar bedim)
+        // paddingBottom: 12,  //zare_nk_041203_nokteh(chon scroll mikoneh dar reactNative ta enteha nemireh scroll! va majboorim paddingBotom ra
+        ////  kami bishtar bedim) ////and zare_nk_050430_commented(bekhatere paddinge sabet be andazaye footere chasboone paein(haviye soodazkharid va mablaghepardakhti)dadim behesh)
         paddingHorizontal: 7,  //zare_nk_041209_tahlilshe
     },
     sabadSafhe_BTH576: {
         paddingTop: 10,
-        paddingBottom: 15,
+        // paddingBottom: 15,  ////and zare_nk_050430_commented(bekhatere paddinge sabet be andazaye footere chasboone paein(haviye soodazkharid va mablaghepardakhti)dadim behesh)
         paddingHorizontal: 10,
     },
     sabadSafhe_BTH768: {
         paddingTop: 10,
-        paddingBottom: 15,
+        // paddingBottom: 15, ////and zare_nk_050430_commented(bekhatere paddinge sabet be andazaye footere chasboone paein(haviye soodazkharid va mablaghepardakhti)dadim behesh)
         paddingHorizontal: 10,
     },
     sabadSafhe_BTH992: {
         paddingTop: 15,
-        paddingBottom: 20,
+        // paddingBottom: 20, ////and zare_nk_050430_commented(bekhatere paddinge sabet be andazaye footere chasboone paein(haviye soodazkharid va mablaghepardakhti)dadim behesh)
         paddingHorizontal: 15,
     },
 

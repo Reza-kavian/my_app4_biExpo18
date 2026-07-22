@@ -20,8 +20,9 @@ def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 def APP_TYPE_PRODUCTION = "production"
 def APP_TYPE_BETA = "beta"
 
-def appType = APP_TYPE_PRODUCTION
-//def appType = APP_TYPE_BETA 
+////zare_nk_050430_nokteh(basteh be niatemoon beine in do meghdare APP_TYPE_PRODUCTION va APP_TYPE_BETA mitoonim sooeich konim)
+// def appType = APP_TYPE_PRODUCTION
+def appType = APP_TYPE_BETA 
 
 // بررسی معتبر بودن مقدار appType
 if (appType != APP_TYPE_PRODUCTION && appType != APP_TYPE_BETA) { 
@@ -45,10 +46,10 @@ android {
     namespace "com.my_app4_biexpo18"
 
     defaultConfig {
-    // applicationId appId   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na dasti)
+        applicationId appId   ////zare_nk_050425_added(baraye chand noei boodane hooshmand, na dasti)
 
         ////zare_nk_050425_commented_st(baraye chand noei boodane hooshmand, na dasti)
-          applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
+        //   applicationId "com.zare.hamyarKharid.Beta"  ////zare_nk_050423_nokteh(noskheye azmayeshi)
         // applicationId "com.zare.hamyarKharid"  ////zare_nk_050423_nokteh(noskheye Production(asli))
         ////zare_nk_050425_commented_end(baraye chand noei boodane hooshmand, na dasti)
         // ////  zare_nk_050231_nokteh(manzooram az lafze tavafoghiye Beta noskheye azmayashi hast(age amadeye enteshar shod az lafze Stable estefadeh mikonam(ya az lafzi estefadeh nemikonam va 

@@ -144,7 +144,7 @@ export default function LoginScreen({
           setMobileError(null);
         } else {
           await AsyncStorage.removeItem("token");
-          setMobileError(data.errors || "خطا در ارسال شماره موبایل");
+          setMobileError(data.errors[0] || "خطا در ارسال شماره موبایل");
           //zare_nk_040218-data: {"status":-2,"message":"","data":1,"errors":["6 ثانیه ی دیگر مجددا تلاش کنید"]}
         }
       } else {
@@ -236,7 +236,7 @@ export default function LoginScreen({
       } else {
         console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");
-        setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
+        setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است:");
       }      
     } catch (err: any) {      
       console.log(
@@ -275,7 +275,7 @@ export default function LoginScreen({
           setIsDisabledResendCode(true);  ////zare_nk_050314_added
         } else {
           // setError(data.errors || "خطا در ارسال شماره موبایل");  ////zare_nk_050314_commented
-          setSmsError(data.errors || "خطا در ارسال شماره موبایل"); ////zare_nk_050314_added
+          setSmsError(data.errors[0] || "خطا در ارسال شماره موبایل"); ////zare_nk_050314_added
           //zare_nk_040218-data: {"status":-2,"message":"","data":1,"errors":["6 ثانیه ی دیگر مجددا تلاش کنید"]}
         }
       } else {

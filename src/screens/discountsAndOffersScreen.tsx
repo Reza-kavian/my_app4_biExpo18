@@ -342,7 +342,7 @@ export default function ShallowRoutingExample({
 
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -695,7 +695,7 @@ export default function ShallowRoutingExample({
             // Alert.alert('inja-2');
             // console.log('041210-12-data.status != 0');
             setIsOpenedMymodalForWarning(true);
-            setWarningTextInMymodalForWarning(data.message);
+            setWarningTextInMymodalForWarning(data.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
             // const bootstrap = await getBootstrap();
             // const mymodalForWarning = new bootstrap.Modal(
             //     document.getElementById("mymodalForWarning")
@@ -1003,7 +1003,7 @@ export default function ShallowRoutingExample({
         if (result.status != 0) {
           console.log('050330-addToCartInIndex-result.status != 0');
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -1284,7 +1284,7 @@ export default function ShallowRoutingExample({
           // }
           // refForfather.current = addRemParam.father;
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const adameSabteNahaeiModal = new bootstrap.Modal(
           //     document.getElementById("adameSabteNahaeiModal")
@@ -1300,7 +1300,7 @@ export default function ShallowRoutingExample({
         }
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")

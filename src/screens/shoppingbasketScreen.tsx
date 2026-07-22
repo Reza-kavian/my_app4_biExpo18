@@ -430,10 +430,11 @@ export default function ShoppingbasketComponent({
             });
             if (response.ok) {
                 const data = await response.json();
+                console.log("fdfd: "+JSON.stringify(data));
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(result.message);
+                    setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -780,14 +781,14 @@ export default function ShoppingbasketComponent({
             });
             console.log('050326-013');
             const data = await response.json();
-            console.log('050326-014-data is sabad: ' + JSON.stringify(data));
+            console.log('050431-014-data is sabad: ' + JSON.stringify(data));
             if (response.ok) {
                 ////zare_nk_050326_added_st(jaigozine state haye .... ke baese reRender mishan)
                 const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);  //jameKolTakhfif  
                 setJamKolTakhfif(jameKolTakhfif);
                 const jameKol = JSON.parse(data.data.jamKol);   //jameKol  
                 setJamKolNahaei(jameKol);
-                console.log('050430-jameKol dar getsabad: ' + jameKol);
+                console.log('050431-jameKol dar getsabad: ' + jameKol);
                 // const [jamKol, setJamKol] = useState<number | null>(null);
                 // const [jamKolTakhfif, setJamKolTakhfif] = useState<number | null>(null);
                 // const [jamKolNahaei, setJamKolNahaei] = useState<number | null>(null);
@@ -798,7 +799,7 @@ export default function ShoppingbasketComponent({
                 console.log('050326-015-result is sabad: ' + JSON.stringify(result));
                 if (data.status != 0) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(data.message);
+                    setWarningTextInMymodalForWarning(data.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -874,6 +875,7 @@ export default function ShoppingbasketComponent({
                 ////zare_nk_050311_added_end
             }
         } catch (error) {
+            console.log('zare_nk_050431_error: '+error);
             ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
             // setForCartContInProdDetVal(undefined);
             // setIsOpenedProdDetModal(false);
@@ -1105,7 +1107,7 @@ export default function ShoppingbasketComponent({
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(result.message);
+                    setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -1392,7 +1394,7 @@ export default function ShoppingbasketComponent({
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(result.message);
+                    setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")
@@ -1700,7 +1702,7 @@ export default function ShoppingbasketComponent({
                     ////zare_nk_041129_commented_end
                     refForfather.current = addRemParam.father;
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(result.message);
+                    setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
                     // const adameSabteNahaeiModal = new bootstrap.Modal(
                     //     document.getElementById("adameSabteNahaeiModal")
@@ -1715,7 +1717,7 @@ export default function ShoppingbasketComponent({
                 }
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
-                    setWarningTextInMymodalForWarning(result.message);
+                    setWarningTextInMymodalForWarning(result.errors[0]);  ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
                     // const mymodalForWarning = new bootstrap.Modal(
                     //     document.getElementById("mymodalForWarning")

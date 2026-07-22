@@ -1216,7 +1216,7 @@ export default function HomeScreen({
         if (result.status != 0) {
           console.log("050325-getIdShobeFrom-result.status != 0");
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message + '-شما خارج از محدوده فروشگاه هستید');
+          setWarningTextInMymodalForWarning(result.errors[0] + '-شما خارج از محدوده فروشگاه هستید');
           await AsyncStorage.removeItem("currentLocation");   ////zare_nk_050415_added
         } else if (result.status == 0) {
           console.log("050325-getIdShobeFrom-result.status == 0");
@@ -1876,7 +1876,7 @@ export default function HomeScreen({
         if (result.status != 0) {
           // Alert.alert('1-barcodeKala: ' + barcodeKala);
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -2144,7 +2144,7 @@ export default function HomeScreen({
         var result = data;
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")
@@ -2360,7 +2360,7 @@ export default function HomeScreen({
           ////zare_nk_041130_commented_st
           refForfather.current = addRemParam.father;
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const adameSabteNahaeiModal = new bootstrap.Modal(
           //   document.getElementById("adameSabteNahaeiModal")
@@ -2375,7 +2375,7 @@ export default function HomeScreen({
         }
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.message);
+          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
           // const mymodalForWarning = new bootstrap.Modal(
           //     document.getElementById("mymodalForWarning")

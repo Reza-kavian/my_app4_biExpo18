@@ -106,6 +106,7 @@ const MyCustomHeader = ({
                   // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
                   // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
                   const data = jwtDecode<MyJwtPayload>(token);
+                  console.log('zare_nk_050431_data: '+data);
                   var FullName = data.FullName;  //zare_nk_041115_added(from api tochikala)
                   var Mobile = data.Mobile;  //zare_nk_041115_added(from api tochikala)
                   var name = data.name;

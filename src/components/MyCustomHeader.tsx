@@ -12,7 +12,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"; //zare_nk_040431_added(in navar vaziate balaye gooshi ro lahaz mikone va mohtavash paeine navarvaziat mire va bahash ghati nemishe)
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
-import { NextJsApiAuthUrl } from "../constants/Urls";
+import { jwtDecode } from "jwt-decode";
 import { useFocusEffect, useRoute, RouteProp } from "@react-navigation/native";
 import { HeaderBackButton } from "@react-navigation/elements";
 
@@ -33,6 +33,17 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack"; //zare_
 // import BackButtonIcon from "../components/icons/images/BackButton";   ////zare_nk_050317_added
 import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   ////zare_nk_050317_added
 
+
+interface MyJwtPayload {
+  FullName: string|null;
+  Mobile: string|null;
+  name: string|null;
+  // exp: number;
+  // .
+  // .
+  [key: string]: any;
+}
+
 const MyCustomHeader = ({
   navigation,
   back,
@@ -42,7 +53,7 @@ const MyCustomHeader = ({
   ////zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
   //// parameterhaye voroodi ra barname automat az React Navigation migire)  ////zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const [usersCodeOrName, setUsersCodeOrName] = useState({
+  const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({
     FullName: null,
     Mobile: null,
     name: null,
@@ -66,52 +77,56 @@ const MyCustomHeader = ({
               } else {
                 // توکن هنوز معتبره، می‌تونی استفاده کنی
                 try {
-                  const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va apinazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
-                    NextJsApiAuthUrl + "verifyToken",
-                    {
-                      token,
-                    }
-                  );
-                  const data = res.data;
-                  // console.log("040928-b-1res: " + res);
-                  // console.log("040928-b-2-JSON res: " + JSON.stringify(res));
-                  // console.log("040928-b-3-data: " + JSON.stringify(data));
-                  ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate 
-                  // rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
-                  ////zare_nk_041008_nokteh(age az google login movafagh biad dar callback token rooberoo ra ijad mikonim){IdUser: null,email: decoded?.email ?? null,user_name: null,name: decoded?.name ?? null,},  
-                  if (
-                    res.status === 200
-                  ) {
-                    setIsLoggedIn(true);
+                  ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                  // const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va apinazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
+                  //   NextJsApiAuthUrl + "verifyToken",
+                  //   {
+                  //     token,
+                  //   }
+                  // );
+                  // const data = res.data;
+                  // // console.log("040928-b-1res: " + res);
+                  // // console.log("040928-b-2-JSON res: " + JSON.stringify(res));
+                  // // console.log("040928-b-3-data: " + JSON.stringify(data));
+                  // ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate 
+                  // // rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
+                  // ////zare_nk_041008_nokteh(age az google login movafagh biad dar callback token rooberoo ra ijad mikonim){IdUser: null,email: decoded?.email ?? null,user_name: null,name: decoded?.name ?? null,},  
+                  // if (
+                  //   res.status === 200
+                  // ) {
+                  ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                  setIsLoggedIn(true);
 
-                    // alert("data: "+data);
-                    // alert("data.decoded: "+data.decoded);
-                    // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
-                    // alert("data.decoded.Mobile: "+data.decoded.Mobile);
-                    // alert("data-stringify: "+JSON.stringify(data));
+                  // alert("data: "+data);
+                  // alert("data.decoded: "+data.decoded);
+                  // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
+                  // alert("data.decoded.Mobile: "+data.decoded.Mobile);
+                  // alert("data-stringify: "+JSON.stringify(data));
 
-                    // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
-                    // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+                  // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+                  // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+                  const data = jwtDecode<MyJwtPayload>(token);
+                  var FullName = data.FullName;  //zare_nk_041115_added(from api tochikala)
+                  var Mobile = data.Mobile;  //zare_nk_041115_added(from api tochikala)
+                  var name = data.name;
 
-                    var FullName = data.decoded.FullName;  //zare_nk_041115_added(from api tochikala)
-                    var Mobile = data.decoded.Mobile;  //zare_nk_041115_added(from api tochikala)
-                    var name = data.decoded.name;
-
-                    setUsersCodeOrName((prev) => {
-                      return {
-                        ...prev,
-                        FullName: FullName,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                        Mobile: Mobile,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                        name: name,  //zare_nk_041008_nokteh(age az google login shim)
-                      };
-                    });
-                    // if (idUSerRef.current) {
-                    //   document.getElementById("idUSer")!.innerText =
-                    //     NameMoshtari != null ? NameMoshtari : CodeMoshtari;
-                    // }                   
-                  } else {
-                    await handleLogout();
-                  }
+                  setUsersCodeOrName((prev) => {
+                    return {
+                      ...prev,
+                      FullName: FullName,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                      Mobile: Mobile,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                      name: name,  //zare_nk_041008_nokteh(age az google login shim)
+                    };
+                  });
+                  // if (idUSerRef.current) {
+                  //   document.getElementById("idUSer")!.innerText =
+                  //     NameMoshtari != null ? NameMoshtari : CodeMoshtari;
+                  // }    
+                  ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)               
+                  // } else {
+                  //   await handleLogout();
+                  // }
+                  ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
                 } catch (err) {
                   console.log("خطا در بررسی اعتبار توکن:", err);
                   await handleLogout();

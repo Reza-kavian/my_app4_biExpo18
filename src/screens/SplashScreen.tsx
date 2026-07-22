@@ -6,7 +6,6 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types/navigation";
 import axios from "axios";
-import { NextJsApiAuthUrl } from "../constants/Urls";
 import { protectedScreens } from "../utils/protectedRoutes";
 import type { RouteProp } from "@react-navigation/native";
 import { Alert } from "react-native"; //zare_nk_040926_added
@@ -42,19 +41,20 @@ export default function SplashScreen() {
                 // مثلا هدایت به لاگین یا splash                
                 await goToLogin(targetScreen);
               } else {
-                // Alert.alert('09');
-                // توکن هنوز معتبره، می‌تونی استفاده کنی
-                const res = await axios.post(NextJsApiAuthUrl + "verifyToken", {
-                  token,
-                });
+                ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                // const res = await axios.post(NextJsApiAuthUrl + "verifyToken", {
+                //   token,
+                // });
 
-                if (res.status === 200) {
-                  // Alert.alert('10');
-                  navigation.replace(targetScreen); // moadele const response = NextResponse.next();
-                } else {
-                  // Alert.alert('11');
-                  await goToLogin(targetScreen);
-                }
+                // if (res.status === 200) {
+                ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                navigation.replace(targetScreen); // moadele const response = NextResponse.next();
+                ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                // } else {
+                //   // Alert.alert('11');
+                //   await goToLogin(targetScreen);
+                // }
+                ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
               }
             } else {
               // Alert.alert('07');

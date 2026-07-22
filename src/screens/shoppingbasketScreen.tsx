@@ -12,7 +12,7 @@ import {  ////zare_nk_041127_added
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";    //zare_nk_050130_nokteh(in ro begonjoonam age mishe)
+import { NextJsApiUrl } from "../constants/Urls";  
 
 import { RefObject } from "react";
 import { MouseEvent } from "react";

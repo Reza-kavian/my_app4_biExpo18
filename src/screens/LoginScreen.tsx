@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
-import { NextJsApiUrl, NextJsApiAuthUrl } from "../constants/Urls";
+import { NextJsApiUrl } from "../constants/Urls";   
 import { SvgUri } from "react-native-svg";
 import type { RootStackParamList } from "../types/navigation";
 
@@ -68,19 +68,6 @@ export default function LoginScreen({
   // const [timerDisplay, setTimerDisplay] = useState("flex");  ////zare_nk_050312_added
 
   const { height } = useWindowDimensions();
-
-  ////zare_nk_041020_commented_st
-  // useEffect(() => {   //0021
-  ////zare_nk_040531_nokteh(dar har render age nobate safhe tagheir kard va meghdaresh secondPage bood dokmeye ResendCode disable bashe va dokmeye RemovTimerBtn enable bashe, 
-  //// chon timer be 4000 refresh mishe va ta sefr shodan nabayad darkhaste mojadade ersale code dad)
-  //   if (step === "secondPage") {
-  //     // setTimer(40000);  //zare_nk_040431_commented(bordim be dastoore 0010 ta az rendere ezafi jologiri beshe,ye bar setStep("secondPage") baese render shod
-  //     // ,setTimer(40000) ke inja bashe mojebe rendere mojadade component mishe,pas behtere setTimer(40000) dar kenare setStep("secondPage") gharar begire,yani hamoon dstoore 0010)
-  //     setIsDisabledResendCode(true);
-  //     setIsDisabledRemovTimerBtn(false);
-  //   }
-  // }, [step]);
-  ////zare_nk_041020_commented_end
 
   useEffect(() => {
     ////zare_nk_050211_nokteh_st(chon dastoorate in nokteh ra dar tabee cleanUp niz moshakhas kardim,in ghesmat tekrariye va comment kardim(cleanUp ghable ejraye 
@@ -178,149 +165,7 @@ export default function LoginScreen({
       setIsDisabledMobileCheckBtn(false);
     }
   };
-  ////zare_nk_050312_commented_st
-  // const checkSmsForLogin = async () => {
-  //   if (!smsVal || smsVal.length < 4) {
-  //     await AsyncStorage.removeItem("token");
-  //     setSmsError("کد وارد شده معتبر نیست");
-  //     return;
-  //   }
-  //   try {
-  //     setIsDisabledCheckSmsBtn(true);
-  //     const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
-  //       mobile: mobileVal,
-  //       smsCode: smsVal,
-  //       Password: ""
-  //     });
-  //     console.log("zare_nk_041207-01");
-  //     const ApiLoginUser2Result = res.data; // await res.json();
-  //     console.log("zare_nk_041207-02");
-  //     console.log("zare_nk_041207-03-ApiLoginUser2Result: " + ApiLoginUser2Result);
-  //     console.log(
-  //       "zare_nk_041207-03-JSON.stringify(ApiLoginUser2Result): " +
-  //       JSON.stringify(ApiLoginUser2Result)
-  //     );
-  //     //zare_nk_0409225_alan
-  //     //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-9,"message":"","data":null,"errors":["کد پیامکی وارد شده اشتباه است"]}
-  //     //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":-11,"message":"","data":null,"errors":["کد ورود شما منقضی شده است. لطفا مجددا درخواست کد پیامکی کنید"]}
-  //     //040530-03-JSON.stringify(ApiLoginUser2Result): {"status":0,"message":"",
-  //     // "data":{"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA"}
-  //     // ,"errors":[]}
-  //     // if (res.status === 200) {
-  //     if (res.status === 200 && ApiLoginUser2Result.status == 0) {
-  //       // if (ApiLoginUser2Result.status == 0) {
-  //       let token = ApiLoginUser2Result.data.token;
-  //       console.log("zare_nk_041207-03-token: " + token);
-  //       //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
-  //       // try {
-  //       const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
-  //         ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin 
-  //         // pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
-  //         method: "POST",
-  //         headers: { "Content-Type": "application/json" },
-  //         body: JSON.stringify({ token }),
-  //       });
-  //       console.log("zare_nk_041207-1");
-  //       console.log("zare_nk_041207-a-1-response: " + response);
-  //       console.log("zare_nk_041207-a-2-JSON response: " + JSON.stringify(response));
-  //       // console.log("zare_nk_041207-a-3-data: " + JSON.stringify(data));
-  //       const data = await response.json();
-
-  //       if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
-  //         //// 1. ذخیره توکن به همراه زمان انقضا (مثلاً 1 ساعت بعد)
-  //         const expires = new Date(
-  //           Date.now() + 20000 * 60 * 1000
-  //         ).toISOString();
-  //         // const expires =data.decoded.exp;  //zare_nk_040219-nokteh(zamane monghazi ra az dadeye parsafar taein kardam)
-  //         let tokenni = await AsyncStorage.getItem("token");  //zare_nk_040925_added_pakkardani
-  //         console.log("0-zare_nk_041207-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
-  //         await AsyncStorage.setItem("token", token); //moadele cooki dar reactnative ast 
-  //         await AsyncStorage.setItem("token_expires", expires);
-  //         tokenni = await AsyncStorage.getItem("token");//zare_nk_040925_added_pakkardani
-  //         console.log("1-zare_nk_041207-tokenni is: " + tokenni);//zare_nk_040925_added_pakkardani
-
-  //         ////zare_nk_041207_commented_st
-  //         // const validRoutes = [
-  //         //   "AboutScreen",
-  //         //   "AuthCallback",
-  //         //   "discountsAndOffers",
-  //         //   "folder02",
-  //         //   "folder03",
-  //         //   "Home",
-  //         //   "Login",
-  //         //   "ordersHistory",
-  //         //   "Profile",
-  //         //   "Scanner",
-  //         //   "shoppingbasket",
-  //         //   "Splash",
-  //         //   "SupperApp",
-  //         //   "SupperGame",
-  //         //   "TicTacToe",
-  //         //   "Welcome",
-  //         // ] as const;
-
-  //         // type RouteName = (typeof validRoutes)[number]; //number yani har kodoom az andis haye in araye,darvaghe har kodoom az 4 khooneye araye
-
-  //         // const redirectRaw = await AsyncStorage.getItem("redirect");
-
-  //         // const redirect = validRoutes.includes(redirectRaw as RouteName)
-  //         //   ? (redirectRaw as RouteName)
-  //         //   : "Home"; // یا هر صفحه‌ای که بخوای پیش‌فرض باشه
-
-  //         //// 3. حذف مسیر redirect از AsyncStorage
-  //         // await AsyncStorage.removeItem("redirect"); 
-  //         //// 4. هدایت به مسیر redirect
-  //         // navigation.replace(redirect);   
-  //         ////zare_nk_041207_commented_end
-  //         ////zare_nk_041207_added_st
-  //         const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
-  //         await AsyncStorage.removeItem("redirect");
-  //         navigation.replace(redirect as keyof RootStackParamList);
-  //         ////zare_nk_041207_added_end
-  //       } else {
-  //         console.log("❌ zare_nk_041207-verifyToken failed");
-  //         setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
-  //         await AsyncStorage.removeItem("token");
-  //         // Alert.alert("❌ verifyToken failed");
-  //       }
-  //       // } catch (error) {
-  //       //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
-  //       //   console.error("❌ خطا در JWT:", error);  //[TypeError: "tokenni" is read-only]
-  //       //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added
-  //       //   setError("متاسفانه خطایی رخ داده است999:" + error);
-  //       // }
-  //       // } else {  //ok2
-  //       //   alert(
-  //       //     "data.status != 0 in checkSmsForLogin-AsyncStorage.removeItem('token')"
-  //       //   );
-  //       //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added 
-  //       //   setError("متاسفانه خطایی رخ داده است34:eeee" + ApiLoginUser2Result.errors[0]);    //zare_nk_040925_updated 
-  //       // }
-  //     } else {
-  //       // Alert.alert(
-  //       //   "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
-  //       // );
-  //       console.log("zare_nk_041207-!!response.ok");
-  //       await AsyncStorage.removeItem("token");
-  //       setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
-  //     }
-
-  //     ////zare_nk_040428_added_end
-  //   } catch (err: any) {
-  //     // Alert.alert(
-  //     //   "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
-  //     // );
-  //     console.log(
-  //       "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
-  //     );
-  //     await AsyncStorage.removeItem("token");
-  //     setSmsError(err.response?.data?.message || "خطا در ورود با کد تایید");
-  //   } finally {
-  //     setIsDisabledCheckSmsBtn(false);
-  //   }
-  // };
-  ////zare_nk_050312_commented_end
-  ////zare_nk_050312_added_st  
+   
   const checkSmsForLogin = async (sms: string) => {
     if (!sms || sms.length < 4) {
       await AsyncStorage.removeItem("token");
@@ -329,22 +174,14 @@ export default function LoginScreen({
     }
     try {
       setIsDisabledCheckSmsBtn(true);
-      ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
-      // const res = await axios.post(NextJsApiUrl + "User/Api_LoginUser2", {
-      //   mobile: mobileVal,
-      //   smsCode: sms,
-      //   Password: ""
-      // });
-      ////zare_nk_050325_commented_end(agheire api be hamyarForoosh) 
-      ////zare_nk_050325_added_st(agheire api be hamyarForoosh) 
+
       const res = await axios.post(NextJsApiUrl + "Api_LoginUser2",
         {
           mobile: mobileVal,
           smsCode: sms,
           Password: "",
           IdShobeh: 12,
-        });
-      ////zare_nk_050325_added_end(agheire api be hamyarForoosh)   
+        }); 
 
       console.log("zare_nk_041207-01");
       const ApiLoginUser2Result = res.data; // await res.json();
@@ -376,28 +213,6 @@ export default function LoginScreen({
         console.log("zare_nk_050430-03-token: " + token);
         //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
        
-        ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
-        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
-        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
-
-        // const response = await fetch(NextJsApiAuthUrl + "verifyToken", {
-        //   ////zare_nk_040428_added_nokteh(dar reactnative ke kollan samte client hast code samte server ke behesh api bezanim nadarin 
-        //   // pas masire verifyToken bayad dar yek projeye dige mesle nextjs ya .net core bayad bashe va az reactnative faghat behesh api bezanim)
-        //   method: "POST",
-        //   headers: { "Content-Type": "application/json" },
-        //   body: JSON.stringify({ token }),
-        // });
-        // console.log("zare_nk_041207-1");
-        // console.log("zare_nk_041207-a-1-response: " + response);
-        // console.log("zare_nk_041207-a-2-JSON response: " + JSON.stringify(response)); 
-        // const data = await response.json();
-
-        // if (response.status === 200) { // YA if (response.ok) {  zare_nk_040928_updated(response.status==2xx mesle 204 ya 209 dar response.ok lahaz mishavand vali man chon hamvareh dar pasokhe movafagh data daram pas hamvareh dar 2xx man 200 darmam)
-        ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
-        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
-        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
-
-
         ////zare_nk_050323_nokteh_st(rahe EX1- kond tar hast va tosiye nemishe)
         // const expires = new Date(
         //   Date.now() + 20000 * 60 * 1000
@@ -417,46 +232,13 @@ export default function LoginScreen({
         const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
         await AsyncStorage.removeItem("redirect");
         navigation.replace(redirect as keyof RootStackParamList);
-        ////zare_nk_050428_commented_st(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
-        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
-        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
-
-        // } else {
-        //   console.log("❌ zare_nk_041207-verifyToken failed");
-        //   setSmsError("خطا در ورود با کد تایید");  //zare_nk_040926_added
-        //   await AsyncStorage.removeItem("token");
-        //   // Alert.alert("❌ verifyToken failed");
-        // }
-        ////zare_nk_050428_commented_end(chon api ApiLoginUser2Result monghazi shodane code taeid ra check mikoneh va niazi be verifyToken nist(verifyToken baraye
-        ////  zamani khoobe ke mikhaim etebare localstorage token chek beshe(null nabashe va monghazi ham nashodeh bashe(rasti behtare az middleware.tsx elham begirim
-        ////  ke dar safahate moredeniaz etebare localStorage ra biniaz az zadane api be verifyToken check konim)) ))
-
-        // } catch (error) {
-        //   alert("catch in checkSmsForLogin-AsyncStorage.removeItem('token')");
-        //   console.error("❌ خطا در JWT:", error);  //[TypeError: "tokenni" is read-only]
-        //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added
-        //   setError("متاسفانه خطایی رخ داده است999:" + error);
-        // }
-        // } else {  //ok2
-        //   alert(
-        //     "data.status != 0 in checkSmsForLogin-AsyncStorage.removeItem('token')"
-        //   );
-        //   await AsyncStorage.removeItem("token"); //zare_nk_040429_added 
-        //   setError("متاسفانه خطایی رخ داده است34:eeee" + ApiLoginUser2Result.errors[0]);    //zare_nk_040925_updated 
-        // }
+       
       } else {
-        // Alert.alert(
-        //   "res.status !== 200 or data.status != 0  in checkSmsForLogin-AsyncStorage.removeItem('token')"
-        // );
         console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");
         setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است34:eeee");
-      }
-      ////zare_nk_040428_added_end
-    } catch (err: any) {
-      // Alert.alert(
-      //   "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
-      // );
+      }      
+    } catch (err: any) {      
       console.log(
         "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );
@@ -466,7 +248,6 @@ export default function LoginScreen({
       setIsDisabledCheckSmsBtn(false);
     }
   };
-  ////zare_nk_050312_added_end
 
   const ResendCodefunc = async () => {
     try {
@@ -522,7 +303,6 @@ export default function LoginScreen({
     return match ? decodeURIComponent(match[1]) : null;
   };
 
-  ////zare_nk_040603_added_st(rahe1)
   useEffect(() => {
     const subscription = Linking.addListener("url", async ({ url }) => {  ////zare_nk_041007_nokteh(yani harvaght appe man ba yek linke khareji baz 
       // shod in tabe ro ejra kon(android in link ro motevajjeh mishe va dar in tabe be ma mideh, masalan myapp://auth/callback?token=eyJhbGciOiJIUzI1...))
@@ -562,9 +342,7 @@ export default function LoginScreen({
 
         // 4. هدایت به مسیر redirect
         navigation.replace(redirect); // نیازمند useNavigation از React Navigation
-        ///////////////////////////////////zare_nk_040929_added_end
       }
-      ////////////////////////////////////zare_nk_040929_added_st
       else {
         // Alert.alert('useEffect called!!-token nadarim ke: ' + token);
         const error = getQueryParam(url, "error");
@@ -572,37 +350,12 @@ export default function LoginScreen({
           setError('khata dar ehraze hoviat ba google!: ' + error);
         }
       }
-      ////////////////////////////////////zare_nk_040929_added_end
     });
 
     return () => {
       subscription.remove(); // پاک کردن listener هنگام unmount
     };
   }, []);
-
-  ////zare_nk_040603_added_end(rahe1)
-  ////zare_nk_040603_added_st(rahe2)
-  // useEffect(() => {
-  //   const handleDeepLink = (event: Linking.EventType) => {
-  //     const url = event.url;
-  //     const { queryParams } = Linking.parse(url);
-  //     if (queryParams?.token) {
-  //       console.log("JWT:", queryParams.token);
-  //       // TODO: ذخیره توکن در AsyncStorage و انتقال کاربر
-  //       navigation.navigate("Home");
-  //     }
-  //   };
-
-  //   const subscription = Linking.addEventListener("url", handleDeepLink);
-  //   return () => subscription.remove();
-  // }, []);
-  ////zare_nk_040603_added_end(rahe2)
-  ////zare_nk_040603_added_st
-  // const handleGoogleLogin = () => {
-  //   alert("handleGoogleLogin");
-  //   // window.location.href = `/api/auth/google`; // هدایت به گوگل  //zare_nk_040603_commented
-  //   // window.location.href = `https://testotm.sarinmehr.com/api/auth/google`; //zare_nk_040603_added
-  // };
 
   const handleGoogleLogin = async () => {
     // const url = "https://testotm.sarinmehr.com/api/auth/google?source=mobile";    //zare_nk_041002_commented 

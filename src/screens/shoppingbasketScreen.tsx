@@ -1283,6 +1283,7 @@ export default function ShoppingbasketComponent({
         addRemParam: addRemParamType,
     ) {
         // Alert.alert('444');
+
         console.log('041203-addToCartInIndex called!-addRemParam: ' + addRemParam.NameKala);
         console.log('050329-addToCartInIndex called!-addRemParam01: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
         ////zare_nk_041129_commented_st
@@ -1373,6 +1374,11 @@ export default function ShoppingbasketComponent({
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
                     let Tedad = satrInoInResult.Tedad;
+                    console.log('050501-inn adddd-addFee:' + addRemParam.FeeForoosh +
+                        'apiFee:' + satrInoInResult.FeeForoosh +
+                        'addZarib:' + addRemParam.ZaribForoosh +
+                        'apiZarib:' + satrInoInResult.ZaribForoosh
+                    );
 
                     var bishAzMaxTedadYaMojoodi = 0;
                     if (addRemParam.MaxTedad != null) {
@@ -1442,10 +1448,10 @@ export default function ShoppingbasketComponent({
                     ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
                     ////zare_nk_050431_nokteh_st(betterWayForSetStates01-raveshe setState amn)
                     setJamKolNahaei(prev =>
-                        (prev ?? 0) + (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
+                        (prev ?? 0) + (addRemParam.ZaribForoosh * addRemParam.FeeForoosh) 
                     );
                     setJamKolTakhfif(prev =>
-                        (prev ?? 0) + ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
+                        (prev ?? 0) + ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)) 
                     );
                     ////zare_nk_050431_nokteh_end(betterWayForSetStates01-raveshe setState amn)
 
@@ -1538,7 +1544,7 @@ export default function ShoppingbasketComponent({
                             // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
                             return curItem;
                         });
-                    })
+                    })  
                     ////zare_nk_050431_nokteh_end(raveshe setState amn)
 
                     ////zare_nk_050431_nokteh_st(raveshe setState khatarnak)
@@ -1807,6 +1813,11 @@ export default function ShoppingbasketComponent({
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
                     let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
+                    console.log('050501-inn remmmm-addFee:' + addRemParam.FeeForoosh +
+                        'apiFee:' + satrInoInResult.FeeForoosh +
+                        'addZarib:' + addRemParam.ZaribForoosh +
+                        'apiZarib:' + satrInoInResult.ZaribForoosh
+                    );
                     console.log('050329-result.status == 0-02');
                     var bishAzMaxTedadYaMojoodi = 0;
                     if (addRemParam.MaxTedad != null) {
@@ -1878,21 +1889,19 @@ export default function ShoppingbasketComponent({
                     ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
                     ////zare_nk_050431_nokteh_st(betterWayForSetStates01-raveshe setState amn)
                     setJamKolNahaei(prev =>
-                        (prev ?? 0) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
+                        (prev ?? 0) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh) 
                     );
                     setJamKolTakhfif(prev =>
-                        (prev ?? 0) - ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
+                        (prev ?? 0) - ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)) 
                     );
                     ////zare_nk_050431_nokteh_end(betterWayForSetStates01-raveshe setState amn)
-
-
-                    setSabadRows((curRows) => {   
-                        if (Tedad <= 0  ) {
+                    setSabadRows((curRows) => {
+                        if (Tedad <= 0) {
                             return curRows.filter(
                                 item => item.IdKala !== addRemParam.IdKala
                             );
-                        }  
- 
+                        }
+
                         return curRows.map((curItem, index) => {
                             if (curItem.IdKala == addRemParam.IdKala) {
                                 return (
@@ -1910,18 +1919,18 @@ export default function ShoppingbasketComponent({
                                         BarcodeKala: addRemParam.BarcodeKala,
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
-                                        JamForoosh: satrInoInResult.JamForoosh,   
+                                        JamForoosh: satrInoInResult.JamForoosh,
                                         father: "#sabadItemsContInSafhe",
-                                        refForfather: refForfather, 
-                                        fromShowDetails: false, 
-                                        idTag: "ForCart-" + addRemParam.IdKala, 
+                                        refForfather: refForfather,
+                                        fromShowDetails: false,
+                                        idTag: "ForCart-" + addRemParam.IdKala,
                                     }
                                 )
                             }
                             // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
                             return curItem;
                         })
-                    })
+                    }) 
                     ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha) 
                 }
             } else {

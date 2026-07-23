@@ -2442,33 +2442,6 @@ export default function HomeScreen({
               };
             });
           }
-
-          if (Tedad == 0) {
-            // const inputGroup = document.querySelector(
-            //   ".ForCart-" + addRemParam.IdKala + " .input-group"
-            // );
-            // if (inputGroup) {
-            //   let parent = inputGroup.closest(".flxpedar2_new");
-            //   if (parent) {
-            //     if (JSON.parse(result.data.titr).length == 0) {
-            //       parent.remove();
-            //     }
-            //   }
-            // }
-          }
-          else if (Tedad == addRemParam.ZaribForoosh) {
-            // let htmlTag;
-            // if (addRemParam.event) {
-            //   htmlTag = addRemParam.event.target as HTMLElement;
-            // }
-
-            // const wrapper = htmlTag?.closest(
-            //   ".flxpedar2_new"
-            // ) as HTMLElement | null;
-            // if (wrapper) {
-            //   wrapper.style.backgroundColor = "inherit";
-            // }
-          }
         }
       } else {
         console.log('050328-rem-!!response.ok');

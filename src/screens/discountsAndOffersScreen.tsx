@@ -815,14 +815,12 @@ export default function ShallowRoutingExample({
                 if (item.MaxTedad <= item.TedadDarSabad) {
                   bishAzMaxTedadYaMojoodi = 1;
                 }
-              }
-              ////zare_nk_050418_added_st
+              }               
               else {
                 if (item.Mojoodi <= item.TedadDarSabad) {
                   bishAzMaxTedadYaMojoodi = 1;
                 }
-              }
-              ////zare_nk_050418_added_end
+              }              
 
               let ForCartContentsDesignTypeLet = 0
 
@@ -1075,40 +1073,7 @@ export default function ShallowRoutingExample({
               };
             });
           }
-          // Alert.alert('baghiye');
-
-          ////zare_nk_050321_added_alan_st
-          // offerRows.map((curItem: any, index: number) => {
-          //   if (curItem.IdKala == addRemParam.IdKala) {
-          //     // return(   ////zare_nk_050321_nokteh(lazem nist)
-          //     setOfferRows((cur) => {
-          //       return (
-          //         [...cur,
-          //         {
-          //           tedadInSabadOrDet: Tedad,
-          //           ZaribForoosh: addRemParam.ZaribForoosh,
-          //           IdKala: addRemParam.IdKala,
-          //           NameKala: addRemParam.NameKala,
-          //           DarsadTakhfif: addRemParam.DarsadTakhfif,
-          //           NameBerand: addRemParam.NameBerand,
-          //           FeeForoosh: addRemParam.FeeForoosh,
-          //           FeeMasraf: addRemParam.FeeMasraf,
-          //           BarcodeKala: addRemParam.BarcodeKala,
-          //           Mojoodi: addRemParam.Mojoodi,
-          //           MaxTedad: addRemParam.MaxTedad, 
-          //           father: "#cardcontainer2",
-          //           refForfather: refForfather,
-          //           bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-          //           fromShowDetails: false,
-          //           ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-          //           idTag: "ForCart-" + addRemParam.IdKala,
-          //         }
-          //         ]
-          //       )
-          //     })
-          //     // )   ////zare_nk_050321_nokteh(lazem nist) 
-          //   }
-          // })
+           
           setOfferRows((curRows) => {
             return curRows.map((curItem: any, index: number) => {
               if (curItem.IdKala == addRemParam.IdKala) {
@@ -1373,39 +1338,7 @@ export default function ShallowRoutingExample({
               };
             });
           }
-
-          ////zare_nk_050321_added_alan_st
-          // offerRows.map((curItem: any, index: number) => {
-          //   if (curItem.IdKala == addRemParam.IdKala) {
-          //     // return(   ////zare_nk_050321_nokteh(lazem nist)
-          //     setOfferRows((cur) => {
-          //       return (
-          //         [...cur,
-          //         {
-          //           tedadInSabadOrDet: Tedad,
-          //           ZaribForoosh: addRemParam.ZaribForoosh,
-          //           IdKala: addRemParam.IdKala,
-          //           NameKala: addRemParam.NameKala,
-          //           DarsadTakhfif: addRemParam.DarsadTakhfif,
-          //           NameBerand: addRemParam.NameBerand,
-          //           FeeForoosh: addRemParam.FeeForoosh,
-          //           FeeMasraf: addRemParam.FeeMasraf,
-          //           BarcodeKala: addRemParam.BarcodeKala,
-          //           Mojoodi: addRemParam.Mojoodi,
-          //           MaxTedad: addRemParam.MaxTedad, 
-          //           father: "#cardcontainer2",
-          //           refForfather: refForfather,
-          //           bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
-          //           fromShowDetails: false,
-          //           ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
-          //           idTag: "ForCart-" + addRemParam.IdKala,
-          //         }
-          //         ]
-          //       )
-          //     })
-          //     // )   ////zare_nk_050321_nokteh(lazem nist) 
-          //   }
-          // })
+  
           setOfferRows((curRows) => {
             return curRows.map((curItem: any, index: number) => {
               if (curItem.IdKala == addRemParam.IdKala) {

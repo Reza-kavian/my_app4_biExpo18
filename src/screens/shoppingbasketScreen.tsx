@@ -12,7 +12,7 @@ import {  ////zare_nk_041127_added
 import { Camera, useCameraDevice, useCodeScanner, useCameraPermission } from "react-native-vision-camera";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { NextJsApiUrl } from "../constants/Urls";  
+import { NextJsApiUrl } from "../constants/Urls";
 
 import { RefObject } from "react";
 import { MouseEvent } from "react";
@@ -430,7 +430,7 @@ export default function ShoppingbasketComponent({
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log("fdfd: "+JSON.stringify(data));
+                console.log("fdfd: " + JSON.stringify(data));
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
@@ -737,16 +737,6 @@ export default function ShoppingbasketComponent({
         // tempFuncForAsyncGetBootstrap();
     }, [isOpenedCodeScannerModal]);
 
-    ////zare_nk_041119_added_st_testi
-    useEffect(() => {
-        // console.log('0-041119-sabadRows: ' + JSON.stringify(sabadRows));  //zare_nk_041120_commented
-    }, [sabadRows]);
-    useEffect(() => {
-        console.log('0-041119-ForCartContInProdDetVal: ' + JSON.stringify(ForCartContInProdDetVal));
-    }, [ForCartContInProdDetVal]);
-    ////zare_nk_041119_added_end_testi
-
-    ////zare_nk_041115_added_st
     async function getSabadItems(IdSabadKharidTitr: number, token: string) {
         console.log('050326-010-result is IdSabadKharidTitr: ' + IdSabadKharidTitr + '-token: ' + token);
         ////zare_nk_050326_commented_st(chon dar hamyar SabadTitr nadarim)
@@ -819,7 +809,7 @@ export default function ShoppingbasketComponent({
                     console.log('041120-result in Api_SelectSabadKharidSatr: ' + JSON.stringify(result));
                     setBisatr(false);
                     refForfather.current = "#sabadItemsContInSafhe";
- 
+
                     ////zare_nk_041119_added_st
                     setSabadRows(() => {
                         return (
@@ -875,7 +865,7 @@ export default function ShoppingbasketComponent({
                 ////zare_nk_050311_added_end
             }
         } catch (error) {
-            console.log('zare_nk_050431_error: '+error);
+            console.log('zare_nk_050431_error: ' + error);
             ////zare_nk_050325_commented_st(tahlilshe(catch ra az showDetails coppy kardam, fekr mikonam inha inja ezafian)) 
             // setForCartContInProdDetVal(undefined);
             // setIsOpenedProdDetModal(false);
@@ -1257,32 +1247,6 @@ export default function ShoppingbasketComponent({
 
     }
 
-    ////zare_nk_041128_commened_st
-    // async function ManualInputBarcode(
-    //     event: React.KeyboardEvent<HTMLInputElement>
-    // ) {
-    //     const inputElement = event.target as HTMLInputElement;
-    //     const tagVal = inputElement.value;
-    //     if (
-    //         event.key === "Enter" && // مدرن‌تر و درست‌تر از keyCode
-    //         tagVal.trim().length &&
-    //         inputElement.classList.contains("valid")
-    //     ) {
-    //         let text = parseFloat(tagVal);
-    //         const modalElement = document.getElementById("seePricesModal");
-    //         if (modalElement) {
-    //             const bootstrap = await getBootstrap();
-    //             const modal = bootstrap.Modal.getInstance(modalElement);
-    //             if (modal) {
-    //                 modal.hide();
-    //             }
-    //         }
-    //         addDetectedToCart(text.toString());
-    //     }
-    // }
-    ////zare_nk_041128_commented_end
-    ////zare_nk_041128_added_st
-
     async function ManualInputBarcode(
         manualBarcode: string
     ) {
@@ -1307,9 +1271,8 @@ export default function ShoppingbasketComponent({
             addDetectedToCart(text.toString());
         }
     }
-    ////zare_nk_041128_added_end
-    // const seePrices = () => {  //zare_nk_041205_commented(forUpdateName)
-    const forOpenCodeScanner = () => {  //zare_nk_041205_added(forUpdateName) 
+
+    const forOpenCodeScanner = () => {
         setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
         setIsOpenedCodeScannerModal(true);//zare_nk_041205_forUpdateName
         setAddOrRemChanged(null);
@@ -1466,94 +1429,183 @@ export default function ShoppingbasketComponent({
                     ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
                     //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
                     //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
-                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
+                    ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
                     // let jameKol = jamKolNahaei ?? 0; let soodAzKharid = jamKolTakhfif ?? 0;
                     // jameKol += (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
                     // soodAzKharid += ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
                     // setJamKolNahaei(jameKol);
                     // setJamKolTakhfif(soodAzKharid);
+                    ////zare_nk_050431_nokteh_end(raveshe setState khatarnak(chon kerbar age payapey dokmeye add ro bezaneh shayad hanooz component reRender nashodeh
+                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
+                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
+                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
+                    ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
+                    ////zare_nk_050431_nokteh_st(betterWayForSetStates01-raveshe setState amn)
                     setJamKolNahaei(prev =>
                         (prev ?? 0) + (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
                     );
                     setJamKolTakhfif(prev =>
                         (prev ?? 0) + ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
                     );
-                    ////zare_nk_050431_nokteh_end(raveshe setState khatarnak(chon kerbar age payapey dokmeye add ro bezaneh shayad hanooz component reRender nashodeh
-                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
-                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
-                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
-                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
-  
-                    // if (Tedad === 1) { ////zare_nk_050431_commented(shayad parsafar bedalile adame mojoodi mesgdare yeke ghabli ra mojadad yek 
-                    //// bedeh va man dobare ye satr behesh bedam!! pas rahe betterWay01 ro anjam midim)
-                    ////zare_nk_050431_added_st(betterWay01)
-                    const exists = sabadRows.some(
-                        item => item.IdKala === addRemParam.IdKala
-                    );
-                    ////zare_nk_050431_added_end(betterWay01)
-                    if (!exists) {
-                        let tempSabadRows: SabadRowType[] = [...sabadRows];
-                        tempSabadRows.push({
-                            tedadInSabadOrDet: Tedad,
-                            ZaribForoosh: addRemParam.ZaribForoosh,
-                            IdKala: addRemParam.IdKala,
-                            NameKala: addRemParam.NameKala,
-                            DarsadTakhfif: addRemParam.DarsadTakhfif,
-                            NameBerand: addRemParam.NameBerand,
-                            FeeForoosh: addRemParam.FeeForoosh,
-                            FeeMasraf: addRemParam.FeeMasraf,
-                            BarcodeKala: addRemParam.BarcodeKala,
-                            Mojoodi: addRemParam.Mojoodi,
-                            MaxTedad: addRemParam.MaxTedad,
-                            JamForoosh: satrInoInResult.JamForoosh,  ////zare_nk_050430_added
-                            father: "#sabadItemsContInSafhe",
-                            refForfather: refForfather,
-                            //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
-                            fromShowDetails: false,
-                            // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
-                            idTag: "ForCart-" + addRemParam.IdKala,
-                            // soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
-                            // MablaghNahaee: jameKol,  ////zare_nk_050430_added
-                        })
-                        setSabadRows(tempSabadRows);
-                        return;
-                    }
+                    ////zare_nk_050431_nokteh_end(betterWayForSetStates01-raveshe setState amn)
 
-                    let tempSabadRows: SabadRowType[] = [...sabadRows];
-                    tempSabadRows = tempSabadRows.map((curItem, index) => {
-                        if (curItem.IdKala == addRemParam.IdKala) {
-                            return (
-                                {
-                                    ...curItem,   ////zare_nk_050322_added(ta age fieldi ra ja gozashtim barnameh az meghdare feli estefadeh koneh, vagarnah an field undefiend mishavad!(masalan 
-                                    //// midoonim NameKala dar in setState tagheiri nemikoneh, niazi be meghdardehi mojadad nist va age inja dobareh meghdar nadim va az ...curItem ham estefadeh nakonim undegiend mideh ))
-                                    tedadInSabadOrDet: Tedad,
-                                    ZaribForoosh: addRemParam.ZaribForoosh,
-                                    IdKala: addRemParam.IdKala,
-                                    NameKala: addRemParam.NameKala,
-                                    DarsadTakhfif: addRemParam.DarsadTakhfif,
-                                    NameBerand: addRemParam.NameBerand,
-                                    FeeForoosh: addRemParam.FeeForoosh,
-                                    FeeMasraf: addRemParam.FeeMasraf,
-                                    BarcodeKala: addRemParam.BarcodeKala,
-                                    Mojoodi: addRemParam.Mojoodi,
-                                    MaxTedad: addRemParam.MaxTedad,
-                                    JamForoosh: satrInoInResult.JamForoosh,  ////zare_nk_050430_added
-                                    father: "#sabadItemsContInSafhe",
-                                    refForfather: refForfather,
-                                    //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
-                                    fromShowDetails: false,
-                                    // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
-                                    idTag: "ForCart-" + addRemParam.IdKala,
-                                    // soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
-                                    // MablaghNahaee: jameKol,  ////zare_nk_050430_added
-                                }
-                            )
+                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak)
+                    // if (!exists) {
+                    //     let tempSabadRows: SabadRowType[] = [...sabadRows];
+                    //     tempSabadRows.push({
+                    //         tedadInSabadOrDet: Tedad,
+                    //         ZaribForoosh: addRemParam.ZaribForoosh,
+                    //         IdKala: addRemParam.IdKala,
+                    //         NameKala: addRemParam.NameKala,
+                    //         DarsadTakhfif: addRemParam.DarsadTakhfif,
+                    //         NameBerand: addRemParam.NameBerand,
+                    //         FeeForoosh: addRemParam.FeeForoosh,
+                    //         FeeMasraf: addRemParam.FeeMasraf,
+                    //         BarcodeKala: addRemParam.BarcodeKala,
+                    //         Mojoodi: addRemParam.Mojoodi,
+                    //         MaxTedad: addRemParam.MaxTedad,
+                    //         JamForoosh: satrInoInResult.JamForoosh, 
+                    //         father: "#sabadItemsContInSafhe",
+                    //         refForfather: refForfather,
+                    //         fromShowDetails: false,
+                    //         idTag: "ForCart-" + addRemParam.IdKala,
+                    //     })
+                    //     setSabadRows(tempSabadRows);
+                    //     return;
+                    // }
+                    ////zare_nk_050431_nokteh_end(raveshe setState khatarnak)
+                    ////zare_nk_050431_nokteh_st(raveshe setState amn)
+
+                    setSabadRows((curItems) => {
+                        // if (Tedad === 1) { ////zare_nk_050431_commented(shayad parsafar bedalile adame mojoodi meghdare yeke ghabli ra mojadad yek 
+                        //// bedeh va man dobare ye satr behesh bedam!! pas rahe betterWay01 ro anjam midim)
+                        ////zare_nk_050431_added_st(betterWay01)
+                        ////zare_nk_050501_nokteh(age const exists = curItems.some(...) ro biroon az setSabadRows bebaram be soorate  const exists = sabadRows.some(..) ham khatarnake chon 
+                        //// ba clickhaye [ayapeye karbar momkeneh chandin setSabadRows dar hamin rendar sedazadeh beshan ke az exists hamin render bekhoonan(masalan exists false bashe do
+                        ////  click sari anjam beshe va avalnin setSabadRows ba tavajjoh be exsite khali anjam beshe va bayad dar rendere badid exists mohasebe beshe ke true bedeh vali
+                        ////  setSabadRows dovom ham dar rendere jari az meghdare feliye exists estefadeh mikoneh ke hanooz false hast, pas chareye kar ine ke dastoore mohasebeye some 
+                        // ro dakhele setSabadRows bezaram ke hamvareh az meghdare feliye sabadRows dar rendere jari meghdar begireh))
+                        const exists = curItems.some(
+                            item => item.IdKala === addRemParam.IdKala
+                        );
+                        ////zare_nk_050431_added_end(betterWay01)
+
+                        if (!exists) {
+                            return ([...curItems, {
+                                tedadInSabadOrDet: Tedad,
+                                ZaribForoosh: addRemParam.ZaribForoosh,
+                                IdKala: addRemParam.IdKala,
+                                NameKala: addRemParam.NameKala,
+                                DarsadTakhfif: addRemParam.DarsadTakhfif,
+                                NameBerand: addRemParam.NameBerand,
+                                FeeForoosh: addRemParam.FeeForoosh,
+                                FeeMasraf: addRemParam.FeeMasraf,
+                                BarcodeKala: addRemParam.BarcodeKala,
+                                Mojoodi: addRemParam.Mojoodi,
+                                MaxTedad: addRemParam.MaxTedad,
+                                JamForoosh: satrInoInResult.JamForoosh,
+                                father: "#sabadItemsContInSafhe",
+                                refForfather: refForfather,
+                                fromShowDetails: false,
+                                idTag: "ForCart-" + addRemParam.IdKala,
+                            }])
                         }
-                        // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
-                        return curItem;
-                    })
 
-                    setSabadRows(tempSabadRows);
+                        return curItems.map((curItem, index) => {
+                            if (curItem.IdKala == addRemParam.IdKala) {
+                                return (
+                                    {
+                                        ...curItem,
+                                        tedadInSabadOrDet: Tedad,
+                                        ZaribForoosh: addRemParam.ZaribForoosh,
+                                        IdKala: addRemParam.IdKala,
+                                        NameKala: addRemParam.NameKala,
+                                        DarsadTakhfif: addRemParam.DarsadTakhfif,
+                                        NameBerand: addRemParam.NameBerand,
+                                        FeeForoosh: addRemParam.FeeForoosh,
+                                        FeeMasraf: addRemParam.FeeMasraf,
+                                        BarcodeKala: addRemParam.BarcodeKala,
+                                        Mojoodi: addRemParam.Mojoodi,
+                                        MaxTedad: addRemParam.MaxTedad,
+                                        JamForoosh: satrInoInResult.JamForoosh,
+                                        father: "#sabadItemsContInSafhe",
+                                        refForfather: refForfather,
+                                        fromShowDetails: false,
+                                        idTag: "ForCart-" + addRemParam.IdKala,
+                                    }
+                                )
+                            }
+                            // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+                            return curItem;
+                        });
+                    })
+                    ////zare_nk_050431_nokteh_end(raveshe setState amn)
+
+                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak)
+                    // let tempSabadRows: SabadRowType[] = [...sabadRows];
+                    // tempSabadRows = tempSabadRows.map((curItem, index) => {
+                    //     if (curItem.IdKala == addRemParam.IdKala) {
+                    //         return (
+                    //             {
+                    //                 ...curItem,    
+                    //                 tedadInSabadOrDet: Tedad,
+                    //                 ZaribForoosh: addRemParam.ZaribForoosh,
+                    //                 IdKala: addRemParam.IdKala,
+                    //                 NameKala: addRemParam.NameKala,
+                    //                 DarsadTakhfif: addRemParam.DarsadTakhfif,
+                    //                 NameBerand: addRemParam.NameBerand,
+                    //                 FeeForoosh: addRemParam.FeeForoosh,
+                    //                 FeeMasraf: addRemParam.FeeMasraf,
+                    //                 BarcodeKala: addRemParam.BarcodeKala,
+                    //                 Mojoodi: addRemParam.Mojoodi,
+                    //                 MaxTedad: addRemParam.MaxTedad,
+                    //                 JamForoosh: satrInoInResult.JamForoosh,  
+                    //                 father: "#sabadItemsContInSafhe",
+                    //                 refForfather: refForfather, 
+                    //                 fromShowDetails: false, 
+                    //                 idTag: "ForCart-" + addRemParam.IdKala, 
+                    //             }
+                    //         )
+                    //     }
+                    //     // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+                    //     return curItem;
+                    // })
+                    // setSabadRows(tempSabadRows);
+                    ////zare_nk_050431_nokteh_end(raveshe setState khatarnak)
+                    ////zare_nk_050431_nokteh_st(raveshe setState amn)
+                    // tempSabadRows = tempSabadRows.map((curItem, index) => {
+                    // setSabadRows((curItems) => {
+                    //   return curItems.map((curItem, index) => {
+                    //         if (curItem.IdKala == addRemParam.IdKala) {
+                    //             return (
+                    //                 {
+                    //                     ...curItem,
+                    //                     tedadInSabadOrDet: Tedad,
+                    //                     ZaribForoosh: addRemParam.ZaribForoosh,
+                    //                     IdKala: addRemParam.IdKala,
+                    //                     NameKala: addRemParam.NameKala,
+                    //                     DarsadTakhfif: addRemParam.DarsadTakhfif,
+                    //                     NameBerand: addRemParam.NameBerand,
+                    //                     FeeForoosh: addRemParam.FeeForoosh,
+                    //                     FeeMasraf: addRemParam.FeeMasraf,
+                    //                     BarcodeKala: addRemParam.BarcodeKala,
+                    //                     Mojoodi: addRemParam.Mojoodi,
+                    //                     MaxTedad: addRemParam.MaxTedad,
+                    //                     JamForoosh: satrInoInResult.JamForoosh,
+                    //                     father: "#sabadItemsContInSafhe",
+                    //                     refForfather: refForfather,
+                    //                     fromShowDetails: false,
+                    //                     idTag: "ForCart-" + addRemParam.IdKala,
+                    //                 }
+                    //             )
+                    //         }
+                    //         // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
+                    //         return curItem;
+                    //     });
+                    // });
+
+
+                    ////zare_nk_050431_nokteh_end(raveshe setState amn)
                     ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha)
                 }
             } else {
@@ -1813,33 +1865,34 @@ export default function ShoppingbasketComponent({
                     ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
                     //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
                     //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
-                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
+                    ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
                     // let jameKol = jamKolNahaei ?? 0; let soodAzKharid = jamKolTakhfif ?? 0;
                     //jameKol -= (addRemParam.ZaribForoosh * addRemParam.FeeForoosh);
                     // soodAzKharid -= ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh));
                     //setJamKolNahaei(jameKol); 
                     // setJamKolTakhfif(soodAzKharid);
+                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak(chon kerbar age payapey dokmeye rem ro bezaneh shayad hanooz component reRender nashodeh
+                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
+                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
+                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
+                    ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
+                    ////zare_nk_050431_nokteh_st(betterWayForSetStates01-raveshe setState amn)
                     setJamKolNahaei(prev =>
                         (prev ?? 0) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
                     );
                     setJamKolTakhfif(prev =>
                         (prev ?? 0) - ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
                     );
-                    ////zare_nk_050431_nokteh_st(raveshe setState khatarnak(chon kerbar age payapey dokmeye rem ro bezaneh shayad hanooz component reRender nashodeh
-                    ////  se bar setState farakhooni shodeh ke har se bar az meghdare sabete let jameKol ke dar in render tagheiri nakardeh meghdar migireh va 
-                    //// faghat avvali meghdaresh jadid mishe va setState haye badi ke ghable reRender seda zadeh mishan meghdare tekrariye hamin render ro emal mikonan
-                    //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
-                    //  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
+                    ////zare_nk_050431_nokteh_end(betterWayForSetStates01-raveshe setState amn)
 
 
-                    setSabadRows((curRows) => {
-                        ////zare_nk_050416_added_st(baraye hazfeh satre tedad sefr)
-                        if (Tedad === 0) {
+                    setSabadRows((curRows) => {   
+                        if (Tedad <= 0  ) {
                             return curRows.filter(
                                 item => item.IdKala !== addRemParam.IdKala
                             );
-                        }
-                        ////zare_nk_050416_added_st(baraye hazfeh satre tedad sefr)
+                        }  
+ 
                         return curRows.map((curItem, index) => {
                             if (curItem.IdKala == addRemParam.IdKala) {
                                 return (
@@ -1857,15 +1910,11 @@ export default function ShoppingbasketComponent({
                                         BarcodeKala: addRemParam.BarcodeKala,
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
-                                        JamForoosh: satrInoInResult.JamForoosh,  ////zare_nk_050430_added
+                                        JamForoosh: satrInoInResult.JamForoosh,   
                                         father: "#sabadItemsContInSafhe",
-                                        refForfather: refForfather,
-                                        //bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  ////zare_nk_050428_commented
-                                        fromShowDetails: false,
-                                        // ForCartContentsDesignType: ForCartContentsDesignTypeLet,  ////zare_nk_050428_commented
-                                        idTag: "ForCart-" + addRemParam.IdKala,
-                                        // soodAzKharid: soodAzKharid,  ////zare_nk_050430_added
-                                        // MablaghNahaee: jameKol,  ////zare_nk_050430_added
+                                        refForfather: refForfather, 
+                                        fromShowDetails: false, 
+                                        idTag: "ForCart-" + addRemParam.IdKala, 
                                     }
                                 )
                             }
@@ -3506,7 +3555,6 @@ export default function ShoppingbasketComponent({
                         </View>
                     </View>
                 </>
-
             )}
         </>
     )

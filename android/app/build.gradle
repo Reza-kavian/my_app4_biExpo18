@@ -21,8 +21,8 @@ def APP_TYPE_PRODUCTION = "production"
 def APP_TYPE_BETA = "beta"
 
 ////zare_nk_050430_nokteh(basteh be niatemoon beine in do meghdare APP_TYPE_PRODUCTION va APP_TYPE_BETA mitoonim sooeich konim)
-def appType = APP_TYPE_PRODUCTION
-// def appType = APP_TYPE_BETA 
+// def appType = APP_TYPE_PRODUCTION
+def appType = APP_TYPE_BETA 
 
 // بررسی معتبر بودن مقدار appType
 if (appType != APP_TYPE_PRODUCTION && appType != APP_TYPE_BETA) { 

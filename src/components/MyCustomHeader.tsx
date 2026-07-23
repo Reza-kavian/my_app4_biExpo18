@@ -35,9 +35,18 @@ import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   
 
 
 interface MyJwtPayload {
-  FullName: string|null;
-  Mobile: string|null;
-  name: string|null;
+  ////zare_nk_050501_commented_st(dar api tochikala)
+  // FullName: string|null;
+  // Mobile: string|null;
+  // name: string|null;
+  ////zare_nk_050501_commented_end(dar api tochikala)
+  ////zare_nk_050501_commented_st(dar api hamyarForoosh)
+  NameMoshtari: string | null;
+  unique_name: string | null;
+  Mobile: string | null;
+  // exp: number| null;  ////zare_nk_050501_nokteh(dar in safhe be exp niazi nadaram va mikham az tokene token_expires ke az hamin exp meghdar gereft dar login)
+  ////zare_nk_050501_commented_end(dar api hamyarForoosh)
+
   // exp: number;
   // .
   // .
@@ -53,10 +62,10 @@ const MyCustomHeader = ({
   ////zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
   //// parameterhaye voroodi ra barname automat az React Navigation migire)  ////zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({
-    FullName: null,
+  const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({ 
+    NameMoshtari: null,
+    unique_name: null,
     Mobile: null,
-    name: null,
   });
 
   useFocusEffect(
@@ -105,19 +114,19 @@ const MyCustomHeader = ({
 
                   // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
                   // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
-                  const data = jwtDecode<MyJwtPayload>(token);
-                  console.log('zare_nk_050431_data is: '+ JSON.stringify(data));
-                  ////zare_nk_050431_data is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
-                  var FullName = data.FullName;  //zare_nk_041115_added(from api tochikala)
-                  var Mobile = data.Mobile;  //zare_nk_041115_added(from api tochikala)
-                  var name = data.name;
+                  const DecodeToken = jwtDecode<MyJwtPayload>(token);
+                  console.log('zare_nk_050431_DecodeToken is: ' + JSON.stringify(DecodeToken));
+                  ////zare_nk_050431_DecodeToken is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
+                  var NameMoshtari = DecodeToken.NameMoshtari;  //zare_nk_041115_added(from api tochikala)
+                  var unique_name = DecodeToken.unique_name;  //zare_nk_041115_added(from api tochikala)
+                  var Mobile = DecodeToken.Mobile;
 
                   setUsersCodeOrName((prev) => {
                     return {
                       ...prev,
-                      FullName: FullName,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                      Mobile: Mobile,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                      name: name,  //zare_nk_041008_nokteh(age az google login shim)
+                      NameMoshtari: NameMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                      unique_name: unique_name,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+                      Mobile: Mobile,  //zare_nk_041008_nokteh(age az google login shim)
                     };
                   });
                   // if (idUSerRef.current) {
@@ -203,12 +212,12 @@ const MyCustomHeader = ({
               <Text style={styles.buttonText}>خروج</Text>
             </TouchableOpacity>
             <Text style={styles.buttonText}>
-              {usersCodeOrName?.FullName
-                ? usersCodeOrName.FullName
+              {usersCodeOrName?.NameMoshtari
+                ? usersCodeOrName.NameMoshtari
                 :
-                (usersCodeOrName?.Mobile
-                  ? usersCodeOrName.Mobile
-                  : usersCodeOrName.name
+                (usersCodeOrName?.unique_name
+                  ? usersCodeOrName.unique_name
+                  : usersCodeOrName.Mobile
                 )
               }
             </Text>

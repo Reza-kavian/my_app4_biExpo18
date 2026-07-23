@@ -769,12 +769,12 @@ export default function ShoppingbasketComponent({
             });
             console.log('050326-013');
             const data = await response.json();
-            console.log('050501-014-data is sabad: ' + JSON.stringify(data));
+            console.log('050501-014-data is sabad: ' + JSON.stringify(data.data));
             if (response.ok) {
                 ////zare_nk_050326_added_st(jaigozine state haye .... ke baese reRender mishan)
-                const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);  //jameKolTakhfif  
+                const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);    
                 setJamKolTakhfif(jameKolTakhfif);
-                const jameKol = JSON.parse(data.data.jamKol);   //jameKol  
+                const jameKol = JSON.parse(data.data.jamKol);   
                 setJamKolNahaei(jameKol);
                 console.log('zare_nk_05501-jameKol dar getsabad: ' + jameKol + '-jameKolTakhfif: ' + jameKolTakhfif);
                 // const [jamKol, setJamKol] = useState<number | null>(null);
@@ -1277,14 +1277,14 @@ export default function ShoppingbasketComponent({
     const jamKolNahaeiMemo = useMemo(() => {
         return sabadRows.reduce(
             // (sum, item) => sum + (item.ZaribForoosh * item.FeeForoosh),
-            (sum, item) => sum + (item.JamForoosh),
+            (sum, item) => sum + Number(item.JamForoosh),
             0
         );
     }, [sabadRows]);
 
     const jamKolTakhfifMemo = useMemo(() => {
         return sabadRows.reduce(
-            (sum, item) => sum + (item.JamMasraf - item.JamForoosh),
+            (sum, item) => sum + (Number(item.JamMasraf) - Number(item.JamForoosh)),
             0
         );
     }, [sabadRows]);
@@ -1545,7 +1545,7 @@ export default function ShoppingbasketComponent({
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
                                         JamForoosh: satrInoInResult.JamForoosh,
-                                        amMasraf: satrInoInResult.JamMasraf,  ////zare_nk_050501_added
+                                        JamMasraf: satrInoInResult.JamMasraf,  ////zare_nk_050501_added
                                         father: "#sabadItemsContInSafhe",
                                         refForfather: refForfather,
                                         fromShowDetails: false,
@@ -1825,25 +1825,22 @@ export default function ShoppingbasketComponent({
                     console.log('050329-result.status == 0-01');
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
+                    console.log("050501-satrInoInResult: "+satrInoInResult);
                     let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
-                    console.log('050501-inn remmmm-addFee:' + addRemParam.FeeForoosh +
-                        'apiFee:' + satrInoInResult.FeeForoosh +
-                        'addZarib:' + addRemParam.ZaribForoosh +
-                        'apiZarib:' + satrInoInResult.ZaribForoosh
-                    );
+                    
                     console.log('050329-result.status == 0-02');
 
                     var bishAzMaxTedadYaMojoodi = 0;
-                    if (Number(satrInoInResult.MaxTedad) <= Number(Tedad)) {
+                    if (Number(addRemParam.MaxTedad) <= Number(Tedad)) {
                         bishAzMaxTedadYaMojoodi = 1;
                     }
-                    if (Number(satrInoInResult.Mojoodi) <= Number(Tedad)) {
+                    if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
                         bishAzMaxTedadYaMojoodi = 1;
                     }
 
                     refForfather.current = addRemParam.father;
                     console.log('050329-result.status == 0-03');
-                    
+
                     let ForCartContentsDesignTypeLet = 0;
                     if (Number(Tedad) == 0) {
                         ForCartContentsDesignTypeLet = 0;

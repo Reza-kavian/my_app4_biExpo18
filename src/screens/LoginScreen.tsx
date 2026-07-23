@@ -28,10 +28,18 @@ import RequestAgainIcon from "../components/icons/images/RequestAgain";
 import { jwtDecode } from "jwt-decode";
 
 interface MyJwtPayload {
-  FullName: string | null;
+  ////zare_nk_050501_commented_st(dar api tochikala)
+  // FullName: string|null;
+  // Mobile: string|null;
+  // name: string|null;
+  ////zare_nk_050501_commented_end(dar api tochikala)
+  ////zare_nk_050501_commented_st(dar api hamyarForoosh)
+  NameMoshtari: string | null;
+  unique_name: string | null;
   Mobile: string | null;
-  name: string | null;
-  // exp: number;
+  exp: number | null;
+  ////zare_nk_050501_commented_end(dar api hamyarForoosh)
+
   // .
   // .
   [key: string]: any;
@@ -223,21 +231,18 @@ export default function LoginScreen({
       if (res.status === 200 && ApiLoginUser2Result.status == 0) {
         // if (ApiLoginUser2Result.status == 0) {
         let token = ApiLoginUser2Result.data.token;
-        
+
         // const expires = Date.now() + 20000 * 60 * 1000;    ////zare_nk_050501_nokteh(lahaz kardane dastiye expires 13 rooz va 21 saate dige)
 
         const DecodeToken = jwtDecode<MyJwtPayload>(token);
         console.log('zare_nk_050501_DecodeToken is: ' + JSON.stringify(DecodeToken));
         ////zare_nk_050501_DecodeToken is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
-        const expires =DecodeToken.exp;      ////zare_nk_050501_nokteh(lahaz kardane expires az tokene pasokhe apiye Api_LoginUser2 )
-        
-        let tokenni = await AsyncStorage.getItem("token");        ////zare_nk_040925_added_pakkardani
-        console.log("0-zare_nk_041207-tokenni is: " + tokenni);   ////zare_nk_040925_added_pakkardani
-        await AsyncStorage.setItem("token", token);  ////moadele cooki dar reactnative ast
-        // await AsyncStorage.setItem("token_expires", expires);  ////zare_nk_050323_nokteh(age az rahe EX1 estefadeh konim) 
-        await AsyncStorage.setItem("token_expires", String(expires));  ////zare_nk_050323_nokteh_st(age az rahe EX2 estefadeh konim)
-        tokenni = await AsyncStorage.getItem("token");   //zare_nk_040925_added_pakkardani
-        console.log("1-zare_nk_041207-tokenni is: " + tokenni);    //zare_nk_040925_added_pakkardani 
+        const expires = (DecodeToken.exp ?? 0) * 1000; ////zare_nk_050501_nokteh(lahaz kardane expires az tokene pasokhe apiye Api_LoginUser2(chon bar hasbe saniye ast 
+        //// be milisaniye tabdil kardim ba 1000 barabar kardan))                
+        console.log("0-zare_nk_050501-expires is: " + expires);
+
+        await AsyncStorage.setItem("token", token);  ////moadele cooki dar reactnative ast 
+        await AsyncStorage.setItem("token_expires", String(expires));
 
         const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
         await AsyncStorage.removeItem("redirect");

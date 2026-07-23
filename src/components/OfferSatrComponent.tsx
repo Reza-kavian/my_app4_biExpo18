@@ -147,20 +147,14 @@ const OfferSatrComponent = ({
   ////zare_nk_041206_added_end(moadele @media baraye responsive kardane site) 
 
   // Alert.alert("offerRow.Mojoodi: "+offerRow.Mojoodi);
-  var Tedad = offerRow.tedadInSabadOrDet;
+
   var bishAzMaxTedadYaMojoodi = 0;
-  if (offerRow.MaxTedad != null) {
-    if (offerRow.MaxTedad <= Tedad) {
-      bishAzMaxTedadYaMojoodi = 1;
-    }
+  if (Number(offerRow.MaxTedad) <= Number(offerRow.tedadInSabadOrDet)) {
+    bishAzMaxTedadYaMojoodi = 1;
   }
-  ////zare_nk_050328_commented_st(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
-  // else {
-  //   if (offerRow.Mojoodi <= Tedad) {
-  //     bishAzMaxTedadYaMojoodi = 1;
-  //   }
-  // }
-  ////zare_nk_050328_commented_end(dar apiye Api_SelectKalaTakhfifat hamyar fielde Mojoodi nadarim)
+  if (Number(offerRow.Mojoodi) <= Number(offerRow.tedadInSabadOrDet)) {
+    bishAzMaxTedadYaMojoodi = 1;
+  }
 
   //   console.log('zare_nk_041121-offerRow: ' + JSON.stringify(offerRow));
   // const ForCartContentsDesignTypeLet = useMemo(() => {

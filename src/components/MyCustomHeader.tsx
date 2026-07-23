@@ -106,7 +106,8 @@ const MyCustomHeader = ({
                   // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
                   // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
                   const data = jwtDecode<MyJwtPayload>(token);
-                  console.log('zare_nk_050431_data: '+data);
+                  console.log('zare_nk_050431_data is: '+ JSON.stringify(data));
+                  ////zare_nk_050431_data is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
                   var FullName = data.FullName;  //zare_nk_041115_added(from api tochikala)
                   var Mobile = data.Mobile;  //zare_nk_041115_added(from api tochikala)
                   var name = data.name;

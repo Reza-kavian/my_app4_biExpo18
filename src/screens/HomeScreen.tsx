@@ -1212,7 +1212,7 @@ export default function HomeScreen({
         console.log("050325-getIdShobeFrom-response.ok");
         const data = await response.json();
         var result = data;
-        console.log('result ooo: '+JSON.stringify(result));
+        console.log('result ooo: ' + JSON.stringify(result));
         if (result.status != 0) {
           console.log("050325-getIdShobeFrom-result.status != 0");
           setIsOpenedMymodalForWarning(true);
@@ -1938,27 +1938,25 @@ export default function HomeScreen({
           //     productNotExist.style.display = "none";
           // }
           // Alert.alert('5-barcodeKala: ' + barcodeKala);
+
           var bishAzMaxTedadYaMojoodi = 0;
-          if (parsedList[0].MaxTedad != null) {
-            if (parsedList[0].MaxTedad <= parsedList[0].TedadDarSabad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
-          } else {
-            if (parsedList[0].Mojoodi <= parsedList[0].TedadDarSabad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(parsedList[0].MaxTedad) <= Number(parsedList[0].TedadDarSabad)) {
+            bishAzMaxTedadYaMojoodi = 1;
+          }
+          if (Number(parsedList[0].Mojoodi) <= Number(parsedList[0].TedadDarSabad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
 
           refForfather.current = "#DetailsInfoCont";
-          let ForCartContentsDesignTypeLet = 0
 
-          if (parsedList[0].TedadDarSabad == 0) {
+          let ForCartContentsDesignTypeLet = 0
+          if (Number(parsedList[0].TedadDarSabad) == 0) {
             ForCartContentsDesignTypeLet = 0;
           }
-          else if (parsedList[0].TedadDarSabad > parsedList[0].ZaribForoosh) {
+          else if (Number(parsedList[0].TedadDarSabad) > Number(parsedList[0].ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 2;
           }
-          else if (parsedList[0].TedadDarSabad == parsedList[0].ZaribForoosh) {
+          else if (Number(parsedList[0].TedadDarSabad) == Number(parsedList[0].ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 1;
           }
 
@@ -1975,7 +1973,7 @@ export default function HomeScreen({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala,     
+              BarcodeKala: parsedList[0].BarcodeKala,
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",
@@ -2094,7 +2092,7 @@ export default function HomeScreen({
     }
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     console.log('050327-ar01-addToCartInIndex-else 1');
-    try {    
+    try {
       console.log('050327-ar02-addToCartInIndex-else 1');
       var TedadOut = 0;
       var TedadOuttoAjax = 0;
@@ -2161,30 +2159,28 @@ export default function HomeScreen({
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
           let Tedad = satrInoInResult.Tedad;
           console.log('041124-result.data.satr[0]Tedad: ' + Tedad);
+
           var bishAzMaxTedadYaMojoodi = 0;
-          if (addRemParam.MaxTedad != null) {
-            if (addRemParam.MaxTedad <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
-          } else {
-            if (addRemParam.Mojoodi <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(addRemParam.MaxTedad) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
+          }
+          if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
 
           refForfather.current = addRemParam.father;
 
           let ForCartContentsDesignTypeLet = 0
-
-          if (Tedad == 0) {
+          if (Number(Tedad) == 0) {
             ForCartContentsDesignTypeLet = 0;
           }
-          else if (Tedad > addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) > Number(addRemParam.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 2;
           }
-          else if (Tedad == addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) == Number(addRemParam.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 1;
           }
+
           if (addRemParam.fromShowDetails) {
             setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050319_added
             setForCartContInProdDetVal(() => {
@@ -2393,30 +2389,28 @@ export default function HomeScreen({
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
           let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
           console.log('041124-Tedad: ' + Tedad);
+
           var bishAzMaxTedadYaMojoodi = 0;
-          if (addRemParam.MaxTedad != null) {
-            if (addRemParam.MaxTedad <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
-          } else {
-            if (addRemParam.Mojoodi <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(addRemParam.MaxTedad) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
+          }
+          if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
 
           refForfather.current = addRemParam.father;
 
           let ForCartContentsDesignTypeLet = 0
-
-          if (Tedad == 0) {
+          if (Number(Tedad) == 0) {
             ForCartContentsDesignTypeLet = 0;
           }
-          else if (Tedad > addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) > Number(addRemParam.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 2;
           }
-          else if (Tedad == addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) == Number(addRemParam.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 1;
           }
+
           if (addRemParam.fromShowDetails) {
             setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050318_added
             setForCartContInProdDetVal(() => {
@@ -2599,8 +2593,8 @@ export default function HomeScreen({
       // setGetLoc(true);  ////zare_nk_050415_added
 
       const hasPermission = await requestLocationPermission();
-      if (!hasPermission) { 
-        setIsOpenedModalForGetLocation(true);    
+      if (!hasPermission) {
+        setIsOpenedModalForGetLocation(true);
         setTextInModalForGetLocation('لطفا مجوز دسترسی به لوکیشن را در تنظیمات گوشی به این برنامه بدهید');
         return;
       }
@@ -2649,8 +2643,8 @@ export default function HomeScreen({
       // setGetLoc(true);  ////zare_nk_050415_added
 
       const hasPermission = await requestLocationPermission();
-      if (!hasPermission) { 
-        setIsOpenedModalForGetLocation(true);   
+      if (!hasPermission) {
+        setIsOpenedModalForGetLocation(true);
         setTextInModalForGetLocation('لطفا مجوز دسترسی به لوکیشن را در تنظیمات گوشی به این برنامه بدهید');
         return;
       }
@@ -2792,7 +2786,7 @@ export default function HomeScreen({
                     fontFamily: "IRANSansWeb(FaNum)_Medium",
                     color: "white",
                   }}>
-                  بستن  
+                  بستن
                 </Text>
               </TouchableOpacity>
               {/* <TouchableOpacity

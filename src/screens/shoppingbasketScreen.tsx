@@ -84,6 +84,7 @@ type SabadRowType = {
     Mojoodi: number;
     MaxTedad: number;
     JamForoosh: number;
+    JamMasraf: number;  ////zare_nk_050501_added
     father: any;
     refForfather: RefObject<string | null>;
     fromShowDetails: boolean;
@@ -504,26 +505,23 @@ export default function ShoppingbasketComponent({
                     // var Tedad = parsedList[0].Tedad ? parsedList[0].Tedad : parsedList[0].TedadDarSabad;  //zare_nk_041118_commented
                     // var Tedad = parsedList[0].TedadDarSabad;  //zare_nk_041118_added
                     var bishAzMaxTedadYaMojoodi = 0;
-                    if (parsedList[0].MaxTedad != null) {
-                        if (parsedList[0].MaxTedad <= parsedList[0].TedadDarSabad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
-                    } else {
-                        if (parsedList[0].Mojoodi <= parsedList[0].TedadDarSabad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
+                    if (Number(parsedList[0].MaxTedad) <= Number(parsedList[0].TedadDarSabad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
+                    }
+                    if (Number(parsedList[0].Mojoodi) <= Number(parsedList[0].TedadDarSabad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
                     }
 
                     refForfather.current = "#DetailsInfoCont";
-                    let ForCartContentsDesignTypeLet = 0
 
-                    if (parsedList[0].TedadDarSabad == 0) {
+                    let ForCartContentsDesignTypeLet = 0
+                    if (Number(parsedList[0].TedadDarSabad) == 0) {
                         ForCartContentsDesignTypeLet = 0;
                     }
-                    else if (parsedList[0].TedadDarSabad > parsedList[0].ZaribForoosh) {
+                    else if (Number(parsedList[0].TedadDarSabad) > Number(parsedList[0].ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 2;
                     }
-                    else if (parsedList[0].TedadDarSabad == parsedList[0].ZaribForoosh) {
+                    else if (Number(parsedList[0].TedadDarSabad) == Number(parsedList[0].ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 1;
                     }
 
@@ -771,14 +769,14 @@ export default function ShoppingbasketComponent({
             });
             console.log('050326-013');
             const data = await response.json();
-            console.log('050431-014-data is sabad: ' + JSON.stringify(data));
+            console.log('050501-014-data is sabad: ' + JSON.stringify(data));
             if (response.ok) {
                 ////zare_nk_050326_added_st(jaigozine state haye .... ke baese reRender mishan)
                 const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);  //jameKolTakhfif  
                 setJamKolTakhfif(jameKolTakhfif);
                 const jameKol = JSON.parse(data.data.jamKol);   //jameKol  
                 setJamKolNahaei(jameKol);
-                console.log('050431-jameKol dar getsabad: ' + jameKol);
+                console.log('zare_nk_05501-jameKol dar getsabad: ' + jameKol + '-jameKolTakhfif: ' + jameKolTakhfif);
                 // const [jamKol, setJamKol] = useState<number | null>(null);
                 // const [jamKolTakhfif, setJamKolTakhfif] = useState<number | null>(null);
                 // const [jamKolNahaei, setJamKolNahaei] = useState<number | null>(null);
@@ -827,6 +825,7 @@ export default function ShoppingbasketComponent({
                                     Mojoodi: item.Mojoodi,
                                     MaxTedad: item.MaxTedad,
                                     JamForoosh: item.JamForoosh,
+                                    JamMasraf: item.JamMasraf,  ////zare_nk_050501_added
                                     father: "#sabadItemsContInSafhe",
                                     refForfather: refForfather,
                                     fromShowDetails: false,
@@ -1161,16 +1160,12 @@ export default function ShoppingbasketComponent({
                     // }
                     ////zare_nk_041120_added_st
                     let bishAzMaxTedadYaMojoodi = 0;
-                    if (parsedList[0].MaxTedad != null) {
-                        if (parsedList[0].MaxTedad <= parsedList[0].TedadDarSabad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
-                    } else {
-                        if (parsedList[0].Mojoodi <= parsedList[0].TedadDarSabad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
+                    if (Number(parsedList[0].MaxTedad) <= Number(parsedList[0].TedadDarSabad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
                     }
-                    ////zare_nk_041120_added_end
+                    if (Number(parsedList[0].Mojoodi) <= Number(parsedList[0].TedadDarSabad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
+                    } 
 
                     // handlerForAddClick(parsedList[0]);  //zare_nk_041120_commented
                     handlerForAddClick(
@@ -1279,11 +1274,24 @@ export default function ShoppingbasketComponent({
         setIsScanning(true);  //zare_nk_041203_added
     };
 
+    const jamKolNahaeiMemo = useMemo(() => {
+        return sabadRows.reduce(
+            // (sum, item) => sum + (item.ZaribForoosh * item.FeeForoosh),
+            (sum, item) => sum + (item.JamForoosh),
+            0
+        );
+    }, [sabadRows]);
+
+    const jamKolTakhfifMemo = useMemo(() => {
+        return sabadRows.reduce(
+            (sum, item) => sum + (item.JamMasraf - item.JamForoosh),
+            0
+        );
+    }, [sabadRows]);
+
     async function addToCartInIndex(
         addRemParam: addRemParamType,
     ) {
-        // Alert.alert('444');
-
         console.log('041203-addToCartInIndex called!-addRemParam: ' + addRemParam.NameKala);
         console.log('050329-addToCartInIndex called!-addRemParam01: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented(error mideh:    // console.log('041120-addToCartInIndex called!-addRemParam: ' + JSON.stringify(addRemParam)); //zare_nk_041120_commented_tahlilshe(error mideh:TypeError: Converting circular structure to JSON)
         ////zare_nk_041129_commented_st
@@ -1374,6 +1382,8 @@ export default function ShoppingbasketComponent({
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
                     let Tedad = satrInoInResult.Tedad;
+                    console.log('zare_nk_050501_12_addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
+                    console.log("zare_nk_050501_12_addRemParam.satrInoInResult.Mojoodi: " + satrInoInResult.Mojoodi + "-satrInoInResult.Tedad: " + satrInoInResult.Tedad)
                     console.log('050501-inn adddd-addFee:' + addRemParam.FeeForoosh +
                         'apiFee:' + satrInoInResult.FeeForoosh +
                         'addZarib:' + addRemParam.ZaribForoosh +
@@ -1381,33 +1391,33 @@ export default function ShoppingbasketComponent({
                     );
 
                     var bishAzMaxTedadYaMojoodi = 0;
-                    if (addRemParam.MaxTedad != null) {
-                        if (addRemParam.MaxTedad <= Tedad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
-                    } else {
-                        if (addRemParam.Mojoodi <= Tedad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
+                    if (Number(satrInoInResult.MaxTedad) <= Number(Tedad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
+                    }
+                    if (Number(satrInoInResult.Mojoodi) <= Number(Tedad)) {
+                        console.log('zare_nk_050501_12_resiiiid');
+                        bishAzMaxTedadYaMojoodi = 1;
                     }
 
                     refForfather.current = addRemParam.father;
 
                     let ForCartContentsDesignTypeLet = 0
 
-                    if (Tedad == 0) {
+                    if (Number(Tedad) == 0) {
                         ForCartContentsDesignTypeLet = 0;
                     }
-                    else if (Tedad > addRemParam.ZaribForoosh) {
+                    else if (Number(Tedad) > Number(satrInoInResult.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 2;
                     }
-                    else if (Tedad == addRemParam.ZaribForoosh) {
+                    else if (Number(Tedad) == Number(satrInoInResult.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 1;
                     }
+
                     if (addRemParam.fromShowDetails) {
                         setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_050318_added
-                        setForCartContInProdDetVal(() => {
+                        setForCartContInProdDetVal((curItem) => {
                             const idTag = "ForCart-" + addRemParam.IdKala;
+
                             return {
                                 tedadInSabadOrDet: Tedad,
                                 ZaribForoosh: addRemParam.ZaribForoosh,
@@ -1447,12 +1457,12 @@ export default function ShoppingbasketComponent({
                     //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
                     ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale add anjam mishe hatta ba takheir))
                     ////zare_nk_050431_nokteh_st(betterWayForSetStates01-raveshe setState amn)
-                    setJamKolNahaei(prev =>
-                        (prev ?? 0) + (addRemParam.ZaribForoosh * addRemParam.FeeForoosh) 
-                    );
-                    setJamKolTakhfif(prev =>
-                        (prev ?? 0) + ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)) 
-                    );
+                    // setJamKolNahaei(prev => {
+                    //     return (prev ?? 0) + (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
+                    // });
+                    // setJamKolTakhfif(prev => {
+                    //     return (prev ?? 0) + ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
+                    // });
                     ////zare_nk_050431_nokteh_end(betterWayForSetStates01-raveshe setState amn)
 
                     ////zare_nk_050431_nokteh_st(raveshe setState khatarnak)
@@ -1510,6 +1520,7 @@ export default function ShoppingbasketComponent({
                                 Mojoodi: addRemParam.Mojoodi,
                                 MaxTedad: addRemParam.MaxTedad,
                                 JamForoosh: satrInoInResult.JamForoosh,
+                                JamMasraf: satrInoInResult.JamMasraf,  ////zare_nk_050501_added
                                 father: "#sabadItemsContInSafhe",
                                 refForfather: refForfather,
                                 fromShowDetails: false,
@@ -1534,6 +1545,7 @@ export default function ShoppingbasketComponent({
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
                                         JamForoosh: satrInoInResult.JamForoosh,
+                                        amMasraf: satrInoInResult.JamMasraf,  ////zare_nk_050501_added
                                         father: "#sabadItemsContInSafhe",
                                         refForfather: refForfather,
                                         fromShowDetails: false,
@@ -1544,7 +1556,8 @@ export default function ShoppingbasketComponent({
                             // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
                             return curItem;
                         });
-                    })  
+                    });
+
                     ////zare_nk_050431_nokteh_end(raveshe setState amn)
 
                     ////zare_nk_050431_nokteh_st(raveshe setState khatarnak)
@@ -1819,29 +1832,29 @@ export default function ShoppingbasketComponent({
                         'apiZarib:' + satrInoInResult.ZaribForoosh
                     );
                     console.log('050329-result.status == 0-02');
+
                     var bishAzMaxTedadYaMojoodi = 0;
-                    if (addRemParam.MaxTedad != null) {
-                        if (addRemParam.MaxTedad <= Tedad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
-                    } else {
-                        if (addRemParam.Mojoodi <= Tedad) {
-                            bishAzMaxTedadYaMojoodi = 1;
-                        }
+                    if (Number(satrInoInResult.MaxTedad) <= Number(Tedad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
                     }
+                    if (Number(satrInoInResult.Mojoodi) <= Number(Tedad)) {
+                        bishAzMaxTedadYaMojoodi = 1;
+                    }
+
                     refForfather.current = addRemParam.father;
                     console.log('050329-result.status == 0-03');
-                    let ForCartContentsDesignTypeLet = 0
-
-                    if (Tedad == 0) {
+                    
+                    let ForCartContentsDesignTypeLet = 0;
+                    if (Number(Tedad) == 0) {
                         ForCartContentsDesignTypeLet = 0;
                     }
-                    else if (Tedad > addRemParam.ZaribForoosh) {
+                    else if (Number(Tedad) > Number(addRemParam.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 2;
                     }
-                    else if (Tedad == addRemParam.ZaribForoosh) {
+                    else if (Number(Tedad) == Number(addRemParam.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 1;
                     }
+                    
                     console.log('050329-result.status == 0-04');
                     if (addRemParam.fromShowDetails) {
                         console.log('050329-result.status == 0-05');
@@ -1888,12 +1901,12 @@ export default function ShoppingbasketComponent({
                     //// va karbar fekr mikoneh khoob lams nakardeh dokmeh ro ya barnameh amal nakardeh (vali dar raveshe betterWayForSetStates01 react age az karbar aghab ham bemooneh
                     ////  ta reRender nashodeh mojaddad setState jadid ro seda nemizaneh va balakhareh be tedade click haye karbar amale rem anjam mishe hatta ba takheir))
                     ////zare_nk_050431_nokteh_st(betterWayForSetStates01-raveshe setState amn)
-                    setJamKolNahaei(prev =>
-                        (prev ?? 0) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh) 
-                    );
-                    setJamKolTakhfif(prev =>
-                        (prev ?? 0) - ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)) 
-                    );
+                    setJamKolNahaei(prev => {
+                        return (prev ?? 0) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh)
+                    });
+                    setJamKolTakhfif(prev => {
+                        return (prev ?? 0) - ((addRemParam.ZaribForoosh * addRemParam.FeeMasraf) - (addRemParam.ZaribForoosh * addRemParam.FeeForoosh))
+                    });
                     ////zare_nk_050431_nokteh_end(betterWayForSetStates01-raveshe setState amn)
                     setSabadRows((curRows) => {
                         if (Tedad <= 0) {
@@ -1920,6 +1933,7 @@ export default function ShoppingbasketComponent({
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
                                         JamForoosh: satrInoInResult.JamForoosh,
+                                        JamMasraf: satrInoInResult.JamMasraf,  ////zare_nk_050501_added
                                         father: "#sabadItemsContInSafhe",
                                         refForfather: refForfather,
                                         fromShowDetails: false,
@@ -1930,7 +1944,7 @@ export default function ShoppingbasketComponent({
                             // اگر شرط برقرار نبود، حتما باید آیتم قبلی را برگردانید
                             return curItem;
                         })
-                    }) 
+                    })
                     ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha) 
                 }
             } else {
@@ -3524,7 +3538,9 @@ export default function ShoppingbasketComponent({
                                             // justifyContent: "space-between", 
                                         }}>
                                             <Text style={{ fontSize: 12, color: "#313335", fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}>
-                                                {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0}
+                                                {/* zare_nk_050501_updated( az useMemoye jamKolTakhfifMemo bejaye statee jamKolTakhfif estefadeh shod) */}
+                                                {/* {jamKolTakhfif ? jamKolTakhfif.toLocaleString() : 0} */}
+                                                {jamKolTakhfifMemo.toLocaleString()}
                                             </Text>
                                             <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
                                                 ریال
@@ -3548,7 +3564,9 @@ export default function ShoppingbasketComponent({
                                             // justifyContent: "space-between", 
                                         }}>
                                             <Text style={{ fontSize: 12, color: '#313335', fontFamily: "IRANSansWeb(FaNum)_Medium", marginLeft: 3, }}>
-                                                {jamKolNahaei ? jamKolNahaei.toLocaleString() : 0}
+                                                {/* zare_nk_050501_updated( az useMemoye jamKolNahaeiMemo bejaye statee jamKolNahaei estefadeh shod) */}
+                                                {/* {jamKolNahaei ? jamKolNahaei.toLocaleString() : 0} */}
+                                                {jamKolNahaeiMemo.toLocaleString()}
                                             </Text>
                                             <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
                                                 ریال

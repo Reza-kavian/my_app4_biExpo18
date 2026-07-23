@@ -98,19 +98,15 @@ const SabadSatrComponent = ({
 }: SabadSatrProps) => {
     const [productImageError, setproductImageError] = useState<boolean>(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate jaigoziniye akse pishfarze tochi)
     const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate hazfe backgrounde khakestariye(range khakestariye ghbleloadi hast))
-    var Tedad = SabadRow.tedadInSabadOrDet;
     var bishAzMaxTedadYaMojoodi = 0;
-    if (SabadRow.MaxTedad != null) {
-        if (SabadRow.MaxTedad <= Tedad) {
-            bishAzMaxTedadYaMojoodi = 1;
-        }
-    } else {
-        if (SabadRow.Mojoodi <= Tedad) {
-            bishAzMaxTedadYaMojoodi = 1;
-        }
+
+    if (Number(SabadRow.MaxTedad) <= Number(SabadRow.tedadInSabadOrDet)) {
+        bishAzMaxTedadYaMojoodi = 1;
+    }
+    if (Number(SabadRow.Mojoodi) <= Number(SabadRow.tedadInSabadOrDet)) {
+        bishAzMaxTedadYaMojoodi = 1;
     }
 
-    // const ForCartContentsDesignTypeLet = useMemo(() => {
     const tedadInSabadOrDetToNumber = Number(SabadRow.tedadInSabadOrDet);
     const ZaribForooshToNumber = Number(SabadRow.ZaribForoosh);
 
@@ -119,7 +115,6 @@ const SabadSatrComponent = ({
             tedadInSabadOrDetToNumber > ZaribForooshToNumber ? 2 :
                 tedadInSabadOrDetToNumber === ZaribForooshToNumber ? 1 :
                     0;
-    // }, [SabadRow]);  
 
     return (
         <View

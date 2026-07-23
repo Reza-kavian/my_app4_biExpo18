@@ -12,7 +12,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import { ThemeContext } from "../context/ThemeContext";
 import { useContext } from "react";
 import ReusableButton from "../components/ReusableButton";
-import { NextJsApiUrl } from "../constants/Urls";   
+import { NextJsApiUrl } from "../constants/Urls";
 import { SvgUri } from "react-native-svg";
 import type { RootStackParamList } from "../types/navigation";
 
@@ -24,6 +24,19 @@ import logoKerfu from "../assets/images/logo-kerfu.jpg";
 
 import ReturnToMobilenumberIcon from "../components/icons/images/ReturnToMpbilenumber";
 import RequestAgainIcon from "../components/icons/images/RequestAgain";
+////zare_nk_050501_added_st
+import { jwtDecode } from "jwt-decode";
+
+interface MyJwtPayload {
+  FullName: string | null;
+  Mobile: string | null;
+  name: string | null;
+  // exp: number;
+  // .
+  // .
+  [key: string]: any;
+}
+////zare_nk_050501_added_end
 
 //zare_nk_040530_commented_st(rahe1)
 // import { useNavigation } from "@react-navigation/native";
@@ -165,7 +178,7 @@ export default function LoginScreen({
       setIsDisabledMobileCheckBtn(false);
     }
   };
-   
+
   const checkSmsForLogin = async (sms: string) => {
     if (!sms || sms.length < 4) {
       await AsyncStorage.removeItem("token");
@@ -181,7 +194,7 @@ export default function LoginScreen({
           smsCode: sms,
           Password: "",
           IdShobeh: 12,
-        }); 
+        });
 
       console.log("zare_nk_041207-01");
       const ApiLoginUser2Result = res.data; // await res.json();
@@ -210,17 +223,14 @@ export default function LoginScreen({
       if (res.status === 200 && ApiLoginUser2Result.status == 0) {
         // if (ApiLoginUser2Result.status == 0) {
         let token = ApiLoginUser2Result.data.token;
-        console.log("zare_nk_050430-03-token: " + token);
-        //040530-03-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6IjIwMTA5IiwiQ29kZU1vc2h0YXJpIjoiMjAxMDkiLCJNb2JpbGUiOiI5MzUxMDkxMjg3IiwiTmFtZU1vc2h0YXJpIjoiIiwibmJmIjoxNzY1ODgxNDczLCJleHAiOjE3NjY0ODYyNzMsImlhdCI6MTc2NTg4MTQ3M30.JTsMQ1DO0C7QEWw90eElmaSSFVGxtpf52xG9dgsp7BA
-       
-        ////zare_nk_050323_nokteh_st(rahe EX1- kond tar hast va tosiye nemishe)
-        // const expires = new Date(
-        //   Date.now() + 20000 * 60 * 1000
-        // ).toISOString();
-        ////zare_nk_050323_nokteh_end(rahe EX1- kond tar hast va tosiye nemishe)
-        const expires = Date.now() + 20000 * 60 * 1000;    ////zare_nk_050323_nokteh(rahe EX2- saritar hast va tosiye mishe)
+        
+        // const expires = Date.now() + 20000 * 60 * 1000;    ////zare_nk_050501_nokteh(lahaz kardane dastiye expires 13 rooz va 21 saate dige)
 
-        // const expires =data.decoded.exp;  //zare_nk_050428-nokteh(zamane monghazi ra parsafar dar pasokhe apiye Api_LoginUser2 nemideh, man dasti midam)
+        const DecodeToken = jwtDecode<MyJwtPayload>(token);
+        console.log('zare_nk_050501_DecodeToken is: ' + JSON.stringify(DecodeToken));
+        ////zare_nk_050501_DecodeToken is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
+        const expires =DecodeToken.exp;      ////zare_nk_050501_nokteh(lahaz kardane expires az tokene pasokhe apiye Api_LoginUser2 )
+        
         let tokenni = await AsyncStorage.getItem("token");        ////zare_nk_040925_added_pakkardani
         console.log("0-zare_nk_041207-tokenni is: " + tokenni);   ////zare_nk_040925_added_pakkardani
         await AsyncStorage.setItem("token", token);  ////moadele cooki dar reactnative ast
@@ -232,13 +242,13 @@ export default function LoginScreen({
         const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
         await AsyncStorage.removeItem("redirect");
         navigation.replace(redirect as keyof RootStackParamList);
-       
+
       } else {
         console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");
         setSmsError(ApiLoginUser2Result.errors ? ApiLoginUser2Result.errors[0] : "متاسفانه خطایی رخ داده است:");
-      }      
-    } catch (err: any) {      
+      }
+    } catch (err: any) {
       console.log(
         "zare_nk_041207-second catch in checkSmsForLogin-AsyncStorage.removeItem('token')-err: " + err
       );

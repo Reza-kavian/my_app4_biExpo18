@@ -1,4 +1,4 @@
-// src/screens/SplashScreen.tsx    //zare_nk_050227_okk
+// src/screens/folder04Screen.tsx    //zare_nk_050227_okk
 import { View, Text, StyleSheet, ActivityIndicator } from "react-native";
 import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../context/ThemeContext";
@@ -8,7 +8,7 @@ import type { RootStackParamList } from '../types/navigation';
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Splash">;
 
-const SplashScreen = () => {
+const folder04Screen = () => {
   const { theme } = useContext(ThemeContext);
   const navigation = useNavigation<NavigationProp>();
   const [bgColor, setBgColor] = useState("white");  
@@ -54,7 +54,7 @@ const SplashScreen = () => {
   );
 };
 
-export default SplashScreen;
+export default folder04Screen;
 
 const styles = StyleSheet.create({
   container: {

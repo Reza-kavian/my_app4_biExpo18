@@ -268,7 +268,7 @@ export default function ShallowRoutingExample({
 
   // const [offerRows, setOfferRows] = useState<ForCartContInProdDetValType[]>([]);  ////zare_nk_050328_commented
   const [offerRows, setOfferRows] = useState<offerRowsType[]>([]);  ////zare_nk_050328_added
-
+  console.log('lili-offerRows: ' + JSON.stringify(offerRows));
   // const [addOrRemChanged, setAddOrRemChanged] = useState<string | null>(null);  ////zare_nk_050320_commented(jash ro be state page dad(addOrRemChanged baraye seda zadane api 
   //// pishnahadat va rikhtane pasokh dar setOfferRows estefadeh mishod(addOrRemChanged dar bastane modale joziate kala va dokmehaye + va - meghdar migireh) ke jash ro
   //// be setPage(setPage dar rendere avval va scroll be entehaye FlatList meghdar migire )))
@@ -406,28 +406,26 @@ export default function ShallowRoutingExample({
           // console.log("rr-parsedList: " + JSON.stringify(parsedList) + '-parsedList.length: ' + parsedList.length + '-parsedList[0].IdKala : ' + parsedList[0].IdKala);
 
           var bishAzMaxTedadYaMojoodi = 0;
-          if (parsedList[0].MaxTedad != null) {
-            if (parsedList[0].MaxTedad <= parsedList[0].TedadDarSabad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
-          } else {
-            if (parsedList[0].Mojoodi <= parsedList[0].TedadDarSabad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(parsedList[0].MaxTedad) <= Number(parsedList[0].TedadDarSabad)) {
+            bishAzMaxTedadYaMojoodi = 1;
+          }
+          if (Number(parsedList[0].Mojoodi) <= Number(parsedList[0].TedadDarSabad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
 
           refForfather.current = "#DetailsInfoCont";
-          let ForCartContentsDesignTypeLet = 0
 
-          if (parsedList[0].TedadDarSabad == 0) {
+          let ForCartContentsDesignTypeLet = 0
+          if (Number(parsedList[0].TedadDarSabad) == 0) {
             ForCartContentsDesignTypeLet = 0;
           }
-          else if (parsedList[0].TedadDarSabad > parsedList[0].ZaribForoosh) {
+          else if (Number(parsedList[0].TedadDarSabad) > Number(parsedList[0].ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 2;
           }
-          else if (parsedList[0].TedadDarSabad == parsedList[0].ZaribForoosh) {
+          else if (Number(parsedList[0].TedadDarSabad) == Number(parsedList[0].ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 1;
           }
+
           // console.log('parsedList[0].NameKala: ' + parsedList[0].NameKala + '-parsedList[0].TedadDarSabad: ' + parsedList[0].TedadDarSabad);
           const idTag = "ForCart-" + parsedList[0].IdKala;
           setImgUriForDet(`https://img.tochikala.com/Product/${parsedList[0].IdKala}.webp`);  //zare_nk_041209_added
@@ -810,29 +808,27 @@ export default function ShallowRoutingExample({
 
             ////zare_nk_050322_nokteh_st(rahe3(ham natijeye dorost mideh va ham sorate barname kond nemishe)- dar har halghe setState nemikonim ke kolli rerender dashteh bashim(balke kolle halghehaye api ro dakhele yek moteghayyere komakim mirizim va dar tanha yek setState moteghayere komaki ro dakhele state mirizim))
             const tempArrayForOneSetState = result.map((item: any) => {
+              console.log('item.Mojoodi isd: ' + item.Mojoodi)
               var bishAzMaxTedadYaMojoodi = 0;
-              if (item.MaxTedad != null) {
-                if (item.MaxTedad <= item.TedadDarSabad) {
-                  bishAzMaxTedadYaMojoodi = 1;
-                }
-              }               
-              else {
-                if (item.Mojoodi <= item.TedadDarSabad) {
-                  bishAzMaxTedadYaMojoodi = 1;
-                }
-              }              
-
+              if (Number(item.MaxTedad) <= Number(item.TedadDarSabad)) {
+                bishAzMaxTedadYaMojoodi = 1;
+              }
+              ////zare_nk_050501_nokteh_st(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh)
+              // if (Number(item.Mojoodi) <= Number(item.TedadDarSabad)) {
+              //   bishAzMaxTedadYaMojoodi = 1;
+              // }
+              ////zare_nk_050501_nokteh_end(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh)
               let ForCartContentsDesignTypeLet = 0
-
-              if (item.TedadDarSabad == 0) {
+              if (Number(item.TedadDarSabad) == 0) {
                 ForCartContentsDesignTypeLet = 0;
               }
-              else if (item.TedadDarSabad > item.ZaribForoosh) {
+              else if (Number(item.TedadDarSabad) > Number(item.ZaribForoosh)) {
                 ForCartContentsDesignTypeLet = 2;
               }
-              else if (item.TedadDarSabad == item.ZaribForoosh) {
+              else if (Number(item.TedadDarSabad) == Number(item.ZaribForoosh)) {
                 ForCartContentsDesignTypeLet = 1;
               }
+
               return ({
                 tedadInSabadOrDet: item.TedadDarSabad,
                 ZaribForoosh: item.ZaribForoosh,
@@ -845,7 +841,7 @@ export default function ShallowRoutingExample({
                 FeeForoosh: item.FeeForoosh,
                 FeeMasraf: item.FeeMasraf,
                 BarcodeKala: item.BarCodeKala,  ////zare_nk_050330_nokteh(pasokhe apiye hamyar BarCodeKala(ba C bozorge!))
-                Mojoodi: item.Mojoodi,  ////zare_nk_050418_added 
+                Mojoodi: item.Mojoodi ? item.Mojoodi : item.MaxTedad,  ////zare_nk_050501_nokteh(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh,manam goftam age nemideh hamoon MaxTedad darnazar begiram)
                 MaxTedad: item.MaxTedad,
                 father: "#cardcontainer2",
                 refForfather: refForfather,
@@ -1019,33 +1015,28 @@ export default function ShallowRoutingExample({
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
           let Tedad = satrInoInResult.Tedad;
           console.log('123123-satrInoInResult: ' + satrInoInResult.Mojoodi + '-addRemParam.Mojoodi: ' + addRemParam.Mojoodi);
+
           var bishAzMaxTedadYaMojoodi = 0;
-          if (addRemParam.MaxTedad != null) {
-            if (addRemParam.MaxTedad <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(addRemParam.MaxTedad) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
-          ////zare_nk_050418_added_st
-          else {
-            if (addRemParam.Mojoodi <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
-          ////zare_nk_050418_added_end
 
           refForfather.current = addRemParam.father;
 
           let ForCartContentsDesignTypeLet = 0
-
-          if (Tedad == 0) {
+          if (Number(Tedad) == 0) {
             ForCartContentsDesignTypeLet = 0;
           }
-          else if (Tedad > addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) > Number(addRemParam.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 2;
           }
-          else if (Tedad == addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) == Number(addRemParam.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 1;
           }
+
           if (addRemParam.fromShowDetails) {
             // Alert.alert('detim');
             setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_041209_added
@@ -1061,7 +1052,7 @@ export default function ShallowRoutingExample({
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
                 BarcodeKala: addRemParam.BarcodeKala,
-                Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050418_added
+                Mojoodi: satrInoInResult.Mojoodi,    ////zare_nk_050501_updated(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh va az pasokhe apiye Api_InsertToSabad Mojoodi ro berooz kardam) 
                 // Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,    ////zare_nk_050418_commented
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
@@ -1073,7 +1064,7 @@ export default function ShallowRoutingExample({
               };
             });
           }
-           
+
           setOfferRows((curRows) => {
             return curRows.map((curItem: any, index: number) => {
               if (curItem.IdKala == addRemParam.IdKala) {
@@ -1090,7 +1081,7 @@ export default function ShallowRoutingExample({
                     FeeForoosh: addRemParam.FeeForoosh,
                     FeeMasraf: addRemParam.FeeMasraf,
                     BarcodeKala: addRemParam.BarcodeKala,
-                    Mojoodi: addRemParam.Mojoodi,     ////zare_nk_050418_added
+                    Mojoodi: satrInoInResult.Mojoodi,         ////zare_nk_050501_updated(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh va az pasokhe apiye Api_InsertToSabad Mojoodi ro berooz kardam)
                     MaxTedad: addRemParam.MaxTedad,
                     father: "#cardcontainer2",
                     refForfather: refForfather,
@@ -1285,61 +1276,84 @@ export default function ShallowRoutingExample({
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(age ba remove kardan 0 beshe tedad parsafer data:[] miferesteh, pas satrInoInResult==undefined misheh)  
           let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
+
+
           var bishAzMaxTedadYaMojoodi = 0;
-          if (addRemParam.MaxTedad != null) {
-            if (addRemParam.MaxTedad <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+
+          if (Number(satrInoInResult.MaxTedad) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
-          ////zare_nk_050418_added_st
-          else {
-            if (addRemParam.Mojoodi <= Tedad) {
-              bishAzMaxTedadYaMojoodi = 1;
-            }
+          if (Number(satrInoInResult.Mojoodi) <= Number(Tedad)) {
+            bishAzMaxTedadYaMojoodi = 1;
           }
-          ////zare_nk_050418_added_end
 
           refForfather.current = addRemParam.father;
 
           let ForCartContentsDesignTypeLet = 0
-
-          if (Tedad == 0) {
+          if (Number(Tedad) == 0) {
             ForCartContentsDesignTypeLet = 0;
           }
-          else if (Tedad > addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) > Number(satrInoInResult.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 2;
           }
-          else if (Tedad == addRemParam.ZaribForoosh) {
+          else if (Number(Tedad) == Number(satrInoInResult.ZaribForoosh)) {
             ForCartContentsDesignTypeLet = 1;
           }
-          if (addRemParam.fromShowDetails) {
-            setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_041209_added
-            setForCartContInProdDetVal(() => {
-              const idTag = "ForCart-" + addRemParam.IdKala;
-              return {
-                tedadInSabadOrDet: Tedad,
-                ZaribForoosh: addRemParam.ZaribForoosh,
-                IdKala: addRemParam.IdKala,
-                NameKala: addRemParam.NameKala,
-                DarsadTakhfif: addRemParam.DarsadTakhfif,
-                NameBerand: addRemParam.NameBerand,
-                FeeForoosh: addRemParam.FeeForoosh,
-                FeeMasraf: addRemParam.FeeMasraf,
-                BarcodeKala: addRemParam.BarcodeKala,
-                Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050418_added
-                // Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,     ////zare_nk_050418_commented
-                MaxTedad: addRemParam.MaxTedad,
-                father: "#DetailsInfoCont",
-                refForfather: refForfather,
-                bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
-                fromShowDetails: addRemParam.fromShowDetails,
-                ForCartContentsDesignType: ForCartContentsDesignTypeLet,
-                idTag: idTag,
-              };
-            });
-          }
-  
+
+          // if (addRemParam.fromShowDetails) {
+          //   setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_041209_added
+          //   setForCartContInProdDetVal(() => {
+          //     const idTag = "ForCart-" + addRemParam.IdKala;
+          //     return {
+          //       tedadInSabadOrDet: Tedad,
+          //       ZaribForoosh: addRemParam.ZaribForoosh,
+          //       IdKala: addRemParam.IdKala,
+          //       NameKala: addRemParam.NameKala,
+          //       DarsadTakhfif: addRemParam.DarsadTakhfif,
+          //       NameBerand: addRemParam.NameBerand,
+          //       FeeForoosh: addRemParam.FeeForoosh,
+          //       FeeMasraf: addRemParam.FeeMasraf,
+          //       BarcodeKala: addRemParam.BarcodeKala,
+          //       Mojoodi: addRemParam.Mojoodi,    ////zare_nk_050418_added
+          //       // Mojoodi: satrInoInResult === undefined ? 0 : satrInoInResult.Mojoodi,     ////zare_nk_050418_commented
+          //       MaxTedad: addRemParam.MaxTedad,
+          //       father: "#DetailsInfoCont",
+          //       refForfather: refForfather,
+          //       bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
+          //       fromShowDetails: addRemParam.fromShowDetails,
+          //       ForCartContentsDesignType: ForCartContentsDesignTypeLet,
+          //       idTag: idTag,
+          //     };
+          //   });
+          // }
+
           setOfferRows((curRows) => {
+            if (addRemParam.fromShowDetails) {
+              setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  //zare_nk_041209_added
+              setForCartContInProdDetVal(() => {
+                const idTag = "ForCart-" + addRemParam.IdKala;
+                return {
+                  tedadInSabadOrDet: Tedad,
+                  ZaribForoosh: addRemParam.ZaribForoosh,
+                  IdKala: addRemParam.IdKala,
+                  NameKala: addRemParam.NameKala,
+                  DarsadTakhfif: addRemParam.DarsadTakhfif,
+                  NameBerand: addRemParam.NameBerand,
+                  FeeForoosh: addRemParam.FeeForoosh,
+                  FeeMasraf: addRemParam.FeeMasraf,
+                  BarcodeKala: addRemParam.BarcodeKala,
+                  Mojoodi: satrInoInResult.Mojoodi,         ////zare_nk_050501_updated(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh va az pasokhe apiye Api_InsertToSabad Mojoodi ro berooz kardam)                
+                  MaxTedad: addRemParam.MaxTedad,
+                  father: "#DetailsInfoCont",
+                  refForfather: refForfather,
+                  bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
+                  fromShowDetails: addRemParam.fromShowDetails,
+                  ForCartContentsDesignType: ForCartContentsDesignTypeLet,
+                  idTag: idTag,
+                };
+              });
+            }
+
             return curRows.map((curItem: any, index: number) => {
               if (curItem.IdKala == addRemParam.IdKala) {
                 return (
@@ -1355,7 +1369,7 @@ export default function ShallowRoutingExample({
                     FeeForoosh: addRemParam.FeeForoosh,
                     FeeMasraf: addRemParam.FeeMasraf,
                     BarcodeKala: addRemParam.BarcodeKala,
-                    Mojoodi: addRemParam.Mojoodi,     ////zare_nk_0503418_added
+                    Mojoodi: satrInoInResult.Mojoodi,         ////zare_nk_050501_updated(dar api Api_SelectKalaTakhfifat fielde Mojoodi nemideh va az pasokhe apiye Api_InsertToSabad Mojoodi ro berooz kardam)
                     MaxTedad: addRemParam.MaxTedad,
                     father: "#cardcontainer2",
                     refForfather: refForfather,
@@ -1452,7 +1466,7 @@ export default function ShallowRoutingExample({
   const handlerForRemClick = useCallback(remveFromCartInIndex, [remveFromCartInIndex]);  ////zare_nk_050319_added_st(rahe3- tabee voroodish ke remveFromCartInIndex hast dige niazi be useCalback nadare)
 
   ////zare_nk_050319_added_st(az useCallback baraye sorate bishtar estefadeh kardim)  
-  const renderOfferItem: ListRenderItem<offerRowsType> = useCallback(({ item }) => (   
+  const renderOfferItem: ListRenderItem<offerRowsType> = useCallback(({ item }) => (
     <OfferSatrComponent
       // key={item.IdKala}   ////zare_nk_050326_commented
       offerRow={item}

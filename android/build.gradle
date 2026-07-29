@@ -1,19 +1,19 @@
-////zare_nk_050423_okk(1)
+////zare_nk_050504_okk(1)
 buildscript {
     ext {
-        buildToolsVersion = "36.0.0"  //zare_nk_050127_nokteh(noskheye SDKBuildTools ke baraye compile va bastebandiye applicatione android estefadeh mishe)  
+        buildToolsVersion = "36.0.0"  ////zare_nk_050127_nokteh(noskheye SDKBuildTools ke baraye compile va bastebandiye applicatione android estefadeh mishe)  
         minSdkVersion = 24
         compileSdkVersion = 36
         targetSdkVersion = 36
-        // ndkVersion = "27.1.12297006"   //zare_nk_040922_commented(chon 27.1.12297006 nasb nashod)
-        ndkVersion = "27.0.12077973"   //zare_nk_040922_added(chon 27.1.12297006 nasb nashod)
+        // ndkVersion = "27.1.12297006"   ////zare_nk_040922_commented(chon 27.1.12297006 nasb nashod)
+        ndkVersion = "27.0.12077973"   ////zare_nk_040922_added(chon 27.1.12297006 nasb nashod)
         ////zare_nk_050127_nokteh(dar androidstudio 29.0.14206865 va 27.0.12077973 nasbeh) 
         ////zare_nk_050127_nokteh(NDK be shoma ejazeh mideh az codehaye c va c++ dar projeye androidiye khod estefadeh konid.)
         kotlinVersion = "2.1.20"
     }
     repositories {
-        google()  //zare_nk_050127_nokteh(makhzane google shamele ketabkhanehaye rasmiye android)
-        mavenCentral() //zare_nk_050127_nokteh(makhzane maven shamele ketabkhanehaye java va android)
+        google()  ////zare_nk_050127_nokteh(makhzane google shamele ketabkhanehaye rasmiye android)
+        mavenCentral() ////zare_nk_050127_nokteh(makhzane maven shamele ketabkhanehaye java va android)
     }
     dependencies {
         classpath("com.android.tools.build:gradle")  ////zare_nk_050127(plugine asliye Android Gradle baraye sakhte projehaye androidi)

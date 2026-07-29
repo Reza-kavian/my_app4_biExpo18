@@ -1,6 +1,6 @@
-//my-app/App.tsx   ////zare_nk_050428_okk(1)
+//my-app/App.tsx   ////zare_nk_050504_okk(1)
 import React, { useEffect, useState } from "react";
-import { Alert, Linking } from "react-native";   ////zare_nk_050419_nokteh(Linking ke betoonim az in apk be  biroon(masalan site ha) dar moroorgar hedayat konim)
+import { Alert, Linking } from "react-native";   ////zare_nk_050419_nokteh(Linking ke betoonim az in apk be biroon(masalan site ha) dar moroorgar hedayat konim)
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import DeviceInfo from "react-native-device-info";
 import AppNavigator from "./src/navigation/AppNavigator";
@@ -9,7 +9,7 @@ import { ThemeContext } from "./src/context/ThemeContext";
 
 import { NavigationContainer } from "@react-navigation/native";
 
-import { NextJsApiUrl, NextJsApiAuthUrl } from "./src/constants/Urls";
+import { NextJsApiUrl } from "./src/constants/Urls";
 ////zare_nk_040928_added_st(ijade DeepLinking baraye modiriate inke age az biroon(masalan site ha) dar moroorgar link konim be in apk)
 const navigationLinking = {
   prefixes: ["myapp://"], // همون scheme که در app.json تعریف کردی
@@ -30,9 +30,6 @@ const navigationLinking = {
 // 🔑 کلید ذخیره آخرین ورژن دیده‌شده
 const LAST_SEEN_VERSION_KEY = "last_seen_version";
 
-// 🌐 آدرس API بررسی نسخه
-// const VERSION_CHECK_URL = "https://your-domain.com/api/app-version";  ////zare_nk_050419_added(baraye downloade noskheye jadid)
-
 // 📝 متن تغییرات هر نسخه
 const CHANGELOG: Record<string, string[]> = {
   // "1.0.0": [
@@ -52,19 +49,14 @@ const CHANGELOG: Record<string, string[]> = {
   ],
 };
 ////zare_nk_050419_added_st(baraye downloade noskheye jadid)
-// مقایسه نسخه‌ها
-// مثال:
-// compareVersions("1.0.6","1.0.5") => true
 const isNewerVersion = (
   latestVersion: string,
   currentVersion: string
 ) => {
-
   const latest = latestVersion.split(".").map(Number);
   const current = currentVersion.split(".").map(Number);
 
   for (let i = 0; i < Math.max(latest.length, current.length); i++) {
-
     const l = latest[i] || 0;
     const c = current[i] || 0;
 
@@ -91,11 +83,8 @@ export default function App() {
         // }
         ////zare_nk_050420_nokteh_end(in sharte currentVersion=='1.0.0' ra basteh be saligham baraye versione 1.0.0(avvalin verion) comment mikonam ya uncomment)
         const lastSeenVersion = await AsyncStorage.getItem(LAST_SEEN_VERSION_KEY);
-
-        console.log('050420-lastSeenVersion: ' + lastSeenVersion + '-currentVersion: ' + currentVersion);
         if (lastSeenVersion !== currentVersion) {
           const changes = CHANGELOG[currentVersion];
-
           if (changes && changes.length > 0) {
             Alert.alert(
               "تغییرات نسخه جدید",
@@ -103,7 +92,6 @@ export default function App() {
               [{ text: "باشه" }]
             );
           }
-
           await AsyncStorage.setItem(
             LAST_SEEN_VERSION_KEY,
             currentVersion
@@ -117,17 +105,15 @@ export default function App() {
     checkVersionAndShowChangelog();
 
     ////zare_nk_050419_added_st(baraye downloade noskheye jadid)
-    // بررسی وجود نسخه جدید از سرور
     const checkLatestVersion = async () => {
       console.log('zare_nk_050420-checkLatestVersion called!');
-      // var urlInsertToSabad = 'https://testotmapi.sarinmehr.com/api/v1/Hyper/Api_getAppVersion';
-      var urlInsertToSabad = NextJsApiUrl + "Api_getAppVersion";
+      // var urlGetAppVersion = 'https://testotmapi.sarinmehr.com/api/v1/Hyper/Api_getAppVersion';
+      var urlGetAppVersion = NextJsApiUrl + "Api_getAppVersion";
       try {
         const currentVersion = DeviceInfo.getVersion();
         const currentVersionCode = Number(DeviceInfo.getBuildNumber());  ////zare_nk_050423_added(chon getBuildNumber string barmigardooneh man be adad tabdilesh kardam)
 
-        // const response = await fetch(VERSION_CHECK_URL);
-        const response = await fetch(urlInsertToSabad, {
+        const response = await fetch(urlGetAppVersion, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -141,7 +127,6 @@ export default function App() {
           console.log('zare_nk_050420-response.status is ok- is: ' + response.status +
             '-response.statusText: ' + response.statusText + '-response: ' + JSON.stringify(response));
           const data = await response.json();
-          console.log('zare_nk_050420-inja');
           var result = data;
           if (result.status != 0) {
             console.log('zare_nk_050420-response.status  ok- is: ' + response.status);
@@ -183,7 +168,7 @@ export default function App() {
           /* نمونه پاسخ API:
             {
               latestVersion:"1.0.6",
-              "latestVersionCode":2,  ////zare_nk_050423_added
+              latestVersionCode:2,  ////zare_nk_050423_added
               forceUpdate:false,
               downloadUrl:"https://..."
             } */
@@ -213,8 +198,6 @@ export default function App() {
             latestVersionCode > currentVersionCode &&
             isNewerVersion(latestVersion, currentVersion);
           if (hasNewVersion) {
-            ////zare_nk_050423_added_end
-            // if (parsedList[0].latestVersion && isNewerVersion(parsedList[0].latestVersion, currentVersion)) {  ////zare_nk_050423_commented
             console.log('zare_nk_050420-niaz be update hast');
             // اگر آپدیت اجباری باشد
             if (item.forceUpdate === true) {

@@ -252,8 +252,8 @@ export default function ShallowRoutingExample({
                         // }
                     } else if (data.status == 0) {
                         var result = JSON.parse(data.data.list);
-                        console.log('zare_nk_041123-resultSatr: ' + JSON.stringify(result));
-                        console.log('zare_nk_041123-resultSatr.length: ' + result.length);
+                        console.log('zare_nk_050504-resultSatr 01: ' + JSON.stringify(result));
+                        console.log('zare_nk_041123-resultSatr.length: ' + JSON.stringify(result[5]));
                         if (result.length == 0) {
                             setBisatrDarSatr(true);
                             return;

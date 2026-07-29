@@ -1,59 +1,59 @@
-<!-- zare_nk_050309_okk -->
-<!-- zare_nk_050127_nokteh(be onvane rahnama haviye ettelaati baraye systemAmel va googleplay va cafebazar va ... hast) -->
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<!-- zare_nk_050504_okk -->
+        <!-- zare_nk_050127_nokteh(be onvane rahnama haviye ettelaati baraye systemAmel va googleplay va cafebazar va ... hast) -->
+        <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!-- zare_nk_050201_nokteh_st(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
-    <uses-permission android:name="android.permission.CAMERA" />
+        <uses-permission android:name="android.permission.INTERNET" />
+        <!-- zare_nk_050201_nokteh_st(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
+        <uses-permission android:name="android.permission.CAMERA" />
 
-<!-- zare_nk_050322_nokteh_st(ACCESS_FINE_LOCATION va ACCESS_COARSE_LOCATION ro baraye mojaveze location ezafeh kardam) -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
-<!-- zare_nk_050322_nokteh_end(ACCESS_FINE_LOCATION va ACCESS_COARSE_LOCATION ro baraye mojaveze location ezafeh kardam) -->
+        <!-- zare_nk_050322_nokteh_st(ACCESS_FINE_LOCATION va ACCESS_COARSE_LOCATION ro baraye mojaveze location ezafeh kardam) -->
+        <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+        <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+        <!-- zare_nk_050322_nokteh_end(ACCESS_FINE_LOCATION va ACCESS_COARSE_LOCATION ro baraye mojaveze location ezafeh kardam) -->
 
-    <uses-feature
-        android:name="android.hardware.camera"
-        android:required="false" />
-    <uses-feature
-        android:name="android.hardware.camera.autofocus"
-        android:required="false" />
-    <!-- zare_nk_050201_nokteh_end(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
-    <application
-        android:name=".MainApplication"
-        android:label="@string/app_name"
-        android:icon="@mipmap/ic_launcher"
-        android:roundIcon="@mipmap/ic_launcher_round"
-        android:allowBackup="false"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="${usesCleartextTraffic}"
-        android:supportsRtl="true">
+        <uses-feature
+android:name="android.hardware.camera"
+android:required="false" />
+        <uses-feature
+android:name="android.hardware.camera.autofocus"
+android:required="false" />
+        <!-- zare_nk_050201_nokteh_end(dastoorate tooyenokteh ro dasti be in file AndroidManifest.xml ezafeh kardim) -->
+        <application
+android:name=".MainApplication"
+android:label="@string/app_name"
+android:icon="@mipmap/ic_launcher"
+android:roundIcon="@mipmap/ic_launcher_round"
+android:allowBackup="false"
+android:theme="@style/AppTheme"
+android:usesCleartextTraffic="${usesCleartextTraffic}"
+android:supportsRtl="true">
 
         <activity
-            android:name=".MainActivity"
-            android:label="@string/app_name"
-            android:exported="true"
-            android:launchMode="singleTask"
-            android:windowSoftInputMode="adjustResize"
-            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode">
+android:name=".MainActivity"
+android:label="@string/app_name"
+android:exported="true"
+android:launchMode="singleTask"
+android:windowSoftInputMode="adjustResize"
+android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode">
 
-            <!-- لانچ عادی اپ -->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <!-- لانچ عادی اپ -->
+        <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
 
             <!-- 🔥 Deep Link برای myapp:// -->
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
+        <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="myapp" />
-            </intent-filter>
+        <data android:scheme="myapp" />
+        </intent-filter>
 
         </activity>
-    </application>
+        </application>
 
 </manifest>

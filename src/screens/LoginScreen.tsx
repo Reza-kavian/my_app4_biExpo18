@@ -247,7 +247,6 @@ export default function LoginScreen({
         const redirect = (await AsyncStorage.getItem("redirect")) || "Home";
         await AsyncStorage.removeItem("redirect");
         navigation.replace(redirect as keyof RootStackParamList);
-
       } else {
         console.log("zare_nk_041207-!!response.ok");
         await AsyncStorage.removeItem("token");

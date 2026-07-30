@@ -1667,9 +1667,9 @@ export default function HomeScreen({
       isScanningRef.current = false;  ////zare_nk_050508_added(baraye tavaghofe barcodekhani(seda nazadane useCodeScanner) dar hamin render)
       setIsScanning(false);    ////zare_nk_050508_nokteh(baraye reRender shodane jsx va tavaghofe animation(stopAnimation dar useEffect) )
 
-   
-      setIsOpenedCodeScannerModal(false); 
-      setManualBarcode('');  
+
+      setIsOpenedCodeScannerModal(false);
+      setManualBarcode('');
 
       // ShowDetails(code.value);  
       ShowDetails(barcode.value);
@@ -1677,8 +1677,8 @@ export default function HomeScreen({
       // refForBarcodeValue.current = code.value.toString(); 
       refForBarcodeValue.current = barcode.value;
 
-      setIsOpenedProdDetModal(true);  
-      setAddOrRemChanged(null);  
+      setIsOpenedProdDetModal(true);
+      setAddOrRemChanged(null);
 
       //     break;
       //   }
@@ -3816,6 +3816,8 @@ export default function HomeScreen({
                       codeScanner={codeScanner}  //zare_nk_040923(seda zadane tabee codeScanner baraye scan kardan code ha)
                       enableZoomGesture={true}   //zare_nk_040923(ghabeleiat zoome kardan ba do angosht be doorbin)
                       torch={hasTorch ? torch : 'off'}  //zare_nk_040927_added(age dastgah flash dasht vaziate feliye off ya on boodane torch lahaz beshe,vagarna hamishe off)
+                      zoom={device.neutralZoom}   ////zare_nk_050508_added(jahate gooshihaye chand lenzi, be jaye entekhabe lenze pishfarz, bar asase 
+                    //// zaviyeh va faseleye kala lenze monaseb ro entekhab mikoneh)
                     />
 
                     {/*zare_nk_040923(kadre rahnama baraye gharar dadane barcode dar an(tookhali))*/}

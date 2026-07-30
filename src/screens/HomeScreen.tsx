@@ -1076,6 +1076,8 @@ export default function HomeScreen({
   const [textInModalForGetLocation, setTextInModalForGetLocation] = useState('');  ////zare_nk_050323_added
 
   const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
+  const isScanningRef = useRef(true);  ////zare_nk_050508_added
+
   const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
   const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
   const device = useCameraDevice("back");   //zare_nk_040923(doorbin ra doorbine aghab moshakhas mikonim)
@@ -1653,30 +1655,34 @@ export default function HomeScreen({
   const codeScanner = useCodeScanner({
     codeTypes: ["qr", "ean-13", "upc-a"],
     onCodeScanned: (codes) => {
-      if (!isScanning) return;
-      for (const code of codes) {
-        if (code.value) {
-          console.log(`Scanned: ${code.value}`);
-          setIsScanning(false);
-          // setScannedValue(code.value);  //zare_nk_041129_commented
+      // if (!isScanning) return;
+      if (!isScanningRef.current) return;
+      // for (const code of codes) {
+      //   if (code.value) {
+      const barcode = codes[0];  ////zare_nk_050508_nokteh(jaigozine halghaye for shod)
+      if (!barcode?.value) return;
+      // console.log(`050508-Scanned: ${code.value}`);
+      console.log(`050508-Scanned: ${barcode.value}`);
 
-          ////baste shodane modal
-          // setAddOrRemChanged("notNull");  //zare_nk_041128_commented(ehtemalan niazi nist va biasar ham hast, chon dar hamin render paeintar setAddOrRemChanged(null); ra seda zadim)
-          setIsOpenedCodeScannerModal(false);  //okk
-          setManualBarcode('');  //zare_nk_041205_added
+      isScanningRef.current = false;  ////zare_nk_050508_added(baraye tavaghofe barcodekhani(seda nazadane useCodeScanner) dar hamin render)
+      setIsScanning(false);    ////zare_nk_050508_nokteh(baraye reRender shodane jsx va tavaghofe animation(stopAnimation dar useEffect) )
 
-          ////shenasaei va openprodDetModal 
-          ShowDetails(code.value);  ////zare_nk_050326_commented(movaghat, chon kalahaye kerfu pisham nist scan konam)
-          // ShowDetails(6262961900810);  ////zare_nk_050326_added(movaghat, chon kalahaye kerfu pisham nist scan konam)
+   
+      setIsOpenedCodeScannerModal(false); 
+      setManualBarcode('');  
 
-          refForBarcodeValue.current = code.value.toString()     ////zare_nk_050328_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
+      // ShowDetails(code.value);  
+      ShowDetails(barcode.value);
 
-          setIsOpenedProdDetModal(true);  //okk
-          setAddOrRemChanged(null);  //okk
+      // refForBarcodeValue.current = code.value.toString(); 
+      refForBarcodeValue.current = barcode.value;
 
-          break;
-        }
-      }
+      setIsOpenedProdDetModal(true);  
+      setAddOrRemChanged(null);  
+
+      //     break;
+      //   }
+      // }
     },
   });
 
@@ -2626,7 +2632,8 @@ export default function HomeScreen({
     ////zare_nk_050312_commented_end
     setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood! chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
     setIsOpenedCodeScannerModal(true);
-    // setAddOrRemChanged(null);
+
+    isScanningRef.current = true;  ////zare_nk_050508_added
     setIsScanning(true);  //zare_nk_041203_added
   };
   ////zare_nk_041130_added_end
@@ -2683,6 +2690,8 @@ export default function HomeScreen({
 
           setIsOpenedMymodalForWarning(false);
           setScannedValue(null);
+
+          isScanningRef.current = true;  ////zare_nk_050508_added
           setIsScanning(true);
         }}
       ////zare_nk_041203_added_end
@@ -2721,6 +2730,8 @@ export default function HomeScreen({
               onPress={() => {
                 setIsOpenedMymodalForWarning(false);
                 setScannedValue(null);
+
+                isScanningRef.current = true;  ////zare_nk_050508_added
                 setIsScanning(true);
               }}
               activeOpacity={0.6}

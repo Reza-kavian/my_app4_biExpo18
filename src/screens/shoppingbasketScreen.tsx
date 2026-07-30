@@ -271,6 +271,8 @@ export default function ShoppingbasketComponent({
     const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
 
     const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
+    const isScanningRef = useRef(true);  ////zare_nk_050508_added
+
     const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
     const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
     const device = useCameraDevice("back");   //zare_nk_040923(doorbin ra doorbine aghab moshakhas mikonim)
@@ -351,27 +353,36 @@ export default function ShoppingbasketComponent({
         // codeTypes: ["qr", "ean-13", "upc-a"],  ////zare_nk_050310_commented
         codeTypes: ["ean-13"],  ////zare_nk_050310_added(upc-a ra hazf kardam, mamollan dar amrika estefadeh mishe na iran)
         onCodeScanned: (codes) => {
-            if (!isScanning) return;
-            for (const code of codes) {
-                if (code.value) {
-                    console.log(`050329-Scanned: ${code.value}`);
-                    setIsScanning(false);
-                    // setScannedValue(code.value);  //zare_nk_041129_commented
+            // if (!isScanning) return;
+            if (!isScanningRef.current) return;
 
-                    ////baste shodane modal 
-                    setIsOpenedCodeScannerModal(false);
-                    setManualBarcode('');
-                    ////shenasaei va openprodDetModal 
-                    // ShowDetails(code.value);  ////zare_nk_050311_commented
-                    addDetectedToCart(code.value.toString());  ////zare_nk_050328_commented(movaghat, chon kalahaye kerfu pisham nist scan konam)
-                    // addDetectedToCart("6262961900810");  ////zare_nk_050328_added(movaghat, chon kalahaye kerfu pisham nist scan konam)
-                    refForBarcodeValue.current = code.value.toString()     ////zare_nk_050312_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
+            // for (const code of codes) {
+            //     if (code.value) {
+            const barcode = codes[0];  ////zare_nk_050508_nokteh(jaigozine halghaye for shod)
 
-                    // setIsOpenedProdDetModal(true);   ////zare_nk_050317_commented(hatman tahlilshe)          
-                    setAddOrRemChanged(null);
-                    break;
-                }
-            }
+            if (!barcode?.value) return;
+
+            // console.log(`050329-Scanned: ${code.value}`);
+            console.log(`050329-Scanned: ${barcode.value}`);
+
+            isScanningRef.current = false;  ////zare_nk_050508_added(baraye tavaghofe barcodekhani(seda nazadane useCodeScanner) dar hamin render)
+            setIsScanning(false);    ////zare_nk_050508_nokteh(baraye reRender shodane jsx va tavaghofe animation(stopAnimation dar useEffect) )
+
+            setIsOpenedCodeScannerModal(false);
+            setManualBarcode('');
+
+            // addDetectedToCart(code.value.toString());    
+            addDetectedToCart(barcode.value);
+
+            // refForBarcodeValue.current = code.value.toString();
+            refForBarcodeValue.current = barcode.value;
+
+            setAddOrRemChanged(null);
+
+            // break;
+            //     }
+            // }   
+
         },
     });
 
@@ -772,9 +783,9 @@ export default function ShoppingbasketComponent({
             console.log('050501-014-data is sabad: ' + JSON.stringify(data.data));
             if (response.ok) {
                 ////zare_nk_050326_added_st(jaigozine state haye .... ke baese reRender mishan)
-                const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);    
+                const jameKolTakhfif = JSON.parse(data.data.jamKolTakhfif);
                 setJamKolTakhfif(jameKolTakhfif);
-                const jameKol = JSON.parse(data.data.jamKol);   
+                const jameKol = JSON.parse(data.data.jamKol);
                 setJamKolNahaei(jameKol);
                 console.log('zare_nk_05501-jameKol dar getsabad: ' + jameKol + '-jameKolTakhfif: ' + jameKolTakhfif);
                 // const [jamKol, setJamKol] = useState<number | null>(null);
@@ -1165,7 +1176,7 @@ export default function ShoppingbasketComponent({
                     }
                     if (Number(parsedList[0].Mojoodi) <= Number(parsedList[0].TedadDarSabad)) {
                         bishAzMaxTedadYaMojoodi = 1;
-                    } 
+                    }
 
                     // handlerForAddClick(parsedList[0]);  //zare_nk_041120_commented
                     handlerForAddClick(
@@ -1271,6 +1282,7 @@ export default function ShoppingbasketComponent({
         setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood!chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
         setIsOpenedCodeScannerModal(true);//zare_nk_041205_forUpdateName
         setAddOrRemChanged(null);
+        isScanningRef.current = true;  ////zare_nk_050508_added
         setIsScanning(true);  //zare_nk_041203_added
     };
 
@@ -1828,9 +1840,9 @@ export default function ShoppingbasketComponent({
                     console.log('050329-result.status == 0-01');
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
-                    console.log("050501-satrInoInResult: "+satrInoInResult);
+                    console.log("050501-satrInoInResult: " + satrInoInResult);
                     let Tedad = satrInoInResult === undefined ? 0 : satrInoInResult.Tedad;
-                    
+
                     console.log('050329-result.status == 0-02');
 
                     var bishAzMaxTedadYaMojoodi = 0;
@@ -1854,7 +1866,7 @@ export default function ShoppingbasketComponent({
                     else if (Number(Tedad) == Number(addRemParam.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 1;
                     }
-                    
+
                     console.log('050329-result.status == 0-04');
                     if (addRemParam.fromShowDetails) {
                         console.log('050329-result.status == 0-05');
@@ -2036,9 +2048,9 @@ export default function ShoppingbasketComponent({
                 onRequestClose={() => {
                     setIsOpenedMymodalForWarning(false);
                     setScannedValue(null);
+                    isScanningRef.current = true;  ////zare_nk_050508_added
                     setIsScanning(true);
-                }}
-            >
+                }}>
                 <View style={styles.resultOverlay}>
                     <View style={styles.resultBox}>
                         <Text style={styles.resultValue}>
@@ -2072,6 +2084,7 @@ export default function ShoppingbasketComponent({
                             onPress={() => {
                                 setIsOpenedMymodalForWarning(false);
                                 setScannedValue(null);
+                                isScanningRef.current = true;  ////zare_nk_050508_added
                                 setIsScanning(true);
                             }}
                             activeOpacity={0.6}
@@ -2100,6 +2113,7 @@ export default function ShoppingbasketComponent({
                         setIsOpenedProdDetModal(false);
                         setAddOrRemChanged("notNull");
                         setBisatrInProductDet(false);
+                        isScanningRef.current = true;  ////zare_nk_050508_added
                         setIsScanning(true);  //zare_nk_041203_added
                         //zare_nk_040923(agar karbar dokmeye back android ra zad modal baste shavad)
                     }}>
@@ -2188,6 +2202,7 @@ export default function ShoppingbasketComponent({
                                     setIsOpenedProdDetModal(false);
                                     setAddOrRemChanged("notNull");
                                     setBisatrInProductDet(false);
+                                    isScanningRef.current = true;  ////zare_nk_050508_added
                                     setIsScanning(true);  //zare_nk_041203_added
                                 }}
                                 activeOpacity={0.6}

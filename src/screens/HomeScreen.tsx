@@ -1,4 +1,4 @@
-////zare_nk_050413_okk(1)
+////zare_nk_0505143_okk(1)
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -1667,7 +1667,6 @@ export default function HomeScreen({
       isScanningRef.current = false;  ////zare_nk_050508_added(baraye tavaghofe barcodekhani(seda nazadane useCodeScanner) dar hamin render)
       setIsScanning(false);    ////zare_nk_050508_nokteh(baraye reRender shodane jsx va tavaghofe animation(stopAnimation dar useEffect) )
 
-
       setIsOpenedCodeScannerModal(false);
       setManualBarcode('');
 
@@ -2100,13 +2099,11 @@ export default function HomeScreen({
     console.log('050327-ar01-addToCartInIndex-else 1');
     try {
       console.log('050327-ar02-addToCartInIndex-else 1');
-      var TedadOut = 0;
-      var TedadOuttoAjax = 0;
+      var TedadOutTochikalaei = 0; 
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-      TedadOut = addRemParam.tedadInSabadOrDet + zarib;
-      TedadOuttoAjax = addRemParam.ZaribForoosh;
+      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet + zarib; 
       // const token = await getCookie("token");
-      console.log('041120-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
+      console.log('041120-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOutTochikalaei: ' + TedadOutTochikalaei);
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
       // let ApiUrl = "https://api.tochikala.com/api/";
       // var urlInsertToSabad = ApiUrl + "User/Api_AddRemoveSabadKharidSatr";
@@ -2128,8 +2125,8 @@ export default function HomeScreen({
         },
         body: JSON.stringify({
           BarcodeKala: addRemParam.BarcodeKala,
-          // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-          Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+          // Tedad: TedadOutTochikalaei,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
+          Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
 
           // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
           IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
@@ -2142,9 +2139,9 @@ export default function HomeScreen({
       if (response.ok) {
         console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         console.log('041120-addToCartInIndex-else 5 IdKala response.ok-addRemParam.BarcodeKala: ' + addRemParam.BarcodeKala +
-          '-TedadOut: ' + TedadOut + '-IdShobeh: ' + Number(currentShobeh)
+          '-TedadOutTochikalaei: ' + TedadOutTochikalaei + '-IdShobeh: ' + Number(currentShobeh)
         );
-        // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);  //zare_nk_041123_commented
+        // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);  //zare_nk_041123_commented
         var result = data;
         if (result.status != 0) {
           setIsOpenedMymodalForWarning(true);
@@ -2296,11 +2293,9 @@ export default function HomeScreen({
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     try {
       console.log('050328-rem-token: ' + token);
-      var TedadOut = 0;
-      var TedadOuttoAjax = 0;
+      var TedadOutTochikalaei = 0; 
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-      TedadOut = addRemParam.tedadInSabadOrDet - zarib;
-      TedadOuttoAjax = -(addRemParam.ZaribForoosh);
+      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet - zarib; 
       // const token = await getCookie("token");
 
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
@@ -2322,8 +2317,8 @@ export default function HomeScreen({
         },
         body: JSON.stringify({
           BarcodeKala: addRemParam.BarcodeKala,
-          // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-          Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+          // Tedad: TedadOutTochikalaei,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
+          Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
 
           // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
           IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast)
@@ -2648,7 +2643,6 @@ export default function HomeScreen({
       // setTextInModalForGetLocation('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');   ////zare_nk_050415_commented
       // setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast, pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))  ////zare_nk_050415_commented
       // setGetLoc(true);  ////zare_nk_050415_added
-
       const hasPermission = await requestLocationPermission();
       if (!hasPermission) {
         setIsOpenedModalForGetLocation(true);
@@ -2673,7 +2667,6 @@ export default function HomeScreen({
     //   (IsLocationExpiresValid.lon ? IsLocationExpiresValid.lon.toString() : ''));
     // navigation.navigate("Splash", { target: "shoppingbasket" });
     navigation.navigate("Splash", { target: target });  ////zare_nk_050415_nokteh(ehtemalan az inja bebaramesh be bedoone khata shobe gereftan!)
-
   }
   ////zare_nk_050323_added_end
   return (
@@ -2757,9 +2750,7 @@ export default function HomeScreen({
         animationType="fade"
         onRequestClose={() => {
           setIsOpenedModalForGetLocation(false);
-        }}
-      ////zare_nk_041203_added_end
-      >
+        }}>
         <View style={styles.resultOverlay}>
           <View style={styles.resultBox}>
             <Text style={styles.resultValue}>

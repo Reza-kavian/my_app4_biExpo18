@@ -1,4 +1,4 @@
-//// src\components\ReusableButton.tsx    ////zare_nk_050413_okk(1)
+//// src\components\ReusableButton.tsx    ////zare_nk_050514_okk(1)
 import {
   Text,
   TouchableOpacity,
@@ -7,16 +7,16 @@ import {
   TextStyle,
   DimensionValue,  ////zare_nk_050231_nokteh(noe variable ro ham darsadi(string) va ham number(pixeli) mishe dad)
 } from 'react-native';
-   
+
 type Props = {
   title: string;
   onPress: () => void;
   backgroundColor?: string;
   textColor?: string;
   width?: DimensionValue;
-  idDisabled?:boolean;
-  marginTop?:number;
-  marginBottom?:number;
+  idDisabled?: boolean;
+  marginTop?: number;
+  marginBottom?: number;
 };
 
 const ReusableButton = ({
@@ -25,18 +25,18 @@ const ReusableButton = ({
   backgroundColor = 'orange',
   textColor = 'brown',
   width = '80%',
-  idDisabled=false,
-  marginTop=16,
-  marginBottom=0,
+  idDisabled = false,
+  marginTop = 16,
+  marginBottom = 0,
 }: Props) => {
   return (
-    <TouchableOpacity
-      style={[styles.button , { backgroundColor, width,marginTop,marginBottom }]}
+    <TouchableOpacity style={[styles.button, { backgroundColor, width, marginTop, marginBottom }]}
       onPress={onPress}
       activeOpacity={0.1}
-      disabled={idDisabled}
-    >
-      <Text style={[styles.buttonText, { color: textColor }]}>{title}</Text>
+      disabled={idDisabled}>
+      <Text style={[styles.buttonText, { color: textColor }]}>
+        {title}
+      </Text>
     </TouchableOpacity>
   );
 };

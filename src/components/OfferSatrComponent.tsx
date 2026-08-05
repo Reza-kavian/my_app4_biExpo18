@@ -1,4 +1,4 @@
-////zare_nk_050428_okk(1)
+////zare_nk_050514_okk(1)
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
 import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -182,14 +182,11 @@ const OfferSatrComponent = ({
   ////zare_nk_041207_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
 
   return (
-    <View
-      // id="Subprograms-1"
-      // className="Subprograms"
+    <View // id="Subprograms-1" className="Subprograms"
       style={[{
         display: "flex",
         flexDirection: "row",
-      }, SubprogramsResponse]}
-    >
+      }, SubprogramsResponse]}>
       <TouchableOpacity
         // id={`cardd-${offerRow.IdKala}`}
         // type="button"
@@ -236,16 +233,12 @@ const OfferSatrComponent = ({
           borderRadius: 16,
           backgroundColor: "white",
           overflow: "hidden",
-        }}
-      >
-        <View
-          style={{
+        }}>
+        <View style={{
             // display: "flex", 
             flexDirection: "column",
             position: "relative"
-          }}
-        >
-
+          }}>
           {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif != 0) && (
             <View
               // id={`darsadTakhfifInsabad-${offerRow.IdKala}`}
@@ -271,8 +264,7 @@ const OfferSatrComponent = ({
                 // borderWidth:1,
                 // borderStyle:'dashed',
                 // borderColor:'red',
-              }}
-            >
+              }}>
               <Text
                 // className="forDiscount"
                 style={{
@@ -283,8 +275,7 @@ const OfferSatrComponent = ({
                   // borderWidth: 2,
                   // borderStyle: 'dashed',
                   // borderColor: 'black',
-                }}
-              >
+                }}>
                 {`${offerRow.DarsadTakhfif}%`}
               </Text>
             </View>
@@ -292,8 +283,7 @@ const OfferSatrComponent = ({
 
           {/* {((offerRow.DarsadTakhfif ?? 0) >= 30) &&(  */}
           {(offerRow.DarsadTakhfif != null && offerRow.DarsadTakhfif >= 15) && (
-            <View
-              // className={`specialOffer-${offerRow.IdKala}`}
+            <View // className={`specialOffer-${offerRow.IdKala}`}
               style={{
                 position: "absolute",
                 top: 7,
@@ -305,8 +295,7 @@ const OfferSatrComponent = ({
                 // borderWidth:1,
                 // borderStyle:'dashed',
                 // borderColor:'red', 
-              }}
-            >
+              }}>
               {/* <img
               style={{ width: "64px" }}
               src="https://img.tochikala.com/Icon/special-offer.svg"
@@ -325,9 +314,7 @@ const OfferSatrComponent = ({
             </View>
           )}
 
-          <View
-            // className="imgcontainer"
-            // id={`imgcontainer-${offerRow.IdKala}`} 
+          <View // className="imgcontainer" id={`imgcontainer-${offerRow.IdKala}`} 
             style={{
               width: "100%",
               // display: "flex",
@@ -337,8 +324,7 @@ const OfferSatrComponent = ({
               // borderWidth: 2,
               // borderStyle: 'dashed',
               // borderColor: 'red',
-            }}
-          >
+            }}>
             {/* <img
             loading="lazy"
             src={`https://img.tochikala.com/Product/${offerRow.IdKala}.webp`}
@@ -381,12 +367,10 @@ const OfferSatrComponent = ({
                 // borderWidth: 2,
                 // borderStyle:'dashed',
                 // borderColor: 'blue',
-              }}
-            />
+              }} />
           </View>
 
-          <View
-            // id={`ForCartContInProdDet-${offerRow.IdKala}`}
+          <View // id={`ForCartContInProdDet-${offerRow.IdKala}`}
             style={{
               // display: "flex",
               flexDirection: "column",
@@ -398,9 +382,7 @@ const OfferSatrComponent = ({
               position: 'absolute',
               bottom: 0,
               right: 0,
-            }}
-          >
-            {/* <MiddleCountTedadSefr */}
+            }}>
             <AddRemBtnsAndCountPackege
               refForfather={offerRow.refForfather}
               fromShowDetails={offerRow.fromShowDetails}
@@ -462,8 +444,7 @@ const OfferSatrComponent = ({
           </View>
         </View>
 
-        <View
-          style={{
+        <View style={{
             height: 37,
             display: "flex",
             flexWrap: "wrap",
@@ -479,8 +460,7 @@ const OfferSatrComponent = ({
             //             borderWidth: 1,
             // borderStyle: 'dashed',
             // borderColor: 'red',
-          }}
-        >
+          }} >
           <Text
             numberOfLines={2}
             ellipsizeMode="tail"
@@ -492,8 +472,7 @@ const OfferSatrComponent = ({
               // borderWidth: 1,
               // borderStyle: 'dashed',
               // borderColor: 'red',
-            }}
-          >
+            }}>
             {offerRow.NameKala}
           </Text>
         </View>
@@ -514,18 +493,15 @@ const OfferSatrComponent = ({
               // borderWidth: 1,
               // borderStyle: 'dashed',
               // borderColor: 'red',
-            }}
-          >
-            <Text
-              // className="PriceBeforeDiscount"
+            }}>
+            <Text //className="PriceBeforeDiscount"
               style={{
                 fontSize: 11,
                 textDecorationLine: "line-through",
                 color: '#888',  ////zare_nk_050316_added
                 fontFamily: "IRANSansWeb(FaNum)_Medium",
                 lineHeight: 10,  ////zare_nk_050316_added
-              }}
-            >
+              }}>
               {offerRow.FeeMasraf.toLocaleString()}
             </Text>
           </View>

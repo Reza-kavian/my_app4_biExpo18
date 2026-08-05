@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_050428_okk(1)
+// src/components/MyCustomHeader.tsx    //zare_nk_050514_okk(1)
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View,
@@ -170,20 +170,15 @@ const MyCustomHeader = ({
   };
 
   return (
-    <SafeAreaView
-      style={[styles.container,
+    <SafeAreaView style={[styles.container,
       {
         // borderWidth: 2,
         // borderColor: "black",
         // borderStyle: 'dashed',
-      }
-      ]}
-      edges={["top"]}
-    >
+      }]}
+      edges={["top"]}>
       {/* لوگو سمت چپ */}
-      <View
-        style={[
-          styles.buttonsContainer,
+      <View style={[styles.buttonsContainer,
           {
             display: 'flex',
             flexDirection: 'row',
@@ -195,20 +190,16 @@ const MyCustomHeader = ({
             flexGrow: 1,
             flexShrink: 1,
             ////zare_nk_050317_added_end
-          }]}
-      >
+          }]}>
         {isLoggedIn ? (
-          <View
-            style={{
+          <View style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-            }}
-          >
+            }} >
             <TouchableOpacity
               onPress={handleLogout}
-              style={[styles.button,]}
-            >
+              style={[styles.button,]}>
               <Text style={styles.buttonText}>خروج</Text>
             </TouchableOpacity>
             <Text style={styles.buttonText}>
@@ -223,17 +214,14 @@ const MyCustomHeader = ({
             </Text>
           </View>
         ) : (
-          <View
-            style={{
+          <View style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-            }}
-          >
+            }}>
             <TouchableOpacity
               onPress={handleLogin}
-              style={[styles.button,]}
-            >
+              style={[styles.button,]}>
               <Text style={styles.buttonText}>ورود</Text>
             </TouchableOpacity>
 
@@ -246,8 +234,7 @@ const MyCustomHeader = ({
       </View>
 
       {/* عنوان وسط */}
-      <View
-        style={{
+      <View style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
@@ -259,8 +246,7 @@ const MyCustomHeader = ({
           flexGrow: 1,
           flexShrink: 1,
           ////zare_nk_050317_added_end
-        }}
-      >
+        }}>
         {/* zare_nk_050415_commented_st(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
         {/* <TouchableOpacity
           onPress={() => {
@@ -281,8 +267,7 @@ const MyCustomHeader = ({
       </View>
 
       {/* دکمه‌ها سمت راست */}
-      <View
-        style={{
+      <View style={{
           display: "flex",
           flexDirection: "row",
           justifyContent: 'flex-end',
@@ -296,8 +281,7 @@ const MyCustomHeader = ({
           flexGrow: 1,
           flexShrink: 1,
           ////zare_nk_050317_added_end
-        }}
-      >
+        }}>
         {/* <TouchableOpacity
           onPress={() => {
             navigation.navigate("Home")

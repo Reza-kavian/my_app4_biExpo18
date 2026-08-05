@@ -1,4 +1,4 @@
-////zare_nk_050428_okk(1)
+////zare_nk_050514_okk(1)
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
@@ -144,8 +144,6 @@ async function getCookie(name: any) {
 }
 ////zare_nk_041128_added_end 
 
-// export default function ShallowRoutingExample(){  //zare_nk_041127_commented
-////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { LoginIcon } from "../components/icons/images";
@@ -951,13 +949,11 @@ export default function ShallowRoutingExample({
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     try {
       // console.log('041120-addToCartInIndex-else 1');
-      var TedadOut = 0;
-      var TedadOuttoAjax = 0;
+      var TedadOutTochikalaei = 0; 
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-      TedadOut = addRemParam.tedadInSabadOrDet + zarib;
-      TedadOuttoAjax = addRemParam.ZaribForoosh;
+      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet + zarib; 
       // const token = await getCookie("token");
-      console.log('050330-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
+      console.log('050330-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOutTochikalaei: ' + TedadOutTochikalaei);
 
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
       // let ApiUrl = "https://api.tochikala.com/api/";
@@ -977,8 +973,8 @@ export default function ShallowRoutingExample({
         },
         body: JSON.stringify({
           BarcodeKala: addRemParam.BarcodeKala,
-          // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-          Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+          // Tedad: TedadOutTochikalaei,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
+          Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
 
           // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
           IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
@@ -990,7 +986,7 @@ export default function ShallowRoutingExample({
       if (response.ok) {
         console.log('050330-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
         // console.log('041120-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
-        // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut); ////zare_nk_050320_commented(jash ro be state page dad)
+        // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei); ////zare_nk_050320_commented(jash ro be state page dad)
         // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) ////zare_nk_050321_commented(okk)
 
         var result = data;
@@ -1179,11 +1175,9 @@ export default function ShallowRoutingExample({
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     try {
       // console.log('041116-001');
-      var TedadOut = 0;
-      var TedadOuttoAjax = 0;
+      var TedadOutTochikalaei = 0; 
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-      TedadOut = addRemParam.tedadInSabadOrDet - zarib;
-      TedadOuttoAjax = -(addRemParam.ZaribForoosh);
+      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet - zarib; 
       // const token = await getCookie("token");
 
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
@@ -1203,8 +1197,8 @@ export default function ShallowRoutingExample({
         },
         body: JSON.stringify({
           BarcodeKala: addRemParam.BarcodeKala,
-          // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-          Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+          // Tedad: TedadOutTochikalaei,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
+          Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
 
           // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
           IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
@@ -1270,7 +1264,7 @@ export default function ShallowRoutingExample({
           // }
         } else if (result.status == 0) {
           // console.log('041116-result.status == 0'); 
-          // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);  ////zare_nk_050320_commented(jash ro be state page dad)
+          // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);  ////zare_nk_050320_commented(jash ro be state page dad)
           // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
 
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
@@ -1279,7 +1273,6 @@ export default function ShallowRoutingExample({
 
 
           var bishAzMaxTedadYaMojoodi = 0;
-
           if (Number(satrInoInResult.MaxTedad) <= Number(Tedad)) {
             bishAzMaxTedadYaMojoodi = 1;
           }
@@ -1505,8 +1498,7 @@ export default function ShallowRoutingExample({
       <Modal
         visible={isOpenedMymodalForWarning}
         transparent
-        animationType="fade"
-      >
+        animationType="fade">
         <View style={styles.resultOverlay}>
           <View style={styles.resultBox}>
             {/* <Text style={styles.resultTitle}>✅ بارکد شناسایی شد</Text> */}

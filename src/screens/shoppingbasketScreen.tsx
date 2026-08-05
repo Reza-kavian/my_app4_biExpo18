@@ -1,8 +1,6 @@
-// shoppingbasketScreen.tsx  //zare_nk_050428_okk(1)
-// "use client";  //zare_nk_041127_commented
-// import { useRouter } from "next/navigation";  //zare_nk_041127_commented
+// shoppingbasketScreen.tsx  ////zare_nk_050513_okk(1)
 import { useState, useEffect, useRef, useMemo } from "react";
-import {  ////zare_nk_041127_added
+import {  
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
     useWindowDimensions,
     StyleProp, Modal, Button, Animated, TextInput,
@@ -123,8 +121,6 @@ async function getCookie(name: any) {
     return null;
 }
 
-// export default function shoppingbasketComponent(){  //zare_nk_041127_commented
-////zare_nk_041127_added_st
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "shoppingbasket">;
@@ -136,7 +132,6 @@ export default function ShoppingbasketComponent({
     // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
     // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
     Props) {
-    ////zare_nk_041127_added_end
     console.log('shoppingbasketComponent called!!');
 
     const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
@@ -255,7 +250,7 @@ export default function ShoppingbasketComponent({
     ////zare_nk_041115_added_end(albate felan niazam nemisheh)
 
     const [bisatr, setBisatr] = useState(true);
-    const [bisatrInProductDet, setBisatrInProductDet] = useState(true); //zare_nk_041128_added
+    const [bisatrInProductDet, setBisatrInProductDet] = useState(true); 
 
     const [sabadRows, setSabadRows] = useState<SabadRowType[]>([]);
 
@@ -265,21 +260,19 @@ export default function ShoppingbasketComponent({
     const [jamKolNahaei, setJamKolNahaei] = useState<number | null>(null);
 
     const [isOpenedProdDetModal, setIsOpenedProdDetModal] = useState(false);
-    // const [isOpenedSeePricesModal, setIsOpenedSeePricesModal] = useState(false);  //zare_nk_041205_commented(forUpdateName)
-    const [isOpenedCodeScannerModal, setIsOpenedCodeScannerModal] = useState(false);  //zare_nk_041205_added(forUpdateName)
-    const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); //zare_nk_041128_added
-    const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); //zare_nk_041128_added
+    const [isOpenedCodeScannerModal, setIsOpenedCodeScannerModal] = useState(false);  
+    const [isOpenedMymodalForWarning, setIsOpenedMymodalForWarning] = useState(false); 
+    const [warningTextInMymodalForWarning, setWarningTextInMymodalForWarning] = useState(''); 
 
-    const [isScanning, setIsScanning] = useState(true); //zare_nk_040923(halat anjam scan kardan)
-    const isScanningRef = useRef(true);  ////zare_nk_050508_added
+    const [isScanning, setIsScanning] = useState(true); 
+    const isScanningRef = useRef(true); 
 
     const { hasPermission, requestPermission } = useCameraPermission();  //zare_nk_040923(darkhaste ejazeh dastresiye doorbin be karbar)
     const [torch, setTorch] = useState<'on' | 'off'>('off');  //zare_nk_040927_added(baraye modiriate faal boodan ya naboodane flash)
     const device = useCameraDevice("back");   //zare_nk_040923(doorbin ra doorbine aghab moshakhas mikonim)
     const [scannedValue, setScannedValue] = useState<string | null>(null);   //zare_nk_041007_added
-    // const [resultModalVisible, setResultModalVisible] = useState(false);     //zare_nk_041128_commented(resultModalVisible baraye namayeshe barcode ast ke niazi nist dar projeyeman, bejash dar productModal lahaz mikonim barcode ra)
-
-    const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added (baraye khatte pareshkone vasate kadr. new Animated.Value(0))
+    
+    const scanLineAnim = useRef(new Animated.Value(0)).current; //zare_nk_041004_added(baraye khatte pareshkone vasate kadr. new Animated.Value(0))
 
     const [manualBarcode, setManualBarcode] = useState(String);
 
@@ -382,7 +375,6 @@ export default function ShoppingbasketComponent({
             // break;
             //     }
             // }   
-
         },
     });
 
@@ -1334,12 +1326,10 @@ export default function ShoppingbasketComponent({
         //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
         try {
             console.log('041120-addToCartInIndex-else 1');
-            var TedadOut = 0;
-            var TedadOuttoAjax = 0;
+            var TedadOutTochikalaei = 0;
             const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-            TedadOut = addRemParam.tedadInSabadOrDet + zarib;
-            TedadOuttoAjax = addRemParam.ZaribForoosh;
-            console.log('041203-addToCartInIndex-tedad ii: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOut: ' + TedadOut);
+            TedadOutTochikalaei = addRemParam.tedadInSabadOrDet + zarib;
+            // console.log('041203-addToCartInIndex-tedad ii: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOutTochikalaei: ' + TedadOutTochikalaei);
             // console.log('041120-addToCartInIndex-token: ' + token? JSON.parse(token):'' );
             console.log('041203-addToCartInIndex-token isss22: ' + JSON.stringify(token));
 
@@ -1360,8 +1350,8 @@ export default function ShoppingbasketComponent({
                 },
                 body: JSON.stringify({
                     BarcodeKala: addRemParam.BarcodeKala,
-                    // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-                    Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+                    // Tedad: TedadOutTochikalaei,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
+                    Tedad: zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
 
                     // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
                     IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
@@ -1374,7 +1364,7 @@ export default function ShoppingbasketComponent({
             const data = await response.json();
             if (response.ok) {
                 console.log('050507-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
-                // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut);   ////zare_nk_050428_commented
+                // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);   ////zare_nk_050428_commented
                 var result = data;
                 if (result.status != 0) {
                     setIsOpenedMymodalForWarning(true);
@@ -1727,11 +1717,9 @@ export default function ShoppingbasketComponent({
         //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
         try {
             console.log('050329-001.02');
-            var TedadOut = 0;
-            var TedadOuttoAjax = 0;
+            var TedadOutTochikalaei = 0;
             const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-            TedadOut = addRemParam.tedadInSabadOrDet - zarib;
-            TedadOuttoAjax = -(addRemParam.ZaribForoosh);
+            TedadOutTochikalaei = addRemParam.tedadInSabadOrDet - zarib;
             // const token = await getCookie("token");
 
             ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
@@ -1751,8 +1739,8 @@ export default function ShoppingbasketComponent({
                 },
                 body: JSON.stringify({
                     BarcodeKala: addRemParam.BarcodeKala,
-                    // Tedad: TedadOut,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
-                    Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOut nemidim va khodesh mohaaebeh mikoneh)
+                    // Tedad: TedadOutTochikalaei,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
+                    Tedad: -zarib,  ////zare_nk_050326_added(chon dar Api_InsertToSabade hamyar TedadOutTochikalaei nemidim va khodesh mohaaebeh mikoneh)
 
                     // IdKala: addRemParam.IdKala,  ////zare_nk_050326_commented(chon dar Api_InsertToSabade hamyar ehtemalan IdKala nemikhad)
                     IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
@@ -1836,7 +1824,7 @@ export default function ShoppingbasketComponent({
 
                     //}
 
-                    // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOut); ////zare_nk_050430_commented
+                    // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei); ////zare_nk_050430_commented
                     console.log('050329-result.status == 0-01');
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
@@ -3456,16 +3444,13 @@ export default function ShoppingbasketComponent({
                                                         handlerForAddClick={handlerForAddClick}
                                                         handlerForRemClick={handlerForRemClick}
                                                         openprodDetModal={openprodDetModal}
-                                                        navigation={navigation}  //zare_nk_041127_added
-                                                    />
+                                                        navigation={navigation} />
                                                 );
                                             })}
                                         </>
                                     )}
                                 </View>
                             </View>
-
-
                         </View>
                     </ScrollView>
                     <View style={{

@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    ////zare_nk_050413_okk(1)
+//src\screens\WelcomeScreen.tsx    ////zare_nk_050513_okk(1)
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
@@ -21,9 +21,9 @@ type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;
 const WelcomeScreen = (
   {
     navigation,
-  }: // back,  //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-    // route, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
-    // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
+  }:// back,   //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentesh kardim)
+    // route,   //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentesh kardim)
+    // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentesh kardim)
     Props //zare_nk_040608_added(jaigozine NativeStackHeaderProps ta parameterhaye voroodi ra barname automat begireh,NativeStackHeaderProps faghat baraye file MyCustomHeader ke az headere sefareshi estefadeh mikardim ok ast)
 ) => {
   ////zare_nk_0040608_added_end
@@ -31,37 +31,29 @@ const WelcomeScreen = (
 
   return (
     // <View style={styles.container}>
-    <View
-      style={[styles.container, { backgroundColor: theme.backgroundColor }]}
-    >
+    <View style={[styles.container, { backgroundColor: theme.backgroundColor }]}>
       {/* zare_nk_040928_nokteh1(baraye estefade az fonthaye sefareshiye ma mesle IRANSansWeb az nasbe package expo-font sarfenazar kardim chon nemikhaim az 
         emkanate expo estefadeh konim be hamin khater file react-native.config.js ra tarif mikonim va assets: ['./src/assets/fonts'] ra dakhelesh minevisim,
         sepas dastoore npx react-native-asset ra mizanim ta file haye fonti ke dar masire ./src/assets/fonts rikhtim va dar file config dastoore
         assets: ['./src/assets/fonts'] ra dadim ra be projeh link konad ta in file ha be masire /android/app/src/main/assets/fonts/ copy shavad) */}
       {/* zare_nk_040928_nokteh2( ba estefadeh az npx react-native-asset niazi be import kardane packagi baraye font nist va masire fonthara link mikoneh be projeh
         va fontha dar masire /android/app/src/main/assets/fonts/ copy shavad )*/}
-      <Text
-        style={[
+      <Text style={[
           styles.title,
           { color: theme.text, fontFamily: "IRANSansWeb_UltraLight" },
-        ]}
-      >
+        ]}>
         4 اپ ری ات اکت نیتیو
       </Text>
-      <Text
-        style={[
+      <Text style={[
           styles.title,
           { color: theme.text, fontFamily: "IRANSansWeb_Bold" },
-        ]}
-      >
+        ]}>
         اپ ری اکت نیتیو
       </Text>
-      <Text
-        style={[
+      <Text style={[
           styles.title,
           { color: theme.text, fontFamily: "IRANSansWeb(FaNum)_Bold" },
-        ]}
-      >
+        ]}>
         اپ ری اکت نیتیو
       </Text>
 
@@ -114,7 +106,7 @@ const WelcomeScreen = (
 
       {/* zare_nk_041022_added_st */}
       <ReusableButton
-        title="تخفیفات و پیشنهادات"  
+        title="تخفیفات و پیشنهادات"
         onPress={() => navigation.navigate("discountsAndOffers")}
         backgroundColor={theme.buttonBackground}
         textColor="yellow"
@@ -127,7 +119,7 @@ const WelcomeScreen = (
         title="تغییر تم"
         onPress={toggleTheme}
         backgroundColor={theme.buttonBackground}
-        textColor={theme.buttonColor} 
+        textColor={theme.buttonColor}
         width="80%"
       />
     </View>

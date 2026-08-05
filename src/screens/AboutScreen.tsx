@@ -1,4 +1,4 @@
-// AboutScreen.tsx   ////zare_nk_050413_okk(1)
+// AboutScreen.tsx   ////zare_nk_050514_okk(1)
 ////zare_nk_041124_added_st
 // import { notFound } from "next/navigation";
 // import Image from "next/image";
@@ -30,29 +30,24 @@ export default function Page() {
     return (
         <>
             {/* <h1 className={styles.shape}>salam 002</h1> */}
-            <Text
-                style={[
+            <Text style={[
                     styles.idUSerTextStyle,
                     { fontFamily: "IRANSansWeb_UltraLight" },
-                ]}
-            >
+                ]}>
                 salam 002
             </Text>
 
             {/* <img src="./images/002.jpg" style={{ border: "4px dashed silver" }} /> */}
-            <Image
-                // source={require("../assets/icon.png")} 
+            <Image // source={require("../assets/icon.png")} 
                 source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
-                style={[styles.logo]}
-            />
+                style={[styles.logo]} />
 
             <br />
             {/* <Image alt="ggg" src={Image002} style={{ border: "4px dashed yellow" }} /> */}
             <Image
                 source={require("../assets/icon.png")}
                 // source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
-                style={[styles.logo]}
-            />
+                style={[styles.logo]} />
             <br />
             {/* <img
                 src="https://www.tutorialspoint.com/market/public/assets/newDesign/img/heroSliderItem6.svg"

@@ -1,4 +1,4 @@
-//my-app/App.tsx   ////zare_nk_050504_okk(1)
+//my-app/App.tsx   ////zare_nk_050513_okk(1)
 import React, { useEffect, useState } from "react";
 import { Alert, Linking } from "react-native";   ////zare_nk_050419_nokteh(Linking ke betoonim az in apk be biroon(masalan site ha) dar moroorgar hedayat konim)
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -101,7 +101,6 @@ export default function App() {
         console.log("Version check error:", e);
       }
     };
-
     checkVersionAndShowChangelog();
 
     ////zare_nk_050419_added_st(baraye downloade noskheye jadid)
@@ -174,19 +173,17 @@ export default function App() {
             } */
           ////zare_nk_050423_added_st
           const item = parsedList[0];
-
           if (item == null) {
             console.log("No version information received.");
             return;
           }
           const latestVersion = item.latestVersion;
-          // const latestVersionCode = Number(parsedList[0].latestVersionCode);
           const latestVersionCodeRaw = item.latestVersionCode;
 
           if (
             typeof latestVersion !== "string" ||
             latestVersion.trim() === "" ||
-            latestVersionCodeRaw == null ||   ////zare_nk_050428_nokteh(chon null isNaN nist joda neveshtim(masalan undefined isNaN hast va dar sherte paein migonjeh))
+            latestVersionCodeRaw == null ||   ////zare_nk_050428_nokteh(chon null isNaN nist joda neveshtim(masalan undefined isNaN hast va dar shشrte paein migonjeh))
             isNaN(Number(latestVersionCodeRaw))
           ) {
             console.log("Invalid version info from server.");
@@ -272,10 +269,8 @@ export default function App() {
         console.log("zare_nk_050420-catch-error:", e);
       }
     };
-
     checkLatestVersion();
     ////zare_nk_050419_added_end(baraye downloade noskheye jadid)
-
   }, []);
 
   return (

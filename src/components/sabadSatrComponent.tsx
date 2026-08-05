@@ -1,4 +1,4 @@
-////zare_nk_050413_okk(1)
+////zare_nk_050513_okk(1)
 import { useState, useEffect, useRef, useMemo, memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -99,7 +99,6 @@ const SabadSatrComponent = ({
     const [productImageError, setproductImageError] = useState<boolean>(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate jaigoziniye akse pishfarze tochi)
     const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false); ////zare_nk_050316_added(baraye modirite load nashodane tasvire kala jahate hazfe backgrounde khakestariye(range khakestariye ghbleloadi hast))
     var bishAzMaxTedadYaMojoodi = 0;
-
     if (Number(SabadRow.MaxTedad) <= Number(SabadRow.tedadInSabadOrDet)) {
         bishAzMaxTedadYaMojoodi = 1;
     }
@@ -117,9 +116,7 @@ const SabadSatrComponent = ({
                     0;
 
     return (
-        <View
-            // id={`flxpedar2-${SabadRow.IdKala}`}
-            // className="flxpedar2_new"
+        <View // id={`flxpedar2-${SabadRow.IdKala}`} className="flxpedar2_new"
             style={{
                 display: "flex",
                 flexDirection: "column",
@@ -162,8 +159,7 @@ const SabadSatrComponent = ({
                         // borderColor: 'black',
                         // borderWidth: 1,
                         justifyContent: 'center',  ////zare_nk_050316_added
-                    }}
-                >
+                    }}>
                     <TouchableOpacity
                         onPress={(event) => openprodDetModal(SabadRow.BarcodeKala)}
                         style={{
@@ -182,9 +178,7 @@ const SabadSatrComponent = ({
                             // borderStyle: 'dashed',
                             // borderColor: 'red',
                             // borderWidth: 1,
-                        }}
-                    // className="GotToDet"
-                    >
+                        }}>
                         <View
                             // className="imgcont"
                             // id={`imgcontainerInSabadKesho-${SabadRow.IdKala}`}
@@ -197,8 +191,7 @@ const SabadSatrComponent = ({
                                 // borderStyle: 'dashed',
                                 // borderColor: 'blue',
                                 // borderWidth: 1,
-                            }}
-                        >
+                            }}>
                             {/* <img
                                 loading="lazy"
                                 src={`https://img.tochikala.com/Product/${SabadRow.IdKala}.webp`}
@@ -211,8 +204,7 @@ const SabadSatrComponent = ({
                                 style={{ backgroundColor: "#efefef", width: "100%", height: 92, }}
                             ////zare_nk_050130_nokteh(resizeMode:'contain' test beshe bejaye height dadan)
                             /> */}
-                            <Image
-                                onError={() => {
+                            <Image onError={() => {
                                     setproductImageError(true);
                                 }}
                                 onLoad={() => { setIsLoadedIroductImage(true); }}
@@ -220,8 +212,7 @@ const SabadSatrComponent = ({
                                 style={{
                                     backgroundColor: isLoadedIroductImage ? "#ffffff" : "#efefef",
                                     width: "100%", height: 92,
-                                }}
-                            />
+                                }} />
 
 
                             {/* <Image
@@ -247,8 +238,6 @@ const SabadSatrComponent = ({
                                         : { height: productHeightForDet }),
                                 }}
                             /> */}
-
-
                         </View>
                     </TouchableOpacity>
                     <TouchableOpacity
@@ -265,8 +254,7 @@ const SabadSatrComponent = ({
                             // borderStyle: 'dashed',
                             // borderColor: 'black',
                             // borderWidth: 1,
-                        }}
-                    >
+                        }}>
                         <Text>بروزرسانی تعداد</Text>
                     </TouchableOpacity>
                 </View>
@@ -288,8 +276,7 @@ const SabadSatrComponent = ({
                         // borderWidth: 1,
                         // borderColor: 'yellow',
                         // borderStyle: 'dashed',
-                    }}
-                >
+                    }}>
                     <View
                         style={{
                             display: "flex",
@@ -299,8 +286,7 @@ const SabadSatrComponent = ({
                             // borderWidth: 1,
                             // borderColor: 'black',
                             // borderStyle: 'dashed',
-                        }}
-                    >
+                        }}>
                         <View
                             // className="titleInsabad text-truncate"
                             style={{

@@ -1,6 +1,6 @@
-////zare_nk_050413_okk(1)
-// "use client";   //zare_nk_050227_commented
-// import { useRouter } from "next/navigation";   //zare_nk_041130_commented
+////zare_nk_050514_okk(1)
+// "use client";   ////zare_nk_050227_commented
+// import { useRouter } from "next/navigation";   ////zare_nk_041130_commented
 import { useState, useEffect, useRef } from "react";
 import { //zare_nk_041129_added
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -467,8 +467,7 @@ export default function ShallowRoutingExample({
             <Modal
                 visible={isOpenedMymodalForWarning}
                 transparent
-                animationType="fade"
-            >
+                animationType="fade">
                 <View style={styles.resultOverlay}>
                     <View style={styles.resultBox}>
                         {/* <Text style={styles.resultTitle}>✅ بارکد شناسایی شد</Text> */}
@@ -505,16 +504,14 @@ export default function ShallowRoutingExample({
                                 // setScannedValue(null);
                                 // setIsScanning(true);
                             }}
-                            activeOpacity={0.6}
-                        >
+                            activeOpacity={0.6}>
                             <Text
                                 numberOfLines={1}
                                 ellipsizeMode="tail"
                                 style={{
                                     fontFamily: "IRANSansWeb(FaNum)_Medium",
                                     color: "white",
-                                }}
-                            >
+                                }}>
                                 تأیید
                             </Text>
                         </TouchableOpacity>
@@ -535,8 +532,7 @@ export default function ShallowRoutingExample({
                         alignItems: "center",
                         // paddingVertical: 20,س
                         paddingHorizontal: 7,
-                    }}
-                >
+                    }}>
                     <View
                         // id="MyOrderDet"
                         // className="MyOrderDet"
@@ -547,8 +543,7 @@ export default function ShallowRoutingExample({
                             marginBottom: 40,
                             marginTop: 10,
                             direction: "rtl",
-                        }}
-                    >
+                        }}>
                         {/* Header */}
                         <View
                             style={{
@@ -556,16 +551,14 @@ export default function ShallowRoutingExample({
                                 flexDirection: "row",
                                 justifyContent: "space-between",
                                 marginBottom: 15,
-                            }}
-                        >
+                            }}>
                             <View
                                 // className="titleStyle"
                                 style={{
                                     display: "flex",
                                     flexDirection: "row",
                                     alignItems: "center",
-                                }}
-                            >
+                                }}>
                                 <Text style={{
                                     marginLeft: 3,
                                     //  fontSize: 18 ,
@@ -583,8 +576,7 @@ export default function ShallowRoutingExample({
                                     display: "flex",
                                     flexDirection: "row",
                                     justifyContent: 'flex-start',
-                                }}
-                            >
+                                }}>
                                 <TouchableOpacity
                                     // className="buttonHover titleStyle"
                                     // href="#"
@@ -607,9 +599,7 @@ export default function ShallowRoutingExample({
                                         // padding: 7,
                                         // backgroundColor: '#d9534f'
                                     }}
-
-                                    activeOpacity={0.1}
-                                >
+                                    activeOpacity={0.1}>
                                     <View
                                         style={{
                                             display: "flex",
@@ -620,8 +610,7 @@ export default function ShallowRoutingExample({
                                             backgroundColor: "inherit",
                                             marginLeft: 10,
 
-                                        }}
-                                    >
+                                        }}>
                                         {/* <img
                                     src="https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg"
                                     style={{ width: 18 }}
@@ -634,8 +623,7 @@ export default function ShallowRoutingExample({
                                         <SvgUri
                                             uri="https://img.tochikala.com/tochikala/back-icon-in-cardcontainer.svg"
                                             width={18}
-                                            height={15}
-                                        />
+                                            height={15} />
                                     </View>
                                     <View
                                         style={{
@@ -647,8 +635,7 @@ export default function ShallowRoutingExample({
                                             flexDirection: "row",
                                             alignItems: "center",
                                             // fontSize: 14,
-                                        }}
-                                    >
+                                        }}>
                                         <Text style={{ fontSize: 14, color: "#444343", fontFamily: "IRANSansWeb(FaNum)_Medium", }}>بازگشت به لیست سفارش ها</Text>
                                     </View>
                                 </TouchableOpacity>
@@ -658,8 +645,7 @@ export default function ShallowRoutingExample({
                         {/* Order Date */}
                         <View
                             // className="tahvilTarikhCont"
-                            style={{ display: "flex", justifyContent: "space-between" }}
-                        >
+                            style={{ display: "flex", justifyContent: "space-between" }}>
                             <View
                                 // className="tahvilCont"
                                 style={{
@@ -676,8 +662,7 @@ export default function ShallowRoutingExample({
                                     backgroundColor: "#f6f6f6",
                                     paddingHorizontal: 10,
                                     paddingVertical: 15,
-                                }}
-                            >
+                                }}>
                                 <View style={{ display: "flex", flexDirection: "row", }}>
                                     <Text
                                         //  className="titleStyle"

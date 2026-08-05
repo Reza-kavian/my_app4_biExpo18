@@ -1,4 +1,4 @@
-////zare_nk_050413_okk(1)
+////zare_nk_050513_okk(1)
 import { useState, useEffect, useRef, useMemo, memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -23,11 +23,8 @@ import type { RootStackParamList } from "../types/navigation";
 ////zare_nk_050315_nokteh_end(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 ////zare_nk_050315_nokteh_st(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type NavigationType = NativeStackNavigationProp<
-    RootStackParamList,
-    //"shoppingbasket" ////zare_nk_050318_commented
-    "shoppingbasket" | "discountsAndOffers" | "Home"  ////zare_nk_050318_added
->;
+type NavigationType = NativeStackNavigationProp<RootStackParamList,
+    "shoppingbasket" | "discountsAndOffers" | "Home">;
 ////zare_nk_050315_nokteh_end(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 
 // import AddToCartIcon from "../components/icons/images/AddToCart";   ////zare_nk_050316_added
@@ -35,7 +32,6 @@ import AddToCartTapsiIcon from "../components/icons/images/AddToCartTapsi";   //
 import RemoveFromCartTapsiIcon from "../components/icons/images/RemoveFromCartTapsi";   ////zare_nk_050316_added
 import RecycleBinIcon from "../components/icons/images/RecycleBin";   ////zare_nk_050316_added
 
-////zare_nk_050319_added_st
 const showNoStock = () => {
     if (Platform.OS === "android") {
         ToastAndroid.show("موجودی کافی نیست", ToastAndroid.SHORT);
@@ -43,9 +39,7 @@ const showNoStock = () => {
         // Alert.alert("خطا", "موجودی کافی نیست");
     }
 };
-////zare_nk_050319_added_end
 
-// type MiddleCountTedadSefrType = {
 type addRemBtnsAndCountPackegeType = {
     refForfather: RefObject<string | null>;
     fromShowDetails: boolean;
@@ -151,10 +145,8 @@ const AddRemBtnsAndCountPackege = ({
                 // style={{ width: "100%", display: "flex" }}
                 style={{
                     width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center',
-                }}
-            >
-                <View
-                    // className="input-group rounded-pill"
+                }} >
+                <View // className="input-group rounded-pill"
                     style={{
                         backgroundColor: "white",
                         height: 35,
@@ -177,12 +169,8 @@ const AddRemBtnsAndCountPackege = ({
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
                         // borderRadius: 17,  ////zare_nk_050316_commented
                         borderRadius: 100,  ////zare_nk_050316_added
-                    }}
-                // dir="ltr" 
-                >
-                    <View
-                        // className="addremmCont"
-                        // id={`removeCont-${IdKala}`}
+                    }}>
+                    <View  // className="addremmCont" id={`removeCont-${IdKala}`}
                         style={{
                             height: "100%",
                             // flex: "1 1 auto",
@@ -190,18 +178,15 @@ const AddRemBtnsAndCountPackege = ({
                             flexShrink: 1,
                             flexBasis: 'auto',
                             display: "none",
-                        }}
-                    >
-                        <View
-                            style={{
-                                height: "100%",
-                                // display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                alignContent: "center",
-                                overflow: "hidden",
-                            }}
-                        >
+                        }} >
+                        <View style={{
+                            height: "100%",
+                            // display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            alignContent: "center",
+                            overflow: "hidden",
+                        }} >
                             {/* <a
                                 data-baz="0"
                                 style={{
@@ -215,10 +200,8 @@ const AddRemBtnsAndCountPackege = ({
                                     borderRadius: "50%",
                                 }}
                                 className={`rem-${IdKala}`}
-                                href="/login"
-                            >
-                                <button
-                                    style={{
+                                href="/login" >
+                                <button style={{
                                         height: "80%",
                                         backgroundColor: "white",
                                         border: "none",
@@ -227,56 +210,43 @@ const AddRemBtnsAndCountPackege = ({
                                         alignItems: "center",
                                         justifyContent: "center",
                                     }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/remove-icon.svg"
-                                        alt="حذف از سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
+                                    className="plussMinus" >
+                                    <img src="https://img.tochikala.com/tochikala/remove-icon.svg" alt="حذف از سبد" className="d-inline-block"
+                                        style={{ objectFit: "contain", width: "20px" }} />
                                 </button>
                             </a> */}
-                            <TouchableOpacity
-                                data-baz="0"
-                                style={[
-                                    {
-                                        flexGrow: 1,
-                                        flexShrink: 1,
-                                        flexBasis: 'auto',
-                                        height: "100%",
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
-                                        justifyContent: "center",
-                                        alignItems: "center",
+                            <TouchableOpacity data-baz="0" style={[
+                                {
+                                    flexGrow: 1,
+                                    flexShrink: 1,
+                                    flexBasis: 'auto',
+                                    height: "100%",
+                                    paddingVertical: 0,
+                                    paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
+                                    justifyContent: "center",
+                                    alignItems: "center",
 
-                                        // borderRadius: "50%", //zare_nk_041202_commented
-                                        borderRadius: 17, //zare_nk_041202_added
-                                        opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
-                                    }
-                                ]}
+                                    // borderRadius: "50%", //zare_nk_041202_commented
+                                    borderRadius: 17, //zare_nk_041202_added
+                                    opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
+                                }]}
                                 // onPress={() => { return navigation.replace('Login'); }}
                                 onPress={() => { handlerForRemClick() }}
-                                activeOpacity={0.1}
-                            >
-                                <Text
-                                    style={{
-                                        // height: "80%",
-                                        backgroundColor: "white",
-                                        ////zare_nk_041202_commented_st
-                                        // padding: 0,
-                                        // alignItems: "center",
-                                        // justifyContent: "center",
-                                        ////zare_nk_041202_commented_end
-                                    }}
-                                // className="plussMinus"
-                                >
+                                activeOpacity={0.1}>
+                                <Text style={{
+                                    // height: "80%",
+                                    backgroundColor: "white",
+                                    ////zare_nk_041202_commented_st
+                                    // padding: 0,
+                                    // alignItems: "center",
+                                    // justifyContent: "center",
+                                    ////zare_nk_041202_commented_end
+                                }} >
                                     {/* <Image
                                         source={{ uri: "https://img.tochikala.com/tochikala/remove-icon.svg" }}
                                         style={{ objectFit: "contain", width: 20, flexDirection: "row" }}
                                     /> */}
-                                    <SvgUri
-                                        uri="https://img.tochikala.com/tochikala/remove-icon.svg"
+                                    <SvgUri uri="https://img.tochikala.com/tochikala/remove-icon.svg"
                                         width={20}
                                         height={20}
                                     //zare_nk_050130_nokteh(ehtemalan age be pedaresh width bedim va be Image resizeMode:'contain' bedim niazi nest height ham 
@@ -284,7 +254,6 @@ const AddRemBtnsAndCountPackege = ({
                                     />
                                 </Text>
                             </TouchableOpacity>
-
                         </View>
                     </View>
 
@@ -413,7 +382,6 @@ const AddRemBtnsAndCountPackege = ({
                                     <AddToCartTapsiIcon />
                                 </Text>
                             </TouchableOpacity>
-
                         </View>
                     </View>
 
@@ -427,21 +395,16 @@ const AddRemBtnsAndCountPackege = ({
                             flexShrink: 1,
                             flexBasis: 'auto',
                             display: "none"
-                        }}
-                    >
-                        <View
-                            style={{
-                                height: "100%",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                alignContent: "center",
-                                overflow: "hidden",
-                            }}
-                        >
-                            {/* <a
-                                data-baz="0"
-                                style={{
+                        }} >
+                        <View style={{
+                            height: "100%",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            alignContent: "center",
+                            overflow: "hidden",
+                        }} >
+                            {/* <a  data-baz="0" style={{
                                     flex: "1 1 auto",
                                     height: "100%",
                                     padding: "0px 2px",
@@ -452,10 +415,8 @@ const AddRemBtnsAndCountPackege = ({
                                     borderRadius: "50%",
                                 }}
                                 className={`add-${IdKala}`}
-                                href="/login"
-                            >
-                                <button
-                                    style={{
+                                href="/login" >
+                                <button style={{
                                         height: "80%",
                                         backgroundColor: "white",
                                         border: "none",
@@ -464,52 +425,40 @@ const AddRemBtnsAndCountPackege = ({
                                         alignItems: "center",
                                         justifyContent: "center",
                                     }}
-                                    className="plussMinus"
-                                >
-                                    <img
-                                        src="https://img.tochikala.com/tochikala/add-to-cart.svg"
-                                        alt="اضافه به سبد"
-                                        className="d-inline-block"
-                                        style={{ objectFit: "contain", width: "20px" }}
-                                    />
+                                    className="plussMinus" >
+                                    <img src="https://img.tochikala.com/tochikala/add-to-cart.svg" alt="اضافه به سبد" className="d-inline-block"
+                                        style={{ objectFit: "contain", width: "20px" }} />
                                 </button>
                             </a> */}
+                            <TouchableOpacity data-baz="0" style={[
+                                {
+                                    flexGrow: 1,
+                                    flexShrink: 1,
+                                    flexBasis: 'auto',
+                                    height: "100%",
+                                    paddingVertical: 0,
+                                    paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
+                                    justifyContent: "center",
+                                    alignItems: "center",
 
-
-                            <TouchableOpacity
-                                data-baz="0"
-                                style={[
-                                    {
-                                        flexGrow: 1,
-                                        flexShrink: 1,
-                                        flexBasis: 'auto',
-                                        height: "100%",
-                                        paddingVertical: 0,
-                                        paddingHorizontal: 4,  ////zare_nk_050316_updated(padde 2 be 4)
-                                        justifyContent: "center",
-                                        alignItems: "center",
-
-                                        // borderRadius: "50%",  //zare_nk_041202_commented
-                                        borderRadius: 17,  //zare_nk_041202_added
-                                    }
-                                ]}
+                                    // borderRadius: "50%",  //zare_nk_041202_commented
+                                    borderRadius: 17,  //zare_nk_041202_added
+                                }
+                            ]}
                                 // onPress={() => { return navigation.replace('Login'); }}
                                 onPress={() => { handlerForAddClick() }}
-                                activeOpacity={0.1}
-                            >
-
-                                <Text
-                                    style={{
-                                        color: "red",
-                                        fontSize: 14,
-                                        // height: "80%",  //zare_nk_041202_commented
-                                        backgroundColor: "white",
-                                        ////zare_nk_041202_commented_st
-                                        // padding: 0,
-                                        // alignItems: "center",
-                                        // justifyContent: "center",
-                                        ////zare_nk_041202_commented_end
-                                    }}
+                                activeOpacity={0.1} >
+                                <Text style={{
+                                    color: "red",
+                                    fontSize: 14,
+                                    // height: "80%",  //zare_nk_041202_commented
+                                    backgroundColor: "white",
+                                    ////zare_nk_041202_commented_st
+                                    // padding: 0,
+                                    // alignItems: "center",
+                                    // justifyContent: "center",
+                                    ////zare_nk_041202_commented_end
+                                }}
                                 // className="plussMinus"
                                 >
                                     {/* <Image
@@ -555,9 +504,9 @@ const AddRemBtnsAndCountPackege = ({
                         ////zare_nk_050316_commented_end
                         boxShadow: '0px 2px 5px rgba(0,0,0,.2)',  ////zare_nk_050316_added
                         overflow: "hidden",
-                        width: "auto",  
+                        width: "auto",
                         // borderRadius: '50%',  
-                        direction: 'rtl',  
+                        direction: 'rtl',
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
                         // borderRadius: 17,  ////zare_nk_050316_commened
                         borderRadius: 100,    ////zare_nk_050316_added
@@ -763,7 +712,7 @@ const AddRemBtnsAndCountPackege = ({
                                         opacity: Number(bishAzMaxTedadYaMojoodi) === 1 ? 0.3 : 1, //zare_nk_041203_added 
 
                                         display: 'flex',
-                                        flexDirection: 'row', 
+                                        flexDirection: 'row',
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,
@@ -940,7 +889,7 @@ const AddRemBtnsAndCountPackege = ({
 
                                         ////zare_nk_050316_added_st
                                         display: 'flex',
-                                        flexDirection: 'row', 
+                                        flexDirection: 'row',
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,
@@ -1111,7 +1060,7 @@ const AddRemBtnsAndCountPackege = ({
                                         // borderColor: 'blue',
 
                                         display: 'flex',
-                                        flexDirection: 'row', 
+                                        flexDirection: 'row',
                                         borderRadius: 100,
                                         width: 28,
                                         height: 28,

@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050413_okk(1)
+//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050514_okk(1)
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -327,8 +327,9 @@ export default function LoginScreen({
         // Alert.alert('useEffect called!!-040603_JWT: ' + token);
         ////zare_nk_040929_added_st
         const expires = new Date(
-          Date.now() + 15 * 60 * 1000
+          Date.now() + 20000 * 60 * 1000
         ).toISOString();
+
         ////zare_nk_040929_added_end
         console.log("040603_JWT:", token);
         // ذخیره توکن در AsyncStorage یا state

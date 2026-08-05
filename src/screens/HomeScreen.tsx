@@ -2099,9 +2099,9 @@ export default function HomeScreen({
     console.log('050327-ar01-addToCartInIndex-else 1');
     try {
       console.log('050327-ar02-addToCartInIndex-else 1');
-      var TedadOutTochikalaei = 0; 
+      var TedadOutTochikalaei = 0;
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet + zarib; 
+      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet + zarib;
       // const token = await getCookie("token");
       console.log('041120-addToCartInIndex-tedad: ' + addRemParam.tedadInSabadOrDet + '-zarib: ' + addRemParam.ZaribForoosh + '-TedadOutTochikalaei: ' + TedadOutTochikalaei);
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
@@ -2143,7 +2143,8 @@ export default function HomeScreen({
         );
         // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);  //zare_nk_041123_commented
         var result = data;
-        if (result.status != 0) {
+        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
+        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
@@ -2157,7 +2158,8 @@ export default function HomeScreen({
           // if (span instanceof HTMLElement) {
           //     span.innerText = result.message;
           // }
-        } else if (result.status == 0) {
+          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
+        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
           let Tedad = satrInoInResult.Tedad;
@@ -2209,6 +2211,14 @@ export default function HomeScreen({
               };
             });
           }
+
+          ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+          if (result.status == -3) {
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
+          }
+          ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+
         }
       } else {
         console.log('041120-addToCartInIndex-else 6 IdKala !!!!response.ok');
@@ -2293,9 +2303,9 @@ export default function HomeScreen({
     //else {  ////zare_nk_050326_commented(dar sharte token == null return gozashtim dige else nemikhaim)
     try {
       console.log('050328-rem-token: ' + token);
-      var TedadOutTochikalaei = 0; 
+      var TedadOutTochikalaei = 0;
       const zarib = parseFloat(String(addRemParam.ZaribForoosh ?? 0));
-      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet - zarib; 
+      TedadOutTochikalaei = addRemParam.tedadInSabadOrDet - zarib;
       // const token = await getCookie("token");
 
       ////zare_nk_050325_commented_st(agheire api be hamyarForoosh)
@@ -2332,45 +2342,16 @@ export default function HomeScreen({
         console.log('050328-rem-remveFromCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
 
         var result = data;
+        ////zare_nk_050514_commented_st(az apiye tochi avardeh shod va karbord nadare inja)
+        // if (result.status == -1000) { 
+        //   refForfather.current = addRemParam.father;
+        //   setIsOpenedMymodalForWarning(true);
+        //   setWarningTextInMymodalForWarning(result.errors[0]);  
+        // }
+        ////zare_nk_050514_commented_end(az apiye tochi avardeh shod va karbord nadare inja)
 
-        if (result.status == -1000) {
-          ////zare_nk_041130_commented_st
-          // const inputGroup = document.querySelector(
-          //   ".ForCart-" + addRemParam.IdKala + " .input-group"
-          // );
-          // if (inputGroup) {
-          //   let parent = inputGroup.closest(".flxpedar2_new");
-          //   if (parent) {
-          //     parent.remove();
-          //   }
-          // }
-          // var hisFather = null;
-          // let eventCurrentTargetTag;
-          // if (addRemParam.event) {
-          //   eventCurrentTargetTag = addRemParam.event.currentTarget as HTMLElement;
-          // }
-
-          // const hisFatherTag = eventCurrentTargetTag?.closest(".gfForAddRemm");
-          // if (hisFatherTag) {
-          //   hisFather = hisFatherTag.id;
-          // }
-          ////zare_nk_041130_commented_st
-          refForfather.current = addRemParam.father;
-          setIsOpenedMymodalForWarning(true);
-          setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
-          // const bootstrap = await getBootstrap();
-          // const adameSabteNahaeiModal = new bootstrap.Modal(
-          //   document.getElementById("adameSabteNahaeiModal")
-          // );
-          // adameSabteNahaeiModal.show();
-          // const HoshdarInAdameSabteNahaeiModalTag = document.getElementById(
-          //   "HoshdarInAdameSabteNahaeiModal"
-          // );
-          // if (HoshdarInAdameSabteNahaeiModalTag instanceof HTMLElement) {
-          //   HoshdarInAdameSabteNahaeiModalTag.innerText = result.message;
-          // }
-        }
-        if (result.status != 0) {
+        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
+        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
@@ -2384,7 +2365,8 @@ export default function HomeScreen({
           // if (span instanceof HTMLElement) {
           //     span.innerText = result.message;
           // }
-        } else if (result.status == 0) {
+          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
+        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
           console.log('041116-result.status == 0');
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
@@ -2437,6 +2419,14 @@ export default function HomeScreen({
               };
             });
           }
+
+          ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+          if (result.status == -3) {
+            setIsOpenedMymodalForWarning(true);
+            setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
+          }
+          ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+
         }
       } else {
         console.log('050328-rem-!!response.ok');

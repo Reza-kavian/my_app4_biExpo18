@@ -75,13 +75,21 @@ const MyCustomHeader = ({
           try {
             const tokenExpires = await AsyncStorage.getItem("token_expires");
             if (tokenExpires) {
+              ////zare_nk_050504_nokteh_st(raveshe 1-estelame samte client(amniate kamtar vali saritar, chon api nemizanim, vali chon baraye hameye api
+              ////  haye .netcore ke be token niaz darand parsafar monghazi ya namotabar boodane token ra barrasi mikoneh man baraye amali mesle
+              ////  namayeshe login bodan ya logout boodane karbar az hamin raveshe avvale samte client estefadeh mikonam ke saritare va baraye in 
+              //// mavarede sadeh be /src/app/api/auth/verifyToken/ api nemizanam))
               const expiresDate = new Date(tokenExpires).getTime();
               if (expiresDate <= Date.now()) {
                 await handleLogout();
               } else {
-                // توکن هنوز معتبره، می‌تونی استفاده کنی
+                ////zare_nk_050504_nokteh_end(raveshe 1-estelame samte client(amniate kamtar vali saritar, chon api nemizanim, vali chon baraye hameye api
+                ////  haye .netcore ke be token niaz darand parsafar monghazi ya namotabar boodane token ra barrasi mikoneh man baraye amali mesle
+                ////  namayeshe login bodan ya logout boodane karbar az hamin raveshe avvale samte client estefadeh mikonam ke saritare va baraye in 
+                //// mavarede sadeh be /src/app/api/auth/verifyToken/ api nemizanam))
                 try {
-                  ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                  ////zare_nk_050504_nokteh_st(raveshe 2-estelame samte server(amniate bishtar vali kondtar, chon api mizanim)-azash doori mikonam chon nemikham az projehye vasete
+                  ////  nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
                   // const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va api nazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
                   //   NextJsApiAuthUrl + "verifyToken",
                   //   {
@@ -98,7 +106,9 @@ const MyCustomHeader = ({
                   // if (
                   //   res.status === 200
                   // ) {
-                  ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+                  ////zare_nk_050504_nokteh_end(raveshe 2-estelame samte server(amniate bishtar vali kondtar, chon api mizanim)-azash doori mikonam chon nemikham az projehye vasete
+                  ////  nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+
                   setIsLoggedIn(true);
 
                   // alert("data: "+data);
@@ -173,7 +183,7 @@ const MyCustomHeader = ({
     }]}
       edges={["top"]}>
 
-      <View style={{       
+      <View style={{
         width: '100%',
         display: 'flex',
         flexDirection: 'row',
@@ -263,7 +273,7 @@ const MyCustomHeader = ({
           width: '100%',
           position: 'absolute',
           ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
-        }}> 
+        }}>
           {/* zare_nk_050415_commented_st(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
           {/* <TouchableOpacity
             onPress={() => {
@@ -344,11 +354,11 @@ const MyCustomHeader = ({
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    backgroundColor: "#459cff",  
+    backgroundColor: "#459cff",
     flexDirection: "row",
     alignItems: "center",
     paddingHorizontal: 10,
-    paddingBottom: 5, 
+    paddingBottom: 5,
   },
   logo: {
     width: 40,

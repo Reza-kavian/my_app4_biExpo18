@@ -1,4 +1,4 @@
-//// zare_nk_050513_okk(1)
+//// zare_nk_050515_okk(1)
 import { AppRegistry } from 'react-native';
 
 import App from './App';

@@ -1,15 +1,11 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_050514_okk(1)
+// src/components/MyCustomHeader.tsx    //zare_nk_050515_okk(1)
 import React, { useEffect, useState, useCallback } from "react";
 import {
-  View,
-  Text,
-  Image,
-  TouchableOpacity,
-  StyleSheet,
-  //    SafeAreaView,  ////zare_nk_040431_commented(in navar vaziate balaye gooshi ro lahaz nemikone va mohtavash va navar ghati mishe!!)
+  View, Text, Image, TouchableOpacity, StyleSheet,
+  //SafeAreaView,  ////zare_nk_040431_commented(in navar vaziate balaye gooshi ro lahaz nemikone va mohtavash va navar ghati mishe!!)
 } from "react-native";
 
-import { SafeAreaView } from "react-native-safe-area-context"; //zare_nk_040431_added(in navar vaziate balaye gooshi ro lahaz mikone va mohtavash paeine navarvaziat mire va bahash ghati nemishe)
+import { SafeAreaView } from "react-native-safe-area-context"; ////zare_nk_040431_added(in navar vaziate balaye gooshi ro lahaz mikone va mohtavash paeine navarvaziat mire va bahash ghati nemishe)
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
@@ -32,7 +28,6 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack"; //zare_
 
 // import BackButtonIcon from "../components/icons/images/BackButton";   ////zare_nk_050317_added
 import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   ////zare_nk_050317_added
-
 
 interface MyJwtPayload {
   ////zare_nk_050501_commented_st(dar api tochikala)
@@ -62,7 +57,7 @@ const MyCustomHeader = ({
   ////zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
   //// parameterhaye voroodi ra barname automat az React Navigation migire)  ////zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({ 
+  const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({
     NameMoshtari: null,
     unique_name: null,
     Mobile: null,
@@ -87,7 +82,7 @@ const MyCustomHeader = ({
                 // توکن هنوز معتبره، می‌تونی استفاده کنی
                 try {
                   ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
-                  // const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va apinazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
+                  // const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va api nazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
                   //   NextJsApiAuthUrl + "verifyToken",
                   //   {
                   //     token,
@@ -171,165 +166,189 @@ const MyCustomHeader = ({
 
   return (
     <SafeAreaView style={[styles.container,
-      {
-        // borderWidth: 2,
-        // borderColor: "black",
-        // borderStyle: 'dashed',
-      }]}
+    {
+      // borderWidth: 2,
+      // borderColor: "black",
+      // borderStyle: 'dashed',
+    }]}
       edges={["top"]}>
-      {/* لوگو سمت چپ */}
-      <View style={[styles.buttonsContainer,
-          {
-            display: 'flex',
-            flexDirection: 'row',
-            // borderWidth: 2,
-            // borderColor: "green",
-            // borderStyle: 'dashed',
-            ////zare_nk_050317_added_st
-            flexBasis: '31%',
-            flexGrow: 1,
-            flexShrink: 1,
-            ////zare_nk_050317_added_end
-          }]}>
-        {isLoggedIn ? (
-          <View style={{
+
+      <View style={{       
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        // borderWidth: 2,
+        // borderColor: "silver",
+        // borderStyle: 'dashed',
+        ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+        position: "relative",
+        justifyContent: "space-between",
+        ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+      }}>
+
+        {/* لوگو سمت چپ */}
+        <View style={[styles.buttonsContainer,
+        {
+          display: 'flex',
+          flexDirection: 'row',
+          // borderWidth: 2,
+          // borderColor: "green",
+          // borderStyle: 'dashed',
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
+          // flexBasis: '31%',
+          // flexGrow: 1,
+          // flexShrink: 1,
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+          zIndex: 2,
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+        }]}>
+          {isLoggedIn ? (
+            <View style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
             }} >
-            <TouchableOpacity
-              onPress={handleLogout}
-              style={[styles.button,]}>
-              <Text style={styles.buttonText}>خروج</Text>
-            </TouchableOpacity>
-            <Text style={styles.buttonText}>
-              {usersCodeOrName?.NameMoshtari
-                ? usersCodeOrName.NameMoshtari
-                :
-                (usersCodeOrName?.unique_name
-                  ? usersCodeOrName.unique_name
-                  : usersCodeOrName.Mobile
-                )
-              }
-            </Text>
-          </View>
-        ) : (
-          <View style={{
+              <TouchableOpacity
+                onPress={handleLogout}
+                style={[styles.button,]}>
+                <Text style={styles.buttonText}>خروج</Text>
+              </TouchableOpacity>
+              <Text style={styles.buttonText}>
+                {usersCodeOrName?.NameMoshtari
+                  ? usersCodeOrName.NameMoshtari
+                  :
+                  (usersCodeOrName?.unique_name
+                    ? usersCodeOrName.unique_name
+                    : usersCodeOrName.Mobile
+                  )
+                }
+              </Text>
+            </View>
+          ) : (
+            <View style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
             }}>
-            <TouchableOpacity
-              onPress={handleLogin}
-              style={[styles.button,]}>
-              <Text style={styles.buttonText}>ورود</Text>
-            </TouchableOpacity>
+              <TouchableOpacity
+                onPress={handleLogin}
+                style={[styles.button,]}>
+                <Text style={styles.buttonText}>ورود</Text>
+              </TouchableOpacity>
+              <Text style={styles.buttonText}>
+                {/* {options.title ?? route.name} */}
+                {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
+              </Text>
+            </View>
+          )}
+        </View>
 
-            <Text style={styles.buttonText}>
-              {/* {options.title ?? route.name} */}
-              {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
-            </Text>
-          </View>
-        )}
-      </View>
-
-      {/* عنوان وسط */}
-      <View style={{
+        {/* عنوان وسط */}
+        <View style={{
           display: 'flex',
           flexDirection: 'row',
           justifyContent: 'center',
           // borderWidth: 2,
-          // borderColor: "red",
+          // borderColor: "blue",
           // borderStyle: 'dashed',
-          ////zare_nk_050317_added_st
-          flexBasis: '31%',
-          flexGrow: 1,
-          flexShrink: 1,
-          ////zare_nk_050317_added_end
-        }}>
-        {/* zare_nk_050415_commented_st(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
-        {/* <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Home")
-          }}
-          style={{
-            // borderWidth: 1,
-            // borderColor: "black",
-            // borderStyle: 'dashed',
-          }}
-        >
-          <Image
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
+          // flexBasis: '31%',
+          // flexGrow: 1,
+          // flexShrink: 1,
+          // overflow:'hidden',
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+          width: '100%',
+          position: 'absolute',
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+        }}> 
+          {/* zare_nk_050415_commented_st(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
+          {/* <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Home")
+            }}
+            style={{
+              borderWidth: 1,
+              borderColor: "black",
+              borderStyle: 'dashed',
+            }}>
+            <Image
             source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
             style={{ width: 40, height: 40, borderRadius: 7 }}
-          />
-        </TouchableOpacity> */}
-        {/* zare_nk_050415_commented_end(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
-      </View>
+          /> 
+          </TouchableOpacity> */}
+          {/* zare_nk_050415_commented_end(be khatere static aksGozashtane kerfu(badan age shobe ha daraye icon boodand va apie parsafar baram ferestad dynamic lahaz mikonam) */}
+        </View>
 
-      {/* دکمه‌ها سمت راست */}
-      <View style={{
+        {/* دکمه‌ها سمت راست */}
+        <View style={{
           display: "flex",
           flexDirection: "row",
-          justifyContent: 'flex-end',
           alignItems: "center",
           direction: 'ltr',
           // borderWidth: 2,
           // borderColor: "green",
           // borderStyle: 'dashed',
-          ////zare_nk_050317_added_st
-          flexBasis: '31%',
-          flexGrow: 1,
-          flexShrink: 1,
-          ////zare_nk_050317_added_end
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
+          // flexBasis: '31%',
+          // flexGrow: 1,
+          // flexShrink: 1,
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+          zIndex: 2,
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
         }}>
-        {/* <TouchableOpacity
-          onPress={() => {
-            navigation.navigate("Home")
-          }}
-        > 
-          <Image
-            source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
-            style={{ width: 40, height: 40, borderRadius: 7 }}
-          />
-        </TouchableOpacity> */}
-        <Text
-          numberOfLines={1}
-          ellipsizeMode="tail"
-          style={[styles.buttonText,
-          {
-            // borderWidth: 1,
-            // borderColor: "white",
-            // borderStyle: 'dashed',
-          }
-          ]}>
-          {options.title ?? route.name}
-          {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
-        </Text>
-
-        {back ? (
-          <>
-            <HeaderBackButton
-              onPress={navigation.goBack}
-              tintColor="white"
-              backImage={() => <BackButtonWhiteIcon />}  ////zare_nk_050317_nokteh(age backImage nadim reactnative khodeshe icone pishfarzi ro jahate android lahaz 
-            //// mikoneh, vali man khastam sefareshi konam )
+          <TouchableOpacity
+            onPress={() => {
+              navigation.navigate("Home")
+            }}>
+            <Image
+              source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
+              style={{ width: 40, height: 40, borderRadius: 7 }}
             />
-          </>
-        ) : null}
+          </TouchableOpacity>
+          <Text
+            numberOfLines={1}
+            ellipsizeMode="tail"
+            style={[styles.buttonText,
+            {
+              // borderWidth: 1,
+              // borderColor: "white",
+              // borderStyle: 'dashed',
+            }
+            ]}>
+            {options.title ?? route.name}
+            {/* options.title ro mitoonim dar componente AppNavigator dar Stack.Screene tarife safheha benevisim ke ekhtiariye*/}
+          </Text>
+
+          {back ? (
+            <>
+              <HeaderBackButton
+                onPress={navigation.goBack}
+                tintColor="white"
+                backImage={() => <BackButtonWhiteIcon />}  ////zare_nk_050317_nokteh(age backImage nadim reactnative khodeshe icone pishfarzi ro jahate android lahaz 
+              //// mikoneh, vali man khastam sefareshi konam )
+              />
+            </>
+          ) : null}
+        </View>
       </View>
+
     </SafeAreaView>
   );
 };
 
+
 const styles = StyleSheet.create({
   container: {
-    // height: 60,
-    backgroundColor: "#459cff", // رنگ آبی خوشگل
+    display: 'flex',
+    backgroundColor: "#459cff",  
     flexDirection: "row",
     alignItems: "center",
-    // justifyContent: "space-between",  ////zare_nk_050317_commented
     paddingHorizontal: 10,
-    paddingBottom: 5,
+    paddingBottom: 5, 
   },
   logo: {
     width: 40,

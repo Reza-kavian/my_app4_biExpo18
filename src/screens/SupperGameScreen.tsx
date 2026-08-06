@@ -1,4 +1,4 @@
-////zare_nk_050413_okk(1)
+////zare_nk_050515_okk(1)
 import React, { useEffect, useState, useCallback, useRef } from "react";
 import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -133,19 +133,13 @@ export default function SupperGameScreen({
           flexWrap: "wrap",
           justifyContent: "space-between",
           // gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
-        }, SubprogramsContResponse]}
-      >
-        <View
-          // id="Subprograms-1"
-          // className="Subprograms"
+        }, SubprogramsContResponse]}>
+        <View // id="Subprograms-1" className="Subprograms"
           style={[{
             display: "flex",
             flexDirection: "row",
-          }, SubprogramsResponse]}
-        >
-          <TouchableOpacity
-            // className="vorsab"
-            // href="/shoppingbasket"
+          }, SubprogramsResponse]} >
+          <TouchableOpacity // className="vorsab" href="/shoppingbasket"
             onPress={() => { return navigation.replace("Splash", { target: "TicTacToe" }); }}
             style={{
               width: "100%",
@@ -163,28 +157,22 @@ export default function SupperGameScreen({
               backgroundColor: "white",
               overflow: "hidden",
             }}
-            activeOpacity={0.1}
-          >
-            <View
-              // className="imgAndTextInSubprograms"
+            activeOpacity={0.1}>
+            <View // className="imgAndTextInSubprograms"
               style={[{
                 display: "flex",
                 //  flexDirection: "row", 
                 flexGrow: 1,
                 flexShrink: 1,
                 flexBasis: 'auto',
-              }, imgAndTextInSubprogramsResponse]}
-            >
-              <View
-                // className="roundedPillsCont"
+              }, imgAndTextInSubprogramsResponse]}>
+              <View // className="roundedPillsCont"
                 style={[{
                   display: "flex",
                   flexDirection: "row",
                   // width: "fit-content", 
-                }, roundedPillsContResponse]}
-              >
-                <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
-                  // className="rounded-pill"
+                }, roundedPillsContResponse]}>
+                <View // className="rounded-pill"
                   style={{
                     display: "flex",
                     flexDirection: "row",
@@ -197,71 +185,59 @@ export default function SupperGameScreen({
                     borderRadius: "50%",
                     overflow: 'hidden',
                     minHeight: 85.6,
-                  }}
-                >
+                  }} >
                   <Image
                     source={ticTacToeImage}
-                    style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
-                  />
+                    style={{ backgroundColor: "#efefef", width: 64, height: 64 }} />
                 </View>
               </View>
-              <View
-                style={[{
+              <View style={[{
+                display: "flex",
+                flexDirection: "column",
+                // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                // width: "fit-content", 
+              }, subSysTextContResponse]}>
+                <View style={{
+                  // flex: "0 0 auto",
+                  flexGrow: 0,
+                  flexShrink: 0,
+                  flexBasis: 'auto',
                   display: "flex",
-                  flexDirection: "column",
-                  // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
-                  justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                  // width: "fit-content", 
-                }, subSysTextContResponse]}
-              >
-                <View
-                  style={{
-                    // flex: "0 0 auto",
-                    flexGrow: 0,
-                    flexShrink: 0,
-                    flexBasis: 'auto',
-                    display: "flex",
-                    flexDirection: "row",
-                    marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk
-                  }}
-                >
-                  <Text
-                    //  className="titleStyle"
+                  flexDirection: "row",
+                  marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk
+                }}>
+                  <Text //className="titleStyle"
                     numberOfLines={1}
                     ellipsizeMode="tail"
                     style={[{
                       fontFamily: "IRANSansWeb(FaNum)_Bold",
                       color: '#4b4949',
-                    }, titleStyleResponse]}
-                  >TIC-TAC-TOE</Text>
+                    }, titleStyleResponse]}>
+                    TIC-TAC-TOE
+                  </Text>
                 </View>
-                <View
-                  style={{ flexDirection: "row", }}
-                // className="decsInSubprograms"
-                >
+                <View // className="decsInSubprograms"
+                  style={{ flexDirection: "row", }}>
                   <View style={{ display: "flex", flexDirection: "row" }}>
-                    <Text
-                      // className="valueStyle"
+                    <Text // className="valueStyle"
                       numberOfLines={1}
                       ellipsizeMode="tail"
                       style={[{
                         fontFamily: "IRANSansWeb(FaNum)_Medium",
                         color: "#6a6a6a",
                         fontSize: 12,
-                      }, valueStyleResponse,]}
-                    >
+                      }, valueStyleResponse,]}>
                       بازی دوز 9 خانه ای(3*3)
                     </Text>
                   </View>
                 </View>
               </View>
             </View>
-            <View
-              // className="leftArrowInSubprograms"
+            <View // className="leftArrowInSubprograms"
               style={{
                 display: 'flex', flexDirection: "row", alignItems: 'center',
-              }}
-            >
+              }}>
               {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, height:20 }}
@@ -275,31 +251,23 @@ export default function SupperGameScreen({
           </TouchableOpacity>
         </View>
 
-
         {/* zare_nk_041206_nokteh(be khatere dadane gap dar css az taktike ijade view haye tookhaliye komakiye akhare container ejtenab mikonim,
 vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava ham dare ye gape bimored mideh ke shahede ye marginLefte
  bimored hastem ke chon viewye hamsaye ash tookhaliye va dideh nemishe in marginLefti ke dar asare gap migire bimorede(pas age az gap 
  estefadeh mishe view haye komaki tookhali ra hazf mikonim) ) */}
-        <View
-          // id="Subprograms-temp-1"
-          // className="Subprograms"
-          // style={{ display: "flex", flexDirection: "row", }}
+        <View // id="Subprograms-temp-1" className="Subprograms" style={{ display: "flex", flexDirection: "row", }}
           style={[{
             display: "flex",
             flexDirection: "row",
-          }, SubprogramsResponse]}
-        ></View>
-        <View
-          // id="Subprograms-temp-2"
-          // className="Subprograms"
-          // style={{ display: "flex", flexDirection: "row", }}
+          }, SubprogramsResponse]}>
+        </View>
+        <View // id="Subprograms-temp-2" className="Subprograms" style={{ display: "flex", flexDirection: "row", }}
           style={[{
             display: "flex",
             flexDirection: "row",
             margin: 0,
-          }, SubprogramsResponse]}
-        ></View>
-
+          }, SubprogramsResponse]}>
+        </View>
       </View>
     </ScrollView>
   );

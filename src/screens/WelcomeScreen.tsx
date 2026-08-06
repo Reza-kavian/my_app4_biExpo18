@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    ////zare_nk_050513_okk(1)
+//src\screens\WelcomeScreen.tsx    ////zare_nk_050515_okk(1)
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
@@ -15,7 +15,6 @@ import { useContext } from "react";
 //   const navigation = useNavigation<NavigationProp>();
 ////zare_nk_040608_commented_end
 ////zare_nk_040608_added_st
-
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "Welcome">;
 const WelcomeScreen = (
@@ -26,7 +25,7 @@ const WelcomeScreen = (
     // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentesh kardim)
     Props //zare_nk_040608_added(jaigozine NativeStackHeaderProps ta parameterhaye voroodi ra barname automat begireh,NativeStackHeaderProps faghat baraye file MyCustomHeader ke az headere sefareshi estefadeh mikardim ok ast)
 ) => {
-  ////zare_nk_0040608_added_end
+  ////zare_nk_040608_added_end
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (

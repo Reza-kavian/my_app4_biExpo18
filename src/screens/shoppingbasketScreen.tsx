@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  ////zare_nk_050513_okk(1)
+// shoppingbasketScreen.tsx  ////zare_nk_050515_okk(1)
 import { useState, useEffect, useRef, useMemo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -883,7 +883,7 @@ export default function ShoppingbasketComponent({
                     WarningText = "درخواست شبکه ناموفق بود";
                 }
                 else {
-                    WarningText = '33درخواست نا موفق بود';
+                    WarningText = 'درخواست نا موفق بود';
                 }
             } else {
                 WarningText = String(error);
@@ -1027,7 +1027,6 @@ export default function ShoppingbasketComponent({
             //             MablaghNahaee = result[0].MablaghNahaee; 
             getSabadItems(0, token);  //zare_nk_050326_nokteh(meghdare 0 ra soori gozashtam(chon dar hamyar sabadTitr nadarim))
             ////zare_nk_050326_added_end(chon dar hamyar sabadTitr nadarim)
-
         }
         tempFuncForAsync();
     }, [addOrRemChanged]);
@@ -1242,7 +1241,6 @@ export default function ShoppingbasketComponent({
             });
 
         }
-
     }
 
     async function ManualInputBarcode(

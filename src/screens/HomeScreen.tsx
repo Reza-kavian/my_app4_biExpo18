@@ -1978,7 +1978,10 @@ export default function HomeScreen({
               NameBerand: parsedList[0].NameBerand,
               FeeForoosh: parsedList[0].FeeForoosh,
               FeeMasraf: parsedList[0].FeeMasraf,
-              BarcodeKala: parsedList[0].BarcodeKala,
+              ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)   ////barcodeKala dar inja amdan pasokhe barcodekhane doorbin hast ke bastebandishodeh mideh ta beshe ziad konim
+              //BarcodeKala: parsedList[0].BarcodeKala,  ///zare_nk_050515_commented(chon apiye Api_SelectKala baraye vazniha BarcodeKalaye khame vazni ro barmigardooneh)
+              BarcodeKala: barcodeKala,  ////zare_nk_050515_added(chon BarcodeKala hamoon barcodi hast ke tarazoo be ma mideh va ba doorbin scanesh mikonim va mesle ye kalaye bastebandishodeh hast(masalan homoon 300 gram paniri ke kharidim ba ghemate moshakhas))                           
+              ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)  ////barcodeKala dar inja amdan pasokhe barcodekhane doorbin hast ke bastebandishodeh mideh ta beshe ziad konim
               Mojoodi: parsedList[0].Mojoodi,
               MaxTedad: parsedList[0].MaxTedad,
               father: "#DetailsInfoCont",
@@ -2172,6 +2175,12 @@ export default function HomeScreen({
           if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
             bishAzMaxTedadYaMojoodi = 1;
           }
+          ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+          if (satrInoInResult.NoeVazni == 1) {
+            // Alert.alert('vazniyeee');
+            bishAzMaxTedadYaMojoodi = 1;
+          }
+          ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
 
           refForfather.current = addRemParam.father;
 
@@ -2199,7 +2208,10 @@ export default function HomeScreen({
                 NameBerand: addRemParam.NameBerand,
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
-                BarcodeKala: addRemParam.BarcodeKala,
+                ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                 Mojoodi: addRemParam.Mojoodi,
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",
@@ -2380,6 +2392,12 @@ export default function HomeScreen({
           if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
             bishAzMaxTedadYaMojoodi = 1;
           }
+          ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+          if (satrInoInResult.NoeVazni == 1) {
+            // Alert.alert('vazniyeee');
+            bishAzMaxTedadYaMojoodi = 1;
+          }
+          ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
 
           refForfather.current = addRemParam.father;
 
@@ -2407,7 +2425,10 @@ export default function HomeScreen({
                 NameBerand: addRemParam.NameBerand,
                 FeeForoosh: addRemParam.FeeForoosh,
                 FeeMasraf: addRemParam.FeeMasraf,
-                BarcodeKala: addRemParam.BarcodeKala,
+                ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                 Mojoodi: addRemParam.Mojoodi,
                 MaxTedad: addRemParam.MaxTedad,
                 father: "#DetailsInfoCont",

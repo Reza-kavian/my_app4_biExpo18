@@ -310,7 +310,7 @@ const MyCustomHeader = ({
           zIndex: 2,
           ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
         }}>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             onPress={() => {
               navigation.navigate("Home")
             }}>
@@ -318,7 +318,7 @@ const MyCustomHeader = ({
               source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
               style={{ width: 40, height: 40, borderRadius: 7 }}
             />
-          </TouchableOpacity>
+          </TouchableOpacity> */}
           <Text
             numberOfLines={1}
             ellipsizeMode="tail"

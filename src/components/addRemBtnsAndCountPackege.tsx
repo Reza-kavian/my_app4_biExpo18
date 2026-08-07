@@ -778,14 +778,9 @@ const AddRemBtnsAndCountPackege = ({
         //////////////////////////view
     } else if (ForCartContentsDesignType == 2) {
         return (
-            <View
-                // className={`text-center align-items-center justify-content-center ForCart ${idTag}`}
-                // id={`${idTag}`}
-                // style={{ width: "100%", display: "flex" }}
-                style={{ width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center', }}
-            >
-                <View
-                    // className="input-group rounded-pill"
+            <View //className={`text-center align-items-center justify-content-center ForCart ${idTag}`} id={`${idTag}`}
+                style={{ width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center', }} >
+                <View //className="input-group rounded-pill"
                     style={{
                         backgroundColor: "white",
                         height: 35,

@@ -514,6 +514,12 @@ export default function ShoppingbasketComponent({
                     if (Number(parsedList[0].Mojoodi) <= Number(parsedList[0].TedadDarSabad)) {
                         bishAzMaxTedadYaMojoodi = 1;
                     }
+                    ////zare_nk_050515_added_st
+                    if (parsedList[0].IdNoeVazni == 1) {
+                        // Alert.alert('vazniyeee bbb');
+                        bishAzMaxTedadYaMojoodi = 1;
+                    }
+                    ////zare_nk_050515_added_end
 
                     refForfather.current = "#DetailsInfoCont";
 
@@ -540,7 +546,10 @@ export default function ShoppingbasketComponent({
                             NameBerand: parsedList[0].NameBerand,
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            BarcodeKala: parsedList[0].BarcodeKala,
+                            ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)   ////barcodeKala dar inja amdan pasokhe apie Api_SelectSabad hast ke kham mideh ta nashe ziad konim
+                            // BarcodeKala: parsedList[0].BarcodeKala,  ///zare_nk_050515_commented(chon apiye Api_SelectKala baraye vazniha BarcodeKalaye khame vazni ro barmigardooneh)
+                            BarcodeKala: barcodeKala,  ////zare_nk_050515_added(chon BarcodeKala hamoon barcodi hast ke tarazoo be ma mideh va ba doorbin scanesh mikonim va mesle ye kalaye bastebandishodeh hast(masalan homoon 300 gram paniri ke kharidim ba ghemate moshakhas))                           
+                            ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)  ////barcodeKala dar inja amdan pasokhe apie Api_SelectSabad hast ke kham mideh ta nashe ziad konim
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#DetailsInfoCont",
@@ -834,7 +843,7 @@ export default function ShoppingbasketComponent({
                                     fromShowDetails: false,
                                     idTag: "ForCart-" + item.IdKala,
 
-                                    //    majmooeKharidMasraf = result[0].SumFeeMasraf;
+                                    // majmooeKharidMasraf = result[0].SumFeeMasraf;
                                     // soodAzKharid: jameKolTakhfif,
                                     // // Kerayeh = result[0].HazineErsal;
                                     // MablaghNahaee: jameKol,
@@ -1176,11 +1185,14 @@ export default function ShoppingbasketComponent({
                             ZaribForoosh: parsedList[0].ZaribForoosh,
                             IdKala: parsedList[0].IdKala,
                             NameKala: parsedList[0].NameKala,
-                            DarsadTakhfif: parsedList[0].MM,   ////zare_nk_050431_updated(DarsadTakhfif to MM)
-                            NameBerand: parsedList[0].NameBerand,  //zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
+                            DarsadTakhfif: parsedList[0].MM,       ////zare_nk_050431_updated(DarsadTakhfif to MM)
+                            NameBerand: parsedList[0].NameBerand,  ////zare_nk_041118_nokteh(dar api selectKalaShobeh NameBerand dar pasokh hast pas ma meghdaresh ro dadim)
                             FeeForoosh: parsedList[0].FeeForoosh,
                             FeeMasraf: parsedList[0].FeeMasraf,
-                            BarcodeKala: parsedList[0].BarcodeKala,
+                            ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)   ////barcodeKala dar inja amdan pasokhe barcodekhane doorbin hast ke bastebandishodeh mideh ta beshe ziad konim
+                            //BarcodeKala: parsedList[0].BarcodeKala,  ///zare_nk_050515_commented(chon apiye Api_SelectKala baraye vazniha BarcodeKalaye khame vazni ro barmigardooneh)
+                            BarcodeKala: BarcodeKala,  ////zare_nk_050515_added(chon BarcodeKala hamoon barcodi hast ke tarazoo be ma mideh va ba doorbin scanesh mikonim va mesle ye kalaye bastebandishodeh hast(masalan homoon 300 gram paniri ke kharidim ba ghemate moshakhas))                           
+                            ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)  ////barcodeKala dar inja amdan pasokhe barcodekhane doorbin hast ke bastebandishodeh mideh ta beshe ziad konim
                             Mojoodi: parsedList[0].Mojoodi,
                             MaxTedad: parsedList[0].MaxTedad,
                             father: "#sabadItemsContInSafhe",
@@ -1394,13 +1406,19 @@ export default function ShoppingbasketComponent({
                     );
 
                     var bishAzMaxTedadYaMojoodi = 0;
-                    if (Number(satrInoInResult.MaxTedad) <= Number(Tedad)) {
+                    if (Number(addRemParam.MaxTedad) <= Number(Tedad)) {
                         bishAzMaxTedadYaMojoodi = 1;
                     }
-                    if (Number(satrInoInResult.Mojoodi) <= Number(Tedad)) {
+                    if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
                         console.log('zare_nk_050501_12_resiiiid');
                         bishAzMaxTedadYaMojoodi = 1;
                     }
+                    ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                    if (satrInoInResult.NoeVazni == 1) {
+                        // Alert.alert('vazniyeee');
+                        bishAzMaxTedadYaMojoodi = 1;
+                    }
+                    ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
 
                     refForfather.current = addRemParam.father;
 
@@ -1408,10 +1426,10 @@ export default function ShoppingbasketComponent({
                     if (Number(Tedad) == 0) {
                         ForCartContentsDesignTypeLet = 0;
                     }
-                    else if (Number(Tedad) > Number(satrInoInResult.ZaribForoosh)) {
+                    else if (Number(Tedad) > Number(addRemParam.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 2;
                     }
-                    else if (Number(Tedad) == Number(satrInoInResult.ZaribForoosh)) {
+                    else if (Number(Tedad) == Number(addRemParam.ZaribForoosh)) {
                         ForCartContentsDesignTypeLet = 1;
                     }
 
@@ -1428,7 +1446,10 @@ export default function ShoppingbasketComponent({
                                 NameBerand: addRemParam.NameBerand,
                                 FeeForoosh: addRemParam.FeeForoosh,
                                 FeeMasraf: addRemParam.FeeMasraf,
-                                BarcodeKala: addRemParam.BarcodeKala,
+                                ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                 Mojoodi: addRemParam.Mojoodi,
                                 MaxTedad: addRemParam.MaxTedad,
                                 father: "#DetailsInfoCont",
@@ -1529,7 +1550,10 @@ export default function ShoppingbasketComponent({
                                 NameBerand: addRemParam.NameBerand,
                                 FeeForoosh: addRemParam.FeeForoosh,
                                 FeeMasraf: addRemParam.FeeMasraf,
-                                BarcodeKala: addRemParam.BarcodeKala,
+                                ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented
+                                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added  
+                                ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                 Mojoodi: addRemParam.Mojoodi,
                                 MaxTedad: addRemParam.MaxTedad,
                                 JamForoosh: satrInoInResult.JamForoosh,
@@ -1554,7 +1578,10 @@ export default function ShoppingbasketComponent({
                                         NameBerand: addRemParam.NameBerand,
                                         FeeForoosh: addRemParam.FeeForoosh,
                                         FeeMasraf: addRemParam.FeeMasraf,
-                                        BarcodeKala: addRemParam.BarcodeKala,
+                                        ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                                        // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented
+                                        BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added 
+                                        ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
                                         JamForoosh: satrInoInResult.JamForoosh,
@@ -1828,6 +1855,12 @@ export default function ShoppingbasketComponent({
                     if (Number(addRemParam.Mojoodi) <= Number(Tedad)) {
                         bishAzMaxTedadYaMojoodi = 1;
                     }
+                    ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                    if (satrInoInResult.NoeVazni == 1) {
+                        // Alert.alert('vazniyeee');
+                        bishAzMaxTedadYaMojoodi = 1;
+                    }
+                    ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
 
                     refForfather.current = addRemParam.father;
                     console.log('050329-result.status == 0-03');
@@ -1846,7 +1879,7 @@ export default function ShoppingbasketComponent({
                     console.log('050329-result.status == 0-04');
                     if (addRemParam.fromShowDetails) {
                         console.log('050329-result.status == 0-05');
-                        setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);  
+                        setImgUriForDet(`https://img.tochikala.com/Product/${addRemParam.IdKala}.webp`);
                         setForCartContInProdDetVal(() => {
                             const idTag = "ForCart-" + addRemParam.IdKala;
                             return {
@@ -1858,7 +1891,10 @@ export default function ShoppingbasketComponent({
                                 NameBerand: addRemParam.NameBerand,
                                 FeeForoosh: addRemParam.FeeForoosh,
                                 FeeMasraf: addRemParam.FeeMasraf,
-                                BarcodeKala: addRemParam.BarcodeKala,
+                                ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                 Mojoodi: addRemParam.Mojoodi,
                                 MaxTedad: addRemParam.MaxTedad,
                                 father: "#DetailsInfoCont",
@@ -1921,7 +1957,10 @@ export default function ShoppingbasketComponent({
                                         NameBerand: addRemParam.NameBerand,
                                         FeeForoosh: addRemParam.FeeForoosh,
                                         FeeMasraf: addRemParam.FeeMasraf,
-                                        BarcodeKala: addRemParam.BarcodeKala,
+                                        ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
+                                        // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                        BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                        ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
                                         JamForoosh: satrInoInResult.JamForoosh,
@@ -2727,25 +2766,20 @@ export default function ShoppingbasketComponent({
                                                     flexDirection: "column",
                                                     width: "100%",
                                                     marginTop: 10,
-                                                }}
-                                            >
-                                                <View
-                                                    // id="InCartAndPriceInDetailsInfoCont"
+                                                }}>
+                                                <View // id="InCartAndPriceInDetailsInfoCont"
                                                     style={{
                                                         width: "100%",
                                                         // display: "flex",
                                                         flexDirection: "row",
                                                         justifyContent: 'flex-end',
-                                                    }}
-                                                >
-                                                    <View
-                                                        // id="ForCartContInProdDet"  
+                                                    }}>
+                                                    <View //id="ForCartContInProdDet"  
                                                         style={{
                                                             // display: "flex",
                                                             flexDirection: "column",
                                                             justifyContent: 'flex-end',
-                                                        }}
-                                                    >
+                                                        }}>
                                                         {ForCartContInProdDetVal != null && (
                                                             // <MiddleCountTedadSefr
                                                             <AddRemBtnsAndCountPackege
@@ -2819,8 +2853,7 @@ export default function ShoppingbasketComponent({
                                      ></View> */}
                                 </View>
                                 {/* zare_nk_041212_nokteh_end(faghat intoo barresi beshe baraye responsivi) */}
-                                <View
-                                    // id="navContInDetCont"
+                                <View //id="navContInDetCont"
                                     style={{
                                         display: "none",
                                         flexDirection: "column",
@@ -2829,13 +2862,9 @@ export default function ShoppingbasketComponent({
                                         borderStyle: 'solid',
                                         borderBottomColor: '#E7E7E0',
                                         padding: 0,
-                                    }}
-                                >
-                                    <View
-                                    // className="navContInDet"
-                                    >
-                                        <View
-                                        // className="tab-content"
+                                    }}>
+                                    <View>
+                                        <View // className="tab-content"
                                         // style={{ color: "#545454" }}
                                         >
                                             <View

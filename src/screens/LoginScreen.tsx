@@ -1,4 +1,4 @@
-//my-app/src/screens/LoginScreen.tsx   ////zare_nk_050514_okk(1)
+//my-app/src/screens/LoginScreen.tsx  ////zare_nk_050514_okk(1)
 import React, { useRef, useState, useEffect } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert, TextInput, Button,
@@ -16,7 +16,7 @@ import { NextJsApiUrl } from "../constants/Urls";
 import { SvgUri } from "react-native-svg";
 import type { RootStackParamList } from "../types/navigation";
 
-//  import LoginIcon from "../assets/images/login-icon-dimcolor.svg";    ////zare_nk_050313_nokteh(importe mostaghime file svg(sorate loade barname bekhatere tahlile barname dar khandane codehaye svg kamtar mishe)) 
+// import LoginIcon from "../assets/images/login-icon-dimcolor.svg";    ////zare_nk_050313_nokteh(importe mostaghime file svg(sorate loade barname bekhatere tahlile barname dar khandane codehaye svg kamtar mishe)) 
 import LoginIcon from "../components/icons/images/LoginIconDimcolor";  ////zare_nk_050313_nokteh(import az khoroojiye @svgr/cli(ke dar tanzimate package.json moshakhas kardim)(sorate loade barname bekhatere tabdile 
 // //// svg be Componente reacte amadeh kheili behinehtare))  
 

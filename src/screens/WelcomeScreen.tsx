@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    ////zare_nk_050515_okk(1)
+//src\screens\WelcomeScreen.tsx    ////zare_nk_050517_okk(1)
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";
@@ -12,7 +12,7 @@ import { useContext } from "react";
 // import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
 // type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Welcome">;
 // const WelcomeScreen = () => {
-//   const navigation = useNavigation<NavigationProp>();
+// const navigation = useNavigation<NavigationProp>();
 ////zare_nk_040608_commented_end
 ////zare_nk_040608_added_st
 import { NativeStackScreenProps } from "@react-navigation/native-stack";

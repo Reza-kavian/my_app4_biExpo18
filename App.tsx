@@ -1,4 +1,4 @@
-//my-app/App.tsx   ////zare_nk_050515_okk(1)
+//my-app/App.tsx   ////zare_nk_050517_okk(1)
 import React, { useEffect, useState } from "react";
 import { Alert, Linking } from "react-native";   ////zare_nk_050419_nokteh(Linking ke betoonim az in apk be biroon(masalan site ha) dar moroorgar hedayat konim)
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -254,7 +254,8 @@ export default function App() {
         else {
           console.log('zare_nk_050420-response.status not ok- is: ' + response.status +
             '-response.statusText: ' + response.statusText + '-response: ' + JSON.stringify(response));
-          if (response.status == 401) {
+          if (response.status == 401) {   ////zare_nk_050517_nkteh(albateh mantegham ine ke in api aslan be login boodane karbar nabayad kari dashteh bashe, va 
+            ////in response.status == 401 ra jahate olgu va revale sabete modiriate khatahaye api ha commentesh nakardam!!)
             console.log('zare_nk_050420-response.status not ok-response.status == 401: ' + response.status);
             // setIsOpenedMymodalForWarning(true);
             // setWarningTextInMymodalForWarning("لطفا ابتدا وارد حساب کاربری شوید");

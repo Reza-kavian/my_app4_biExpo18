@@ -1,4 +1,4 @@
-// src/navigation/AppNavigator.tsx    ////zare_nk_050515_okk
+// src/navigation/AppNavigator.tsx    ////zare_nk_050517_okk
 // import { NavigationContainer } from "@react-navigation/native";  ////zare_nk_040604_commented
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import SplashScreen from "../screens/SplashScreen";
@@ -74,8 +74,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           title: "گیم",
           headerShown: true,
-        })}
-      />
+        })} />
 
       <Stack.Screen
         name="discountsAndOffers"
@@ -83,8 +82,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           title: "تخفیفات و پیشنهادات",
           headerShown: true,
-        })}
-      />
+        })} />
 
       <Stack.Screen
         name="folder02"
@@ -92,8 +90,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           title: " فولدر 02",
           headerShown: true,
-        })}
-      />
+        })} />
 
       <Stack.Screen
         name="folder03"
@@ -101,8 +98,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           title: " فولدر 03",
           headerShown: true,
-        })}
-      />
+        })} />
 
       <Stack.Screen
         name="SupperGame"
@@ -110,8 +106,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           title: "سوپرگیم",
           headerShown: true,
-        })}
-      />
+        })} />
 
       <Stack.Screen
         name="shoppingbasket"
@@ -128,8 +123,7 @@ const AppNavigator = () => {
         options={({ navigation }) => ({
           title: "تاریخچه سفارش",
           headerShown: true,
-        })}
-      />
+        })} />
 
     </Stack.Navigator>
     // </NavigationContainer>  ////zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)

@@ -1,4 +1,4 @@
-////zare_nk_050513_okk(1)
+////zare_nk_050517_okk(1)
 import { useState, useEffect, useRef, useMemo, memo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -23,7 +23,7 @@ import type { RootStackParamList } from "../types/navigation";
 ////zare_nk_050315_nokteh_end(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 ////zare_nk_050315_nokteh_st(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type NavigationType = NativeStackNavigationProp<RootStackParamList,
+type NavigationProp = NativeStackNavigationProp<RootStackParamList,
     "shoppingbasket" | "discountsAndOffers" | "Home">;
 ////zare_nk_050315_nokteh_end(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 
@@ -54,7 +54,7 @@ type addRemBtnsAndCountPackegeType = {
     ForCartContentsDesignType: number;
     bishAzMaxTedadYaMojoodi: number | null;
     // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-    navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+    navigation: NavigationProp;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 // export default function AddRemBtnsAndCountPackege({
@@ -805,21 +805,16 @@ const AddRemBtnsAndCountPackege = ({
                         flexDirection: 'row-reverse',  //zare_nk_041202_added
                         // borderRadius: 17,  ////zare_nk_050316_commened
                         borderRadius: 100,    ////zare_nk_050316_added
-                    }}
-                >
-                    <View
-                        // className="addremmCont"
-                        // id={`removeCont-${IdKala}`}
+                    }}>
+                    <View //className="addremmCont" id={`removeCont-${IdKala}`}
                         style={{
                             height: "100%",
                             // flex: "1 1 auto",
                             flexGrow: 1,
                             flexShrink: 1,
                             flexBasis: 'auto',
-                        }}
-                    >
-                        <View
-                            style={{
+                        }}>
+                        <View style={{
                                 height: "100%",
                                 display: "flex",  ////zare_nk_050415_added
                                 justifyContent: "center",
@@ -827,8 +822,7 @@ const AddRemBtnsAndCountPackege = ({
                                 alignContent: "center",
                                 overflow: "hidden",
                                 paddingHorizontal: 4,  ////zare_nk_050316_added
-                            }}
-                        >
+                            }}>
                             {/* <a
                                 data-baz="1"
                                 style={{
@@ -845,8 +839,7 @@ const AddRemBtnsAndCountPackege = ({
                                 onClick={(e) => {
                                     e.preventDefault();
                                     handlerForRemClick(e);
-                                }}
-                            >
+                                }}>
                                 <button
                                     style={{
                                         height: "80%",
@@ -857,8 +850,7 @@ const AddRemBtnsAndCountPackege = ({
                                         alignItems: "center",
                                         justifyContent: "center",
                                     }}
-                                    className="plussMinus"
-                                >
+                                    className="plussMinus">
                                     <img
                                         src="https://img.tochikala.com/tochikala/remove-from-cart.svg"
                                         alt="حذف از سبد"
@@ -892,9 +884,7 @@ const AddRemBtnsAndCountPackege = ({
                                         ////zare_nk_050316_added_end
                                     }
                                 ]}
-
                                 activeOpacity={0.1}
-
                                 onPress={() => { handlerForRemClick(); }}   //be /login befresteh dar adtoocart be jaye bazi ba e.preventdefault...     //zare_nk_041127_commented                                
                             >
                                 <Text

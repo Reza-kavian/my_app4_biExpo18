@@ -1,4 +1,4 @@
-// src/components/MyCustomHeader.tsx    //zare_nk_050515_okk(1)
+// src/components/MyCustomHeader.tsx    ////zare_nk_050517_okk(1)
 import React, { useEffect, useState, useCallback } from "react";
 import {
   View, Text, Image, TouchableOpacity, StyleSheet,
@@ -24,7 +24,7 @@ import { HeaderBackButton } from "@react-navigation/elements";
 //zare_nk_040530_commented_end(rahe1)
 //zare_nk_040530_added_st(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
 // parameterhaye voroodi ra barname automat az React Navigation migire)
-import { NativeStackHeaderProps } from "@react-navigation/native-stack"; //zare_nk_040530_added
+import { NativeStackHeaderProps } from "@react-navigation/native-stack"; ////zare_nk_040530_added
 
 // import BackButtonIcon from "../components/icons/images/BackButton";   ////zare_nk_050317_added
 import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   ////zare_nk_050317_added
@@ -210,9 +210,13 @@ const MyCustomHeader = ({
           // flexGrow: 1,
           // flexShrink: 1,
           ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba flex:1 1 31%)
-          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+          ////zare_nk_050515_nokteh_st(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati(farzandane rast va chap tebghe mohtavayeshan ya 
+          //// masalan widthe sabete 50px ya har ideye digeh ei mitoonan begiran va hatman nabayad beheshon beghim yeksevvome pedar ro begiran, chon mohem baraye
+          //// ma farzande vasati hast ke vasat bashe va hamoon width:100%; va position:absolute daghighan mindazatesh vasate pedar))
           zIndex: 2,
-          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
+          ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati(farzandane rast va chap tebghe mohtavayeshan ya 
+          //// masalan widthe sabete 50px ya har ideye digeh ei mitoonan begiran va hatman nabayad beheshon beghim yeksevvome pedar ro begiran, chon mohem baraye
+          //// ma farzande vasati hast ke vasat bashe va hamoon width:100%; va position:absolute daghighan mindazatesh vasate pedar))
         }]}>
           {isLoggedIn ? (
             <View style={{

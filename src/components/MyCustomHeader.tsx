@@ -29,6 +29,8 @@ import { NativeStackHeaderProps } from "@react-navigation/native-stack"; ////zar
 // import BackButtonIcon from "../components/icons/images/BackButton";   ////zare_nk_050317_added
 import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   ////zare_nk_050317_added
 
+import { useAuthentication } from '../context/AuthenticationContext';   ////zare_nk_050318_added
+
 interface MyJwtPayload {
   ////zare_nk_050501_commented_st(dar api tochikala)
   // FullName: string|null;
@@ -56,13 +58,25 @@ const MyCustomHeader = ({
 }: NativeStackHeaderProps) => {
   ////zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
   //// parameterhaye voroodi ra barname automat az React Navigation migire)  ////zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);
-  const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({
-    NameMoshtari: null,
-    unique_name: null,
-    Mobile: null,
-  });
+  ////zare_nk_050518_commented_st(for use AuthenticationContext)
+  // const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null);  //
+  // const [usersCodeOrName, setUsersCodeOrName] = useState<MyJwtPayload>({
+  //   NameMoshtari: null,
+  //   unique_name: null,
+  //   Mobile: null,
+  // });
+  ////zare_nk_050518_commented_end(for use AuthenticationContext)
 
+  const { isLoginAndInf, refreshLoginStatus, setIsLoginAndInf } = useAuthentication();  ////zare_nk_050518_added(for use AuthenticationContext)
+
+  ////zare_nk_050518_nokteh_st(donyaye nextJs(jahate yadavari gozashtam bemooneh))
+  // const pathname = usePathname();
+  // useEffect(() => {
+  // console.log('zare_nk_050505_rere_01-useEffect pathname called');
+  // refreshLoginStatus();
+  // }, [pathname]); 
+  ////zare_nk_050518_nokteh_end(donyaye nextJs(jahate yadavari gozashtam bemooneh))
+  ////zare_nk_050518_nokteh_st(donyaye reactNative)
   useFocusEffect(
     ////zare_nk_040431(har bar ke karbar ba zadane back be componente MyCustomHeader biad focus soorat migire va useFocusEffect seda zadeh mishe, 
     //// vali age useEffect(...,[]) bezanim va az safheye 1 back bezanim biaim safhe 2 chon MyCustomHeader unmount nashode(chon dar layout hast 
@@ -70,104 +84,117 @@ const MyCustomHeader = ({
     useCallback(() => {
       ////zare_nk_040431_nokteh(useCallback be hamrahe useFocusEffect tosiyeh mishe)
       const checkLoginStatus = async () => {  ////zare_nk_051020_nokteh(dar useCallback ham manande useEffect nemitavan az lafze async estefadeh kard va be methode komaki niaz darim mesle checkLoginStatus)
-        const token = await AsyncStorage.getItem("token");
-        if (token) {
-          try {
-            const tokenExpires = await AsyncStorage.getItem("token_expires");
-            if (tokenExpires) {
-              ////zare_nk_050504_nokteh_st(raveshe 1-estelame samte client(amniate kamtar vali saritar, chon api nemizanim, vali chon baraye hameye api
-              ////  haye .netcore ke be token niaz darand parsafar monghazi ya namotabar boodane token ra barrasi mikoneh man baraye amali mesle
-              ////  namayeshe login bodan ya logout boodane karbar az hamin raveshe avvale samte client estefadeh mikonam ke saritare va baraye in 
-              //// mavarede sadeh be /src/app/api/auth/verifyToken/ api nemizanam))
-              const expiresDate = new Date(tokenExpires).getTime();
-              if (expiresDate <= Date.now()) {
-                await handleLogout();
-              } else {
-                ////zare_nk_050504_nokteh_end(raveshe 1-estelame samte client(amniate kamtar vali saritar, chon api nemizanim, vali chon baraye hameye api
-                ////  haye .netcore ke be token niaz darand parsafar monghazi ya namotabar boodane token ra barrasi mikoneh man baraye amali mesle
-                ////  namayeshe login bodan ya logout boodane karbar az hamin raveshe avvale samte client estefadeh mikonam ke saritare va baraye in 
-                //// mavarede sadeh be /src/app/api/auth/verifyToken/ api nemizanam))
-                try {
-                  ////zare_nk_050504_nokteh_st(raveshe 2-estelame samte server(amniate bishtar vali kondtar, chon api mizanim)-azash doori mikonam chon nemikham az projehye vasete
-                  ////  nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
-                  // const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va api nazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
-                  //   NextJsApiAuthUrl + "verifyToken",
-                  //   {
-                  //     token,
-                  //   }
-                  // );
-                  // const data = res.data;
-                  // // console.log("040928-b-1res: " + res);
-                  // // console.log("040928-b-2-JSON res: " + JSON.stringify(res));
-                  // // console.log("040928-b-3-data: " + JSON.stringify(data));
-                  // ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate 
-                  // // rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
-                  // ////zare_nk_041008_nokteh(age az google login movafagh biad dar callback token rooberoo ra ijad mikonim){IdUser: null,email: decoded?.email ?? null,user_name: null,name: decoded?.name ?? null,},  
-                  // if (
-                  //   res.status === 200
-                  // ) {
-                  ////zare_nk_050504_nokteh_end(raveshe 2-estelame samte server(amniate bishtar vali kondtar, chon api mizanim)-azash doori mikonam chon nemikham az projehye vasete
-                  ////  nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+        ////zare_nk_050518_commented_st(for use AuthenticationContext)
+        // const token = await AsyncStorage.getItem("token");
+        // if (token) {
+        //   try {
+        //     const tokenExpires = await AsyncStorage.getItem("token_expires");
+        //     if (tokenExpires) {
+        //       ////zare_nk_050504_nokteh_st(raveshe 1-estelame samte client(amniate kamtar vali saritar, chon api nemizanim, vali chon baraye hameye api
+        //       ////  haye .netcore ke be token niaz darand parsafar monghazi ya namotabar boodane token ra barrasi mikoneh man baraye amali mesle
+        //       ////  namayeshe login bodan ya logout boodane karbar az hamin raveshe avvale samte client estefadeh mikonam ke saritare va baraye in 
+        //       //// mavarede sadeh be /src/app/api/auth/verifyToken/ api nemizanam))
+        //       const expiresDate = new Date(tokenExpires).getTime();
+        //       if (expiresDate <= Date.now()) {
+        //         await handleLogout();
+        //       } else {
+        //         ////zare_nk_050504_nokteh_end(raveshe 1-estelame samte client(amniate kamtar vali saritar, chon api nemizanim, vali chon baraye hameye api
+        //         ////  haye .netcore ke be token niaz darand parsafar monghazi ya namotabar boodane token ra barrasi mikoneh man baraye amali mesle
+        //         ////  namayeshe login bodan ya logout boodane karbar az hamin raveshe avvale samte client estefadeh mikonam ke saritare va baraye in 
+        //         //// mavarede sadeh be /src/app/api/auth/verifyToken/ api nemizanam))
+        //         try {
+        //           ////zare_nk_050504_nokteh_st(raveshe 2-estelame samte server(amniate bishtar vali kondtar, chon api mizanim)-azash doori mikonam chon nemikham az projehye vasete
+        //           ////  nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+        //           // const res = await axios.post(  ////barrasi she age mohtaj be projeye https://testotm.sarinmehr.com nist haminja barrase koneh va api nazaneh(az middleware.tsx projeye https://testotm.sarinmehr.com elham begiram ke az jose estefadeh mikard)
+        //           //   NextJsApiAuthUrl + "verifyToken",
+        //           //   {
+        //           //     token,
+        //           //   }
+        //           // );
+        //           // const data = res.data;
+        //           // // console.log("040928-b-1res: " + res);
+        //           // // console.log("040928-b-2-JSON res: " + JSON.stringify(res));
+        //           // // console.log("040928-b-3-data: " + JSON.stringify(data));
+        //           // ////zare_nk_041008_nokteh(meghdare JSON.stringify(data) age logine movafagh ba code payamaki samte api parsafar bashe besoorate 
+        //           // // rooberoo hast){"decoded":{"unique_name":"20109","CodeMoshtari":"20109","Mobile":"9351091287","NameMoshtari":"","nbf":1765873441,"exp":1766478241,"iat":1765873441}}
+        //           // ////zare_nk_041008_nokteh(age az google login movafagh biad dar callback token rooberoo ra ijad mikonim){IdUser: null,email: decoded?.email ?? null,user_name: null,name: decoded?.name ?? null,},  
+        //           // if (
+        //           //   res.status === 200
+        //           // ) {
+        //           ////zare_nk_050504_nokteh_end(raveshe 2-estelame samte server(amniate bishtar vali kondtar, chon api mizanim)-azash doori mikonam chon nemikham az projehye vasete
+        //           ////  nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
 
-                  setIsLoggedIn(true);
+        //           setIsLoggedIn(true);
 
-                  // alert("data: "+data);
-                  // alert("data.decoded: "+data.decoded);
-                  // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
-                  // alert("data.decoded.Mobile: "+data.decoded.Mobile);
-                  // alert("data-stringify: "+JSON.stringify(data));
+        //           // alert("data: "+data);
+        //           // alert("data.decoded: "+data.decoded);
+        //           // alert("data.decoded.NameMoshtari: "+data.decoded.NameMoshtari);
+        //           // alert("data.decoded.Mobile: "+data.decoded.Mobile);
+        //           // alert("data-stringify: "+JSON.stringify(data));
 
-                  // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
-                  // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
-                  const DecodeToken = jwtDecode<MyJwtPayload>(token);
-                  console.log('zare_nk_050431_DecodeToken is: ' + JSON.stringify(DecodeToken));
-                  ////zare_nk_050431_DecodeToken is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
-                  var NameMoshtari = DecodeToken.NameMoshtari;  //zare_nk_041115_added(from api tochikala)
-                  var unique_name = DecodeToken.unique_name;  //zare_nk_041115_added(from api tochikala)
-                  var Mobile = DecodeToken.Mobile;
+        //           // var codeMoshtari = data.decoded.CodeMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+        //           // var nameMoshtari = data.decoded.NameMoshtari;  //zare_nk_041115_commented(from api testotmapi)
+        //           const DecodeToken = jwtDecode<MyJwtPayload>(token);
+        //           console.log('zare_nk_050431_DecodeToken is: ' + JSON.stringify(DecodeToken));
+        //           ////zare_nk_050431_DecodeToken is: {"unique_name":"9351091287","CodeMoshtari":"9649","Mobile":"9351091287","NameMoshtari":"غلامرضا کاویان","nbf":1784822288,"exp":1785427088,"iat":1784822288}
+        //           var NameMoshtari = DecodeToken.NameMoshtari;
+        //           var unique_name = DecodeToken.unique_name;
+        //           var Mobile = DecodeToken.Mobile;
 
-                  setUsersCodeOrName((prev) => {
-                    return {
-                      ...prev,
-                      NameMoshtari: NameMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                      unique_name: unique_name,  //zare_nk_041008_nokteh(age az code payamaki login shim)
-                      Mobile: Mobile,  //zare_nk_041008_nokteh(age az google login shim)
-                    };
-                  });
-                  // if (idUSerRef.current) {
-                  //   document.getElementById("idUSer")!.innerText =
-                  //     NameMoshtari != null ? NameMoshtari : CodeMoshtari;
-                  // }    
-                  ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)               
-                  // } else {
-                  //   await handleLogout();
-                  // }
-                  ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
-                } catch (err) {
-                  console.log("خطا در بررسی اعتبار توکن:", err);
-                  await handleLogout();
-                }
-              }
-            } else {
-              // توکن یا تاریخ انقضا وجود نداره، احتمالا لاگین نیست
-              await handleLogout();
-            }
-          } catch (e) {
-            console.log("Error reading token:", e);
-            await handleLogout();
-          }
-        } else {
-          await handleLogout();
-        }
+        //           setUsersCodeOrName((prev) => {
+        //             return {
+        //               ...prev,
+        //               NameMoshtari: NameMoshtari,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+        //               unique_name: unique_name,  //zare_nk_041008_nokteh(age az code payamaki login shim)
+        //               Mobile: Mobile,  //zare_nk_041008_nokteh(age az google login shim)
+        //             };
+        //           });
+        //           // if (idUSerRef.current) {
+        //           //   document.getElementById("idUSer")!.innerText =
+        //           //     NameMoshtari != null ? NameMoshtari : CodeMoshtari;
+        //           // }    
+        //           ////zare_nk_050431_commented_st(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)               
+        //           // } else {
+        //           //   await handleLogout();
+        //           // }
+        //           ////zare_nk_050431_commented_end(chon nemikham az projehye vasete nextjs estefadeh konam va projehye .netcore khodesh verify mikoneh token ro)
+        //         } catch (err) {
+        //           console.log("خطا در بررسی اعتبار توکن:", err);
+        //           await handleLogout();
+        //         }
+        //       }
+        //     } else {
+        //       // توکن یا تاریخ انقضا وجود نداره، احتمالا لاگین نیست
+        //       await handleLogout();
+        //     }
+        //   } catch (e) {
+        //     console.log("Error reading token:", e);
+        //     await handleLogout();
+        //   }
+        // } else {
+        //   await handleLogout();
+        // }
+        ////zare_nk_050518_commented_end(for use AuthenticationContext)
+        refreshLoginStatus();  ////zare_nk_050518_added(for use AuthenticationContext)
       };
       checkLoginStatus();
     }, [])
   );
+  ////zare_nk_050518_nokteh_end(donyaye reactNative)
+
 
   const handleLogout = async () => {
     await AsyncStorage.removeItem("token");
     await AsyncStorage.removeItem("token_expires");
-    setIsLoggedIn(false);
+    // setIsLoggedIn(false);  ////zare_nk_050518_commented(for use AuthenticationContext)
+    ////zare_nk_050518_added_st(for use AuthenticationContext)
+    setIsLoginAndInf({
+      isLogin: false,
+      NameMoshtari: null,
+      unique_name: null,
+      Mobile: null,
+    });
+    ////zare_nk_050518_added_end(for use AuthenticationContext) 
   };
 
   const handleLogin = () => {
@@ -218,26 +245,39 @@ const MyCustomHeader = ({
           //// masalan widthe sabete 50px ya har ideye digeh ei mitoonan begiran va hatman nabayad beheshon beghim yeksevvome pedar ro begiran, chon mohem baraye
           //// ma farzande vasati hast ke vasat bashe va hamoon width:100%; va position:absolute daghighan mindazatesh vasate pedar))
         }]}>
-          {isLoggedIn ? (
+          {/* zare_nk_050518_commented(for use AuthenticationContext) */}
+          {/* {isLoggedIn ? ( */}
+          {/* zare_nk_050518_added(for use AuthenticationContext) */}
+          {isLoginAndInf?.isLogin ? (
             <View style={{
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
-            }} >
+            }}>
               <TouchableOpacity
                 onPress={handleLogout}
                 style={[styles.button,]}>
                 <Text style={styles.buttonText}>خروج</Text>
               </TouchableOpacity>
               <Text style={styles.buttonText}>
-                {usersCodeOrName?.NameMoshtari
+                {/* zare_nk_050518_commented(for use AuthenticationContext) */}
+                {/* {usersCodeOrName?.NameMoshtari
                   ? usersCodeOrName.NameMoshtari
                   :
                   (usersCodeOrName?.unique_name
                     ? usersCodeOrName.unique_name
                     : usersCodeOrName.Mobile
                   )
-                }
+                } */}
+                {/* zare_nk_050518_added(for use AuthenticationContext) */}
+                {isLoginAndInf?.NameMoshtari
+                  ? isLoginAndInf.NameMoshtari  
+                  :
+                  (isLoginAndInf?.unique_name
+                    ? isLoginAndInf.unique_name  
+                    : isLoginAndInf.Mobile  
+                  )
+                }                 
               </Text>
             </View>
           ) : (
@@ -353,7 +393,6 @@ const MyCustomHeader = ({
     </SafeAreaView>
   );
 };
-
 
 const styles = StyleSheet.create({
   container: {

@@ -6,6 +6,7 @@ import DeviceInfo from "react-native-device-info";
 import AppNavigator from "./src/navigation/AppNavigator";
 import { lightTheme, darkTheme } from "./src/constants/theme";
 import { ThemeContext } from "./src/context/ThemeContext";
+import { AuthenticationProvider } from './src/context/AuthenticationContext';   ////zare_nk_050518_added
 
 import { NavigationContainer } from "@react-navigation/native";
 
@@ -275,10 +276,12 @@ export default function App() {
   }, []);
 
   return (
-    <ThemeContext.Provider value={{ isDark, toggleTheme, theme }}>
-      <NavigationContainer linking={navigationLinking}>
-        <AppNavigator />
-      </NavigationContainer>
-    </ThemeContext.Provider>
+    <AuthenticationProvider>
+      <ThemeContext.Provider value={{ isDark, toggleTheme, theme }}>
+        <NavigationContainer linking={navigationLinking}>
+          <AppNavigator />
+        </NavigationContainer>
+      </ThemeContext.Provider>
+    </AuthenticationProvider>
   );
 }

@@ -1,4 +1,4 @@
-////zare_nk_050514_okk(1)
+////zare_nk_050518_okk(1)
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
 import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -20,7 +20,8 @@ import { SvgUri } from "react-native-svg";  //zare_nk_041202_added
 import type { RootStackParamList } from "../types/navigation";
 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type NavigationType = NativeStackNavigationProp<
+
+type NavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   //"shoppingbasket"   ////zare_nk_050318_commented
   "discountsAndOffers"   ////zare_nk_050318_added
@@ -106,7 +107,7 @@ type OfferSatrComponentType = {
   ) => void;
   openprodDetModal: (barcodeKala: string) => void;
   // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-  navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+  navigation: NavigationProp;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 // export default function OfferSatrComponent({ 

@@ -23,7 +23,7 @@ import type { RootStackParamList } from "../types/navigation";
 ////zare_nk_050315_nokteh_end(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 ////zare_nk_050315_nokteh_st(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type NavigationType = NativeStackNavigationProp<
+type NavigationProp = NativeStackNavigationProp<
     RootStackParamList,
     "shoppingbasket"
 >;
@@ -79,7 +79,7 @@ type SabadSatrProps = {
     ) => void;
     openprodDetModal: (barcodeKala: string) => void;
     // navigation: Props["navigation"];  ////zare_nk_050315_nokteh(rahe1 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
-    navigation: NavigationType;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
+    navigation: NavigationProp;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
 // export default function SabadSatrComponent({

@@ -1,4 +1,4 @@
-// AboutScreen.tsx   ////zare_nk_050514_okk(1)
+// AboutScreen.tsx   ////zare_nk_050518_okk(1)
 ////zare_nk_041124_added_st
 // import { notFound } from "next/navigation";
 // import Image from "next/image";
@@ -82,7 +82,7 @@ export default function Page() {
                 style={[styles.logo]}
             /> */}
 
-            <Image source={SplashIcon}  style={[styles.logo]} />
+            <Image source={SplashIcon} style={[styles.logo]} />
         </>
     );
 }

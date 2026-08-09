@@ -20,10 +20,8 @@ import ReusableButton from "../components/ReusableButton";
 
 import { SvgUri } from "react-native-svg";
 
-////zare_nk_050315_nokteh_st 
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-type NavigationType = NativeStackNavigationProp<RootStackParamList, "discountsAndOffers">;
-////zare_nk_050315_nokteh_end 
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, "discountsAndOffers">;
 
 import SpecialOfferIcon from "../components/icons/images/SpecialOffer";   ////zare_nk_050316_added
 import AddRemBtnsAndCountPackege from '../components/addRemBtnsAndCountPackege';   ////zare_nk_050316_added
@@ -2537,6 +2535,11 @@ export default function ShallowRoutingExample({
             // )}
             ////zare_nk_050319_commented_end(az useCallback baraye sorate bishtar estefadeh kardim)
             renderItem={renderOfferItem}    ////zare_nk_050319_added(az useCallback baraye sorate bishtar estefadeh kardim)
+            ////zare_nk_050518_nokteh_st(jahate olgu ke bedoonim mitoonim har meghdare jsx ro beonvane itemhaye(dar vaghe har item hokme yek Card ra dareh) FlatList bar gardoonim)
+            // renderItem={({ item }) => {
+            //   return (<View>{item.NameKala}</View>)
+            // }}
+            ////zare_nk_050518_nokteh_end(jahate olgu ke bedoonim mitoonim har meghdare jsx ro beonvane itemhaye(dar vaghe har item hokme yek Card ra dareh) FlatList bar gardoonim)
             style={{
               width: "100%",
               overflow: "hidden",

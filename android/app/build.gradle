@@ -1,4 +1,4 @@
-////zare_nk_050425_okk(1)
+////zare_nk_050518_okk(1)
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"

@@ -12,5 +12,5 @@ export const darkTheme = {
   backgroundColor: "#000000",
   textColor: "#ffffffff",
   buttonColor: "#ffffffff",
-  buttonBackground: 'silver',
+  buttonBackground: 'rgb(59, 56, 56)',
 };

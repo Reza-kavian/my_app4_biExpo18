@@ -49,6 +49,7 @@ const CHANGELOG: Record<string, string[]> = {
     "بهبود سرعت اجرای برنامه",
   ],
 };
+
 ////zare_nk_050419_added_st(baraye downloade noskheye jadid)
 const isNewerVersion = (
   latestVersion: string,

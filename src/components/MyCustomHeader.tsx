@@ -182,7 +182,6 @@ const MyCustomHeader = ({
   );
   ////zare_nk_050518_nokteh_end(donyaye reactNative)
 
-
   const handleLogout = async () => {
     await AsyncStorage.removeItem("token");
     await AsyncStorage.removeItem("token_expires");

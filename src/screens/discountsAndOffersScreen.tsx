@@ -2543,9 +2543,9 @@ export default function ShallowRoutingExample({
             style={{
               width: "100%",
               overflow: "hidden",
-              // borderColor: 'blue',
-              // borderStyle: 'solid',
-              // borderWidth: 3,
+              borderColor: 'blue',
+              borderStyle: 'dashed',
+              borderWidth: 3,
             }}
             contentContainerStyle={[{
               display: "flex",

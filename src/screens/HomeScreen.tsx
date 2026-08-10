@@ -48,6 +48,11 @@ import ReusableButton from "../components/ReusableButton";
 
 import AddRemBtnsAndCountPackege from '../components/addRemBtnsAndCountPackege';   ////zare_nk_050318_added
 
+////zare_nk_050519_added_st
+import { ThemeContext } from "../context/ThemeContext";
+import { useContext } from "react";
+////zare_nk_050519_added_end
+
 ////zare_nk_041127_added_st
 const showNoStock = () => {
   if (Platform.OS === "android") {
@@ -927,6 +932,8 @@ export default function HomeScreen({
   // options, //zare_nk_040530(ekhtiariye va chon azash estefadeh nakardim commentent kardim)
   Props) {
   ////zare_nk_041127_added_end
+
+  const { theme, toggleTheme, isDark } = useContext(ThemeContext);  ////zare_nk_050519_added
 
   ////zare_nk_041209_added_st
   const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
@@ -4009,7 +4016,11 @@ export default function HomeScreen({
         ////zare_nk_041205_updated_end(kolle isOpenedSeePricesModal == true)
       ) : (
         <ScrollView horizontal={false}
-          style={{ display: "flex", flexDirection: "column", direction: "rtl" }}>
+          style={{
+            display: "flex", flexDirection: "column", direction: "rtl",
+            backgroundColor: isDark ? theme.backgroundColor : 'white',
+            // borderWidth:1,borderColor:'red',
+          }}>
           <View
             // id="SubprogramsCont"
             style={[{
@@ -4018,16 +4029,14 @@ export default function HomeScreen({
               flexWrap: "wrap",
               justifyContent: "space-between",
               // gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
-            }, SubprogramsContResponse]}
-          >
+            }, SubprogramsContResponse]} >
             <View
               // id="Subprograms-1"
               // className="Subprograms"
               style={[{
                 display: "flex",
                 flexDirection: "row",
-              }, SubprogramsResponse]}
-            >
+              }, SubprogramsResponse]}  >
               <TouchableOpacity
                 // className="vorsab"
                 // href="/shoppingbasket" 
@@ -4476,14 +4485,11 @@ export default function HomeScreen({
               </TouchableOpacity>
             </View>
 
-            <View
-              // id="Subprograms-4"
-              // className="Subprograms"
+            <View //id="Subprograms-4" className="Subprograms"
               style={[{
                 display: "flex",
                 flexDirection: "row",
-              }, SubprogramsResponse]}
-            >
+              }, SubprogramsResponse]}            >
               <TouchableOpacity
                 // className="vorsab"
                 // href="/discountsAndOffers"  
@@ -4624,6 +4630,152 @@ export default function HomeScreen({
               </TouchableOpacity>
             </View>
 
+
+
+
+
+
+
+
+
+
+
+            <View //id="Subprograms-4" className="Subprograms"
+              style={[{
+                display: "flex",
+                flexDirection: "row",
+              }, SubprogramsResponse]}>
+              <TouchableOpacity
+                // className="vorsab"
+                // href="/discountsAndOffers"  
+                // onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}   ////zare_nk_050323_commented
+                onPress={toggleTheme }    ////zare_nk_050323_added
+                //         <ReusableButton
+                // title="تغییر تم"
+                // onPress={toggleTheme}
+                // backgroundColor={theme.buttonBackground}
+                // textColor={theme.buttonColor}
+                // width="80%" />
+                style={{
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between",
+                  // padding: 15,   
+                  padding: 10,
+                  // alignItems: "center",  //zare_nk_041206_commented                   
+                  borderWidth: isDark ? 0 : 1,  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                  borderColor: "#a9a9a9",   ////zare_nk_050317_commented_movaghat
+                  // borderColor: "white",   ////zare_nk_050317_added_movaghat
+                  borderStyle: 'solid',
+                  boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                  borderRadius: 25,
+                  // backgroundColor: "white",  ////zare_nk_050519_commented
+                  backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                  overflow: "hidden",
+                }}>
+                <View //className="imgAndTextInSubprograms"
+                  style={[{
+                    display: "flex",
+                    //  flexDirection: "row",
+                    flexGrow: 1,
+                    flexShrink: 1,
+                    flexBasis: 'auto',
+                  }, imgAndTextInSubprogramsResponse]}>
+                  <View //className="roundedPillsCont"
+                    style={[{
+                      display: "flex",
+                      flexDirection: "row",
+                      // width: "fit-content",
+                    }, roundedPillsContResponse]}>
+                    <View //className="rounded-pill"
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: 'center',
+                        // border: "1px solid #E7E7E7",
+                        borderWidth: 1,
+                        borderColor: "#E7E7E7",
+                        borderStyle: 'solid',
+                        padding: 10,
+                        borderRadius: "50%",
+                        overflow: 'hidden',
+                        minHeight: 85.6,
+                        // width:86
+                      }}>
+                      {/* <Image
+                        source={{ uri: "/images/Subprograms/DiscountsAndOffers.png" }}
+                        style={{ width: 64, }}
+                      /> */}
+                      <Image source={DiscountsAndOffersImage}
+                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }} />
+                    </View>
+                  </View>
+                  <View style={[{
+                    display: "flex",
+                    flexDirection: "column",
+                    // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                    justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                    // width: "fit-content",
+                  }, subSysTextContResponse]}>
+                    <View style={{
+                      // flex: "0 0 auto",
+                      flexGrow: 0,
+                      flexShrink: 0,
+                      flexBasis: 'auto',
+                      display: "flex",
+                      flexDirection: "row",
+                      marginBottom: 7,  //zare_nk_041205_added
+                    }}>
+                      <Text //className="titleStyle"
+                        numberOfLines={1}
+                        ellipsizeMode="tail"
+                        style={[{
+                          fontFamily: "IRANSansWeb(FaNum)_Bold",
+                          color: '#4b4949',
+                        }, titleStyleResponse]}>
+                        تغییر تم
+                      </Text>
+                    </View>
+                    <View // className="decsInSubprograms"
+                      style={{ flexDirection: "row", }}>
+                      <View style={{ display: "flex", flexDirection: "row" }}>
+                        <Text // className="valueStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
+                          style={[{
+                            fontFamily: "IRANSansWeb(FaNum)_Medium",
+                            color: "#6a6a6a",
+                            fontSize: 12,
+                          }, valueStyleResponse,]}>
+                          تغییر بک گراند و تکست تگها به تیره و روشن
+                        </Text>
+                      </View>
+                    </View>
+                  </View>
+                </View>
+                <View //className="leftArrowInSubprograms"
+                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
+                  {/* <Image
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, }}
+                  /> */}
+                  <SvgUri uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20} />
+                </View>
+              </TouchableOpacity>
+            </View>
+
+
+
+
+
+
+
+
+
+
             {/* zare_nk_050317_commented_st(felan nemikhaim) */}
             {/* <View
               // id="Subprograms-5"
@@ -4631,8 +4783,7 @@ export default function HomeScreen({
               style={[{
                 display: "flex",
                 flexDirection: "row",
-              }, SubprogramsResponse]}
-            >
+              }, SubprogramsResponse]}>
               <TouchableOpacity
                 // className="vorsab"
                 // href="/games"  

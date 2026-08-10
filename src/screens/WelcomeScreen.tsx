@@ -61,8 +61,8 @@ const WelcomeScreen = (
         onPress={() => navigation.navigate("Home")}
         backgroundColor="green"
         textColor="white"
-        width="80%"
-      />
+        width="80%" />
+
       <View style={{ height: 18 }} />
 
       <ReusableButton
@@ -72,8 +72,8 @@ const WelcomeScreen = (
         backgroundColor="blue"
         textColor="white"
         // width={500}
-        width="80%"
-      />
+        width="80%" />
+
       <View style={{ height: 18 }} />
 
       <ReusableButton
@@ -81,8 +81,8 @@ const WelcomeScreen = (
         onPress={() => navigation.navigate("Login")}
         backgroundColor={theme.buttonBackground}
         textColor="black"
-        width="80%"
-      />
+        width="80%" />
+
       <View style={{ height: 18 }} />
 
       <ReusableButton
@@ -90,8 +90,8 @@ const WelcomeScreen = (
         onPress={() => navigation.navigate("Scanner")}
         backgroundColor={theme.buttonBackground}
         textColor="black"
-        width="80%"
-      />
+        width="80%" />
+
       <View style={{ height: 18 }} />
 
       <ReusableButton
@@ -99,8 +99,8 @@ const WelcomeScreen = (
         onPress={() => navigation.navigate("SupperGame")}
         backgroundColor={theme.buttonBackground}
         textColor="brown"
-        width="80%"
-      />
+        width="80%" />
+
       <View style={{ height: 18 }} />
 
       {/* zare_nk_041022_added_st */}
@@ -109,8 +109,8 @@ const WelcomeScreen = (
         onPress={() => navigation.navigate("discountsAndOffers")}
         backgroundColor={theme.buttonBackground}
         textColor="yellow"
-        width="80%"
-      />
+        width="80%" />
+
       <View style={{ height: 18 }} />
       {/* zare_nk_041022_added_st */}
 
@@ -119,8 +119,8 @@ const WelcomeScreen = (
         onPress={toggleTheme}
         backgroundColor={theme.buttonBackground}
         textColor={theme.buttonColor}
-        width="80%"
-      />
+        width="80%" />
+        
     </View>
   );
 };

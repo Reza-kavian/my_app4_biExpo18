@@ -1,4 +1,4 @@
-// shoppingbasketScreen.tsx  ////zare_nk_050515_okk(1)
+// shoppingbasketScreen.tsx  ////zare_nk_050520_okk(1)
 import { useState, useEffect, useRef, useMemo } from "react";
 import {
     View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -1376,8 +1376,8 @@ export default function ShoppingbasketComponent({
                 console.log('050514-addToCartInIndex-else 5 IdKala response.ok-data: ' + JSON.stringify(data));
                 // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);   ////zare_nk_050428_commented
                 var result = data;
-                // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
-                if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
+                // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse -3)
+                if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse -3)
                     setIsOpenedMymodalForWarning(true);
                     setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
@@ -1391,8 +1391,8 @@ export default function ShoppingbasketComponent({
                     // if (span instanceof HTMLElement) {
                     //     span.innerText = result.message;
                     // }
-                    // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
-                } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
+                    // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse -3)
+                } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse -3) 
 
                     // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
                     let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
@@ -1519,13 +1519,13 @@ export default function ShoppingbasketComponent({
                     ////zare_nk_050431_nokteh_st(raveshe setState amn)
 
                     setSabadRows((curItems) => {
-                        ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+                        ////zare_nk_050514_added_st(gonjoondane statuse -3) 
                         if (Tedad <= 0) {
                             return curItems.filter(
                                 item => item.IdKala !== addRemParam.IdKala
                             );
                         }
-                        ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+                        ////zare_nk_050514_added_end(gonjoondane statuse -3) 
 
                         // if (Tedad === 1) { ////zare_nk_050431_commented(shayad parsafar bedalile adame mojoodi meghdare yeke ghabli ra mojadad yek 
                         //// bedeh va man dobare ye satr behesh bedam!! pas rahe betterWay01 ro anjam midim)
@@ -1551,8 +1551,8 @@ export default function ShoppingbasketComponent({
                                 FeeForoosh: addRemParam.FeeForoosh,
                                 FeeMasraf: addRemParam.FeeMasraf,
                                 ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
-                                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented
-                                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added  
+                                // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
                                 ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                 Mojoodi: addRemParam.Mojoodi,
                                 MaxTedad: addRemParam.MaxTedad,
@@ -1579,8 +1579,8 @@ export default function ShoppingbasketComponent({
                                         FeeForoosh: addRemParam.FeeForoosh,
                                         FeeMasraf: addRemParam.FeeMasraf,
                                         ////zare_nk_050516_nokteh_st(parvand dar v1.0.0 basteh)
-                                        // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented
-                                        BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added 
+                                        // BarcodeKala: addRemParam.BarcodeKala,   ////zare_nk_050515_commented(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh
+                                        BarcodeKala: satrInoInResult.BarcodeKala,  ////zare_nk_050515_added(natoone bazam bishtaresh koneh)  //vali behtare parsafar barresi koneh age darsabad hast bishtar nakoneh va kamtar betooteh koneh              
                                         ////zare_nk_050516_nokteh_end(parvand dar v1.0.0 basteh)
                                         Mojoodi: addRemParam.Mojoodi,
                                         MaxTedad: addRemParam.MaxTedad,
@@ -1597,12 +1597,12 @@ export default function ShoppingbasketComponent({
                             return curItem;
                         });
                     });
-                    ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+                    ////zare_nk_050514_added_st(gonjoondane statuse -3) 
                     if (result.status == -3) {
                         setIsOpenedMymodalForWarning(true);
                         setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
                     }
-                    ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+                    ////zare_nk_050514_added_end(gonjoondane statuse -3) 
 
                     ////zare_nk_050431_nokteh_end(raveshe setState amn)
 
@@ -1802,8 +1802,8 @@ export default function ShoppingbasketComponent({
                 // } 
                 ////zare_nk_050514_commented_end(az apiye tochi avardeh shod va karbord nadare inja)
 
-                // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
-                if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
+                // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse -3)
+                if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse -3)
                     setIsOpenedMymodalForWarning(true);
                     setWarningTextInMymodalForWarning(result.errors[0]);  ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
                     // const bootstrap = await getBootstrap();
@@ -1817,8 +1817,8 @@ export default function ShoppingbasketComponent({
                     // if (span instanceof HTMLElement) {
                     //     span.innerText = result.message;
                     // }
-                    // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
-                } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
+                    // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse -3)
+                } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse -3) 
                     console.log('050329-result.status == 0-data: ' + JSON.stringify(result));
 
                     ////050329-result.status == 0-data: 
@@ -1977,12 +1977,12 @@ export default function ShoppingbasketComponent({
                         })
                     })
                     ////zare_nk_050428_added_end(baraye updatre offline sabad bad az addRemm kardanha) 
-                    ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+                    ////zare_nk_050514_added_st(gonjoondane statuse -3) 
                     if (result.status == -3) {
                         setIsOpenedMymodalForWarning(true);
                         setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
                     }
-                    ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+                    ////zare_nk_050514_added_end(gonjoondane statuse -3) 
                 }
             } else {
                 console.log('050329-!!response.ok');
@@ -2056,6 +2056,7 @@ export default function ShoppingbasketComponent({
             addRemParam
         );
     };
+
     // if (!device) return <Text style={styles.centerText}>دوربین یافت نشد</Text>;  //zare_nk_041201
     // if (!hasPermission) return <Text style={styles.centerText}>نیاز به دسترسی دوربین</Text>;    //zare_nk_041201
     const hasTorch = device?.hasTorch ?? false;  //zare_nk_040927_added_st(baraye danestane flash dashtane dastgah)

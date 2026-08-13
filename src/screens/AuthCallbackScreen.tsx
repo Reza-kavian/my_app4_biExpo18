@@ -1,4 +1,4 @@
-// AuthCallbackScreen.tsx     ////zare_nk_050518_okk(1)
+// AuthCallbackScreen.tsx     ////zare_nk_050522_okk(1)
 import React, { useEffect } from "react";
 import { View, ActivityIndicator } from "react-native";
 import { Alert } from "react-native";

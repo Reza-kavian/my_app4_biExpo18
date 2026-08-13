@@ -1,4 +1,4 @@
-////zare_nk_050514_okk(1)
+////zare_nk_050522_okk(1)
 // "use client";  //zare_nk_041129_commente
 // import { useRouter } from "next/navigation";  //zare_nk_041129_commente
 import { useState, useEffect, useRef, useMemo, useCallback } from "react";
@@ -325,8 +325,8 @@ export default function ShallowRoutingExample({
         body: JSON.stringify({
           BarcodeKala: barcodeKala,
           IdShobeh: Number(currentShobeh), ////zare_nk_050326_added(age kerfue biad 12 hast) 
-          // IdKala: 1111 //zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro.ma alan chon dar 
-          //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim,meghdare 1111 ha soori neveshtam)
+          // IdKala: 1111  ////zare_nk_041115_nokteh(api Api_SelectKalaShobeh ham BarcodeKala ro voroodi migireh ham IdKala ro. ma alan chon dar 
+          //// barkode kala hanooz kala va keshi nashodeh va IdKala nadarim pas hamoon BarcodeKala ro miferestim va IdKala ro comment mikonim, meghdare 1111 ra soori neveshtam)
         }),
         // credentials: "include", //zare_nk_040402_commented
       });
@@ -843,9 +843,9 @@ export default function ShallowRoutingExample({
                 MaxTedad: item.MaxTedad,
                 father: "#cardcontainer2",
                 refForfather: refForfather,
-                bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+                bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
                 fromShowDetails: false,
-                ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+                ForCartContentsDesignType: ForCartContentsDesignTypeLet,
                 idTag: "ForCart-" + item.IdKala,
               });
             });
@@ -990,8 +990,8 @@ export default function ShallowRoutingExample({
         // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim)) ////zare_nk_050321_commented(okk)
 
         var result = data;
-        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
+        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse -3)
+        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse -3)
           console.log('050330-addToCartInIndex-result.status != 0');
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
@@ -1006,8 +1006,8 @@ export default function ShallowRoutingExample({
           // if (span instanceof HTMLElement) {
           //     span.innerText = result.message;
           // }
-          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
+          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse -3)
+        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse -3) 
           console.log('050330-addToCartInIndex-result.status == 0');
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar)  
@@ -1088,9 +1088,9 @@ export default function ShallowRoutingExample({
                     MaxTedad: addRemParam.MaxTedad,
                     father: "#cardcontainer2",
                     refForfather: refForfather,
-                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
                     fromShowDetails: false,
-                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,
                     idTag: "ForCart-" + addRemParam.IdKala,
                   }
                 )
@@ -1100,12 +1100,12 @@ export default function ShallowRoutingExample({
             })
           });
 
-          ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_st(gonjoondane statuse -3) 
           if (result.status == -3) {
             setIsOpenedMymodalForWarning(true);
             setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
           }
-          ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_end(gonjoondane statuse -3) 
         }
       } else {
         console.log('050330-addToCartInIndex-!response.ok');
@@ -1229,8 +1229,8 @@ export default function ShallowRoutingExample({
         // }
         ////zare_nk_050514_commented_end(az apiye tochi avardeh shod va karbord nadare inja)
 
-        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
+        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse -3)
+        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse -3)
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
@@ -1244,8 +1244,8 @@ export default function ShallowRoutingExample({
           // if (span instanceof HTMLElement) {
           //     span.innerText = result.message;
           // }
-          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
+          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse -3)
+        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse -3) 
           // console.log('041116-result.status == 0'); 
           // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);  ////zare_nk_050320_commented(jash ro be state page dad)
           // setPage(1);  ////zare_nk_050320_added(baraye api tebghe paarametre page api haye parsafar(dige be state addOrRemChanged niazi nadarim))  ////zare_nk_050321_commented(okk)
@@ -1355,9 +1355,9 @@ export default function ShallowRoutingExample({
                     MaxTedad: addRemParam.MaxTedad,
                     father: "#cardcontainer2",
                     refForfather: refForfather,
-                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,  //zare_nk_041121_added(for shopToDiscount)
+                    bishAzMaxTedadYaMojoodi: bishAzMaxTedadYaMojoodi,
                     fromShowDetails: false,
-                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,  //zare_nk_041121_added(for shopToDiscount)
+                    ForCartContentsDesignType: ForCartContentsDesignTypeLet,
                     idTag: "ForCart-" + addRemParam.IdKala,
                   }
                 )
@@ -1367,12 +1367,12 @@ export default function ShallowRoutingExample({
             })
           });
 
-          ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_st(gonjoondane statuse -3) 
           if (result.status == -3) {
             setIsOpenedMymodalForWarning(true);
             setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
           }
-          ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_end(gonjoondane statuse -3) 
 
         }
       } else {

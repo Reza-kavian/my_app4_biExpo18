@@ -1,4 +1,4 @@
-//src\screens\WelcomeScreen.tsx    ////zare_nk_050517_okk(1)
+//src\screens\WelcomeScreen.tsx    ////zare_nk_050520_okk(1)
 import { View, Text, StyleSheet } from "react-native";
 import { globalStyles } from "../styles/globalsCss";
 import ReusableButton from "../components/ReusableButton";

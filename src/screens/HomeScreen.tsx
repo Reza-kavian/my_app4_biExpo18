@@ -1,4 +1,4 @@
-////zare_nk_0505143_okk(1)
+////zare_nk_050520_okk(1)
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -940,7 +940,7 @@ export default function HomeScreen({
 
   ////zare_nk_041209_added_st
   const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
-  const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  //zare_nk_041208_dded
+  const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  
   const productUriForDet = '';// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
 
   const refForBarcodeValue = useRef<string | null>(null);   ////zare_nk_050328_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
@@ -2156,8 +2156,8 @@ export default function HomeScreen({
         );
         // setAddOrRemChanged(addRemParam.BarcodeKala + "-" + TedadOutTochikalaei);  //zare_nk_041123_commented
         var result = data;
-        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
+        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse -3)
+        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse -3)
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
@@ -2171,8 +2171,8 @@ export default function HomeScreen({
           // if (span instanceof HTMLElement) {
           //     span.innerText = result.message;
           // }
-          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
+          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse -3)
+        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse -3) 
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
           let Tedad = satrInoInResult.Tedad;
@@ -2234,12 +2234,12 @@ export default function HomeScreen({
             });
           }
 
-          ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_st(gonjoondane statuse -3) 
           if (result.status == -3) {
             setIsOpenedMymodalForWarning(true);
             setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
           }
-          ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_end(gonjoondane statuse -3) 
 
         }
       } else {
@@ -2372,8 +2372,8 @@ export default function HomeScreen({
         // }
         ////zare_nk_050514_commented_end(az apiye tochi avardeh shod va karbord nadare inja)
 
-        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr)
+        // if (result.status != 0) {   ////zare_nk_050514_commented(gonjoondane statuse -3)
+        if (result.status != 0 && result.status != -3) {    ////zare_nk_050514_added(gonjoondane statuse -3)
           setIsOpenedMymodalForWarning(true);
           setWarningTextInMymodalForWarning(result.errors[0]); ////zare_nk_050431_dar in api dar statuse!=0 message ra khali mideh va errors ro meghdar mideh)
           // const bootstrap = await getBootstrap();
@@ -2387,8 +2387,8 @@ export default function HomeScreen({
           // if (span instanceof HTMLElement) {
           //     span.innerText = result.message;
           // }
-          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse sefr)
-        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse sefr) 
+          // } else if (result.status == 0) {    ////zare_nk_050514_commented(gonjoondane statuse -3)
+        } else if (result.status == 0 || result.status == -3) {    ////zare_nk_050514_added(gonjoondane statuse -3) 
           console.log('041116-result.status == 0');
           // let satrInoInResult = JSON.parse(result.data.satr)[0];  ////zare_nk_050327_nokteh(dar pasokhe api tochi) 
           let satrInoInResult = JSON.parse(result.data)[0];    ////zare_nk_050327_nokteh(dar pasokhe api hamyar) 
@@ -2451,12 +2451,12 @@ export default function HomeScreen({
             });
           }
 
-          ////zare_nk_050514_added_st(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_st(gonjoondane statuse -3) 
           if (result.status == -3) {
             setIsOpenedMymodalForWarning(true);
             setWarningTextInMymodalForWarning(`موجودی کالای ${addRemParam.NameKala} بروز شد`);
           }
-          ////zare_nk_050514_added_end(gonjoondane statuse sefr) 
+          ////zare_nk_050514_added_end(gonjoondane statuse -3) 
 
         }
       } else {
@@ -2613,14 +2613,13 @@ export default function HomeScreen({
       // setTextInModalForGetLocation('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');   ////zare_nk_050415_commented
       // setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast, pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))  ////zare_nk_050415_commented
       // setGetLoc(true);  ////zare_nk_050415_added
-
+      
       const hasPermission = await requestLocationPermission();
       if (!hasPermission) {
         setIsOpenedModalForGetLocation(true);
         setTextInModalForGetLocation('لطفا مجوز دسترسی به لوکیشن را در تنظیمات گوشی به این برنامه بدهید');
         return;
       }
-
       tempAsyncFuncForLocationPermission();
       return;
     }
@@ -2648,7 +2647,6 @@ export default function HomeScreen({
     ////zare_nk_050312_commented_end
     setIsOpenedProdDetModal(false); //zare_nk_040325_nokteh(shayad niaziam nabood! chon baste beshe modalDet setIsOpenedProdDetModal(false) seda zadeh mishe!!)
     setIsOpenedCodeScannerModal(true);
-
     isScanningRef.current = true;  ////zare_nk_050508_added
     setIsScanning(true);  //zare_nk_041203_added
   };
@@ -2696,7 +2694,6 @@ export default function HomeScreen({
         visible={isOpenedMymodalForWarning}
         transparent
         animationType="fade"
-        ////zare_nk_041203_added_st
         onRequestClose={() => {
           // Alert.alert('aaaaa');
           // setAddOrRemChanged("notNull");
@@ -2707,16 +2704,13 @@ export default function HomeScreen({
 
           isScanningRef.current = true;  ////zare_nk_050508_added
           setIsScanning(true);
-        }}
-      ////zare_nk_041203_added_end
-      >
+        }}>
         <View style={styles.resultOverlay}>
           <View style={styles.resultBox}>
             {/* <Text style={styles.resultTitle}>✅ بارکد شناسایی شد</Text> */}
             <Text style={styles.resultValue}>
               {warningTextInMymodalForWarning}
             </Text>
-
             {/* <Button
               title="تأیید"
               onPress={() => {
@@ -2744,24 +2738,20 @@ export default function HomeScreen({
               onPress={() => {
                 setIsOpenedMymodalForWarning(false);
                 setScannedValue(null);
-
                 isScanningRef.current = true;  ////zare_nk_050508_added
                 setIsScanning(true);
               }}
-              activeOpacity={0.6}
-            >
+              activeOpacity={0.6}>
               <Text
                 numberOfLines={1}
                 ellipsizeMode="tail"
                 style={{
                   fontFamily: "IRANSansWeb(FaNum)_Medium",
                   color: "white",
-                }}
-              >
+                }}>
                 تأیید
               </Text>
             </TouchableOpacity>
-
           </View>
         </View>
       </Modal>

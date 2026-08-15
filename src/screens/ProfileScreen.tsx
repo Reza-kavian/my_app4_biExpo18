@@ -1,14 +1,19 @@
 //src\screens\ProfileScreen.tsx     ////zare_nk_050514_okk(1)
-import React, { useEffect } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import React, { useEffect, useContext } from "react";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import ReusableButton from "../components/ReusableButton";
 import { useNavigation } from "@react-navigation/native";
 import type { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import type { RootStackParamList } from "../types/navigation"; 
+import type { RootStackParamList } from "../types/navigation";
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList, "Profile">;
 
+////zare_nk_050523_added_st
+import { ThemeContext } from "../context/ThemeContext";
+////zare_nk_050523_added_end
+
 const ProfileScreen = () => {
+  const { theme, toggleTheme, isDark } = useContext(ThemeContext);  ////zare_nk_050523_added
   ////zare_nk_040429_commented_st(aslan lazem nist inja be splash befrestim ke login boodan ro check koneh!balke dar khode welcome ke dokmeye login ro mizane karbar dastoore navigation.navigate("Splash", { target: "Profile" }) ro mizanim ta be jaye profile be splash bere!!)
   // useEffect(() => {
   //   navigation.replace("Splash", { target: "Profile" });
@@ -27,6 +32,18 @@ const ProfileScreen = () => {
         textColor="white"
         width={200}
       />
+
+      {/* zare_nk_050523_added_st */}
+
+
+      <ReusableButton
+        title="نغییر تم"
+        onPress={toggleTheme}
+        backgroundColor="blue"
+        textColor="white"
+        width={200}
+      />
+      {/* zare_nk_050523_added_end */}
     </View>
   );
 };

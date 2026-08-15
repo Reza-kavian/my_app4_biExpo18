@@ -31,6 +31,11 @@ import BackButtonWhiteIcon from "../components/icons/images/BackButtonWhite";   
 
 import { useAuthentication } from '../context/AuthenticationContext';   ////zare_nk_050318_added
 
+////zare_nk_050523_added_st
+import { ThemeContext } from "../context/ThemeContext";
+import { useContext } from "react";
+////zare_nk_050523_added_end
+
 interface MyJwtPayload {
   ////zare_nk_050501_commented_st(dar api tochikala)
   // FullName: string|null;
@@ -56,6 +61,8 @@ const MyCustomHeader = ({
   route,
   options,
 }: NativeStackHeaderProps) => {
+  const { theme, toggleTheme, isDark } = useContext(ThemeContext);  ////zare_nk_050523_added
+
   ////zare_nk_040530_added_end(rahe2-baraye masalan SplashScreen va tamame safahate dige ham karbord dare-
   //// parameterhaye voroodi ra barname automat az React Navigation migire)  ////zare_nk_041020_nokteh(albateh dar safahat be jaye NativeStackHeaderProps az NativeStackScreenProps estefadeh mikonim))
   ////zare_nk_050518_commented_st(for use AuthenticationContext)
@@ -222,7 +229,6 @@ const MyCustomHeader = ({
         justifyContent: "space-between",
         ////zare_nk_050515_nokteh_end(sabke sefarzandi ke vasati vasat bashe ba positione absolute be vasati)
       }}>
-
         {/* لوگو سمت چپ */}
         <View style={[styles.buttonsContainer,
         {
@@ -270,13 +276,13 @@ const MyCustomHeader = ({
                 } */}
                 {/* zare_nk_050518_added(for use AuthenticationContext) */}
                 {isLoginAndInf?.NameMoshtari
-                  ? isLoginAndInf.NameMoshtari  
+                  ? isLoginAndInf.NameMoshtari
                   :
                   (isLoginAndInf?.unique_name
-                    ? isLoginAndInf.unique_name  
-                    : isLoginAndInf.Mobile  
+                    ? isLoginAndInf.unique_name
+                    : isLoginAndInf.Mobile
                   )
-                }                 
+                }
               </Text>
             </View>
           ) : (

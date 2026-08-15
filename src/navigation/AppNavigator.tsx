@@ -22,19 +22,18 @@ import MyCustomHeader from "../components/MyCustomHeader";
 // import "@/styles/globals.css";  //zare_nk_040609_added
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
-import { NativeStackHeaderProps } from "@react-navigation/native-stack";
+import { NativeStackHeaderProps} from "@react-navigation/native-stack";
  
 const AppNavigator = () => {
   return (
     // <NavigationContainer>  ////zare_nk_040604_commented(NavigationContainer ra dar App.tsx lahaz kardim)
     <Stack.Navigator
       initialRouteName="Home"
-      screenOptions={({ navigation }) => ({
+      screenOptions={({ navigation }) => ({        
         // header: (props) => <MyCustomHeader {...props} />, //zare_nk_041007_commented(dorosteh va noesh pishfarz any manzoor misheh, vali chon nazashtim doostdare typeScript nist)
         header: (props: NativeStackHeaderProps) => <MyCustomHeader {...props} />, //zare_nk_041007_added(doostdare typeScript hast)
         ////zare_nk_050201_nokteh(<MyCustomHeader {...props} /> moadel ast ba : <MyCustomHeader navigation={...} route={...} options={...} />)
         ////zare_nk_050201_nokteh(<MyCustomHeader props={props} /> molahezeh mishe ke az raveshe classice seda zadane component va meghdar dehiye parametrhayash estefadeh kardim )
-
         headerShown: true,  ////zare_nk_050129_added(pish farz inja true hast, man jahate moroor gozashtam)
       })}>
       <Stack.Screen name="Home" component={HomeScreen}

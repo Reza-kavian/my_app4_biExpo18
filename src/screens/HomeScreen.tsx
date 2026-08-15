@@ -926,7 +926,6 @@ import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 type Props = NativeStackScreenProps<RootStackParamList, "Home">;
 
-// export default function ShallowRoutingExample({
 export default function HomeScreen({
   navigation,
   route,
@@ -940,7 +939,7 @@ export default function HomeScreen({
 
   ////zare_nk_041209_added_st
   const [productHeightForDet, setProductHeightForDet] = useState<number>(0);
-  const [productWidthForDet, setProductWidthForDet] = useState<number>(0);  
+  const [productWidthForDet, setProductWidthForDet] = useState<number>(0);
   const productUriForDet = '';// `https://img.tochikala.com/Product/${ForCartContInProdDetVal.IdKala}.webp`; // تبدیل به متغیر 
 
   const refForBarcodeValue = useRef<string | null>(null);   ////zare_nk_050328_added(in ref movaghat baraye namayeshe barcode be owner estefadeh mishe(esbate barcodekhani))
@@ -1069,6 +1068,20 @@ export default function HomeScreen({
   ////zare_nk_041209_added_end(baraye mohasebeye nesbate width be heighte tasvir chon height:auto dar reactNative amal nemikoneh)
 
   console.log('041123-ShallowRoutingExample called!!');
+
+  ////zare_nk_050524_added_st
+  type footerBtnClickedType = {
+    home: boolean;
+    orders: boolean;
+    profile: boolean;
+  };
+
+  const [footerBtnClicked, setFooterBtnClicked] = useState<footerBtnClickedType>({
+    home: true,
+    orders: false,
+    profile: false,
+  });
+  ////zare_nk_050524_added_end
 
   const [ForCartContInProdDetVal, setForCartContInProdDetVal] =
     useState<ForCartContInProdDetValType>();
@@ -2613,7 +2626,7 @@ export default function HomeScreen({
       // setTextInModalForGetLocation('برنامه برای استفاده از این قسمت نیاز به لوکیشن فعلی شما دارد');   ////zare_nk_050415_commented
       // setGetLoc(false);  ////zare_nk_050325_added(chon jaei false nakardim va ehtemalan az ghabl ham true hast, pas be useEfect nemirh!(chon useEffect ba tagheire state ha seda zadeh mishe))  ////zare_nk_050415_commented
       // setGetLoc(true);  ////zare_nk_050415_added
-      
+
       const hasPermission = await requestLocationPermission();
       if (!hasPermission) {
         setIsOpenedModalForGetLocation(true);
@@ -3714,11 +3727,7 @@ export default function HomeScreen({
                                     backgroundColor: "inherit",
                                   }}
                                 >
-                                  {/* <img
-                                                                                                 src="https://img.tochikala.com/tochikala/left-arrow.svg"
-                                                                                                 style={{ width: "15px" }}
-                                                                                                 alt="نمایش بیشتر"
-                                                                                             /> */}
+
                                   <Image
                                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow.svg" }}
                                     style={{ width: 15 }}
@@ -4008,389 +4017,390 @@ export default function HomeScreen({
           )
         ////zare_nk_041205_updated_end(kolle isOpenedSeePricesModal == true)
       ) : (
-        <ScrollView horizontal={false}
-          style={{
-            display: "flex", flexDirection: "column", direction: "rtl",
-            backgroundColor: isDark ? theme.backgroundColor : 'white',
-            // borderWidth:1,borderColor:'red',
-          }}>
-          <View // id="SubprogramsCont"
-            style={[{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              justifyContent: "space-between",
-              // gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
-            }, SubprogramsContResponse]} >
-            <View
-              // id="Subprograms-1"
-              // className="Subprograms"
+        <>
+          <ScrollView horizontal={false}
+            style={{
+              display: "flex", flexDirection: "column", direction: "rtl",
+              backgroundColor: isDark ? theme.backgroundColor : 'white',
+              // borderWidth: 1, borderColor: 'red',
+            }}
+            contentContainerStyle={[{
+              paddingBottom: 110,
+            }]}>
+            <View // id="SubprogramsCont"
               style={[{
                 display: "flex",
                 flexDirection: "row",
-              }, SubprogramsResponse]}  >
-              <TouchableOpacity
-                // className="vorsab"
-                // href="/shoppingbasket" 
-                // onPress={() => { return navigation.navigate("Splash", { target: "shoppingbasket" }); }}    ////zare_nk_050323_commented
-                onPress={() => { tryGoSplashWithTarget("shoppingbasket"); }}    ////zare_nk_050323_added             
-                style={{
-                  width: "100%",
+                flexWrap: "wrap",
+                justifyContent: "space-between",
+                // gap: 30, //zare_nk_041206_added(beine farzandan margin automat mindaze, jaigozine .Subprograms:nth-child(odd) kardim)
+                // borderWidth: 1, borderColor: 'green',
+              }, SubprogramsContResponse]} >
+              <View // id="Subprograms-1"className="Subprograms"
+                style={[{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,    
-                  padding: 10,
-                  // alignItems: "center",   //zare_nk_041206_commented
-                  borderWidth: 1,
-                  // borderColor: "#a9a9a9",
-                  borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  borderStyle: 'solid',
-                  // boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
-                  borderRadius: 25,
-                  // backgroundColor: "white",
-                  backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  overflow: "hidden",
-                }}
-                activeOpacity={0.1}>
-                <View // className="imgAndTextInSubprograms"
-                  style={[{
+                }, SubprogramsResponse]}>
+                <TouchableOpacity // className="vorsab" href="/shoppingbasket" 
+                  // onPress={() => { return navigation.navigate("Splash", { target: "shoppingbasket" }); }}    ////zare_nk_050323_commented
+                  onPress={() => { tryGoSplashWithTarget("shoppingbasket"); }}    ////zare_nk_050323_added             
+                  style={{
+                    width: "100%",
                     display: "flex",
-                    //  flexDirection: "row", 
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}>
-                  <View // className="roundedPillsCont"
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,    
+                    padding: 10,
+                    // alignItems: "center",   //zare_nk_041206_commented
+                    borderWidth: 1,
+                    // borderColor: "#a9a9a9",
+                    borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    borderStyle: 'solid',
+                    // boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                    boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
+                    borderRadius: 25,
+                    // backgroundColor: "white",
+                    backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    overflow: "hidden",
+                  }}
+                  activeOpacity={0.1}>
+                  <View // className="imgAndTextInSubprograms"
                     style={[{
                       display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content",
-                    }, roundedPillsContResponse]} >
-                    <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
-                      // className="rounded-pill"
-                      style={{
+                      //  flexDirection: "row", 
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
+                    }, imgAndTextInSubprogramsResponse]}>
+                    <View // className="roundedPillsCont"
+                      style={[{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: 'center',
-                        borderWidth: 1,
-                        borderColor: "#E7E7E7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: "50%",
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                      }}
-                    >
-                      {/* <img
+                        // width: "fit-content",
+                      }, roundedPillsContResponse]} >
+                      <View   //zare_nk_041205_updated(kolle style update she)  //zare_nk_041206_okk
+                        // className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          borderWidth: 1,
+                          borderColor: "#E7E7E7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: "50%",
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                        }}
+                      >
+                        {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/superMarket.png"
                         alt="هایپر&zwnj;کرفو"
                       /> */}
-                      <Image
-                        source={superMarketImage}
-                        style={{ backgroundColor: 'inherit', width: 64, height: 64 }}
-                      />
+                        <Image
+                          source={superMarketImage}
+                          style={{ backgroundColor: 'inherit', width: 64, height: 64 }}
+                        />
+                      </View>
+                    </View>
+                    <View
+                      style={[{
+                        display: "flex",
+                        flexDirection: "column",
+                        // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                        justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                        // width: "fit-content", 
+
+                      }, subSysTextContResponse]}
+                    >
+                      <View
+                        style={{
+                          // flex: "0 0 auto",
+                          flexGrow: 0,
+                          flexShrink: 0,
+                          flexBasis: 'auto',
+                          display: "flex",
+                          flexDirection: "row",
+                          marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk 
+                        }}
+                      >
+                        <Text
+                          //  className="titleStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
+                          style={[{
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            // color: '#4b4949',
+                            color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                          }, titleStyleResponse]}
+                        >سبد خرید</Text>
+                      </View>
+                      <View
+                        style={{
+                          flexDirection: "row",
+                        }}
+                      // className="decsInSubprograms"
+                      >
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text
+                            // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              // color: "#6a6a6a",
+                              color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                              fontSize: 12,
+                            }, valueStyleResponse,]}
+                          >
+                            امکان مشاهده و ویرایش سبد خرید
+                          </Text>
+                        </View>
+                      </View>
                     </View>
                   </View>
                   <View
+                    // className="leftArrowInSubprograms"
+                    style={{
+                      display: 'flex', flexDirection: "row", alignItems: 'center',
+                    }}
+                  >
+                    {/* <Image
+                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
+                    style={{ width: 20, height:20 }}
+                  /> */}
+                    {/* <SvgUri
+                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                    width={20}
+                    height={20}
+                  /> */}
+                    <InfAnfCommentsIcon
+                      fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
+
+              <View  // id="Subprograms-2" className="Subprograms"
+                style={[{
+                  display: "flex",
+                  flexDirection: "row",
+                }, SubprogramsResponse]}>
+                <TouchableOpacity
+                  // onClick={seePrices}
+                  onPress={forOpenCodeScanner}
+                  // className="vorsab"
+                  // href="#"
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,   
+                    padding: 10,
+                    // alignItems: "center",    //zare_nk_041206_commented
+                    borderWidth: 1,
+                    // borderColor: "#a9a9a9",
+                    borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    borderStyle: 'solid',
+                    // boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                    boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
+                    borderRadius: 25,
+                    // backgroundColor: "white",
+                    backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    overflow: "hidden",
+                  }}>
+                  <View // className="imgAndTextInSubprograms"
                     style={[{
                       display: "flex",
-                      flexDirection: "column",
-                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
-                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content", 
+                      //  flexDirection: "row", 
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
+                    }, imgAndTextInSubprogramsResponse]}>
+                    <View // className="roundedPillsCont"
+                      style={[{
+                        display: "flex",
+                        flexDirection: "row",
+                        // width: "fit-content", 
+                      }, roundedPillsContResponse]}>
+                      <View // className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          // border: "1px solid #E7E7E7",
+                          borderWidth: 1,
+                          borderColor: "#E7E7E7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: "50%",
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                          // width:86
+                        }}>
 
-                    }, subSysTextContResponse]}
-                  >
+                        {/* <Image
+                        source={{ uri: "/images/Subprograms/checklist.png" }}
+                        style={{ width: 64, }}
+                      /> */}
+                        <Image
+                          source={checklistImage}
+                          style={{ backgroundColor: "inherit", width: 64, height: 64 }}
+                        />
+                      </View>
+                    </View>
                     <View
-                      style={{
+                      style={[{
+                        display: "flex",
+                        flexDirection: "column",
+                        // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                        justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                        // width: "fit-content",
+                      }, subSysTextContResponse]}>
+                      <View style={{
                         // flex: "0 0 auto",
                         flexGrow: 0,
                         flexShrink: 0,
                         flexBasis: 'auto',
                         display: "flex",
                         flexDirection: "row",
-                        marginBottom: 7,  //zare_nk_041205_added  //zare_nk_041206_okk 
-                      }}
-                    >
-                      <Text
-                        //  className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          // color: '#4b4949',
-                          color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                        }, titleStyleResponse]}
-                      >سبد خرید</Text>
-                    </View>
-                    <View
-                      style={{
-                        flexDirection: "row",
-                      }}
-                    // className="decsInSubprograms"
-                    >
-                      <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text
-                          // className="valueStyle"
-                          numberOfLines={1}
-                          ellipsizeMode="tail"
-                          style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            // color: "#6a6a6a",
-                            color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                            fontSize: 12,
-                          }, valueStyleResponse,]}
-                        >
-                          امکان مشاهده و ویرایش سبد خرید
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-                <View
-                  // className="leftArrowInSubprograms"
-                  style={{
-                    display: 'flex', flexDirection: "row", alignItems: 'center',
-                  }}
-                >
-                  {/* <Image
-                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                    style={{ width: 20, height:20 }}
-                  /> */}
-                  {/* <SvgUri
-                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    width={20}
-                    height={20}
-                  /> */}
-                  <InfAnfCommentsIcon
-                    fill={isDark ? "#e7e7e7" : "#a9a9a9"}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <View  // id="Subprograms-2" className="Subprograms"
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}>
-              <TouchableOpacity
-                // onClick={seePrices}
-                onPress={forOpenCodeScanner}
-                // className="vorsab"
-                // href="#"
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,   
-                  padding: 10,
-                  // alignItems: "center",    //zare_nk_041206_commented
-                  borderWidth: 1,
-                  // borderColor: "#a9a9a9",
-                  borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  borderStyle: 'solid',
-                  // boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
-                  borderRadius: 25,
-                  // backgroundColor: "white",
-                  backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  overflow: "hidden",
-                }}>
-                <View // className="imgAndTextInSubprograms"
-                  style={[{
-                    display: "flex",
-                    //  flexDirection: "row", 
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}>
-                  <View // className="roundedPillsCont"
-                    style={[{
-                      display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content", 
-                    }, roundedPillsContResponse]}>
-                    <View // className="rounded-pill"
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
-                        borderWidth: 1,
-                        borderColor: "#E7E7E7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: "50%",
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                        // width:86
+                        marginBottom: 7,  //zare_nk_041205_added
                       }}>
-
-                      {/* <Image
-                        source={{ uri: "/images/Subprograms/checklist.png" }}
-                        style={{ width: 64, }}
-                      /> */}
-                      <Image
-                        source={checklistImage}
-                        style={{ backgroundColor: "inherit", width: 64, height: 64 }}
-                      />
-                    </View>
-                  </View>
-                  <View
-                    style={[{
-                      display: "flex",
-                      flexDirection: "column",
-                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
-                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content",
-                    }, subSysTextContResponse]}>
-                    <View style={{
-                      // flex: "0 0 auto",
-                      flexGrow: 0,
-                      flexShrink: 0,
-                      flexBasis: 'auto',
-                      display: "flex",
-                      flexDirection: "row",
-                      marginBottom: 7,  //zare_nk_041205_added
-                    }}>
-                      <Text // className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          // color: '#4b4949',
-                          color:  theme.buttonColor ,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                        }, titleStyleResponse]}>
-                        مشاهده قیمت ها
-                      </Text>
-                    </View>
-                    <View // className="decsInSubprograms"
-                      style={{ flexDirection: "row" }}>
-                      <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text // className="valueStyle"
+                        <Text // className="titleStyle"
                           numberOfLines={1}
                           ellipsizeMode="tail"
                           style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            // color: "#6a6a6a",
-                            color:isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                            fontSize: 12,
-                          }, valueStyleResponse,]}>
-                          مشاهده اطلاعات کالا با اسکن بارکد
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            // color: '#4b4949',
+                            color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                          }, titleStyleResponse]}>
+                          مشاهده قیمت ها
                         </Text>
+                      </View>
+                      <View // className="decsInSubprograms"
+                        style={{ flexDirection: "row" }}>
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              // color: "#6a6a6a",
+                              color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                              fontSize: 12,
+                            }, valueStyleResponse,]}>
+                            مشاهده اطلاعات کالا با اسکن بارکد
+                          </Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View // className="leftArrowInSubprograms"
-                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
-                  {/* <Image
+                  <View // className="leftArrowInSubprograms"
+                    style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
+                    {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
                   /> */}
-                  {/* <SvgUri
+                    {/* <SvgUri
                     uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     width={20}
                     height={20}
                   /> */}
-                  <InfAnfCommentsIcon
-                    fill={isDark ? "#e7e7e7" : "#a9a9a9"}  
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
+                    <InfAnfCommentsIcon
+                      fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
 
-            <View // id="Subprograms-3" className="Subprograms"
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}>
-              <TouchableOpacity // className="vorsab" href="/ordersHistory"   
-                onPress={() => { return navigation.navigate("Splash", { target: "ordersHistory" }); }}    ////zare_nk_050323_nokteh(felan tashkhis dadam baraye tarikhcheye sefareshat niazi be location nist )                 
-                style={{
-                  width: "100%",
+              <View // id="Subprograms-3" className="Subprograms"
+                style={[{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,   
-                  padding: 10,
-                  // alignItems: "center",    //zare_nk_041206_commented   
-                  borderWidth: 1,
-                  // borderColor: "#a9a9a9",
-                   borderColor: isDark ? theme.buttonBackground :  "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  borderStyle: 'solid',
-                  // boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  boxShadow:isDark ? "none" :  "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
-                  borderRadius: 25,
-                  // backgroundColor: "white",
-                   backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  overflow: "hidden",
-                }}
-                activeOpacity={0.1}>
-                <View // className="imgAndTextInSubprograms"
-                  style={[{
+                }, SubprogramsResponse]}>
+                <TouchableOpacity // className="vorsab" href="/ordersHistory"   
+                  onPress={() => { return navigation.navigate("Splash", { target: "ordersHistory" }); }}    ////zare_nk_050323_nokteh(felan tashkhis dadam baraye tarikhcheye sefareshat niazi be location nist )                 
+                  style={{
+                    width: "100%",
                     display: "flex",
-                    //  flexDirection: "row",
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}>
-                  <View // className="roundedPillsCont"
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,   
+                    padding: 10,
+                    // alignItems: "center",    //zare_nk_041206_commented   
+                    borderWidth: 1,
+                    // borderColor: "#a9a9a9",
+                    borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    borderStyle: 'solid',
+                    // boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                    boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
+                    borderRadius: 25,
+                    // backgroundColor: "white",
+                    backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    overflow: "hidden",
+                  }}
+                  activeOpacity={0.1}>
+                  <View // className="imgAndTextInSubprograms"
                     style={[{
                       display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content",
-                    }, roundedPillsContResponse]}>
-                    <View // className="rounded-pill"
-                      style={{
+                      //  flexDirection: "row",
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
+                    }, imgAndTextInSubprogramsResponse]}>
+                    <View // className="roundedPillsCont"
+                      style={[{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
-                        borderWidth: 1,
-                        borderColor: "#E7E7E7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: "50%",
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                        // width:86
-                      }}>
-                      {/* <Image
+                        // width: "fit-content",
+                      }, roundedPillsContResponse]}>
+                      <View // className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          // border: "1px solid #E7E7E7",
+                          borderWidth: 1,
+                          borderColor: "#E7E7E7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: "50%",
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                          // width:86
+                        }}>
+                        {/* <Image
                         source={{ uri: "/images/Subprograms/order-icon" }}
                         style={{ width: 64, }}
                       /> */}
-                      {/* <SvgUri
+                        {/* <SvgUri
                         uri={orderIconImage}
                         width={64}
                         height={64}
                       /> */}
-                      <OrderIconImage
-                        width={64} height={64}
-                        style={{backgroundColor:'inhereit',}}
-                      />
-                      {/* zare_nk_041206_nokteh(SvgUri baraye svg haye ba addrese kamel hast(mesle: https://....)
+                        <OrderIconImage
+                          width={64} height={64}
+                          style={{ backgroundColor: 'inhereit', }}
+                        />
+                        {/* zare_nk_041206_nokteh(SvgUri baraye svg haye ba addrese kamel hast(mesle: https://....)
                       vali baraye svg haei ke tooye sitemon hastand va addresdehiye nesbi midim(mesle ../assets/Images/...) kar nemikoneh
                       va bayad khode file import shodeh ra mostaghiman inja benevisim(yani haman lafze OrderIconImage)
                       faghat inke reactNative fekr mikoneh svg mesle png yek asset ast va assetId noe number dare, 
                       pas talash mikoneh svg ro be number tabdil koneh ke khata mideh,ma bayad dar tanzimat begim svg asset nist balke 
                       source ast va source be js tabdil beshe na manande asset be adad,va in tanzimat ra be file metro.config.js 
                       ke pishfarz vojood dare ezafeh mikonim) */}
+                      </View>
                     </View>
-                  </View>
-                  <View style={[{
+                    <View style={[{
                       display: "flex",
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content", 
                     }, subSysTextContResponse]}>
-                    <View style={{
+                      <View style={{
                         // flex: "0 0 auto",
                         flexGrow: 0,
                         flexShrink: 0,
@@ -4399,127 +4409,127 @@ export default function HomeScreen({
                         flexDirection: "row",
                         marginBottom: 7,  //zare_nk_041205_added
                       }}>
-                      <Text //  className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          // color: '#4b4949',
-                          color:  theme.buttonColor ,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                        }, titleStyleResponse]}>
+                        <Text //  className="titleStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
+                          style={[{
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            // color: '#4b4949',
+                            color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                          }, titleStyleResponse]}>
                           تاریخچه سفارشات
-                          </Text>
-                    </View>
-                    <View // className="decsInSubprograms"
-                      style={{ flexDirection: "row" }}>
-                      <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text // className="valueStyle"
-                          numberOfLines={1}
-                          ellipsizeMode="tail"
-                          style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            // color: "#6a6a6a",
-                            color:isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                            fontSize: 12,
-                          }, valueStyleResponse,]}>
-                          گزارش جزئیات سفارشات قبلی
                         </Text>
+                      </View>
+                      <View // className="decsInSubprograms"
+                        style={{ flexDirection: "row" }}>
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              // color: "#6a6a6a",
+                              color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                              fontSize: 12,
+                            }, valueStyleResponse,]}>
+                            گزارش جزئیات سفارشات قبلی
+                          </Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View // className="leftArrowInSubprograms"
-                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
-                  {/* <Image
+                  <View // className="leftArrowInSubprograms"
+                    style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
+                    {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
                   /> */}
-                  {/* <SvgUri
+                    {/* <SvgUri
                     uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     width={20}
                     height={20}
                   /> */}
-                  <InfAnfCommentsIcon
-                    fill={isDark ? "#e7e7e7" : "#a9a9a9"}  
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
+                    <InfAnfCommentsIcon
+                      fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
 
-            <View //id="Subprograms-4" className="Subprograms"
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}>
-              <TouchableOpacity // className="vorsab" href="/discountsAndOffers"  
-                // onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}   ////zare_nk_050323_commented
-                onPress={() => { tryGoSplashWithTarget("discountsAndOffers"); }}    ////zare_nk_050323_added
-                style={{
-                  width: "100%",
+              <View //id="Subprograms-4" className="Subprograms"
+                style={[{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,   
-                  padding: 10,
-                  // alignItems: "center",  //zare_nk_041206_commented 
-                  borderWidth: 1,
-                  // borderColor: "#a9a9a9",   
-                  borderColor: isDark ? theme.buttonBackground :  "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) 
-                  borderStyle: 'solid',
-                  // boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  boxShadow:isDark ? "none" :  "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
-                  borderRadius: 25,
-                  // backgroundColor: "white",
-                  backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  overflow: "hidden", 
-                }}>
-                <View // className="imgAndTextInSubprograms"
-                  style={[{
+                }, SubprogramsResponse]}>
+                <TouchableOpacity // className="vorsab" href="/discountsAndOffers"  
+                  // onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}   ////zare_nk_050323_commented
+                  onPress={() => { tryGoSplashWithTarget("discountsAndOffers"); }}    ////zare_nk_050323_added
+                  style={{
+                    width: "100%",
                     display: "flex",
-                    //  flexDirection: "row",
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}>
-                  <View // className="roundedPillsCont"
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,   
+                    padding: 10,
+                    // alignItems: "center",  //zare_nk_041206_commented 
+                    borderWidth: 1,
+                    // borderColor: "#a9a9a9",   
+                    borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) 
+                    borderStyle: 'solid',
+                    // boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                    boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
+                    borderRadius: 25,
+                    // backgroundColor: "white",
+                    backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    overflow: "hidden",
+                  }}>
+                  <View // className="imgAndTextInSubprograms"
                     style={[{
                       display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content",
-                    }, roundedPillsContResponse]}>
-                    <View // className="rounded-pill"
-                      style={{
+                      //  flexDirection: "row",
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
+                    }, imgAndTextInSubprogramsResponse]}>
+                    <View // className="roundedPillsCont"
+                      style={[{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
-                        borderWidth: 1,
-                        borderColor: "#E7E7E7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: "50%",
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                        // width:86
-                      }}>
-                      {/* <Image
+                        // width: "fit-content",
+                      }, roundedPillsContResponse]}>
+                      <View // className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          // border: "1px solid #E7E7E7",
+                          borderWidth: 1,
+                          borderColor: "#E7E7E7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: "50%",
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                          // width:86
+                        }}>
+                        {/* <Image
                         source={{ uri: "/images/Subprograms/DiscountsAndOffers.png" }}
                         style={{ width: 64, }}
                       /> */}
-                      <Image
-                        source={DiscountsAndOffersImage}
-                        style={{ backgroundColor: "inherit", width: 64, height: 64 }}
-                      />
+                        <Image
+                          source={DiscountsAndOffersImage}
+                          style={{ backgroundColor: "inherit", width: 64, height: 64 }}
+                        />
+                      </View>
                     </View>
-                  </View>
-                  <View style={[{
+                    <View style={[{
                       display: "flex",
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                       // width: "fit-content",
                     }, subSysTextContResponse]}>
-                    <View style={{
+                      <View style={{
                         // flex: "0 0 auto",
                         flexGrow: 0,
                         flexShrink: 0,
@@ -4528,296 +4538,132 @@ export default function HomeScreen({
                         flexDirection: "row",
                         marginBottom: 7,  //zare_nk_041205_added
                       }}>
-                      <Text // className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          // color: '#4b4949',
-                          color:  theme.buttonColor ,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                        }, titleStyleResponse]}>
+                        <Text // className="titleStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
+                          style={[{
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            // color: '#4b4949',
+                            color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                          }, titleStyleResponse]}>
                           تخفیفات و پیشنهادات
+                        </Text>
+                      </View>
+                      <View // className="decsInSubprograms"
+                        style={{ flexDirection: "row", }}>
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              // color: "#6a6a6a",
+                              color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                              fontSize: 12,
+                            }, valueStyleResponse,]}>
+                            مشاهده کالاهای پیشنهادی و پرتخفیف
                           </Text>
-                    </View>
-                    <View // className="decsInSubprograms"
-                      style={{ flexDirection: "row", }}>
-                      <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text // className="valueStyle"
-                          numberOfLines={1}
-                          ellipsizeMode="tail"
-                          style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            // color: "#6a6a6a",
-                            color:isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                            fontSize: 12,
-                          }, valueStyleResponse,]}>
-                          مشاهده کالاهای پیشنهادی و پرتخفیف
-                        </Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View // className="leftArrowInSubprograms"
-                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
-                  {/* <Image
+                  <View // className="leftArrowInSubprograms"
+                    style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
+                    {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, }}
                   /> */}
-                  {/* <SvgUri
+                    {/* <SvgUri
                     uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
                     width={20}
                     height={20}
                   /> */}
-                  <InfAnfCommentsIcon
-                    fill={isDark ? "#e7e7e7" : "#a9a9a9"}  
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
+                    <InfAnfCommentsIcon
+                      fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
 
 
 
-
-
-
-
-
-            <View //id="Subprograms-4" className="Subprograms"
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}>
-              <TouchableOpacity
-                // className="vorsab"
-                // href="/discountsAndOffers"  
-                // onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}   ////zare_nk_050323_commented
-                onPress={toggleTheme}    ////zare_nk_050323_added
-                //         <ReusableButton
-                // title="تغییر تم"
-                // onPress={toggleTheme}
-                // backgroundColor={theme.buttonBackground}
-                // textColor={theme.buttonColor}
-                // width="80%" />
-                style={{
-                  width: "100%",
+              {/* zare_nk_050317_commented_st(felan nemikhaim) */}
+              {/* <View //id="Subprograms-5" className="Subprograms"
+                style={[{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,   
-                  padding: 10,
-                  // alignItems: "center",  //zare_nk_041206_commented                   
-                  borderWidth: 1,
-                  // borderColor: "#a9a9a9",  
-                  borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  // borderColor: "white",   ////zare_nk_050317_added_movaghat
-                  borderStyle: 'solid',
-                  boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
-                  borderRadius: 25,
-                  // backgroundColor: "white",  ////zare_nk_050519_commented
-                  backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                  overflow: "hidden",
-                }}>
-                <View //className="imgAndTextInSubprograms"
-                  style={[{
+                }, SubprogramsResponse]}>
+                <TouchableOpacity
+                  // className="vorsab"
+                  // href="/discountsAndOffers"  
+                  // onPress={() => { return navigation.navigate("Splash", { target: "discountsAndOffers" }); }}   ////zare_nk_050323_commented
+                  onPress={toggleTheme}    ////zare_nk_050323_added
+                  //         <ReusableButton
+                  // title="تغییر تم"
+                  // onPress={toggleTheme}
+                  // backgroundColor={theme.buttonBackground}
+                  // textColor={theme.buttonColor}
+                  // width="80%" />
+                  style={{
+                    width: "100%",
                     display: "flex",
-                    //  flexDirection: "row",
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}>
-                  <View //className="roundedPillsCont"
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,   
+                    padding: 10,
+                    // alignItems: "center",  //zare_nk_041206_commented                   
+                    borderWidth: 1,
+                    // borderColor: "#a9a9a9",  
+                    borderColor: isDark ? theme.buttonBackground : "#a9a9a9",  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    // borderColor: "white",   ////zare_nk_050317_added_movaghat
+                    borderStyle: 'solid',
+                    boxShadow: isDark ? "none" : "#5e5e5e 0px 0px 3px 0px",  ////zare_nk_050519_added(baraye lahaz kardane teme optional) ,
+                    borderRadius: 25,
+                    // backgroundColor: "white",  ////zare_nk_050519_commented
+                    backgroundColor: isDark ? theme.buttonBackground : 'white',  ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                    overflow: "hidden",
+                  }}>
+                  <View //className="imgAndTextInSubprograms"
                     style={[{
                       display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content",
-                    }, roundedPillsContResponse]}>
-                    <View //className="rounded-pill"
-                      style={{
-                        display: "flex",
-                        flexDirection: "row",
-                        justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
-                        borderWidth: 1,
-                        borderColor: "#e7e7e7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: 9999,
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                        // width:86
-                      }}>
-                      {/* <Image
-                        source={{ uri: "/images/Subprograms/DiscountsAndOffers.png" }}
-                        style={{ width: 64, }}
-                      /> */}
-                      <Image source={DiscountsAndOffersImage}
-                        style={{ backgroundColor: 'inherit', width: 64, height: 64 }} />
-                    </View>
-                  </View>
-                  <View style={[{
-                    display: "flex",
-                    flexDirection: "column",
-                    // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
-                    justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                    // width: "fit-content",
-                  }, subSysTextContResponse]}>
-                    <View style={{
-                      // flex: "0 0 auto",
-                      flexGrow: 0,
-                      flexShrink: 0,
+                      //  flexDirection: "row",
+                      flexGrow: 1,
+                      flexShrink: 1,
                       flexBasis: 'auto',
-                      display: "flex",
-                      flexDirection: "row",
-                      marginBottom: 7,  //zare_nk_041205_added
-                    }}>
-                      <Text //className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          // color: '#4b4949',
-                          color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                        }, titleStyleResponse]}>
-                        تغییر تم
-                      </Text>
-                    </View>
-                    <View // className="decsInSubprograms"
-                      style={{ flexDirection: "row", }}>
-                      <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text // className="valueStyle"
-                          numberOfLines={1}
-                          ellipsizeMode="tail"
-                          style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            // color: "#6a6a6a", 
-                            color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
-                            fontSize: 12,
-                          }, valueStyleResponse,]}>
-                          تغییر بک گراند و تکست تگها به تیره و روشن
-                        </Text>
-                      </View>
-                    </View>
-                  </View>
-                </View>
-                <View //className="leftArrowInSubprograms"
-                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
-                  {/* <Image
-                    source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
-                    style={{ width: 20, }}
-                  /> */}
-                  {/* <SvgUri uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    width={20}
-                    height={20} /> */}
-                  {/* <SvgUri uri="/src/assets/images/inf-anf-comments.svg"
-                  style={{width:20,height:20,}}
-                    width={20}
-                    height={20} /> */}
-                  {/* <Text style={{
-                      borderRadius: 100,
-                      width: 20,
-                      height: 20,
-                    }}> */}
-                  <InfAnfCommentsIcon
-                    fill={isDark ? "#e7e7e7" : "#a9a9a9"}
-                  />
-                  {/* <RemoveFromCartTapsiIcon /> */}
-                  {/* </Text> */}
-
-
-                </View>
-              </TouchableOpacity>
-            </View>
-
-
-
-
-
-
-
-
-            {/* zare_nk_050317_commented_st(felan nemikhaim) */}
-            {/* <View
-              // id="Subprograms-5"
-              // className="Subprograms"
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}>
-              <TouchableOpacity
-                // className="vorsab"
-                // href="/games"  
-                // onPress={() => { return navigation.replace("Splash", { target: "SupperGame" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
-                onPress={() => { return navigation.navigate("Splash", { target: "SupperGame" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)
-                style={{
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,   
-                  padding: 10,
-                  // alignItems: "center",  //zare_nk_041206_commented 
-                  borderWidth: 1,
-                  borderColor: "#a9a9a9",
-                  borderStyle: 'solid',
-                  boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: 25,
-                  backgroundColor: "white",
-                  overflow: "hidden",
-                }}
-              >
-                <View
-                  // className="imgAndTextInSubprograms"
-                  style={[{
-                    display: "flex",
-                    //  flexDirection: "row",                    
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}
-                >
-                  <View
-                    // className="roundedPillsCont"
-                    style={[{
-                      display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content",
-
-                    }, roundedPillsContResponse]}
-                  >
-                    <View
-                      // className="rounded-pill"
-                      style={{
+                    }, imgAndTextInSubprogramsResponse]}>
+                    <View //className="roundedPillsCont"
+                      style={[{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
-                        borderWidth: 1,
-                        borderColor: "#E7E7E7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: "50%",
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                        // width:86
-                      }}
-                    > 
-                      <Image
-                        source={gameImage}
-                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
-                      />
+                        // width: "fit-content",
+                      }, roundedPillsContResponse]}>
+                      <View //className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          // border: "1px solid #E7E7E7",
+                          borderWidth: 1,
+                          borderColor: "#e7e7e7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: 9999,
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                          // width:86
+                        }}>
+                        <Image source={DiscountsAndOffersImage}
+                          style={{ backgroundColor: 'inherit', width: 64, height: 64 }} />
+                      </View>
                     </View>
-                  </View>
-                  <View
-                    style={[{
+                    <View style={[{
                       display: "flex",
                       flexDirection: "column",
                       // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                       justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content", 
-                    }, subSysTextContResponse]}
-                  >
-                    <View
-                      style={{
+                      // width: "fit-content",
+                    }, subSysTextContResponse]}>
+                      <View style={{
                         // flex: "0 0 auto",
                         flexGrow: 0,
                         flexShrink: 0,
@@ -4825,216 +4671,519 @@ export default function HomeScreen({
                         display: "flex",
                         flexDirection: "row",
                         marginBottom: 7,  //zare_nk_041205_added
-                      }}
-                    >
-                      <Text
-                        // className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          color: '#4b4949',
-                        }, titleStyleResponse]}
-                      >بازی و سرگرمی</Text>
-                    </View>
-                    <View
-                      style={{ flexDirection: "row", }}
-                    // className="decsInSubprograms"
-                    >
-                      <View style={{ display: "flex", flexDirection: "row" }}>
-                        <Text
-                          // className="valueStyle"
+                      }}>
+                        <Text //className="titleStyle"
                           numberOfLines={1}
                           ellipsizeMode="tail"
                           style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            color: "#6a6a6a",
-                            fontSize: 12,
-                          }, valueStyleResponse,]}
-                        >
-                          لحظات خوش کودکان در محیط هایپر!
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            // color: '#4b4949',
+                            color: theme.buttonColor,   ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                          }, titleStyleResponse]}>
+                          تغییر تم
                         </Text>
+                      </View>
+                      <View // className="decsInSubprograms"
+                        style={{ flexDirection: "row", }}>
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              // color: "#6a6a6a", 
+                              color: isDark ? theme.buttonColor : '#6a6a6a',    ////zare_nk_050519_added(baraye lahaz kardane teme optional)
+                              fontSize: 12,
+                            }, valueStyleResponse,]}>
+                            تغییر بک گراند و تکست تگها به تیره و روشن
+                          </Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  // className="leftArrowInSubprograms"
-                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
-                > 
-                  <SvgUri
-                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    width={20}
-                    height={20}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <View
-              // id="Subprograms-6"
-              // className="Subprograms"
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}
-            >
-              <TouchableOpacity
-                // className="vorsab"
-                // href="/ComparePage" 
-                // onPress={() => { return navigation.navigate("Splash", { target: "ComparePage" }); }} 
-                style={{
-                  width: "100%",
+                  <View //className="leftArrowInSubprograms"
+                    style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
+                    <InfAnfCommentsIcon
+                      fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View> 
+             
+              <View // id="Subprograms-6" className="Subprograms"
+                style={[{
                   display: "flex",
                   flexDirection: "row",
-                  justifyContent: "space-between",
-                  // padding: 15,   
-                  padding: 10,
-                  // alignItems: "center",  //zare_nk_041206_commented 
-                  borderWidth: 1,
-                  borderColor: "#a9a9a9",
-                  borderStyle: 'solid',
-                  boxShadow: "#5e5e5e 0px 0px 3px 0px",
-                  borderRadius: 25,
-                  backgroundColor: "white",
-                  overflow: "hidden",
-                }}
-                activeOpacity={0.1}
-              >
-                <View
-                  // className="imgAndTextInSubprograms"
-                  style={[{
+                }, SubprogramsResponse]}>
+                <TouchableOpacity
+                  // className="vorsab"
+                  // href="/games"  
+                  // onPress={() => { return navigation.replace("Splash", { target: "SupperGame" }); }}  ////zare_nk_050312_commented(historye feli nemikhaim hazf she)
+                  onPress={() => { return navigation.navigate("Splash", { target: "SupperGame" }); }}    ////zare_nk_050312_added(historye feli nemikhaim hazf she)
+                  style={{
+                    width: "100%",
                     display: "flex",
-                    //  flexDirection: "row",
-
-                    flexGrow: 1,
-                    flexShrink: 1,
-                    flexBasis: 'auto',
-                  }, imgAndTextInSubprogramsResponse]}
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,   
+                    padding: 10,
+                    // alignItems: "center",  //zare_nk_041206_commented 
+                    borderWidth: 1,
+                    borderColor: "#a9a9a9",
+                    borderStyle: 'solid',
+                    boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                    borderRadius: 25,
+                    backgroundColor: "white",
+                    overflow: "hidden",
+                  }}
                 >
                   <View
-                    // className="roundedPillsCont"
+                    // className="imgAndTextInSubprograms"
                     style={[{
                       display: "flex",
-                      flexDirection: "row",
-                      // width: "fit-content",
-
-                    }, roundedPillsContResponse]}
+                      //  flexDirection: "row",                    
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
+                    }, imgAndTextInSubprogramsResponse]}
                   >
                     <View
-                      // className="rounded-pill"
-                      style={{
+                      // className="roundedPillsCont"
+                      style={[{
                         display: "flex",
                         flexDirection: "row",
-                        justifyContent: 'center',
-                        // border: "1px solid #E7E7E7",
-                        borderWidth: 1,
-                        borderColor: "#E7E7E7",
-                        borderStyle: 'solid',
-                        padding: 10,
-                        borderRadius: "50%",
-                        overflow: 'hidden',
-                        minHeight: 85.6,
-                        // width:86
-                      }}
-                    > 
-                      <Image
-                        source={superMarketImage}
-                        style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
-                      />
-                    </View>
-                  </View>
-                  <View
-                    style={[{
-                      display: "flex",
-                      flexDirection: "column",
-                      // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
-                      justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
-                      // width: "fit-content",
+                        // width: "fit-content",
 
-                    }, subSysTextContResponse]}
-                  >
-                    <View
-                      style={{
-                        // flex: "0 0 auto",
-                        flexGrow: 0,
-                        flexShrink: 0,
-                        flexBasis: 'auto',
-                        display: "flex",
-                        flexDirection: "row",
-                        marginBottom: 7,  //zare_nk_041205_added
-                      }}
+                      }, roundedPillsContResponse]}
                     >
-                      <Text
-                        // className="titleStyle"
-                        numberOfLines={1}
-                        ellipsizeMode="tail"
-                        style={[{
-                          fontFamily: "IRANSansWeb(FaNum)_Bold",
-                          color: '#4b4949',
-                        }, titleStyleResponse]}
-                      >سرچ با تصویر</Text>
+                      <View
+                        // className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          // border: "1px solid #E7E7E7",
+                          borderWidth: 1,
+                          borderColor: "#E7E7E7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: "50%",
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                          // width:86
+                        }}
+                      >
+                        <Image
+                          source={gameImage}
+                          style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
+                        />
+                      </View>
                     </View>
                     <View
-                      style={{ flexDirection: "row", }}
-                    // className="decsInSubprograms"
+                      style={[{
+                        display: "flex",
+                        flexDirection: "column",
+                        // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                        justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                        // width: "fit-content", 
+                      }, subSysTextContResponse]}
                     >
-                      <View style={{ display: "flex", flexDirection: "row" }}>
+                      <View
+                        style={{
+                          // flex: "0 0 auto",
+                          flexGrow: 0,
+                          flexShrink: 0,
+                          flexBasis: 'auto',
+                          display: "flex",
+                          flexDirection: "row",
+                          marginBottom: 7,  //zare_nk_041205_added
+                        }}
+                      >
                         <Text
-                          // className="valueStyle"
+                          // className="titleStyle"
                           numberOfLines={1}
                           ellipsizeMode="tail"
                           style={[{
-                            fontFamily: "IRANSansWeb(FaNum)_Medium",
-                            color: "#6a6a6a",
-                            fontSize: 12,
-                          }, valueStyleResponse,]}
-                        >
-                          امکان سرچ کالا با تصویر
-                        </Text>
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            color: '#4b4949',
+                          }, titleStyleResponse]}
+                        >بازی و سرگرمی</Text>
+                      </View>
+                      <View
+                        style={{ flexDirection: "row", }}
+                      // className="decsInSubprograms"
+                      >
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text
+                            // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              color: "#6a6a6a",
+                              fontSize: 12,
+                            }, valueStyleResponse,]}
+                          >
+                            لحظات خوش کودکان در محیط هایپر!
+                          </Text>
+                        </View>
                       </View>
                     </View>
                   </View>
-                </View>
-                <View
-                  // className="leftArrowInSubprograms"
-                  style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
-                > 
-                  <SvgUri
-                    uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
-                    width={20}
-                    height={20}
-                  />
-                </View>
-              </TouchableOpacity>
-            </View> */}
-            {/* zare_nk_050317_commented_end(felan nemikhaim) */}
+                  <View
+                    // className="leftArrowInSubprograms"
+                    style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
+                  >
+                    <SvgUri
+                      uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                      width={20}
+                      height={20}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View>
 
-            {/* zare_nk_041206_nokteh(be khatere dadane gap dar css az taktike ijade view haye tookhaliye komakiye akhare container ejtenab mikonim,
+              <View // id="Subprograms-7" className="Subprograms"
+                style={[{
+                  display: "flex",
+                  flexDirection: "row",
+                }, SubprogramsResponse]}>
+                <TouchableOpacity
+                  // className="vorsab"
+                  // href="/ComparePage" 
+                  // onPress={() => { return navigation.navigate("Splash", { target: "ComparePage" }); }} 
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    // padding: 15,   
+                    padding: 10,
+                    // alignItems: "center",  //zare_nk_041206_commented 
+                    borderWidth: 1,
+                    borderColor: "#a9a9a9",
+                    borderStyle: 'solid',
+                    boxShadow: "#5e5e5e 0px 0px 3px 0px",
+                    borderRadius: 25,
+                    backgroundColor: "white",
+                    overflow: "hidden",
+                  }}
+                  activeOpacity={0.1}
+                >
+                  <View
+                    // className="imgAndTextInSubprograms"
+                    style={[{
+                      display: "flex",
+                      //  flexDirection: "row",
+
+                      flexGrow: 1,
+                      flexShrink: 1,
+                      flexBasis: 'auto',
+                    }, imgAndTextInSubprogramsResponse]}
+                  >
+                    <View
+                      // className="roundedPillsCont"
+                      style={[{
+                        display: "flex",
+                        flexDirection: "row",
+                        // width: "fit-content",
+
+                      }, roundedPillsContResponse]}
+                    >
+                      <View
+                        // className="rounded-pill"
+                        style={{
+                          display: "flex",
+                          flexDirection: "row",
+                          justifyContent: 'center',
+                          // border: "1px solid #E7E7E7",
+                          borderWidth: 1,
+                          borderColor: "#E7E7E7",
+                          borderStyle: 'solid',
+                          padding: 10,
+                          borderRadius: "50%",
+                          overflow: 'hidden',
+                          minHeight: 85.6,
+                          // width:86
+                        }}
+                      >
+                        <Image
+                          source={superMarketImage}
+                          style={{ backgroundColor: "#efefef", width: 64, height: 64 }}
+                        />
+                      </View>
+                    </View>
+                    <View
+                      style={[{
+                        display: "flex",
+                        flexDirection: "column",
+                        // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
+                        justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
+                        // width: "fit-content",
+
+                      }, subSysTextContResponse]}
+                    >
+                      <View
+                        style={{
+                          // flex: "0 0 auto",
+                          flexGrow: 0,
+                          flexShrink: 0,
+                          flexBasis: 'auto',
+                          display: "flex",
+                          flexDirection: "row",
+                          marginBottom: 7,  //zare_nk_041205_added
+                        }}
+                      >
+                        <Text
+                          // className="titleStyle"
+                          numberOfLines={1}
+                          ellipsizeMode="tail"
+                          style={[{
+                            fontFamily: "IRANSansWeb(FaNum)_Bold",
+                            color: '#4b4949',
+                          }, titleStyleResponse]}
+                        >سرچ با تصویر</Text>
+                      </View>
+                      <View
+                        style={{ flexDirection: "row", }}
+                      // className="decsInSubprograms"
+                      >
+                        <View style={{ display: "flex", flexDirection: "row" }}>
+                          <Text
+                            // className="valueStyle"
+                            numberOfLines={1}
+                            ellipsizeMode="tail"
+                            style={[{
+                              fontFamily: "IRANSansWeb(FaNum)_Medium",
+                              color: "#6a6a6a",
+                              fontSize: 12,
+                            }, valueStyleResponse,]}
+                          >
+                            امکان سرچ کالا با تصویر
+                          </Text>
+                        </View>
+                      </View>
+                    </View>
+                  </View>
+                  <View
+                    // className="leftArrowInSubprograms"
+                    style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}
+                  >
+                    <SvgUri
+                      uri="https://img.tochikala.com/tochikala/left-arrow-03.svg"
+                      width={20}
+                      height={20}
+                    />
+                  </View>
+                </TouchableOpacity>
+              </View> */}
+              {/* zare_nk_050317_commented_end(felan nemikhaim) */}
+
+              {/* zare_nk_041206_nokteh(be khatere dadane gap dar css az taktike ijade view haye tookhaliye komakiye akhare container ejtenab mikonim,
 vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava ham dare ye gape bimored mideh ke shahede ye marginLefte
  bimored hastem ke chon viewye hamsaye ash tookhaliye va dideh nemishe in marginLefti ke dar asare gap migire bimorede(pas age az gap 
  estefadeh mishe view haye komaki tookhali ra hazf mikonim) ) */}
-            <View
-              // id="Subprograms-temp-1"
-              // className="Subprograms"
-              // style={{ display: "flex", flexDirection: "row", }}
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}
-            ></View>
-            <View
-              // id="Subprograms-temp-2"
-              // className="Subprograms"
-              // style={{ display: "flex", flexDirection: "row", }}
-              style={[{
-                display: "flex",
-                flexDirection: "row",
-              }, SubprogramsResponse]}
-            ></View>
+              <View // id="Subprograms-temp-1" className="Subprograms"
+                // style={{ display: "flex", flexDirection: "row", }}
+                style={[{
+                  display: "flex",
+                  flexDirection: "row",
+                }, SubprogramsResponse]}
+              ></View>
+              <View // id="Subprograms-temp-2" className="Subprograms"
+                // style={{ display: "flex", flexDirection: "row", }}
+                style={[{
+                  display: "flex",
+                  flexDirection: "row",
+                }, SubprogramsResponse]}
+              ></View>
+            </View>
+          </ScrollView>
+
+          <View style={{
+            display: "flex",
+            flexDirection: "row",
+            zIndex: 50, bottom: 0, left: 0, right: 0, position: 'absolute', backgroundColor: 'white', boxShadow: '0px -10px 15px -3px #0000001a', direction: "rtl",
+            // borderWidth: 1, borderColor: 'blue', borderStyle: 'dashed',
+            paddingBottom: 45,
+          }}>
+            <View style={{
+              display: "flex", flexDirection: "row", width: '100%',
+              position: 'relative', boxShadow: '0px -1px 5px 2px #0000000d', opacity: 1, backgroundColor: 'white',
+              overflow: 'hidden', height: '100%', paddingVertical: 0, paddingHorizontal: 16,
+              // borderWidth: 1, borderColor: 'red', borderStyle: 'dashed',
+            }}>
+              <View style={{
+                display: 'flex', flexDirection: "row", width: '100%', height: 64, justifyContent: 'space-between', alignItems: 'center',
+                position: 'relative', direction: 'rtl', minWidth: 4,
+                // borderWidth: 1, borderColor: 'black', borderStyle: 'dashed',
+              }}>
+                <View style={{
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', width: '100%', height: '100%', position: 'absolute',
+
+                }}>
+                  <TouchableOpacity onPress={() => {
+                    // navigation.navigate("Orders");
+                    // // setFooterBtnClicked(() => {
+                    // //   return ({
+                    // //     home: false,
+                    // //     orders: true,
+                    // //     profile: false,
+                    // //   })
+                    // // })
+                  }} style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center',
+                    gap: '.25rem', cursor: 'pointer', borderWidth: 0, padding: 0, backgroundColor: 'inherit', height: '100%',
+                  }}>
+                    {/* {
+                    footerBtnClicked.orders == true ?
+                      <View style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                      }}>
+                        <img src="/images/homeFooter/orders-icon.svg" alt="سفارش‌ها" style={{
+                          height: '1.5rem', width: '1.5rem',
+                        }} />
+                      </View> :
+                      <View style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                      }}>
+                        <img src="/images/homeFooter/orders-icon-kamrang.svg" alt="سفارش‌ها" style={{
+                          height: '1.5rem', width: '1.5rem',
+                        }} />
+                      </View>
+                  } */}
+                    <View style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                    }}>
+                      {/* <img src="/images/homeFooter/orders-icon.svg" alt="سفارش‌ها" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} /> */}
+                      <Image source={{ uri: "/images/homeFooter/orders-icon.svg" }}
+                        style={{ width: 24, height: 24, }} />
+                    </View>
+
+                    <Text style={{
+                      fontSize: 12, lineHeight: 16, textAlign: 'center',
+                      // ...(footerBtnClicked.orders == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
+                    }}>
+                      سفارش‌ها
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={{
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', zIndex: 2,
+                  // borderWidth: 1, borderColor: 'yellow', borderStyle: 'dashed',
+                }}>
+                  <TouchableOpacity onPress={() => {
+                    // // setFooterBtnClicked(() => {
+                    // //   return ({
+                    // //     home: true,
+                    // //     orders: false,
+                    // //     profile: false,
+                    // //   })
+                    // // })
+                  }}
+                    style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center',
+                      gap: '.25rem', cursor: 'pointer', borderWidth: 0, padding: 0, backgroundColor: 'inherit', width: 64, height: '100%',
+                    }}>
+                    {/* {footerBtnClicked.home == true ?
+                    <View style={{
+                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
+                    }}>
+                      <img src="/images/homeFooter/home-icon.svg" alt="خانه" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} />
+                    </View> :
+                    <View style={{
+                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
+                    }}>
+                      <img src="/images/homeFooter/home-icon-kamrang.svg" alt="خانه" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} />
+                    </View>
+                  } */}
+                    <View style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                    }}>
+                      {/* <img src="/images/homeFooter/home-icon.svg" alt="خانه" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} /> */}
+                      <Image source={{ uri: "/images/homeFooter/home-icon.svg" }}
+                        style={{ width: 24, height: 24, }} />
+                    </View>
+
+
+                    <Text style={{
+                      fontSize: 12, lineHeight: 16, textAlign: 'center',
+                      // ...(footerBtnClicked.home == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
+                    }}>
+                      خانه
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+                <View style={{
+                  display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center', height: '100%', zIndex: 2,
+                }}>
+                  <TouchableOpacity onPress={() => {
+                    navigation.navigate("Profile");
+                    // // setFooterBtnClicked(() => {
+                    // //   return ({
+                    // //     home: false,
+                    // //     orders: false,
+                    // //     profile: true,
+                    // //   })
+                    // // })
+                  }} style={{
+                    display: 'flex', flexDirection: 'column', alignItems: 'center',
+                    gap: '.25rem', cursor: 'pointer', borderWidth: 0, padding: 0, backgroundColor: 'inherit', width: 64, height: '100%',
+                  }}>
+                    {/* {footerBtnClicked.profile == true ?
+                    <View style={{
+                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
+                    }}>
+                      <img src="/images/homeFooter/profile-icon.svg" alt="پروفایل" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} />
+                    </View> :
+                    <View style={{
+                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
+                    }}>
+                      <img src="/images/homeFooter/profile-icon-kamrang.svg" alt="پروفایل" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} />
+                    </View>
+                  } */}
+
+                    <View style={{
+                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                    }}>
+                      {/* <img src="/images/homeFooter/profile-icon.svg" alt="پروفایل" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} /> */}
+                      <Image source={{ uri: "/images/homeFooter/profile-icon.svg" }}
+                        style={{ width: 24, height: 24, }} />
+                    </View>
+
+
+                    <Text style={{
+                      fontSize: 12, lineHeight: 16, textAlign: 'center',
+                      // ...(footerBtnClicked.profile == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
+                    }}>
+                      پروفایل
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+
+              </View>
+            </View>
+
           </View>
-        </ScrollView>
-      )}
+        </>
+      )
+      }
     </>
   );
 }

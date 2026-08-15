@@ -2272,20 +2272,16 @@ export default function ShoppingbasketComponent({
                                         // marginRight: 10, //zare_nk_041209_commented
                                         // marginBottom: 10, //zare_nk_041209_commented
                                         marginLeft: 0,
-                                    }}
-                                >
+                                    }}>
                                     {/* <Text style={{ fontSize: 14, }}></Text> */}
                                 </View>
                                 {/* zare_nk_041212_nokteh_st(faghat intoo barresi beshe baraye responsivi) */}
-                                <View
-                                    // id="DetailsImgAndInfoCont"
+                                <View // id="DetailsImgAndInfoCont"
                                     style={[{
                                         display: 'flex',
                                         width: '100%',
-                                    }, DetailsImgAndInfoContResponse]}
-                                >
-                                    <View
-                                        // id="ImgAndSwiperCont"
+                                    }, DetailsImgAndInfoContResponse]}>
+                                    <View // id="ImgAndSwiperCont"
                                         style={[{
                                             // marginBottom: 7, 
                                             padding: 3,
@@ -2294,11 +2290,8 @@ export default function ShoppingbasketComponent({
                                             flexBasis: 'auto',
                                             flexGrow: 0,
                                             flexShrink: 0,
-                                        }, CurrentImgContResponse]}
-                                    >
-                                        <View
-                                            // id="ImageColectionInDetails"
-                                            // className="swiper"
+                                        }, CurrentImgContResponse]}>
+                                        <View // id="ImageColectionInDetails" className="swiper"
                                             style={{
                                                 display: 'none',
                                                 marginLeft: 10,
@@ -2307,21 +2300,18 @@ export default function ShoppingbasketComponent({
                                                 // border: "none",
                                                 boxShadow: "0px 0px 3px 0px silver",
                                                 marginRight: 0,
-                                            }}
-                                        >
-                                            <View
-                                            // className="swiper-wrapper"
-                                            ></View>
-                                            <View
-                                            // className="swiper-pagination"
-                                            ></View>
-                                            <View
-                                            // className="swiper-scrollbar"
+                                            }} >
+                                            <View // className="swiper-wrapper"
+                                            >
+                                            </View>
+                                            <View // className="swiper-pagination"
+                                            >                                                
+                                            </View>
+                                            <View // className="swiper-scrollbar"
                                             ></View>
                                         </View>
 
-                                        <View
-                                            // id="CurrentImgCont"
+                                        <View // id="CurrentImgCont"
                                             style={[{
                                                 // // paddingVertical: 15,
                                                 paddingHorizontal: 0,
@@ -3298,9 +3288,7 @@ export default function ShoppingbasketComponent({
                         contentContainerStyle={[{
                             paddingBottom: 100,
                         }, sabadSafhe]}>
-                        <View
-                            // className="list-groupp"
-                            // id="listGroupAccordionInSafhe"
+                        <View // className="list-groupp" id="listGroupAccordionInSafhe"
                             style={[{
                                 // marginTop: "5px",
                                 // paddingTop: "5px",
@@ -3308,13 +3296,8 @@ export default function ShoppingbasketComponent({
                                 position: "relative",
                                 display: "flex",
                                 width: "100%",
-
-                            }
-                                , sabadItemsAndTotalInf
-                            ]}>
-                            <View
-                                // id="sabadHeaderAndItemsCont"
-                                // className="sabadHeaderAndItems"
+                            }, sabadItemsAndTotalInf]}>
+                            <View // id="sabadHeaderAndItemsCont" className="sabadHeaderAndItems"
                                 style={[{
                                     // flex: "1 1 auto",
                                     flexGrow: 1,
@@ -3328,11 +3311,8 @@ export default function ShoppingbasketComponent({
                                     paddingTop: 7,  //zare_nk_041209_added
                                     // backgroundColor: "#f6f6f6",    ////zare_nk_050315_commented
                                     // boxShadow: "#5e5e5e 0px 0px 3px 0px",   ////zare_nk_050315_commented
-                                }, sabadItemsCont]}
-                            >
-                                <View
-                                    // className="sabadHeader"
-                                    // id="sabadSafheHeader-FORTITR"
+                                }, sabadItemsCont]}>
+                                <View // className="sabadHeader" id="sabadSafheHeader-FORTITR"
                                     style={{
                                         display: "flex",
                                         flexDirection: "row",
@@ -3340,22 +3320,15 @@ export default function ShoppingbasketComponent({
                                         alignItems: "center",
                                         // marginBottom: 10,  ////zare_nk_050316_commented
                                         marginRight: 5,  ////zare_nk_050316_added                                   
-                                    }}
-                                >
-                                    <View
-                                        style={{
-                                            display: "flex",
-                                            flexDirection: "row",
-                                            justifyContent: 'flex-start',
-                                            // fontSize: 14,
-                                            // color: "#322E2E", 
-                                        }}
-                                    >
-                                        {/* <Text
-                                        id="adToSabadWidthBarCodeScan"
-                                    > */}
-                                        <TouchableOpacity
-                                            // className="BarCodeScan btn btn-danger"
+                                    }} >
+                                    <View style={{
+                                        display: "flex",
+                                        flexDirection: "row",
+                                        justifyContent: 'flex-start',
+                                        // fontSize: 14,
+                                        // color: "#322E2E", 
+                                    }}>
+                                        <TouchableOpacity // className="BarCodeScan btn btn-danger"
                                             style={{
                                                 borderRadius: 10,
                                                 display: 'flex',
@@ -3366,16 +3339,13 @@ export default function ShoppingbasketComponent({
                                                 backgroundColor: '#ff3151'
                                             }}
                                             onPress={() => { return forOpenCodeScanner(); }}  //zare_nk_041205_forUpdateName
-                                            activeOpacity={0.1}
-                                        >
+                                            activeOpacity={0.1}>
                                             <Text style={{ fontSize: 14, color: "white", fontFamily: "IRANSansWeb(FaNum)_Medium" }}> اضافه به سبد</Text>
                                         </TouchableOpacity>
-                                        {/* </Text> */}
                                     </View>
                                 </View>
 
-                                <View
-                                    // className="usersSabad"
+                                <View // className="usersSabad"
                                     style={{
                                         // padding: "0px 5px",
                                         paddingVertical: 0,
@@ -3403,8 +3373,7 @@ export default function ShoppingbasketComponent({
                                             display: "flex",
                                             flexDirection: "column",
                                             // marginLeft: 10,  ////zare_nk_050316_commented
-                                        }}
-                                    >
+                                        }}>
                                         <View
                                             // className="rounded-pilll"
                                             style={{
@@ -3412,8 +3381,7 @@ export default function ShoppingbasketComponent({
                                                 flexDirection: "row",
                                                 // padding: 10,  ////zare_nk_050316_commented
                                                 marginLeft: 10,  ////zare_nk_050316_added 
-                                            }}
-                                        >
+                                            }}>
                                             <Image
                                                 source={{ uri: "https://img.tochikala.com/Logo/photo14359415832-Copy.jpg" }}
                                                 style={{ width: 64, height: 64, borderRadius: 12 }}
@@ -3425,8 +3393,7 @@ export default function ShoppingbasketComponent({
                                             // display: "flex",
                                             flexDirection: "column",
                                             justifyContent: "space-around",
-                                        }}
-                                    >
+                                        }}>
                                         <View
                                             style={{
                                                 // flex: "0 0 auto",
@@ -3435,29 +3402,26 @@ export default function ShoppingbasketComponent({
                                                 flexBasis: 'auto',
                                                 // display: "flex",
                                                 flexDirection: "row",
-                                            }}
-                                        >
+                                            }}>
                                             <Text
                                                 numberOfLines={1}
                                                 ellipsizeMode="tail"
                                                 //  className="nameShobe titleStyle"
-                                                style={{ fontFamily: "IRANSansWeb(FaNum)_Bold", }}
-                                            >هاپر کرفو</Text>
+                                                style={{ fontFamily: "IRANSansWeb(FaNum)_Bold", }}>
+                                                هاپر کرفو
+                                                </Text>
                                         </View>
                                     </View>
                                 </View>
                             </View> */}
                                 {/* zare_nk_050415_commented_end(be khatere static neveshtane kerfu(badan ke nameshobe ra dahtam inja migonjoonam)) */}
 
-                                <View
-                                    // id="sabadItemsContInSafhe"
-                                    // className="sabadItemsCont hisGrandFather"
+                                <View // id="sabadItemsContInSafhe" className="sabadItemsCont hisGrandFather"
                                     style={{
                                         flexDirection: "column",
                                         paddingVertical: 0,
                                         paddingHorizontal: 5,
-                                    }}
-                                >
+                                    }}>
                                     {!bisatr && (
                                         <>
                                             {sabadRows?.map((item, index) => {
@@ -3601,7 +3565,6 @@ export default function ShoppingbasketComponent({
                                             <Text style={{ fontSize: 12, fontFamily: "IRANSansWeb(FaNum)_Medium", color: '#6d6d6d', }}>
                                                 ریال
                                             </Text>
-
                                         </View>
                                     </View>
                                 </View>

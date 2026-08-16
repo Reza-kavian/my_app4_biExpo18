@@ -1,4 +1,4 @@
-////zare_nk_050518_okk(1)
+////zare_nk_050525_okk(1)
 apply plugin: "com.android.application"
 apply plugin: "org.jetbrains.kotlin.android"
 apply plugin: "com.facebook.react"
@@ -12,11 +12,6 @@ def enableProguardInReleaseBuilds = false
 def jscFlavor = 'io.github.react-native-community:jsc-android:2026004.+'
 
 ////zare_nk_050425_added_st(baraye chand noei boodane hooshmand, na dasti) 
-// def appId = "com.zare.hamyarKharid"   
-// //def appId = "com.zare.hamyarKharid.Beta"   
-// def isBeta = appId.endsWith(".Beta")
- 
-
 def APP_TYPE_PRODUCTION = "production"
 def APP_TYPE_BETA = "beta"
 

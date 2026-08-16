@@ -139,10 +139,7 @@ const AddRemBtnsAndCountPackege = ({
 
     if (ForCartContentsDesignType == 0) {
         return (
-            <View
-                // className={`text-center align-items-center justify-content-center ForCart ${idTag}`}
-                // id={`${idTag}`}
-                // style={{ width: "100%", display: "flex" }}
+            <View // id={`${idTag}`} className={`text-center align-items-center justify-content-center ForCart ${idTag}`} 
                 style={{
                     width: "100%", display: "flex", alignItems: 'center', justifyContent: 'center',
                 }} >
@@ -170,7 +167,7 @@ const AddRemBtnsAndCountPackege = ({
                         // borderRadius: 17,  ////zare_nk_050316_commented
                         borderRadius: 100,  ////zare_nk_050316_added
                     }}>
-                    <View  // className="addremmCont" id={`removeCont-${IdKala}`}
+                    <View // className="addremmCont" id={`removeCont-${IdKala}`}
                         style={{
                             height: "100%",
                             // flex: "1 1 auto",

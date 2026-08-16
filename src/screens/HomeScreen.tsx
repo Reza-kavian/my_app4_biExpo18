@@ -30,6 +30,15 @@ import gameImage from "../assets/images/logoes/game.png";
 import InfAnfCommentsIcon from "../components/icons/images/InfAnfComments";   ////zare_nk_050520_added
 import RemoveFromCartTapsiIcon from "../components/icons/images/RemoveFromCartTapsi";
 
+////zare_nk_050525_added_st
+import HomeIcon from "../components/icons/images/homeFooter/HomeIcon";
+import HomeIconKamrang from "../components/icons/images/homeFooter/HomeIconKamrang";
+import OrdersIcon from "../components/icons/images/homeFooter/OrdersIcon";
+import OrdersIconKamrang from "../components/icons/images/homeFooter/OrdersIconKamrang";
+import ProfileIcon from "../components/icons/images/homeFooter/ProfileIcon";
+import ProfileIconKamrang from "../components/icons/images/homeFooter/ProfileIconKamrang";
+////zare_nk_050525_added_end
+
 ////zare_nk_041130_commented_st
 // import "bootstrap/dist/css/bootstrap.min.css";
 // let cachedBootstrap: typeof import("bootstrap") | null = null;
@@ -4585,8 +4594,6 @@ export default function HomeScreen({
                 </TouchableOpacity>
               </View>
 
-
-
               {/* zare_nk_050317_commented_st(felan nemikhaim) */}
               {/* <View //id="Subprograms-5" className="Subprograms"
                 style={[{
@@ -5023,7 +5030,7 @@ vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava
 
                 }}>
                   <TouchableOpacity onPress={() => {
-                    // navigation.navigate("Orders");
+                    //   navigation.navigate("Orders");
                     // // setFooterBtnClicked(() => {
                     // //   return ({
                     // //     home: false,
@@ -5035,36 +5042,32 @@ vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava
                     display: 'flex', flexDirection: 'column', alignItems: 'center',
                     gap: '.25rem', cursor: 'pointer', borderWidth: 0, padding: 0, backgroundColor: 'inherit', height: '100%',
                   }}>
-                    {/* {
-                    footerBtnClicked.orders == true ?
-                      <View style={{
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
-                      }}>
-                        <img src="/images/homeFooter/orders-icon.svg" alt="سفارش‌ها" style={{
-                          height: '1.5rem', width: '1.5rem',
-                        }} />
-                      </View> :
-                      <View style={{
-                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
-                      }}>
-                        <img src="/images/homeFooter/orders-icon-kamrang.svg" alt="سفارش‌ها" style={{
-                          height: '1.5rem', width: '1.5rem',
-                        }} />
-                      </View>
-                  } */}
-                    <View style={{
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
-                    }}>
-                      {/* <img src="/images/homeFooter/orders-icon.svg" alt="سفارش‌ها" style={{
-                        height: '1.5rem', width: '1.5rem',
-                      }} /> */}
-                      <Image source={{ uri: "/images/homeFooter/orders-icon.svg" }}
-                        style={{ width: 24, height: 24, }} />
-                    </View>
+                    {
+                      footerBtnClicked.orders == true ?
+                        <View style={{
+                          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                        }}>
+                          {/* <img src="/images/homeFooter/orders-icon.svg" alt="سفارش‌ها" style={{
+                            height: '1.5rem', width: '1.5rem',
+                          }} /> */}
+
+                          <OrdersIcon />
+                        </View> :
+                        <View style={{
+                          display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                        }}>
+                          {/* <img src="/images/homeFooter/orders-icon-kamrang.svg" alt="سفارش‌ها" style={{
+                            height: '1.5rem', width: '1.5rem',
+                          }} /> */}
+                          <OrdersIconKamrang
+                            fill={"#878b92"}
+                          />
+                        </View>
+                    }
 
                     <Text style={{
                       fontSize: 12, lineHeight: 16, textAlign: 'center',
-                      // ...(footerBtnClicked.orders == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
+                      ...(footerBtnClicked.orders == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
                     }}>
                       سفارش‌ها
                     </Text>
@@ -5076,48 +5079,44 @@ vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava
                   // borderWidth: 1, borderColor: 'yellow', borderStyle: 'dashed',
                 }}>
                   <TouchableOpacity onPress={() => {
-                    // // setFooterBtnClicked(() => {
-                    // //   return ({
-                    // //     home: true,
-                    // //     orders: false,
-                    // //     profile: false,
-                    // //   })
-                    // // })
+                    // setFooterBtnClicked(() => {
+                    //   return ({
+                    //     home: true,
+                    //     orders: false,
+                    //     profile: false,
+                    //   })
+                    // })
                   }}
                     style={{
                       display: 'flex', flexDirection: 'column', alignItems: 'center',
                       gap: '.25rem', cursor: 'pointer', borderWidth: 0, padding: 0, backgroundColor: 'inherit', width: 64, height: '100%',
                     }}>
-                    {/* {footerBtnClicked.home == true ?
-                    <View style={{
-                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
-                    }}>
-                      <img src="/images/homeFooter/home-icon.svg" alt="خانه" style={{
-                        height: '1.5rem', width: '1.5rem',
-                      }} />
-                    </View> :
-                    <View style={{
-                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
-                    }}>
-                      <img src="/images/homeFooter/home-icon-kamrang.svg" alt="خانه" style={{
-                        height: '1.5rem', width: '1.5rem',
-                      }} />
-                    </View>
-                  } */}
-                    <View style={{
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
-                    }}>
-                      {/* <img src="/images/homeFooter/home-icon.svg" alt="خانه" style={{
+                    {footerBtnClicked.home == true ?
+                      <View style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                      }}>
+                        {/* <img src="/images/homeFooter/home-icon.svg" alt="خانه" style={{
                         height: '1.5rem', width: '1.5rem',
                       }} /> */}
-                      <Image source={{ uri: "/images/homeFooter/home-icon.svg" }}
-                        style={{ width: 24, height: 24, }} />
-                    </View>
-
+                        <HomeIcon
+                          fill={"#000"}
+                        />
+                      </View> :
+                      <View style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                      }}>
+                        {/* <img src="/images/homeFooter/home-icon-kamrang.svg" alt="خانه" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} /> */}
+                        <HomeIconKamrang
+                          fill={"#878b92"}
+                        />
+                      </View>
+                    }
 
                     <Text style={{
                       fontSize: 12, lineHeight: 16, textAlign: 'center',
-                      // ...(footerBtnClicked.home == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
+                      ...(footerBtnClicked.home == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
                     }}>
                       خانه
                     </Text>
@@ -5129,48 +5128,45 @@ vagarna barnameh automat ba akharin viewei ke ghable in komakiha hast va mohtava
                 }}>
                   <TouchableOpacity onPress={() => {
                     navigation.navigate("Profile");
-                    // // setFooterBtnClicked(() => {
-                    // //   return ({
-                    // //     home: false,
-                    // //     orders: false,
-                    // //     profile: true,
-                    // //   })
-                    // // })
+                    // setFooterBtnClicked(() => {
+                    //   return ({
+                    //     home: false,
+                    //     orders: false,
+                    //     profile: true,
+                    //   })
+                    // })
                   }} style={{
                     display: 'flex', flexDirection: 'column', alignItems: 'center',
                     gap: '.25rem', cursor: 'pointer', borderWidth: 0, padding: 0, backgroundColor: 'inherit', width: 64, height: '100%',
                   }}>
-                    {/* {footerBtnClicked.profile == true ?
-                    <View style={{
-                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
-                    }}>
-                      <img src="/images/homeFooter/profile-icon.svg" alt="پروفایل" style={{
-                        height: '1.5rem', width: '1.5rem',
-                      }} />
-                    </View> :
-                    <View style={{
-                      display: 'flex', flexFlow: 'column', alignItems: 'center', justifyContent: 'center', margin: '.5rem', marginBottom: '0px',
-                    }}>
-                      <img src="/images/homeFooter/profile-icon-kamrang.svg" alt="پروفایل" style={{
-                        height: '1.5rem', width: '1.5rem',
-                      }} />
-                    </View>
-                  } */}
-
-                    <View style={{
-                      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
-                    }}>
-                      {/* <img src="/images/homeFooter/profile-icon.svg" alt="پروفایل" style={{
+                    {footerBtnClicked.profile == true ?
+                      <View style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                      }}>
+                        {/* <img src="/images/homeFooter/profile-icon.svg" alt="پروفایل" style={{
                         height: '1.5rem', width: '1.5rem',
                       }} /> */}
-                      <Image source={{ uri: "/images/homeFooter/profile-icon.svg" }}
-                        style={{ width: 24, height: 24, }} />
-                    </View>
-
+                        <ProfileIcon
+                          fill={"currentColor"}
+                        />
+                      </View> :
+                      <View style={{
+                        display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', margin: 8, marginBottom: 0,
+                      }}>
+                        {/* <img src="/images/homeFooter/profile-icon-kamrang.svg" alt="پروفایل" style={{
+                        height: '1.5rem', width: '1.5rem',
+                      }} /> */}
+                        <ProfileIconKamrang
+                          fill={"#fff"}
+                          stroke={"#878b92"}
+                          strokeWidth={2}
+                        />
+                      </View>
+                    }
 
                     <Text style={{
                       fontSize: 12, lineHeight: 16, textAlign: 'center',
-                      // ...(footerBtnClicked.profile == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
+                      ...(footerBtnClicked.profile == true ? { color: '#1b1c1d' } : { color: '#878b92' }),
                     }}>
                       پروفایل
                     </Text>

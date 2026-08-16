@@ -2227,12 +2227,11 @@ export default function ShoppingbasketComponent({
                                     isScanningRef.current = true;  ////zare_nk_050508_added
                                     setIsScanning(true);  //zare_nk_041203_added
                                 }}
-                                activeOpacity={0.6}
-                            >
+                                activeOpacity={0.6}>
                                 {/* <Image
-                                             source={{ uri: "https://img.tochikala.com/tochikala/close-modal.svg" }}
-                                             style={{ width: 32, }}
-                                           /> */}
+                                    source={{ uri: "https://img.tochikala.com/tochikala/close-modal.svg" }}
+                                    style={{ width: 32, }}
+                                /> */}
                                 <SvgUri
                                     uri="https://img.tochikala.com/tochikala/close-modal.svg"
                                     width='100%'
@@ -2241,8 +2240,7 @@ export default function ShoppingbasketComponent({
                             </TouchableOpacity>
                         </View>
 
-                        <View
-                            // id="productExist"
+                        <View // id="productExist"
                             style={{
                                 flexGrow: 1,
                                 flexShrink: 1,
@@ -2250,20 +2248,16 @@ export default function ShoppingbasketComponent({
                                 display: bisatrInProductDet === true ? "none" : "flex", //zare_nk_041129_rahe2(tosiye mishe)
                                 justifyContent: "center",
                                 width: '100%',
-                            }}
-                        >
-                            <View
-                                // id="DetailsPageCont"
+                            }}>
+                            <View // id="DetailsPageCont"
                                 style={{
                                     marginTop: 10,
                                     overflow: "hidden",
                                     width: "100%",
                                     display: 'flex',
                                     flexDirection: 'row',
-                                }}
-                            >
-                                <View
-                                    // id="groupsInDetailsPageCont"
+                                }}>
+                                <View // id="groupsInDetailsPageCont"
                                     style={{
                                         display: "flex",
                                         flexDirection: "row",
@@ -2305,7 +2299,7 @@ export default function ShoppingbasketComponent({
                                             >
                                             </View>
                                             <View // className="swiper-pagination"
-                                            >                                                
+                                            >
                                             </View>
                                             <View // className="swiper-scrollbar"
                                             ></View>

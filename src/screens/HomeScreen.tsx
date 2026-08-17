@@ -4186,6 +4186,10 @@ export default function HomeScreen({
                   /> */}
                     <InfAnfCommentsIcon
                       fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                      style={{transform: [{ rotate: '180deg' }],}}  ////zare_nk_050526_added(chon dar file svg mabda, transform ra natoonestim biroon az style bebarim(width,height,stroke,
+                      //// fill beonvane atribute mostaghel vojood darand vali transform kheir), va midoonim dar reactnative transform bejaye string bayad araye bashe vali tebghe ghanoone
+                      ////  style css bayad string bashe, pas behtarin rah ine ke az file mabda hazf beshe va inja ezafeh beshe chon dar componente khoroojiye sakhteshodeh nist va nemikhaim 
+                      //// harbar ke component ra mojadad dar terminal misazim dasti transform benevisim, haminja dar hengame seda zadan minevisim va hamishe kar mikoneh)
                     />
                   </View>
                 </TouchableOpacity>
@@ -4319,6 +4323,10 @@ export default function HomeScreen({
                   /> */}
                     <InfAnfCommentsIcon
                       fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                      style={{transform: [{ rotate: '180deg' }],}}  ////zare_nk_050526_added(chon dar file svg mabda, transform ra natoonestim biroon az style bebarim(width,height,stroke,
+                      //// fill beonvane atribute mostaghel vojood darand vali transform kheir), va midoonim dar reactnative transform bejaye string bayad araye bashe vali tebghe ghanoone
+                      ////  style css bayad string bashe, pas behtarin rah ine ke az file mabda hazf beshe va inja ezafeh beshe chon dar componente khoroojiye sakhteshodeh nist va nemikhaim 
+                      //// harbar ke component ra mojadad dar terminal misazim dasti transform benevisim, haminja dar hengame seda zadan minevisim va hamishe kar mikoneh)
                     />
                   </View>
                 </TouchableOpacity>
@@ -4460,6 +4468,10 @@ export default function HomeScreen({
                   /> */}
                     <InfAnfCommentsIcon
                       fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                      style={{transform: [{ rotate: '180deg' }],}}  ////zare_nk_050526_added(chon dar file svg mabda, transform ra natoonestim biroon az style bebarim(width,height,stroke,
+                      //// fill beonvane atribute mostaghel vojood darand vali transform kheir), va midoonim dar reactnative transform bejaye string bayad araye bashe vali tebghe ghanoone
+                      ////  style css bayad string bashe, pas behtarin rah ine ke az file mabda hazf beshe va inja ezafeh beshe chon dar componente khoroojiye sakhteshodeh nist va nemikhaim 
+                      //// harbar ke component ra mojadad dar terminal misazim dasti transform benevisim, haminja dar hengame seda zadan minevisim va hamishe kar mikoneh)
                     />
                   </View>
                 </TouchableOpacity>
@@ -4589,6 +4601,10 @@ export default function HomeScreen({
                   /> */}
                     <InfAnfCommentsIcon
                       fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                      style={{transform: [{ rotate: '180deg' }],}}  ////zare_nk_050526_added(chon dar file svg mabda, transform ra natoonestim biroon az style bebarim(width,height,stroke,
+                      //// fill beonvane atribute mostaghel vojood darand vali transform kheir), va midoonim dar reactnative transform bejaye string bayad araye bashe vali tebghe ghanoone
+                      ////  style css bayad string bashe, pas behtarin rah ine ke az file mabda hazf beshe va inja ezafeh beshe chon dar componente khoroojiye sakhteshodeh nist va nemikhaim 
+                      //// harbar ke component ra mojadad dar terminal misazim dasti transform benevisim, haminja dar hengame seda zadan minevisim va hamishe kar mikoneh)
                     />
                   </View>
                 </TouchableOpacity>
@@ -4712,6 +4728,10 @@ export default function HomeScreen({
                     style={{ display: 'flex', flexDirection: "row", alignItems: 'center', }}>
                     <InfAnfCommentsIcon
                       fill={isDark ? "#e7e7e7" : "#a9a9a9"}
+                      style={{transform: [{ rotate: '180deg' }],}}  ////zare_nk_050526_added(chon dar file svg mabda, transform ra natoonestim biroon az style bebarim(width,height,stroke,
+                      //// fill beonvane atribute mostaghel vojood darand vali transform kheir), va midoonim dar reactnative transform bejaye string bayad araye bashe vali tebghe ghanoone
+                      ////  style css bayad string bashe, pas behtarin rah ine ke az file mabda hazf beshe va inja ezafeh beshe chon dar componente khoroojiye sakhteshodeh nist va nemikhaim 
+                      //// harbar ke component ra mojadad dar terminal misazim dasti transform benevisim, haminja dar hengame seda zadan minevisim va hamishe kar mikoneh)
                     />
                   </View>
                 </TouchableOpacity>

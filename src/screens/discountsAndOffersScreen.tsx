@@ -144,7 +144,6 @@ async function getCookie(name: any) {
 
 import type { RootStackParamList } from "../types/navigation";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { LoginIcon } from "../components/icons/images";
 type Props = NativeStackScreenProps<RootStackParamList, "discountsAndOffers">;
 
 export default function ShallowRoutingExample({

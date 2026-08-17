@@ -7,12 +7,7 @@ const SvgInfAnfComments = (props: SvgProps) => (
     width={24}
     height={24}
     // fill="inherit"
-    // className="inf-anf-comments_svg__fill-primary inf-anf-comments_svg__rotate-180"
-    style={{
-      // transform: 'rotate(180deg)',
-      transform: [{ rotate: '180deg' }],
-      // fill: '#ff5900',
-    }}
+    // className="inf-anf-comments_svg__fill-primary inf-anf-comments_svg__rotate-180" 
     {...props}
   >
     <Path

@@ -1,4 +1,4 @@
-////zare_nk_050518_okk(1)
+////zare_nk_050528_okk(1)
 import { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
 import { //zare_nk_041129_added
   View, Text, Image, TouchableOpacity, StyleSheet, ViewStyle, TextStyle, Alert,
@@ -110,13 +110,6 @@ type OfferSatrComponentType = {
   navigation: NavigationProp;   ////zare_nk_050315_nokteh(rahe2 baraye taeine noe parametre navigation ke az file digari be componente jari pas dadeh shod)
 };
 
-// export default function OfferSatrComponent({ 
-//   offerRow,
-//   handlerForAddClick,
-//   handlerForRemClick,
-//   openprodDetModal,
-//   navigation,  
-// }: OfferSatrComponentType) {
 const OfferSatrComponent = ({
   offerRow,
   handlerForAddClick,
@@ -124,7 +117,6 @@ const OfferSatrComponent = ({
   openprodDetModal,
   navigation,
 }: OfferSatrComponentType) => {
-
   console.log("050403-OfferSatrComponent-offerRow: " + JSON.stringify(offerRow));
   const [isLoadedIroductImage, setIsLoadedIroductImage] = useState(false);   ////zare_nk_050318_added
 
@@ -441,7 +433,6 @@ const OfferSatrComponent = ({
               bishAzMaxTedadYaMojoodi={bishAzMaxTedadYaMojoodi}
               navigation={navigation}  //zare_nk_041128_added
             />
-
           </View>
         </View>
 

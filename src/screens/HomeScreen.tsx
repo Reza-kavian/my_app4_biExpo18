@@ -1,4 +1,4 @@
-////zare_nk_050520_okk(1)
+////zare_nk_050528_okk(1)
 // "use client";  
 // import { useRouter } from "next/navigation";
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -4100,29 +4100,23 @@ export default function HomeScreen({
                           borderRadius: "50%",
                           overflow: 'hidden',
                           minHeight: 85.6,
-                        }}
-                      >
+                        }}>
                         {/* <img
                         style={{ width: "64px" }}
                         src="/images/Subprograms/superMarket.png"
                         alt="هایپر&zwnj;کرفو"
                       /> */}
-                        <Image
-                          source={superMarketImage}
-                          style={{ backgroundColor: 'inherit', width: 64, height: 64 }}
-                        />
+                        <Image source={superMarketImage}
+                          style={{ backgroundColor: 'inherit', width: 64, height: 64 }} />
                       </View>
                     </View>
-                    <View
-                      style={[{
+                    <View style={[{
                         display: "flex",
                         flexDirection: "column",
                         // justifyContent: "space-around",   //zare_nk_041205_commented //zare_nk_041206_okk
                         justifyContent: "center", //zare_nk_041205_added  //zare_nk_041206_okk
                         // width: "fit-content", 
-
-                      }, subSysTextContResponse]}
-                    >
+                      }, subSysTextContResponse]}>
                       <View
                         style={{
                           // flex: "0 0 auto",
@@ -4169,12 +4163,10 @@ export default function HomeScreen({
                       </View>
                     </View>
                   </View>
-                  <View
-                    // className="leftArrowInSubprograms"
+                  <View // className="leftArrowInSubprograms"
                     style={{
                       display: 'flex', flexDirection: "row", alignItems: 'center',
-                    }}
-                  >
+                    }}>
                     {/* <Image
                     source={{ uri: "https://img.tochikala.com/tochikala/left-arrow-03.svg" }}
                     style={{ width: 20, height:20 }}
